@@ -8,17 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
+		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
+		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
+		59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793461D59D3480062007E /* Lato-Semibold.ttf */; };
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD181D586974009DFBA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD141D586974009DFBA8 /* Main.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
-		59D9BD221D58697F009DFBA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD201D58697F009DFBA8 /* ViewController.m */; };
-		59FDF9061D59C3BB009AA80B /* LoginScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FDF9051D59C3BB009AA80B /* LoginScreen.xib */; };
+		F7C0C3D61D59CD0800114AB6 /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3CE1D59CD0800114AB6 /* LoginModel.m */; };
+		F7C0C3D71D59CD0800114AB6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3CF1D59CD0800114AB6 /* LoginViewController.m */; };
+		F7C0C3D81D59CD0800114AB6 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D01D59CD0800114AB6 /* LoginViewModel.m */; };
+		F7C0C3D91D59CD0800114AB6 /* RecoveryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D21D59CD0800114AB6 /* RecoveryModel.m */; };
+		F7C0C3DA1D59CD0800114AB6 /* RecoverySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D31D59CD0800114AB6 /* RecoverySuccessViewController.m */; };
+		F7C0C3DB1D59CD0800114AB6 /* RecoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D41D59CD0800114AB6 /* RecoveryViewController.m */; };
+		F7C0C3DC1D59CD0800114AB6 /* RecoveryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D51D59CD0800114AB6 /* RecoveryViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
+		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
+		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		59A793461D59D3480062007E /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
 		59D9BCEE1D5868B7009DFBA8 /* TookTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TookTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9BD0B1D586960009DFBA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59D9BD0C1D586960009DFBA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -26,12 +37,23 @@
 		59D9BD131D586974009DFBA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59D9BD151D586974009DFBA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		59D9BD1C1D58697F009DFBA8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		59D9BD201D58697F009DFBA8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		59FDF9051D59C3BB009AA80B /* LoginScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginScreen.xib; sourceTree = "<group>"; };
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7C0C3C51D59CCEF00114AB6 /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
+		F7C0C3C61D59CCEF00114AB6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		F7C0C3C71D59CCEF00114AB6 /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		F7C0C3C91D59CCEF00114AB6 /* RecoveryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryModel.h; sourceTree = "<group>"; };
+		F7C0C3CA1D59CCEF00114AB6 /* RecoverySuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoverySuccessViewController.h; sourceTree = "<group>"; };
+		F7C0C3CB1D59CCEF00114AB6 /* RecoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryViewController.h; sourceTree = "<group>"; };
+		F7C0C3CC1D59CCEF00114AB6 /* RecoveryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryViewModel.h; sourceTree = "<group>"; };
+		F7C0C3CE1D59CD0800114AB6 /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
+		F7C0C3CF1D59CD0800114AB6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F7C0C3D01D59CD0800114AB6 /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
+		F7C0C3D21D59CD0800114AB6 /* RecoveryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryModel.m; sourceTree = "<group>"; };
+		F7C0C3D31D59CD0800114AB6 /* RecoverySuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoverySuccessViewController.m; sourceTree = "<group>"; };
+		F7C0C3D41D59CD0800114AB6 /* RecoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryViewController.m; sourceTree = "<group>"; };
+		F7C0C3D51D59CD0800114AB6 /* RecoveryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +68,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		59A793421D59D2DD0062007E /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				59A793451D59D3480062007E /* Lato-Regular.ttf */,
+				59A793461D59D3480062007E /* Lato-Semibold.ttf */,
+				59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */,
+			);
+			name = fonts;
+			path = ../res/fonts;
+			sourceTree = "<group>";
+		};
 		59D9BCE51D5868B7009DFBA8 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +102,7 @@
 		59D9BD081D586940009DFBA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				59A793421D59D2DD0062007E /* fonts */,
 				59D9BD0F1D586974009DFBA8 /* images */,
 				59D9BD111D586974009DFBA8 /* storyboards */,
 			);
@@ -107,7 +141,6 @@
 			children = (
 				59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */,
 				59D9BD141D586974009DFBA8 /* Main.storyboard */,
-				59FDF9051D59C3BB009AA80B /* LoginScreen.xib */,
 			);
 			name = storyboards;
 			path = ../res/storyboards;
@@ -126,7 +159,8 @@
 		59D9BD1B1D58697F009DFBA8 /* autorization */ = {
 			isa = PBXGroup;
 			children = (
-				59D9BD1C1D58697F009DFBA8 /* ViewController.h */,
+				F7C0C3C41D59CCEF00114AB6 /* Login */,
+				F7C0C3C81D59CCEF00114AB6 /* Recover */,
 			);
 			path = autorization;
 			sourceTree = "<group>";
@@ -144,7 +178,8 @@
 		59D9BD1F1D58697F009DFBA8 /* autorization */ = {
 			isa = PBXGroup;
 			children = (
-				59D9BD201D58697F009DFBA8 /* ViewController.m */,
+				F7C0C3CD1D59CD0800114AB6 /* Login */,
+				F7C0C3D11D59CD0800114AB6 /* Recover */,
 			);
 			path = autorization;
 			sourceTree = "<group>";
@@ -164,6 +199,48 @@
 				8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F7C0C3C41D59CCEF00114AB6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C3C61D59CCEF00114AB6 /* LoginViewController.h */,
+				F7C0C3C71D59CCEF00114AB6 /* LoginViewModel.h */,
+				F7C0C3C51D59CCEF00114AB6 /* LoginModel.h */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F7C0C3C81D59CCEF00114AB6 /* Recover */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C3CB1D59CCEF00114AB6 /* RecoveryViewController.h */,
+				F7C0C3CC1D59CCEF00114AB6 /* RecoveryViewModel.h */,
+				F7C0C3C91D59CCEF00114AB6 /* RecoveryModel.h */,
+				F7C0C3CA1D59CCEF00114AB6 /* RecoverySuccessViewController.h */,
+			);
+			path = Recover;
+			sourceTree = "<group>";
+		};
+		F7C0C3CD1D59CD0800114AB6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C3CF1D59CD0800114AB6 /* LoginViewController.m */,
+				F7C0C3D01D59CD0800114AB6 /* LoginViewModel.m */,
+				F7C0C3CE1D59CD0800114AB6 /* LoginModel.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F7C0C3D11D59CD0800114AB6 /* Recover */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C3D41D59CD0800114AB6 /* RecoveryViewController.m */,
+				F7C0C3D51D59CD0800114AB6 /* RecoveryViewModel.m */,
+				F7C0C3D21D59CD0800114AB6 /* RecoveryModel.m */,
+				F7C0C3D31D59CD0800114AB6 /* RecoverySuccessViewController.m */,
+			);
+			path = Recover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,9 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				59D9BD181D586974009DFBA8 /* Main.storyboard in Resources */,
-				59FDF9061D59C3BB009AA80B /* LoginScreen.xib in Resources */,
 				59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */,
+				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
+				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
 				59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */,
+				59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,9 +367,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59D9BD221D58697F009DFBA8 /* ViewController.m in Sources */,
+				F7C0C3DC1D59CD0800114AB6 /* RecoveryViewModel.m in Sources */,
+				F7C0C3D71D59CD0800114AB6 /* LoginViewController.m in Sources */,
+				F7C0C3DB1D59CD0800114AB6 /* RecoveryViewController.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
+				F7C0C3DA1D59CD0800114AB6 /* RecoverySuccessViewController.m in Sources */,
+				F7C0C3D81D59CD0800114AB6 /* LoginViewModel.m in Sources */,
+				F7C0C3D91D59CD0800114AB6 /* RecoveryModel.m in Sources */,
+				F7C0C3D61D59CD0800114AB6 /* LoginModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
