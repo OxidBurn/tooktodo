@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
 		599A15991D59E8D6005F1CB7 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 599A15971D59E8D6005F1CB7 /* LoginStoryboard.storyboard */; };
+		599A15A31D59F5DA005F1CB7 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 599A15A21D59F5DA005F1CB7 /* NSString+Utils.m */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
 		59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793461D59D3480062007E /* Lato-Semibold.ttf */; };
@@ -30,7 +31,9 @@
 /* Begin PBXFileReference section */
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
 		599A15981D59E8D6005F1CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginStoryboard.storyboard; sourceTree = "<group>"; };
-		599A159B1D59E972005F1CB7 /* APIConstance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
+		599A159E1D59F58B005F1CB7 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utils.h"; path = "Extensions/NSString+Utils.h"; sourceTree = "<group>"; };
+		599A15A11D59F5BE005F1CB7 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIConstance.h; path = Constance/APIConstance.h; sourceTree = "<group>"; };
+		599A15A21D59F5DA005F1CB7 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utils.m"; path = "Extensions/NSString+Utils.m"; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		59A793461D59D3480062007E /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
@@ -77,9 +80,25 @@
 		599A159A1D59E955005F1CB7 /* Constance */ = {
 			isa = PBXGroup;
 			children = (
-				599A159B1D59E972005F1CB7 /* APIConstance.h */,
+				599A15A11D59F5BE005F1CB7 /* APIConstance.h */,
 			);
 			name = Constance;
+			sourceTree = "<group>";
+		};
+		599A159C1D59F53A005F1CB7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				599A159E1D59F58B005F1CB7 /* NSString+Utils.h */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		599A159D1D59F545005F1CB7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				599A15A21D59F5DA005F1CB7 /* NSString+Utils.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		59A793421D59D2DD0062007E /* fonts */ = {
@@ -167,18 +186,20 @@
 				59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */,
 				F7C0C3E01D59DDB800114AB6 /* AppDelegate+RootController.h */,
 				599A159A1D59E955005F1CB7 /* Constance */,
-				59D9BD1B1D58697F009DFBA8 /* autorization */,
+				599A159C1D59F53A005F1CB7 /* Extensions */,
+				59D9BD1B1D58697F009DFBA8 /* Autorization */,
 			);
 			name = inc;
 			path = ../inc;
 			sourceTree = "<group>";
 		};
-		59D9BD1B1D58697F009DFBA8 /* autorization */ = {
+		59D9BD1B1D58697F009DFBA8 /* Autorization */ = {
 			isa = PBXGroup;
 			children = (
 				F7C0C3C41D59CCEF00114AB6 /* Login */,
 				F7C0C3C81D59CCEF00114AB6 /* Recover */,
 			);
+			name = Autorization;
 			path = autorization;
 			sourceTree = "<group>";
 		};
@@ -187,18 +208,20 @@
 			children = (
 				59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */,
 				F7C0C3E31D59DDD800114AB6 /* AppDelegate+RootController.m */,
-				59D9BD1F1D58697F009DFBA8 /* autorization */,
+				599A159D1D59F545005F1CB7 /* Extensions */,
+				59D9BD1F1D58697F009DFBA8 /* Autorization */,
 			);
 			name = src;
 			path = ../src;
 			sourceTree = "<group>";
 		};
-		59D9BD1F1D58697F009DFBA8 /* autorization */ = {
+		59D9BD1F1D58697F009DFBA8 /* Autorization */ = {
 			isa = PBXGroup;
 			children = (
 				F7C0C3CD1D59CD0800114AB6 /* Login */,
 				F7C0C3D11D59CD0800114AB6 /* Recover */,
 			);
+			name = Autorization;
 			path = autorization;
 			sourceTree = "<group>";
 		};
@@ -390,6 +413,7 @@
 				F7C0C3D71D59CD0800114AB6 /* LoginViewController.m in Sources */,
 				F7C0C3DB1D59CD0800114AB6 /* RecoveryViewController.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
+				599A15A31D59F5DA005F1CB7 /* NSString+Utils.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
 				F7C0C3DA1D59CD0800114AB6 /* RecoverySuccessViewController.m in Sources */,
 				F7C0C3E41D59DDD800114AB6 /* AppDelegate+RootController.m in Sources */,

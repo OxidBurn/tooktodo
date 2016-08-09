@@ -7,17 +7,33 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginViewModel.h"
+
+// Frameworks
+#import "ReactiveCocoa.h"
 
 @interface LoginViewController ()
 
 // properties
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
+// Outlets
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPassBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UILabel *emailWarningLable;
+@property (weak, nonatomic) IBOutlet UILabel *passwordWarningLabel;
+
+@property (strong, nonatomic) LoginViewModel* viewModel;
 
 // methods
+
+/**
+ *  Method for binding all UI components with view model
+ */
+- (void) bindingUI;
+
 
 @end
 
@@ -30,7 +46,11 @@
 {
     [super loadView];
     
+    // Hide unnecessary navigation bar
     self.navigationController.navigationBar.hidden = YES;
+    
+    // binding all UI components
+    [self bindingUI];
 }
 
 - (void) viewDidLoad
@@ -43,6 +63,33 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Properties -
+
+- (LoginViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [[LoginViewModel alloc] init];
+    }
+    
+    return _viewModel;
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) bindingUI
+{
+    RAC(self.viewModel, emailValue)    = [self.emailTextField.rac_textSignal distinctUntilChanged];
+    RAC(self.viewModel, passwordValue) = [self.passwordTextField.rac_textSignal distinctUntilChanged];
+    self.loginBtn.rac_command          = self.viewModel.excludeLogin;
+
+}
+
+- (IBAction)onLogin:(UIButton *)sender {
 }
 
 @end
