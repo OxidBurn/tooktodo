@@ -10,9 +10,28 @@
 
 @interface LoginViewController ()
 
+// properties
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPassBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+
+// methods
+
 @end
 
 @implementation LoginViewController
+
+
+#pragma mark - Life cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    self.navigationController.navigationBar.hidden = YES;
+}
 
 - (void) viewDidLoad
 {

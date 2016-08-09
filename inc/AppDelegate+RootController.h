@@ -10,4 +10,6 @@
 
 @interface AppDelegate (RootController)
 
+- (void) setupRootController;
+
 @end
