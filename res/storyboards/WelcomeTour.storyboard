@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FLa-aK-awg">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Welcome Tour View Controller-->
+        <scene sceneID="f3w-nW-aWg">
+            <objects>
+                <viewController id="FLa-aK-awg" customClass="WelcomeTourViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qeh-c3-q4S"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jd7-iP-4Zh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nCB-ue-q06">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfc-nq-DEE" customClass="PowerfulBannerView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.22352941176470587" green="0.70588235294117641" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pja-A0-aFM">
+                                <rect key="frame" x="20" y="496" width="560" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.9882352941176471" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BfV-qE-Gv1"/>
+                                </constraints>
+                                <state key="normal" title="Начать работу"/>
+                                <connections>
+                                    <action selector="onStartWork:" destination="FLa-aK-awg" eventType="touchUpInside" id="gVR-QE-Omr"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="HP7-w5-NgV">
+                                <rect key="frame" x="247" y="554" width="105" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="pHF-qX-y1b"/>
+                                    <constraint firstAttribute="width" constant="105" id="sWK-RU-Xh3"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zfc-nq-DEE" firstAttribute="height" secondItem="nCB-ue-q06" secondAttribute="height" id="63R-TF-7yJ"/>
+                            <constraint firstItem="Jd7-iP-4Zh" firstAttribute="top" secondItem="pja-A0-aFM" secondAttribute="bottom" constant="54" id="97w-yN-LyA"/>
+                            <constraint firstItem="HP7-w5-NgV" firstAttribute="centerX" secondItem="nCB-ue-q06" secondAttribute="centerX" id="KLU-zW-bQi"/>
+                            <constraint firstItem="zfc-nq-DEE" firstAttribute="top" secondItem="nCB-ue-q06" secondAttribute="top" id="On0-e9-2A0"/>
+                            <constraint firstItem="Jd7-iP-4Zh" firstAttribute="top" secondItem="HP7-w5-NgV" secondAttribute="bottom" constant="9" id="SRl-fe-Zrz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pja-A0-aFM" secondAttribute="trailing" id="TNG-ky-eAV"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="pja-A0-aFM" secondAttribute="leading" id="cyH-so-ubi"/>
+                            <constraint firstItem="zfc-nq-DEE" firstAttribute="leading" secondItem="nCB-ue-q06" secondAttribute="leading" id="dX3-Vb-xAU"/>
+                            <constraint firstItem="zfc-nq-DEE" firstAttribute="width" secondItem="nCB-ue-q06" secondAttribute="width" id="tgh-11-S2k"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageContentView" destination="zfc-nq-DEE" id="Ur1-dk-Ohb"/>
+                        <outlet property="pageIndicatorView" destination="HP7-w5-NgV" id="ftK-cY-3UL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fm0-bJ-tPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="490" y="387"/>
+        </scene>
+    </scenes>
+</document>

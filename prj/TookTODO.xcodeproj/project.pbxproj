@@ -27,6 +27,9 @@
 		F7C0C3DA1D59CD0800114AB6 /* RecoverySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D31D59CD0800114AB6 /* RecoverySuccessViewController.m */; };
 		F7C0C3DB1D59CD0800114AB6 /* RecoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D41D59CD0800114AB6 /* RecoveryViewController.m */; };
 		F7C0C3DC1D59CD0800114AB6 /* RecoveryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C3D51D59CD0800114AB6 /* RecoveryViewModel.m */; };
+		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
+		F7C0C4B01D5B95DD00114AB6 /* WelcomeTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C4AF1D5B95DD00114AB6 /* WelcomeTourViewController.m */; };
+		F7C0C4B61D5B968C00114AB6 /* WelcomeTourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C0C4B51D5B968C00114AB6 /* WelcomeTourModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,11 @@
 		F7C0C3D31D59CD0800114AB6 /* RecoverySuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoverySuccessViewController.m; sourceTree = "<group>"; };
 		F7C0C3D41D59CD0800114AB6 /* RecoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryViewController.m; sourceTree = "<group>"; };
 		F7C0C3D51D59CD0800114AB6 /* RecoveryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryViewModel.m; sourceTree = "<group>"; };
+		F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeTour.storyboard; sourceTree = "<group>"; };
+		F7C0C4AB1D5B95B300114AB6 /* WelcomeTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeTourViewController.h; path = WelcomeTour/WelcomeTourViewController.h; sourceTree = "<group>"; };
+		F7C0C4AF1D5B95DD00114AB6 /* WelcomeTourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeTourViewController.m; sourceTree = "<group>"; };
+		F7C0C4B21D5B966D00114AB6 /* WelcomeTourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeTourModel.h; path = WelcomeTour/WelcomeTourModel.h; sourceTree = "<group>"; };
+		F7C0C4B51D5B968C00114AB6 /* WelcomeTourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeTourModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				59D9BD191D58697F009DFBA8 /* inc */,
+				F7C0C4B11D5B95EA00114AB6 /* WelcomeTour */,
 				59D9BD1D1D58697F009DFBA8 /* src */,
 			);
 			name = Sources;
@@ -177,6 +186,7 @@
 				59FDF9071D59D4D6009AA80B /* TermsDescription.xib */,
 				59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */,
 				59D9BD141D586974009DFBA8 /* LoginScreen.storyboard */,
+				F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */,
 				59FDF9911D5A5720009AA80B /* Main.storyboard */,
 			);
 			name = storyboards;
@@ -212,6 +222,7 @@
 				59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */,
 				590C8F3D1D5B352F0053A735 /* AppDelegate+RootController.m */,
 				59D9BD1F1D58697F009DFBA8 /* Autorization */,
+				F7C0C4AE1D5B95DD00114AB6 /* WelcomeTour */,
 				590C8F3F1D5B35390053A735 /* Extensions */,
 			);
 			name = src;
@@ -287,6 +298,25 @@
 			path = Recover;
 			sourceTree = "<group>";
 		};
+		F7C0C4AE1D5B95DD00114AB6 /* WelcomeTour */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C4AF1D5B95DD00114AB6 /* WelcomeTourViewController.m */,
+				F7C0C4B51D5B968C00114AB6 /* WelcomeTourModel.m */,
+			);
+			path = WelcomeTour;
+			sourceTree = "<group>";
+		};
+		F7C0C4B11D5B95EA00114AB6 /* WelcomeTour */ = {
+			isa = PBXGroup;
+			children = (
+				F7C0C4AB1D5B95B300114AB6 /* WelcomeTourViewController.h */,
+				F7C0C4B21D5B966D00114AB6 /* WelcomeTourModel.h */,
+			);
+			name = WelcomeTour;
+			path = ../inc;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -350,6 +380,7 @@
 				59D9BD181D586974009DFBA8 /* LoginScreen.storyboard in Resources */,
 				59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */,
 				59FDF9081D59D4D6009AA80B /* TermsDescription.xib in Resources */,
+				F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */,
 				59FDF9921D5A5720009AA80B /* Main.storyboard in Resources */,
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
 				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
@@ -414,6 +445,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7C0C3DC1D59CD0800114AB6 /* RecoveryViewModel.m in Sources */,
+				F7C0C4B61D5B968C00114AB6 /* WelcomeTourModel.m in Sources */,
 				F7C0C3D71D59CD0800114AB6 /* LoginViewController.m in Sources */,
 				F7C0C3DB1D59CD0800114AB6 /* RecoveryViewController.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
@@ -424,6 +456,7 @@
 				F7C0C3D81D59CD0800114AB6 /* LoginViewModel.m in Sources */,
 				F7C0C3D91D59CD0800114AB6 /* RecoveryModel.m in Sources */,
 				F7C0C3D61D59CD0800114AB6 /* LoginModel.m in Sources */,
+				F7C0C4B01D5B95DD00114AB6 /* WelcomeTourViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
