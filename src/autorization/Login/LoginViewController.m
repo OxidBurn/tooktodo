@@ -15,15 +15,15 @@
 @interface LoginViewController ()
 
 // properties
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 // Outlets
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIButton *forgotPassBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
-@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UILabel *emailWarningLable;
-@property (weak, nonatomic) IBOutlet UILabel *passwordWarningLabel;
+@property (weak, nonatomic) IBOutlet UIButton    *forgotPassBtn;
+@property (weak, nonatomic) IBOutlet UIButton    *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton    *loginBtn;
+@property (weak, nonatomic) IBOutlet UILabel     *emailWarningLable;
+@property (weak, nonatomic) IBOutlet UILabel     *passwordWarningLabel;
 
 @property (strong, nonatomic) LoginViewModel* viewModel;
 
@@ -59,6 +59,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+
+#pragma mark - Memory managment -
+
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -86,10 +89,8 @@
     RAC(self.viewModel, emailValue)    = [self.emailTextField.rac_textSignal distinctUntilChanged];
     RAC(self.viewModel, passwordValue) = [self.passwordTextField.rac_textSignal distinctUntilChanged];
     self.loginBtn.rac_command          = self.viewModel.excludeLogin;
-
-}
-
-- (IBAction)onLogin:(UIButton *)sender {
+    self.forgotPassBtn.rac_command     = self.viewModel.excludeForgotPass;
+    self.registerBtn.rac_command       = self.viewModel.excludeRegistration;
 }
 
 @end

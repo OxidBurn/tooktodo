@@ -23,6 +23,8 @@
 
 @property (strong, nonatomic) RACCommand* excludeRegistration;
 
+@property (strong, nonatomic) RACCommand* excludeForgotPass;
+
 // methods
 
 
