@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="BJj-bg-njy">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="6Ia-6U-bAM"/>
+                <viewControllerLayoutGuide type="bottom" id="u47-vS-lZb"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="cLz-09-AxW">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rxn-NA-4Mk">
+                        <rect key="frame" x="20" y="69" width="560" height="580"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="582" id="7yL-WD-svJ"/>
+                            <constraint firstAttribute="width" constant="360" id="Rtq-PK-V2d"/>
+                            <constraint firstAttribute="height" constant="580" id="fhf-jD-7yS"/>
+                            <constraint firstAttribute="width" constant="560" id="jhC-ww-JPK"/>
+                        </constraints>
+                        <mutableString key="text">The Products transacted through the Service are licensed, not sold, to You for use only under the terms of this license, unless a Product is accompanied by a separate license agreement, in which case the terms of that separate license agreement will govern, subject to Your prior acceptance of that separate license agreement. The licensor (“Application Provider”) reserves all rights not expressly granted to You. The Product that is subject to this license is referred to in this license as the “Licensed Application.”
+
+a. Scope of License: This license granted to You for the Licensed Application by Application Provider is limited to a non-transferable license to use the Licensed Application on any iPhone or iPod touch that You own or control and as permitted by the Usage Rules set forth in Section 9.b. of the App Store Terms and Conditions (the “Usage Rules”). This license does not allow You to use the Licensed Application on any iPod touch or iPhone that You do not own or control, and You may not distribute or make the Licensed Application available over a network where it could be used by multiple devices at the same time. You may not rent, lease, lend, sell, redistribute or sublicense the Licensed Application. You may not copy (except as expressly permitted by this license and the Usage Rules), decompile, reverse engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the Licensed Application, any updates, or any part thereof (except as and only to the extent any foregoing restriction is prohibited by applicable law or to the extent as may be permitted by the licensing terms governing use of any open sourced components included with the Licensed Application). Any attempt to do so is a violation of the rights of the Application Provider and its licensors. If You breach this restriction, You may be subject to prosecution and damages. The terms of the license will govern any upgrades provided by Application Provider that replace and/or supplement the original Product, unless such upgrade is accompanied by a separate license in which case the terms of that license will govern.</mutableString>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="7yL-WD-svJ"/>
+                                <exclude reference="Rtq-PK-V2d"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="7yL-WD-svJ"/>
+                                <include reference="Rtq-PK-V2d"/>
+                                <exclude reference="fhf-jD-7yS"/>
+                                <exclude reference="jhC-ww-JPK"/>
+                            </mask>
+                        </variation>
+                    </textView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Rxn-NA-4Mk" firstAttribute="leading" secondItem="cLz-09-AxW" secondAttribute="leading" constant="20" id="PfY-P3-CpO"/>
+                    <constraint firstItem="Rxn-NA-4Mk" firstAttribute="top" secondItem="cLz-09-AxW" secondAttribute="topMargin" constant="85" id="Z9Z-KD-FPZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Rxn-NA-4Mk" secondAttribute="trailing" constant="20" id="tzD-AZ-B1Y"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="PfY-P3-CpO"/>
+                        <exclude reference="Z9Z-KD-FPZ"/>
+                        <exclude reference="tzD-AZ-B1Y"/>
+                    </mask>
+                </variation>
+                <variation key="heightClass=regular-widthClass=compact">
+                    <mask key="constraints">
+                        <include reference="PfY-P3-CpO"/>
+                        <include reference="Z9Z-KD-FPZ"/>
+                        <include reference="tzD-AZ-B1Y"/>
+                    </mask>
+                </variation>
+            </view>
+            <point key="canvasLocation" x="425" y="403"/>
+        </viewController>
+    </objects>
+</document>
