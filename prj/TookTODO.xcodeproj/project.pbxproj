@@ -37,8 +37,8 @@
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
-		590C8F3C1D5B35290053A735 /* AppDelegate+RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AppDelegate+RootController.h"; path = "../inc/AppDelegate+RootController.h"; sourceTree = "<group>"; };
-		590C8F3D1D5B352F0053A735 /* AppDelegate+RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate+RootController.m"; path = "../src/AppDelegate+RootController.m"; sourceTree = "<group>"; };
+		590C8F3C1D5B35290053A735 /* AppDelegate+RootController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+RootController.h"; sourceTree = "<group>"; };
+		590C8F3D1D5B352F0053A735 /* AppDelegate+RootController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+RootController.m"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A3F4261D5C610900935E5F /* LoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginService.m; path = ../../Autorization/Login/LoginService.m; sourceTree = "<group>"; };
@@ -50,8 +50,8 @@
 		59D9BD0C1D586960009DFBA8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		59D9BD101D586974009DFBA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59D9BD131D586974009DFBA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../inc/AppDelegate.h; sourceTree = "<group>"; };
-		59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../src/AppDelegate.m; sourceTree = "<group>"; };
+		59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		59EDB3EE1D5C928F00EAD028 /* LoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginService.h; path = ../../Autorization/Login/LoginService.h; sourceTree = "<group>"; };
 		59FDF9071D59D4D6009AA80B /* TermsDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsDescription.xib; sourceTree = "<group>"; };
 		59FDF9911D5A5720009AA80B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -159,11 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				59D9BD191D58697F009DFBA8 /* inc */,
-				59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */,
-				590C8F3C1D5B35290053A735 /* AppDelegate+RootController.h */,
 				59D9BD1D1D58697F009DFBA8 /* src */,
-				59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */,
-				590C8F3D1D5B352F0053A735 /* AppDelegate+RootController.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -206,6 +202,8 @@
 				590C8F381D5B35220053A735 /* Constance */,
 				590C8F3A1D5B35220053A735 /* Extensions */,
 				59D9BD1B1D58697F009DFBA8 /* Autorization */,
+				59D9BD1A1D58697F009DFBA8 /* AppDelegate.h */,
+				590C8F3C1D5B35290053A735 /* AppDelegate+RootController.h */,
 			);
 			name = inc;
 			path = ../inc;
@@ -227,6 +225,8 @@
 				F7C0C4AE1D5B95DD00114AB6 /* WelcomeTour */,
 				59D9BD1F1D58697F009DFBA8 /* Autorization */,
 				590C8F3F1D5B35390053A735 /* Extensions */,
+				59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */,
+				590C8F3D1D5B352F0053A735 /* AppDelegate+RootController.m */,
 			);
 			name = src;
 			path = ../src;
