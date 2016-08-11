@@ -173,14 +173,25 @@
 {
     @weakify(self)
     
-    [self.viewModel.restorePassCommand.executionSignals subscribeNext: ^(RecoveryViewModel* x) {
+    [self.forgotPassBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-       @strongify(self)
+        [signal subscribeNext: ^(id x) {
+            
+            @strongify(self)
+            
+            self.recoveryModel = x;
+            
+            [self performSegueWithIdentifier: @"ShowResetingPassScreenID"
+                                      sender: self];
+            
+        }];
         
-        self.recoveryModel = x;
+        [signal subscribeCompleted:^{
+            
+            NSLog(@"Reset completed!");
+            
+        }];
         
-        [self performSegueWithIdentifier: @"ShowResetingPassScreenID"
-                                  sender: self];
         
     }];
 }

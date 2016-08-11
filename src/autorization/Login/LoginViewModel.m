@@ -69,16 +69,11 @@
 
 - (RACCommand*) loginCommand
 {
-    if ( !_loginCommand )
-    {
-        _loginCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
-            
-            return [self sendingLogingRequest];
-            
-        }];
-    }
-    
-    return _loginCommand;
+    return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+        
+        return [self sendingLogingRequest];
+        
+    }];
 }
 
 - (RACCommand*) restorePassCommand

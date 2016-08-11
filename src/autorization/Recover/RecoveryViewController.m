@@ -11,6 +11,7 @@
 
 // Classes
 #import "RecoveryViewController.h"
+#import "RecoverySuccessViewController.h"
 
 @interface RecoveryViewController()
 
@@ -51,6 +52,19 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    [super prepareForSegue: segue
+                    sender: sender];
+    
+    RecoverySuccessViewController* controller = segue.destinationViewController;
+    
+    [controller setViewModel: self.viewModel];
+}
+
 
 #pragma mark - Public methods -
 
@@ -82,12 +96,19 @@
 {
     @weakify(self)
     
-    [self.viewModel.resetPassCommand.executionSignals subscribeNext: ^(id x) {
+    [self.viewModel.resetPassCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        @strongify(self)
-        
-        [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
-                                  sender: self];
+        [signal subscribeNext: ^(id x) {
+            
+            @strongify(self)
+            
+            [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
+                                      sender: self];
+            
+        }
+                    completed: ^{
+                        
+                    }];
         
     }];
     

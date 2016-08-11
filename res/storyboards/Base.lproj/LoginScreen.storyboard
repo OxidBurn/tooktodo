@@ -117,9 +117,6 @@
                                         <include reference="vwH-AU-pfe"/>
                                     </mask>
                                 </variation>
-                                <connections>
-                                    <segue destination="2VD-ty-wfS" kind="show" id="XIQ-EO-Q1x"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-YY-eEk">
                                 <rect key="frame" x="67" y="551" width="243" height="28"/>
@@ -175,7 +172,7 @@
                                     <action selector="onToggleShowPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HTk-Lc-1je"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="oxidburn@gmail.com" placeholder="   Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
                                 <rect key="frame" x="20" y="261" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -363,6 +360,7 @@
                         <outlet property="passwordTextField" destination="T3x-ZE-DM7" id="xxB-cp-OY1"/>
                         <outlet property="registerBtn" destination="GSf-YY-eEk" id="iBQ-Os-JDn"/>
                         <outlet property="showHidePassBtn" destination="JSh-QY-v1p" id="wL7-qd-pzL"/>
+                        <segue destination="2VD-ty-wfS" kind="show" identifier="ShowResetingPassScreenID" id="dHO-ss-34B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -417,9 +415,6 @@
                                 <variation key="widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="20" y="326" width="360" height="50"/>
                                 </variation>
-                                <connections>
-                                    <segue destination="JzT-YQ-KAh" kind="show" id="wmz-s0-fKY"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBq-EP-TMP">
                                 <rect key="frame" x="178" y="542" width="245" height="30"/>
@@ -467,6 +462,7 @@
                         <outlet property="emailField" destination="Hbt-FY-FfY" id="Gd3-lD-ZXS"/>
                         <outlet property="registerBtn" destination="CBq-EP-TMP" id="Y7V-gv-e8U"/>
                         <outlet property="resetPassBtn" destination="NWl-C9-5cy" id="IQO-2q-U0D"/>
+                        <segue destination="JzT-YQ-KAh" kind="show" identifier="ShowSuccessResetingPassInfoID" id="Hej-pn-pUi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsg-9M-rNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,6 +505,9 @@
                                 <variation key="widthClass=compact" ambiguous="YES">
                                     <rect key="frame" x="20" y="326" width="360" height="50"/>
                                 </variation>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="swX-g4-f7c"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-ow-3Kr">
                                 <rect key="frame" x="178" y="542" width="245" height="30"/>

@@ -6,8 +6,11 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
+#import <ReactiveCocoa.h>
+
+// Classes
 #import "RecoverySuccessViewController.h"
-#import "RecoveryViewModel.h"
 
 @interface RecoverySuccessViewController()
 
