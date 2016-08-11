@@ -15,18 +15,22 @@
 
 // properties
 
+// Reactive operations
+@property (strong, nonatomic) RACCommand* loginCommand;
+
+@property (strong, nonatomic) RACCommand* registerCommand;
+
+@property (strong, nonatomic) RACCommand* restorePassCommand;
+
+// Creadentials values
 @property (strong, nonatomic) NSString* emailValue;
 
 @property (strong, nonatomic) NSString* passwordValue;
 
-@property (strong, nonatomic) RACCommand* excludeLogin;
-
-@property (strong, nonatomic) RACCommand* excludeRegistration;
-
-@property (strong, nonatomic) RACCommand* excludeForgotPass;
-
 // methods
 
+- (RACSignal*) emailWarningMessage;
 
+- (RACSignal*) passwordWarningMessage;
 
 @end

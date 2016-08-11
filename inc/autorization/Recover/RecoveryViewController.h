@@ -6,8 +6,20 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "RecoveryViewModel.h"
+
 @interface RecoveryViewController : UIViewController
+
+// properties
+
+
+// methods
+
+- (void) setRecoveryModel: (RecoveryViewModel*) model;
+
 
 @end

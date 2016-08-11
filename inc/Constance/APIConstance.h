@@ -11,7 +11,13 @@
 
 @import Foundation;
 
+// URLS
+static NSString* serverURL       = @"https://api.tooktodo.ru/";
+static NSString* loginURL        = @"https://api.tooktodo.ru/token";
+static NSString* registerPageURL = @"https://tooktodo.ru/login";
 
-static NSString* accessToken = @"AccessToken";
+
+// Key constance
+static NSString* accessToken = @"access_token";
 
 #endif /* APIConstance_h */

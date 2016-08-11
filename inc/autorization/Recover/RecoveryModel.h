@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ReactiveCocoa.h>
 
 @interface RecoveryModel : NSObject
+
+- (BOOL) isValidEmail: (NSString*) email;
+
+- (NSString*) getWarningMessageForEmail: (NSString*) email;
+
+- (RACSignal*) sendRequestForResetingPassword: (NSString*) email;
+
+- (NSString*) getDefaultSuccessRecoveryMessage;
 
 @end

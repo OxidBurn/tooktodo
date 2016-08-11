@@ -8,17 +8,16 @@
 
 // Classes
 #import "LoginViewModel.h"
-
-// Extensions
-#import "NSString+Utils.h"
+#import "LoginModel.h"
+#import "RecoveryViewModel.h"
 
 @interface LoginViewModel()
 
 // properties
 
-@property (strong, nonatomic) RACSignal* validEmailSignal;
+@property (strong, nonatomic) LoginModel* model;
 
-@property (strong, nonatomic) RACSignal* validPassSignal;
+@property (assign, nonatomic) BOOL isEnableHandlingWarnings;
 
 // methods
 
@@ -27,35 +26,145 @@
 
 @implementation LoginViewModel
 
-#pragma mark - Initialization -
+#pragma mark - Properties -
 
-- (instancetype) init
+- (LoginModel *)model
 {
-    if ( self = [super init] )
+    if ( _model == nil )
     {
-        [self initialize];
+        _model = [LoginModel new];
     }
     
-    return self;
+    return _model;
 }
 
-#pragma mark - Internal methods -
+#pragma mark - Warnings messages -
 
-- (void) initialize
+- (RACSignal*) emailWarningMessage
 {
-    // Handle validation of the email string
-    self.validEmailSignal = [[RACObserve(self, emailValue) map: ^id(NSString* text) {
-        
-        return @([text isEmailString]);
-        
-    }] distinctUntilChanged];
+    @weakify(self)
     
-    // Handle validation of the password string
-    self.validPassSignal = [[RACObserve(self, passwordValue) map: ^id(NSString* value) {
+    return [RACObserve(self, emailValue) map: ^NSString*(NSString* value) {
         
-        return @(value.length > 6);
+        @strongify(self)
         
-    }] distinctUntilChanged];
+        return [self.model getWarningMessageForEmail: value];
+        
+    }];;
+}
+
+- (RACSignal*) passwordWarningMessage
+{
+    @weakify(self)
+    
+    return [RACObserve(self, passwordValue) map: ^NSString*(NSString* value) {
+        
+        @strongify(self)
+        
+        return [self.model getWarningMessageForPassowrd: value];
+    }];;
+}
+
+#pragma mark - Commands -
+
+- (RACCommand*) loginCommand
+{
+    if ( !_loginCommand )
+    {
+        _loginCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+            
+            return [self sendingLogingRequest];
+            
+        }];
+    }
+    
+    return _loginCommand;
+}
+
+- (RACCommand*) restorePassCommand
+{
+    return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+        
+        return [self restoreEmailSignal];
+        
+    }];
+}
+
+- (RACCommand*) registerCommand
+{
+    return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+       
+        return [self.model openRegistrationPage];
+        
+    }];
+}
+
+#pragma mark - Internal method -
+
+- (RACSignal*) sendingLogingRequest
+{
+    @weakify(self)
+    
+    RACSignal* sendRequestSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        @strongify(self)
+        
+        if ( [self.model isValidEnteredCreadentials: self.emailValue
+                                        andPassword: self.passwordValue] )
+        {
+            [[self.model sendRequestWithCredentials: self.emailValue
+                                       withPassword: self.passwordValue] subscribeNext: ^(NSDictionary* x) {
+                
+                [subscriber sendNext: x];
+                [subscriber sendCompleted];
+                
+            }
+             error: ^(NSError* error) {
+                 
+                 [subscriber sendError: error];
+                 
+             }
+             completed: ^{
+                 
+                 [subscriber sendCompleted];
+                 
+             }];
+        }
+        else
+            if ( self.isEnableHandlingWarnings == NO )
+            {
+                [subscriber sendError: [NSError errorWithDomain: @"SubscribeToHandleErrors"
+                                                           code: 101
+                                                       userInfo: nil]];
+                
+                self.isEnableHandlingWarnings = YES;
+            }
+            else
+            {
+                [subscriber sendNext: nil];
+            }
+        
+        return nil;
+    }];
+    
+    return sendRequestSignal;
+}
+
+- (RACSignal*) restoreEmailSignal
+{
+    @weakify(self)
+    
+    return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        @strongify(self)
+        
+        RecoveryViewModel* recoveryModel = [[RecoveryViewModel alloc] initWithEmail: self.emailValue];
+        
+        [subscriber sendNext: recoveryModel];
+        [subscriber sendCompleted];
+        
+        return nil;
+    }];
 }
 
 @end

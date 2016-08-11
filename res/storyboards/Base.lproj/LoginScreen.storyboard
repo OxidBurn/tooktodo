@@ -25,7 +25,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreenID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -68,7 +68,7 @@
                                     <constraint firstAttribute="height" constant="50" id="gTT-Rq-28L"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="gTT-Rq-28L"/>
@@ -171,6 +171,9 @@
                                         <include reference="zzu-9l-EiZ"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <action selector="onToggleShowPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HTk-Lc-1je"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="   Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
                                 <rect key="frame" x="20" y="261" width="560" height="50"/>
@@ -180,7 +183,7 @@
                                     <constraint firstAttribute="height" constant="50" id="IpL-f1-Zx3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="1Z7-Qu-FrT"/>
@@ -353,15 +356,23 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="1ji-2C-1SE" id="t1t-Vz-HQH"/>
+                        <outlet property="forgotPassBtn" destination="eja-8Z-YSM" id="mB7-Py-8bo"/>
+                        <outlet property="loginBtn" destination="N5L-TQ-dpz" id="mlH-zB-x0n"/>
+                        <outlet property="passwordTextField" destination="T3x-ZE-DM7" id="xxB-cp-OY1"/>
+                        <outlet property="registerBtn" destination="GSf-YY-eEk" id="iBQ-Os-JDn"/>
+                        <outlet property="showHidePassBtn" destination="JSh-QY-v1p" id="wL7-qd-pzL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="330" y="307"/>
         </scene>
-        <!--View Controller-->
+        <!--Recovery View Controller-->
         <scene sceneID="gRz-X8-bdd">
             <objects>
-                <viewController id="2VD-ty-wfS" sceneMemberID="viewController">
+                <viewController id="2VD-ty-wfS" customClass="RecoveryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fLG-Vk-t2v"/>
                         <viewControllerLayoutGuide type="bottom" id="FuH-EQ-APQ"/>
@@ -389,6 +400,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="20" y="261" width="360" height="50"/>
+                                </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-C9-5cy">
                                 <rect key="frame" x="20" y="326" width="560" height="50"/>
@@ -400,6 +414,9 @@
                                 <state key="normal" title="ВОССТАНОВИТЬ ПАРОЛЬ">
                                     <color key="titleColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="20" y="326" width="360" height="50"/>
+                                </variation>
                                 <connections>
                                     <segue destination="JzT-YQ-KAh" kind="show" id="wmz-s0-fKY"/>
                                 </connections>
@@ -446,15 +463,20 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="Hbt-FY-FfY" id="Gd3-lD-ZXS"/>
+                        <outlet property="registerBtn" destination="CBq-EP-TMP" id="Y7V-gv-e8U"/>
+                        <outlet property="resetPassBtn" destination="NWl-C9-5cy" id="IQO-2q-U0D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsg-9M-rNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1018" y="307"/>
         </scene>
-        <!--View Controller-->
+        <!--Recovery Success View Controller-->
         <scene sceneID="qPS-kt-LPx">
             <objects>
-                <viewController id="JzT-YQ-KAh" sceneMemberID="viewController">
+                <viewController id="JzT-YQ-KAh" customClass="RecoverySuccessViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YMp-Cs-dZd"/>
                         <viewControllerLayoutGuide type="bottom" id="wRD-on-lTb"/>
@@ -484,6 +506,9 @@
                                 <state key="normal" title="ВЕРНУТЬСЯ НАЗАД">
                                     <color key="titleColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="20" y="326" width="360" height="50"/>
+                                </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-ow-3Kr">
                                 <rect key="frame" x="178" y="542" width="245" height="30"/>
@@ -502,6 +527,9 @@
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="51" y="265" width="298" height="36"/>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -539,6 +567,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="infoLabel" destination="ame-l4-nJy" id="oCU-bY-WvZ"/>
+                        <outlet property="registerBtn" destination="6ig-ow-3Kr" id="aeY-gL-jHH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNM-6k-U9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

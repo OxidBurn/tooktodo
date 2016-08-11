@@ -17,7 +17,7 @@
     NSString* token = [[NSUserDefaults standardUserDefaults] valueForKey: accessToken];
     
     NSString* controllerId   = (token) ? @"ListControllerID" : @"LoginScreenID";
-    NSString* storyboardName = (token) ? @"Main" : @"LoginStoryboard";
+    NSString* storyboardName = (token) ? @"Main" : @"LoginScreen";
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName: storyboardName
                                                          bundle: nil];
     
