@@ -39,12 +39,14 @@
 
 + (RACSignal*) sendResetPasswordRequest: (NSString*) email
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    return [[[manager rac_POST: loginURL parameters: nil] logError] replayLazily];
+    NSDictionary* parameters = @{@"email" : email};
+    
+    return [[[manager rac_POST: restorePassURL parameters: parameters] logError] replayLazily];
 }
 
 @end

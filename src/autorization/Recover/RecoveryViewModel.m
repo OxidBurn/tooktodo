@@ -68,7 +68,7 @@
 
 #pragma mark - Command -
 
-- (RACCommand*) registerCommand
+- (RACCommand*) resetPassCommand
 {
     return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
        
@@ -77,6 +77,14 @@
     }];
 }
 
+- (RACCommand*) registerCommand
+{
+    return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+        
+        return [self.model openRegistrationPage];
+        
+    }];
+}
 
 #pragma mark - Public methods -
 
@@ -109,6 +117,7 @@
                                        
                                        [subscriber sendError: error];
                                    }
+             
                                completed: ^{
                                    
                                    [subscriber sendCompleted];

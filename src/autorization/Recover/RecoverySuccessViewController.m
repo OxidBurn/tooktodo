@@ -46,7 +46,7 @@
 
 #pragma mark - Public methods -
 
-- (void) setViewModel: (RecoveryViewModel*) model
+- (void) setModel: (RecoveryViewModel*) model
 {
     self.viewModel = model;
 }

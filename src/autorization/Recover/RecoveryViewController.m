@@ -62,7 +62,7 @@
     
     RecoverySuccessViewController* controller = segue.destinationViewController;
     
-    [controller setViewModel: self.viewModel];
+    [controller setModel: self.viewModel];
 }
 
 
@@ -83,8 +83,8 @@
     
     // binding
     RAC(self.viewModel, emailValue) = self.emailField.rac_textSignal;
-    self.resetPassBtn.rac_command   = self.viewModel.resetPassCommand;
-    self.registerBtn.rac_command    = self.viewModel.registerCommand;
+    self.resetPassBtn.rac_command   = [self.viewModel resetPassCommand];
+    self.registerBtn.rac_command    = [self.viewModel registerCommand];
     
     [self handleModelOperations];
 }
@@ -96,23 +96,20 @@
 {
     @weakify(self)
     
-    [self.viewModel.resetPassCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
+    [self.resetPassBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeNext: ^(id x) {
+        [signal subscribeCompleted: ^{
             
             @strongify(self)
             
             [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
                                       sender: self];
             
-        }
-                    completed: ^{
-                        
-                    }];
+        }];
         
     }];
     
-    [self.viewModel.resetPassCommand.errors subscribeNext: ^(id x) {
+    [self.resetPassBtn.rac_command.errors subscribeNext: ^(id x) {
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             

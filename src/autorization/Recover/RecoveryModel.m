@@ -38,6 +38,19 @@
     return [LoginService sendResetPasswordRequest: email];
 }
 
+- (RACSignal*) openRegistrationPage
+{
+    return [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
+        
+        [[UIApplication sharedApplication] openURL: [LoginService getRegisterURL]];
+        
+        [subscriber sendCompleted];
+        
+        return nil;
+        
+    }];
+}
+
 - (NSString*) getDefaultSuccessRecoveryMessage
 {
     return @"Инструкция по восстановлению пароля отправлена на ";

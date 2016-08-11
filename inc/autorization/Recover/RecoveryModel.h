@@ -15,8 +15,10 @@
 
 - (NSString*) getWarningMessageForEmail: (NSString*) email;
 
+- (NSString*) getDefaultSuccessRecoveryMessage;
+
 - (RACSignal*) sendRequestForResetingPassword: (NSString*) email;
 
-- (NSString*) getDefaultSuccessRecoveryMessage;
+- (RACSignal*) openRegistrationPage;
 
 @end

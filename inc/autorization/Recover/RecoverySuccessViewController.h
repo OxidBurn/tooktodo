@@ -19,7 +19,7 @@
 
 // methods
 
-- (void) setViewModel: (RecoveryViewModel*) model;
+- (void) setModel: (RecoveryViewModel*) model;
 
 
 @end
