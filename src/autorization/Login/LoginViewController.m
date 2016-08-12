@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton    *forgotPassBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *registerBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *showHidePassBtn;
+@property (weak, nonatomic) IBOutlet UIButton    *showHidePassBtn;
 @property (weak, nonatomic) IBOutlet UILabel     *emailWarningLable;
 @property (weak, nonatomic) IBOutlet UILabel     *passwordWarningLabel;
 

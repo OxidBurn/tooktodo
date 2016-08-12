@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -61,7 +62,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-YY-eEk">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-YY-eEk">
                                 <rect key="frame" x="67" y="551" width="243" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="26I-ay-cuR"/>
@@ -88,7 +89,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eja-8Z-YSM">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eja-8Z-YSM">
                                 <rect key="frame" x="242" y="482" width="116" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="NVy-VD-ddb"/>
@@ -149,7 +150,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="oxidburn@gmail.com" placeholder="   Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="oxidburn@gmail.com" placeholder="   Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
                                 <rect key="frame" x="20" y="261" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -173,7 +174,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-ZE-DM7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-ZE-DM7">
                                 <rect key="frame" x="20" y="316" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -194,7 +195,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSh-QY-v1p">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSh-QY-v1p">
                                 <rect key="frame" x="537" y="334" width="24" height="13"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="4gB-mb-ue9">
@@ -225,7 +226,7 @@
                                     <action selector="onToggleShowPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HTk-Lc-1je"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-TQ-dpz">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-TQ-dpz">
                                 <rect key="frame" x="20" y="378" width="560" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -303,22 +304,11 @@
                                 <exclude reference="uRv-fn-r8l"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="BfK-xm-f8h"/>
-                                <exclude reference="Fp9-rJ-a6C"/>
-                                <exclude reference="Quy-od-tI8"/>
-                                <exclude reference="VD7-Ij-Zls"/>
-                                <exclude reference="o3Z-xf-1k1"/>
-                                <exclude reference="vbM-aS-wwR"/>
-                                <exclude reference="Y3t-gT-9sZ"/>
-                                <exclude reference="dNf-pw-8Ir"/>
                                 <exclude reference="1wj-tw-jqU"/>
                                 <exclude reference="6fJ-YF-1Af"/>
                                 <exclude reference="Cym-55-8ei"/>
                                 <exclude reference="HSv-ih-5sI"/>
                                 <exclude reference="Mdu-OF-k9G"/>
-                                <exclude reference="ORo-wy-PZ4"/>
-                                <exclude reference="cSp-S7-eCb"/>
-                                <exclude reference="eHh-NV-nko"/>
                                 <exclude reference="5UC-Hl-2hT"/>
                                 <exclude reference="9Uv-uI-2bi"/>
                                 <exclude reference="Cmm-9p-9QK"/>
@@ -327,6 +317,17 @@
                                 <exclude reference="k61-SZ-eXi"/>
                                 <exclude reference="wxB-mE-VoK"/>
                                 <exclude reference="y7O-Ah-mwn"/>
+                                <exclude reference="BfK-xm-f8h"/>
+                                <exclude reference="Fp9-rJ-a6C"/>
+                                <exclude reference="Quy-od-tI8"/>
+                                <exclude reference="VD7-Ij-Zls"/>
+                                <exclude reference="o3Z-xf-1k1"/>
+                                <exclude reference="vbM-aS-wwR"/>
+                                <exclude reference="Y3t-gT-9sZ"/>
+                                <exclude reference="dNf-pw-8Ir"/>
+                                <exclude reference="ORo-wy-PZ4"/>
+                                <exclude reference="cSp-S7-eCb"/>
+                                <exclude reference="eHh-NV-nko"/>
                                 <exclude reference="EGE-Ab-SMb"/>
                                 <exclude reference="UGl-44-Bcg"/>
                                 <exclude reference="coU-YV-Gdd"/>
@@ -335,14 +336,14 @@
                                 <exclude reference="WPI-kQ-PQe"/>
                                 <exclude reference="mRs-Gc-7JY"/>
                                 <exclude reference="rKR-10-kUT"/>
-                                <exclude reference="Vxn-ak-sLJ"/>
-                                <exclude reference="amL-Hh-AKy"/>
                                 <exclude reference="3hA-8z-Ogf"/>
                                 <exclude reference="kgA-9L-SSC"/>
                                 <exclude reference="1xl-yP-vRP"/>
                                 <exclude reference="s0a-YX-U8K"/>
                                 <exclude reference="tU7-xZ-Kua"/>
                                 <exclude reference="h51-wi-PS4"/>
+                                <exclude reference="Vxn-ak-sLJ"/>
+                                <exclude reference="amL-Hh-AKy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -351,6 +352,19 @@
                                 <include reference="uRv-fn-r8l"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1wj-tw-jqU"/>
+                                <include reference="6fJ-YF-1Af"/>
+                                <include reference="Cym-55-8ei"/>
+                                <include reference="HSv-ih-5sI"/>
+                                <include reference="Mdu-OF-k9G"/>
+                                <include reference="5UC-Hl-2hT"/>
+                                <include reference="9Uv-uI-2bi"/>
+                                <include reference="Cmm-9p-9QK"/>
+                                <include reference="Gvi-bX-5A3"/>
+                                <exclude reference="fZA-20-wog"/>
+                                <include reference="k61-SZ-eXi"/>
+                                <include reference="wxB-mE-VoK"/>
+                                <include reference="y7O-Ah-mwn"/>
                                 <include reference="BfK-xm-f8h"/>
                                 <exclude reference="Cdt-cX-tEk"/>
                                 <include reference="Fp9-rJ-a6C"/>
@@ -364,22 +378,9 @@
                                 <include reference="dNf-pw-8Ir"/>
                                 <exclude reference="jr2-XN-cd3"/>
                                 <exclude reference="y3k-jM-rKp"/>
-                                <include reference="1wj-tw-jqU"/>
-                                <include reference="6fJ-YF-1Af"/>
-                                <include reference="Cym-55-8ei"/>
-                                <include reference="HSv-ih-5sI"/>
-                                <include reference="Mdu-OF-k9G"/>
                                 <include reference="ORo-wy-PZ4"/>
                                 <include reference="cSp-S7-eCb"/>
                                 <include reference="eHh-NV-nko"/>
-                                <include reference="5UC-Hl-2hT"/>
-                                <include reference="9Uv-uI-2bi"/>
-                                <include reference="Cmm-9p-9QK"/>
-                                <include reference="Gvi-bX-5A3"/>
-                                <exclude reference="fZA-20-wog"/>
-                                <include reference="k61-SZ-eXi"/>
-                                <include reference="wxB-mE-VoK"/>
-                                <include reference="y7O-Ah-mwn"/>
                                 <include reference="EGE-Ab-SMb"/>
                                 <include reference="UGl-44-Bcg"/>
                                 <include reference="coU-YV-Gdd"/>
@@ -388,14 +389,14 @@
                                 <include reference="WPI-kQ-PQe"/>
                                 <include reference="mRs-Gc-7JY"/>
                                 <include reference="rKR-10-kUT"/>
-                                <include reference="Vxn-ak-sLJ"/>
-                                <include reference="amL-Hh-AKy"/>
                                 <include reference="3hA-8z-Ogf"/>
                                 <include reference="kgA-9L-SSC"/>
                                 <include reference="1xl-yP-vRP"/>
                                 <include reference="s0a-YX-U8K"/>
                                 <include reference="tU7-xZ-Kua"/>
                                 <include reference="h51-wi-PS4"/>
+                                <include reference="Vxn-ak-sLJ"/>
+                                <include reference="amL-Hh-AKy"/>
                             </mask>
                         </variation>
                     </view>
@@ -453,7 +454,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Элктронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-FY-FfY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Элктронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-FY-FfY">
                                 <rect key="frame" x="20" y="261" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -485,7 +486,7 @@
                                 </constraints>
                                 <state key="normal" image="http_1x"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-C9-5cy">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-C9-5cy">
                                 <rect key="frame" x="20" y="326" width="560" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
