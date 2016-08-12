@@ -111,7 +111,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     // Added image for selected state in show/hide password button
-    [self.showHidePassBtn setImage: [UIImage imageNamed: @"showPass"]
+    [self.showHidePassBtn setImage: [UIImage imageNamed: @"closedEyes"]
                           forState: UIControlStateSelected];
 }
 
@@ -162,7 +162,9 @@
         
         [signal subscribeNext: ^(id x) {
             
-            NSLog(@"Next %@", x);
+            @strongify(self)
+            
+            [self successLogin];
             
         }];
         
@@ -204,6 +206,15 @@
     self.passwordTextField.secureTextEntry = sender.selected;
     
     sender.selected = !sender.selected;
+}
+
+- (void) successLogin
+{
+    if ( self.dismissLoginView )
+        self.dismissLoginView();
+    
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 @end

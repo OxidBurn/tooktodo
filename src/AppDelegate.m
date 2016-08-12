@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "AppDelegate+RootController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +18,7 @@
 - (BOOL)           application: (UIApplication*) application
  didFinishLaunchingWithOptions: (NSDictionary*)  launchOptions
 {
-    [self setupRootController];
+//    [self setupRootController];
     
     return YES;
 }
