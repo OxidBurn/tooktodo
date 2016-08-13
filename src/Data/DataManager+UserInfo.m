@@ -7,7 +7,57 @@
 //
 
 #import "DataManager+UserInfo.h"
+#import "UserInfo.h"
+
+// Extensions
+#import "NSDate+Helper.h"
 
 @implementation DataManager (UserInfo)
 
+- (void) persistUserWithInfo: (NSDictionary*) info
+{
+    NSString* emailValue = info[@"userName"];
+    
+    UserInfo* userInfo = [self getUserInfoWithEmail: emailValue];
+    
+    if ( userInfo )
+    {
+        userInfo.fullName        = info[@"displayName"];
+        userInfo.expireTokenDate = info[@".expires"];
+    }
+    else
+    {
+        userInfo = [self insertNewObjectForEntityForName: @"UserInfo"];
+        
+        userInfo.fullName        = info[@"displayName"];
+        userInfo.expireTokenDate = [self getDateFromString: info[@".expires"]];
+        userInfo.email           = emailValue;
+    }
+    
+    [self saveContext];
+}
+
+- (UserInfo*) getUserInfoWithEmail: (NSString*) email
+{
+    NSArray* users              = [self getAllUserInfo];
+    NSPredicate* emailPredicate = [NSPredicate predicateWithFormat: @"email == %@", email];
+    NSArray* filteredArr        = [users filteredArrayUsingPredicate: emailPredicate];
+    
+    return (filteredArr.count > 0) ? filteredArr.firstObject : nil;
+}
+
+- (NSArray*) getAllUserInfo
+{
+    return [self fetchObjectsForEntityForName: @"UserInfo"];
+}
+
+
+#pragma mark - Helper methods -
+
+- (NSDate*) getDateFromString: (NSString*) string
+{
+    NSDate* expareDate = [NSDate dateFromString: string withFormat: @"E, dd MMM yyyy HH:mm:ss zzz"];
+    
+    return expareDate;
+}
 @end

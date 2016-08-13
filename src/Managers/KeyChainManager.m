@@ -6,6 +6,10 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
+#import <UICKeyChainStore.h>
+
+// Classes
 #import "KeyChainManager.h"
 #import "ConstanceKeys.h"
 
@@ -16,6 +20,7 @@ static KeyChainManager* sharedInstance = nil;
 
 // properties
 
+@property (strong, nonatomic) UICKeyChainStore* keyChainStore;
 
 // methods
 
@@ -58,7 +63,34 @@ static KeyChainManager* sharedInstance = nil;
 
 - (void) setupDefaults
 {
+    // Setup keychain store for current application
+    // Specific key: app site url
+    self.keyChainStore = [UICKeyChainStore keyChainStoreWithService: keychainServiceKey];
+}
+
+
+#pragma mark - Public methods -
+
+- (void) storeAccessToken: (NSString*) token
+{
+    self.keyChainStore[accessToken] = token;
+}
+
+- (BOOL) isExistTokenForCurrentUser
+{
+    return (self.keyChainStore[accessToken] != nil);
+}
+
+- (void) storeUserPassword: (NSString*) password
+{
+    self.keyChainStore[passwordKey] = password;
+}
+
+- (BOOL) isCorrectEnteredPassword: (NSString*) password
+{
+    BOOL isEqual = ([self.keyChainStore[passwordKey] isEqualToString: password]);
     
+    return isEqual;
 }
 
 @end

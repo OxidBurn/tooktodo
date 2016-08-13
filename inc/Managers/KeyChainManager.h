@@ -34,5 +34,21 @@
  */
 - (BOOL) isExistTokenForCurrentUser;
 
+/**
+ *  Store to keychain current user password
+ *
+ *  @param password string password value
+ */
+- (void) storeUserPassword: (NSString*) password;
+
+/**
+ *  Check if entered user password is equal with stored
+ *
+ *  @param password string value of the password which need to check with current
+ *
+ *  @return bool state if passwords is equals
+ */
+- (BOOL) isCorrectEnteredPassword: (NSString*) password;
+
 
 @end

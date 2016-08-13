@@ -12,6 +12,7 @@
 // Classes
 #import "LoginService.h"
 #import "APIConstance.h"
+#import "KeyChainManager.h"
 
 @implementation LoginService
 
@@ -22,7 +23,7 @@
 
     manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
+
     NSDictionary* parameters = @{@"grant_type" : @"password",
                                  @"username"   : email,
                                  @"password"   : password};

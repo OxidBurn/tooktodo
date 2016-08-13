@@ -6,14 +6,14 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-// Frameworks
-#import <UICKeyChainStore.h>
 
 #import "LoginModel.h"
 #import "LoginService.h"
+#import "KeyChainManager.h"
 
 // Extensions
 #import "NSString+Utils.h"
+#import "DataManager+UserInfo.h"
 
 @implementation LoginModel
 
@@ -63,8 +63,35 @@
 - (RACSignal*) sendRequestWithCredentials: (NSString*) email
                              withPassword: (NSString*) password
 {
-    return [LoginService sendRequestWithCredentials: email
-                                       withPassword: password];
+    @weakify(self)
+    
+    RACSignal* sendRequestSignal = [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
+        
+        RACSignal* requestSignal = [LoginService sendRequestWithCredentials: email
+                                                               withPassword: password];
+        
+        
+        [requestSignal subscribeNext: ^(RACTuple* x) {
+            
+            @strongify(self)
+            
+            [self parsingLoginResponseInfo: [x objectAtIndex: 0]];
+            
+            [subscriber sendNext: [x objectAtIndex: 0]];
+            [subscriber sendCompleted];
+            
+        }
+                                   error: ^(NSError* error) {
+                                       
+                                       [subscriber sendError: error];
+                                       
+                                   }];
+        
+        return nil;
+        
+    }];
+    
+    return sendRequestSignal;
 }
 
 - (RACSignal*) openRegistrationPage
@@ -78,6 +105,15 @@
         return nil;
         
     }];
+}
+
+#pragma mark - Internal -
+
+- (void) parsingLoginResponseInfo: (NSDictionary*) info
+{
+    [KeyChain storeAccessToken: info[@"access_token"]];
+    
+    [DataManagerShared persistUserWithInfo: info];
 }
 
 @end

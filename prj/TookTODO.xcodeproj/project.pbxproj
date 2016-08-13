@@ -16,6 +16,7 @@
 		591344191D5F04B60027889F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344171D5F04B60027889F /* DataManager.m */; };
 		5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344181D5F04B60027889F /* DataManager+UserInfo.m */; };
 		5913441E1D5F06060027889F /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5913441D1D5F06060027889F /* KeyChainManager.m */; };
+		591344231D5F68D00027889F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344221D5F68D00027889F /* NSDate+Helper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -58,6 +59,8 @@
 		5913441D1D5F06060027889F /* KeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyChainManager.m; path = Managers/KeyChainManager.m; sourceTree = "<group>"; };
 		5913441F1D5F07230027889F /* ConstanceKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstanceKeys.h; sourceTree = "<group>"; };
 		591344211D5F09340027889F /* KeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainManager.h; sourceTree = "<group>"; };
+		591344221D5F68D00027889F /* NSDate+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helper.m"; sourceTree = "<group>"; };
+		591344241D5F68D60027889F /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		590C8F3A1D5B35220053A735 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				591344241D5F68D60027889F /* NSDate+Helper.h */,
 				590C8F3B1D5B35220053A735 /* NSString+Utils.h */,
 			);
 			path = Extensions;
@@ -133,6 +137,7 @@
 		590C8F3F1D5B35390053A735 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				591344221D5F68D00027889F /* NSDate+Helper.m */,
 				590C8F401D5B35390053A735 /* NSString+Utils.m */,
 			);
 			path = Extensions;
@@ -608,6 +613,7 @@
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
 				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
+				591344231D5F68D00027889F /* NSDate+Helper.m in Sources */,
 				591344151D5F045D0027889F /* UserInfo.m in Sources */,
 				59A7F2E91D5DEACC005CF274 /* RecoveryModel.m in Sources */,
 				59A7F2EC1D5DEACC005CF274 /* RecoveryViewModel.m in Sources */,

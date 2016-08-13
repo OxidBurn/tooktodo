@@ -9,6 +9,8 @@
 #ifndef ConstanceKeys_h
 #define ConstanceKeys_h
 
-static NSString* accessToken = @"access_token";
+static NSString* const keychainServiceKey = @"ru.tooktodo";
+static NSString* accessToken              = @"access_token";
+static NSString* const passwordKey        = @"user_password";
 
 #endif /* ConstanceKeys_h */

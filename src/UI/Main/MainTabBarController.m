@@ -35,12 +35,14 @@
 
 - (BOOL) shouldShowLogin
 {
-    return [KeyChain isExistTokenForCurrentUser];
+    return ![KeyChain isExistTokenForCurrentUser];
+    
+    return YES;
 }
 
 - (BOOL) isFirstSetup
 {
-    return ([[NSUserDefaults standardUserDefaults] boolForKey: @"isViewedWelcomeTour"] == NO);
+    return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
 }
 
 - (void) presentLoginController
@@ -59,7 +61,6 @@
                      completion: nil];
     
     // Handle dismiss action
-    
     __weak typeof(self) blockSelf = self;
     
     loginViewController.dismissLoginView = ^(){

@@ -18,6 +18,7 @@
 #define DefaultNotifyCenter                 [NSNotificationCenter defaultCenter]
 #define DefaultFileManager                  [NSFileManager defaultManager]
 #define KeyChain                            [KeyChainManager sharedInstance]
+#define DataManagerShared                   [DataManager sharedInstance]
 
 #define MainBundle                          [NSBundle mainBundle]
 #define MainScreen                          [UIScreen mainScreen]

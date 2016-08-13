@@ -10,4 +10,6 @@
 
 @interface DataManager (UserInfo)
 
+- (void) persistUserWithInfo: (NSDictionary*) info;
+
 @end

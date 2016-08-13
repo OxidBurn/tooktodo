@@ -10,6 +10,7 @@
 #import "LoginViewModel.h"
 #import "LoginModel.h"
 #import "RecoveryViewModel.h"
+#import "KeyChainManager.h"
 
 @interface LoginViewModel()
 
