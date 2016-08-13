@@ -19,5 +19,6 @@
 @dynamic photoImagePath;
 @dynamic email;
 @dynamic notificationSettingsPath;
+@dynamic expireTokenDate;
 
 @end

@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "WelcomeTourViewController.h"
 
-#import "APIConstance.h"
+#import "KeyChainManager.h"
 
 @implementation MainTabBarController
 
@@ -35,10 +35,7 @@
 
 - (BOOL) shouldShowLogin
 {
-    // Override point for customization after application launch.
-    NSString* token = [[NSUserDefaults standardUserDefaults] valueForKey: accessToken];
-    
-    return (token == nil);
+    return [KeyChain isExistTokenForCurrentUser];
 }
 
 - (BOOL) isFirstSetup

@@ -6,6 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
+#import <UICKeyChainStore.h>
+
 #import "LoginModel.h"
 #import "LoginService.h"
 

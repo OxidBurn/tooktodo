@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *photoImagePath;
 @property (nullable, nonatomic, retain) NSString *email;
 @property (nullable, nonatomic, retain) NSString *notificationSettingsPath;
+@property (nullable, nonatomic, retain) NSDate   *expireTokenDate;
 
 @end
 

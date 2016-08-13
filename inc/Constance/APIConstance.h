@@ -25,8 +25,4 @@ static NSString* restorePassURL  = @"https://api.tooktodo.ru/api/Account/sendRes
 
 #endif
 
-
-// Key constance
-static NSString* accessToken = @"access_token";
-
 #endif /* APIConstance_h */

@@ -15,6 +15,7 @@
 		591344161D5F045D0027889F /* UserInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */; };
 		591344191D5F04B60027889F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344171D5F04B60027889F /* DataManager.m */; };
 		5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344181D5F04B60027889F /* DataManager+UserInfo.m */; };
+		5913441E1D5F06060027889F /* KeyChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5913441D1D5F06060027889F /* KeyChainManager.m */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -54,6 +55,9 @@
 		591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UserInfo+CoreDataProperties.m"; path = "../../inc/Data/Objects/UserInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		591344171D5F04B60027889F /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		591344181D5F04B60027889F /* DataManager+UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+UserInfo.m"; sourceTree = "<group>"; };
+		5913441D1D5F06060027889F /* KeyChainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyChainManager.m; path = Managers/KeyChainManager.m; sourceTree = "<group>"; };
+		5913441F1D5F07230027889F /* ConstanceKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstanceKeys.h; sourceTree = "<group>"; };
+		591344211D5F09340027889F /* KeyChainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainManager.h; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			children = (
 				590C8F391D5B35220053A735 /* APIConstance.h */,
 				59F707EB1D5E125200BFD4CF /* Macroses.h */,
+				5913441F1D5F07230027889F /* ConstanceKeys.h */,
 			);
 			path = Constance;
 			sourceTree = "<group>";
@@ -165,6 +170,22 @@
 				591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */,
 			);
 			name = Objects;
+			sourceTree = "<group>";
+		};
+		5913441B1D5F05D80027889F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5913441D1D5F06060027889F /* KeyChainManager.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		591344201D5F09340027889F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				591344211D5F09340027889F /* KeyChainManager.h */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		59A793421D59D2DD0062007E /* fonts */ = {
@@ -388,6 +409,7 @@
 		59D9BD191D58697F009DFBA8 /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				591344201D5F09340027889F /* Managers */,
 				59A7F2EF1D5DEADB005CF274 /* Data */,
 				59A7F2F01D5DEADB005CF274 /* Server */,
 				59A7F2F11D5DEADB005CF274 /* UI */,
@@ -402,6 +424,7 @@
 		59D9BD1D1D58697F009DFBA8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				5913441B1D5F05D80027889F /* Managers */,
 				59A7F2D41D5DEACC005CF274 /* Data */,
 				59A7F2D51D5DEACC005CF274 /* Server */,
 				59A7F2D61D5DEACC005CF274 /* UI */,
@@ -582,6 +605,7 @@
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
 				591344191D5F04B60027889F /* DataManager.m in Sources */,
 				59A7F2E71D5DEACC005CF274 /* LoginViewController.m in Sources */,
+				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
 				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
 				591344151D5F045D0027889F /* UserInfo.m in Sources */,

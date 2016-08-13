@@ -17,6 +17,8 @@
 #define SharedApplication                   [UIApplication sharedApplication]
 #define DefaultNotifyCenter                 [NSNotificationCenter defaultCenter]
 #define DefaultFileManager                  [NSFileManager defaultManager]
+#define KeyChain                            [KeyChainManager sharedInstance]
+
 #define MainBundle                          [NSBundle mainBundle]
 #define MainScreen                          [UIScreen mainScreen]
 #define ShowNetworkActivityIndicator()      [UIApplication sharedApplication].networkActivityIndicatorVisible = YES
