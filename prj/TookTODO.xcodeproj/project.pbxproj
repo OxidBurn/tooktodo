@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
+		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
+		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
+		591344151D5F045D0027889F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344131D5F045D0027889F /* UserInfo.m */; };
+		591344161D5F045D0027889F /* UserInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */; };
+		591344191D5F04B60027889F /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344171D5F04B60027889F /* DataManager.m */; };
+		5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344181D5F04B60027889F /* DataManager+UserInfo.m */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -38,6 +44,16 @@
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		591344021D5EFD6A0027889F /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		591344051D5EFD8E0027889F /* DataManager+UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+UserInfo.h"; sourceTree = "<group>"; };
+		5913440B1D5EFDBD0027889F /* DataBaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBaseModel.xcdatamodel; sourceTree = "<group>"; };
+		5913440E1D5F03290027889F /* UserNotificationSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserNotificationSettings.plist; path = ../res/settings/UserNotificationSettings.plist; sourceTree = "<group>"; };
+		591344101D5F04470027889F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Objects/UserInfo.h; sourceTree = "<group>"; };
+		591344111D5F04470027889F /* UserInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UserInfo+CoreDataProperties.h"; path = "Objects/UserInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		591344131D5F045D0027889F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = ../../inc/Data/Objects/UserInfo.m; sourceTree = "<group>"; };
+		591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UserInfo+CoreDataProperties.m"; path = "../../inc/Data/Objects/UserInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		591344171D5F04B60027889F /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		591344181D5F04B60027889F /* DataManager+UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+UserInfo.m"; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -117,6 +133,40 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		591344081D5EFD970027889F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				591344101D5F04470027889F /* UserInfo.h */,
+				591344111D5F04470027889F /* UserInfo+CoreDataProperties.h */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		591344091D5EFDA00027889F /* database */ = {
+			isa = PBXGroup;
+			children = (
+				5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */,
+			);
+			name = database;
+			sourceTree = "<group>";
+		};
+		5913440D1D5F02F80027889F /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				5913440E1D5F03290027889F /* UserNotificationSettings.plist */,
+			);
+			name = settings;
+			sourceTree = "<group>";
+		};
+		591344121D5F044E0027889F /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				591344131D5F045D0027889F /* UserInfo.m */,
+				591344141D5F045D0027889F /* UserInfo+CoreDataProperties.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		59A793421D59D2DD0062007E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +181,9 @@
 		59A7F2D41D5DEACC005CF274 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				591344171D5F04B60027889F /* DataManager.m */,
+				591344181D5F04B60027889F /* DataManager+UserInfo.m */,
+				591344121D5F044E0027889F /* Objects */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -195,6 +248,9 @@
 		59A7F2EF1D5DEADB005CF274 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				591344021D5EFD6A0027889F /* DataManager.h */,
+				591344051D5EFD8E0027889F /* DataManager+UserInfo.h */,
+				591344081D5EFD970027889F /* Objects */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -279,6 +335,8 @@
 		59D9BD081D586940009DFBA8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5913440D1D5F02F80027889F /* settings */,
+				591344091D5EFDA00027889F /* database */,
 				59A793421D59D2DD0062007E /* fonts */,
 				59D9BD0F1D586974009DFBA8 /* images */,
 				59D9BD111D586974009DFBA8 /* storyboards */,
@@ -454,6 +512,7 @@
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
 				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
+				5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */,
 				59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */,
 				59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */,
 			);
@@ -517,15 +576,20 @@
 				59A7F2E81D5DEACC005CF274 /* LoginViewModel.m in Sources */,
 				59A7F2ED1D5DEACC005CF274 /* WelcomeTourModel.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
+				591344161D5F045D0027889F /* UserInfo+CoreDataProperties.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
 				59A7F2EB1D5DEACC005CF274 /* RecoveryViewController.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
+				591344191D5F04B60027889F /* DataManager.m in Sources */,
 				59A7F2E71D5DEACC005CF274 /* LoginViewController.m in Sources */,
+				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
 				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
+				591344151D5F045D0027889F /* UserInfo.m in Sources */,
 				59A7F2E91D5DEACC005CF274 /* RecoveryModel.m in Sources */,
 				59A7F2EC1D5DEACC005CF274 /* RecoveryViewModel.m in Sources */,
 				59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */,
 				59A7F2EE1D5DEACC005CF274 /* WelcomeTourViewController.m in Sources */,
+				5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */,
 				59A7F2E51D5DEACC005CF274 /* LoginModel.m in Sources */,
 				59A7F2EA1D5DEACC005CF274 /* RecoverySuccessViewController.m in Sources */,
 			);
@@ -710,6 +774,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5913440B1D5EFDBD0027889F /* DataBaseModel.xcdatamodel */,
+			);
+			currentVersion = 5913440B1D5EFDBD0027889F /* DataBaseModel.xcdatamodel */;
+			name = DataBaseModel.xcdatamodeld;
+			path = ../res/database/DataBaseModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 59D9BCE61D5868B7009DFBA8 /* Project object */;
 }
