@@ -9,6 +9,9 @@
 #import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 
+// Helpers
+#import "AvatarHelper.h"
+
 // Extensions
 #import "NSDate+Helper.h"
 
@@ -32,6 +35,7 @@
         userInfo.fullName        = info[@"displayName"];
         userInfo.expireTokenDate = [self getDateFromString: info[@".expires"]];
         userInfo.email           = emailValue;
+        userInfo.photoImagePath  = [[AvatarHelper sharedInstance] generateAvatarForName: info[@"displayName"]];
     }
     
     [self saveContext];
@@ -49,6 +53,11 @@
 - (NSArray*) getAllUserInfo
 {
     return [self fetchObjectsForEntityForName: @"UserInfo"];
+}
+
+- (UserInfo*) getCurrentUser
+{
+    return [[self getAllUserInfo] firstObject];
 }
 
 
