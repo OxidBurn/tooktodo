@@ -94,7 +94,7 @@ static AvatarHelper* sharedInstance = nil;
 
 - (NSString*) generateAvatarForName: (NSString*) name
 {
-    NSString* avatarFilePath = [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", name];
+    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", name];
     UIColor* avatarColor     = [self getRandomAvatarColor];
     NSString* abbreviation   = [Utils getNameAbbreviation: name];
     CGSize avatarImageSize   = CGSizeMake(60, 60);
@@ -112,12 +112,19 @@ static AvatarHelper* sharedInstance = nil;
         
         NSData* avatarImageData = UIImagePNGRepresentation(generatedAvatarImage);
         
-        [avatarImageData writeToFile: avatarFilePath
+        NSString* fullAvatarPath = [self getAvatarPathForName: name];
+        
+        [avatarImageData writeToFile: fullAvatarPath
                           atomically: YES];
         
     }];
     
     return avatarFilePath;
+}
+
+- (NSString*) getAvatarPathForName: (NSString*) name
+{
+    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", name];
 }
 
 

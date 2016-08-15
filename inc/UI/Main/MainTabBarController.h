@@ -10,4 +10,12 @@
 
 @interface MainTabBarController : UITabBarController
 
+// properties
+
+
+// methods
+
+- (void) presentWelcomeTour;
+
+
 @end

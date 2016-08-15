@@ -29,4 +29,6 @@
  */
 - (NSString*) generateAvatarForName: (NSString*) name;
 
+- (NSString*) getAvatarPathForName: (NSString*) name;
+
 @end

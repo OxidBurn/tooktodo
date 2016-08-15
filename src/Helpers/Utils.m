@@ -161,11 +161,7 @@ static NSDateFormatter* defaultDateFormatter = nil;
 
 + (NSString*) urlEncodedString: (NSString*) url
 {
-    return (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                (CFStringRef)url,
-                                                                                NULL,
-                                                                                (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                kCFStringEncodingUTF8));
+    return [url stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet characterSetWithCharactersInString: @"!*'();:@&=+$,/?%#[]"]];
 }
 
 + (NSString*) readableValueWithBytes: (id) bytes

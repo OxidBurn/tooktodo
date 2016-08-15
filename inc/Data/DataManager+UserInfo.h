@@ -7,9 +7,12 @@
 //
 
 #import "DataManager.h"
+#import "UserInfo.h"
 
 @interface DataManager (UserInfo)
 
 - (void) persistUserWithInfo: (NSDictionary*) info;
+
+- (UserInfo*) getCurrentUserInfo;
 
 @end

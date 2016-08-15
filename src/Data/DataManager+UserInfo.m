@@ -55,7 +55,7 @@
     return [self fetchObjectsForEntityForName: @"UserInfo"];
 }
 
-- (UserInfo*) getCurrentUser
+- (UserInfo*) getCurrentUserInfo
 {
     return [[self getAllUserInfo] firstObject];
 }
