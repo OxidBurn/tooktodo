@@ -1050,7 +1050,19 @@
                     <view key="view" contentMode="scaleToFill" id="QNT-gC-jOx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vfR-LB-T7E">
+                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J8d-kR-Tzf" firstAttribute="top" secondItem="vfR-LB-T7E" secondAttribute="bottom" id="3fw-h9-60F"/>
+                            <constraint firstItem="vfR-LB-T7E" firstAttribute="leading" secondItem="QNT-gC-jOx" secondAttribute="leading" id="7tJ-rg-l7T"/>
+                            <constraint firstItem="vfR-LB-T7E" firstAttribute="top" secondItem="QNT-gC-jOx" secondAttribute="top" constant="65" id="9WM-3b-WnO"/>
+                            <constraint firstAttribute="trailing" secondItem="vfR-LB-T7E" secondAttribute="trailing" id="c8S-ud-q8X"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIH-Sj-V93" userLabel="First Responder" sceneMemberID="firstResponder"/>
