@@ -692,7 +692,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e55-jp-3oy">
                                 <rect key="frame" x="0.0" y="39" width="320" height="95"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5xa-ro-Mit" customClass="AvatarImageView">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5xa-ro-Mit" customClass="AvatarImageView">
                                         <rect key="frame" x="15" y="15" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -710,23 +710,27 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Nje-ei-Ldo">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YR0-PU-BAX">
                                         <rect key="frame" x="51" y="50" width="25" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="4Lu-kk-L6Y"/>
-                                            <constraint firstAttribute="height" constant="25" id="kO0-Oc-aH9"/>
+                                            <constraint firstAttribute="width" constant="25" id="28Q-kf-VxE"/>
+                                            <constraint firstAttribute="height" constant="25" id="euy-n8-nfo"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" backgroundImage="addPhoto"/>
+                                        <connections>
+                                            <action selector="onAddNewPhotoBtn:" destination="F5f-P0-tF7" eventType="touchUpInside" id="3up-93-IxU"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="oZl-AS-uHF" firstAttribute="leading" secondItem="5xa-ro-Mit" secondAttribute="trailing" constant="13" id="1Qa-q7-YDB"/>
                                     <constraint firstItem="5xa-ro-Mit" firstAttribute="leading" secondItem="e55-jp-3oy" secondAttribute="leading" constant="15" id="9Jp-1I-jrp"/>
                                     <constraint firstItem="5xa-ro-Mit" firstAttribute="top" secondItem="e55-jp-3oy" secondAttribute="top" constant="15" id="M2G-1o-4Xb"/>
+                                    <constraint firstItem="YR0-PU-BAX" firstAttribute="top" secondItem="5xa-ro-Mit" secondAttribute="bottom" constant="-25" id="N5B-hf-gLC"/>
                                     <constraint firstAttribute="height" constant="95" id="QKx-dB-SGs"/>
-                                    <constraint firstAttribute="bottom" secondItem="Nje-ei-Ldo" secondAttribute="bottom" constant="20" id="SJd-J5-NyO"/>
                                     <constraint firstItem="oZl-AS-uHF" firstAttribute="top" secondItem="e55-jp-3oy" secondAttribute="top" constant="30" id="VtA-R3-rFb"/>
-                                    <constraint firstItem="Nje-ei-Ldo" firstAttribute="leading" secondItem="e55-jp-3oy" secondAttribute="leading" constant="51" id="v4G-pz-6Iy"/>
+                                    <constraint firstItem="YR0-PU-BAX" firstAttribute="leading" secondItem="5xa-ro-Mit" secondAttribute="trailing" constant="-24" id="p1l-2K-cQW"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4xY-te-sDt">

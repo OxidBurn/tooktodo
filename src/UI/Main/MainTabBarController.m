@@ -35,14 +35,15 @@
 
 - (BOOL) shouldShowLogin
 {
-    return ![KeyChain isExistTokenForCurrentUser];
+//    return ![KeyChain isExistTokenForCurrentUser];
     
-    return YES;
+    return NO;
 }
 
 - (BOOL) isFirstSetup
 {
-    return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
+//    return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
+    return NO;
 }
 
 - (void) presentLoginController
