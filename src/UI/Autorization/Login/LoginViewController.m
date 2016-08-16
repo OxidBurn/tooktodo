@@ -33,6 +33,11 @@
 @property (strong, nonatomic) LoginViewModel* viewModel;
 @property (strong, nonatomic) RecoveryViewModel* recoveryModel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforePassword;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEnterButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBetweenEnterAndPassword;
+
 // methods
 
 /**
@@ -140,19 +145,23 @@
 {
     @weakify(self)
     
-    [self.viewModel.loginCommand.errors subscribeNext: ^(id x) {
+    [self.loginBtn.rac_command.errors subscribeNext: ^(id x) {
         
         @strongify(self)
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
-            NSLog(@"Email warning message %@", emailWarning);
+            self.emailWarningLable.text       = emailWarning;
+            self.emailWarningLable.hidden     = (emailWarning.length == 0);
+            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 2 : 15;
             
         }];
         
         [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
             
-            NSLog(@"Password warning message %@", passWarning);
+            self.passwordWarningLabel.text                = passWarning;
+            self.passwordWarningLabel.hidden              = (passWarning.length == 0);
+            self.distanceBeforePassword.constant          = 0;
             
         }];
         
@@ -164,7 +173,10 @@
             
             @strongify(self)
             
-            [self successLogin];
+            if ( x )
+            {
+                [self successLogin];
+            }
             
         }];
         

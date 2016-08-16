@@ -37,7 +37,7 @@
 {
 //    return ![KeyChain isExistTokenForCurrentUser];
     
-    return NO;
+    return YES;
 }
 
 - (BOOL) isFirstSetup
