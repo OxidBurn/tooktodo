@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
-@interface UserNotificationModel : NSObject
+@interface UserNotificationModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @end

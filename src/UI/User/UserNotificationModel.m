@@ -7,13 +7,13 @@
 //
 
 #import "UserNotificationModel.h"
-@import UIKit;
+#import "UserNotificationCell.h"
 
 static NSString* CellID = @"CellID";
 static NSString* LabelTextKey = @"LabelTextKey";
 static NSString* SwitchTagKey = @"SwitchTagKey";
 
-@interface UserNotificationModel() <UITableViewDelegate, UITableViewDataSource>
+@interface UserNotificationModel()
 
 // properties
 @property (strong, nonatomic) NSArray* tableRowsData;
@@ -57,9 +57,67 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
 
 #pragma mark - UITableViewDataSource methods -
 
+- (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
+{
+    return 2;
+}
+
+- (NSInteger) tableView: (UITableView*) tableView
+  numberOfRowsInSection: (NSInteger)    section
+{
+    return [self.tableRowsData[section] count];
+}
+
+- (UITableViewCell*) tableView: (UITableView*) tableView
+         cellForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    UserNotificationCell* cell = [tableView dequeueReusableCellWithIdentifier: CellID];
+    
+    NSDictionary* info = self.tableRowsData[indexPath.section][indexPath.row];
+    
+    NSString* cellText = info[LabelTextKey];
+    
+    NSNumber* switchTag = info[SwitchTagKey];
+    
+    [cell fillCellWithText: cellText
+             withSwitchTag: switchTag];
+    
+    return cell;
+}
+
+-   (CGFloat) tableView: (UITableView*) tableView
+heightForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    
+    return (indexPath.section == 0 && indexPath.row == 2) ? 60 : 40;
+}
+
+- (UIView*)  tableView: (UITableView*) tableView
+viewForHeaderInSection: (NSInteger)    section
+{
+    if ( section == 1 )
+    {
+        UIView* headerView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, CGRectGetMaxX(tableView.frame), 10)];
+        
+        CGFloat red   = 230.0/256;
+        CGFloat green = 232.0/256;
+        CGFloat blue  = 234.0/256;
+        
+        headerView.backgroundColor = [UIColor colorWithRed: red
+                                                     green: green
+                                                      blue: blue
+                                                     alpha: 1.0f];
+        return headerView;
+    }
+    return nil;
+}
+
 #pragma mark - UITableViewDelegate methods -
 
-
-
+- (CGFloat)     tableView: (UITableView*) tableView
+ heightForHeaderInSection: (NSInteger)    section
+{
+    return section == 1 ? 10 : 0;
+}
 
 @end
