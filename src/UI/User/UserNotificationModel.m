@@ -9,7 +9,7 @@
 #import "UserNotificationModel.h"
 #import "UserNotificationCell.h"
 
-static NSString* CellID = @"CellID";
+static NSString* CellID       = @"CellID";
 static NSString* LabelTextKey = @"LabelTextKey";
 static NSString* SwitchTagKey = @"SwitchTagKey";
 

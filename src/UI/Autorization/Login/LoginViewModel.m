@@ -70,7 +70,11 @@
 
 - (RACCommand*) loginCommand
 {
+    @weakify(self)
+    
     return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+        
+        @strongify(self)
         
         return [self sendingLogingRequest];
         
@@ -79,7 +83,11 @@
 
 - (RACCommand*) restorePassCommand
 {
+    @weakify(self)
+    
     return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+        
+        @strongify(self)
         
         return [self restoreEmailSignal];
         
@@ -88,8 +96,10 @@
 
 - (RACCommand*) registerCommand
 {
+    @weakify(self)
     return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
        
+        @strongify(self)
         return [self.model openRegistrationPage];
         
     }];

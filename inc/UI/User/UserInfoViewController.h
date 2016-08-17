@@ -13,8 +13,4 @@
 
 @interface UserInfoViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIView* containerView;
-
-@property (strong, nonatomic) UIViewController* containerController;
-
 @end
