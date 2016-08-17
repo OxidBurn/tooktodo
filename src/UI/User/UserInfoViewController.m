@@ -17,8 +17,10 @@
 // Properties
 
 
-@property (weak, nonatomic) IBOutlet UIImageView* avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel    * fullNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView        * avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel            * fullNameLabel;
+@property (nonatomic, weak) IBOutlet UITableView        * phoneInfoTable;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint * phoneTableHeightConstraint;
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
 
@@ -199,8 +201,10 @@
 
 - (void) updateInfo
 {
-    self.avatarImageView.image = [self.viewModel userAvatar];
-    self.fullNameLabel.text    = [self.viewModel fullUserName];
+    self.avatarImageView.image               = [self.viewModel userAvatar];
+    self.fullNameLabel.text                  = [self.viewModel fullUserName];
+    self.phoneInfoTable.dataSource           = self.viewModel;
+    self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
 }
 
 //photo editing methods

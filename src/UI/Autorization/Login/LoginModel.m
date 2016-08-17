@@ -116,4 +116,9 @@
     [DataManagerShared persistUserWithInfo: info];
 }
 
+- (void) storeUserPassword: (NSString*) password
+{
+//    [KeyChain store]
+}
+
 @end
