@@ -34,6 +34,7 @@
 		59A7F2ED1D5DEACC005CF274 /* WelcomeTourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F2E31D5DEACC005CF274 /* WelcomeTourModel.m */; };
 		59A7F2EE1D5DEACC005CF274 /* WelcomeTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F2E41D5DEACC005CF274 /* WelcomeTourViewController.m */; };
 		59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F3001D5DEB3C005CF274 /* LoginService.m */; };
+		59AFE8771D6461B8006039D9 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59AFE8761D6461B8006039D9 /* ProfileViewController.m */; };
 		59B0BE611D60B1480016AE13 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BE601D60B1480016AE13 /* UserInfoViewController.m */; };
 		59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BE981D6130FC0016AE13 /* AvatarHelper.m */; };
 		59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BE991D6130FC0016AE13 /* Utils.m */; };
@@ -111,6 +112,8 @@
 		59A7F2FF1D5DEADB005CF274 /* WelcomeTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeTourViewController.h; sourceTree = "<group>"; };
 		59A7F3001D5DEB3C005CF274 /* LoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginService.m; sourceTree = "<group>"; };
 		59A7F3021D5DEB44005CF274 /* LoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginService.h; sourceTree = "<group>"; };
+		59AFE8751D6461B8006039D9 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = User/ProfileViewController.h; sourceTree = "<group>"; };
+		59AFE8761D6461B8006039D9 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = User/ProfileViewController.m; sourceTree = "<group>"; };
 		59B0BE601D60B1480016AE13 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = User/UserInfoViewController.m; sourceTree = "<group>"; };
 		59B0BE981D6130FC0016AE13 /* AvatarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarHelper.m; path = Helpers/AvatarHelper.m; sourceTree = "<group>"; };
 		59B0BE991D6130FC0016AE13 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Helpers/Utils.m; sourceTree = "<group>"; };
@@ -436,15 +439,33 @@
 			path = WelcomeTour;
 			sourceTree = "<group>";
 		};
-		59B0BE5E1D60B1260016AE13 /* User */ = {
+		59AFE8781D6461D7006039D9 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				59B0BE601D60B1480016AE13 /* UserInfoViewController.m */,
+				59B0BEB11D613FEB0016AE13 /* UserInfoViewModel.m */,
+				59B0BEB41D6140010016AE13 /* UserInfoModel.m */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		59AFE87A1D6461E6006039D9 /* Notificaiton */ = {
 			isa = PBXGroup;
 			children = (
 				F7A08EA41D636E370044F85B /* UserNotificationCell.m */,
 				F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */,
 				F7A08E9E1D636B4A0044F85B /* UserNotificationModel.m */,
-				59B0BE601D60B1480016AE13 /* UserInfoViewController.m */,
-				59B0BEB11D613FEB0016AE13 /* UserInfoViewModel.m */,
-				59B0BEB41D6140010016AE13 /* UserInfoModel.m */,
+			);
+			name = Notificaiton;
+			sourceTree = "<group>";
+		};
+		59B0BE5E1D60B1260016AE13 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				59AFE87A1D6461E6006039D9 /* Notificaiton */,
+				59AFE8781D6461D7006039D9 /* Info */,
+				59AFE8751D6461B8006039D9 /* ProfileViewController.h */,
+				59AFE8761D6461B8006039D9 /* ProfileViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -841,6 +862,7 @@
 				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
+				59AFE8771D6461B8006039D9 /* ProfileViewController.m in Sources */,
 				591344161D5F045D0027889F /* UserInfo+CoreDataProperties.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
 				59B0BEC91D6141330016AE13 /* MainMenuViewModel.m in Sources */,

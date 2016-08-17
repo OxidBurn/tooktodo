@@ -10,7 +10,6 @@
 #import "UserInfoViewModel.h"
 #import <RSKImageCropper/RSKImageCropper.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 
 @interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -22,8 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel    * fullNameLabel;
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
-
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 // methods
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender;
@@ -46,19 +43,6 @@
 @implementation UserInfoViewController
 
 #pragma mark - Life cycle -
-
-- (void) loadView
-{
-    [super loadView];
-    
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
 
 - (void) viewWillAppear: (BOOL) animated
 {
@@ -92,27 +76,6 @@
 
 
 #pragma mark - Actions -
-
-- (IBAction) toggleMenu: (UIBarButtonItem*) sender
-{
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
-}
-
-- (IBAction) didSelectedInfo: (UISegmentedControl*) sender
-{
-    if ( sender.selectedSegmentIndex == 0 )
-    {
-        [self showInfoScreenWithID: @"UserDetailScreen"];
-    }
-    else
-    {
-        [self showInfoScreenWithID: @"UserNotificationsScreen"];
-    }
-}
-
 
 //photo editing methods
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender
@@ -233,15 +196,9 @@
 
 #pragma mark - Internal methods -
 
-- (void) showInfoScreenWithID: (NSString*) id
-{
-    [self performSegueWithIdentifier: id
-                              sender: self];
-}
-
 - (void) updateInfo
 {
-//    self.avatarImageView.image = [self.viewModel userAvatar];
+    self.avatarImageView.image = [self.viewModel userAvatar];
     self.fullNameLabel.text    = [self.viewModel fullUserName];
 }
 
