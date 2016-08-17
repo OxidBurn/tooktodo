@@ -37,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforePassword;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEnterButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBetweenEnterAndPassword;
 
 // methods
 
@@ -147,6 +146,8 @@
 {
     @weakify(self)
     
+    __block CGFloat distance = self.distanceBeforeEnterButton.constant;
+    
     [self.loginBtn.rac_command.errors subscribeNext: ^(id x) {
         
         @strongify(self)
@@ -155,15 +156,29 @@
             
             self.emailWarningLable.text       = emailWarning;
             self.emailWarningLable.hidden     = (emailWarning.length == 0);
-            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 2 : 15;
+            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 5 : 18;
             
+            if (emailWarning.length == 0)
+            {
+                if (distance < 21)
+                {
+                    distance = 21;
+                    self.distanceBeforeEnterButton.constant = distance;
+                }
+            } else
+            {
+                if (distance >= 21) {
+                    distance -= 13;
+                    self.distanceBeforeEnterButton.constant = distance;
+                }
+            }
         }];
         
         [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
             
             self.passwordWarningLabel.text       = passWarning;
             self.passwordWarningLabel.hidden     = (passWarning.length == 0);
-            self.distanceBeforePassword.constant = 0;
+            self.distanceBeforePassword.constant = (passWarning.length == 0) ? 12 : 21;
             
         }];
         
