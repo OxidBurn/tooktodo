@@ -14,6 +14,7 @@
 // Classes
 #import "MainMenuViewModel.h"
 #import "MainTabBarController.h"
+#import "ProjectsControllersDelegate.h"
 
 @interface MainMenuViewController ()
 
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIButton    *showHelpBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *supportBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *reviewBtn;
+
+@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (strong, nonatomic) MainMenuViewModel* viewModel;
 
@@ -43,6 +46,9 @@
 - (void) loadView
 {
     [super loadView];
+    
+    // Set delegate
+    self.delegate = (MainTabBarController*)self.slidingViewController.topViewController;
     
     // Binding all UI with model
     [self bindingUI];
@@ -119,9 +125,24 @@
 {
     [self.slidingViewController resetTopViewAnimated: YES];
     
-    MainTabBarController* topController = (MainTabBarController*)self.slidingViewController.topViewController;
+    if ( [self.delegate respondsToSelector: @selector(showWelcomeTour)] )
+        [self.delegate showWelcomeTour];
+}
+
+- (IBAction) showUserInfo: (UIButton*) sender
+{
+    [self.slidingViewController resetTopViewAnimated: YES];
     
-    [topController presentWelcomeTour];
+    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
+        [self.delegate showControllerWithSegueID: @"ShowUserInfoID"];
+}
+
+- (IBAction) showAllProjects: (UIButton*) sender
+{
+    [self.slidingViewController resetTopViewAnimated: YES];
+    
+    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
+        [self.delegate showControllerWithSegueID: @"ShowAllProjects"];
 }
 
 

@@ -53,6 +53,9 @@
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
 		59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F707E81D5DFF3800BFD4CF /* MainTabBarController.m */; };
 		59FDF9081D59D4D6009AA80B /* TermsDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FDF9071D59D4D6009AA80B /* TermsDescription.xib */; };
+		F72851291D63F79A0086873D /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851281D63F79A0086873D /* CustomTabBar.m */; };
+		F728512C1D6401D80086873D /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = F728512A1D6401D80086873D /* TabBarSegue.m */; };
+		F72851311D640FA50086873D /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851301D640FA50086873D /* FeedsViewController.m */; };
 		F7A08E9F1D636B4A0044F85B /* UserNotificationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */; };
 		F7A08EA01D636B4A0044F85B /* UserNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08E9E1D636B4A0044F85B /* UserNotificationModel.m */; };
 		F7A08EA51D636E370044F85B /* UserNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08EA41D636E370044F85B /* UserNotificationCell.m */; };
@@ -148,6 +151,13 @@
 		59FDF9071D59D4D6009AA80B /* TermsDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsDescription.xib; sourceTree = "<group>"; };
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F72851271D63F79A0086873D /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
+		F72851281D63F79A0086873D /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
+		F728512A1D6401D80086873D /* TabBarSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarSegue.m; sourceTree = "<group>"; };
+		F728512B1D6401D80086873D /* TabBarSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarSegue.h; sourceTree = "<group>"; };
+		F728512F1D640FA50086873D /* FeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsViewController.h; sourceTree = "<group>"; };
+		F72851301D640FA50086873D /* FeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsViewController.m; sourceTree = "<group>"; };
+		F78AA0921D63EC7500339007 /* ProjectsControllersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsControllersDelegate.h; sourceTree = "<group>"; };
 		F7A08E971D636B0D0044F85B /* UserNotificationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationInfo.h; sourceTree = "<group>"; };
 		F7A08E9A1D636B1F0044F85B /* UserNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationModel.h; sourceTree = "<group>"; };
 		F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNotificationInfo.m; path = User/UserNotificationInfo.m; sourceTree = "<group>"; };
@@ -301,6 +311,7 @@
 		59A7F2D61D5DEACC005CF274 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F728512E1D640F950086873D /* Feeds */,
 				59B0BECD1D6144670016AE13 /* Projects */,
 				59B0BEBA1D6140BB0016AE13 /* Menu */,
 				59B0BE5E1D60B1260016AE13 /* User */,
@@ -308,6 +319,7 @@
 				59A7F2D71D5DEACC005CF274 /* Autorization */,
 				59A7F2E21D5DEACC005CF274 /* WelcomeTour */,
 				59B0BE9F1D6131A50016AE13 /* Helpers */,
+				F72851231D63F6570086873D /* Custom Components */,
 				591344551D60ABA40027889F /* Base */,
 			);
 			path = UI;
@@ -379,6 +391,7 @@
 				59A7F2F21D5DEADB005CF274 /* Autorization */,
 				59A7F2FD1D5DEADB005CF274 /* WelcomeTour */,
 				59B0BEA21D6131B00016AE13 /* Helpers */,
+				F72851251D63F6910086873D /* Custom Components */,
 				591344581D60ABAB0027889F /* Base */,
 			);
 			path = UI;
@@ -622,6 +635,7 @@
 			isa = PBXGroup;
 			children = (
 				59EC0AE81D5E1B27008EE521 /* MainTabBarController.h */,
+				F78AA0921D63EC7500339007 /* ProjectsControllersDelegate.h */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -649,6 +663,49 @@
 				8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F72851231D63F6570086873D /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				F72851241D63F6570086873D /* OSTabBar */,
+			);
+			path = "Custom Components";
+			sourceTree = "<group>";
+		};
+		F72851241D63F6570086873D /* OSTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F72851271D63F79A0086873D /* CustomTabBar.h */,
+				F72851281D63F79A0086873D /* CustomTabBar.m */,
+			);
+			path = OSTabBar;
+			sourceTree = "<group>";
+		};
+		F72851251D63F6910086873D /* Custom Components */ = {
+			isa = PBXGroup;
+			children = (
+				F72851261D63F6910086873D /* OSTabBar */,
+			);
+			path = "Custom Components";
+			sourceTree = "<group>";
+		};
+		F72851261D63F6910086873D /* OSTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F728512A1D6401D80086873D /* TabBarSegue.m */,
+				F728512B1D6401D80086873D /* TabBarSegue.h */,
+			);
+			path = OSTabBar;
+			sourceTree = "<group>";
+		};
+		F728512E1D640F950086873D /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				F728512F1D640FA50086873D /* FeedsViewController.h */,
+				F72851301D640FA50086873D /* FeedsViewController.m */,
+			);
+			path = Feeds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -781,12 +838,14 @@
 			files = (
 				59A7F2E81D5DEACC005CF274 /* LoginViewModel.m in Sources */,
 				59A7F2ED1D5DEACC005CF274 /* WelcomeTourModel.m in Sources */,
+				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
 				591344161D5F045D0027889F /* UserInfo+CoreDataProperties.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
 				59B0BEC91D6141330016AE13 /* MainMenuViewModel.m in Sources */,
 				F7A08EA51D636E370044F85B /* UserNotificationCell.m in Sources */,
+				F72851291D63F79A0086873D /* CustomTabBar.m in Sources */,
 				59B0BEB51D6140010016AE13 /* UserInfoModel.m in Sources */,
 				59B0BEAE1D6135630016AE13 /* AvatarGenerator.m in Sources */,
 				F7A08E9F1D636B4A0044F85B /* UserNotificationInfo.m in Sources */,
@@ -815,6 +874,7 @@
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,
 				59B0BEC81D6141330016AE13 /* MainMenuViewController.m in Sources */,
 				5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */,
+				F72851311D640FA50086873D /* FeedsViewController.m in Sources */,
 				59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */,
 				59A7F2E51D5DEACC005CF274 /* LoginModel.m in Sources */,
 				59A7F2EA1D5DEACC005CF274 /* RecoverySuccessViewController.m in Sources */,

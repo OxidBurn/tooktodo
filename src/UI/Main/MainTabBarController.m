@@ -9,12 +9,34 @@
 #import "MainTabBarController.h"
 #import "LoginViewController.h"
 #import "WelcomeTourViewController.h"
+#import "CustomTabBar.h"
 
 #import "KeyChainManager.h"
 
-@implementation MainTabBarController
+@interface MainTabBarController() 
+
+@property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
+
+
+@end
+
+@implementation MainTabBarController 
 
 #pragma mark - Life cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    self.mainTabBar.delegate = self;
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    [self.mainTabBar didSelectFirstMenuItem];
+}
 
 - (void) viewDidAppear: (BOOL) animated
 {
@@ -27,7 +49,7 @@
     else
         if ( [self isFirstSetup] )
         {
-            [self presentWelcomeTour];
+            [self showWelcomeTour];
         }
 }
 
@@ -37,12 +59,13 @@
 {
 //    return ![KeyChain isExistTokenForCurrentUser];
     
-    return YES;
+    return NO;
 }
 
 - (BOOL) isFirstSetup
 {
 //    return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
+    
     return NO;
 }
 
@@ -68,13 +91,27 @@
         
         if ( [blockSelf isFirstSetup] )
         {
-            [blockSelf presentWelcomeTour];
+            [blockSelf showWelcomeTour];
         }
         
     };
 }
 
-- (void) presentWelcomeTour
+
+#pragma mark - Projects main controllers delegates -
+
+- (void) showMainMenu
+{
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
+}
+
+- (void) dismissTopController: (UIViewController*) controller
+{
+    [controller dismissViewControllerAnimated: YES
+                                   completion: nil];
+}
+
+- (void) showWelcomeTour
 {
     NSString* controllerId   = @"WelcomeScreenID";
     NSString* storyboardName = @"WelcomeTour";
@@ -89,5 +126,12 @@
                        animated: NO
                      completion: nil];
 }
+
+- (void) showControllerWithSegueID: (NSString*) segueID
+{
+    [self performSegueWithIdentifier: segueID
+                              sender: self];
+}
+
 
 @end

@@ -29,10 +29,11 @@
 @property (weak, nonatomic) IBOutlet UILabel     *emailWarningLable;
 @property (weak, nonatomic) IBOutlet UILabel     *passwordWarningLabel;
 
+// Models
+@property (strong, nonatomic) LoginViewModel    * viewModel;
+@property (strong, nonatomic) RecoveryViewModel * recoveryModel;
 
-@property (strong, nonatomic) LoginViewModel* viewModel;
-@property (strong, nonatomic) RecoveryViewModel* recoveryModel;
-
+// Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforePassword;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEnterButton;
@@ -55,6 +56,7 @@
 
 @end
 
+//TODO: Need to improve working app without internet. More stable handling internet conneciton.
 @implementation LoginViewController
 
 
@@ -159,9 +161,9 @@
         
         [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
             
-            self.passwordWarningLabel.text                = passWarning;
-            self.passwordWarningLabel.hidden              = (passWarning.length == 0);
-            self.distanceBeforePassword.constant          = 0;
+            self.passwordWarningLabel.text       = passWarning;
+            self.passwordWarningLabel.hidden     = (passWarning.length == 0);
+            self.distanceBeforePassword.constant = 0;
             
         }];
         

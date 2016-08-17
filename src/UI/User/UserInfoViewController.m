@@ -10,8 +10,10 @@
 #import "UserInfoViewModel.h"
 #import <RSKImageCropper/RSKImageCropper.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "ProjectsControllersDelegate.h"
+#import "MainTabBarController.h"
 
-@interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource>
+@interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // Properties
 
@@ -21,8 +23,12 @@
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
 
+@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+
 // methods
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender;
+
+- (IBAction) didSelectedInfo: (UISegmentedControl*) sender;
 
 - (void) pickPictureFromLibOrCamera;
 
@@ -44,6 +50,8 @@
 - (void) loadView
 {
     [super loadView];
+    
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
 }
 
 - (void) viewDidLoad
@@ -55,6 +63,8 @@
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
+    
+    [self showInfoScreenWithID: @"UserDetailScreen"];
     
     [self updateInfo];
 }
@@ -85,7 +95,22 @@
 
 - (IBAction) toggleMenu: (UIBarButtonItem*) sender
 {
-    [self.slidingViewController anchorTopViewToRightAnimated: YES];
+    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
+    {
+        [self.delegate showMainMenu];
+    }
+}
+
+- (IBAction) didSelectedInfo: (UISegmentedControl*) sender
+{
+    if ( sender.selectedSegmentIndex == 0 )
+    {
+        [self showInfoScreenWithID: @"UserDetailScreen"];
+    }
+    else
+    {
+        [self showInfoScreenWithID: @"UserNotificationsScreen"];
+    }
 }
 
 
@@ -189,7 +214,7 @@
 #pragma mark - UIImagePickerControllerDelegate methods -
 //photo editing
 
-- (void) imagePickerController: (UIImagePickerController *)     picker
+- (void) imagePickerController: (UIImagePickerController *)      picker
  didFinishPickingMediaWithInfo: (NSDictionary <NSString *,id> *) info
 {
     UIImage* chosenImage = info[UIImagePickerControllerEditedImage];
@@ -197,19 +222,22 @@
     [self editImageForAvatar: chosenImage];
     
     [picker dismissViewControllerAnimated: YES
-                               completion:^{
-                                   
-                                   
-                               }];
+                               completion: nil];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+- (void) imagePickerControllerDidCancel: (UIImagePickerController*) picker
 {
     [picker dismissViewControllerAnimated: YES
                                completion: nil];
 }
 
 #pragma mark - Internal methods -
+
+- (void) showInfoScreenWithID: (NSString*) id
+{
+    [self performSegueWithIdentifier: id
+                              sender: self];
+}
 
 - (void) updateInfo
 {

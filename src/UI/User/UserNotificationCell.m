@@ -11,7 +11,7 @@
 @interface UserNotificationCell()
 
 // properties
-@property (weak, nonatomic) IBOutlet UILabel* textLabel;
+@property (weak, nonatomic) IBOutlet UILabel* titleLabel;
 
 @property (weak, nonatomic) IBOutlet UISwitch* switchControll;
 
@@ -28,7 +28,7 @@
 - (void) fillCellWithText: (NSString*) cellText
             withSwitchTag: (NSNumber*) switchTag
 {
-    self.textLabel.text     = cellText;
+    self.titleLabel.text    = cellText;
     self.switchControll.tag = switchTag.integerValue;
 }
 

@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 // Classes
-#import "BaseMainViewController.h"
 
-@interface UserInfoViewController : BaseMainViewController
+
+@interface UserInfoViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIView* containerView;
+
+@property (strong, nonatomic) UIViewController* containerController;
 
 @end

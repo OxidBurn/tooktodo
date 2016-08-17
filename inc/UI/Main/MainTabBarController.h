@@ -8,14 +8,18 @@
 
 @import UIKit;
 
-@interface MainTabBarController : UITabBarController
+#import "ProjectsControllersDelegate.h"
+#import "BaseMainViewController.h"
+
+@interface MainTabBarController : BaseMainViewController <ProjectsControllersDelegate>
 
 // properties
 
+@property (strong, nonatomic) UIViewController* containerController;
+
+@property (weak, nonatomic) IBOutlet UIView* containerView;
 
 // methods
-
-- (void) presentWelcomeTour;
 
 
 @end
