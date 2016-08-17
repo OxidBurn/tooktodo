@@ -25,8 +25,6 @@
 // methods
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender;
 
-- (IBAction) didSelectedInfo: (UISegmentedControl*) sender;
-
 - (void) pickPictureFromLibOrCamera;
 
 - (void) editImageForAvatar: (UIImage*) chosenImage;
@@ -48,7 +46,7 @@
 {
     [super viewWillAppear: animated];
     
-    [self showInfoScreenWithID: @"UserDetailScreen"];
+    
     
     [self updateInfo];
 }

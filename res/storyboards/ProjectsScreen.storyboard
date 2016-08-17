@@ -650,7 +650,7 @@
         <!--ВАШ ПРОФИЛЬ-->
         <scene sceneID="I2n-Fo-0RP">
             <objects>
-                <viewController id="F5f-P0-tF7" customClass="UserInfoViewController" sceneMemberID="viewController">
+                <viewController id="F5f-P0-tF7" customClass="ProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9KT-GZ-XZB"/>
                         <viewControllerLayoutGuide type="bottom" id="9eJ-aa-EBJ"/>
@@ -674,7 +674,7 @@
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <action selector="didSelectedInfo:" destination="F5f-P0-tF7" eventType="valueChanged" id="IYq-Gr-8jH"/>
+                                            <action selector="selectedSegmentItemIndex:" destination="F5f-P0-tF7" eventType="valueChanged" id="szU-W4-Zx1"/>
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
@@ -706,7 +706,7 @@
                         <barButtonItem key="leftBarButtonItem" image="Menu1" id="45g-di-riF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="toggleMenu:" destination="F5f-P0-tF7" id="ceF-IF-DHq"/>
+                                <action selector="showMainMenu:" destination="F5f-P0-tF7" id="hbh-Aa-INX"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Изменить" style="plain" id="wBt-P0-6Ph">
@@ -799,10 +799,10 @@
             </objects>
             <point key="canvasLocation" x="-238" y="2050"/>
         </scene>
-        <!--View Controller-->
+        <!--User Info View Controller-->
         <scene sceneID="4fp-ra-jVr">
             <objects>
-                <viewController id="JcJ-0J-62m" sceneMemberID="viewController">
+                <viewController id="JcJ-0J-62m" customClass="UserInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QdW-Bp-W9l"/>
                         <viewControllerLayoutGuide type="bottom" id="73e-s7-ccO"/>
@@ -839,9 +839,6 @@
                                             <constraint firstAttribute="height" constant="45" id="ojQ-vz-idz"/>
                                         </constraints>
                                         <state key="normal" image="addPhoto"/>
-                                        <connections>
-                                            <action selector="onAddNewPhotoBtn:" destination="F5f-P0-tF7" eventType="touchUpInside" id="jeb-5x-8hq"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -979,7 +976,7 @@
         <!--Изменить пароль-->
         <scene sceneID="GRB-2K-bcV">
             <objects>
-                <viewController id="Zn5-Su-BRm" sceneMemberID="viewController">
+                <viewController id="Zn5-Su-BRm" customClass="ChangePassViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NrC-iw-5Vd"/>
                         <viewControllerLayoutGuide type="bottom" id="Xig-xM-xi8"/>
@@ -1106,7 +1103,7 @@
         <!--Профиль-->
         <scene sceneID="ToI-vA-Thh">
             <objects>
-                <viewController id="Fad-81-UDM" sceneMemberID="viewController">
+                <viewController id="Fad-81-UDM" customClass="UpdateInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vhj-lO-pHh"/>
                         <viewControllerLayoutGuide type="bottom" id="J8d-kR-Tzf"/>
