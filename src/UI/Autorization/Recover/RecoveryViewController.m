@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UIButton    *resetPassBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *registerBtn;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceToRecoverBtn;
 
 @property (strong, nonatomic) RecoveryViewModel* viewModel;
 
@@ -98,20 +101,27 @@
     
     [self.resetPassBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeCompleted: ^{
-            
-            @strongify(self)
-            
-            [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
-                                      sender: self];
-            
-        }];
-        
+        [signal subscribeNext: ^(id x) {
+
+            if ( x )
+            {
+                @strongify(self)
+
+                [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
+                                          sender: self];
+}
+
+    }];
     }];
     
     [self.resetPassBtn.rac_command.errors subscribeNext: ^(id x) {
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
+            
+            self.warningLabel.text = emailWarning;
+            self.warningLabel.hidden = (emailWarning.length == 0);
+            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 15 : 27;
+            self.distanceToRecoverBtn.constant = (emailWarning.length == 0) ? 233 : 221;
             
             NSLog(@"Email warning message %@", emailWarning);
             
