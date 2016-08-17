@@ -22,7 +22,7 @@
 
 @end
 
-@implementation UserNotificationInfo
+@implementation UserNotificationInfoController
 
 #pragma mark - Lyfe cycle -
 
