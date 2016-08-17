@@ -718,9 +718,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="6sX-JI-DSc" id="eEj-wt-yeu"/>
-                        <segue destination="s99-IF-Edf" kind="custom" identifier="UserNotificationsScreen" customClass="TabBarSegue" id="V4c-tw-X8I"/>
+                        <segue destination="s99-IF-Edf" kind="custom" identifier="UserNotificationsScreen" customClass="UserInfoSegue" id="V4c-tw-X8I"/>
                         <segue destination="Fad-81-UDM" kind="push" id="lXS-Lr-ABo"/>
-                        <segue destination="JcJ-0J-62m" kind="custom" identifier="UserDetailScreen" customClass="TabBarSegue" id="meg-g9-aAz"/>
+                        <segue destination="JcJ-0J-62m" kind="custom" identifier="UserDetailScreen" customClass="UserInfoSegue" id="meg-g9-aAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLe-rk-WAK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -872,6 +872,9 @@
                                             <constraint firstAttribute="width" constant="125" id="ySR-9c-Rk6"/>
                                         </constraints>
                                         <state key="normal" image="ChangePassword1"/>
+                                        <connections>
+                                            <segue destination="Zn5-Su-BRm" kind="push" id="0Pm-Hh-b7D"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -929,7 +932,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBt-dm-Zy7">
-                                <rect key="frame" x="135" y="461" width="50" height="44"/>
+                                <rect key="frame" x="135" y="517" width="50" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="KlI-CM-l0U"/>
                                     <constraint firstAttribute="width" constant="50" id="d3Y-Pg-u4r"/>
@@ -939,7 +942,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3t-FM-VxG">
-                                <rect key="frame" x="49" y="417" width="223" height="44"/>
+                                <rect key="frame" x="49" y="473" width="223" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="jIK-PR-eGP"/>
                                     <constraint firstAttribute="width" constant="223" id="v6f-fr-xBz"/>
@@ -956,7 +959,7 @@
                             <constraint firstAttribute="trailing" secondItem="SLK-wp-lxS" secondAttribute="trailing" id="7gI-ef-M6w"/>
                             <constraint firstItem="SLK-wp-lxS" firstAttribute="top" secondItem="cqN-i9-MHL" secondAttribute="bottom" constant="1" id="IW3-vq-SCt"/>
                             <constraint firstItem="cqN-i9-MHL" firstAttribute="leading" secondItem="FeS-xJ-DX0" secondAttribute="leading" id="Kt4-oC-75P"/>
-                            <constraint firstItem="73e-s7-ccO" firstAttribute="top" secondItem="vBt-dm-Zy7" secondAttribute="bottom" constant="63" id="Nas-dK-V7P"/>
+                            <constraint firstItem="73e-s7-ccO" firstAttribute="top" secondItem="vBt-dm-Zy7" secondAttribute="bottom" constant="7" id="Nas-dK-V7P"/>
                             <constraint firstAttribute="trailing" secondItem="uej-60-wIr" secondAttribute="trailing" id="QTz-B8-m4j"/>
                             <constraint firstItem="uej-60-wIr" firstAttribute="leading" secondItem="FeS-xJ-DX0" secondAttribute="leading" id="TcA-VA-uIY"/>
                             <constraint firstItem="uej-60-wIr" firstAttribute="top" secondItem="SLK-wp-lxS" secondAttribute="bottom" id="TlA-5b-kNg"/>
@@ -973,7 +976,7 @@
             </objects>
             <point key="canvasLocation" x="-1018" y="2050"/>
         </scene>
-        <!--Изменить пароль-->
+        <!--ИЗМЕНИТЬ ПАРОЛЬ-->
         <scene sceneID="GRB-2K-bcV">
             <objects>
                 <viewController id="Zn5-Su-BRm" customClass="ChangePassViewController" sceneMemberID="viewController">
@@ -982,7 +985,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Xig-xM-xi8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="B8c-le-lf2">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3J-EE-oxr">
@@ -1089,8 +1092,10 @@
                             <constraint firstAttribute="trailing" secondItem="b3J-EE-oxr" secondAttribute="trailing" id="znR-e5-o3E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Изменить пароль" id="LT9-x5-Xdw">
-                        <barButtonItem key="backBarButtonItem" title="Назад" id="3Fx-Bu-fpk"/>
+                    <navigationItem key="navigationItem" title="ИЗМЕНИТЬ ПАРОЛЬ" id="LT9-x5-Xdw">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="3Fx-Bu-fpk">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="ZP8-tm-NCu">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -1185,7 +1190,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Задачи" id="pbg-BQ-jzB">
-                        <barButtonItem key="leftBarButtonItem" image="Menu1" style="plain" id="8lE-jv-1cx">
+                        <barButtonItem key="leftBarButtonItem" image="Menu1" style="done" id="8lE-jv-1cx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onShowMenu:" destination="J26-PG-mqo" id="4pR-0J-hDE"/>
@@ -1332,7 +1337,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
@@ -1571,4 +1576,7 @@
         <image name="shapeCopy1" width="19" height="19"/>
         <image name="sort1" width="22" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0Pm-Hh-b7D"/>
+    </inferredMetricsTieBreakers>
 </document>

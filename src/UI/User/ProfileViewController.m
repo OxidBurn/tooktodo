@@ -33,7 +33,7 @@
     // setup delegate
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
-    [self showInfoScreenWithID: @"UserDetailScreen"];
+//    [self showInfoScreenWithID: @"UserDetailScreen"];
 }
 
 - (void) viewDidLoad
@@ -76,9 +76,9 @@
 
 #pragma mark - Internal methods -
 
-- (void) showInfoScreenWithID: (NSString*) id
+- (void) showInfoScreenWithID: (NSString*) storyboardID
 {
-    [self performSegueWithIdentifier: id
+    [self performSegueWithIdentifier: storyboardID
                               sender: self];
 }
 
