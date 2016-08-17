@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserNotificationInfo : UIViewController
+@interface UserNotificationInfoController : UIViewController
 
 @end

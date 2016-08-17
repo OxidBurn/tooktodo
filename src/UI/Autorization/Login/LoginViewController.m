@@ -148,6 +148,9 @@
     
     __block CGFloat distance = self.distanceBeforeEnterButton.constant;
     
+    BOOL isWarning1 = (self.distanceBeforeEmail.constant > 5);
+    BOOL isWarning2 = (self.distanceBeforeEmail.constant > 12);
+    
     [self.loginBtn.rac_command.errors subscribeNext: ^(id x) {
         
         @strongify(self)
@@ -158,20 +161,35 @@
             self.emailWarningLable.hidden     = (emailWarning.length == 0);
             self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 5 : 18;
             
-            if (emailWarning.length == 0)
+            if (isWarning1)
             {
-                if (distance < 21)
+                if (!isWarning2)
                 {
-                    distance = 21;
-                    self.distanceBeforeEnterButton.constant = distance;
+                    distance -=9;
                 }
-            } else
-            {
-                if (distance >= 21) {
-                    distance -= 13;
-                    self.distanceBeforeEnterButton.constant = distance;
-                }
+                else
+                    if (isWarning2)
+                    {
+                        distance = 8;
+                    }
             }
+            else
+                if (!isWarning1)
+                {
+                    if (!isWarning2)
+                    {
+                        distance = 21;
+                    }
+                    else
+                        if (isWarning2)
+                        {
+                            distance -= 13;
+                            distance -= 9;
+                        }
+                }
+            
+            self.distanceBeforeEnterButton.constant = distance;
+            
         }];
         
         [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {

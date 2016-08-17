@@ -6,10 +6,10 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "UserNotificationInfo.h"
+#import "UserNotificationInfoController.h"
 #import "UserNotificationModel.h"
 
-@interface UserNotificationInfo()
+@interface UserNotificationInfoController()
 
 // properties
 
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation UserNotificationInfo
+@implementation UserNotificationInfoController
 
 #pragma mark - Lyfe cycle -
 

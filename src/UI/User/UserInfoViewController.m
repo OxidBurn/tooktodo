@@ -46,8 +46,6 @@
 {
     [super viewWillAppear: animated];
     
-    
-    
     [self updateInfo];
 }
 
@@ -139,7 +137,8 @@
 // Crop image has been canceled.
 - (void) imageCropViewControllerDidCancelCrop: (RSKImageCropViewController*) controller
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated: YES
+                                   completion: nil];
 }
 
 // The original image has been cropped.
@@ -149,7 +148,8 @@
 {
     self.avatarImageView.image = croppedImage;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated: YES
+                                   completion: nil];
 }
 
 // The original image has been cropped. Additionally provides a rotation angle used to produce image.
@@ -160,7 +160,8 @@
 {
     self.avatarImageView.image = croppedImage;
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated: YES
+                                   completion: nil];
 }
 
 // The original image will be cropped.
@@ -180,10 +181,12 @@
 {
     UIImage* chosenImage = info[UIImagePickerControllerEditedImage];
     
-    [self editImageForAvatar: chosenImage];
-    
-    [picker dismissViewControllerAnimated: YES
-                               completion: nil];
+    [picker dismissViewControllerAnimated: NO
+                               completion: ^{
+                                   
+                                   [self editImageForAvatar: chosenImage];
+                                   
+                               }];
 }
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController*) picker
@@ -242,8 +245,9 @@
     
     imageCropVC.delegate = self;
     
-    [self.navigationController pushViewController: imageCropVC
-                                         animated: YES];
+    [self.parentViewController presentViewController: imageCropVC
+                                            animated: YES
+                                          completion: nil];
 }
 
 //photo editing helpers
@@ -259,9 +263,9 @@
         picker.allowsEditing = YES;
         picker.sourceType    = sourceType;
         
-        [self presentViewController: picker
-                           animated: YES
-                         completion: nil];
+        [self.parentViewController presentViewController: picker
+                                                animated: YES
+                                              completion: nil];
     } else
     {
         [self showAccessAlertWithTitle: @"Камера не обнаружена"

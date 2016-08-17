@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ofD-rx-KLQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ofD-rx-KLQ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -734,10 +734,10 @@
             </objects>
             <point key="canvasLocation" x="-604" y="1302"/>
         </scene>
-        <!--User Notification Info-->
+        <!--User Notification Info Controller-->
         <scene sceneID="MuO-LU-ASQ">
             <objects>
-                <viewController id="s99-IF-Edf" customClass="UserNotificationInfo" sceneMemberID="viewController">
+                <viewController id="s99-IF-Edf" customClass="UserNotificationInfoController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gfy-CH-jTe"/>
                         <viewControllerLayoutGuide type="bottom" id="iN6-Dm-iLq"/>
@@ -846,6 +846,9 @@
                                             <constraint firstAttribute="height" constant="45" id="ojQ-vz-idz"/>
                                         </constraints>
                                         <state key="normal" image="addPhoto"/>
+                                        <connections>
+                                            <action selector="onAddNewPhotoBtn:" destination="JcJ-0J-62m" eventType="touchUpInside" id="M4K-gR-AmE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -978,6 +981,10 @@
                             <constraint firstItem="vBt-dm-Zy7" firstAttribute="centerX" secondItem="FeS-xJ-DX0" secondAttribute="centerX" id="yZF-l1-g3L"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="avatarImageView" destination="P7r-F9-lZg" id="Y2r-NW-9gT"/>
+                        <outlet property="fullNameLabel" destination="uhF-2U-BYr" id="SAq-T1-Hdl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Njh-Dc-Jpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1327,6 +1334,16 @@
                                             <action selector="didSelectedFeed:" destination="gwG-21-5Mr" eventType="touchUpInside" id="4QS-NV-K3Q"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-I2-5P9">
+                                        <rect key="frame" x="64" y="0.0" width="64" height="56"/>
+                                        <state key="normal" image="Tasks">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="Tasks isolated"/>
+                                        <connections>
+                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zja-aF-Tw0"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-rx-1Da">
                                         <rect key="frame" x="128" y="0.0" width="64" height="56"/>
                                         <state key="normal" image="Button add">
@@ -1356,16 +1373,6 @@
                                             <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zf2-g6-8tF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-I2-5P9">
-                                        <rect key="frame" x="64" y="0.0" width="64" height="56"/>
-                                        <state key="normal" image="Tasks">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="selected" image="Tasks isolated"/>
-                                        <connections>
-                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zja-aF-Tw0"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.14901960784313725" green="0.1764705882352941" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1392,11 +1399,11 @@
                                     <constraint firstItem="Nav-I2-5P9" firstAttribute="height" secondItem="tZ3-jn-vrh" secondAttribute="height" id="znB-Rv-125"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="addTab" destination="vfF-oq-eji" id="auL-2G-ymT"/>
-                                    <outlet property="documentsTab" destination="3M6-ty-EJO" id="bO6-lu-1u3"/>
-                                    <outlet property="feedTab" destination="tZ3-jn-vrh" id="USu-HE-nnM"/>
-                                    <outlet property="tasksTab" destination="w8A-rx-1Da" id="ILe-s9-iOR"/>
-                                    <outlet property="teamTab" destination="Nav-I2-5P9" id="Vex-wd-hkz"/>
+                                    <outlet property="addTab" destination="w8A-rx-1Da" id="jhR-2F-Fg2"/>
+                                    <outlet property="documentsTab" destination="vfF-oq-eji" id="qqV-tn-Kag"/>
+                                    <outlet property="feedTab" destination="tZ3-jn-vrh" id="YH9-qc-drS"/>
+                                    <outlet property="tasksTab" destination="Nav-I2-5P9" id="zAB-4G-2TV"/>
+                                    <outlet property="teamTab" destination="3M6-ty-EJO" id="cnb-JF-hD6"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDJ-9K-o6Q">
