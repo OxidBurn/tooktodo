@@ -60,7 +60,7 @@
 		F72851291D63F79A0086873D /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851281D63F79A0086873D /* CustomTabBar.m */; };
 		F728512C1D6401D80086873D /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = F728512A1D6401D80086873D /* TabBarSegue.m */; };
 		F72851311D640FA50086873D /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851301D640FA50086873D /* FeedsViewController.m */; };
-		F7A08E9F1D636B4A0044F85B /* UserNotificationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */; };
+		F7A08E9F1D636B4A0044F85B /* UserNotificationInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08E9D1D636B4A0044F85B /* UserNotificationInfoController.m */; };
 		F7A08EA01D636B4A0044F85B /* UserNotificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08E9E1D636B4A0044F85B /* UserNotificationModel.m */; };
 		F7A08EA51D636E370044F85B /* UserNotificationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A08EA41D636E370044F85B /* UserNotificationCell.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
@@ -170,9 +170,9 @@
 		F728512F1D640FA50086873D /* FeedsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedsViewController.h; sourceTree = "<group>"; };
 		F72851301D640FA50086873D /* FeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsViewController.m; sourceTree = "<group>"; };
 		F78AA0921D63EC7500339007 /* ProjectsControllersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsControllersDelegate.h; sourceTree = "<group>"; };
-		F7A08E971D636B0D0044F85B /* UserNotificationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationInfo.h; sourceTree = "<group>"; };
+		F7A08E971D636B0D0044F85B /* UserNotificationInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationInfoController.h; sourceTree = "<group>"; };
 		F7A08E9A1D636B1F0044F85B /* UserNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationModel.h; sourceTree = "<group>"; };
-		F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNotificationInfo.m; path = User/UserNotificationInfo.m; sourceTree = "<group>"; };
+		F7A08E9D1D636B4A0044F85B /* UserNotificationInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNotificationInfoController.m; path = User/UserNotificationInfoController.m; sourceTree = "<group>"; };
 		F7A08E9E1D636B4A0044F85B /* UserNotificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNotificationModel.m; path = User/UserNotificationModel.m; sourceTree = "<group>"; };
 		F7A08EA11D636E1D0044F85B /* UserNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationCell.h; sourceTree = "<group>"; };
 		F7A08EA41D636E370044F85B /* UserNotificationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserNotificationCell.m; path = User/UserNotificationCell.m; sourceTree = "<group>"; };
@@ -480,7 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				F7A08EA41D636E370044F85B /* UserNotificationCell.m */,
-				F7A08E9D1D636B4A0044F85B /* UserNotificationInfo.m */,
+				F7A08E9D1D636B4A0044F85B /* UserNotificationInfoController.m */,
 				F7A08E9E1D636B4A0044F85B /* UserNotificationModel.m */,
 			);
 			name = Notificaiton;
@@ -541,7 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				F7A08EA11D636E1D0044F85B /* UserNotificationCell.h */,
-				F7A08E971D636B0D0044F85B /* UserNotificationInfo.h */,
+				F7A08E971D636B0D0044F85B /* UserNotificationInfoController.h */,
 				F7A08E9A1D636B1F0044F85B /* UserNotificationModel.h */,
 				59B0BEB71D6140210016AE13 /* UserInfoModel.h */,
 				59B0BEB81D6140210016AE13 /* UserInfoViewController.h */,
@@ -902,7 +902,7 @@
 				F72851291D63F79A0086873D /* CustomTabBar.m in Sources */,
 				59B0BEB51D6140010016AE13 /* UserInfoModel.m in Sources */,
 				59B0BEAE1D6135630016AE13 /* AvatarGenerator.m in Sources */,
-				F7A08E9F1D636B4A0044F85B /* UserNotificationInfo.m in Sources */,
+				F7A08E9F1D636B4A0044F85B /* UserNotificationInfoController.m in Sources */,
 				59B0BE611D60B1480016AE13 /* UserInfoViewController.m in Sources */,
 				59B0BEA11D6131A50016AE13 /* AvatarImageView.m in Sources */,
 				59A7F2EB1D5DEACC005CF274 /* RecoveryViewController.m in Sources */,

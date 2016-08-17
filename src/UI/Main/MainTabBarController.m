@@ -34,8 +34,6 @@
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
-    
-    [self.mainTabBar didSelectFirstMenuItem];
 }
 
 - (void) viewDidAppear: (BOOL) animated

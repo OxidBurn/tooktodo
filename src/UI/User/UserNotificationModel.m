@@ -88,7 +88,6 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
 -   (CGFloat) tableView: (UITableView*) tableView
 heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    
     return (indexPath.section == 0 && indexPath.row == 2) ? 60 : 40;
 }
 

@@ -33,7 +33,9 @@
     // setup delegate
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
-//    [self showInfoScreenWithID: @"UserDetailScreen"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showInfoScreenWithID: @"UserDetailScreen"];
+    });
 }
 
 - (void) viewDidLoad
