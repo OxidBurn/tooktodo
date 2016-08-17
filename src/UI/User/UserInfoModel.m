@@ -59,4 +59,38 @@
     return [UIImage new];
 }
 
+- (NSString*) getUserEmail
+{
+    return self.currentUserInfo.email;
+}
+
+- (NSString*) getUserPhoneNumber
+{
+    return self.currentUserInfo.phoneNumber;
+}
+
+- (NSString*) getUserAdditionalPhoneNumber
+{
+    return self.currentUserInfo.extendPhoneNumber;
+}
+
+- (NSArray*) getUserContactInfo
+{
+    NSMutableArray* userInfo = [NSMutableArray new];
+    
+    if ( [self getUserPhoneNumber] )
+    {
+        [userInfo addObject: [self getUserPhoneNumber]];
+    }
+    
+    if ( [self getUserAdditionalPhoneNumber] )
+    {
+        [userInfo addObject: [self getUserAdditionalPhoneNumber]];
+    }
+    
+    [userInfo addObject: [self getUserEmail]];
+    
+    return userInfo.copy;
+}
+
 @end

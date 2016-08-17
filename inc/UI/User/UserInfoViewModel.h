@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
-@interface UserInfoViewModel : NSObject
+@interface UserInfoViewModel : NSObject <UITableViewDataSource>
 
 // methods
 
 - (UIImage*) userAvatar;
 
 - (NSString*) fullUserName;
+
+- (CGFloat) contactTableHeight;
 
 @end

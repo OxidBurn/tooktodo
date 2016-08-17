@@ -19,5 +19,6 @@
 
 - (UIImage*) getUserAvatarImage;
 
+- (NSArray*) getUserContactInfo;
 
 @end

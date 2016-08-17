@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) UserInfoModel* model;
 
+@property (nonatomic, strong) NSArray* userContactInfo;
+
 // methods
 
 
@@ -46,6 +48,42 @@
 - (NSString*) fullUserName
 {
     return [self.model getFullUserName];
+}
+
+- (CGFloat) contactTableHeight
+{
+    return self.userContactInfo.count * 42;
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSArray*) userContactInfo
+{
+    if ( _userContactInfo == nil )
+    {
+        _userContactInfo = [self.model getUserContactInfo];
+    }
+    
+    return _userContactInfo;
+}
+
+#pragma mark - Table view data source -
+
+- (NSInteger) tableView: (UITableView*) tableView
+  numberOfRowsInSection: (NSInteger)    section
+{
+    return self.userContactInfo.count;
+}
+
+- (UITableViewCell*) tableView: (UITableView*) tableView
+         cellForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserPhoneNumCellID"];
+    
+    cell.textLabel.text = self.userContactInfo[indexPath.row];
+    
+    return cell;
 }
 
 @end

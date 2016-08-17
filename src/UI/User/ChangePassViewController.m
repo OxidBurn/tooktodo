@@ -7,6 +7,7 @@
 //
 
 #import "ChangePassViewController.h"
+#import "ChangePasswordViewModel.h"
 
 @interface ChangePassViewController ()
 
@@ -14,24 +15,21 @@
 
 @implementation ChangePassViewController
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle -
+
+- (void) viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+
+#pragma mark - Memory managment -
+
+- (void) didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
