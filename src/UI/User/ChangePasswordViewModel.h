@@ -7,7 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 @interface ChangePasswordViewModel : NSObject
+
+// properties
+
+@property (nonatomic, strong) NSString* oldPasswordString;
+
+@property (nonatomic, strong) NSString* updatedPasswordString;
+
+@property (nonatomic, strong) NSString* confirmPasswordString;
+
+@property (strong, nonatomic) RACSignal* updatePasswordWarningMessage;
+
+// methods
+
+
 
 @end

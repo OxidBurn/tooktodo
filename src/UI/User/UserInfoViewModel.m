@@ -55,17 +55,30 @@
     return self.userContactInfo.count * 42;
 }
 
+- (RACCommand*) logoutCommand
+{
+    if ( _logoutCommand == nil )
+    {
+        _logoutCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+            
+            return [self.model logoutUser];
+            
+        }];
+    }
+    
+    return _logoutCommand;
+}
+
+- (void) saveNewImage: (UIImage*) image
+{
+    [self.model saveNewAvatar: image];
+}
 
 #pragma mark - Internal methods -
 
 - (NSArray*) userContactInfo
-{
-    if ( _userContactInfo == nil )
-    {
-        _userContactInfo = [self.model getUserContactInfo];
-    }
-    
-    return _userContactInfo;
+{    
+    return [self.model getUserContactInfo];;
 }
 
 #pragma mark - Table view data source -

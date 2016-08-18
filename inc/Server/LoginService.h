@@ -18,4 +18,9 @@
 
 + (RACSignal*) sendResetPasswordRequest: (NSString*) email;
 
++ (RACSignal*) updatePasswordFromOld: (NSString*) old
+                               toNew: (NSString*) pass;
+
++ (RACSignal*) logout;
+
 @end

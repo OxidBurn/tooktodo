@@ -12,6 +12,8 @@
 #import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 #import "Utils.h"
+#import "LoginService.h"
+#import "KeyChainManager.h"
 
 @interface UserInfoModel()
 
@@ -50,8 +52,7 @@
 {
     if ( self.currentUserInfo )
     {
-        NSString* filePath   = [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.currentUserInfo.photoImagePath];
-        UIImage* avatarImage = [UIImage imageWithContentsOfFile: filePath];
+        UIImage* avatarImage = [UIImage imageWithContentsOfFile: [self getAvatarImagePath]];
         
         return avatarImage;
     }
@@ -91,6 +92,37 @@
     [userInfo addObject: [self getUserEmail]];
     
     return userInfo.copy;
+}
+
+- (RACSignal*) logoutUser
+{
+    [DataManagerShared deleteCurrentUser: self.currentUserInfo];
+    [KeyChain deleteToken];
+    
+    return [LoginService logout];
+}
+
+- (void) saveNewAvatar: (UIImage*) image
+{
+    NSData* imageData = UIImagePNGRepresentation(image);
+    
+    [imageData writeToFile: [self getAvatarImagePath]
+                atomically: YES];
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSString*) getAvatarImagePath
+{
+    if ( self.currentUserInfo )
+    {
+        NSString* filePath = [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.currentUserInfo.photoImagePath];
+        
+        return filePath;
+    }
+    
+    return nil;
 }
 
 @end

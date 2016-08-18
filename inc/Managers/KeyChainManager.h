@@ -34,6 +34,10 @@
  */
 - (BOOL) isExistTokenForCurrentUser;
 
+- (NSString*) getAccessToken;
+
+- (void) deleteToken;
+
 /**
  *  Store to keychain current user password
  *

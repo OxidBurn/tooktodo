@@ -34,4 +34,16 @@
     return _model;
 }
 
+
+#pragma mark - Public methods -
+
+- (RACSignal*) updatePasswordWarningMessage
+{
+//    @weakify(self)
+    
+    
+    
+    return nil;
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ChangePasswordModel.h"
+#import "LoginService.h"
 
 // Framewors
 #import "KeyChainManager.h"
@@ -17,6 +18,13 @@
 - (BOOL) isEquealNewPasswordWithEntered: (NSString*) enteredPass
 {
     return [KeyChain isCorrectEnteredPassword: enteredPass];
+}
+
+- (RACSignal*) sendUpdatingPassword: (NSString*) oldPassword
+                    withNewPassword: (NSString*) pass
+{
+    return [LoginService updatePasswordFromOld: oldPassword
+                                         toNew: pass];
 }
 
 @end

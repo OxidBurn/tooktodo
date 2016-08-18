@@ -50,4 +50,39 @@
     return [[[manager rac_POST: restorePassURL parameters: parameters] logError] replayLazily];
 }
 
++ (RACSignal*) updatePasswordFromOld: (NSString*) old
+                               toNew: (NSString*) pass
+{
+    AFHTTPRequestOperationManager* manager = [LoginService getRequestManager];
+    
+    NSDictionary* parameters = @{@"oldPassword"     : old,
+                                 @"newPassword"     : pass,
+                                 @"confirmPassword" : pass};
+    
+    return [[[manager rac_POST: updatePasswordURL parameters: parameters] logError] replayLazily];
+}
+
++ (RACSignal*) logout
+{
+    AFHTTPRequestOperationManager* manager = [LoginService getRequestManager];
+    
+    return [[[manager rac_POST: logoutURL parameters: @{}] logError] replayLazily];
+}
+
+
+#pragma mark - Internal methods -
+
++ (AFHTTPRequestOperationManager*) getRequestManager
+{
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
+                     forHTTPHeaderField: @"Authorization"];
+    
+    return manager;
+}
+
 @end

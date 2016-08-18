@@ -26,7 +26,7 @@
     if ( userInfo )
     {
         userInfo.fullName        = info[@"displayName"];
-        userInfo.expireTokenDate = info[@".expires"];
+        userInfo.expireTokenDate = [self getDateFromString: info[@".expires"]];
     }
     else
     {
@@ -58,6 +58,18 @@
 - (UserInfo*) getCurrentUserInfo
 {
     return [[self getAllUserInfo] firstObject];
+}
+
+- (void) updateUserInfo: (UserInfo*) info
+{
+    [self saveContext];
+}
+
+- (void) deleteCurrentUser: (UserInfo*) info
+{
+    [self removeObject: info];
+    
+    [self saveContext];
 }
 
 

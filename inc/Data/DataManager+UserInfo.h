@@ -15,4 +15,8 @@
 
 - (UserInfo*) getCurrentUserInfo;
 
+- (void) updateUserInfo: (UserInfo*) info;
+
+- (void) deleteCurrentUser: (UserInfo*) info;
+
 @end

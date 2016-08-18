@@ -56,15 +56,11 @@
 - (BOOL) shouldShowLogin
 {
     return ![KeyChain isExistTokenForCurrentUser];
-    
-//    return NO;
 }
 
 - (BOOL) isFirstSetup
 {
     return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
-    
-//    return NO;
 }
 
 - (void) presentLoginController
@@ -107,6 +103,11 @@
 {
     [controller dismissViewControllerAnimated: YES
                                    completion: nil];
+}
+
+- (void) showLogin
+{
+    [self presentLoginController];
 }
 
 - (void) showWelcomeTour

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 @interface ChangePasswordModel : NSObject
 
@@ -20,6 +21,9 @@
 - (BOOL) isEquealNewPasswordWithEntered: (NSString*) enteredPass;
 
 - (BOOL) isEqualConfirmPasswordWithEntered: (NSString*) confirmPass;
+
+- (RACSignal*) sendUpdatingPassword: (NSString*) oldPassword
+                    withNewPassword: (NSString*) pass;
 
 
 @end

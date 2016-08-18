@@ -12,6 +12,8 @@
 
 - (void) showMainMenu;
 
+- (void) showLogin;
+
 - (void) dismissTopController: (UIViewController*) controller;
 
 - (void) showWelcomeTour;

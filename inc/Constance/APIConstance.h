@@ -15,9 +15,12 @@
 static NSString* registerPageURL = @"https://tooktodo.ru/login";
 
 #ifdef DEBUG
-static NSString* serverURL       = @"https://api.tooktodo.ru:443/";
-static NSString* loginURL        = @"https://api.tooktodo.ru:443/token";
-static NSString* restorePassURL  = @"https://api.tooktodo.ru:443/api/Account/sendResetPasswordEmail";
+static NSString* serverURL         = @"https://api.tooktodo.ru:443/";
+static NSString* loginURL          = @"https://api.tooktodo.ru:443/token";
+static NSString* restorePassURL    = @"https://api.tooktodo.ru:443/api/Account/sendResetPasswordEmail";
+static NSString* updatePasswordURL = @"https://api.tooktodo.ru:443/api/Account/ChangePassword";
+static NSString* logoutURL         = @"https://api.tooktodo.ru:443/api/Account/Logout";
+
 #else
 static NSString* serverURL       = @"https://api.tooktodo.ru/";
 static NSString* loginURL        = @"https://api.tooktodo.ru/token";

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 @interface UserInfoModel : NSObject
 
@@ -20,5 +21,9 @@
 - (UIImage*) getUserAvatarImage;
 
 - (NSArray*) getUserContactInfo;
+
+- (RACSignal*) logoutUser;
+
+- (void) saveNewAvatar: (UIImage*) image;
 
 @end

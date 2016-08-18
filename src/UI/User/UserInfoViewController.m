@@ -11,16 +11,21 @@
 #import <RSKImageCropper/RSKImageCropper.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MainTabBarController.h"
+#import "TermsViewController.h"
+#import "ProjectsControllersDelegate.h"
 
 @interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 // Properties
 
 
-@property (weak, nonatomic) IBOutlet UIImageView        * avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel            * fullNameLabel;
-@property (nonatomic, weak) IBOutlet UITableView        * phoneInfoTable;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint * phoneTableHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView                 * avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel                     * fullNameLabel;
+@property (nonatomic, weak) IBOutlet UITableView                 * phoneInfoTable;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint          * phoneTableHeightConstraint;
+@property (nonatomic, weak) IBOutlet UIButton                    * showUserTerms;
+@property (nonatomic, weak) IBOutlet UIButton                    * userLogOut;
+@property (nonatomic, weak) id       <ProjectsControllersDelegate> delegate;
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
 
@@ -44,10 +49,21 @@
 
 #pragma mark - Life cycle -
 
+- (void) loadView
+{
+    [super loadView];
+    
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
+    
+    [self bindingUI];
+}
+
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
     
+    // Update all contact info on appearing screen
+    // for case, when user update info in another screen
     [self updateInfo];
 }
 
@@ -70,6 +86,38 @@
     }
     
     return _viewModel;
+}
+
+#pragma mark - Internal methods -
+
+- (void) bindingUI
+{
+    self.userLogOut.rac_command = self.viewModel.logoutCommand;
+    
+    @weakify(self)
+    
+    [self.userLogOut.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
+        
+        @strongify(self)
+        
+        [signal subscribeNext: ^(RACSignal* x) {
+            
+        } completed: ^{
+            
+            if ( [self.delegate respondsToSelector: @selector(showLogin)] )
+            {
+                [self.delegate showLogin];
+            }
+            
+        }];
+        
+    }];
+    
+    [self.userLogOut.rac_command.errors subscribeNext: ^(NSError* error) {
+        
+        [SVProgressHUD showErrorWithStatus: @"Во время отправки запроса возникла ошибка\nПопробуйте еще раз"];
+        
+    }];
 }
 
 
@@ -162,6 +210,9 @@
 {
     self.avatarImageView.image = croppedImage;
     
+    
+    [self.viewModel saveNewImage: croppedImage];
+    
     [controller dismissViewControllerAnimated: YES
                                    completion: nil];
 }
@@ -205,6 +256,8 @@
     self.fullNameLabel.text                  = [self.viewModel fullUserName];
     self.phoneInfoTable.dataSource           = self.viewModel;
     self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
+    
+    [self.phoneInfoTable reloadData];
 }
 
 //photo editing methods

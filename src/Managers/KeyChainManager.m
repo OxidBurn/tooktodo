@@ -78,7 +78,17 @@ static KeyChainManager* sharedInstance = nil;
 
 - (BOOL) isExistTokenForCurrentUser
 {
-    return (self.keyChainStore[accessToken] != nil);
+    return ([self getAccessToken] != nil);
+}
+
+- (NSString*) getAccessToken
+{
+    return self.keyChainStore[accessToken];
+}
+
+- (void) deleteToken
+{
+    [self.keyChainStore removeItemForKey: accessToken];
 }
 
 - (void) storeUserPassword: (NSString*) password
