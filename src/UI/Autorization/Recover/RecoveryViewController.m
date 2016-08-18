@@ -90,6 +90,8 @@
     self.registerBtn.rac_command    = [self.viewModel registerCommand];
     
     [self handleModelOperations];
+    
+    [self handleInternetConnection];
 }
 
 
@@ -114,7 +116,13 @@
     }];
     }];
     
-    [self.resetPassBtn.rac_command.errors subscribeNext: ^(id x) {
+    [self.resetPassBtn.rac_command.errors subscribeNext: ^(NSError* error) {
+        
+        if ( error.code == -1011 )
+        {
+            [SVProgressHUD showErrorWithStatus: @"Логин (электронная почта) не зарегистрирован"
+                                      maskType: SVProgressHUDMaskTypeBlack];
+        }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
@@ -126,6 +134,19 @@
             NSLog(@"Email warning message %@", emailWarning);
             
         }];
+        
+    }];
+}
+
+- (void) handleInternetConnection
+{
+    [[Reachability rac_reachabilitySignal] subscribeNext: ^(Reachability *reach) {
+        
+        if ( [reach isReachable] == NO )
+        {
+            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."
+                                      maskType: SVProgressHUDMaskTypeBlack];
+        }
         
     }];
 }

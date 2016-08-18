@@ -9,6 +9,7 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 
+
 // Classes
 #import "LoginViewController.h"
 #import "LoginViewModel.h"
@@ -138,6 +139,8 @@
     [self handleLoginOperations];
     
     [self handleRestorePassOperations];
+    
+    [self handleInternetConnection];
 }
 
 
@@ -151,9 +154,15 @@
     BOOL isWarning1 = (self.distanceBeforeEmail.constant > 5);
     BOOL isWarning2 = (self.distanceBeforeEmail.constant > 12);
     
-    [self.loginBtn.rac_command.errors subscribeNext: ^(id x) {
+    [self.loginBtn.rac_command.errors subscribeNext: ^(NSError* error) {
         
         @strongify(self)
+        
+        if ( error.code == -1011 )
+        {
+            [SVProgressHUD showErrorWithStatus: @"Ошибка авторизации\nПара Логин \\ Пароль, не верна"
+                                      maskType: SVProgressHUDMaskTypeBlack];
+        }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
@@ -241,6 +250,20 @@
             
         }];
         
+        
+    }];
+}
+
+
+- (void) handleInternetConnection
+{
+    [[Reachability rac_reachabilitySignal] subscribeNext: ^(Reachability *reach) {
+        
+        if ( [reach isReachable] == NO )
+        {
+            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."
+                                      maskType: SVProgressHUDMaskTypeBlack];
+        }
         
     }];
 }
