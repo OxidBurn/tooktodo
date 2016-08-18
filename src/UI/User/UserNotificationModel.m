@@ -35,7 +35,7 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
                                SwitchTagKey: @1},
                              @{LabelTextKey: @"Где я учавствую",
                                SwitchTagKey: @2},
-                             @{LabelTextKey: @"Где я ответственный или утверждающий",
+                             @{LabelTextKey: @"Где я ответственный\n или утверждающий",
                                SwitchTagKey: @3}],
                            
                            @[@{LabelTextKey: @"Сообщения в ленту",
