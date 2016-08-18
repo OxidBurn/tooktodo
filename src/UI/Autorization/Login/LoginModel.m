@@ -77,8 +77,12 @@
             
             [self parsingLoginResponseInfo: [x objectAtIndex: 0]];
             
-            [subscriber sendNext: [x objectAtIndex: 0]];
-            [subscriber sendCompleted];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [subscriber sendNext: [x objectAtIndex: 0]];
+                [subscriber sendCompleted];
+                
+            });
             
         }
                                    error: ^(NSError* error) {
