@@ -79,16 +79,16 @@
                      completion: nil];
     
     // Handle dismiss action
-    __weak typeof(self) blockSelf = self;
-    
-    loginViewController.dismissLoginView = ^(){
-        
-        if ( [blockSelf isFirstSetup] )
-        {
-            [blockSelf showWelcomeTour];
-        }
-        
-    };
+//    __weak typeof(self) blockSelf = self;
+//    
+//    loginViewController.dismissLoginView = ^(){
+//        
+//        if ( [blockSelf isFirstSetup] )
+//        {
+//            [blockSelf showWelcomeTour];
+//        }
+//        
+//    };
 }
 
 

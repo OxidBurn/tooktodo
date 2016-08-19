@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -18,7 +21,7 @@
 - (BOOL)           application: (UIApplication*) application
  didFinishLaunchingWithOptions: (NSDictionary*)  launchOptions
 {
-//    [self setupRootController];
+    [Fabric with: @[[Crashlytics class]]];
     
     return YES;
 }

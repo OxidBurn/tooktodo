@@ -13,6 +13,7 @@
 #import "MainTabBarController.h"
 #import "TermsViewController.h"
 #import "ProjectsControllersDelegate.h"
+#import "KeyChainManager.h"
 
 @interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -106,6 +107,8 @@
             
             if ( [self.delegate respondsToSelector: @selector(showLogin)] )
             {
+                [KeyChain deleteToken];
+                
                 [self.delegate showLogin];
             }
             

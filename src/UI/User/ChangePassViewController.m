@@ -21,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *updatePasswordBtn;
+
+@property (strong, nonatomic) ChangePasswordViewModel* viewModel;
+
 @end
 
 @implementation ChangePassViewController
@@ -50,16 +53,72 @@
 }
 
 
+#pragma mark - Properties -
+
+- (ChangePasswordViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [ChangePasswordViewModel new];
+    }
+    
+    return _viewModel;
+}
+
+
 #pragma mark - Internal methods -
 
 - (void) bindingUI
 {
+    self.viewModel.oldPasswordSignal     = self.oldPasswordField.rac_textSignal;
+    self.viewModel.updatedPasswordSignal = self.updatedPasswordField.rac_textSignal;
+    self.viewModel.confirmPasswordSignal = self.confirmPasswordField.rac_textSignal;
+    self.updatePasswordBtn.rac_command   = self.viewModel.changePassCommand;
+    RAC(self.updatedPassWarnings, text)  = self.viewModel.updatePasswordWarningMessage;
     
+    [self handleModelActions];
 }
 
 
 #pragma mark - Actions -
 
+- (IBAction) onShowPassword: (UIButton*) sender
+{
+    self.oldPasswordField.secureTextEntry = sender.selected;
+    
+    sender.selected = !sender.selected;
+}
 
+- (void) handleModelActions
+{
+    @weakify(self)
+    
+    [self.updatePasswordBtn.rac_command.errors subscribeNext: ^(NSError* error) {
+        
+        @strongify(self)
+        
+        if ( error.code == 101 )
+        {
+            self.updatedPassWarnings.hidden = NO;
+        }
+        
+    }];
+    
+    [self.updatePasswordBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
+       
+        @strongify(self)
+        
+        self.updatedPassWarnings.hidden = YES;
+        
+        [signal subscribeCompleted: ^{
+            
+            [SVProgressHUD showSuccessWithStatus: @"Пароль успешно обновлен"];
+            
+            [self.navigationController popViewControllerAnimated: YES];
+            
+        }];
+        
+    }];
+}
 
 @end

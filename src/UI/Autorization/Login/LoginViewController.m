@@ -160,8 +160,7 @@
         
         if ( error.code == -1011 )
         {
-            [SVProgressHUD showErrorWithStatus: @"Ошибка авторизации\nПара Логин \\ Пароль, не верна"
-                                      maskType: SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus: @"Ошибка авторизации\nПара Логин \\ Пароль, не верна"];
         }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
@@ -261,8 +260,7 @@
         
         if ( [reach isReachable] == NO )
         {
-            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."
-                                      maskType: SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."];
         }
         
     }];

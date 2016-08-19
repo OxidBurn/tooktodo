@@ -13,13 +13,15 @@
 
 // properties
 
-@property (nonatomic, strong) NSString* oldPasswordString;
+@property (nonatomic, strong) RACSignal* oldPasswordSignal;
 
-@property (nonatomic, strong) NSString* updatedPasswordString;
+@property (nonatomic, strong) RACSignal* updatedPasswordSignal;
 
-@property (nonatomic, strong) NSString* confirmPasswordString;
+@property (nonatomic, strong) RACSignal* confirmPasswordSignal;
 
 @property (strong, nonatomic) RACSignal* updatePasswordWarningMessage;
+
+@property (strong, nonatomic) RACCommand* changePassCommand;
 
 // methods
 

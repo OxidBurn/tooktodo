@@ -15,9 +15,9 @@
 
 @implementation ChangePasswordModel
 
-- (BOOL) isEquealNewPasswordWithEntered: (NSString*) enteredPass
+- (BOOL) isCorrectOldPassword: (NSString*) password
 {
-    return [KeyChain isCorrectEnteredPassword: enteredPass];
+	return [KeyChain isCorrectEnteredPassword: password];
 }
 
 - (RACSignal*) sendUpdatingPassword: (NSString*) oldPassword
@@ -25,6 +25,11 @@
 {
     return [LoginService updatePasswordFromOld: oldPassword
                                          toNew: pass];
+}
+
+- (void) needToUpdatePassword: (NSString*) newPass
+{
+    [KeyChain storeUserPassword: newPass];
 }
 
 @end

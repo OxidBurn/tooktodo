@@ -25,18 +25,40 @@
     
     if ( userInfo )
     {
-        userInfo.fullName        = info[@"displayName"];
-        userInfo.expireTokenDate = [self getDateFromString: info[@".expires"]];
+        userInfo.fullName                         = info[@"displayName"];
+        userInfo.firstName                        = info[@"firstName"];
+        userInfo.lastName                         = info[@"lastName"];
+        userInfo.avatarSrc                        = info[@"avatarSrc"];
+        userInfo.userID                           = info[@"id"];
+        userInfo.isSubscribedOnEmailNotifications = info[@"isSubscribedOnEmailNotifications"];
+        userInfo.expireTokenDate                  = [self getDateFromString: info[@".expires"]];
+        userInfo.phoneNumber                      = info[@"phoneNumber"];
+        userInfo.extendPhoneNumber                = info[@"additionalPhoneNumber"];
     }
     else
     {
         userInfo = [self insertNewObjectForEntityForName: @"UserInfo"];
         
-        userInfo.fullName        = info[@"displayName"];
-        userInfo.expireTokenDate = [self getDateFromString: info[@".expires"]];
-        userInfo.email           = emailValue;
-        userInfo.photoImagePath  = [[AvatarHelper sharedInstance] generateAvatarForName: info[@"displayName"]];
+        userInfo.fullName                         = info[@"displayName"];
+        userInfo.expireTokenDate                  = [self getDateFromString: info[@".expires"]];
+        userInfo.email                            = emailValue;
+        userInfo.firstName                        = info[@"firstName"];
+        userInfo.lastName                         = info[@"lastName"];
+        userInfo.avatarSrc                        = info[@"avatarSrc"];
+        userInfo.userID                           = info[@"id"];
+        userInfo.isSubscribedOnEmailNotifications = info[@"isSubscribedOnEmailNotifications"];
+        
+        if ( info[@"phoneNumber"] )
+        userInfo.phoneNumber = info[@"phoneNumber"];
+        
+        if ( [info[@"additionalPhoneNumber"] isKindOfClass: [NSNull class]] == NO )
+            userInfo.extendPhoneNumber = info[@"additionalPhoneNumber"];
+        
+        userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: emailValue withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
     }
+    
+    [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
+                                            withName: emailValue];
     
     [self saveContext];
 }

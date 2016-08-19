@@ -2,7 +2,7 @@
 //  UserInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 8/13/16.
+//  Created by Nikolay Chaban on 8/19/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,12 +13,17 @@
 
 @implementation UserInfo (CoreDataProperties)
 
-@dynamic fullName;
-@dynamic phoneNumber;
-@dynamic extendPhoneNumber;
-@dynamic photoImagePath;
 @dynamic email;
-@dynamic notificationSettingsPath;
 @dynamic expireTokenDate;
+@dynamic extendPhoneNumber;
+@dynamic fullName;
+@dynamic notificationSettingsPath;
+@dynamic phoneNumber;
+@dynamic photoImagePath;
+@dynamic userID;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic isSubscribedOnEmailNotifications;
+@dynamic avatarSrc;
 
 @end

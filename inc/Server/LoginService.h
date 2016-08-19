@@ -14,6 +14,8 @@
 + (RACSignal*) sendRequestWithCredentials: (NSString*) email
                              withPassword: (NSString*) password;
 
++ (RACSignal*) getUserInfo;
+
 + (NSURL*) getRegisterURL;
 
 + (RACSignal*) sendResetPasswordRequest: (NSString*) email;
@@ -22,5 +24,7 @@
                                toNew: (NSString*) pass;
 
 + (RACSignal*) logout;
+
++ (RACSignal*) updateUserInfo: (NSDictionary*) newInfo;
 
 @end

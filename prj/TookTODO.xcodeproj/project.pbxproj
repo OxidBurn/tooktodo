@@ -65,7 +65,6 @@
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
 		59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F707E81D5DFF3800BFD4CF /* MainTabBarController.m */; };
-		59FDF9081D59D4D6009AA80B /* TermsDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FDF9071D59D4D6009AA80B /* TermsDescription.xib */; };
 		F72851291D63F79A0086873D /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851281D63F79A0086873D /* CustomTabBar.m */; };
 		F728512C1D6401D80086873D /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = F728512A1D6401D80086873D /* TabBarSegue.m */; };
 		F72851311D640FA50086873D /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851301D640FA50086873D /* FeedsViewController.m */; };
@@ -181,9 +180,9 @@
 		59F707E81D5DFF3800BFD4CF /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = Main/MainTabBarController.m; sourceTree = "<group>"; };
 		59F707EA1D5E11CA00BFD4CF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		59F707EB1D5E125200BFD4CF /* Macroses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macroses.h; sourceTree = "<group>"; };
-		59FDF9071D59D4D6009AA80B /* TermsDescription.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsDescription.xib; sourceTree = "<group>"; };
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
 		F72851271D63F79A0086873D /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		F72851281D63F79A0086873D /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
 		F728512A1D6401D80086873D /* TabBarSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarSegue.m; sourceTree = "<group>"; };
@@ -673,7 +672,6 @@
 			isa = PBXGroup;
 			children = (
 				591344251D5F6F880027889F /* ProjectsScreen.storyboard */,
-				59FDF9071D59D4D6009AA80B /* TermsDescription.xib */,
 				59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */,
 				59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */,
 				F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */,
@@ -743,6 +741,7 @@
 			children = (
 				41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */,
 				8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */,
+				CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -803,6 +802,7 @@
 				59D9BCEC1D5868B7009DFBA8 /* Resources */,
 				3418453EE7F10BA53A1A2EAB /* [CP] Embed Pods Frameworks */,
 				BF09F5E38D58D6D0ACAB3A9C /* [CP] Copy Pods Resources */,
+				56D173071D66E5D700DB3F43 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -824,6 +824,7 @@
 				TargetAttributes = {
 					59D9BCED1D5868B7009DFBA8 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QB5Q4ZB357;
 					};
 				};
 			};
@@ -851,7 +852,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */,
-				59FDF9081D59D4D6009AA80B /* TermsDescription.xib in Resources */,
 				F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */,
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
 				591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */,
@@ -880,6 +880,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		56D173071D66E5D700DB3F43 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 6fe417340b7c8018b0ebf076de76c01e0c85ae1b 9af75e39a21258f792feb658c7d5e8ac3dcd78303c03e19d74f3c401eaa94dd8s";
 		};
 		BF09F5E38D58D6D0ACAB3A9C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -995,6 +1008,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		56D173051D66DEA700DB3F43 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		56D173061D66DEA700DB3F43 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: King Bird Games OOO (QB5Q4ZB357)";
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
+			};
+			name = AdHoc;
+		};
 		59D9BD031D5868B7009DFBA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1083,6 +1150,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1111,8 +1179,9 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NikolayChaban.TookTODO;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
 			};
 			name = Debug;
 		};
@@ -1122,11 +1191,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: King Bird Games OOO (QB5Q4ZB357)";
 				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = NikolayChaban.TookTODO;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
 			};
 			name = Release;
 		};
@@ -1138,18 +1209,20 @@
 			buildConfigurations = (
 				59D9BD031D5868B7009DFBA8 /* Debug */,
 				59D9BD041D5868B7009DFBA8 /* Release */,
+				56D173051D66DEA700DB3F43 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 		59D9BD051D5868B7009DFBA8 /* Build configuration list for PBXNativeTarget "TookTODO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				59D9BD061D5868B7009DFBA8 /* Debug */,
 				59D9BD071D5868B7009DFBA8 /* Release */,
+				56D173061D66DEA700DB3F43 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = AdHoc;
 		};
 /* End XCConfigurationList section */
 

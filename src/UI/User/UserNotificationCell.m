@@ -36,7 +36,7 @@
 
 - (IBAction) onSwitchBtn: (UISwitch*) sender
 {
-    NSLog(@"Switch nubmer %ld", sender.tag);
+    NSLog(@"Switch nubmer %ld", (long)sender.tag);
 }
 
 @end

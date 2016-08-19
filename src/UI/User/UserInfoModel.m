@@ -97,7 +97,6 @@
 - (RACSignal*) logoutUser
 {
     [DataManagerShared deleteCurrentUser: self.currentUserInfo];
-    [KeyChain deleteToken];
     
     return [LoginService logout];
 }

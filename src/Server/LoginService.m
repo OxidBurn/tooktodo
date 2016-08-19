@@ -19,16 +19,28 @@
 + (RACSignal*) sendRequestWithCredentials: (NSString*) email
                              withPassword: (NSString*) password
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-
-    manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
     NSDictionary* parameters = @{@"grant_type" : @"password",
                                  @"username"   : email,
                                  @"password"   : password};
     
-    return [[[manager rac_POST: loginURL parameters: parameters] logError] replayLazily];
+    return [LoginService getUserToken: parameters];
+}
+
++ (RACSignal*) getUserToken: (NSDictionary*) requestParameters
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    return [[[manager rac_POST: loginURL parameters: requestParameters] logError] replayLazily];
+}
+
++ (RACSignal*) getUserInfo
+{
+    AFHTTPRequestOperationManager* manager = [LoginService getRequestManager];
+    
+    return [[[manager rac_GET: userInfoURL parameters: nil] logError] replayLazily];
 }
 
 + (NSURL*) getRegisterURL
@@ -69,7 +81,12 @@
     return [[[manager rac_POST: logoutURL parameters: @{}] logError] replayLazily];
 }
 
-
++ (RACSignal*) updateUserInfo: (NSDictionary*) newInfo
+{
+    AFHTTPRequestOperationManager* manager = [LoginService getRequestManager];
+    
+    return [[[manager rac_PUT: updateUserInfoURL parameters: newInfo] logError] replayLazily];
+}
 
 
 #pragma mark - Internal methods -
@@ -83,6 +100,8 @@
     
     [manager.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
                      forHTTPHeaderField: @"Authorization"];
+    [manager.requestSerializer setValue: @"application/json"
+                     forHTTPHeaderField: @"Content-Type"];
     
     return manager;
 }

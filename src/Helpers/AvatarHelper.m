@@ -8,6 +8,9 @@
 
 #import "AvatarHelper.h"
 
+// Frameworks
+#import <SDWebImage/SDWebImageManager.h>
+
 // Classes
 #import "AvatarGenerator.h"
 #import "Utils.h"
@@ -93,10 +96,10 @@ static AvatarHelper* sharedInstance = nil;
 #pragma mark - Public -
 
 - (NSString*) generateAvatarForName: (NSString*) name
+                   withAbbreviation: (NSString*) abbreviation
 {
-    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", name];
+    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", [self getEmailPrefix: name]];
     UIColor* avatarColor     = [self getRandomAvatarColor];
-    NSString* abbreviation   = [Utils getNameAbbreviation: name];
     CGSize avatarImageSize   = CGSizeMake(60, 60);
     
     // Generate avatar and write it to file in external queue
@@ -124,7 +127,34 @@ static AvatarHelper* sharedInstance = nil;
 
 - (NSString*) getAvatarPathForName: (NSString*) name
 {
-    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", name];
+    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", [self getEmailPrefix: name]];
+}
+
+- (void) loadAvatarFromWeb: (NSString*) filePath
+                  withName: (NSString*) name
+{
+    SDWebImageManager* manager = [SDWebImageManager sharedManager];
+    
+    [manager downloadImageWithURL: [NSURL URLWithString: filePath]
+                          options: 0
+                         progress: nil
+                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                            
+                            // Generate avatar and write it to file in external queue
+                            NSOperationQueue* writeFileQueue = [NSOperationQueue new];
+                            
+                            [writeFileQueue addOperationWithBlock:^{
+                                
+                                NSData* avatarImageData = UIImagePNGRepresentation(image);
+                                
+                                NSString* fullAvatarPath = [self getAvatarPathForName: name];
+                                
+                                [avatarImageData writeToFile: fullAvatarPath
+                                                  atomically: YES];
+                                
+                            }];
+                            
+                        }];
 }
 
 
@@ -136,6 +166,18 @@ static AvatarHelper* sharedInstance = nil;
     UIColor* avatarColor  = self.avatarsColors[colorIndex];
     
     return avatarColor;
+}
+
+- (NSString*) getEmailPrefix: (NSString*) email
+{
+    NSRange range         = [email rangeOfString: @"@"];
+    NSString* emailPrefix = @"";
+    if ( range.location != NSNotFound )
+    {
+        emailPrefix = [email substringToIndex: range.location];
+    }
+    
+    return emailPrefix;
 }
 
 @end

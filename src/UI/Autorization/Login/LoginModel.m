@@ -75,14 +75,17 @@
             
             @strongify(self)
             
-            [self parsingLoginResponseInfo: [x objectAtIndex: 0]];
+            [self saveUserToken: [x objectAtIndex: 0]];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [[LoginService getUserInfo] subscribeNext: ^(RACTuple* response) {
                 
-                [subscriber sendNext: [x objectAtIndex: 0]];
+                [KeyChain storeUserPassword: password];
+                [self parsingLoginResponseInfo: [response objectAtIndex: 0]];
+                
+                [subscriber sendNext: [response objectAtIndex: 0]];
                 [subscriber sendCompleted];
                 
-            });
+            }];
             
         }
                                    error: ^(NSError* error) {
@@ -115,9 +118,12 @@
 
 - (void) parsingLoginResponseInfo: (NSDictionary*) info
 {
-    [KeyChain storeAccessToken: info[@"access_token"]];
-    
     [DataManagerShared persistUserWithInfo: info];
+}
+
+- (void) saveUserToken: (NSDictionary*) response
+{
+    [KeyChain storeAccessToken: response[@"access_token"]];
 }
 
 @end

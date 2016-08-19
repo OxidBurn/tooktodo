@@ -18,12 +18,10 @@
 
 - (BOOL) isCorrectOldPassword: (NSString*) password;
 
-- (BOOL) isEquealNewPasswordWithEntered: (NSString*) enteredPass;
-
-- (BOOL) isEqualConfirmPasswordWithEntered: (NSString*) confirmPass;
-
 - (RACSignal*) sendUpdatingPassword: (NSString*) oldPassword
                     withNewPassword: (NSString*) pass;
+
+- (void) needToUpdatePassword: (NSString*) newPass;
 
 
 @end
