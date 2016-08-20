@@ -34,6 +34,8 @@
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     [self showInfoScreenWithID: @"UserDetailScreen"];
+    
+    [self titleLabel];
 }
 
 - (void) viewDidLoad
@@ -80,6 +82,28 @@
 {
     [self performSegueWithIdentifier: storyboardID
                               sender: self];
+}
+
+- (UILabel*) titleLabel
+{
+    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 14.0f];
+    
+    UILabel* label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines   = 1;
+    label.font            = customFont;
+    label.textAlignment   = NSTextAlignmentCenter;
+    label.textColor       = [UIColor whiteColor];
+    label.text            = @"ВАШ ПРОФИЛЬ";
+
+    [label sizeToFit];
+    
+    
+    
+    self.navigationItem.titleView = label;
+    
+    return label;
 }
 
 @end

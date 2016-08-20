@@ -1,23 +1,18 @@
 //
-//  FeedsViewController.m
+//  OfflineSinchronizeViewController.m
 //  TookTODO
 //
-//  Created by Глеб on 17.08.16.
+//  Created by Chaban Nikolay on 8/20/16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "FeedsViewController.h"
-#import "MainTabBarController.h"
-#import "ProjectsControllersDelegate.h"
+#import "OfflineSinchronizeViewController.h"
 
-@interface FeedsViewController ()
-
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+@interface OfflineSinchronizeViewController ()
 
 @end
 
-@implementation FeedsViewController
-
+@implementation OfflineSinchronizeViewController
 
 #pragma mark - Life cycle -
 
@@ -31,26 +26,13 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
 }
-
 
 #pragma mark - Memory managment -
 
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction) onShowMenu: (UIBarButtonItem*) sender
-{
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
 }
 
 #pragma mark - Internal method -
@@ -67,7 +49,7 @@
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
-    titleLabel.text            = @"ЛЕНТА";
+    titleLabel.text            = @"РАБОТА В ОФФЛАЙНЕ";
     [titleLabel sizeToFit];
     
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];

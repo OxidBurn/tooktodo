@@ -35,6 +35,8 @@
     [super loadView];
     
     [self bindingUI];
+    
+    [self titleLabel];
 }
 
 - (void) viewDidLoad
@@ -79,6 +81,27 @@
     [self handleModelActions];
 }
 
+- (UILabel*) titleLabel
+{
+    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 14.0f];
+    
+    UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines   = 1;
+    label.font            = customFont;
+    label.textAlignment   = NSTextAlignmentCenter;
+    label.textColor       = [UIColor whiteColor];
+    label.text            = @"ИЗМЕНИТЬ ПАРОЛЬ";
+    
+    [label sizeToFit];
+    
+    
+    
+    self.navigationItem.titleView = label;
+    
+    return label;
+}
 
 #pragma mark - Actions -
 

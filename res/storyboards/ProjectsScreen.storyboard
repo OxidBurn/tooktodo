@@ -32,10 +32,16 @@
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--ВСЕ ПРОЭКТЫ-->
+        <!--All Projects View Controller-->
         <scene sceneID="ZNh-v5-ZcC">
             <objects>
                 <viewController id="zhe-fe-X2v" customClass="AllProjectsViewController" sceneMemberID="viewController">
@@ -58,7 +64,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HvB-aD-BcT" id="uoG-R8-l9h">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJ3-qh-M0K">
@@ -138,7 +144,7 @@
                             <constraint firstItem="K9g-Ah-68s" firstAttribute="width" secondItem="oDC-HL-3xX" secondAttribute="width" id="q8K-lF-uxu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ВСЕ ПРОЭКТЫ" id="utV-Zx-okY">
+                    <navigationItem key="navigationItem" id="utV-Zx-okY">
                         <barButtonItem key="leftBarButtonItem" image="Menu1" id="zBa-Ii-l8O">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -154,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="32" y="-587"/>
         </scene>
-        <!--РАБОТА В ОФФЛАЙНЕ-->
+        <!--View Controller-->
         <scene sceneID="NP8-pR-xd6">
             <objects>
                 <viewController id="ohQ-iX-uaP" sceneMemberID="viewController">
@@ -177,7 +183,7 @@
                                         <rect key="frame" x="0.0" y="92" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FP1-rh-nCI" id="NNG-8m-P6N">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="68.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRH-Fp-HFK">
@@ -245,12 +251,26 @@
                             <constraint firstAttribute="trailing" secondItem="lab-Rj-Y0v" secondAttribute="trailing" constant="16" id="m9t-HF-FLL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="РАБОТА В ОФФЛАЙНЕ" id="sht-za-gs7">
-                        <barButtonItem key="leftBarButtonItem" image="Cancel" id="8NI-SI-YwT">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <navigationItem key="navigationItem" id="sht-za-gs7">
+                        <barButtonItem key="leftBarButtonItem" id="I2A-o8-ycw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l8R-ce-Nt8">
+                                <rect key="frame" x="16" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Отменить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Done" id="lk0-X6-10S">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" id="Ud4-BR-c1W">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VcM-L0-0vJ">
+                                <rect key="frame" x="236" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Готово">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
@@ -556,7 +576,7 @@
             </objects>
             <point key="canvasLocation" x="-201" y="466"/>
         </scene>
-        <!--ВАШ ПРОФИЛЬ-->
+        <!--Profile View Controller-->
         <scene sceneID="I2n-Fo-0RP">
             <objects>
                 <viewController id="F5f-P0-tF7" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -611,18 +631,25 @@
                             <constraint firstItem="4Hd-hq-Lci" firstAttribute="leading" secondItem="ysX-xg-14U" secondAttribute="leading" id="geR-HR-ZUo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ВАШ ПРОФИЛЬ" id="Szb-7y-gUf">
+                    <navigationItem key="navigationItem" id="Szb-7y-gUf">
                         <barButtonItem key="leftBarButtonItem" image="Menu1" id="45g-di-riF">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="showMainMenu:" destination="F5f-P0-tF7" id="hbh-Aa-INX"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Change" id="wBt-P0-6Ph">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="Fad-81-UDM" kind="push" id="vJm-hg-Dpl"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" id="LEn-KD-CQW">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vlf-yG-XnJ">
+                                <rect key="frame" x="236" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Изменить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Fad-81-UDM" kind="push" id="qbr-IR-5DM"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1026,7 +1053,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S52-EC-8Ly" id="W2A-Am-Gfj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Все сообщения" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="as8-cN-QlE">
@@ -1071,6 +1098,11 @@
                             <constraint firstItem="CTz-ae-SVS" firstAttribute="width" secondItem="qVW-id-aLp" secondAttribute="width" id="oW5-aO-532"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="cgH-UV-wQf">
+                        <barButtonItem key="leftBarButtonItem" image="Menu1" id="o1e-Fd-eLB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="notificationInfoTableView" destination="CTz-ae-SVS" id="3LD-FF-6sO"/>
                     </connections>
@@ -1185,7 +1217,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rhx-PD-32w" id="G4W-It-Pa4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
@@ -1250,7 +1282,7 @@
             </objects>
             <point key="canvasLocation" x="-1018" y="2050"/>
         </scene>
-        <!--ИЗМЕНИТЬ ПАРОЛЬ-->
+        <!--Change Pass View Controller-->
         <scene sceneID="GRB-2K-bcV">
             <objects>
                 <viewController id="Zn5-Su-BRm" customClass="ChangePassViewController" sceneMemberID="viewController">
@@ -1362,18 +1394,24 @@
                             <constraint firstAttribute="trailing" secondItem="b3J-EE-oxr" secondAttribute="trailing" id="znR-e5-o3E"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ИЗМЕНИТЬ ПАРОЛЬ" id="LT9-x5-Xdw">
+                    <navigationItem key="navigationItem" id="LT9-x5-Xdw">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="3Fx-Bu-fpk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Done" id="ZP8-tm-NCu">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" id="YY1-3g-K91">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Gm-nb-b62">
+                                <rect key="frame" x="236" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Готово">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordField" destination="vBi-Lc-pdR" id="WKN-ja-hYv"/>
                         <outlet property="oldPasswordField" destination="iYP-hF-iXX" id="2ES-cI-Bpz"/>
-                        <outlet property="updatePasswordBtn" destination="ZP8-tm-NCu" id="sqI-dZ-jfx"/>
                         <outlet property="updatedPassWarnings" destination="fXn-N7-Gx8" id="78M-Vi-O8q"/>
                         <outlet property="updatedPasswordField" destination="mU3-4D-ha8" id="mw2-4X-rTo"/>
                     </connections>
@@ -1382,7 +1420,7 @@
             </objects>
             <point key="canvasLocation" x="-105" y="1302"/>
         </scene>
-        <!--ПРОФИЛЬ-->
+        <!--Update Info View Controller-->
         <scene sceneID="ToI-vA-Thh">
             <objects>
                 <viewController id="Fad-81-UDM" customClass="UpdateInfoViewController" sceneMemberID="viewController">
@@ -1507,18 +1545,31 @@
                             <constraint firstItem="bpB-Ch-sOt" firstAttribute="top" secondItem="yM4-gt-hb6" secondAttribute="bottom" constant="1" id="xw0-a1-J1q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ПРОФИЛЬ" id="VtH-8i-FGx">
+                    <navigationItem key="navigationItem" id="VtH-8i-FGx">
                         <barButtonItem key="backBarButtonItem" title="Отменить" id="frZ-c5-f9H"/>
-                        <barButtonItem key="leftBarButtonItem" image="Cancel" id="rep-3i-V9v">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="leftBarButtonItem" id="50W-tl-zmV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zba-dd-N7k">
+                                <rect key="frame" x="16" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Отменить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Done" id="AaE-d0-MMG">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" id="t26-vD-ddP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aQd-Wr-ChE">
+                                <rect key="frame" x="236" y="7" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <state key="normal" title="Готово">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="additionalPhoneNumberField" destination="4Qf-az-sQK" id="yfi-F7-Sa1"/>
-                        <outlet property="doneBtn" destination="AaE-d0-MMG" id="HJq-Si-X7G"/>
                         <outlet property="nameField" destination="ZVk-e7-A1R" id="KXR-fM-zGU"/>
                         <outlet property="phoneNumberField" destination="qRv-k1-tJ3" id="iBV-gS-CpF"/>
                         <outlet property="surnameField" destination="yQG-g7-rdl" id="x8H-ex-kTw"/>
@@ -1550,7 +1601,7 @@
             </objects>
             <point key="canvasLocation" x="-650" y="466"/>
         </scene>
-        <!--ЗАДАЧИ-->
+        <!--Задачи-->
         <scene sceneID="c8x-tk-Z1b">
             <objects>
                 <viewController id="J26-PG-mqo" customClass="FeedsViewController" sceneMemberID="viewController">
@@ -1571,7 +1622,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zwo-KP-fw7" id="qDa-wD-fb7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1587,7 +1638,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="ЗАДАЧИ" id="pbg-BQ-jzB">
+                    <navigationItem key="navigationItem" title="Задачи" id="pbg-BQ-jzB">
                         <barButtonItem key="leftBarButtonItem" image="Menu1" style="done" id="8lE-jv-1cx">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1784,7 +1835,7 @@
             </objects>
             <point key="canvasLocation" x="1204" y="87"/>
         </scene>
-        <!--ЛЕНТА-->
+        <!--Feeds View Controller-->
         <scene sceneID="scA-Cs-10k">
             <objects>
                 <viewController id="rYB-U6-ARO" customClass="FeedsViewController" sceneMemberID="viewController">
@@ -1805,7 +1856,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CCW-lt-P5c" id="wfV-wM-BnZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1820,7 +1871,7 @@
                             <constraint firstItem="CFy-mK-TIJ" firstAttribute="width" secondItem="By6-xz-mLW" secondAttribute="width" id="Pfn-qw-izq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ЛЕНТА" id="uU2-JR-gjO">
+                    <navigationItem key="navigationItem" id="uU2-JR-gjO">
                         <barButtonItem key="leftBarButtonItem" image="Menu1" id="Iu1-As-oTs">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -1886,7 +1937,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XeK-a8-mEy" id="7ms-68-Prp">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1968,7 +2019,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vLM-PS-ZYb" id="36Y-e4-jL8">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2028,13 +2079,10 @@
     <resources>
         <image name="Back" width="59" height="18"/>
         <image name="Button add" width="40" height="40"/>
-        <image name="Cancel" width="66" height="12"/>
-        <image name="Change" width="65" height="11"/>
         <image name="ChangePassword1" width="122" height="13"/>
         <image name="ClosedEyes1" width="24" height="18"/>
         <image name="Documents" width="56" height="37"/>
         <image name="Documents isolated" width="58" height="37"/>
-        <image name="Done" width="44" height="11"/>
         <image name="Feed" width="30" height="35"/>
         <image name="Feed isolated" width="30" height="35"/>
         <image name="Filter" width="20" height="20"/>

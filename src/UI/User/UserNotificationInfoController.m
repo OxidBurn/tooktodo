@@ -31,6 +31,8 @@
     [super viewDidLoad];
     
     [self setUpDefaults];
+    
+    [self titleLabel];
 }
 
 #pragma mark - Properties -
@@ -51,4 +53,27 @@
     self.notificationInfoTableView.dataSource = self.dataModel;
     self.notificationInfoTableView.delegate   = self.dataModel;
 }
+
+- (UILabel*) titleLabel
+{
+    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 14.0f];
+    
+    UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines   = 1;
+    label.font            = customFont;
+    label.textAlignment   = NSTextAlignmentCenter;
+    label.textColor       = [UIColor whiteColor];
+    label.text            = @"ВАШ ПРОФИЛЬ";
+    
+    [label sizeToFit];
+    
+    
+    
+    self.navigationItem.titleView = label;
+    
+    return label;
+}
+
 @end
