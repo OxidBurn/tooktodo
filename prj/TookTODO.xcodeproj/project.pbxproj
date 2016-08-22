@@ -49,6 +49,9 @@
 		56A19EDB1D6AB317004AC3D3 /* UpdateInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19ECB1D6AB317004AC3D3 /* UpdateInfoViewModel.m */; };
 		56A19EDC1D6AB317004AC3D3 /* UpdateUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19ECC1D6AB317004AC3D3 /* UpdateUserInfoModel.m */; };
 		56A19EDE1D6AB3AE004AC3D3 /* DataManager+ProjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EDD1D6AB3AE004AC3D3 /* DataManager+ProjectInfo.m */; };
+		56A19EE21D6AB620004AC3D3 /* OfflineSyncModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EE11D6AB620004AC3D3 /* OfflineSyncModel.m */; };
+		56A19EE51D6AB659004AC3D3 /* OfflineSettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EE41D6AB659004AC3D3 /* OfflineSettingsItem.m */; };
+		56A19EEB1D6AB8B5004AC3D3 /* OfflineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EEA1D6AB8B5004AC3D3 /* OfflineTableViewCell.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -173,6 +176,13 @@
 		56A19ECC1D6AB317004AC3D3 /* UpdateUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserInfoModel.m; sourceTree = "<group>"; };
 		56A19EDD1D6AB3AE004AC3D3 /* DataManager+ProjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+ProjectInfo.m"; sourceTree = "<group>"; };
 		56A19EDF1D6AB3B9004AC3D3 /* DataManager+ProjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+ProjectInfo.h"; sourceTree = "<group>"; };
+		56A19EE11D6AB620004AC3D3 /* OfflineSyncModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineSyncModel.m; sourceTree = "<group>"; };
+		56A19EE41D6AB659004AC3D3 /* OfflineSettingsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineSettingsItem.m; sourceTree = "<group>"; };
+		56A19EE61D6AB7D3004AC3D3 /* OfflineSettingsTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OfflineSettingsTypes.h; sourceTree = "<group>"; };
+		56A19EE71D6AB853004AC3D3 /* OfflineSettingsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineSettingsItem.h; sourceTree = "<group>"; };
+		56A19EE81D6AB853004AC3D3 /* OfflineSyncModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineSyncModel.h; sourceTree = "<group>"; };
+		56A19EEA1D6AB8B5004AC3D3 /* OfflineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineTableViewCell.m; sourceTree = "<group>"; };
+		56A19EEC1D6AB8D0004AC3D3 /* OfflineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineTableViewCell.h; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -286,6 +296,9 @@
 			children = (
 				56A19E561D6AB2AE004AC3D3 /* OfflineSynchronizeViewController.m */,
 				56A19E571D6AB2AE004AC3D3 /* OfflineSyncViewModel.m */,
+				56A19EE11D6AB620004AC3D3 /* OfflineSyncModel.m */,
+				56A19EE41D6AB659004AC3D3 /* OfflineSettingsItem.m */,
+				56A19EEA1D6AB8B5004AC3D3 /* OfflineTableViewCell.m */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -362,8 +375,12 @@
 		56A19E9A1D6AB2FB004AC3D3 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
+				56A19EEC1D6AB8D0004AC3D3 /* OfflineTableViewCell.h */,
+				56A19EE71D6AB853004AC3D3 /* OfflineSettingsItem.h */,
+				56A19EE81D6AB853004AC3D3 /* OfflineSyncModel.h */,
 				56A19E9B1D6AB2FB004AC3D3 /* OfflineSynchronizeViewController.h */,
 				56A19E9C1D6AB2FB004AC3D3 /* OfflineSyncViewModel.h */,
+				56A19EE61D6AB7D3004AC3D3 /* OfflineSettingsTypes.h */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -1087,6 +1104,7 @@
 			files = (
 				59A7F2E81D5DEACC005CF274 /* LoginViewModel.m in Sources */,
 				56A19EDC1D6AB317004AC3D3 /* UpdateUserInfoModel.m in Sources */,
+				56A19EEB1D6AB8B5004AC3D3 /* OfflineTableViewCell.m in Sources */,
 				59A7F2ED1D5DEACC005CF274 /* WelcomeTourModel.m in Sources */,
 				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
 				56A19E601D6AB2AE004AC3D3 /* MainMenuViewController.m in Sources */,
@@ -1128,6 +1146,7 @@
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				56A19ECF1D6AB317004AC3D3 /* ChangePasswordViewModel.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
+				56A19EE51D6AB659004AC3D3 /* OfflineSettingsItem.m in Sources */,
 				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
 				591344231D5F68D00027889F /* NSDate+Helper.m in Sources */,
 				5913445C1D60ABC60027889F /* BaseNavigationBar.m in Sources */,
@@ -1137,6 +1156,7 @@
 				56A19ED01D6AB317004AC3D3 /* UserInfoModel.m in Sources */,
 				59A7F2E91D5DEACC005CF274 /* RecoveryModel.m in Sources */,
 				59A7F2EC1D5DEACC005CF274 /* RecoveryViewModel.m in Sources */,
+				56A19EE21D6AB620004AC3D3 /* OfflineSyncModel.m in Sources */,
 				59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */,
 				56A19ED71D6AB317004AC3D3 /* ProfileViewController.m in Sources */,
 				59A7F2EE1D5DEACC005CF274 /* WelcomeTourViewController.m in Sources */,
