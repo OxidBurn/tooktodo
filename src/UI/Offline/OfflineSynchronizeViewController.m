@@ -6,13 +6,27 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "OfflineSinchronizeViewController.h"
+#import "OfflineSynchronizeViewController.h"
 
-@interface OfflineSinchronizeViewController ()
+@interface OfflineSynchronizeViewController ()
+
+// properties
+
+@property (weak, nonatomic) IBOutlet UITableView *synchronizeOptionsTable;
+
+@property (weak, nonatomic) IBOutlet UIView *deviceUsedSpaceIndicatorView;
+
+@property (weak, nonatomic) IBOutlet UIView *potentialUsedSpaceAfterSyncView;
+@property (weak, nonatomic) IBOutlet UIButton *startSyncBtn;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *deviceUsedSpaceTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *potentialUsedTrailingConstraint;
+
+// methods
 
 @end
 
-@implementation OfflineSinchronizeViewController
+@implementation OfflineSynchronizeViewController
 
 #pragma mark - Life cycle -
 

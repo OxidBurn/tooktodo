@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OfflineSinchronizeViewController : UIViewController
+@interface OfflineSynchronizeViewController : UIViewController
 
 @end

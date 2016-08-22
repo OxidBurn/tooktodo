@@ -12,9 +12,13 @@
 
 // properties
 
-@property (weak, nonatomic) IBOutlet UILabel  *projectTitle;
-@property (weak, nonatomic) IBOutlet UILabel  *projectDetail;
-@property (weak, nonatomic) IBOutlet UILabel  *lastSyncDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *projectTitle;
+@property (weak, nonatomic) IBOutlet UILabel *projectDetail;
+@property (weak, nonatomic) IBOutlet UILabel *lastSyncDateLabel;
+@property (weak, nonatomic) IBOutlet UIView  *syncProgressViewBg;
+@property (weak, nonatomic) IBOutlet UIView  *syncProgressView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *syncProgressViewTrailingConstraint;
 
 @property (strong, nonatomic) NSNumber* projectID;
 

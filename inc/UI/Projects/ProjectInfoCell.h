@@ -17,6 +17,8 @@
 
 @property (copy, nonatomic) void(^didSelectedProject)(NSNumber* projectID);
 
+@property (assign, nonatomic) BOOL isSyncing;
+
 // methods
 
 - (void) fillContent: (ProjectInfo*) info;
