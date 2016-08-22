@@ -7,8 +7,19 @@
 //
 
 #import "AllProjectsViewController.h"
+#import "AllProjectsViewModel.h"
 
 @interface AllProjectsViewController ()
+
+// propeties
+
+@property (strong, nonatomic) AllProjectsViewModel* viewModel;
+
+@property (weak, nonatomic) IBOutlet UITableView *projectsTable;
+
+// methods
+
+- (void) bindingUI;
 
 @end
 
@@ -20,13 +31,11 @@
 {
     [super loadView];
     
+    // Setup custom view of the navigation bar
     [self titleLabel];
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Binding UI components with model
+    [self bindingUI];
 }
 
 
@@ -46,6 +55,19 @@
                   sender: (id)                 sender
 {
     
+}
+
+
+#pragma mark - Properties -
+
+- (AllProjectsViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [[AllProjectsViewModel alloc] init];
+    }
+    
+    return _viewModel;
 }
 
 
@@ -78,6 +100,25 @@
     self.navigationItem.titleView = label;
     
     return label;
+}
+
+- (void) bindingUI
+{
+    [self.viewModel updateProjectsContent];
+    
+    self.projectsTable.dataSource = self.viewModel;
+    self.projectsTable.delegate   = self.viewModel;
+    
+    [self handleModelActions];
+}
+
+- (void) handleModelActions
+{
+    self.viewModel.didSelectedProject = ^(NSNumber* projectID){
+        
+        NSLog(@"Project id: %lu", (unsigned long)projectID.integerValue);
+        
+    };
 }
 
 @end

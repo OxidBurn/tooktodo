@@ -16,6 +16,9 @@
 		56A19E311D6A8355004AC3D3 /* ProjectCountry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E2A1D6A8355004AC3D3 /* ProjectCountry+CoreDataProperties.m */; };
 		56A19E321D6A8355004AC3D3 /* ProjectCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E2C1D6A8355004AC3D3 /* ProjectCountry.m */; };
 		56A19E351D6A8DDA004AC3D3 /* MenuProjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E341D6A8DDA004AC3D3 /* MenuProjectCell.m */; };
+		56A19E391D6A942D004AC3D3 /* AllProjectsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E381D6A942D004AC3D3 /* AllProjectsViewModel.m */; };
+		56A19E3C1D6A9439004AC3D3 /* AllProjectsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E3B1D6A9439004AC3D3 /* AllProjectsModel.m */; };
+		56A19E3F1D6A994D004AC3D3 /* ProjectInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E3E1D6A994D004AC3D3 /* ProjectInfoCell.m */; };
 		56C1DF6B1D6A5DE600459809 /* ProjectInfoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C1DF6A1D6A5DE600459809 /* ProjectInfoData.m */; };
 		56C1DF6E1D6A5F9B00459809 /* ProjectCountryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C1DF6D1D6A5F9B00459809 /* ProjectCountryData.m */; };
 		56C1DF711D6A60ED00459809 /* ProjectRegionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C1DF701D6A60ED00459809 /* ProjectRegionData.m */; };
@@ -102,6 +105,12 @@
 		56A19E2C1D6A8355004AC3D3 /* ProjectCountry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectCountry.m; path = Objects/ProjectCountry.m; sourceTree = "<group>"; };
 		56A19E331D6A8DDA004AC3D3 /* MenuProjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuProjectCell.h; sourceTree = "<group>"; };
 		56A19E341D6A8DDA004AC3D3 /* MenuProjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuProjectCell.m; sourceTree = "<group>"; };
+		56A19E371D6A942D004AC3D3 /* AllProjectsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProjectsViewModel.h; sourceTree = "<group>"; };
+		56A19E381D6A942D004AC3D3 /* AllProjectsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProjectsViewModel.m; sourceTree = "<group>"; };
+		56A19E3A1D6A9439004AC3D3 /* AllProjectsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProjectsModel.h; sourceTree = "<group>"; };
+		56A19E3B1D6A9439004AC3D3 /* AllProjectsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProjectsModel.m; sourceTree = "<group>"; };
+		56A19E3D1D6A994D004AC3D3 /* ProjectInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfoCell.h; sourceTree = "<group>"; };
+		56A19E3E1D6A994D004AC3D3 /* ProjectInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfoCell.m; sourceTree = "<group>"; };
 		56C1DF691D6A5DE600459809 /* ProjectInfoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectInfoData.h; path = Objects/ProjectInfoData.h; sourceTree = "<group>"; };
 		56C1DF6A1D6A5DE600459809 /* ProjectInfoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProjectInfoData.m; path = Objects/ProjectInfoData.m; sourceTree = "<group>"; };
 		56C1DF6C1D6A5F9B00459809 /* ProjectCountryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProjectCountryData.h; path = Objects/ProjectCountryData.h; sourceTree = "<group>"; };
@@ -670,6 +679,12 @@
 			children = (
 				59B0BED01D614DBE0016AE13 /* AllProjectsViewController.h */,
 				59B0BED11D614DBE0016AE13 /* AllProjectsViewController.m */,
+				56A19E371D6A942D004AC3D3 /* AllProjectsViewModel.h */,
+				56A19E381D6A942D004AC3D3 /* AllProjectsViewModel.m */,
+				56A19E3A1D6A9439004AC3D3 /* AllProjectsModel.h */,
+				56A19E3B1D6A9439004AC3D3 /* AllProjectsModel.m */,
+				56A19E3D1D6A994D004AC3D3 /* ProjectInfoCell.h */,
+				56A19E3E1D6A994D004AC3D3 /* ProjectInfoCell.m */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -1032,12 +1047,14 @@
 				56A19E2F1D6A8355004AC3D3 /* ProjectRegion+CoreDataProperties.m in Sources */,
 				56A19E321D6A8355004AC3D3 /* ProjectCountry.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
+				56A19E3C1D6A9439004AC3D3 /* AllProjectsModel.m in Sources */,
 				59B0BECC1D6141440016AE13 /* MainMenuModel.m in Sources */,
 				59B0BEAC1D6132F80016AE13 /* NSString+APUtils.m in Sources */,
 				593E4C1B1D64923100F41450 /* UserNotificationModel.m in Sources */,
 				56C1DF711D6A60ED00459809 /* ProjectRegionData.m in Sources */,
 				59B02D471D65CABB00DAE8F4 /* TermsViewController.m in Sources */,
 				593E4C261D64924600F41450 /* ChangePassViewController.m in Sources */,
+				56A19E391D6A942D004AC3D3 /* AllProjectsViewModel.m in Sources */,
 				59B02D441D65BE0100DAE8F4 /* UpdatedUserInfo.m in Sources */,
 				593E4C2D1D6493C300F41450 /* ChangePasswordModel.m in Sources */,
 				591344191D5F04B60027889F /* DataManager.m in Sources */,
@@ -1045,6 +1062,7 @@
 				59A7F2E71D5DEACC005CF274 /* LoginViewController.m in Sources */,
 				56C1DF6E1D6A5F9B00459809 /* ProjectCountryData.m in Sources */,
 				56A19E2D1D6A8355004AC3D3 /* ProjectInfo+CoreDataProperties.m in Sources */,
+				56A19E3F1D6A994D004AC3D3 /* ProjectInfoCell.m in Sources */,
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
 				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
