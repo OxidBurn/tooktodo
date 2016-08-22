@@ -1,0 +1,44 @@
+//
+//  ProjectInfo+CoreDataProperties.h
+//  
+//
+//  Created by Nikolay Chaban on 8/22/16.
+//
+//
+//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
+//  to delete and recreate this implementation file for your updated model.
+//
+
+#import "ProjectInfo.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ProjectInfo (CoreDataProperties)
+
+@property (nullable, nonatomic, retain) NSDate *lastVisit;
+@property (nullable, nonatomic, retain) NSNumber *isTaskAddAppealClosed;
+@property (nullable, nonatomic, retain) NSString *realtyClassDescription;
+@property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSNumber *ownerUserId;
+@property (nullable, nonatomic, retain) NSString *street;
+@property (nullable, nonatomic, retain) NSNumber *residentialObjectType;
+@property (nullable, nonatomic, retain) NSString *building;
+@property (nullable, nonatomic, retain) NSString *city;
+@property (nullable, nonatomic, retain) NSString *residentialObjectTypeDescription;
+@property (nullable, nonatomic, retain) NSString *regionName;
+@property (nullable, nonatomic, retain) NSString *apartment;
+@property (nullable, nonatomic, retain) NSDate *endDate;
+@property (nullable, nonatomic, retain) NSNumber *projectID;
+@property (nullable, nonatomic, retain) NSDate *createdDate;
+@property (nullable, nonatomic, retain) NSNumber *isRolesInvitationAppealClosed;
+@property (nullable, nonatomic, retain) NSNumber *commercialObjectType;
+@property (nullable, nonatomic, retain) NSNumber *realtyClass;
+@property (nullable, nonatomic, retain) NSString *phoneNumber;
+@property (nullable, nonatomic, retain) NSString *commercialObjectTypeDescription;
+@property (nullable, nonatomic, retain) NSNumber *floor;
+@property (nullable, nonatomic, retain) NSManagedObject *country;
+@property (nullable, nonatomic, retain) NSManagedObject *region;
+
+@end
+
+NS_ASSUME_NONNULL_END

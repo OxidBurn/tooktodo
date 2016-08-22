@@ -2,7 +2,7 @@
 //  LoginModel.m
 //  TookTODO
 //
-//  Created by Глеб on 09.08.16.
+//  Created by Nikolay Chaban on 09.08.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -10,6 +10,7 @@
 #import "LoginModel.h"
 #import "LoginService.h"
 #import "KeyChainManager.h"
+#import "UserInfoData.h"
 
 // Extensions
 #import "NSString+Utils.h"
@@ -118,7 +119,10 @@
 
 - (void) parsingLoginResponseInfo: (NSDictionary*) info
 {
-    [DataManagerShared persistUserWithInfo: info];
+    UserInfoData* userInfo = [[UserInfoData alloc] initWithDictionary: info
+                                                                error: nil];
+    
+    [DataManagerShared persistUserWithInfo: userInfo];
 }
 
 - (void) saveUserToken: (NSDictionary*) response

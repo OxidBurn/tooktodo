@@ -2,7 +2,7 @@
 //  WelcomeTourModel.h
 //  TookTODO
 //
-//  Created by Глеб on 10.08.16.
+//  Created by Nikolay Chaban on 10.08.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 

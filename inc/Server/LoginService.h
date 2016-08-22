@@ -23,6 +23,8 @@
 + (RACSignal*) updatePasswordFromOld: (NSString*) old
                                toNew: (NSString*) pass;
 
++ (RACSignal*) getProjectsList: (NSDictionary*) parameters;
+
 + (RACSignal*) logout;
 
 + (RACSignal*) updateUserInfo: (NSDictionary*) newInfo;

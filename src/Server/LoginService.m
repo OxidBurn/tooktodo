@@ -88,6 +88,13 @@
     return [[[manager rac_PUT: updateUserInfoURL parameters: newInfo] logError] replayLazily];
 }
 
++ (RACSignal*) getProjectsList: (NSDictionary*) parameters
+{
+    AFHTTPRequestOperationManager* manager = [LoginService getRequestManager];
+    
+    return [[[manager rac_GET: userProjectsListURL parameters: parameters] logError] replayLazily];
+}
+
 
 #pragma mark - Internal methods -
 

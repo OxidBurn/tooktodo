@@ -28,4 +28,8 @@
 
 - (NSString*) fullUserName;
 
+- (RACSignal*) loadProjectsList;
+
+- (void) updateProjectsContent;
+
 @end

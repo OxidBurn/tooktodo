@@ -23,4 +23,8 @@
 
 - (UIImage*) getUserAvatarImage;
 
+- (NSArray*) getProjects;
+
+- (RACSignal*) loadProjectsList;
+
 @end

@@ -88,6 +88,9 @@
 + (NSString*) applicationSupportDirectory;
 
 
+- (NSDate*) getDateFromString: (NSString*) string;
+
+
 #pragma mark - Avatars -
 
 + (NSString*) getAvatarsDirectoryPath;

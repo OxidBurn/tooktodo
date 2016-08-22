@@ -460,7 +460,7 @@
                                     <constraint firstAttribute="width" constant="266" id="pYM-ZP-vHG"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCellID" id="jpd-fL-sjA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCellID" id="jpd-fL-sjA" customClass="MenuProjectCell">
                                         <rect key="frame" x="0.0" y="28" width="266" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jpd-fL-sjA" id="nzw-4A-Urp">
@@ -509,6 +509,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="rDk-9K-wiT" secondAttribute="trailing" constant="32" id="hD9-wn-sCh"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="Jbc-xH-PMl" id="95p-EG-ebZ"/>
+                                            <outlet property="titleLabel" destination="rDk-9K-wiT" id="4OR-oN-Nev"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>

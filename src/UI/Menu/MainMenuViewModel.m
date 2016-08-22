@@ -8,6 +8,8 @@
 
 #import "MainMenuViewModel.h"
 #import "MainMenuModel.h"
+#import "MenuProjectCell.h"
+#import "ProjectInfo.h"
 
 
 @interface MainMenuViewModel()
@@ -15,6 +17,8 @@
 // properties
 
 @property (strong, nonatomic) MainMenuModel* model;
+
+@property (nonatomic, strong) NSArray* projectsContent;
 
 // methods
 
@@ -26,7 +30,7 @@
 
 #pragma mark - Properties -
 
-- (MainMenuModel *)model
+- (MainMenuModel*) model
 {
     if ( _model == nil )
     {
@@ -49,6 +53,15 @@
     return [self.model getUserAvatarImage];
 }
 
+- (RACSignal*) loadProjectsList
+{
+    return [self.model loadProjectsList];
+}
+
+- (void) updateProjectsContent
+{
+    self.projectsContent = [self.model getProjects];
+}
 
 #pragma mark - Commands -
 
@@ -81,13 +94,19 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return 0;
+    return self.projectsContent.count;
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return nil;
+    MenuProjectCell* cell = (MenuProjectCell*)[tableView dequeueReusableCellWithIdentifier: @"ProjectCellID"];
+    
+    ProjectInfo* info = self.projectsContent[indexPath.row];
+    
+    [cell fillInfo: info];
+    
+    return cell;
 }
 
 

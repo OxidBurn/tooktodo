@@ -9,9 +9,17 @@
 #import "MainMenuModel.h"
 
 // Classes
-#import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 #import "Utils.h"
+#import "LoginService.h"
+#import "ProjectInfoData.h"
+
+// Frameworks
+#import <JSONModel/JSONModel.h>
+
+// Extensions
+#import "DataManager+UserInfo.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface MainMenuModel()
 
@@ -42,7 +50,7 @@
 
 #pragma mark - Properties -
 
-- (UserInfo *)currentUserInfo
+- (UserInfo*) currentUserInfo
 {
     if ( _currentUserInfo == nil )
     {
@@ -89,12 +97,77 @@
     return nil;
 }
 
+- (NSArray*) getProjects
+{
+    return [DataManagerShared getAllProjects];
+}
+
+- (RACSignal*) loadProjectsList
+{
+    NSDictionary* requestParameter = @{@"skip" : @(0),
+                                       @"take" : @(100)};
+    
+    @weakify(self)
+    
+    RACSignal* loadingSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[LoginService getProjectsList: requestParameter] subscribeNext: ^(RACTuple* tuple) {
+            
+            @strongify(self)
+            
+            [self parseGettingProjectsResponse: tuple[0]
+                                withCompletion: ^{
+                                   
+                                    [subscriber sendNext: nil];
+                                    [subscriber sendCompleted];
+                                    
+                                }];
+            
+        }
+                                                                  error: ^(NSError *error) {
+                                                                      
+                                                                      [subscriber sendError: error];
+                                                                      
+                                                                  }];
+        
+        
+        return nil;
+    }];
+    
+    
+    return loadingSignal;
+}
+
+
 
 #pragma mark - Internal methods -
 
 - (NSURL*) getApplicationStoreURL
 {
     return [NSURL URLWithString: @""];
+}
+
+- (void) parseGettingProjectsResponse: (NSDictionary*) response
+                       withCompletion: (void(^)())     completion
+{
+    NSError* parseError       = nil;
+    NSArray* responseProjects = response[@"list"];
+    NSArray* projectsList     = [ProjectInfoData arrayOfModelsFromDictionaries: responseProjects
+                                                                         error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"Parse error %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewProjects: projectsList
+                               withCompletion: ^{
+                                   
+                                   completion();
+                                   
+                               }];
+    }
 }
 
 @end

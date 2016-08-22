@@ -9,72 +9,54 @@
 #import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 
+// Frameworks
+#import <MagicalRecord/MagicalRecord.h>
+#import <MagicalRecord/NSManagedObjectContext+MagicalSaves.h>
+
 // Helpers
 #import "AvatarHelper.h"
 
-// Extensions
-#import "NSDate+Helper.h"
-
 @implementation DataManager (UserInfo)
 
-- (void) persistUserWithInfo: (NSDictionary*) info
+- (void) persistUserWithInfo: (UserInfoData*) info
 {
-    NSString* emailValue = info[@"userName"];
-    
-    UserInfo* userInfo = [self getUserInfoWithEmail: emailValue];
-    
-    if ( userInfo )
-    {
-        userInfo.fullName                         = info[@"displayName"];
-        userInfo.firstName                        = info[@"firstName"];
-        userInfo.lastName                         = info[@"lastName"];
-        userInfo.avatarSrc                        = info[@"avatarSrc"];
-        userInfo.userID                           = info[@"id"];
-        userInfo.isSubscribedOnEmailNotifications = info[@"isSubscribedOnEmailNotifications"];
-        userInfo.expireTokenDate                  = [self getDateFromString: info[@".expires"]];
-        userInfo.phoneNumber                      = info[@"phoneNumber"];
-        userInfo.extendPhoneNumber                = info[@"additionalPhoneNumber"];
-    }
-    else
-    {
-        userInfo = [self insertNewObjectForEntityForName: @"UserInfo"];
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        userInfo.fullName                         = info[@"displayName"];
-        userInfo.expireTokenDate                  = [self getDateFromString: info[@".expires"]];
-        userInfo.email                            = emailValue;
-        userInfo.firstName                        = info[@"firstName"];
-        userInfo.lastName                         = info[@"lastName"];
-        userInfo.avatarSrc                        = info[@"avatarSrc"];
-        userInfo.userID                           = info[@"id"];
-        userInfo.isSubscribedOnEmailNotifications = info[@"isSubscribedOnEmailNotifications"];
+        UserInfo* userInfo = [self getUserInfoWithEmail: info.email];
         
-        if ( info[@"phoneNumber"] )
-        userInfo.phoneNumber = info[@"phoneNumber"];
+        if ( userInfo == nil )
+        {
+            userInfo = [UserInfo MR_createEntityInContext: localContext];
+            
+            userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: info.email
+                                                                          withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
+        }
         
-        if ( [info[@"additionalPhoneNumber"] isKindOfClass: [NSNull class]] == NO )
-            userInfo.extendPhoneNumber = info[@"additionalPhoneNumber"];
+        userInfo.fullName                         = info.displayName;
+        userInfo.email                            = info.email;
+        userInfo.firstName                        = info.firstName;
+        userInfo.lastName                         = info.lastName;
+        userInfo.avatarSrc                        = info.avatarSrc;
+        userInfo.userID                           = @(info.userID);
+        userInfo.isSubscribedOnEmailNotifications = @(info.isSubscribedOnEmailNotifications);
+        userInfo.phoneNumber                      = info.phoneNumber;
+        userInfo.extendPhoneNumber                = info.additionalPhoneNumber;
         
-        userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: emailValue withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
-    }
-    
-    [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
-                                            withName: emailValue];
-    
-    [self saveContext];
+        [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
+                                                withName: info.email];
+        
+    }];
 }
 
 - (UserInfo*) getUserInfoWithEmail: (NSString*) email
 {
-    NSArray* users              = [self getAllUserInfo];
-    NSPredicate* emailPredicate = [NSPredicate predicateWithFormat: @"email == %@", email];
-    NSArray* filteredArr        = [users filteredArrayUsingPredicate: emailPredicate];
-    
-    return (filteredArr.count > 0) ? filteredArr.firstObject : nil;
+    return [UserInfo MR_findFirstByAttribute: @"email"
+                                   withValue: email];
 }
 
 - (NSArray*) getAllUserInfo
 {
-    return [self fetchObjectsForEntityForName: @"UserInfo"];
+    return [UserInfo MR_findAll];
 }
 
 - (UserInfo*) getCurrentUserInfo
@@ -84,23 +66,14 @@
 
 - (void) updateUserInfo: (UserInfo*) info
 {
-    [self saveContext];
+    [MagicalRecord saveWithBlockAndWait :^(NSManagedObjectContext * _Nonnull localContext) {
+        
+    }];
 }
 
 - (void) deleteCurrentUser: (UserInfo*) info
 {
-    [self removeObject: info];
-    
-    [self saveContext];
+    [info MR_deleteEntity];
 }
 
-
-#pragma mark - Helper methods -
-
-- (NSDate*) getDateFromString: (NSString*) string
-{
-    NSDate* expareDate = [NSDate dateFromString: string withFormat: @"E, dd MMM yyyy HH:mm:ss zzz"];
-    
-    return expareDate;
-}
 @end

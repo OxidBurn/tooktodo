@@ -11,6 +11,7 @@
 // Libraries
 #import <Reachability/Reachability.h>
 #import "NSString+APUtils.h"
+#import "NSDate+Helper.h"
 
 //! Default date formatter
 static NSDateFormatter* defaultDateFormatter = nil;
@@ -266,6 +267,13 @@ static NSDateFormatter* defaultDateFormatter = nil;
     NSString* timestamp_str = [outputFormatter stringFromDate: [NSDate date]];
     
     return timestamp_str;
+}
+
+- (NSDate*) getDateFromString: (NSString*) string
+{
+    NSDate* expareDate = [NSDate dateFromString: string withFormat: @"E, dd MMM yyyy HH:mm:ss zzz"];
+    
+    return expareDate;
 }
 
 #pragma mark - Application -

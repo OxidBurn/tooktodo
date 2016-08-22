@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="ProjectCountry" representedClassName="ProjectCountry" syncable="YES">
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="ProjectInfo" representedClassName="ProjectInfo" syncable="YES">
+        <attribute name="apartment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commercialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="commercialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isRolesInvitationAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTaskAddAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastVisit" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="realtyClass" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="realtyClassDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="regionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="residentialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="residentialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
+        <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
+    </entity>
+    <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="region" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,5 +59,8 @@
     <elements>
         <element name="UserInfo" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="UserNotifications" positionX="-63" positionY="135" width="128" height="178"/>
+        <element name="ProjectInfo" positionX="-63" positionY="126" width="128" height="390"/>
+        <element name="ProjectCountry" positionX="-54" positionY="135" width="128" height="60"/>
+        <element name="ProjectRegion" positionX="-36" positionY="144" width="128" height="60"/>
     </elements>
 </model>
