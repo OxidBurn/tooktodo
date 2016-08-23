@@ -21,6 +21,8 @@
 
 @property (assign, nonatomic) OfflineSettingsItemType itemType;
 
+@property (assign, nonatomic) BOOL isEnable;
+
 // methods
 
 

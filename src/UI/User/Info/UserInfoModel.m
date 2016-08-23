@@ -89,7 +89,10 @@
         [userInfo addObject: [self getUserAdditionalPhoneNumber]];
     }
     
-    [userInfo addObject: [self getUserEmail]];
+    if ( [self getUserEmail] )
+    {
+        [userInfo addObject: [self getUserEmail]];
+    }
     
     return userInfo.copy;
 }

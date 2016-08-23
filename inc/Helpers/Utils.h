@@ -114,6 +114,6 @@
                  havingWidth: (CGFloat)   widthValue
                      andFont: (UIFont*)   font;
 
-
++ (NSString*) stringByStrippingHTML: (NSString*) inputString;
 
 @end

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
+        <attribute name="isEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="children" inverseEntity="OfflineSettings" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="offlineSettings" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
     <entity name="ProjectCountry" representedClassName="ProjectCountry" syncable="YES">
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
@@ -26,6 +33,7 @@
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
+        <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
     </entity>
     <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
@@ -57,10 +65,11 @@
         <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserInfo" positionX="-63" positionY="-18" width="128" height="225"/>
-        <element name="UserNotifications" positionX="-63" positionY="135" width="128" height="178"/>
-        <element name="ProjectInfo" positionX="-63" positionY="126" width="128" height="390"/>
-        <element name="ProjectCountry" positionX="-54" positionY="135" width="128" height="60"/>
-        <element name="ProjectRegion" positionX="-36" positionY="144" width="128" height="60"/>
+        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="403"/>
+        <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
+        <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="225"/>
+        <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="178"/>
+        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="118"/>
     </elements>
 </model>

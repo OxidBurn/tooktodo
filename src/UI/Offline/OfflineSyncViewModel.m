@@ -8,6 +8,17 @@
 
 #import "OfflineSyncViewModel.h"
 
+@interface OfflineSyncViewModel()
+
+// properties
+
+
+
+// methods
+
+
+@end
+
 @implementation OfflineSyncViewModel
 
 @end

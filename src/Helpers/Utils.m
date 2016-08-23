@@ -374,5 +374,26 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return abbreviation;
 }
 
++ (NSString*) stringByStrippingHTML: (NSString*) inputString
+{
+    NSMutableString *outString;
+    
+    if (inputString)
+    {
+        outString = [[NSMutableString alloc] initWithString:inputString];
+        
+        if ([inputString length] > 0)
+        {
+            NSRange r;
+            
+            while ((r = [outString rangeOfString: @"<[^>]*>|&nbsp;|[printf]+\\(\'*|\\\'\\);" options:NSRegularExpressionSearch]).location != NSNotFound)
+            {
+                [outString deleteCharactersInRange: r];
+            }
+        }
+    }
+    
+    return outString; 
+}
 
 @end

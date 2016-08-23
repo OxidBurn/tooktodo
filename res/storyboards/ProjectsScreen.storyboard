@@ -276,7 +276,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfflineSyncCellID" rowHeight="69" id="FP1-rh-nCI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OfflineSyncCellID" rowHeight="69" id="FP1-rh-nCI" customClass="OfflineTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FP1-rh-nCI" id="NNG-8m-P6N">
@@ -290,6 +290,9 @@
                                                         <constraint firstAttribute="width" constant="49" id="mAr-7G-GWN"/>
                                                     </constraints>
                                                     <color key="onTintColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="onToggleEnableState:" destination="FP1-rh-nCI" eventType="valueChanged" id="Qef-ot-gUf"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузить для работы в оффлайне" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DoN-Wo-uTg">
                                                     <rect key="frame" x="16" y="17" width="228" height="18"/>
@@ -323,6 +326,10 @@
                                                 <constraint firstItem="YRH-Fp-HFK" firstAttribute="leading" secondItem="D2E-1j-jpZ" secondAttribute="trailing" constant="10" id="ypr-Q4-iKZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingSize" destination="D2E-1j-jpZ" id="TAW-OP-yRg"/>
+                                            <outlet property="settingTitle" destination="DoN-Wo-uTg" id="dfO-Lz-iJb"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1508,6 +1515,9 @@
                     <navigationItem key="navigationItem" id="LT9-x5-Xdw">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="3Fx-Bu-fpk">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onCancel:" destination="Zn5-Su-BRm" id="Ybn-Os-jOt"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="YY1-3g-K91">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Gm-nb-b62">
@@ -1657,7 +1667,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VtH-8i-FGx">
-                        <barButtonItem key="backBarButtonItem" title="Отменить" id="frZ-c5-f9H"/>
                         <barButtonItem key="leftBarButtonItem" id="50W-tl-zmV">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zba-dd-N7k">
                                 <rect key="frame" x="16" y="7" width="68" height="30"/>
@@ -1666,6 +1675,9 @@
                                 <state key="normal" title="Отменить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onCancel:" destination="Fad-81-UDM" eventType="touchUpInside" id="fFy-4O-ZbW"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="t26-vD-ddP">

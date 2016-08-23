@@ -8,6 +8,10 @@
 
 #import "DataManager+ProjectInfo.h"
 
+// Classes
+#import "OfflineSettings.h"
+#import "OfflineSettingsTypes.h"
+
 @implementation DataManager (ProjectInfo)
 
 - (void) persistNewProjects: (NSArray*)  projects
@@ -37,7 +41,9 @@
     ProjectInfo* projectInfo = [self getIfExistProjectWithID: data.projectID];
     
     if ( projectInfo == nil )
+    {
         projectInfo = [ProjectInfo MR_createEntityInContext: context];
+    }
     
     projectInfo.lastVisit                        = data.lastVisit;
     projectInfo.isTaskAddAppealClosed            = @(data.isTaskAddAppealClosed);
@@ -60,6 +66,7 @@
     projectInfo.phoneNumber                      = data.phoneNumber;
     projectInfo.commercialObjectTypeDescription  = data.commercialObjectTypeDescription;
     projectInfo.floor                            = data.floor;
+    
 }
 
 - (ProjectInfo*) getIfExistProjectWithID: (NSUInteger) projectID
@@ -71,6 +78,19 @@
 - (NSArray*) getAllProjects
 {
     return [ProjectInfo MR_findAll];
+}
+
+- (OfflineSettings*) createOfflineSettingForProject: (ProjectInfo*)            project
+                                          inContext: (NSManagedObjectContext*) context
+{
+    OfflineSettings* settings = [OfflineSettings MR_createEntityInContext: context];
+    
+    settings.project = project;
+    settings.title = @"Задачи, Лента, Планы";
+    settings.type  = @(TasksFeedsPlansType);
+    
+    
+    return settings;
 }
 
 @end

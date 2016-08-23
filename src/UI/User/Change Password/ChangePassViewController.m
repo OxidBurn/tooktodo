@@ -144,4 +144,8 @@
     }];
 }
 
+- (IBAction) onCancel: (UIBarButtonItem*) sender
+{    
+    [self.navigationController popViewControllerAnimated: YES];
+}
 @end

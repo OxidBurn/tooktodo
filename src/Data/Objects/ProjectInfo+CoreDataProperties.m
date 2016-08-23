@@ -13,28 +13,29 @@
 
 @implementation ProjectInfo (CoreDataProperties)
 
-@dynamic lastVisit;
-@dynamic isTaskAddAppealClosed;
-@dynamic realtyClassDescription;
-@dynamic title;
-@dynamic ownerUserId;
-@dynamic street;
-@dynamic residentialObjectType;
+@dynamic apartment;
 @dynamic building;
 @dynamic city;
-@dynamic residentialObjectTypeDescription;
-@dynamic regionName;
-@dynamic apartment;
-@dynamic endDate;
-@dynamic projectID;
-@dynamic createdDate;
-@dynamic isRolesInvitationAppealClosed;
 @dynamic commercialObjectType;
-@dynamic realtyClass;
-@dynamic phoneNumber;
 @dynamic commercialObjectTypeDescription;
+@dynamic createdDate;
+@dynamic endDate;
 @dynamic floor;
+@dynamic isRolesInvitationAppealClosed;
+@dynamic isTaskAddAppealClosed;
+@dynamic lastVisit;
+@dynamic ownerUserId;
+@dynamic phoneNumber;
+@dynamic projectID;
+@dynamic realtyClass;
+@dynamic realtyClassDescription;
+@dynamic regionName;
+@dynamic residentialObjectType;
+@dynamic residentialObjectTypeDescription;
+@dynamic street;
+@dynamic title;
 @dynamic country;
 @dynamic region;
+@dynamic offlineSettings;
 
 @end

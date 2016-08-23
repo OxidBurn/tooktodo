@@ -108,6 +108,8 @@
 - (void) showLogin
 {
     [self presentLoginController];
+    
+    [self showControllerWithSegueID: @"ShowFeeds"];
 }
 
 - (void) showWelcomeTour

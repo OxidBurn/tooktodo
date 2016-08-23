@@ -10,4 +10,12 @@
 
 @interface OfflineTableViewCell : UITableViewCell
 
+// properties
+
+@property (copy, nonatomic) void(^didToggleEnableState)(BOOL isEnable);
+
+// methods
+
+
+
 @end

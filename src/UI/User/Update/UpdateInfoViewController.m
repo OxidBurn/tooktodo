@@ -132,4 +132,9 @@
     return label;
 }
 
+- (IBAction)onCancel:(UIButton *)sender {
+    
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
 @end
