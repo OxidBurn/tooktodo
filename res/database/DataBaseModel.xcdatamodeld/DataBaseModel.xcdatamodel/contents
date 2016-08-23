@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
+        <attribute name="isEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="children" inverseEntity="OfflineSettings" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="offlineSettings" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="ProjectCountry" representedClassName="ProjectCountry" syncable="YES">
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="ProjectInfo" representedClassName="ProjectInfo" syncable="YES">
+        <attribute name="apartment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commercialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="commercialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isRolesInvitationAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTaskAddAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastVisit" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="realtyClass" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="realtyClassDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="regionName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="residentialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="residentialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
+        <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
+        <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
+    </entity>
+    <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="region" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expireTokenDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="extendPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notificationSettingsPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoImagePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="UserNotifications" syncable="YES">
+        <attribute name="allProject" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="documents" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mine" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="newsMessages" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="projectProfile" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="responder" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="systems" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="tasks" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="403"/>
+        <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
+        <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="225"/>
+        <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="178"/>
+        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="118"/>
+    </elements>
+</model>
