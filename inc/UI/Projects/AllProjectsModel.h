@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @interface AllProjectsModel : NSObject
 
 // properties
@@ -16,6 +19,9 @@
 // methods
 
 - (NSArray*) getProjectsContent;
+
+- (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
+                              toArray: (NSArray*)               array;
 
 
 @end

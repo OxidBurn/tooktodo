@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 8/22/16.
+//  Created by Nikolay Chaban on 8/24/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -36,9 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, retain) NSString *street;
 @property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSString *address;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
-@property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
+@property (nullable, nonatomic, retain) ProjectRegion *region;
 
 @end
 

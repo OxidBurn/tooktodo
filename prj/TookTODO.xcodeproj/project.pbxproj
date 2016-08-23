@@ -53,8 +53,8 @@
 		56A19EEE1D6AF437004AC3D3 /* OfflineSyncSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */; };
 		56A19EF31D6B178F004AC3D3 /* OfflineSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EF01D6B178F004AC3D3 /* OfflineSettings.m */; };
 		56A19EF41D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EF21D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m */; };
-		56A19F011D6B1A11004AC3D3 /* ProjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EFF1D6B1A11004AC3D3 /* ProjectInfo.m */; };
-		56A19F021D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19F001D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m */; };
+		56E1B9271D6D0E1D003E46DA /* ProjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9251D6D0E1D003E46DA /* ProjectInfo.m */; };
+		56E1B9281D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9261D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -187,10 +187,13 @@
 		56A19EF21D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OfflineSettings+CoreDataProperties.m"; sourceTree = "<group>"; };
 		56A19EF51D6B17BD004AC3D3 /* OfflineSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineSettings.h; sourceTree = "<group>"; };
 		56A19EF61D6B17BD004AC3D3 /* OfflineSettings+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OfflineSettings+CoreDataProperties.h"; sourceTree = "<group>"; };
-		56A19EFD1D6B1A0A004AC3D3 /* ProjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfo.h; sourceTree = "<group>"; };
-		56A19EFE1D6B1A0A004AC3D3 /* ProjectInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		56A19EFF1D6B1A11004AC3D3 /* ProjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfo.m; sourceTree = "<group>"; };
-		56A19F001D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		56E1B9201D6D0A28003E46DA /* ConfigurationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConfigurationManager.h; path = Managers/ConfigurationManager.h; sourceTree = "<group>"; };
+		56E1B9211D6D0A28003E46DA /* ConfigurationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ConfigurationManager.m; path = Managers/ConfigurationManager.m; sourceTree = "<group>"; };
+		56E1B9221D6D0A9F003E46DA /* ProjectsEnumerations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectsEnumerations.h; sourceTree = "<group>"; };
+		56E1B9231D6D0DA8003E46DA /* ProjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInfo.h; sourceTree = "<group>"; };
+		56E1B9241D6D0DA8003E46DA /* ProjectInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		56E1B9251D6D0E1D003E46DA /* ProjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfo.m; sourceTree = "<group>"; };
+		56E1B9261D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -326,8 +329,8 @@
 		56A19E6A1D6AB2CC004AC3D3 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				56A19EFF1D6B1A11004AC3D3 /* ProjectInfo.m */,
-				56A19F001D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m */,
+				56E1B9251D6D0E1D003E46DA /* ProjectInfo.m */,
+				56E1B9261D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m */,
 				56A19EF01D6B178F004AC3D3 /* OfflineSettings.m */,
 				56A19EF21D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m */,
 				56A19E6C1D6AB2CC004AC3D3 /* ProjectCountry+CoreDataProperties.m */,
@@ -347,8 +350,8 @@
 		56A19E851D6AB2E4004AC3D3 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				56A19EFD1D6B1A0A004AC3D3 /* ProjectInfo.h */,
-				56A19EFE1D6B1A0A004AC3D3 /* ProjectInfo+CoreDataProperties.h */,
+				56E1B9231D6D0DA8003E46DA /* ProjectInfo.h */,
+				56E1B9241D6D0DA8003E46DA /* ProjectInfo+CoreDataProperties.h */,
 				56A19EF51D6B17BD004AC3D3 /* OfflineSettings.h */,
 				56A19EF61D6B17BD004AC3D3 /* OfflineSettings+CoreDataProperties.h */,
 				56A19E871D6AB2E4004AC3D3 /* ProjectCountry+CoreDataProperties.h */,
@@ -525,6 +528,7 @@
 				590C8F391D5B35220053A735 /* APIConstance.h */,
 				59F707EB1D5E125200BFD4CF /* Macroses.h */,
 				5913441F1D5F07230027889F /* ConstanceKeys.h */,
+				56E1B9221D6D0A9F003E46DA /* ProjectsEnumerations.h */,
 			);
 			path = Constance;
 			sourceTree = "<group>";
@@ -572,6 +576,8 @@
 			isa = PBXGroup;
 			children = (
 				5913441D1D5F06060027889F /* KeyChainManager.m */,
+				56E1B9201D6D0A28003E46DA /* ConfigurationManager.h */,
+				56E1B9211D6D0A28003E46DA /* ConfigurationManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1123,7 +1129,7 @@
 				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
 				56A19E601D6AB2AE004AC3D3 /* MainMenuViewController.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
-				56A19F011D6B1A11004AC3D3 /* ProjectInfo.m in Sources */,
+				56E1B9271D6D0E1D003E46DA /* ProjectInfo.m in Sources */,
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
 				56A19E811D6AB2CC004AC3D3 /* ProjectRegionData.m in Sources */,
 				56A19E7A1D6AB2CC004AC3D3 /* ProjectCountry.m in Sources */,
@@ -1183,7 +1189,7 @@
 				56A19EDB1D6AB317004AC3D3 /* UpdateInfoViewModel.m in Sources */,
 				5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */,
 				56A19ED21D6AB317004AC3D3 /* UserInfoViewController.m in Sources */,
-				56A19F021D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m in Sources */,
+				56E1B9281D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m in Sources */,
 				56A19E791D6AB2CC004AC3D3 /* ProjectCountry+CoreDataProperties.m in Sources */,
 				59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */,
 				59A7F2E51D5DEACC005CF274 /* LoginModel.m in Sources */,

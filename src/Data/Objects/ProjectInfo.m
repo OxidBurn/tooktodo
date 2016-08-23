@@ -2,7 +2,7 @@
 //  ProjectInfo.m
 //  
 //
-//  Created by Nikolay Chaban on 8/22/16.
+//  Created by Nikolay Chaban on 8/24/16.
 //
 //
 

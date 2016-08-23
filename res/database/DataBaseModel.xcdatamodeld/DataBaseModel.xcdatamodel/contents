@@ -11,6 +11,7 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectInfo" representedClassName="ProjectInfo" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="apartment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -65,11 +66,11 @@
         <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
+        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="118"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="403"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="418"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="225"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="178"/>
-        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="118"/>
     </elements>
 </model>

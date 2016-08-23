@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 // properties
@@ -17,5 +20,7 @@
 // methods
 
 - (void) updateProjectsContent;
+
+- (void) applyProjectsEnumeration: (AllProjectsSortingType) type;
 
 @end

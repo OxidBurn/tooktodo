@@ -40,11 +40,18 @@
     return _model;
 }
 
+#pragma mark - Public methods -
+
 - (void) updateProjectsContent
 {
     self.projectsContent = [self.model getProjectsContent];
 }
 
+- (void) applyProjectsEnumeration: (AllProjectsSortingType) type
+{
+    self.projectsContent = [self.model applyProjectsSortingType: type
+                                                        toArray: self.projectsContent];
+}
 
 #pragma mark - Table view data source methods -
 
