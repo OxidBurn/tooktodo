@@ -1,30 +1,27 @@
 //
-//  AboutProjectViewController.m
+//  TeamInfoViewController.m
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 8/23/16.
+//  Created by Chaban Nikolay on 8/24/16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "AboutProjectViewController.h"
+#import "TeamInfoViewController.h"
 
-@interface AboutProjectViewController ()
+@interface TeamInfoViewController ()
 
-// properties
+// Properties
+@property (weak, nonatomic) IBOutlet UITableView *teamInfoTableView;
 
-
-// methods
-
-- (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender;
-
+// Methods
 
 @end
 
-@implementation AboutProjectViewController
+@implementation TeamInfoViewController
 
 #pragma mark - Life cycle -
 
-- (void)loadView
+- (void) loadView
 {
     [super loadView];
     
@@ -38,18 +35,9 @@
 
 #pragma mark - Memory managment -
 
-
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Action -
-
-- (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
-{
-    
 }
 
 #pragma mark - Internal method -
@@ -66,7 +54,7 @@
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
-    titleLabel.text            = @"О ПРОЕКТЕ";
+    titleLabel.text            = @"КОМАНДА";
     [titleLabel sizeToFit];
     
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];

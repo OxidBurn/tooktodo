@@ -1,30 +1,28 @@
 //
-//  AboutProjectViewController.m
+//  AddContactViewController.m
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 8/23/16.
+//  Created by Chaban Nikolay on 8/24/16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "AboutProjectViewController.h"
+#import "AddContactViewController.h"
 
-@interface AboutProjectViewController ()
+@interface AddContactViewController ()
 
-// properties
+// Properties
 
+@property (weak, nonatomic) IBOutlet UITableView* addContactInfoTablaView;
 
-// methods
-
-- (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender;
-
+// Methods
 
 @end
 
-@implementation AboutProjectViewController
+@implementation AddContactViewController
 
 #pragma mark - Life cycle -
 
-- (void)loadView
+- (void) loadView
 {
     [super loadView];
     
@@ -38,18 +36,9 @@
 
 #pragma mark - Memory managment -
 
-
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Action -
-
-- (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
-{
-    
 }
 
 #pragma mark - Internal method -
@@ -58,23 +47,21 @@
 {
     UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
                                                     size: 14.0f];
-    UIFont* customFontForSubTitle = [UIFont fontWithName: @"SFUIText-Regular"
-                                                    size: 13.0f];
     
     UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
-    titleLabel.text            = @"О ПРОЕКТЕ";
+    titleLabel.text            = @"ПРИГЛАСИТЬ";
     [titleLabel sizeToFit];
     
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
     subTitleLabel.backgroundColor = [UIColor clearColor];
     subTitleLabel.textColor       = [UIColor whiteColor];
-    subTitleLabel.font            = customFontForSubTitle;
+    subTitleLabel.font            = customFont;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-    subTitleLabel.text            = @"Квартира на Ходынке";
+    subTitleLabel.text            = @"УЧАСНИКА";
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];

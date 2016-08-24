@@ -61,6 +61,9 @@
 		59016F441D6C9BD200051D34 /* RoleInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59016F431D6C9BD200051D34 /* RoleInfoViewController.m */; };
 		59016F471D6C9C2300051D34 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59016F461D6C9C2300051D34 /* InformationViewController.m */; };
 		59016F4A1D6C9CE700051D34 /* SystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59016F491D6C9CE700051D34 /* SystemInfoViewController.m */; };
+		59016F4C1D6DFAF300051D34 /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59016F4B1D6DFAF300051D34 /* SF-UI-Text-Light.otf */; };
+		59016F501D6E008500051D34 /* TeamInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59016F4F1D6E008500051D34 /* TeamInfoViewController.m */; };
+		59016F531D6E07EF00051D34 /* AddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59016F521D6E07EF00051D34 /* AddContactViewController.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -207,6 +210,11 @@
 		59016F461D6C9C2300051D34 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
 		59016F481D6C9CE700051D34 /* SystemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInfoViewController.h; sourceTree = "<group>"; };
 		59016F491D6C9CE700051D34 /* SystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfoViewController.m; sourceTree = "<group>"; };
+		59016F4B1D6DFAF300051D34 /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
+		59016F4E1D6E008500051D34 /* TeamInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamInfoViewController.h; sourceTree = "<group>"; };
+		59016F4F1D6E008500051D34 /* TeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewController.m; sourceTree = "<group>"; };
+		59016F511D6E07EF00051D34 /* AddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactViewController.h; sourceTree = "<group>"; };
+		59016F521D6E07EF00051D34 /* AddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactViewController.m; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -550,6 +558,17 @@
 			path = AboutProgect;
 			sourceTree = "<group>";
 		};
+		59016F4D1D6E005700051D34 /* Team */ = {
+			isa = PBXGroup;
+			children = (
+				59016F4E1D6E008500051D34 /* TeamInfoViewController.h */,
+				59016F4F1D6E008500051D34 /* TeamInfoViewController.m */,
+				59016F511D6E07EF00051D34 /* AddContactViewController.h */,
+				59016F521D6E07EF00051D34 /* AddContactViewController.m */,
+			);
+			path = Team;
+			sourceTree = "<group>";
+		};
 		590C8F381D5B35220053A735 /* Constance */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +655,7 @@
 		59A793421D59D2DD0062007E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				59016F4B1D6DFAF300051D34 /* SF-UI-Text-Light.otf */,
 				59016F3A1D6C903800051D34 /* SF-UI-Display-Regular.otf */,
 				59016F3B1D6C903800051D34 /* SF-UI-Text-Medium.otf */,
 				59A793451D59D3480062007E /* Lato-Regular.ttf */,
@@ -668,6 +688,7 @@
 		59A7F2D61D5DEACC005CF274 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				59016F4D1D6E005700051D34 /* Team */,
 				59016F3E1D6C9B0000051D34 /* AboutProgect */,
 				56A19E4E1D6AB2AE004AC3D3 /* Feeds */,
 				56A19E551D6AB2AE004AC3D3 /* Offline */,
@@ -1077,6 +1098,7 @@
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
 				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
 				56A19EEE1D6AF437004AC3D3 /* OfflineSyncSettings.plist in Resources */,
+				59016F4C1D6DFAF300051D34 /* SF-UI-Text-Light.otf in Resources */,
 				5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */,
 				59016F3C1D6C903800051D34 /* SF-UI-Display-Regular.otf in Resources */,
 				59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */,
@@ -1195,6 +1217,7 @@
 				59A7F2E71D5DEACC005CF274 /* LoginViewController.m in Sources */,
 				56A19E651D6AB2AE004AC3D3 /* AllProjectsModel.m in Sources */,
 				56A19E5E1D6AB2AE004AC3D3 /* FeedsViewController.m in Sources */,
+				59016F531D6E07EF00051D34 /* AddContactViewController.m in Sources */,
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				56A19ECF1D6AB317004AC3D3 /* ChangePasswordViewModel.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
@@ -1221,6 +1244,7 @@
 				56A19EDA1D6AB317004AC3D3 /* UpdateInfoViewController.m in Sources */,
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,
 				56A19EDB1D6AB317004AC3D3 /* UpdateInfoViewModel.m in Sources */,
+				59016F501D6E008500051D34 /* TeamInfoViewController.m in Sources */,
 				5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */,
 				56A19ED21D6AB317004AC3D3 /* UserInfoViewController.m in Sources */,
 				56A19F021D6B1A11004AC3D3 /* ProjectInfo+CoreDataProperties.m in Sources */,
