@@ -110,22 +110,24 @@
     return UIModalPresentationNone;
 }
 
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    
+}
+
 - (IBAction)onShowSort:(UIBarButtonItem *)sender {
     
-    UIViewController* controller = [UIViewController new];
-    
-    controller.view.backgroundColor = [UIColor whiteColor];
+    PopoverViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier: @"SortProjectsControllerID"];
     
     controller.modalPresentationStyle = UIModalPresentationPopover;
-    controller.modalInPopover         = YES;
+    controller.preferredContentSize   = [self.sortModel returnPopoverSizeForDataType: AllProgects];
     
     UIPopoverPresentationController* popover = controller.popoverPresentationController;
     
-    popover.barButtonItem = self.sortBtn;
-    
-    popover.sourceView = self.view;
+    popover.barButtonItem            = self.sortBtn;
+    popover.sourceView               = self.view;
     popover.permittedArrowDirections = UIPopoverArrowDirectionUp;
-    controller.preferredContentSize = [self.sortModel returnPopoverSizeForDataType: AllProgects];
+    popover.backgroundColor = [UIColor colorWithRed:0.3333 green:0.3333 blue:0.3333 alpha:0.5];
     
     popover.delegate = self;
     
