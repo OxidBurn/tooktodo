@@ -154,12 +154,13 @@
                         <barButtonItem key="rightBarButtonItem" image="sort1" id="vaY-LS-p3C">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="wNr-bw-FoQ" kind="popover" identifier="id" popoverAnchorBarButtonItem="vaY-LS-p3C" id="ICe-Qd-StK">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <action selector="onShowSort:" destination="zhe-fe-X2v" id="WP7-Mq-ye1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sortBtn" destination="vaY-LS-p3C" id="36y-iF-PR5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LAq-96-09c" sceneMemberID="firstResponder"/>
             </objects>
@@ -178,10 +179,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="200" height="200"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Svv-tp-S7A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="344" y="-1190"/>
+            <point key="canvasLocation" x="494" y="-1232"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NP8-pR-xd6">

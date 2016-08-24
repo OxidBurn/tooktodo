@@ -15,7 +15,9 @@
 //properties
 @property (strong, nonatomic) SortModel* sortModel;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortBtn;
 
+- (IBAction)onShowSort:(UIBarButtonItem *)sender;
 @end
 
 @implementation AllProjectsViewController 
@@ -65,15 +67,6 @@
 {
     [super prepareForSegue: segue
                     sender: sender];
-    
-    UIViewController* dvc = segue.destinationViewController;
-    
-    dvc.navigationController.popoverPresentationController.sourceRect = sender.customView.bounds;
-    
-    dvc.preferredContentSize = [self.sortModel returnPopoverSizeForDataType: AllProgects];
-    
-    if ( dvc.navigationController.popoverPresentationController )
-        dvc.navigationController.popoverPresentationController.delegate = self;
 }
 
 
@@ -91,7 +84,7 @@
     UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                          size: 14.0f];
     
-    UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    UILabel *label        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 480, 18)];
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines   = 1;
     label.font            = customFont;
@@ -117,4 +110,28 @@
     return UIModalPresentationNone;
 }
 
+- (IBAction)onShowSort:(UIBarButtonItem *)sender {
+    
+    UIViewController* controller = [UIViewController new];
+    
+    controller.view.backgroundColor = [UIColor whiteColor];
+    
+    controller.modalPresentationStyle = UIModalPresentationPopover;
+    controller.modalInPopover         = YES;
+    
+    UIPopoverPresentationController* popover = controller.popoverPresentationController;
+    
+    popover.barButtonItem = self.sortBtn;
+    
+    popover.sourceView = self.view;
+    popover.permittedArrowDirections = UIPopoverArrowDirectionUp;
+    controller.preferredContentSize = [self.sortModel returnPopoverSizeForDataType: AllProgects];
+    
+    popover.delegate = self;
+    
+    [self presentViewController: controller
+                       animated: YES
+                     completion: nil];
+    
+}
 @end
