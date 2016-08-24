@@ -7,12 +7,18 @@
 //
 
 #import "AllProjectsViewController.h"
+#import "PopoverViewController.h"
+#import "SortModel.h"
 
-@interface AllProjectsViewController ()
+@interface AllProjectsViewController () <UIPopoverPresentationControllerDelegate>
+
+//properties
+@property (strong, nonatomic) SortModel* sortModel;
+
 
 @end
 
-@implementation AllProjectsViewController
+@implementation AllProjectsViewController 
 
 #pragma mark - Life cycle -
 
@@ -39,13 +45,35 @@
 }
 
 
+#pragma mark - Properties -
+
+- (SortModel*) sortModel
+{
+    if ( _sortModel == nil )
+    {
+        _sortModel = [SortModel new];
+    }
+    return _sortModel;
+}
+
+
 #pragma mark - Navigation -
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void) prepareForSegue: (UIStoryboardSegue*) segue
-                  sender: (id)                 sender
+                  sender: (UIBarButtonItem*)   sender
 {
+    [super prepareForSegue: segue
+                    sender: sender];
     
+    UIViewController* dvc = segue.destinationViewController;
+    
+    dvc.navigationController.popoverPresentationController.sourceRect = sender.customView.bounds;
+    
+    dvc.preferredContentSize = [self.sortModel returnPopoverSizeForDataType: AllProgects];
+    
+    if ( dvc.navigationController.popoverPresentationController )
+        dvc.navigationController.popoverPresentationController.delegate = self;
 }
 
 
@@ -78,6 +106,15 @@
     self.navigationItem.titleView = label;
     
     return label;
+}
+
+
+#pragma mark - UIPopoverPresentationControllerDelegate methods -
+
+
+- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
+{    
+    return UIModalPresentationNone;
 }
 
 @end
