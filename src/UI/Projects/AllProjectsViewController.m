@@ -8,16 +8,20 @@
 
 #import "AllProjectsViewController.h"
 #import "PopoverViewController.h"
-#import "SortModel.h"
+#import "PopoverModel.h"
 
-@interface AllProjectsViewController () <UIPopoverPresentationControllerDelegate>
+@interface AllProjectsViewController () <UIPopoverPresentationControllerDelegate, PopoverModelDelegate>
 
 //properties
-@property (strong, nonatomic) SortModel* sortModel;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortBtn;
+//outlets
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* sortBtn;
 
-- (IBAction)onShowSort:(UIBarButtonItem *)sender;
+@property (strong, nonatomic) PopoverViewController* popController;
+
+//actions
+- (IBAction) onShowSort: (UIBarButtonItem*) sender;
+
 @end
 
 @implementation AllProjectsViewController 
@@ -45,19 +49,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-#pragma mark - Properties -
-
-- (SortModel*) sortModel
-{
-    if ( _sortModel == nil )
-    {
-        _sortModel = [SortModel new];
-    }
-    return _sortModel;
-}
-
 
 #pragma mark - Navigation -
 
@@ -110,24 +101,36 @@
     return UIModalPresentationNone;
 }
 
-- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+- (void) popoverPresentationControllerDidDismissPopover: (UIPopoverPresentationController*) popoverPresentationController
 {
     
 }
 
-- (IBAction)onShowSort:(UIBarButtonItem *)sender {
+- (IBAction) onShowSort: (UIBarButtonItem*) sender
+{
+    PopoverModel* model = [[PopoverModel alloc] initWithType: 0
+                                                withDelegate: self];
     
     PopoverViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier: @"SortProjectsControllerID"];
     
     controller.modalPresentationStyle = UIModalPresentationPopover;
-    controller.preferredContentSize   = [self.sortModel returnPopoverSizeForDataType: AllProgects];
+    controller.preferredContentSize   = [model getPopoverSizeForType: 0];
+    
+    [controller setPopoverModel: model];
     
     UIPopoverPresentationController* popover = controller.popoverPresentationController;
+        
+    CGRect barButtonFrame = self.sortBtn.customView.bounds;
     
-    popover.barButtonItem            = self.sortBtn;
+    CGRect newFrame = CGRectMake( CGRectGetWidth(self.view.frame) - 35,
+                                 barButtonFrame.origin.y + 62,
+                                 barButtonFrame.size.width,
+                                 barButtonFrame.size.height);
+    
+    popover.sourceRect = newFrame;
+    
     popover.sourceView               = self.view;
     popover.permittedArrowDirections = UIPopoverArrowDirectionUp;
-    popover.backgroundColor = [UIColor colorWithRed:0.3333 green:0.3333 blue:0.3333 alpha:0.5];
     
     popover.delegate = self;
     
@@ -135,5 +138,18 @@
                        animated: YES
                      completion: nil];
     
+    self.popController = controller;
 }
+
+- (void) didSelectItemAtIndex: (NSUInteger) index
+{
+    
+}
+
+- (void) dismissPopover
+{
+    [self.popController dismissViewControllerAnimated: YES
+                                           completion: nil];
+}
+
 @end

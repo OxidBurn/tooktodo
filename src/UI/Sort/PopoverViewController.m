@@ -7,26 +7,31 @@
 //
 
 #import "PopoverViewController.h"
-#import "SortModel.h"
 
-@interface PopoverViewController ()
+@interface PopoverViewController () <PopoverModelDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
+@property (weak, nonatomic) IBOutlet UITableView* popoverTableView;
 
-@property (strong, nonatomic) SortModel* sortModel;
+@property (strong, nonatomic) PopoverModel* model;
 
 @end
 
 @implementation PopoverViewController
+
+- (void)loadView
+{
+    [super loadView];
+    
+//    self.preferredContentSize = [self.model getContentSize]
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.popoverTableView.dataSource = self.sortModel;
-    self.popoverTableView.delegate   = self.sortModel;
-    
+    self.popoverTableView.dataSource = self.model;
+    self.popoverTableView.delegate   = self.model;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,5 +39,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Properties -
+
+- (PopoverModel *)model
+{
+    if ( _model == nil )
+    {
+        _model = [PopoverModel new];
+        
+        _model.delegate = self;
+    }
+    return _model;
+}
+
+
+#pragma mark - Public methods -
+
+- (void) setPopoverModel: (PopoverModel*) model
+{
+    self.model = model;
+}
+
+
+#pragma mark - SortModelDelegate methods -
+
+- (void) dismissPopover
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
 
 @end

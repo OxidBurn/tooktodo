@@ -70,8 +70,9 @@
 		F728512C1D6401D80086873D /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = F728512A1D6401D80086873D /* TabBarSegue.m */; };
 		F72851311D640FA50086873D /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72851301D640FA50086873D /* FeedsViewController.m */; };
 		F79387491D6C9ACF00C47F81 /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79387481D6C9ACF00C47F81 /* PopoverViewController.m */; };
-		F79CF89A1D6CA48900769BE2 /* SortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F79CF8991D6CA48900769BE2 /* SortModel.m */; };
-		F79CF89C1D6CA6AC00769BE2 /* SortDataContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = F79CF89B1D6CA6AC00769BE2 /* SortDataContent.plist */; };
+		F7B070EB1D6E12EA00008CF3 /* PopoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B070EA1D6E12EA00008CF3 /* PopoverModel.m */; };
+		F7B070EF1D6E137A00008CF3 /* SortPopoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B070EE1D6E137A00008CF3 /* SortPopoverCell.m */; };
+		F7B070F21D6E13F700008CF3 /* SortDataContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7B070F11D6E13F700008CF3 /* SortDataContent.plist */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -198,12 +199,14 @@
 		F78AA0921D63EC7500339007 /* ProjectsControllersDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsControllersDelegate.h; sourceTree = "<group>"; };
 		F79387481D6C9ACF00C47F81 /* PopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoverViewController.m; path = Sort/PopoverViewController.m; sourceTree = "<group>"; };
 		F79387521D6CA34F00C47F81 /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopoverViewController.h; path = Sort/PopoverViewController.h; sourceTree = "<group>"; };
-		F79CF8981D6CA48900769BE2 /* SortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortModel.h; path = Sort/SortModel.h; sourceTree = "<group>"; };
-		F79CF8991D6CA48900769BE2 /* SortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortModel.m; path = Sort/SortModel.m; sourceTree = "<group>"; };
-		F79CF89B1D6CA6AC00769BE2 /* SortDataContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SortDataContent.plist; path = Sort/SortDataContent.plist; sourceTree = "<group>"; };
 		F7A08E971D636B0D0044F85B /* UserNotificationInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationInfoController.h; sourceTree = "<group>"; };
 		F7A08E9A1D636B1F0044F85B /* UserNotificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationModel.h; sourceTree = "<group>"; };
 		F7A08EA11D636E1D0044F85B /* UserNotificationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationCell.h; sourceTree = "<group>"; };
+		F7B070EA1D6E12EA00008CF3 /* PopoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopoverModel.m; path = Popover/PopoverModel.m; sourceTree = "<group>"; };
+		F7B070ED1D6E133E00008CF3 /* PopoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverModel.h; sourceTree = "<group>"; };
+		F7B070EE1D6E137A00008CF3 /* SortPopoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortPopoverCell.m; path = Sort/SortPopoverCell.m; sourceTree = "<group>"; };
+		F7B070F01D6E13A800008CF3 /* SortPopoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SortPopoverCell.h; path = Sort/SortPopoverCell.h; sourceTree = "<group>"; };
+		F7B070F11D6E13F700008CF3 /* SortDataContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SortDataContent.plist; path = Popover/SortDataContent.plist; sourceTree = "<group>"; };
 		F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeTour.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -574,6 +577,7 @@
 		59B0BE9F1D6131A50016AE13 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F7E732401D6DFB8400D8694D /* Popover */,
 				59B0BEAD1D6135630016AE13 /* AvatarGenerator.m */,
 				59B0BEA01D6131A50016AE13 /* AvatarImageView.m */,
 			);
@@ -583,6 +587,7 @@
 		59B0BEA21D6131B00016AE13 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F7B070EC1D6E133E00008CF3 /* Popover */,
 				59B0BEAF1D6135700016AE13 /* AvatarGenerator.h */,
 				59B0BEA31D6131B00016AE13 /* AvatarImageView.h */,
 			);
@@ -816,9 +821,7 @@
 			isa = PBXGroup;
 			children = (
 				F79387481D6C9ACF00C47F81 /* PopoverViewController.m */,
-				F79CF8981D6CA48900769BE2 /* SortModel.h */,
-				F79CF8991D6CA48900769BE2 /* SortModel.m */,
-				F79CF89B1D6CA6AC00769BE2 /* SortDataContent.plist */,
+				F7B070EE1D6E137A00008CF3 /* SortPopoverCell.m */,
 			);
 			name = Sort;
 			sourceTree = "<group>";
@@ -827,8 +830,26 @@
 			isa = PBXGroup;
 			children = (
 				F79387521D6CA34F00C47F81 /* PopoverViewController.h */,
+				F7B070F01D6E13A800008CF3 /* SortPopoverCell.h */,
 			);
 			name = Sort;
+			sourceTree = "<group>";
+		};
+		F7B070EC1D6E133E00008CF3 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				F7B070ED1D6E133E00008CF3 /* PopoverModel.h */,
+			);
+			path = Popover;
+			sourceTree = "<group>";
+		};
+		F7E732401D6DFB8400D8694D /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				F7B070EA1D6E12EA00008CF3 /* PopoverModel.m */,
+				F7B070F11D6E13F700008CF3 /* SortDataContent.plist */,
+			);
+			name = Popover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -897,7 +918,7 @@
 				F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */,
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
 				591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */,
-				F79CF89C1D6CA6AC00769BE2 /* SortDataContent.plist in Resources */,
+				F7B070F21D6E13F700008CF3 /* SortDataContent.plist in Resources */,
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
 				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
 				5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */,
@@ -979,6 +1000,8 @@
 				593E4C211D64923E00F41450 /* UserInfoViewModel.m in Sources */,
 				59A7F2ED1D5DEACC005CF274 /* WelcomeTourModel.m in Sources */,
 				593E4C1A1D64923100F41450 /* UserNotificationInfoController.m in Sources */,
+				F7B070EF1D6E137A00008CF3 /* SortPopoverCell.m in Sources */,
+				F7B070EB1D6E12EA00008CF3 /* PopoverModel.m in Sources */,
 				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
@@ -1025,7 +1048,6 @@
 				F79387491D6C9ACF00C47F81 /* PopoverViewController.m in Sources */,
 				5913441A1D5F04B60027889F /* DataManager+UserInfo.m in Sources */,
 				F72851311D640FA50086873D /* FeedsViewController.m in Sources */,
-				F79CF89A1D6CA48900769BE2 /* SortModel.m in Sources */,
 				59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */,
 				59A7F2E51D5DEACC005CF274 /* LoginModel.m in Sources */,
 				59A7F2EA1D5DEACC005CF274 /* RecoverySuccessViewController.m in Sources */,

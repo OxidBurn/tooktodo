@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "PopoverModel.h"
+
 @interface PopoverViewController : UIViewController
+
+- (void) setPopoverModel: (PopoverModel*) model;
 
 @end
