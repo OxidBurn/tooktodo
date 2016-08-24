@@ -10,6 +10,13 @@
 
 @interface SystemInfoViewController ()
 
+// properties
+
+@property (weak, nonatomic) IBOutlet UITableView* systemInfoTableView;
+
+
+// methods
+
 @end
 
 @implementation SystemInfoViewController

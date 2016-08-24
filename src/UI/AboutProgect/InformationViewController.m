@@ -10,6 +10,13 @@
 
 @interface InformationViewController ()
 
+// properties
+
+@property (weak, nonatomic) IBOutlet UITableView* informationTableView;
+
+
+// methods
+
 @end
 
 @implementation InformationViewController

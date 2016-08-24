@@ -10,6 +10,14 @@
 
 @interface AboutProjectViewController ()
 
+// properties
+
+
+// methods
+
+- (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender;
+
+
 @end
 
 @implementation AboutProjectViewController
@@ -27,4 +35,6 @@
 }
 
 
+- (IBAction)sender:(UISegmentedControl *)sender {
+}
 @end

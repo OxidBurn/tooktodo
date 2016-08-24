@@ -10,6 +10,15 @@
 
 @interface RoleInfoViewController ()
 
+//properties
+
+@property (weak, nonatomic) IBOutlet UITableView* roleInfoTableView;
+
+
+// methods
+
+
+
 @end
 
 @implementation RoleInfoViewController
