@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedsViewController : UIViewController
+// Classes
+#import "BaseMainViewController.h"
+
+@interface FeedsViewController : BaseMainViewController
 
 @end

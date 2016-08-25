@@ -22,21 +22,11 @@
     
     PopoverViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier: @"SortProjectsControllerID"];
     
-    controller.modalPresentationStyle = UIModalPresentationPopover;
-    
     [controller setPopoverModel: model];
     
-    UIPopoverPresentationController* popover = controller.popoverPresentationController;
-    
-    popover.sourceRect               = frame;
-    popover.sourceView               = self.view;
-    popover.permittedArrowDirections = UIPopoverArrowDirectionUp;
-    
-    popover.delegate = self;
-    
-    [self presentViewController: controller
-                       animated: YES
-                     completion: nil];
+    [controller setupControllerWithDelegate: self
+                                  withFrame: frame
+                              withDirection: UIPopoverArrowDirectionUp];
 }
 
 #pragma mark - UIPopoverPresentationControllerDelegate methods -

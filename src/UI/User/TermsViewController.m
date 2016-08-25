@@ -16,12 +16,18 @@
 
 @implementation TermsViewController
 
-- (void)viewDidLoad {
+#pragma mark - Life cycle -
+
+- (void) viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+#pragma mark - Memory managment -
+
+- (void) didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

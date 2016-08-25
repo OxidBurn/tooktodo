@@ -71,8 +71,6 @@
 
 - (IBAction) onShowSortingMenu: (UIBarButtonItem*) sender
 {
-//    [self showpo]
-    
     [self showPopoverWithDataSource: self.viewModel
                        withDelegate: self.viewModel
                     withSourceFrame: [self getFrameForSortingPopover]];
@@ -85,17 +83,16 @@
     UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                          size: 14.0f];
     
-    UILabel *label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    UILabel* label        = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 480, 18)];
+    
     label.backgroundColor = [UIColor clearColor];
     label.numberOfLines   = 1;
     label.font            = customFont;
     label.textAlignment   = NSTextAlignmentCenter;
     label.textColor       = [UIColor whiteColor];
-    label.text = @"ВСЕ ПРОЕКТЫ";
+    label.text            = @"ВСЕ ПРОЕКТЫ";
     
     [label sizeToFit];
-    
-    
     
     self.navigationItem.titleView = label;
     

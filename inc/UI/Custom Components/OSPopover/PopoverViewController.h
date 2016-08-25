@@ -15,4 +15,8 @@
 
 - (void) setPopoverModel: (PopoverModel*) model;
 
+- (void) setupControllerWithDelegate: (id)                      delegate
+                           withFrame: (CGRect)                  frame
+                       withDirection: (UIPopoverArrowDirection) arrowDirection;
+
 @end

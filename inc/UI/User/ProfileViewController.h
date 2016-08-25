@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseMainViewController.h"
 
-@interface ProfileViewController : UIViewController
+@interface ProfileViewController : BaseMainViewController
 
 // properties
 @property (weak, nonatomic) IBOutlet UIView* containerView;
