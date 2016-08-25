@@ -69,6 +69,9 @@
 		56E1B9A21D6F0FC2003E46DA /* SystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B99B1D6F0FC2003E46DA /* SystemInfoViewController.m */; };
 		56E1B9A31D6F0FC2003E46DA /* AddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B99D1D6F0FC2003E46DA /* AddContactViewController.m */; };
 		56E1B9A41D6F0FC2003E46DA /* TeamInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B99E1D6F0FC2003E46DA /* TeamInfoViewController.m */; };
+		56E1B9B11D6F2FF2003E46DA /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9B01D6F2FF2003E46DA /* TasksViewController.m */; };
+		56E1B9B31D6F2FF7003E46DA /* DocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9B21D6F2FF7003E46DA /* DocumentsViewController.m */; };
+		56E1B9B61D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9B51D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -232,6 +235,12 @@
 		56E1B99B1D6F0FC2003E46DA /* SystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfoViewController.m; sourceTree = "<group>"; };
 		56E1B99D1D6F0FC2003E46DA /* AddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactViewController.m; sourceTree = "<group>"; };
 		56E1B99E1D6F0FC2003E46DA /* TeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewController.m; sourceTree = "<group>"; };
+		56E1B9A91D6F2FB0003E46DA /* TasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
+		56E1B9AC1D6F2FBF003E46DA /* DocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentsViewController.h; sourceTree = "<group>"; };
+		56E1B9B01D6F2FF2003E46DA /* TasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
+		56E1B9B21D6F2FF7003E46DA /* DocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentsViewController.m; sourceTree = "<group>"; };
+		56E1B9B51D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseMainViewController+NavigationTitle.m"; sourceTree = "<group>"; };
+		56E1B9B71D6F31A1003E46DA /* BaseMainViewController+NavigationTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseMainViewController+NavigationTitle.h"; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -619,6 +628,38 @@
 			path = Team;
 			sourceTree = "<group>";
 		};
+		56E1B9A51D6F2F93003E46DA /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B9B21D6F2FF7003E46DA /* DocumentsViewController.m */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		56E1B9A61D6F2F93003E46DA /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B9B01D6F2FF2003E46DA /* TasksViewController.m */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		56E1B9A71D6F2F9F003E46DA /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B9AC1D6F2FBF003E46DA /* DocumentsViewController.h */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
+		56E1B9A81D6F2F9F003E46DA /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B9A91D6F2FB0003E46DA /* TasksViewController.h */,
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
 		590C8F381D5B35220053A735 /* Constance */ = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +734,7 @@
 				591344561D60ABA40027889F /* BaseMainViewController.m */,
 				56E1B9841D6E73C4003E46DA /* BaseMainViewController+Popover.m */,
 				5913445B1D60ABC60027889F /* BaseNavigationBar.m */,
+				56E1B9B51D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -700,6 +742,7 @@
 		591344581D60ABAB0027889F /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				56E1B9B71D6F31A1003E46DA /* BaseMainViewController+NavigationTitle.h */,
 				56E1B98A1D6F04F8003E46DA /* BaseMainViewController+Popover.h */,
 				56E1B98B1D6F04F8003E46DA /* BaseNavigationBar.h */,
 				591344591D60ABAB0027889F /* BaseMainViewController.h */,
@@ -743,6 +786,8 @@
 		59A7F2D61D5DEACC005CF274 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				56E1B9A51D6F2F93003E46DA /* Documents */,
+				56E1B9A61D6F2F93003E46DA /* Tasks */,
 				56E1B9971D6F0FC2003E46DA /* AboutProject */,
 				56E1B99C1D6F0FC2003E46DA /* Team */,
 				56A19E4E1D6AB2AE004AC3D3 /* Feeds */,
@@ -821,6 +866,8 @@
 		59A7F2F11D5DEADB005CF274 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				56E1B9A71D6F2F9F003E46DA /* Documents */,
+				56E1B9A81D6F2F9F003E46DA /* Tasks */,
 				56E1B98F1D6F0FBB003E46DA /* AboutProject */,
 				56E1B9941D6F0FBB003E46DA /* Team */,
 				56A19E931D6AB2FB004AC3D3 /* Feeds */,
@@ -1258,6 +1305,7 @@
 				56A19E7F1D6AB2CC004AC3D3 /* ProjectRegion+CoreDataProperties.m in Sources */,
 				56A19E691D6AB2AE004AC3D3 /* ProjectInfoCellModel.m in Sources */,
 				56A19E7E1D6AB2CC004AC3D3 /* ProjectInfoData.m in Sources */,
+				56E1B9B61D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m in Sources */,
 				56A19E801D6AB2CC004AC3D3 /* ProjectRegion.m in Sources */,
 				56A19ED81D6AB317004AC3D3 /* TermsViewController.m in Sources */,
 				56E1B9A41D6F0FC2003E46DA /* TeamInfoViewController.m in Sources */,
@@ -1295,12 +1343,14 @@
 				56A19EF41D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m in Sources */,
 				56A19ED01D6AB317004AC3D3 /* UserInfoModel.m in Sources */,
 				59A7F2E91D5DEACC005CF274 /* RecoveryModel.m in Sources */,
+				56E1B9B11D6F2FF2003E46DA /* TasksViewController.m in Sources */,
 				59A7F2EC1D5DEACC005CF274 /* RecoveryViewModel.m in Sources */,
 				56A19EF31D6B178F004AC3D3 /* OfflineSettings.m in Sources */,
 				56A19EE21D6AB620004AC3D3 /* OfflineSyncModel.m in Sources */,
 				59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */,
 				56A19ED71D6AB317004AC3D3 /* ProfileViewController.m in Sources */,
 				59A7F2EE1D5DEACC005CF274 /* WelcomeTourViewController.m in Sources */,
+				56E1B9B31D6F2FF7003E46DA /* DocumentsViewController.m in Sources */,
 				56A19E671D6AB2AE004AC3D3 /* AllProjectsViewModel.m in Sources */,
 				56E1B9851D6E73C4003E46DA /* BaseMainViewController+Popover.m in Sources */,
 				56A19E831D6AB2CC004AC3D3 /* UserInfo.m in Sources */,
