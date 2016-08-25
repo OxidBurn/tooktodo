@@ -12,8 +12,6 @@
 
 // properties
 
-@property (assign, nonatomic) AllProjectsSortingType projectsSortingType;
-
 // methods
 
 
@@ -84,17 +82,24 @@ static bool isFirstAccess = YES;
     return self;
 }
 
+#pragma mark - Coding protocol methods -
+
+
+
 
 #pragma mark - Public mehtods -
 
 - (void) saveSortingProjectsType: (AllProjectsSortingType) type
 {
-    self.projectsSortingType = type;
+    [UserDefaults setInteger: type
+                      forKey: @"AllProjectsSortingType"];
+    
+    [UserDefaults synchronize];
 }
 
 - (AllProjectsSortingType) getProjectsSortingType
 {
-    return self.projectsSortingType;
+    return [UserDefaults integerForKey: @"AllProjectsSortingType"];
 }
 
 @end
