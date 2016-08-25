@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) AllProjectsViewModel* viewModel;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* sortBtn;
 @property (weak, nonatomic) IBOutlet UITableView *projectsTable;
 
 // methods
@@ -48,16 +49,6 @@
 }
 
 
-#pragma mark - Navigation -
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void) prepareForSegue: (UIStoryboardSegue*) segue
-                  sender: (id)                 sender
-{
-    
-}
-
-
 #pragma mark - Properties -
 
 - (AllProjectsViewModel*) viewModel
@@ -76,6 +67,13 @@
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
+}
+
+- (IBAction) onShowSortingMenu: (UIBarButtonItem*) sender
+{
+    [self showPopoverWithType: 0
+                 withDelegate: self.viewModel
+              withSourceFrame: [self getFrameForSortingPopover]];
 }
 
 #pragma mark - Internal Method -
@@ -114,11 +112,31 @@
 
 - (void) handleModelActions
 {
+    __weak typeof(self) blockSelf = self;
+    
     self.viewModel.didSelectedProject = ^(NSNumber* projectID){
         
         NSLog(@"Project id: %lu", (unsigned long)projectID.integerValue);
         
     };
+    
+    self.viewModel.reloadTable = ^(){
+        
+        [blockSelf.projectsTable reloadData];
+        
+    };
+}
+
+- (CGRect) getFrameForSortingPopover
+{
+    CGRect barButtonFrame = self.sortBtn.customView.bounds;
+    
+    CGRect newFrame = CGRectMake( CGRectGetWidth(self.view.frame) - 35,
+                                 barButtonFrame.origin.y + 62,
+                                 barButtonFrame.size.width,
+                                 barButtonFrame.size.height);
+    
+    return newFrame;
 }
 
 @end

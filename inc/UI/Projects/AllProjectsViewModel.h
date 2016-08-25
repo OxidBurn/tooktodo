@@ -10,17 +10,18 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "PopoverModel.h"
 
-@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate>
 
 // properties
 
 @property (copy, nonatomic) void(^didSelectedProject)(NSNumber* projectID);
 
+@property (nonatomic, copy) void(^reloadTable)();
+
 // methods
 
 - (void) updateProjectsContent;
-
-- (void) applyProjectsEnumeration: (AllProjectsSortingType) type;
 
 @end

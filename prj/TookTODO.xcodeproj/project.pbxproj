@@ -55,6 +55,11 @@
 		56A19EF41D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EF21D6B178F004AC3D3 /* OfflineSettings+CoreDataProperties.m */; };
 		56E1B9271D6D0E1D003E46DA /* ProjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9251D6D0E1D003E46DA /* ProjectInfo.m */; };
 		56E1B9281D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9261D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m */; };
+		56E1B97A1D6E6820003E46DA /* PopoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9761D6E6820003E46DA /* PopoverCell.m */; };
+		56E1B97B1D6E6820003E46DA /* PopoverContentData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9771D6E6820003E46DA /* PopoverContentData.plist */; };
+		56E1B97C1D6E6820003E46DA /* PopoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9781D6E6820003E46DA /* PopoverModel.m */; };
+		56E1B97D1D6E6820003E46DA /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9791D6E6820003E46DA /* PopoverViewController.m */; };
+		56E1B9821D6E6898003E46DA /* ConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9211D6D0A28003E46DA /* ConfigurationManager.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -194,6 +199,13 @@
 		56E1B9241D6D0DA8003E46DA /* ProjectInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		56E1B9251D6D0E1D003E46DA /* ProjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInfo.m; sourceTree = "<group>"; };
 		56E1B9261D6D0E1D003E46DA /* ProjectInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		56E1B9761D6E6820003E46DA /* PopoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverCell.m; sourceTree = "<group>"; };
+		56E1B9771D6E6820003E46DA /* PopoverContentData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PopoverContentData.plist; sourceTree = "<group>"; };
+		56E1B9781D6E6820003E46DA /* PopoverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverModel.m; sourceTree = "<group>"; };
+		56E1B9791D6E6820003E46DA /* PopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewController.m; sourceTree = "<group>"; };
+		56E1B97F1D6E682A003E46DA /* PopoverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverCell.h; sourceTree = "<group>"; };
+		56E1B9801D6E682A003E46DA /* PopoverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverModel.h; sourceTree = "<group>"; };
+		56E1B9811D6E682A003E46DA /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -520,6 +532,27 @@
 				56A19ECC1D6AB317004AC3D3 /* UpdateUserInfoModel.m */,
 			);
 			path = Update;
+			sourceTree = "<group>";
+		};
+		56E1B9751D6E6820003E46DA /* OSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B9761D6E6820003E46DA /* PopoverCell.m */,
+				56E1B9771D6E6820003E46DA /* PopoverContentData.plist */,
+				56E1B9781D6E6820003E46DA /* PopoverModel.m */,
+				56E1B9791D6E6820003E46DA /* PopoverViewController.m */,
+			);
+			path = OSPopover;
+			sourceTree = "<group>";
+		};
+		56E1B97E1D6E682A003E46DA /* OSPopover */ = {
+			isa = PBXGroup;
+			children = (
+				56E1B97F1D6E682A003E46DA /* PopoverCell.h */,
+				56E1B9801D6E682A003E46DA /* PopoverModel.h */,
+				56E1B9811D6E682A003E46DA /* PopoverViewController.h */,
+			);
+			path = OSPopover;
 			sourceTree = "<group>";
 		};
 		590C8F381D5B35220053A735 /* Constance */ = {
@@ -948,6 +981,7 @@
 		F72851231D63F6570086873D /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				56E1B9751D6E6820003E46DA /* OSPopover */,
 				F72851241D63F6570086873D /* OSTabBar */,
 			);
 			path = "Custom Components";
@@ -965,6 +999,7 @@
 		F72851251D63F6910086873D /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				56E1B97E1D6E682A003E46DA /* OSPopover */,
 				F72851261D63F6910086873D /* OSTabBar */,
 			);
 			path = "Custom Components";
@@ -1048,6 +1083,7 @@
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
 				59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */,
 				56A19EEE1D6AF437004AC3D3 /* OfflineSyncSettings.plist in Resources */,
+				56E1B97B1D6E6820003E46DA /* PopoverContentData.plist in Resources */,
 				5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */,
 				59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */,
 				59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */,
@@ -1122,6 +1158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56E1B9821D6E6898003E46DA /* ConfigurationManager.m in Sources */,
 				59A7F2E81D5DEACC005CF274 /* LoginViewModel.m in Sources */,
 				56A19EDC1D6AB317004AC3D3 /* UpdateUserInfoModel.m in Sources */,
 				56A19EEB1D6AB8B5004AC3D3 /* OfflineTableViewCell.m in Sources */,
@@ -1133,6 +1170,7 @@
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
 				56A19E811D6AB2CC004AC3D3 /* ProjectRegionData.m in Sources */,
 				56A19E7A1D6AB2CC004AC3D3 /* ProjectCountry.m in Sources */,
+				56E1B97A1D6E6820003E46DA /* PopoverCell.m in Sources */,
 				56A19ED91D6AB317004AC3D3 /* UpdatedUserInfo.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
 				56A19ED41D6AB317004AC3D3 /* UserNotificationCell.m in Sources */,
@@ -1147,6 +1185,7 @@
 				59B0BEA11D6131A50016AE13 /* AvatarImageView.m in Sources */,
 				56A19E661D6AB2AE004AC3D3 /* AllProjectsViewController.m in Sources */,
 				56A19ED31D6AB317004AC3D3 /* UserInfoViewModel.m in Sources */,
+				56E1B97C1D6E6820003E46DA /* PopoverModel.m in Sources */,
 				59A7F2EB1D5DEACC005CF274 /* RecoveryViewController.m in Sources */,
 				591344571D60ABA40027889F /* BaseMainViewController.m in Sources */,
 				56A19E611D6AB2AE004AC3D3 /* MainMenuViewModel.m in Sources */,
@@ -1156,6 +1195,7 @@
 				59B0BEAC1D6132F80016AE13 /* NSString+APUtils.m in Sources */,
 				56A19E681D6AB2AE004AC3D3 /* ProjectInfoCell.m in Sources */,
 				591344191D5F04B60027889F /* DataManager.m in Sources */,
+				56E1B97D1D6E6820003E46DA /* PopoverViewController.m in Sources */,
 				56A19E621D6AB2AE004AC3D3 /* MenuProjectCell.m in Sources */,
 				56A19E631D6AB2AE004AC3D3 /* OfflineSynchronizeViewController.m in Sources */,
 				56A19ED51D6AB317004AC3D3 /* UserNotificationInfoController.m in Sources */,

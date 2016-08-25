@@ -12,7 +12,7 @@
 
 // properties
 
-@property (assign, strong) AllProjectsSortingType projectsSortingType;
+@property (assign, nonatomic) AllProjectsSortingType projectsSortingType;
 
 // methods
 

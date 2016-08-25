@@ -47,7 +47,7 @@
     self.projectsContent = [self.model getProjectsContent];
 }
 
-- (void) applyProjectsEnumeration: (AllProjectsSortingType) type
+- (void) applySortingForProjecstList: (AllProjectsSortingType) type
 {
     self.projectsContent = [self.model applyProjectsSortingType: type
                                                         toArray: self.projectsContent];
@@ -96,6 +96,16 @@
                              animated: YES];
 }
 
+#pragma mark - Sorting popover delegate -
 
+- (void) didSelectItemAtIndex: (NSUInteger) index
+{
+    // Apply sorting type to the projects table content
+    [self applySortingForProjecstList: index];
+    
+    // Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
+}
 
 @end
