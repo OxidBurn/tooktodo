@@ -108,4 +108,17 @@
         self.reloadTable();
 }
 
+
+#pragma mark - Sorting popver datasource -
+
+- (NSUInteger) selectedItem
+{
+    return [self.model getProjectsSortedType];
+}
+
+- (NSArray*) getPopoverContent
+{
+    return [self.model getProjectsSortedPopoverContent];
+}
+
 @end

@@ -12,7 +12,7 @@
 #import "ProjectsEnumerations.h"
 #import "PopoverModel.h"
 
-@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate>
+@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate, PopoverModelDataSource>
 
 // properties
 

@@ -14,11 +14,15 @@ static NSString* PopoverCellID = @"SortPopoverCellID";
 @interface PopoverModel ()
 
 //properties
+@property (weak, nonatomic) id <PopoverModelDataSource> dataSource;
+
 @property (weak, nonatomic) id <PopoverModelDelegate> delegate;
 
 @property (nonatomic, strong) NSArray* sortDataContent;
 
 @property (strong, nonatomic) NSArray* currentPopoverContent;
+
+@property (assign, nonatomic) NSUInteger selectedPopoverItem;
 
 @end
 
@@ -27,32 +31,20 @@ static NSString* PopoverCellID = @"SortPopoverCellID";
 
 #pragma mark - Initialization -
 
-- (instancetype) initWithType: (NSUInteger)                popoverType
-                 withDelegate: (id <PopoverModelDelegate>) delegate
+- (instancetype) initWithDataSource: (id <PopoverModelDataSource>) dataSource
+                       withDelegate: (id <PopoverModelDelegate>)   delegate
 {
     if ( self = [super init] )
     {
-        self.currentPopoverContent = self.sortDataContent[popoverType];
+        self.dataSource = dataSource;
+        self.delegate   = delegate;
         
-        self.delegate = delegate;
+        self.selectedPopoverItem   = [self.dataSource selectedItem];
+        self.currentPopoverContent = [self.dataSource getPopoverContent];
     }
     
     return self;
 }
-
-
-#pragma mark - Properties -
-
-- (NSArray*) sortDataContent
-{
-    if ( _sortDataContent == nil )
-    {
-        _sortDataContent = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"PopoverContentData" ofType: @"plist"]];
-    }
-    
-    return _sortDataContent;
-}
-
 
 #pragma mark - UITableViewDataSource methods -
 
@@ -80,6 +72,14 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 
 
 #pragma mark - UITableViewDelegateMethods -
+
+- (void) tableView: (UITableView*)     tableView
+   willDisplayCell: (UITableViewCell*) cell
+ forRowAtIndexPath: (NSIndexPath*)     indexPath
+{
+    if ( self.selectedPopoverItem == indexPath.row )
+        cell.selected = YES;
+}
 
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath

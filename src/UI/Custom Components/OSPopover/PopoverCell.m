@@ -13,6 +13,8 @@
 // properties
 @property (weak, nonatomic) IBOutlet UILabel* optionRowLabel;
 
+@property (strong, nonatomic) NSString* defaultTitleText;
+
 // methods
 
 
@@ -43,12 +45,12 @@
 
 - (void) fillCellWithOptionString: (NSString*) option
 {
+    self.defaultTitleText = option;
+    
     self.optionRowLabel.layer.borderWidth  = 1;
     self.optionRowLabel.layer.cornerRadius = 6;
 
     self.optionRowLabel.layer.borderColor  = [UIColor colorWithRed: 0.910 green: 0.914 blue: 1.000 alpha: 1.000].CGColor;
-
-    self.optionRowLabel.text = option;
 }
 
 - (void) setHighlighted: (BOOL) highlighted
@@ -66,15 +68,40 @@
     [super setSelected: selected
               animated: animated];
     
+    [self updateTitle: selected];
+    
+    [self updateBorderColor: selected];
+}
+
+- (void) updateTitle: (BOOL) selected
+{
+    if ( selected )
+    {
+        self.optionRowLabel.font = [UIFont fontWithName: @"SFUIText-Medium"
+                                                   size: 14.0f];
+        
+        self.optionRowLabel.text = [self.defaultTitleText stringByAppendingString: @" ↓"];
+    }
+    else
+    {
+        self.optionRowLabel.font = [UIFont fontWithName: @"SFUIText-Regular"
+                                                   size: 14.0f];
+        
+        self.optionRowLabel.text = self.defaultTitleText;
+    }
+}
+
+- (void) updateBorderColor: (BOOL) selected
+{
     if ( selected )
     {
         self.optionRowLabel.layer.borderColor = [UIColor colorWithRed:0.224 green:0.741 blue:0.718 alpha:1.000].CGColor;
     }
     else
         if ( !selected )
-    {
-        self.optionRowLabel.layer.borderColor = [UIColor colorWithRed:0.910 green:0.914 blue:1.000 alpha:1.000].CGColor;
-    }
+        {
+            self.optionRowLabel.layer.borderColor = [UIColor colorWithRed:0.910 green:0.914 blue:1.000 alpha:1.000].CGColor;
+        }
 }
 
 @end

@@ -11,18 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
-#import "PopoverModel.h"
 
 @interface BaseMainViewController : UIViewController <UIViewControllerAnimatedTransitioning, ECSlidingViewControllerDelegate, ECSlidingViewControllerLayout>
-
-// properties
-
-
-// methods
-
-- (void) showPopoverWithType: (NSUInteger)                type
-                withDelegate: (id <PopoverModelDelegate>) delegate
-             withSourceFrame: (CGRect)                    frame;
-
 
 @end

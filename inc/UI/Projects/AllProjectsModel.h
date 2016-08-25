@@ -23,5 +23,9 @@
 - (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
                               toArray: (NSArray*)               array;
 
+- (NSUInteger) getProjectsSortedType;
+
+- (NSArray*) getProjectsSortedPopoverContent;
+
 
 @end

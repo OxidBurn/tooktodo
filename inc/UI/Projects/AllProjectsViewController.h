@@ -7,6 +7,7 @@
 //
 
 #import "BaseMainViewController.h"
+#import "BaseMainViewController+Popover.h"
 
 @interface AllProjectsViewController : BaseMainViewController
 

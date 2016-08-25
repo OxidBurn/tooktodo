@@ -40,6 +40,19 @@
     return [self applyDefaultSorting: array];
 }
 
+- (NSUInteger) getProjectsSortedType
+{
+    return [[ConfigurationManager sharedInstance] getProjectsSortingType];
+}
+
+- (NSArray*) getProjectsSortedPopoverContent
+{
+    return @[@"Последнее посещение",
+             @"Название",
+             @"Адрес",
+             @"Дата создания"];
+}
+
 #pragma mark - Internal methods -
 
 - (NSArray*) applyDefaultSorting: (NSArray*) array

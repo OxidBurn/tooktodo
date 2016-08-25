@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol PopoverModelDataSource;
 @protocol PopoverModelDelegate;
 
 @interface PopoverModel : NSObject <UITableViewDataSource, UITableViewDelegate>
@@ -17,13 +18,23 @@
 @property (nonatomic, copy) void(^didDismiss)();
 
 //methods
-- (instancetype) initWithType: (NSUInteger)                popoverType
-                 withDelegate: (id <PopoverModelDelegate>) delegate;
+- (instancetype) initWithDataSource: (id <PopoverModelDataSource>) dataSource
+                       withDelegate: (id <PopoverModelDelegate>)   delegate;
 
 - (CGSize) getPopoverSize;
 
 @end
 
+
+@protocol PopoverModelDataSource <NSObject>
+
+// methods
+
+- (NSArray*) getPopoverContent;
+
+- (NSUInteger) selectedItem;
+
+@end
 
 @protocol PopoverModelDelegate <NSObject>
 

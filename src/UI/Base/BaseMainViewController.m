@@ -13,7 +13,7 @@
 static CGFloat const MEZoomAnimationScaleFactor = 0.95f;
 static CGFloat const yPadding                   = 20.0f;
 
-@interface BaseMainViewController () <UIPopoverPresentationControllerDelegate>
+@interface BaseMainViewController () 
 
 // properties
 @property (nonatomic, assign) ECSlidingViewControllerOperation operation;
@@ -232,39 +232,6 @@ static CGFloat const yPadding                   = 20.0f;
 }
 
 
-#pragma mark - Popover -
 
-- (void) showPopoverWithType: (NSUInteger)                type
-                withDelegate: (id <PopoverModelDelegate>) delegate
-             withSourceFrame: (CGRect)                    frame
-{
-    PopoverModel* model = [[PopoverModel alloc] initWithType: 0
-                                                withDelegate: delegate];
-    
-    PopoverViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier: @"SortProjectsControllerID"];
-    
-    controller.modalPresentationStyle = UIModalPresentationPopover;
-    
-    [controller setPopoverModel: model];
-    
-    UIPopoverPresentationController* popover = controller.popoverPresentationController;
-    
-    popover.sourceRect               = frame;
-    popover.sourceView               = self.view;
-    popover.permittedArrowDirections = UIPopoverArrowDirectionUp;
-    
-    popover.delegate = self;
-    
-    [self presentViewController: controller
-                       animated: YES
-                     completion: nil];
-}
-
-#pragma mark - UIPopoverPresentationControllerDelegate methods -
-
-- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
-{
-    return UIModalPresentationNone;
-}
 
 @end

@@ -71,9 +71,11 @@
 
 - (IBAction) onShowSortingMenu: (UIBarButtonItem*) sender
 {
-    [self showPopoverWithType: 0
-                 withDelegate: self.viewModel
-              withSourceFrame: [self getFrameForSortingPopover]];
+//    [self showpo]
+    
+    [self showPopoverWithDataSource: self.viewModel
+                       withDelegate: self.viewModel
+                    withSourceFrame: [self getFrameForSortingPopover]];
 }
 
 #pragma mark - Internal Method -
