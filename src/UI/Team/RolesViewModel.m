@@ -76,13 +76,21 @@
     
     self.cell.textLabel.text = role;
     
+    UIFont* unselectedCustomFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 13.0f];
+    
+    UIFont* selectedCustomFont = [UIFont fontWithName: @"SFUIText-Medium"
+                                                   size: 13.0f];
+    
     if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
     {
         self.cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.cell.textLabel.font = selectedCustomFont;
     }
     else
     {
         self.cell.accessoryType = UITableViewCellAccessoryNone;
+        self.cell.textLabel.font = unselectedCustomFont;
     }
     
     return self.cell;
