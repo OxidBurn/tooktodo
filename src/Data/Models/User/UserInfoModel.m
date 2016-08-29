@@ -12,7 +12,7 @@
 #import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 #import "Utils.h"
-#import "LoginService.h"
+#import "UserInfoService.h"
 #import "KeyChainManager.h"
 
 @interface UserInfoModel()
@@ -99,9 +99,7 @@
 
 - (RACSignal*) logoutUser
 {
-    [DataManagerShared deleteCurrentUser: self.currentUserInfo];
-    
-    return [LoginService logout];
+    return [[UserInfoService sharedInstance] logoutUser: self.currentUserInfo];
 }
 
 - (void) saveNewAvatar: (UIImage*) image

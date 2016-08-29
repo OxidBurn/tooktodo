@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
+		563337621D73AB7A00A9321E /* LoginAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72601D73A2D1004F63D3 /* LoginAPIService.m */; };
+		563337631D73AB8000A9321E /* ProjectsAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA69F91D70694E00717CCA /* ProjectsAPIService.m */; };
+		566A72581D739EC1004F63D3 /* ProjectsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72571D739EC1004F63D3 /* ProjectsService.m */; };
+		566A725C1D73A12E004F63D3 /* BaseAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A725B1D73A12E004F63D3 /* BaseAPIService.m */; };
+		566A72641D73A589004F63D3 /* UserInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72631D73A589004F63D3 /* UserInfoService.m */; };
+		566A726A1D73A6B2004F63D3 /* UserAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72691D73A6B2004F63D3 /* UserAPIService.m */; };
 		56A19E5E1D6AB2AE004AC3D3 /* FeedsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E4F1D6AB2AE004AC3D3 /* FeedsViewController.m */; };
 		56A19E5F1D6AB2AE004AC3D3 /* MainMenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E511D6AB2AE004AC3D3 /* MainMenuModel.m */; };
 		56A19E601D6AB2AE004AC3D3 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19E521D6AB2AE004AC3D3 /* MainMenuViewController.m */; };
@@ -95,7 +101,6 @@
 		59A7F2EA1D5DEACC005CF274 /* RecoverySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F2DF1D5DEACC005CF274 /* RecoverySuccessViewController.m */; };
 		59A7F2EB1D5DEACC005CF274 /* RecoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F2E01D5DEACC005CF274 /* RecoveryViewController.m */; };
 		59A7F2EE1D5DEACC005CF274 /* WelcomeTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F2E41D5DEACC005CF274 /* WelcomeTourViewController.m */; };
-		59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7F3001D5DEB3C005CF274 /* LoginService.m */; };
 		59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BE981D6130FC0016AE13 /* AvatarHelper.m */; };
 		59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BE991D6130FC0016AE13 /* Utils.m */; };
 		59B0BEA11D6131A50016AE13 /* AvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59B0BEA01D6131A50016AE13 /* AvatarImageView.m */; };
@@ -114,6 +119,17 @@
 
 /* Begin PBXFileReference section */
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
+		566A72541D739E9D004F63D3 /* ProjectsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsService.h; sourceTree = "<group>"; };
+		566A72571D739EC1004F63D3 /* ProjectsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsService.m; sourceTree = "<group>"; };
+		566A72591D73A072004F63D3 /* ProjectsAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsAPIService.h; sourceTree = "<group>"; };
+		566A725B1D73A12E004F63D3 /* BaseAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseAPIService.m; sourceTree = "<group>"; };
+		566A72601D73A2D1004F63D3 /* LoginAPIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginAPIService.m; sourceTree = "<group>"; };
+		566A72611D73A56E004F63D3 /* UserInfoService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoService.h; sourceTree = "<group>"; };
+		566A72631D73A589004F63D3 /* UserInfoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoService.m; sourceTree = "<group>"; };
+		566A72651D73A5C2004F63D3 /* UserAPIService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAPIService.h; sourceTree = "<group>"; };
+		566A72671D73A5FB004F63D3 /* BaseAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAPIService.h; sourceTree = "<group>"; };
+		566A72681D73A5FB004F63D3 /* LoginAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAPIService.h; sourceTree = "<group>"; };
+		566A72691D73A6B2004F63D3 /* UserAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPIService.m; sourceTree = "<group>"; };
 		56A19E4F1D6AB2AE004AC3D3 /* FeedsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsViewController.m; sourceTree = "<group>"; };
 		56A19E511D6AB2AE004AC3D3 /* MainMenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuModel.m; sourceTree = "<group>"; };
 		56A19E521D6AB2AE004AC3D3 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -252,6 +268,7 @@
 		56EA69EF1D7062D700717CCA /* UpdateInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateInfoViewModel.m; sourceTree = "<group>"; };
 		56EA69F11D7062DD00717CCA /* MainMenuViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewModel.m; sourceTree = "<group>"; };
 		56EA69F31D7062E700717CCA /* RecoveryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecoveryViewModel.m; sourceTree = "<group>"; };
+		56EA69F91D70694E00717CCA /* ProjectsAPIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectsAPIService.m; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -281,8 +298,6 @@
 		59A7F2FB1D5DEADB005CF274 /* RecoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryViewController.h; sourceTree = "<group>"; };
 		59A7F2FC1D5DEADB005CF274 /* RecoveryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecoveryViewModel.h; sourceTree = "<group>"; };
 		59A7F2FF1D5DEADB005CF274 /* WelcomeTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeTourViewController.h; sourceTree = "<group>"; };
-		59A7F3001D5DEB3C005CF274 /* LoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginService.m; sourceTree = "<group>"; };
-		59A7F3021D5DEB44005CF274 /* LoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginService.h; sourceTree = "<group>"; };
 		59B0BE981D6130FC0016AE13 /* AvatarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AvatarHelper.m; path = Helpers/AvatarHelper.m; sourceTree = "<group>"; };
 		59B0BE991D6130FC0016AE13 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utils.m; path = Helpers/Utils.m; sourceTree = "<group>"; };
 		59B0BE9D1D61311E0016AE13 /* AvatarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarHelper.h; sourceTree = "<group>"; };
@@ -329,6 +344,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		566A72521D739E82004F63D3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				566A72631D73A589004F63D3 /* UserInfoService.m */,
+				566A72571D739EC1004F63D3 /* ProjectsService.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		566A72531D739E8C004F63D3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				566A72541D739E9D004F63D3 /* ProjectsService.h */,
+				566A72611D73A56E004F63D3 /* UserInfoService.h */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		56A19E4E1D6AB2AE004AC3D3 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
@@ -825,6 +858,7 @@
 		59A7F2D41D5DEACC005CF274 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				566A72521D739E82004F63D3 /* Services */,
 				56EA69BB1D70611400717CCA /* Models */,
 				56E1B9F51D6F7677003E46DA /* DataBase */,
 			);
@@ -834,7 +868,10 @@
 		59A7F2D51D5DEACC005CF274 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				59A7F3001D5DEB3C005CF274 /* LoginService.m */,
+				566A72691D73A6B2004F63D3 /* UserAPIService.m */,
+				56EA69F91D70694E00717CCA /* ProjectsAPIService.m */,
+				566A725B1D73A12E004F63D3 /* BaseAPIService.m */,
+				566A72601D73A2D1004F63D3 /* LoginAPIService.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -900,6 +937,7 @@
 		59A7F2EF1D5DEADB005CF274 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				566A72531D739E8C004F63D3 /* Services */,
 				56EA69DB1D70611B00717CCA /* Models */,
 				56E1B9E21D6F7671003E46DA /* DataBase */,
 			);
@@ -909,7 +947,10 @@
 		59A7F2F01D5DEADB005CF274 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				59A7F3021D5DEB44005CF274 /* LoginService.h */,
+				566A72671D73A5FB004F63D3 /* BaseAPIService.h */,
+				566A72681D73A5FB004F63D3 /* LoginAPIService.h */,
+				566A72591D73A072004F63D3 /* ProjectsAPIService.h */,
+				566A72651D73A5C2004F63D3 /* UserAPIService.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -1335,6 +1376,7 @@
 				56E1BA091D6F7677003E46DA /* DataManager+UserInfo.m in Sources */,
 				56EA69DA1D70611400717CCA /* WelcomeTourModel.m in Sources */,
 				F728512C1D6401D80086873D /* TabBarSegue.m in Sources */,
+				566A72581D739EC1004F63D3 /* ProjectsService.m in Sources */,
 				56E1BA171D6F7677003E46DA /* UserInfo.m in Sources */,
 				56A19E601D6AB2AE004AC3D3 /* MainMenuViewController.m in Sources */,
 				59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */,
@@ -1351,6 +1393,7 @@
 				F72851291D63F79A0086873D /* CustomTabBar.m in Sources */,
 				56E1B99F1D6F0FC2003E46DA /* AboutProjectViewController.m in Sources */,
 				59B0BEAE1D6135630016AE13 /* AvatarGenerator.m in Sources */,
+				566A72641D73A589004F63D3 /* UserInfoService.m in Sources */,
 				56E1B9B61D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m in Sources */,
 				56E1BA151D6F7677003E46DA /* ProjectRegionData.m in Sources */,
 				56A19ED81D6AB317004AC3D3 /* TermsViewController.m in Sources */,
@@ -1363,6 +1406,7 @@
 				56E1BA0B1D6F7677003E46DA /* OfflineSettings+CoreDataProperties.m in Sources */,
 				59A7F2EB1D5DEACC005CF274 /* RecoveryViewController.m in Sources */,
 				591344571D60ABA40027889F /* BaseMainViewController.m in Sources */,
+				566A726A1D73A6B2004F63D3 /* UserAPIService.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
 				56E1BA0F1D6F7677003E46DA /* ProjectCountryData.m in Sources */,
 				56EA69D21D70611400717CCA /* RecoveryModel.m in Sources */,
@@ -1371,6 +1415,7 @@
 				56A19E681D6AB2AE004AC3D3 /* ProjectInfoCell.m in Sources */,
 				56E1B97D1D6E6820003E46DA /* PopoverViewController.m in Sources */,
 				56A19E621D6AB2AE004AC3D3 /* MenuProjectCell.m in Sources */,
+				566A725C1D73A12E004F63D3 /* BaseAPIService.m in Sources */,
 				56A19E631D6AB2AE004AC3D3 /* OfflineSynchronizeViewController.m in Sources */,
 				56E1BA121D6F7677003E46DA /* ProjectInfoData.m in Sources */,
 				56EA69F01D7062D700717CCA /* UpdateInfoViewModel.m in Sources */,
@@ -1385,8 +1430,8 @@
 				56A19EE51D6AB659004AC3D3 /* OfflineSettingsItem.m in Sources */,
 				56EA69EE1D7062CC00717CCA /* UserInfoViewModel.m in Sources */,
 				56EA69EA1D7062C100717CCA /* AllProjectsViewModel.m in Sources */,
-				59A7F3011D5DEB3C005CF274 /* LoginService.m in Sources */,
 				56EA69CC1D70611400717CCA /* AllProjectsModel.m in Sources */,
+				563337631D73AB8000A9321E /* ProjectsAPIService.m in Sources */,
 				56EA69D71D70611400717CCA /* UserInfoModel.m in Sources */,
 				56E1BA0D1D6F7677003E46DA /* ProjectCountry+CoreDataProperties.m in Sources */,
 				591344231D5F68D00027889F /* NSDate+Helper.m in Sources */,
@@ -1410,6 +1455,7 @@
 				56A19E5F1D6AB2AE004AC3D3 /* MainMenuModel.m in Sources */,
 				56A19EDA1D6AB317004AC3D3 /* UpdateInfoViewController.m in Sources */,
 				56EA69CE1D70611400717CCA /* LoginModel.m in Sources */,
+				563337621D73AB7A00A9321E /* LoginAPIService.m in Sources */,
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,
 				56E1BA0E1D6F7677003E46DA /* ProjectCountry.m in Sources */,
 				56A19ED21D6AB317004AC3D3 /* UserInfoViewController.m in Sources */,

@@ -11,8 +11,7 @@
 // Classes
 #import "UserInfo.h"
 #import "Utils.h"
-#import "LoginService.h"
-#import "ProjectInfoData.h"
+#import "ProjectsService.h"
 
 // Frameworks
 #import <JSONModel/JSONModel.h>
@@ -104,40 +103,8 @@
 
 - (RACSignal*) loadProjectsList
 {
-    NSDictionary* requestParameter = @{@"skip" : @(0),
-                                       @"take" : @(100)};
-    
-    @weakify(self)
-    
-    RACSignal* loadingSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [[LoginService getProjectsList: requestParameter] subscribeNext: ^(RACTuple* tuple) {
-            
-            @strongify(self)
-            
-            [self parseGettingProjectsResponse: tuple[0]
-                                withCompletion: ^{
-                                   
-                                    [subscriber sendNext: nil];
-                                    [subscriber sendCompleted];
-                                    
-                                }];
-            
-        }
-                                                                  error: ^(NSError *error) {
-                                                                      
-                                                                      [subscriber sendError: error];
-                                                                      
-                                                                  }];
-        
-        
-        return nil;
-    }];
-    
-    
-    return loadingSignal;
+    return [[ProjectsService sharedInstance] getAllProjectsList];
 }
-
 
 
 #pragma mark - Internal methods -
@@ -145,29 +112,6 @@
 - (NSURL*) getApplicationStoreURL
 {
     return [NSURL URLWithString: @""];
-}
-
-- (void) parseGettingProjectsResponse: (NSDictionary*) response
-                       withCompletion: (void(^)())     completion
-{
-    NSError* parseError       = nil;
-    NSArray* responseProjects = response[@"list"];
-    NSArray* projectsList     = [ProjectInfoData arrayOfModelsFromDictionaries: responseProjects
-                                                                         error: &parseError];
-    
-    if ( parseError )
-    {
-        NSLog(@"Parse error %@", parseError.localizedDescription);
-    }
-    else
-    {
-        [DataManagerShared persistNewProjects: projectsList
-                               withCompletion: ^{
-                                   
-                                   completion();
-                                   
-                               }];
-    }
 }
 
 @end

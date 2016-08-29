@@ -12,7 +12,7 @@
 #import "DataManager+UserInfo.h"
 #import "UserInfo.h"
 #import "Utils.h"
-#import "LoginService.h"
+#import "UserInfoService.h"
 
 @interface UpdateUserInfoModel()
 
@@ -73,32 +73,8 @@
 
 - (void) updateUserValues: (UpdatedUserInfo*) newInfo
 {
-    self.currentUserInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
-    self.currentUserInfo.phoneNumber       = newInfo.phoneNumber;
-    self.currentUserInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
-    
-    [DataManagerShared updateUserInfo: self.currentUserInfo];
-    
-    NSDictionary* requestParameters = @{@"firstName"             : newInfo.name,
-                                        @"lastName"              : newInfo.surname,
-                                        @"phoneNumber"           : newInfo.phoneNumber,
-                                        @"additionalPhoneNumber" : newInfo.additionalPhoneNumber};
-    
-    [[LoginService updateUserInfo: requestParameters] subscribeNext: ^(RACTuple* x) {
-        
-        NSLog(@"Server response: %@", x);
-        
-    }
-                                                              error: ^(NSError *error) {
-                                                                  
-                                                                  NSLog(@"Error with request: %@", error.localizedDescription);
-                                                                  
-                                                              }
-                                                          completed: ^{
-                                                              
-                                                              NSLog(@"Success complete");
-                                                              
-                                                          }];
+    [[UserInfoService sharedInstance] updateInfoForUser: self.currentUserInfo
+                                            withNewInfo: newInfo];
 }
 
 @end

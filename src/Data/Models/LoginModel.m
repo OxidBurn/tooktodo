@@ -8,7 +8,8 @@
 
 
 #import "LoginModel.h"
-#import "LoginService.h"
+#import "LoginAPIService.h"
+#import "UserAPIService.h"
 #import "KeyChainManager.h"
 #import "UserInfoData.h"
 
@@ -68,8 +69,8 @@
     
     RACSignal* sendRequestSignal = [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
         
-        RACSignal* requestSignal = [LoginService sendRequestWithCredentials: email
-                                                               withPassword: password];
+        RACSignal* requestSignal = [[LoginAPIService sharedInstance] sendRequestWithCredentials: email
+                                                                                   withPassword: password];
         
         
         [requestSignal subscribeNext: ^(RACTuple* x) {
@@ -78,7 +79,7 @@
             
             [self saveUserToken: [x objectAtIndex: 0]];
             
-            [[LoginService getUserInfo] subscribeNext: ^(RACTuple* response) {
+            [[[UserAPIService sharedInstance] getUserInfo] subscribeNext: ^(RACTuple* response) {
                 
                 [KeyChain storeUserPassword: password];
                 [self parsingLoginResponseInfo: [response objectAtIndex: 0]];
@@ -106,7 +107,7 @@
 {
     return [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
         
-        [[UIApplication sharedApplication] openURL: [LoginService getRegisterURL]];
+        [[UIApplication sharedApplication] openURL: [[LoginAPIService sharedInstance] getRegisterURL]];
         
         [subscriber sendCompleted];
         

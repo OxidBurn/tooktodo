@@ -8,7 +8,7 @@
 
 // Classes
 #import "RecoveryModel.h"
-#import "LoginService.h"
+#import "LoginAPIService.h"
 
 // Frameworks
 #import "NSString+Utils.h"
@@ -35,14 +35,14 @@
 
 - (RACSignal*) sendRequestForResetingPassword: (NSString*) email
 {
-    return [LoginService sendResetPasswordRequest: email];
+    return [[LoginAPIService sharedInstance] sendResetPasswordRequest: email];
 }
 
 - (RACSignal*) openRegistrationPage
 {
     return [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
         
-        [[UIApplication sharedApplication] openURL: [LoginService getRegisterURL]];
+        [[UIApplication sharedApplication] openURL: [[LoginAPIService sharedInstance] getRegisterURL]];
         
         [subscriber sendCompleted];
         

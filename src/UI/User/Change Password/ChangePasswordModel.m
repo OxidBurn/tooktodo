@@ -7,7 +7,7 @@
 //
 
 #import "ChangePasswordModel.h"
-#import "LoginService.h"
+#import "UserAPIService.h"
 
 // Framewors
 #import "KeyChainManager.h"
@@ -23,8 +23,8 @@
 - (RACSignal*) sendUpdatingPassword: (NSString*) oldPassword
                     withNewPassword: (NSString*) pass
 {
-    return [LoginService updatePasswordFromOld: oldPassword
-                                         toNew: pass];
+    return [[UserAPIService sharedInstance] updatePasswordFromOld: oldPassword
+                                                             toNew: pass];
 }
 
 - (void) needToUpdatePassword: (NSString*) newPass
