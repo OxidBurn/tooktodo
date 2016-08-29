@@ -67,6 +67,10 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
+- (IBAction) onAddRole: (UIButton*) sender
+{
+    
+}
 
 
 @end
