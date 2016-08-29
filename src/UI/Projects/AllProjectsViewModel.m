@@ -8,6 +8,9 @@
 
 #import "AllProjectsViewModel.h"
 
+// Frameworks
+#import <ReactiveCocoa.h>
+
 // Classes
 #import "AllProjectsModel.h"
 #import "ProjectInfo.h"
@@ -44,7 +47,18 @@
 
 - (void) updateProjectsContent
 {
-    self.projectsContent = [self.model getProjectsContent];
+    @weakify(self)
+    
+    [[self.model getProjectsContent] subscribeNext: ^(NSArray* projects) {
+        
+        @strongify(self)
+        
+        self.projectsContent = projects;
+        
+        if ( self.reloadTable )
+            self.reloadTable();
+        
+    }];
 }
 
 - (void) applySortingForProjecstList: (AllProjectsSortingType) type

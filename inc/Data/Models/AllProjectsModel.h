@@ -18,7 +18,7 @@
 
 // methods
 
-- (NSArray*) getProjectsContent;
+- (RACSignal*) getProjectsContent;
 
 - (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
                               toArray: (NSArray*)               array;

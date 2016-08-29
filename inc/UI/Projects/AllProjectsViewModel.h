@@ -6,8 +6,6 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 // Classes
 #import "ProjectsEnumerations.h"
 #import "PopoverModel.h"

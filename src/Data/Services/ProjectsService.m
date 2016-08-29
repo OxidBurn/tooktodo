@@ -46,6 +46,8 @@ static bool isFirstAccess = YES;
     
     RACSignal* loadingSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
+        [subscriber sendNext: [DataManagerShared getAllProjects]];
+        
         [[[ProjectsAPIService sharedInstance] getProjectsList: requestParameter] subscribeNext: ^(RACTuple* tuple) {
             
             @strongify(self)
@@ -53,7 +55,7 @@ static bool isFirstAccess = YES;
             [self parseGettingProjectsResponse: tuple[0]
                                 withCompletion: ^{
                                     
-                                    [subscriber sendNext: nil];
+                                    [subscriber sendNext: [DataManagerShared getAllProjects]];
                                     [subscriber sendCompleted];
                                     
                                 }];
@@ -73,6 +75,10 @@ static bool isFirstAccess = YES;
     return loadingSignal;
 }
 
+- (RACSignal*) updateAllProjectsListWithServer
+{
+    return [RACSignal empty];
+}
 
 #pragma mark - Internal methods -
 

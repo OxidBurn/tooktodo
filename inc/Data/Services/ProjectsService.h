@@ -20,4 +20,6 @@ typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 
 - (RACSignal*) getAllProjectsList;
 
+- (RACSignal*) updateAllProjectsListWithServer;
+
 @end

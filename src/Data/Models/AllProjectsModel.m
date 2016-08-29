@@ -10,6 +10,7 @@
 
 // Classes
 #import "ConfigurationManager.h"
+#import "ProjectsService.h"
 
 // Extensions
 #import "DataManager+ProjectInfo.h"
@@ -27,9 +28,26 @@
 
 @implementation AllProjectsModel
 
-- (NSArray*) getProjectsContent
+- (RACSignal*) getProjectsContent
 {
-    return [self applyDefaultSorting: [DataManagerShared getAllProjects]];
+    RACSignal* fetchAllProjectsSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[ProjectsService sharedInstance] getAllProjectsList] subscribeNext: ^(NSArray* projectsArray) {
+            
+            NSArray* sortedArray = [self applyDefaultSorting: projectsArray];
+            
+            [subscriber sendNext: sortedArray];
+            
+        } completed: ^{
+            
+            [subscriber sendCompleted];
+            
+        }];
+        
+        return nil;
+    }];
+    
+    return fetchAllProjectsSignal;
 }
 
 - (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
