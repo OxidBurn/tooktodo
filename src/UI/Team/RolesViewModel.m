@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSIndexPath* lastIndexPath;
 @property (nonatomic, strong) NSString* chosenRole;
 @property (nonatomic, strong) InviteInfo* user;
-@property (nonatomic, assign) NSUInteger index;
+@property (nonatomic, strong) UITableViewCell* cell;
 
 @end
 
@@ -64,28 +64,28 @@
 {
     NSString* reuseIdentifier = @"cellID";
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier
-                                                            forIndexPath: indexPath];
-    if (cell == nil)
+    self.cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier
+                                                forIndexPath: indexPath];
+    if (self.cell == nil)
     {
-        cell = [[UITableViewCell alloc] init];
+        self.cell = [[UITableViewCell alloc] init];
     }
+    
     
     NSString* role = self.rolesArray[indexPath.row];
     
-    cell.textLabel.text = role;
-    
+    self.cell.textLabel.text = role;
     
     if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        self.cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    return cell;
+    return self.cell;
 }
 
 #pragma mark - TableView Delegate methods -
