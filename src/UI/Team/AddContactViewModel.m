@@ -12,7 +12,7 @@
 #import "AddContactModel.h"
 #import "Utils.h"
 
-@interface AddContactViewModel()
+@interface AddContactViewModel() 
 
 @property (nonatomic, strong) AddContactModel* model;
 
