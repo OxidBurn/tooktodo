@@ -21,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *surnameField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *additionalPhoneNumberField;
-@property (nonatomic, weak) IBOutlet UIBarButtonItem* doneBtn;
+@property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 
 @property (nonatomic, strong) UpdateInfoViewModel* viewModel;
 @end

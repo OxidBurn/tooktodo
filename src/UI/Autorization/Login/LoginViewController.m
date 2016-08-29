@@ -9,7 +9,6 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 
-
 // Classes
 #import "LoginViewController.h"
 #import "LoginViewModel.h"
@@ -271,7 +270,9 @@
 
 - (IBAction) onToggleShowPass: (UIButton*) sender
 {
+    [self.passwordTextField resignFirstResponder];
     self.passwordTextField.secureTextEntry = sender.selected;
+    [self.passwordTextField becomeFirstResponder];
     
     sender.selected = !sender.selected;
 }

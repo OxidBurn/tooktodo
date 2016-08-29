@@ -72,7 +72,7 @@
                             placeholderCharacter: '*'];
 }
 
-- (RACCommand *)saveDataCommand
+- (RACCommand*) saveDataCommand
 {
     @weakify(self)
     
@@ -82,7 +82,7 @@
             
             @strongify(self)
             
-            return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
                 
                 [self.model updateUserValues: [self getFilledObject]];
                 

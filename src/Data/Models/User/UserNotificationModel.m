@@ -33,7 +33,7 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
     {
         _tableRowsData = @[@[@{LabelTextKey: @"Все сообщения",
                                SwitchTagKey: @1},
-                             @{LabelTextKey: @"Где я учавствую",
+                             @{LabelTextKey: @"Где я участвую",
                                SwitchTagKey: @2},
                              @{LabelTextKey: @"Где я ответственный\n или утверждающий",
                                SwitchTagKey: @3}],

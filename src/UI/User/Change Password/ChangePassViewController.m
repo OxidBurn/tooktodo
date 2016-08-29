@@ -14,15 +14,18 @@
 
 @interface ChangePassViewController ()
 
+// properties
 @property (weak, nonatomic) IBOutlet UILabel     *updatedPassWarnings;
-
 @property (weak, nonatomic) IBOutlet UITextField *oldPasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *updatedPasswordField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *updatePasswordBtn;
+@property (weak, nonatomic) IBOutlet UIButton *updatePasswordBtn;
 
 @property (strong, nonatomic) ChangePasswordViewModel* viewModel;
+
+// methods
+- (IBAction) onDismiss: (UIBarButtonItem*) sender;
 
 @end
 
@@ -107,7 +110,9 @@
 
 - (IBAction) onShowPassword: (UIButton*) sender
 {
+    [self.oldPasswordField resignFirstResponder];
     self.oldPasswordField.secureTextEntry = sender.selected;
+    [self.oldPasswordField becomeFirstResponder];
     
     sender.selected = !sender.selected;
 }
@@ -144,8 +149,9 @@
     }];
 }
 
-- (IBAction) onCancel: (UIBarButtonItem*) sender
+- (IBAction) onDismiss: (UIBarButtonItem*) sender
 {    
     [self.navigationController popViewControllerAnimated: YES];
 }
+
 @end
