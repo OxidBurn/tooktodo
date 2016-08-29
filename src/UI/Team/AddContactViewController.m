@@ -7,18 +7,55 @@
 //
 
 #import "AddContactViewController.h"
+#import "AddContactViewModel.h"
+#import "RolesViewController.h"
+#import "InviteInfo.h"
+#import "TeamInfoViewController.h"
 
-@interface AddContactViewController ()
+@interface AddContactViewController () <RolesViewControllerDelegate, UITableViewDelegate>
 
 // Properties
 
-@property (weak, nonatomic) IBOutlet UITableView* addContactInfoTablaView;
+@property (weak, nonatomic) IBOutlet UITextField *lastnameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UILabel *roleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
+@property (weak, nonatomic) IBOutlet UITextField *emailLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *readyBtn;
+
+@property (nonatomic, strong) AddContactViewModel* addContactViewModel;
+@property (nonatomic, strong) InviteInfo* filledInfo;
+@property (nonatomic, assign) BOOL firstCheck;
 
 // Methods
 
 @end
 
 @implementation AddContactViewController
+
+#pragma mark - Properties -
+
+- (AddContactViewModel*) addContactViewModel
+{
+    if (_addContactViewModel == nil)
+    {
+        _addContactViewModel = [[AddContactViewModel alloc] init];
+    }
+    
+    return _addContactViewModel;
+}
+
+- (InviteInfo*) filledInfo
+{
+    if (_filledInfo == nil)
+    {
+        _filledInfo = [[InviteInfo alloc] init];
+    }
+    
+    return _filledInfo;
+}
+
 
 #pragma mark - Life cycle -
 
@@ -32,6 +69,10 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self bindViewModel];
+    
+    self.firstCheck = YES;
 }
 
 #pragma mark - Memory managment -
@@ -42,6 +83,38 @@
 }
 
 #pragma mark - Internal method -
+
+- (void) bindViewModel
+{
+    RAC(self.addContactViewModel, lastnameText) = self.lastnameTextField.rac_textSignal;
+    RAC(self.addContactViewModel, nameText) = self.nameTextField.rac_textSignal;
+    RAC(self.addContactViewModel, emailText) = [self.emailTextField.rac_textSignal distinctUntilChanged];
+    
+    
+    RAC(self.addContactViewModel, messageText) = self.messageTextView.rac_textSignal;
+    RAC(self.addContactViewModel, roleText) = RACObserve(self.roleLabel, text);
+    
+    [RACObserve(self.roleLabel, text) subscribeNext:^(NSString* x) {
+        self.filledInfo.role = x;
+    }];
+    
+    [self.addContactViewModel.readyCommand.executionSignals subscribeNext: ^(RACSignal* readySignal)
+     {
+         [[self.addContactViewModel returnInvitationInfo] subscribeNext:^(InviteInfo* userInfo) {
+             self.filledInfo = userInfo;
+         }
+                                                     completed: ^{
+                                                         [self performSegueWithIdentifier:@"ShowTeam" sender: self];
+                                                     }];
+         
+         
+     }];
+    
+    //связь кнопки и команды, которая за нее отвечает
+    self.readyBtn.rac_command = self.addContactViewModel.readyCommand;
+    
+}
+
 
 - (UIView*) twoLineTitleView
 {
@@ -87,6 +160,55 @@
     self.navigationItem.titleView = twoLineTitleView;
     
     return twoLineTitleView;
+}
+
+#pragma mark - Segue -
+
+-(void) prepareForSegue: (UIStoryboardSegue*) segue
+                 sender: (id)sender
+{
+    [super prepareForSegue: segue
+                    sender: sender];
+    
+    if ( [segue.identifier isEqualToString: @"ShowTeam"] )
+    {
+        TeamInfoViewController* teamController = [segue destinationViewController];
+        [teamController fillInviteInfo: self.filledInfo];
+    }
+    
+    if ([segue.identifier isEqualToString:@"ShowRoles"])
+    {
+        RolesViewController* controller = segue.destinationViewController;
+        [controller setRolesViewControllerDelegate: self];
+    }
+    
+}
+
+
+#pragma mark - Actions -
+
+- (IBAction) onDismiss: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+#pragma mark - TextField delegate methods -
+
+
+- (void) textFieldDidEndEditing: (UITextField*) textField
+{
+    if (textField == self.emailTextField && self.firstCheck)
+    {
+        self.firstCheck = NO;
+        RAC(self.emailLabel, text) = [[self.addContactViewModel getEmailWarningSignal] distinctUntilChanged];
+    }
+}
+
+#pragma mark - RolesViewControllerDelegate methods -
+
+- (void) didSelectRole: (NSString*) value
+{
+    self.roleLabel.text = value;
 }
 
 @end

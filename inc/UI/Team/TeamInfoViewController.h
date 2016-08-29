@@ -7,7 +7,10 @@
 //
 
 #import "BaseMainViewController.h"
+#import "InviteInfo.h"
 
 @interface TeamInfoViewController : BaseMainViewController
+
+- (void) fillInviteInfo: (InviteInfo*) userInf;
 
 @end

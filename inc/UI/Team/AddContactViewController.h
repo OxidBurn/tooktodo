@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddContactViewController : UIViewController
+@interface AddContactViewController : UITableViewController
 
 @end
