@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
 
 // Extensions
 #import "DataManager+UserInfo.h"

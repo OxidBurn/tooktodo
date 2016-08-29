@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
 		563337621D73AB7A00A9321E /* LoginAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72601D73A2D1004F63D3 /* LoginAPIService.m */; };
 		563337631D73AB8000A9321E /* ProjectsAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EA69F91D70694E00717CCA /* ProjectsAPIService.m */; };
+		5665BA20CB728456D96D3420 /* Pods_TookTODO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6786395F1B9F3742EE76F0 /* Pods_TookTODO.framework */; };
 		566A72581D739EC1004F63D3 /* ProjectsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72571D739EC1004F63D3 /* ProjectsService.m */; };
 		566A725C1D73A12E004F63D3 /* BaseAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A725B1D73A12E004F63D3 /* BaseAPIService.m */; };
 		566A72641D73A589004F63D3 /* UserInfoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72631D73A589004F63D3 /* UserInfoService.m */; };
@@ -118,6 +118,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D6786395F1B9F3742EE76F0 /* Pods_TookTODO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TookTODO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
 		566A72541D739E9D004F63D3 /* ProjectsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsService.h; sourceTree = "<group>"; };
 		566A72571D739EC1004F63D3 /* ProjectsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsService.m; sourceTree = "<group>"; };
@@ -322,7 +323,6 @@
 		59F707EA1D5E11CA00BFD4CF /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		59F707EB1D5E125200BFD4CF /* Macroses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macroses.h; sourceTree = "<group>"; };
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
-		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
 		F72851271D63F79A0086873D /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		F72851281D63F79A0086873D /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */,
+				5665BA20CB728456D96D3420 /* Pods_TookTODO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1172,7 +1172,7 @@
 		A3DEE62BCE353EEF2D396143 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */,
+				3D6786395F1B9F3742EE76F0 /* Pods_TookTODO.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1541,6 +1541,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AdHoc;
 		};
@@ -1666,6 +1667,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1684,6 +1686,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.kingbird.tooktodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37e328c4-5ea2-4a1f-a031-e1b4c5e4a486";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
