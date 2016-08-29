@@ -87,24 +87,31 @@
 - (void) bindViewModel
 {
     RAC(self.addContactViewModel, lastnameText) = self.lastnameTextField.rac_textSignal;
-    RAC(self.addContactViewModel, nameText) = self.nameTextField.rac_textSignal;
-    RAC(self.addContactViewModel, emailText) = [self.emailTextField.rac_textSignal distinctUntilChanged];
+    RAC(self.addContactViewModel, nameText)     = self.nameTextField.rac_textSignal;
+    RAC(self.addContactViewModel, emailText)    = [self.emailTextField.rac_textSignal distinctUntilChanged];
     
     
     RAC(self.addContactViewModel, messageText) = self.messageTextView.rac_textSignal;
-    RAC(self.addContactViewModel, roleText) = RACObserve(self.roleLabel, text);
+    RAC(self.addContactViewModel, roleText)    = RACObserve(self.roleLabel, text);
     
-    [RACObserve(self.roleLabel, text) subscribeNext:^(NSString* x) {
+    [RACObserve(self.roleLabel, text) subscribeNext: ^(NSString* x) {
+        
         self.filledInfo.role = x;
+        
     }];
     
-    [self.addContactViewModel.readyCommand.executionSignals subscribeNext: ^(RACSignal* readySignal)
-     {
-         [[self.addContactViewModel returnInvitationInfo] subscribeNext:^(InviteInfo* userInfo) {
+    [self.addContactViewModel.readyCommand.executionSignals subscribeNext: ^(RACSignal* readySignal) {
+        
+         [[self.addContactViewModel returnInvitationInfo] subscribeNext: ^(InviteInfo* userInfo) {
+             
              self.filledInfo = userInfo;
+             
          }
                                                      completed: ^{
-                                                         [self performSegueWithIdentifier:@"ShowTeam" sender: self];
+                                                         
+                                                         [self performSegueWithIdentifier: @"ShowTeam"
+                                                                                   sender: self];
+                                                         
                                                      }];
          
          
@@ -118,8 +125,8 @@
 
 - (UIView*) twoLineTitleView
 {
-    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
-                                                    size: 14.0f];
+    UIFont* customFont         = [UIFont fontWithName: @"SFUIText-Regular"
+                                                 size: 14.0f];
     
     UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
     titleLabel.backgroundColor = [UIColor clearColor];
@@ -130,11 +137,13 @@
     [titleLabel sizeToFit];
     
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
+    
     subTitleLabel.backgroundColor = [UIColor clearColor];
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFont;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
     subTitleLabel.text            = @"УЧАСНИКА";
+    
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
@@ -173,14 +182,16 @@
     if ( [segue.identifier isEqualToString: @"ShowTeam"] )
     {
         TeamInfoViewController* teamController = [segue destinationViewController];
+        
         [teamController fillInviteInfo: self.filledInfo];
     }
-    
-    if ([segue.identifier isEqualToString:@"ShowRoles"])
-    {
-        RolesViewController* controller = segue.destinationViewController;
-        [controller setRolesViewControllerDelegate: self];
-    }
+    else
+        if ([segue.identifier isEqualToString: @"ShowRoles"])
+        {
+            RolesViewController* controller = segue.destinationViewController;
+            
+            [controller setRolesViewControllerDelegate: self];
+        }
     
 }
 
@@ -200,6 +211,7 @@
     if (textField == self.emailTextField && self.firstCheck)
     {
         self.firstCheck = NO;
+        
         RAC(self.emailLabel, text) = [[self.addContactViewModel getEmailWarningSignal] distinctUntilChanged];
     }
 }

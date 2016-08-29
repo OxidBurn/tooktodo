@@ -7,28 +7,36 @@
 //
 
 #import "AddContactModel.h"
+
+// Frameworks
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
+// Classes
+#import "Utils.h"
+
+typedef void(^ReturnInfoBlock)(InviteInfo* userInfo);
 
 @implementation AddContactModel
 
 #pragma mark - Public methods -
 
-- (void)  getUserLastname: (NSString*) lastname
-                 withName: (NSString*) name
-                withEmail: (NSString*) email
-                 withRole: (NSString*) role
-              withMessage: (NSString*) message
+- (void)  getUserLastname: (NSString*)       lastname
+                 withName: (NSString*)       name
+                withEmail: (NSString*)       email
+                 withRole: (NSString*)       role
+              withMessage: (NSString*)       message
             withInfoBlock: (ReturnInfoBlock) completionBlock
 {
     InviteInfo* user = [[InviteInfo alloc] init];
     
     user.lastname = lastname;
-    user.name  = name;
-    user.email = email;
-    user.role = role;
-    user.message = message;
+    user.name     = name;
+    user.email    = email;
+    user.role     = role;
+    user.message  = message;
     
-    if (completionBlock) {
+    if (completionBlock)
+    {
         completionBlock(user);
     }
     
@@ -43,7 +51,7 @@
 {
     @weakify(self);
     
-    RACSignal* sign = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* sign = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         @strongify(self)
         
@@ -53,8 +61,10 @@
                      withRole: role
                   withMessage: message
                 withInfoBlock: ^(InviteInfo *userInfo) {
+                    
                     [subscriber sendNext: userInfo];
                     [subscriber sendCompleted];
+                    
                 }];
         
         return nil;
@@ -72,22 +82,12 @@
         return @"Электронная почта";
     }
     else
-        if ( [self isValidEmail: email] == NO )
+        if ( [Utils isValidEmail: email] == NO )
         {
             return @"Почта указана не верно";
         }
     
     return @"Электронная почта";
-}
-
--(BOOL) isValidEmail: (NSString*) checkString
-{
-    BOOL stricterFilter = NO;
-    NSString *stricterFilterString = @"^[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}$";
-    NSString *laxString = @"^.+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*$";
-    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:checkString];
 }
 
 - (BOOL) isValidName: (NSString*) name

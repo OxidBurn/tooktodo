@@ -7,7 +7,10 @@
 //
 
 #import "AddContactViewModel.h"
+
+// Classes
 #import "AddContactModel.h"
+#import "Utils.h"
 
 @interface AddContactViewModel()
 
@@ -22,44 +25,53 @@
 - (instancetype) init
 {
     self = [super init];
+    
     if (self)
     {
         [self initialize];
     }
+    
     return self;
 }
 
 - (void) initialize
 {
-    self.validEmailSignal = [RACObserve(self, emailText) map:^id(NSString* text) {
-        return @([self.model isValidEmail: text]);
+    self.validEmailSignal = [RACObserve(self, emailText) map: ^id(NSString* text) {
+        
+        return @([Utils isValidEmail: text]);
+        
     }];
     
     
     
     //returns not empty name
-    self.notEmptyLastnameSignal = [RACObserve(self, lastnameText) map:^id(NSString* text) {
+    self.notEmptyLastnameSignal = [RACObserve(self, lastnameText) map: ^id(NSString* text) {
+        
         return @([self.model isValidLastName: text]);
+        
     }];
     
     
-    self.notEmptyNameSignal = [RACObserve(self, nameText) map:^id(NSString* text) {
+    self.notEmptyNameSignal = [RACObserve(self, nameText) map: ^id(NSString* text) {
+        
         return @([self.model isValidName: text]);
+        
     }];
     
-    RACSignal* activeReadySignal =
-    [RACSignal combineLatest:@[self.validEmailSignal, self.notEmptyNameSignal, self.notEmptyLastnameSignal]
-                      reduce:^id(NSNumber* emailValid, NSNumber* nameValid, NSNumber* lastnameValid) {
-                          return @([emailValid boolValue] && [nameValid boolValue] && [lastnameValid boolValue]);
+    RACSignal* activeReadySignal = [RACSignal combineLatest: @[self.validEmailSignal, self.notEmptyNameSignal, self.notEmptyLastnameSignal]
+                                                     reduce: ^id(NSNumber* emailValid, NSNumber* nameValid, NSNumber* lastnameValid) {
+                                                         
+                                                         return @([emailValid boolValue] && [nameValid boolValue] && [lastnameValid boolValue]);
+                                                         
                       }];
     
     
     //Создает команду, которая активна тогда, когда activeReadySignal возвращает тру,
     self.readyCommand = [[RACCommand alloc] initWithEnabled: activeReadySignal
                                                 signalBlock: ^RACSignal *(id input) {
+                                                    
                                                     return  [[RACSignal empty]
-                                                             delay:2
-                                                             ];
+                                                             delay: 2];
                                                 }];
     
 }
@@ -72,6 +84,7 @@
     {
         _model = [AddContactModel new];
     }
+    
     return _model;
 }
 
@@ -79,7 +92,7 @@
 
 - (RACSignal*) getEmailWarningSignal
 {
-    return [RACObserve(self, emailText) map:^NSString* (NSString* value) {
+    return [RACObserve(self, emailText) map: ^NSString* (NSString* value) {
         
         return [self.model getEmailWarningText: value];
         
