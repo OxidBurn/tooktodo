@@ -58,6 +58,7 @@
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -2353,8 +2354,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zb2-zU-q88">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zb2-zU-q88">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellID" textLabel="PHi-8b-N1V" style="IBUITableViewCellStyleDefault" id="Ie4-VN-gVu">
@@ -2376,8 +2377,28 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMn-FJ-ctM">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="HIK-JQ-QHE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
+                                <state key="normal" title="Добавить">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Zb2-zU-q88" secondAttribute="trailing" id="549-hH-IAG"/>
+                            <constraint firstItem="Zb2-zU-q88" firstAttribute="top" secondItem="pTf-l8-TSc" secondAttribute="top" id="Q5o-ny-WgM"/>
+                            <constraint firstItem="85c-Ks-cEa" firstAttribute="top" secondItem="VMn-FJ-ctM" secondAttribute="bottom" id="RBl-lZ-Q6E"/>
+                            <constraint firstItem="Zb2-zU-q88" firstAttribute="leading" secondItem="pTf-l8-TSc" secondAttribute="leading" id="TGa-e1-92m"/>
+                            <constraint firstItem="VMn-FJ-ctM" firstAttribute="leading" secondItem="pTf-l8-TSc" secondAttribute="leading" id="VFF-Gf-KWg"/>
+                            <constraint firstItem="VMn-FJ-ctM" firstAttribute="top" secondItem="Zb2-zU-q88" secondAttribute="bottom" id="YkZ-pc-dl9"/>
+                            <constraint firstAttribute="trailing" secondItem="VMn-FJ-ctM" secondAttribute="trailing" id="nGQ-81-fVZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ilP-az-9BV">
                         <barButtonItem key="leftBarButtonItem" title="Отменить" id="G9h-7u-xd5">
