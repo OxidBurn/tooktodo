@@ -1768,75 +1768,152 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellID" id="Zwo-KP-fw7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCellID" id="Zwo-KP-fw7" customClass="ProjectsNameTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Zwo-KP-fw7" id="qDa-wD-fb7">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Квартира на Ходынке" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrm-Ch-FED">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Квартира на Ходынке" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrm-Ch-FED">
                                                     <rect key="frame" x="30" y="13" width="234" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="234" id="LTY-Q1-bnB"/>
+                                                        <constraint firstAttribute="height" constant="18" id="zna-JT-4VU"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R28-70-IpZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R28-70-IpZ">
                                                     <rect key="frame" x="272" y="12" width="33" height="20"/>
                                                     <color key="backgroundColor" red="0.82352941176470584" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="69g-LK-9ea"/>
+                                                        <constraint firstAttribute="width" constant="33" id="SZT-wE-cb1"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                     <color key="textColor" red="0.34901960784313724" green="0.39215686274509803" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWC-tJ-fSf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWC-tJ-fSf">
                                                     <rect key="frame" x="296" y="3" width="16" height="16"/>
                                                     <color key="backgroundColor" red="1" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="QlI-rd-gB9"/>
+                                                        <constraint firstAttribute="width" constant="16" id="w76-tS-hHr"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ходынский бульвар, 11 кв.148" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CZ-7j-TLJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ходынский бульвар, 11 кв.148" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5CZ-7j-TLJ">
                                                     <rect key="frame" x="31" y="31" width="233" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="3Ff-Ye-weN"/>
+                                                        <constraint firstAttribute="width" constant="233" id="Qwq-ZQ-J8C"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                     <color key="textColor" red="0.56862745098039214" green="0.60784313725490191" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="mIR-TE-Fry">
+                                                    <rect key="frame" x="11" y="20" width="11" height="6"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="6" id="Vey-HI-9K7"/>
+                                                        <constraint firstAttribute="width" constant="11" id="eHZ-yW-S5B"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="5CZ-7j-TLJ" secondAttribute="bottom" constant="7" id="UPS-o6-KPw"/>
+                                                <constraint firstItem="R28-70-IpZ" firstAttribute="top" secondItem="qDa-wD-fb7" secondAttribute="top" constant="12" id="cHQ-yo-4xl"/>
+                                                <constraint firstItem="mIR-TE-Fry" firstAttribute="leading" secondItem="qDa-wD-fb7" secondAttribute="leading" constant="11" id="crk-lo-vwL"/>
+                                                <constraint firstItem="zrm-Ch-FED" firstAttribute="leading" secondItem="qDa-wD-fb7" secondAttribute="leading" constant="30" id="gZ2-iS-k95"/>
+                                                <constraint firstItem="5CZ-7j-TLJ" firstAttribute="leading" secondItem="qDa-wD-fb7" secondAttribute="leading" constant="31" id="n5y-rd-b1i"/>
+                                                <constraint firstItem="NWC-tJ-fSf" firstAttribute="top" secondItem="qDa-wD-fb7" secondAttribute="top" constant="3" id="nXI-B1-raa"/>
+                                                <constraint firstItem="mIR-TE-Fry" firstAttribute="top" secondItem="qDa-wD-fb7" secondAttribute="top" constant="20" id="nvm-NA-txk"/>
+                                                <constraint firstItem="zrm-Ch-FED" firstAttribute="top" secondItem="qDa-wD-fb7" secondAttribute="top" constant="13" id="oe8-hd-28E"/>
+                                                <constraint firstAttribute="trailing" secondItem="R28-70-IpZ" secondAttribute="trailing" constant="15" id="ofj-XX-gF1"/>
+                                                <constraint firstAttribute="trailing" secondItem="NWC-tJ-fSf" secondAttribute="trailing" constant="8" id="sr3-pb-2G4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountTasksLabel" destination="R28-70-IpZ" id="gTV-d4-7Tj"/>
+                                            <outlet property="arrowImage" destination="mIR-TE-Fry" id="BBe-15-82r"/>
+                                            <outlet property="subtitleProjectStreet" destination="5CZ-7j-TLJ" id="ViK-p6-HgZ"/>
+                                            <outlet property="titleProjectsName" destination="zrm-Ch-FED" id="FhC-ML-x2D"/>
+                                            <outlet property="unreadTasksLabel" destination="NWC-tJ-fSf" id="ra4-cC-hZ8"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UbY-1R-tbQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UbY-1R-tbQ" customClass="WorksNamesTableViewCell">
                                         <rect key="frame" x="0.0" y="83" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UbY-1R-tbQ" id="rIr-WL-glJ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghB-gW-PGT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghB-gW-PGT">
                                                     <rect key="frame" x="272" y="18" width="33" height="20"/>
                                                     <color key="backgroundColor" red="0.82352941180000006" green="0.89019607840000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="ckm-gE-evb"/>
+                                                        <constraint firstAttribute="width" constant="33" id="jWV-OR-9VQ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                     <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-LX-NK4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXK-LX-NK4">
                                                     <rect key="frame" x="296" y="9" width="16" height="16"/>
                                                     <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="8ac-BL-Wk6"/>
+                                                        <constraint firstAttribute="height" constant="16" id="D7q-GH-mhD"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Строительные работы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXY-qF-V4F">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Строительные работы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXY-qF-V4F">
                                                     <rect key="frame" x="50" y="18" width="214" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="214" id="B1U-2j-5l8"/>
+                                                        <constraint firstAttribute="height" constant="18" id="rit-Ze-VUZ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="nRk-yj-lV0">
+                                                    <rect key="frame" x="31" y="25" width="11" height="6"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="11" id="UW4-As-VFz"/>
+                                                        <constraint firstAttribute="height" constant="6" id="dyh-xc-AIw"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ghB-gW-PGT" secondAttribute="trailing" constant="15" id="3TZ-gM-1HD"/>
+                                                <constraint firstItem="ghB-gW-PGT" firstAttribute="top" secondItem="rIr-WL-glJ" secondAttribute="top" constant="18" id="F8i-n8-iqZ"/>
+                                                <constraint firstItem="pXK-LX-NK4" firstAttribute="top" secondItem="rIr-WL-glJ" secondAttribute="top" constant="9" id="XmL-OD-2Bc"/>
+                                                <constraint firstAttribute="trailing" secondItem="pXK-LX-NK4" secondAttribute="trailing" constant="8" id="axu-IK-7J9"/>
+                                                <constraint firstItem="fXY-qF-V4F" firstAttribute="leading" secondItem="rIr-WL-glJ" secondAttribute="leading" constant="50" id="biV-76-uew"/>
+                                                <constraint firstItem="nRk-yj-lV0" firstAttribute="leading" secondItem="rIr-WL-glJ" secondAttribute="leading" constant="31" id="bs9-QF-ZF0"/>
+                                                <constraint firstAttribute="bottom" secondItem="nRk-yj-lV0" secondAttribute="bottom" constant="23" id="htd-y0-Anl"/>
+                                                <constraint firstItem="fXY-qF-V4F" firstAttribute="top" secondItem="rIr-WL-glJ" secondAttribute="top" constant="18" id="lDL-4r-tRX"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="amountTasksLabel" destination="ghB-gW-PGT" id="ePo-He-SNz"/>
+                                            <outlet property="arrowImage" destination="nRk-yj-lV0" id="jmk-Hw-cNH"/>
+                                            <outlet property="titleWorkNamesLabel" destination="fXY-qF-V4F" id="eb5-Rz-qf2"/>
+                                            <outlet property="unreadTasksLabel" destination="pXK-LX-NK4" id="PEA-Sk-VZ7"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="Xlk-F2-Ou0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="Xlk-F2-Ou0" customClass="TasksListTableViewCell">
                                         <rect key="frame" x="0.0" y="138" width="320" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xlk-F2-Ou0" id="tYG-zC-a1t">
@@ -1870,7 +1947,7 @@
                                                                 <constraint firstAttribute="height" constant="43" id="RGf-KP-Scy"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTj-Zv-nxd">
@@ -1897,7 +1974,7 @@
                                                                 <constraint firstAttribute="height" constant="17" id="zkP-MU-YZe"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-j4-HJO">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-j4-HJO" customClass="TaskMarkerComponent">
                                                             <rect key="frame" x="227" y="101" width="33" height="17"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1905,7 +1982,7 @@
                                                                 <constraint firstAttribute="height" constant="17" id="Zyh-cX-nnr"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJH-lG-urO">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJH-lG-urO" customClass="TaskMarkerComponent">
                                                             <rect key="frame" x="265" y="101" width="34" height="17"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1913,7 +1990,7 @@
                                                                 <constraint firstAttribute="height" constant="17" id="rYR-IH-Jz7"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JT5-dt-8fs">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JT5-dt-8fs" customClass="StatusMarkerComponent">
                                                             <rect key="frame" x="140" y="20" width="89" height="13"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1945,7 +2022,7 @@
                                                                 <constraint firstAttribute="height" constant="13" id="it3-Kg-W4l"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="SFUIText-Light" family="SF UI Text" pointSize="11"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -1989,6 +2066,17 @@
                                                 <constraint firstItem="eqJ-Ui-RSa" firstAttribute="top" secondItem="tYG-zC-a1t" secondAttribute="top" id="oZP-JS-yeT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountTaskMarkerComponent" destination="OBf-yP-WWd" id="b75-pE-a6m"/>
+                                            <outlet property="attachmantsMarkerComponent" destination="aYz-j4-HJO" id="TRm-qm-ts2"/>
+                                            <outlet property="avatarImage" destination="LUc-ju-p0V" id="du4-xU-7s2"/>
+                                            <outlet property="commentsMarkerComponent" destination="nJH-lG-urO" id="83E-Ql-ih5"/>
+                                            <outlet property="executionDateLabel" destination="EaU-NG-CyI" id="k3t-A9-cQG"/>
+                                            <outlet property="roomNumbersLabel" destination="3yc-yr-ZoM" id="RXi-nA-k5w"/>
+                                            <outlet property="systemLabel" destination="Tj2-VL-0Mi" id="aPd-f7-O2i"/>
+                                            <outlet property="titleTaskLabel" destination="XCZ-5x-ZZw" id="yA3-kl-Kd2"/>
+                                            <outlet property="typeTaskMarkerView" destination="JT5-dt-8fs" id="5ea-a5-RIa"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -2019,6 +2107,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tasksByProjectTableView" destination="nc6-2P-p1q" id="MTe-0e-8C3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uau-ix-eGv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2912,6 +3003,7 @@
     </scenes>
     <resources>
         <image name="Add" width="18" height="19"/>
+        <image name="ArrowHorizontaly" width="12" height="7"/>
         <image name="Back" width="59" height="18"/>
         <image name="Button add" width="40" height="40"/>
         <image name="ChangePassword1" width="122" height="13"/>
