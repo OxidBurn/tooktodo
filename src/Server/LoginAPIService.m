@@ -42,7 +42,7 @@ static bool isFirstAccess         = YES;
 
 - (RACSignal*) getUserToken: (NSDictionary*) requestParameters
 {
-    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
     manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -52,7 +52,7 @@ static bool isFirstAccess         = YES;
 
 - (RACSignal*) sendResetPasswordRequest: (NSString*) email
 {
-    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPRequestOperationManager* manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
     manager.requestSerializer  = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];

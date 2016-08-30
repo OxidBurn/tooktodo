@@ -28,4 +28,6 @@
 - (void) updateInfoForUser: (UserInfo*)        user
                withNewInfo: (UpdatedUserInfo*) newInfo;
 
+- (void) updateAvatarWithFile: (NSString*) filePath;
+
 @end

@@ -15,6 +15,7 @@
 
 // Helpers
 #import "AvatarHelper.h"
+#import "Utils.h"
 
 @implementation DataManager (UserInfo)
 
@@ -28,8 +29,15 @@
         {
             userInfo = [UserInfo MR_createEntityInContext: localContext];
             
-            userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: info.email
-                                                                          withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
+            if ( info.avatarSrc.length == 0 )
+            {
+                userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: info.email
+                                                                              withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
+            }
+            else
+            {
+                userInfo.photoImagePath = [[AvatarHelper sharedInstance] getAvatarPathForName: info.email];
+            }
         }
         
         userInfo.fullName                         = info.displayName;

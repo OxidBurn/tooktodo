@@ -108,6 +108,8 @@
     
     [imageData writeToFile: [self getAvatarImagePath]
                 atomically: YES];
+    
+    [[UserInfoService sharedInstance] updateAvatarWithFile: [self getAvatarImagePath]];
 }
 
 

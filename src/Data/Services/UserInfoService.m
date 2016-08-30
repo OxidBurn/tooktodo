@@ -78,6 +78,34 @@ static bool isFirstAccess = YES;
     return [[UserAPIService sharedInstance] getUserInfo];
 }
 
+- (void) updateAvatarWithFile: (NSString*) filePath
+{
+    [[UserAPIService sharedInstance] getAvatarFileID: filePath
+                                      withCompletion:^(NSDictionary *response, NSError *error) {
+                                          
+                                          if ( error == nil )
+                                          {
+                                              NSString* fileID = response[@"id"];
+                                              
+                                              NSDictionary* parameters = @{@"fileId" : fileID};
+                                              
+                                              RACSignal* updateAvatarSignal = [[UserAPIService sharedInstance] updateAvatar: parameters];
+                                              
+                                              [updateAvatarSignal subscribeNext: ^(RACTuple* tuple) {
+                                                  
+                                                  NSLog(@"Response %@", tuple);
+                                                  
+                                              }
+                                                                          error:^(NSError *error) {
+                                                                              
+                                                                              NSLog(@"Error with getting file info: %@", error.localizedDescription);
+                                                                              
+                                                                          }];
+                                          }
+                                          
+                                      }];
+}
+
 
 #pragma mark - Life Cycle -
 

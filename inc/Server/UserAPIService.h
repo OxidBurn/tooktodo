@@ -26,4 +26,9 @@
 
 - (RACSignal*) getUserInfo;
 
+- (void) getAvatarFileID: (NSString*)                                       filePath
+          withCompletion: (void(^)(NSDictionary* response, NSError* error)) completion;
+
+- (RACSignal*) updateAvatar: (NSDictionary*) parameters;
+
 @end

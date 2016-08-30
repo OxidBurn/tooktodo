@@ -18,10 +18,12 @@
 
 // properties
 
+@property (strong, nonatomic) AFHTTPRequestOperationManager* requestManager;
+
+@property (strong, nonatomic) AFHTTPRequestOperationManager* requestManagerWithoutContentType;
+
 
 // methods
-
-- (AFHTTPRequestOperationManager*) getRequestManager;
 
 - (NSURL*) getRegisterURL;
 

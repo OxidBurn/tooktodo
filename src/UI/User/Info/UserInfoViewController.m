@@ -213,7 +213,6 @@
 {
     self.avatarImageView.image = croppedImage;
     
-    
     [self.viewModel saveNewImage: croppedImage];
     
     [controller dismissViewControllerAnimated: YES

@@ -14,21 +14,20 @@
 // URLS
 static NSString* registerPageURL = @"https://tooktodo.ru/login";
 
-//#ifdef DEBUG
+#ifdef DEBUG
 static NSString* serverURL           = @"http://api.taketowork.com:80/";
-static NSString* loginURL            = @"http://api.taketowork.com:80/token";
-static NSString* userInfoURL         = @"http://api.taketowork.com:80/api/Account/info";
-static NSString* restorePassURL      = @"http://api.taketowork.com:80/api/Account/sendResetPasswordEmail";
-static NSString* updatePasswordURL   = @"http://api.taketowork.com:80/api/Account/ChangePassword";
-static NSString* logoutURL           = @"http://api.taketowork.com:80/api/Account/Logout";
-static NSString* updateUserInfoURL   = @"http://api.taketowork.com:80/api/v2/account/info/common";
-static NSString* userProjectsListURL = @"http://api.taketowork.com:80/api/project/list";
-//
-//#else
-//static NSString* serverURL       = @"https://api.tooktodo.ru/";
-//static NSString* loginURL        = @"https://api.tooktodo.ru/token";
-//static NSString* restorePassURL  = @"https://api.tooktodo.ru/api/Account/sendResetPasswordEmail";
-//
-//#endif
+#else
+static NSString* serverURL           = @"https://api.tooktodo.ru/";
+#endif
+
+static NSString* loginURL            = @"token";
+static NSString* userInfoURL         = @"api/Account/info";
+static NSString* restorePassURL      = @"api/Account/sendResetPasswordEmail";
+static NSString* updatePasswordURL   = @"api/Account/ChangePassword";
+static NSString* logoutURL           = @"api/Account/Logout";
+static NSString* updateUserInfoURL   = @"api/v2/account/info/common";
+static NSString* userProjectsListURL = @"api/project/list";
+static NSString* fileInfoURL         = @"api/file";
+static NSString* updateAvatarURL     = @"/api/Account/avatar";
 
 #endif /* APIConstance_h */

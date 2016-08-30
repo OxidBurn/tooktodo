@@ -77,18 +77,6 @@
     [self presentViewController: loginViewController
                        animated: NO
                      completion: nil];
-    
-    // Handle dismiss action
-//    __weak typeof(self) blockSelf = self;
-//    
-//    loginViewController.dismissLoginView = ^(){
-//        
-//        if ( [blockSelf isFirstSetup] )
-//        {
-//            [blockSelf showWelcomeTour];
-//        }
-//        
-//    };
 }
 
 

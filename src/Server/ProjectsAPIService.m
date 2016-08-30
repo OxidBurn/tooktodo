@@ -33,7 +33,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) getProjectsList: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self getRequestManager];
+    AFHTTPRequestOperationManager* manager = [self requestManager];
     
     return [[[manager rac_GET: userProjectsListURL parameters: parameters] logError] replayLazily];
 }

@@ -138,7 +138,7 @@ static AvatarHelper* sharedInstance = nil;
     [manager downloadImageWithURL: [NSURL URLWithString: filePath]
                           options: 0
                          progress: nil
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                        completed: ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                             
                             // Generate avatar and write it to file in external queue
                             NSOperationQueue* writeFileQueue = [NSOperationQueue new];

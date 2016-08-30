@@ -32,7 +32,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) logOut
 {
-    AFHTTPRequestOperationManager* manager = [self getRequestManager];
+    AFHTTPRequestOperationManager* manager = [self requestManager];
     
     return [[[manager rac_GET: userInfoURL parameters: nil] logError] replayLazily];
 }
@@ -40,7 +40,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) updateUserInfoOnServer: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self getRequestManager];
+    AFHTTPRequestOperationManager* manager = [self requestManager];
     
     return [[[manager rac_PUT: updateUserInfoURL parameters: parameters] logError] replayLazily];
 }
@@ -48,7 +48,7 @@ static bool isFirstAccess = YES;
 - (RACSignal*) updatePasswordFromOld: (NSString*) old
                                toNew: (NSString*) pass
 {
-    AFHTTPRequestOperationManager* manager = [self getRequestManager];
+    AFHTTPRequestOperationManager* manager = [self requestManager];
     
     NSDictionary* parameters = @{@"oldPassword"     : old,
                                  @"newPassword"     : pass,
@@ -59,9 +59,59 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) getUserInfo
 {
-    AFHTTPRequestOperationManager* manager = [self getRequestManager];
+    AFHTTPRequestOperationManager* manager = [self requestManager];
     
     return [[[manager rac_GET: userInfoURL parameters: nil] logError] replayLazily];
+}
+
+- (RACSignal*) getAvatarFileID: (NSDictionary*) parameters
+{
+    AFHTTPRequestOperationManager* manager = [self requestManagerWithoutContentType];
+    
+    return [[[manager rac_POST: fileInfoURL parameters: parameters] logError] replayLazily];
+}
+
+- (void) getAvatarFileID: (NSString*)                           filePath
+          withCompletion: (void (^)(NSDictionary *, NSError *)) completion
+{
+    NSMutableURLRequest* request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod: @"POST"
+                                                                                              URLString: [serverURL stringByAppendingString: fileInfoURL]
+                                                                                             parameters: nil
+                                                                              constructingBodyWithBlock: ^(id<AFMultipartFormData> formData) {
+                                                                                  
+        [formData appendPartWithFileURL: [NSURL fileURLWithPath: filePath]
+                                   name: @"file"
+                               fileName: filePath.lastPathComponent
+                               mimeType: @"image/png"
+                                  error: nil];
+    } error: nil];
+    
+    [request setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
+   forHTTPHeaderField: @"Authorization"];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadTask;
+    
+    uploadTask = [manager uploadTaskWithStreamedRequest: request
+                                               progress: nil
+                                      completionHandler: ^(NSURLResponse *response, id responseObject, NSError *error) {
+                                         
+                                          completion (responseObject[0], error);
+                                          
+                                      }];
+    
+    [uploadTask resume];
+}
+
+- (RACSignal*) updateAvatar: (NSDictionary*) parameters
+{
+    AFHTTPRequestOperationManager* manager = [self requestManager];
+    
+    [manager.requestSerializer setValue: @"application/x-www-form-urlencoded"
+                     forHTTPHeaderField: @"Content-Type"];
+    
+    return [[[manager rac_PUT: updateAvatarURL parameters: parameters] logError] replayLazily];
 }
 
 
