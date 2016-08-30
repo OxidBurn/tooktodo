@@ -75,9 +75,14 @@
                                     <constraint firstAttribute="height" constant="536" id="zg7-ey-Oy2"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Введите пожалуйста поисковый запрос" id="rRl-di-6s6">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCellID" rowHeight="65" id="HvB-aD-BcT" customClass="ProjectInfoCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="65"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HvB-aD-BcT" id="uoG-R8-l9h">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
@@ -200,6 +205,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="projectsTable" destination="K9g-Ah-68s" id="taV-wh-5Pb"/>
+                        <outlet property="searchBar" destination="rRl-di-6s6" id="4mX-EV-Ol2"/>
                         <outlet property="sortBtn" destination="vaY-LS-p3C" id="Thh-Z3-M8K"/>
                         <segue destination="ohQ-iX-uaP" kind="push" identifier="ShowSyncSetupID" id="f4B-iZ-Teu"/>
                     </connections>

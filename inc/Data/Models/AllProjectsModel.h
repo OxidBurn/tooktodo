@@ -27,5 +27,7 @@
 
 - (NSArray*) getProjectsSortedPopoverContent;
 
+- (NSArray*) filteredContentWithSearchText: (NSString*) searchText
+                                   inArray: (NSArray*)  array;
 
 @end
