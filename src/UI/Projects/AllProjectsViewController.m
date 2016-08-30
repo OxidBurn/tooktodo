@@ -9,6 +9,9 @@
 #import "AllProjectsViewController.h"
 #import "AllProjectsViewModel.h"
 
+// Extensions
+#import "UISearchBar+TextFieldControl.h"
+
 @interface AllProjectsViewController ()
 
 // propeties
@@ -17,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* sortBtn;
 @property (weak, nonatomic) IBOutlet UITableView *projectsTable;
+@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
+@property (strong, nonatomic) UITextField* searchTextField;
 
 // methods
 
@@ -37,6 +42,14 @@
     
     // Binding UI components with model
     [self bindingUI];
+}
+
+- (void) viewDidAppear: (BOOL) animated
+{
+    [super viewDidAppear: animated];
+    
+    // Setup table view with search bar
+    [self setupTableView];
 }
 
 
@@ -105,8 +118,14 @@
     
     self.projectsTable.dataSource = self.viewModel;
     self.projectsTable.delegate   = self.viewModel;
+    self.searchBar.delegate       = self.viewModel;
     
     [self handleModelActions];
+}
+
+- (void) setupTableView
+{
+    [self.projectsTable setContentOffset: CGPointMake(0, self.searchBar.frame.size.height)];
 }
 
 - (void) handleModelActions
@@ -122,6 +141,13 @@
     self.viewModel.reloadTable = ^(){
         
         [blockSelf.projectsTable reloadData];
+        
+    };
+    
+    self.viewModel.endSearching = ^(){
+        
+        [blockSelf.searchBar resignFirstResponder];
+        [blockSelf.view endEditing: YES];
         
     };
 }

@@ -10,13 +10,15 @@
 #import "ProjectsEnumerations.h"
 #import "PopoverModel.h"
 
-@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate, PopoverModelDataSource>
+@interface AllProjectsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate, PopoverModelDataSource, UISearchBarDelegate>
 
 // properties
 
 @property (copy, nonatomic) void(^didSelectedProject)(NSNumber* projectID);
 
 @property (nonatomic, copy) void(^reloadTable)();
+
+@property (copy, nonatomic) void(^endSearching)();
 
 // methods
 

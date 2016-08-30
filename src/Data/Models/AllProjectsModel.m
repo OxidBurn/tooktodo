@@ -71,6 +71,14 @@
              @"Дата создания"];
 }
 
+- (NSArray*) filteredContentWithSearchText: (NSString*) searchText
+                                   inArray: (NSArray*)  array
+{
+    NSPredicate* filteredPredicate = [NSPredicate predicateWithFormat: @"(SELF.title CONTAINS[c] %@) OR (SELF.address CONTAINS[c] %@)", searchText, searchText];
+    
+    return [array filteredArrayUsingPredicate: filteredPredicate];
+}
+
 #pragma mark - Internal methods -
 
 - (NSArray*) applyDefaultSorting: (NSArray*) array
