@@ -6,7 +6,7 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
 
 @interface MainMenuViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 

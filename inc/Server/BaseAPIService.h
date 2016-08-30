@@ -7,8 +7,8 @@
 //
 
 // Frameworks
-#import <AFNetworking-RACExtensions/RACAFNetworking.h>
-#import <ReactiveCocoa.h>
+#import "RACAFNetworking.h"
+#import "ReactiveCocoa.h"
 
 // Classes
 #import "APIConstance.h"
