@@ -2,7 +2,7 @@
 //  User.h
 //  addUserTest
 //
-//  Created by Lera on 26.08.16.
+//  Created by Nikolay Chaban on 26.08.16.
 //  Copyright © 2016 Valeriya.Mozgovaya. All rights reserved.
 //
 
