@@ -8,13 +8,15 @@
 
 #import "TeamInfoViewController.h"
 
+
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 
 @interface TeamInfoViewController ()
 
 // Properties
-@property (weak, nonatomic) IBOutlet UITableView *teamInfoTableView;
+@property (weak, nonatomic) IBOutlet UITableView* teamInfoTableView;
+@property (nonatomic, strong) InviteInfo* inviteInfo;
 
 // Methods
 
@@ -37,6 +39,12 @@
 {
     [super viewDidLoad];
 }
+
+- (void) fillInviteInfo: (InviteInfo*) userInf
+{
+    self.inviteInfo = userInf;
+}
+
 
 #pragma mark - Memory managment -
 
