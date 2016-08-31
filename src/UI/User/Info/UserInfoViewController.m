@@ -14,6 +14,7 @@
 #import "TermsViewController.h"
 #import "ProjectsControllersDelegate.h"
 #import "KeyChainManager.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface UserInfoViewController () <RSKImageCropViewControllerDelegate, RSKImageCropViewControllerDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -254,7 +255,19 @@
 
 - (void) updateInfo
 {
-    self.avatarImageView.image               = [self.viewModel userAvatar];
+    // Added checking if avatar image data is empty and not loaded yet
+    // can happened when user make first autorization
+    UIImage* userAvatar = [self.viewModel userAvatar];
+    
+    if ( userAvatar )
+    {
+        self.avatarImageView.image  = [self.viewModel userAvatar];
+    }
+    else
+    {
+        [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
+    }
+    
     self.fullNameLabel.text                  = [self.viewModel fullUserName];
     self.phoneInfoTable.dataSource           = self.viewModel;
     self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];

@@ -119,6 +119,8 @@
     self.projectsTable.dataSource = self.viewModel;
     self.projectsTable.delegate   = self.viewModel;
     self.searchBar.delegate       = self.viewModel;
+#warning 'Move it to storyboard'
+    self.searchBar.placeholder    = [self.viewModel getSearchBarPlaceholderText];
     
     [self handleModelActions];
 }

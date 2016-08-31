@@ -25,4 +25,6 @@
 
 - (void) saveNewImage: (UIImage*) image;
 
+- (NSURL*) getUserAvatarURL;
+
 @end

@@ -36,7 +36,7 @@
             }
             else
             {
-                userInfo.photoImagePath = [[AvatarHelper sharedInstance] getAvatarPathForName: info.email];
+                userInfo.photoImagePath = [[Utils getEmailPrefix: info.email] stringByAppendingString: @".png"];
             }
         }
         

@@ -27,4 +27,6 @@
 
 - (RACSignal*) loadProjectsList;
 
+- (NSURL*) getUserAvatarURL;
+
 @end

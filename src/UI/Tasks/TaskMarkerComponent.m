@@ -80,7 +80,7 @@
     
     // Set marker values
     self.componentImage.image = [self getImageForType: type];
-    self.componentValue.text  = [NSString stringWithFormat: @"%ld", value];
+    self.componentValue.text  = [NSString stringWithFormat: @"%ld", (unsigned long)value];
 }
 
 #pragma mark - Internal methods -

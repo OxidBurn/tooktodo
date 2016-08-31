@@ -96,6 +96,11 @@
     return nil;
 }
 
+- (NSURL*) getUserAvatarURL
+{
+    return [NSURL URLWithString: self.currentUserInfo.avatarSrc];
+}
+
 - (NSArray*) getProjects
 {
     return [DataManagerShared getAllProjects];

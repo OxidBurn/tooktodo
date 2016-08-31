@@ -99,6 +99,8 @@
 
 + (NSString*) getNameAbbreviation: (NSString*) name;
 
++ (NSString*) getEmailPrefix: (NSString*) email;
+
 #pragma mark - Date/time -
 
 + (NSDateFormatter*) defaultDateFormatter;

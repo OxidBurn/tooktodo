@@ -32,4 +32,6 @@
 
 - (void) updateProjectsContent;
 
+- (NSURL*) getUserAvatarURL;
+
 @end

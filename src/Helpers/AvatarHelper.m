@@ -98,7 +98,7 @@ static AvatarHelper* sharedInstance = nil;
 - (NSString*) generateAvatarForName: (NSString*) name
                    withAbbreviation: (NSString*) abbreviation
 {
-    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", [self getEmailPrefix: name]];
+    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", [Utils getEmailPrefix: name]];
     UIColor* avatarColor     = [self getRandomAvatarColor];
     CGSize avatarImageSize   = CGSizeMake(60, 60);
     
@@ -127,7 +127,7 @@ static AvatarHelper* sharedInstance = nil;
 
 - (NSString*) getAvatarPathForName: (NSString*) name
 {
-    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", [self getEmailPrefix: name]];
+    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", [Utils getEmailPrefix: name]];
 }
 
 - (void) loadAvatarFromWeb: (NSString*) filePath
@@ -166,18 +166,6 @@ static AvatarHelper* sharedInstance = nil;
     UIColor* avatarColor  = self.avatarsColors[colorIndex];
     
     return avatarColor;
-}
-
-- (NSString*) getEmailPrefix: (NSString*) email
-{
-    NSRange range         = [email rangeOfString: @"@"];
-    NSString* emailPrefix = @"";
-    if ( range.location != NSNotFound )
-    {
-        emailPrefix = [email substringToIndex: range.location];
-    }
-    
-    return emailPrefix;
 }
 
 @end

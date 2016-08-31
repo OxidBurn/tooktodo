@@ -60,6 +60,11 @@
     return [UIImage new];
 }
 
+- (NSURL*) getUserAvatarURL
+{
+    return [NSURL URLWithString: self.currentUserInfo.avatarSrc];
+}
+
 - (NSString*) getUserEmail
 {
     return self.currentUserInfo.email;

@@ -45,6 +45,11 @@
     return [self.model getUserAvatarImage];
 }
 
+- (NSURL*) getUserAvatarURL
+{
+    return [self.model getUserAvatarURL];
+}
+
 - (NSString*) fullUserName
 {
     return [self.model getFullUserName];

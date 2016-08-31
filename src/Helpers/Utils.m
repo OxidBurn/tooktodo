@@ -317,6 +317,18 @@ static NSDateFormatter* defaultDateFormatter = nil;
     }
 }
 
++ (NSString*) getEmailPrefix: (NSString*) email
+{
+    NSRange range         = [email rangeOfString: @"@"];
+    NSString* emailPrefix = @"";
+    if ( range.location != NSNotFound )
+    {
+        emailPrefix = [email substringToIndex: range.location];
+    }
+    
+    return emailPrefix;
+}
+
 
 #pragma mark - iCloud skip backup -
 

@@ -53,6 +53,11 @@
     return [self.model getUserAvatarImage];
 }
 
+- (NSURL*) getUserAvatarURL
+{
+    return [self.model getUserAvatarURL];
+}
+
 - (RACSignal*) loadProjectsList
 {
     return [self.model loadProjectsList];

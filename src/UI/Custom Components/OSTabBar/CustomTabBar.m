@@ -74,7 +74,7 @@
                                   @"ShowTasks",
                                   @"",
                                   @"ShowDocuments",
-                                  @"ShowTeams"];
+                                  @"ShowTeamInfoID"];
     }
     
     return _selectedControllerID;

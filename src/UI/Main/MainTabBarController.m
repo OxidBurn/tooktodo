@@ -40,15 +40,15 @@
 {
     [super viewDidAppear: animated];
     
-//    if ( [self shouldShowLogin] )
-//    {
-//        [self presentLoginController];
-//    }
-//    else
-//        if ( [self isFirstSetup] )
-//        {
-//            [self showWelcomeTour];
-//        }
+    if ( [self shouldShowLogin] )
+    {
+        [self presentLoginController];
+    }
+    else
+        if ( [self isFirstSetup] )
+        {
+            [self showWelcomeTour];
+        }
 }
 
 #pragma mark - Internal methods -
