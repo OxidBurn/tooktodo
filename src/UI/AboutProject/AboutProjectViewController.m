@@ -49,10 +49,31 @@
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
 {
+    if ( sender.selectedSegmentIndex == 0 )
+    {
+        [self showInfoScreenWithID: @"GoToRoles"];
+    }
     
+    else if ( sender.selectedSegmentIndex == 1 )
+    {
+        [self showInfoScreenWithID: @"GoToProjInformation"];
+    }
+    
+    else
+    {
+        [self showInfoScreenWithID: @"GoToSystemInfo"];
+    }
+
 }
 
 #pragma mark - Internal method -
+
+- (void) showInfoScreenWithID: (NSString*) storyboardID
+{
+    [self performSegueWithIdentifier: storyboardID
+                              sender: self];
+}
+
 
 - (UIView*) twoLineTitleView
 {

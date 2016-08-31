@@ -7,6 +7,7 @@
 //
 
 #import "InformationViewController.h"
+#import "InformationViewModel.h"
 
 @interface InformationViewController ()
 
@@ -14,23 +15,34 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* informationTableView;
 
+@property (nonatomic, strong)  InformationViewModel* viewModel;
 
 // methods
 
 @end
 
 @implementation InformationViewController
+#pragma mark - Properties -
 
-- (void) viewDidLoad
+- (InformationViewModel*) viewModel
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    if (_viewModel == nil)
+    {
+        _viewModel = [[InformationViewModel alloc] init];
+    }
+    
+    return _viewModel;
 }
 
-- (void) didReceiveMemoryWarning
+#pragma mark - Life cycle -
+
+- (void) loadView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super loadView];
+    
+    self.informationTableView.dataSource = self.viewModel;
+    self.informationTableView.delegate   = self.viewModel;
+    
 }
 
 

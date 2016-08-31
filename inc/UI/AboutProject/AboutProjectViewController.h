@@ -10,4 +10,8 @@
 
 @interface AboutProjectViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIView* containerView;
+
+@property (strong, nonatomic) UIViewController* containerController;
+
 @end

@@ -121,6 +121,8 @@
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
 		59F707E91D5DFF3800BFD4CF /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F707E81D5DFF3800BFD4CF /* MainTabBarController.m */; };
+		CF2AAC2B1D7727B700D570DC /* AboutProjectSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2AAC2A1D7727B700D570DC /* AboutProjectSegue.m */; };
+		CF2AAC2E1D7727E400D570DC /* InformationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2AAC2D1D7727E400D570DC /* InformationViewModel.m */; };
 		CFE215491D744C05005E3C9E /* InviteInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE215481D744C05005E3C9E /* InviteInfo.m */; };
 		CFE2154C1D744C88005E3C9E /* AddContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2154B1D744C88005E3C9E /* AddContactViewModel.m */; };
 		CFE2154F1D744C9B005E3C9E /* AddContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFE2154E1D744C9B005E3C9E /* AddContactModel.m */; };
@@ -356,6 +358,10 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF2AAC291D7727B700D570DC /* AboutProjectSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutProjectSegue.h; path = ../../../src/UI/AboutProject/AboutProjectSegue.h; sourceTree = "<group>"; };
+		CF2AAC2A1D7727B700D570DC /* AboutProjectSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectSegue.m; sourceTree = "<group>"; };
+		CF2AAC2C1D7727E400D570DC /* InformationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InformationViewModel.h; path = ../../../src/UI/AboutProject/InformationViewModel.h; sourceTree = "<group>"; };
+		CF2AAC2D1D7727E400D570DC /* InformationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewModel.m; sourceTree = "<group>"; };
 		CFE215471D744C05005E3C9E /* InviteInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteInfo.h; path = ../../../src/UI/Team/InviteInfo.h; sourceTree = "<group>"; };
 		CFE215481D744C05005E3C9E /* InviteInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteInfo.m; sourceTree = "<group>"; };
 		CFE2154A1D744C88005E3C9E /* AddContactViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddContactViewModel.h; path = ../../../src/UI/Team/AddContactViewModel.h; sourceTree = "<group>"; };
@@ -613,6 +619,8 @@
 				56E1B9911D6F0FBB003E46DA /* InformationViewController.h */,
 				56E1B9921D6F0FBB003E46DA /* RoleInfoViewController.h */,
 				56E1B9931D6F0FBB003E46DA /* SystemInfoViewController.h */,
+				CF2AAC291D7727B700D570DC /* AboutProjectSegue.h */,
+				CF2AAC2C1D7727E400D570DC /* InformationViewModel.h */,
 			);
 			path = AboutProject;
 			sourceTree = "<group>";
@@ -638,6 +646,8 @@
 				56E1B9991D6F0FC2003E46DA /* InformationViewController.m */,
 				56E1B99A1D6F0FC2003E46DA /* RoleInfoViewController.m */,
 				56E1B99B1D6F0FC2003E46DA /* SystemInfoViewController.m */,
+				CF2AAC2A1D7727B700D570DC /* AboutProjectSegue.m */,
+				CF2AAC2D1D7727E400D570DC /* InformationViewModel.m */,
 			);
 			path = AboutProject;
 			sourceTree = "<group>";
@@ -1464,6 +1474,7 @@
 				56A19ECE1D6AB317004AC3D3 /* ChangePasswordModel.m in Sources */,
 				F72851291D63F79A0086873D /* CustomTabBar.m in Sources */,
 				56E1B99F1D6F0FC2003E46DA /* AboutProjectViewController.m in Sources */,
+				CF2AAC2B1D7727B700D570DC /* AboutProjectSegue.m in Sources */,
 				CFE215551D745A40005E3C9E /* RolesViewModel.m in Sources */,
 				59B0BEAE1D6135630016AE13 /* AvatarGenerator.m in Sources */,
 				CFE215491D744C05005E3C9E /* InviteInfo.m in Sources */,
@@ -1471,6 +1482,7 @@
 				566A72641D73A589004F63D3 /* UserInfoService.m in Sources */,
 				56E1B9B61D6F3099003E46DA /* BaseMainViewController+NavigationTitle.m in Sources */,
 				56E1BA151D6F7677003E46DA /* ProjectRegionData.m in Sources */,
+				CF2AAC2E1D7727E400D570DC /* InformationViewModel.m in Sources */,
 				56A19ED81D6AB317004AC3D3 /* TermsViewController.m in Sources */,
 				56E1B9A41D6F0FC2003E46DA /* TeamInfoViewController.m in Sources */,
 				59B0BEA11D6131A50016AE13 /* AvatarImageView.m in Sources */,
