@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ProjectsControllersDelegate.h"
 
+@protocol CustomTabBarDelegate;
+
 @interface CustomTabBar : UIView
 
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
