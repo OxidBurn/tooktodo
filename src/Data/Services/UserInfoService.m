@@ -35,9 +35,34 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) logoutUser: (UserInfo*) info
 {
-    [DataManagerShared deleteCurrentUser: info];
+    RACSignal* deleteUserInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[UserAPIService sharedInstance] logOut] subscribeNext: ^(id x) {
+            
+            [DataManagerShared deleteCurrentUser: info];
+            [DataManagerShared deleteAllProjects];
+            
+            [[KeyChainManager sharedInstance] deleteToken];
+            
+            [subscriber sendNext: x];
+            
+        }
+                                                          error: ^(NSError *error) {
+                                                              
+                                                              [subscriber sendError: error];
+                                                              
+                                                          }
+                                                      completed: ^{
+                                                         
+                                                          [subscriber sendCompleted];
+                                                          
+                                                      }];
+        
+        return nil;
+        
+    }];
     
-    return [[UserAPIService sharedInstance] logOut];
+    return deleteUserInfoSignal;
 }
 
 - (void) updateInfoForUser: (UserInfo*)        user

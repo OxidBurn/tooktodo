@@ -59,6 +59,11 @@
     return _currentUserInfo;
 }
 
+- (void) updateUserData
+{
+    self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+}
+
 #pragma mark - Public -
 
 - (RACSignal*) sendReviewSignal
@@ -85,7 +90,7 @@
 
 - (UIImage*) getUserAvatarImage
 {
-    if ( self.currentUserInfo )
+    if ( self.currentUserInfo.photoImagePath )
     {
         NSString* filePath   = [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.currentUserInfo.photoImagePath];
         UIImage* avatarImage = [UIImage imageWithContentsOfFile: filePath];

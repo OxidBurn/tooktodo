@@ -11,6 +11,7 @@
 
 // Extensions
 #import "DataManager+UserInfo.h"
+#import "DataManager+ProjectInfo.h"
 
 // Classes
 #import "UpdatedUserInfo.h"

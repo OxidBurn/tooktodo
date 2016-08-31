@@ -15,7 +15,7 @@
 
 @interface ProjectInfoData : JSONModel
 
-@property (nonatomic, strong) NSDate* lastVisit;
+@property (nonatomic, strong) NSDate<Optional>* lastVisit;
 
 @property (nonatomic, assign) BOOL isTaskAddAppealClosed;
 

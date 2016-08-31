@@ -22,38 +22,32 @@
 
 #pragma mark - Public methods -
 
-- (AFHTTPRequestOperationManager*) requestManager
+- (AFHTTPRequestOperationManager *)getDefaultManager
 {
-    if ( _requestManager == nil )
-    {
-        _requestManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
-        
-        _requestManager.requestSerializer  = [AFHTTPRequestSerializer serializer];
-        _requestManager.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        [_requestManager.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
-                                 forHTTPHeaderField: @"Authorization"];
-        [_requestManager.requestSerializer setValue: @"application/json"
-                                 forHTTPHeaderField: @"Content-Type"];
-    }
+    AFHTTPRequestOperationManager* requestManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
-    return _requestManager;
+    requestManager.requestSerializer  = [AFHTTPRequestSerializer serializer];
+    requestManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [requestManager.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
+                             forHTTPHeaderField: @"Authorization"];
+    [requestManager.requestSerializer setValue: @"application/json"
+                             forHTTPHeaderField: @"Content-Type"];
+    
+    return requestManager;
 }
 
-- (AFHTTPRequestOperationManager*) requestManagerWithoutContentType
+- (AFHTTPRequestOperationManager *)getManagerWithToken
 {
-    if ( _requestManagerWithoutContentType == nil )
-    {
-        _requestManagerWithoutContentType = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
-        
-        _requestManagerWithoutContentType.requestSerializer  = [AFHTTPRequestSerializer serializer];
-        _requestManagerWithoutContentType.responseSerializer = [AFJSONResponseSerializer serializer];
-        
-        [_requestManagerWithoutContentType.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
-                                                   forHTTPHeaderField: @"Authorization"];
-    }
+    AFHTTPRequestOperationManager* requestManagerWithoutContentType = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
-    return _requestManagerWithoutContentType;
+    requestManagerWithoutContentType.requestSerializer  = [AFHTTPRequestSerializer serializer];
+    requestManagerWithoutContentType.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [requestManagerWithoutContentType.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
+                                              forHTTPHeaderField: @"Authorization"];
+    
+    return requestManagerWithoutContentType;
 }
 
 - (NSURL*) getRegisterURL

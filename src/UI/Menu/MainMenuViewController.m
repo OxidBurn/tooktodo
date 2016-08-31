@@ -101,6 +101,8 @@
 - (void) updateInfo
 {
     // Info
+    [self.viewModel updateUserData];
+    
     self.avatarImage.image  = [self.viewModel userAvatar];
     self.userNameLabel.text = [self.viewModel fullUserName];
     
@@ -109,8 +111,8 @@
     // Projects
     @weakify(self)
     
-    [[self.viewModel loadProjectsList] subscribeCompleted: ^{
-        
+    [[self.viewModel loadProjectsList] subscribeNext: ^(id x) {
+       
         @strongify(self)
         
         [self.viewModel updateProjectsContent];

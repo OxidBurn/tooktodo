@@ -43,6 +43,11 @@
 
 #pragma mark - Public methods -
 
+- (void) updateUserData
+{
+    [self.model updateUserData];
+}
+
 - (NSString*) fullUserName
 {
     return [self.model getFullUserName];

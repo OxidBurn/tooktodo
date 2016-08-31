@@ -119,8 +119,9 @@
     self.projectsTable.dataSource = self.viewModel;
     self.projectsTable.delegate   = self.viewModel;
     self.searchBar.delegate       = self.viewModel;
-#warning 'Move it to storyboard'
-    self.searchBar.placeholder    = [self.viewModel getSearchBarPlaceholderText];
+    
+#warning 'Need to move to the storyboard'
+    self.searchBar.placeholder = [self.viewModel getSearchBarPlaceholderText];
     
     [self handleModelActions];
 }
@@ -136,7 +137,7 @@
     
     self.viewModel.didSelectedProject = ^(NSNumber* projectID){
         
-        NSLog(@"Project id: %lu", (unsigned long)projectID.integerValue);
+        NSLog(@"<INFO> Project id: %lu", (unsigned long)projectID.integerValue);
         
     };
     

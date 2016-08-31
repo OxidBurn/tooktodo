@@ -92,7 +92,7 @@ static bool isFirstAccess = YES;
     
     if ( parseError )
     {
-        NSLog(@"Parse error %@", parseError.localizedDescription);
+        NSLog(@"<ERROR> Parse error: %@", parseError.localizedDescription);
     }
     else
     {

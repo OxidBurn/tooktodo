@@ -12,7 +12,8 @@
 
 @interface DataManager (UserInfo)
 
-- (void) persistUserWithInfo: (UserInfoData*) info;
+- (void) persistUserWithInfo: (UserInfoData*)           info
+              withCompletion: (void(^)(BOOL isSuccess)) completion;
 
 - (UserInfo*) getCurrentUserInfo;
 

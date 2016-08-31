@@ -82,11 +82,13 @@
             [[[UserAPIService sharedInstance] getUserInfo] subscribeNext: ^(RACTuple* response) {
                 
                 [KeyChain storeUserPassword: password];
-                [self parsingLoginResponseInfo: [response objectAtIndex: 0]];
-                
-                [subscriber sendNext: [response objectAtIndex: 0]];
-                [subscriber sendCompleted];
-                
+                [self parsingLoginResponseInfo: [response objectAtIndex: 0]
+                                withCompletion: ^(BOOL isSuccess) {
+                    
+                                    [subscriber sendNext: [response objectAtIndex: 0]];
+                                    [subscriber sendCompleted];
+                                    
+                }];
             }];
             
         }
@@ -118,12 +120,18 @@
 
 #pragma mark - Internal -
 
-- (void) parsingLoginResponseInfo: (NSDictionary*) info
+- (void) parsingLoginResponseInfo: (NSDictionary*)           info
+                   withCompletion: (void(^)(BOOL isSuccess)) completion
 {
     UserInfoData* userInfo = [[UserInfoData alloc] initWithDictionary: info
                                                                 error: nil];
     
-    [DataManagerShared persistUserWithInfo: userInfo];
+    [DataManagerShared persistUserWithInfo: userInfo
+                            withCompletion: ^(BOOL isSuccess) {
+                                
+                                completion(isSuccess);
+                                
+                            }];
 }
 
 - (void) saveUserToken: (NSDictionary*) response

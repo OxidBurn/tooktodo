@@ -32,7 +32,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) logOut
 {
-    AFHTTPRequestOperationManager* manager = [self requestManager];
+    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
     return [[[manager rac_GET: userInfoURL parameters: nil] logError] replayLazily];
 }
@@ -40,7 +40,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) updateUserInfoOnServer: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self requestManager];
+    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
     return [[[manager rac_PUT: updateUserInfoURL parameters: parameters] logError] replayLazily];
 }
@@ -48,7 +48,7 @@ static bool isFirstAccess = YES;
 - (RACSignal*) updatePasswordFromOld: (NSString*) old
                                toNew: (NSString*) pass
 {
-    AFHTTPRequestOperationManager* manager = [self requestManager];
+    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
     NSDictionary* parameters = @{@"oldPassword"     : old,
                                  @"newPassword"     : pass,
@@ -59,14 +59,14 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) getUserInfo
 {
-    AFHTTPRequestOperationManager* manager = [self requestManager];
+    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
     return [[[manager rac_GET: userInfoURL parameters: nil] logError] replayLazily];
 }
 
 - (RACSignal*) getAvatarFileID: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self requestManagerWithoutContentType];
+    AFHTTPRequestOperationManager* manager = [self getManagerWithToken];
     
     return [[[manager rac_POST: fileInfoURL parameters: parameters] logError] replayLazily];
 }
@@ -109,7 +109,7 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) updateAvatar: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self requestManager];
+    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
     [manager.requestSerializer setValue: @"application/x-www-form-urlencoded"
                      forHTTPHeaderField: @"Content-Type"];

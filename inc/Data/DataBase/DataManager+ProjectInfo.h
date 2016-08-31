@@ -19,4 +19,6 @@
 
 - (NSArray*) getAllProjects;
 
+- (BOOL) deleteAllProjects;
+
 @end

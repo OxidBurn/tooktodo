@@ -82,6 +82,15 @@
     return [ProjectInfo MR_findAll];
 }
 
+- (BOOL) deleteAllProjects
+{
+    BOOL isSuccess = [ProjectInfo MR_truncateAll];
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+    
+    return isSuccess;
+}
+
 - (OfflineSettings*) createOfflineSettingForProject: (ProjectInfo*)            project
                                           inContext: (NSManagedObjectContext*) context
 {

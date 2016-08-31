@@ -29,4 +29,6 @@
 
 - (NSURL*) getUserAvatarURL;
 
+- (void) updateUserData;
+
 @end

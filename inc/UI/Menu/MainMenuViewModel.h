@@ -24,6 +24,8 @@
 
 // methods
 
+- (void) updateUserData;
+
 - (UIImage*) userAvatar;
 
 - (NSString*) fullUserName;

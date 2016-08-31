@@ -19,7 +19,8 @@
 
 @implementation DataManager (UserInfo)
 
-- (void) persistUserWithInfo: (UserInfoData*) info
+- (void) persistUserWithInfo: (UserInfoData*)           info
+              withCompletion: (void(^)(BOOL isSuccess)) completion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
@@ -53,7 +54,13 @@
         [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
                                                 withName: info.email];
         
-    }];
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                         
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 - (UserInfo*) getUserInfoWithEmail: (NSString*) email
@@ -69,19 +76,21 @@
 
 - (UserInfo*) getCurrentUserInfo
 {
-    return [[self getAllUserInfo] firstObject];
+    return [UserInfo MR_findFirst];
 }
 
 - (void) updateUserInfo: (UserInfo*) info
 {
-    [MagicalRecord saveWithBlockAndWait :^(NSManagedObjectContext * _Nonnull localContext) {
-        
-    }];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 - (void) deleteCurrentUser: (UserInfo*) info
 {
-    [info MR_deleteEntity];
+    BOOL isSuccess = [info MR_deleteEntity];
+    
+    NSLog(@"Success: %@", isSuccess ? @"YES" : @"NO");
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 @end

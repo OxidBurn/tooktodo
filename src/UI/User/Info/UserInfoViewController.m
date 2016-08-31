@@ -108,8 +108,6 @@
             
             if ( [self.delegate respondsToSelector: @selector(showLogin)] )
             {
-                [KeyChain deleteToken];
-                
                 [self.delegate showLogin];
             }
             
