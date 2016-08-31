@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
 
 @interface LoginModel : NSObject
 

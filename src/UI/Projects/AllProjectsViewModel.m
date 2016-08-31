@@ -9,7 +9,7 @@
 #import "AllProjectsViewModel.h"
 
 // Frameworks
-#import <ReactiveCocoa.h>
+#import "ReactiveCocoa.h"
 
 // Classes
 #import "AllProjectsModel.h"

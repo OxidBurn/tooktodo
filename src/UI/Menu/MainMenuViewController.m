@@ -9,8 +9,7 @@
 #import "MainMenuViewController.h"
 
 // Frameworks
-#import <ReactiveCocoa.h>
-#import "UIImageView+AFNetworking.h"
+#import "ReactiveCocoa.h"
 
 // Classes
 #import "MainMenuViewModel.h"
@@ -102,19 +101,7 @@
 - (void) updateInfo
 {
     // Info
-    // Added checking if avatar image data is empty and not loaded yet
-    // can happened when user make first autorization
-    UIImage* userAvatar = [self.viewModel userAvatar];
-    
-    if ( userAvatar )
-    {
-        self.avatarImage.image  = [self.viewModel userAvatar];
-    }
-    else
-    {
-        [self.avatarImage setImageWithURL: [self.viewModel getUserAvatarURL]];
-    }
-    
+    self.avatarImage.image  = [self.viewModel userAvatar];
     self.userNameLabel.text = [self.viewModel fullUserName];
     
     [self.projectsTableView reloadData];
