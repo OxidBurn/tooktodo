@@ -74,6 +74,9 @@ static bool isFirstAccess = YES;
 - (void) getAvatarFileID: (NSString*)                           filePath
           withCompletion: (void (^)(NSDictionary *, NSError *)) completion
 {
+    if ( filePath == nil )
+        return;
+    
     NSMutableURLRequest* request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod: @"POST"
                                                                                               URLString: [serverURL stringByAppendingString: fileInfoURL]
                                                                                              parameters: nil
