@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
+@property (nullable, nonatomic, retain) NSNumber* isSelected;
 
 @end
 

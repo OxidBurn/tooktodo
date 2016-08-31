@@ -38,5 +38,6 @@
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic region;
+@dynamic isSelected;
 
 @end

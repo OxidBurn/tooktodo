@@ -67,6 +67,7 @@
     projectInfo.commercialObjectTypeDescription  = data.commercialObjectTypeDescription;
     projectInfo.floor                            = data.floor;
     projectInfo.address                          = [NSString stringWithFormat: @"%@ %@ %@ %@", data.regionName, data.city, data.street, data.building];
+//    projectInfo.
     
 }
 

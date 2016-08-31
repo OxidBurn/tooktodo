@@ -21,6 +21,7 @@
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="floor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isRolesInvitationAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="isTaskAddAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastVisit" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -36,9 +37,17 @@
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
         <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="project" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="region" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="Team" syncable="YES">
+        <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="team" inverseEntity="TeamMember" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="team" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="TeamMember" syncable="YES">
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="member" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,11 +75,13 @@
         <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="118"/>
+        <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="418"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="450"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="225"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="178"/>
+        <element name="Team" positionX="-45" positionY="99" width="128" height="75"/>
+        <element name="TeamMember" positionX="-36" positionY="108" width="128" height="60"/>
     </elements>
 </model>
