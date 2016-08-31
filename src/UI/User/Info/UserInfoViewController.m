@@ -255,6 +255,8 @@
 {
     // Added checking if avatar image data is empty and not loaded yet
     // can happened when user make first autorization
+    
+    
     UIImage* userAvatar = [self.viewModel userAvatar];
     
     if ( userAvatar )

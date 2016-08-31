@@ -101,11 +101,15 @@
 {
     @weakify(self)
     
-    [self.doneBtn.rac_command.executionSignals subscribeNext: ^(id x) {
+    [self.doneBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
        
-        @strongify(self)
-        
-        [self.navigationController popViewControllerAnimated: YES];
+        [signal subscribeNext: ^(id x) {
+           
+            @strongify(self)
+            
+            [self.navigationController popViewControllerAnimated: YES];
+            
+        }];
         
     }];
 }

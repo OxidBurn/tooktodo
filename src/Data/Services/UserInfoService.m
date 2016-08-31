@@ -39,8 +39,12 @@ static bool isFirstAccess = YES;
         
         [[[UserAPIService sharedInstance] logOut] subscribeNext: ^(id x) {
             
-            [DataManagerShared deleteCurrentUser: info];
-            [DataManagerShared deleteAllProjects];
+            [[NSOperationQueue mainQueue] addOperationWithBlock: ^{
+               
+                [DataManagerShared deleteCurrentUser: info];
+                [DataManagerShared deleteAllProjects];
+                
+            }];
             
             [[KeyChainManager sharedInstance] deleteToken];
             
@@ -65,15 +69,14 @@ static bool isFirstAccess = YES;
     return deleteUserInfoSignal;
 }
 
-- (void) updateInfoForUser: (UserInfo*)        user
-               withNewInfo: (UpdatedUserInfo*) newInfo
+- (void) updateInfoForUser: (UserInfo*)               user
+               withNewInfo: (UpdatedUserInfo*)        newInfo
+            withCompletion: (void(^)(BOOL isSuccess)) completion
 {
     // Update info localy
-    user.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
-    user.phoneNumber       = newInfo.phoneNumber;
-    user.extendPhoneNumber = newInfo.additionalPhoneNumber;
-    
-    [[DataManager sharedInstance] updateUserInfo: user];
+    [[DataManager sharedInstance] updateUserInfo: newInfo
+                                         forUser: user
+                                  withCompletion: completion];
     
     // Update info on server
     NSDictionary* requestParameters = @{@"firstName"             : newInfo.name,

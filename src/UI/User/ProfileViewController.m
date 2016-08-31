@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* editUserInfoBtn;
+
 // methods
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender;
@@ -59,10 +61,14 @@
 {
     if ( sender.selectedSegmentIndex == 0 )
     {
+        self.editUserInfoBtn.customView.hidden = NO;
+        
         [self showInfoScreenWithID: @"UserDetailScreen"];
     }
     else
     {
+        self.editUserInfoBtn.customView.hidden = YES;
+        
         [self showInfoScreenWithID: @"UserNotificationsScreen"];
     }
 }

@@ -9,6 +9,7 @@
 #import "DataManager.h"
 #import "UserInfo.h"
 #import "UserInfoData.h"
+#import "UpdatedUserInfo.h"
 
 @interface DataManager (UserInfo)
 
@@ -17,7 +18,9 @@
 
 - (UserInfo*) getCurrentUserInfo;
 
-- (void) updateUserInfo: (UserInfo*) info;
+- (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
+                forUser: (UserInfo*)               user
+         withCompletion: (void(^)(BOOL isSuccess)) completion;
 
 - (void) deleteCurrentUser: (UserInfo*) info;
 

@@ -79,16 +79,30 @@
     return [UserInfo MR_findFirst];
 }
 
-- (void) updateUserInfo: (UserInfo*) info
+- (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
+                forUser: (UserInfo*)               user
+         withCompletion: (void(^)(BOOL isSuccess)) completion
 {
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        UserInfo* userInfo = [user MR_inContext: localContext];
+        
+        userInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
+        userInfo.phoneNumber       = newInfo.phoneNumber;
+        userInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 - (void) deleteCurrentUser: (UserInfo*) info
 {
-    BOOL isSuccess = [info MR_deleteEntity];
-    
-    NSLog(@"Success: %@", isSuccess ? @"YES" : @"NO");
+    [info MR_deleteEntity];
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }

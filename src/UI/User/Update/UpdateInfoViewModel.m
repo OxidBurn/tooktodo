@@ -84,10 +84,13 @@
             
             return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
                 
-                [self.model updateUserValues: [self getFilledObject]];
-                
-                [subscriber sendNext: nil];
-                [subscriber sendCompleted];
+                [self.model updateUserValues: [self getFilledObject]
+                              withCompletion: ^(BOOL isSuccess) {
+                                  
+                                  [subscriber sendNext: nil];
+                                  [subscriber sendCompleted];
+                                  
+                              }];
                 
                 return nil;
             }];

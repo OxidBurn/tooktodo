@@ -71,10 +71,12 @@
     return self.currentUserInfo.extendPhoneNumber;
 }
 
-- (void) updateUserValues: (UpdatedUserInfo*) newInfo
+- (void) updateUserValues: (UpdatedUserInfo*)        newInfo
+           withCompletion: (void(^)(BOOL isSuccess)) completion
 {
     [[UserInfoService sharedInstance] updateInfoForUser: self.currentUserInfo
-                                            withNewInfo: newInfo];
+                                            withNewInfo: newInfo
+                                         withCompletion: completion];
 }
 
 @end

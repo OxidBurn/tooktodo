@@ -17,6 +17,8 @@
 
 // methods
 
+- (void) updateInfo;
+
 - (UIImage*) userAvatar;
 
 - (NSString*) fullUserName;

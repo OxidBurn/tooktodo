@@ -40,6 +40,11 @@
 
 #pragma mark - Public -
 
+- (void) updateInfo
+{
+    [self.model updateInfo];
+}
+
 - (UIImage*) userAvatar
 {
     return [self.model getUserAvatarImage];

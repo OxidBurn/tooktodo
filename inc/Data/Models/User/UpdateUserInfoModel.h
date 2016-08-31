@@ -20,6 +20,7 @@
 
 - (NSString*) getUserAdditionalPhoneNumber;
 
-- (void) updateUserValues: (UpdatedUserInfo*) newInfo;
+- (void) updateUserValues: (UpdatedUserInfo*)        newInfo
+           withCompletion: (void(^)(BOOL isSuccess)) completion;
 
 @end

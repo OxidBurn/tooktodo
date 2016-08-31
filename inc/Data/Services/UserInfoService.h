@@ -26,8 +26,9 @@
 
 - (RACSignal*) logoutUser: (UserInfo*) info;
 
-- (void) updateInfoForUser: (UserInfo*)        user
-               withNewInfo: (UpdatedUserInfo*) newInfo;
+- (void) updateInfoForUser: (UserInfo*)               user
+               withNewInfo: (UpdatedUserInfo*)        newInfo
+            withCompletion: (void(^)(BOOL isSuccess)) completion;
 
 - (void) updateAvatarWithFile: (NSString*) filePath;
 

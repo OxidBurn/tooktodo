@@ -43,6 +43,11 @@
 
 #pragma mark - Public -
 
+- (void) updateInfo
+{
+    self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+}
+
 - (NSString*) getFullUserName
 {
     return self.currentUserInfo.fullName;
