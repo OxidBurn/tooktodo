@@ -1975,14 +1975,14 @@
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
                                                         </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUc-ju-p0V">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LUc-ju-p0V">
                                                             <rect key="frame" x="154" y="98" width="20" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="20" id="bp2-dl-fbn"/>
                                                                 <constraint firstAttribute="height" constant="20" id="ccb-f0-LYn"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBf-yP-WWd" customClass="TaskMarkerComponent">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBf-yP-WWd" customClass="TaskMarkerComponent">
                                                             <rect key="frame" x="184" y="101" width="38" height="17"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1990,7 +1990,7 @@
                                                                 <constraint firstAttribute="height" constant="17" id="zkP-MU-YZe"/>
                                                             </constraints>
                                                         </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-j4-HJO" customClass="TaskMarkerComponent">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aYz-j4-HJO" customClass="TaskMarkerComponent">
                                                             <rect key="frame" x="227" y="101" width="33" height="17"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -2146,6 +2146,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwG-21-5Mr" customClass="CustomTabBar">
                                 <rect key="frame" x="0.0" y="544" width="600" height="56"/>
                                 <subviews>
+                                    <button opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEi-UQ-ZEm">
+                                        <rect key="frame" x="120" y="0.0" width="120" height="56"/>
+                                        <state key="normal" image="OnPlan">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="Tasks isolated"/>
+                                        <connections>
+                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="whT-hP-bul"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="6" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNr-wt-jVW">
+                                        <rect key="frame" x="480" y="0.0" width="120" height="56"/>
+                                        <state key="normal" image="AboutProject">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="Team icolated"/>
+                                        <connections>
+                                            <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="bpb-RB-N0M"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZ3-jn-vrh">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="56"/>
                                         <state key="normal" image="Feed">
@@ -2200,6 +2220,7 @@
                                 <constraints>
                                     <constraint firstItem="3M6-ty-EJO" firstAttribute="height" secondItem="vfF-oq-eji" secondAttribute="height" id="126-AT-GQx"/>
                                     <constraint firstAttribute="trailing" secondItem="3M6-ty-EJO" secondAttribute="trailing" id="1Y6-6q-HOh"/>
+                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="width" secondItem="3M6-ty-EJO" secondAttribute="width" id="4UK-1b-Gl4"/>
                                     <constraint firstItem="vfF-oq-eji" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="5aL-ZK-vIS"/>
                                     <constraint firstItem="Nav-I2-5P9" firstAttribute="leading" secondItem="tZ3-jn-vrh" secondAttribute="trailing" id="9lH-Do-9fv"/>
                                     <constraint firstAttribute="height" constant="56" id="Agp-0R-iBu"/>
@@ -2207,19 +2228,58 @@
                                     <constraint firstItem="3M6-ty-EJO" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="BS2-gP-xh3"/>
                                     <constraint firstItem="tZ3-jn-vrh" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="CTz-v8-3Nx"/>
                                     <constraint firstItem="tZ3-jn-vrh" firstAttribute="height" secondItem="gwG-21-5Mr" secondAttribute="height" id="I7k-dh-vNT"/>
+                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="leading" secondItem="3M6-ty-EJO" secondAttribute="leading" id="Pr2-UH-0nG"/>
                                     <constraint firstItem="vfF-oq-eji" firstAttribute="height" secondItem="w8A-rx-1Da" secondAttribute="height" id="QxG-RT-Anh"/>
+                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="height" secondItem="Nav-I2-5P9" secondAttribute="height" id="V8a-IV-840"/>
                                     <constraint firstItem="w8A-rx-1Da" firstAttribute="height" secondItem="Nav-I2-5P9" secondAttribute="height" id="WMY-yv-Cd0"/>
                                     <constraint firstItem="w8A-rx-1Da" firstAttribute="leading" secondItem="Nav-I2-5P9" secondAttribute="trailing" id="aya-J4-X22"/>
+                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="height" secondItem="3M6-ty-EJO" secondAttribute="height" id="bCu-Aa-I5n"/>
+                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="bottom" secondItem="Nav-I2-5P9" secondAttribute="bottom" id="bMF-uX-tFv"/>
                                     <constraint firstItem="w8A-rx-1Da" firstAttribute="width" secondItem="vfF-oq-eji" secondAttribute="width" id="e8S-aF-hze"/>
+                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="width" secondItem="Nav-I2-5P9" secondAttribute="width" id="eUS-SN-MNY"/>
                                     <constraint firstItem="tZ3-jn-vrh" firstAttribute="leading" secondItem="gwG-21-5Mr" secondAttribute="leading" id="g7K-du-pkU"/>
                                     <constraint firstItem="3M6-ty-EJO" firstAttribute="leading" secondItem="vfF-oq-eji" secondAttribute="trailing" id="gGH-ed-d3h"/>
                                     <constraint firstItem="tZ3-jn-vrh" firstAttribute="width" secondItem="Nav-I2-5P9" secondAttribute="width" id="h2o-je-VfI"/>
+                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="leading" secondItem="Nav-I2-5P9" secondAttribute="leading" id="kbB-ZQ-aTr"/>
                                     <constraint firstItem="w8A-rx-1Da" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="omx-D3-8Ga"/>
+                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="bottom" secondItem="3M6-ty-EJO" secondAttribute="bottom" id="sPP-fw-dDG"/>
                                     <constraint firstItem="vfF-oq-eji" firstAttribute="width" secondItem="3M6-ty-EJO" secondAttribute="width" id="ufP-EQ-8ei"/>
                                     <constraint firstItem="vfF-oq-eji" firstAttribute="leading" secondItem="w8A-rx-1Da" secondAttribute="trailing" id="xOT-pZ-sAd"/>
                                     <constraint firstItem="Nav-I2-5P9" firstAttribute="width" secondItem="w8A-rx-1Da" secondAttribute="width" id="yvj-aV-AeF"/>
                                     <constraint firstItem="Nav-I2-5P9" firstAttribute="height" secondItem="tZ3-jn-vrh" secondAttribute="height" id="znB-Rv-125"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="rEi-UQ-ZEm"/>
+                                        <exclude reference="oNr-wt-jVW"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="V8a-IV-840"/>
+                                        <exclude reference="bMF-uX-tFv"/>
+                                        <exclude reference="eUS-SN-MNY"/>
+                                        <exclude reference="kbB-ZQ-aTr"/>
+                                        <exclude reference="4UK-1b-Gl4"/>
+                                        <exclude reference="Pr2-UH-0nG"/>
+                                        <exclude reference="bCu-Aa-I5n"/>
+                                        <exclude reference="sPP-fw-dDG"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="subviews">
+                                        <include reference="rEi-UQ-ZEm"/>
+                                        <include reference="oNr-wt-jVW"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="V8a-IV-840"/>
+                                        <include reference="bMF-uX-tFv"/>
+                                        <include reference="eUS-SN-MNY"/>
+                                        <include reference="kbB-ZQ-aTr"/>
+                                        <include reference="4UK-1b-Gl4"/>
+                                        <include reference="Pr2-UH-0nG"/>
+                                        <include reference="bCu-Aa-I5n"/>
+                                        <include reference="sPP-fw-dDG"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="addTab" destination="w8A-rx-1Da" id="jhR-2F-Fg2"/>
                                     <outlet property="documentsTab" destination="vfF-oq-eji" id="qqV-tn-Kag"/>
@@ -2802,6 +2862,23 @@
             </objects>
             <point key="canvasLocation" x="3255" y="1537.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="qmI-CG-UyH">
+            <objects>
+                <viewController id="X4e-j5-AHi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LrE-0g-jfy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mfw-dE-TJ0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fQn-e7-PpR">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ryh-Gp-CY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3255" y="2270.25"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qy4-A3-TMt">
             <objects>
@@ -2845,7 +2922,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ОСРМС Общестроительные работы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3av-I6-YTA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ОСРМС Общестроительные работы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3av-I6-YTA">
                                                     <rect key="frame" x="15" y="9" width="290" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="kpJ-uN-3pO"/>
@@ -2920,7 +2997,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uje-vj-Dzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3686" y="3006.75"/>
+            <point key="canvasLocation" x="3686" y="3762.75"/>
         </scene>
         <!--Role Info View Controller-->
         <scene sceneID="hee-39-HIO">
@@ -3025,7 +3102,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLy-ur-d1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="3006.75"/>
+            <point key="canvasLocation" x="2257" y="3762.75"/>
         </scene>
         <!--About Project View Controller-->
         <scene sceneID="D65-ER-Mje">
@@ -3090,7 +3167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXk-tZ-9Ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3176.25" y="2254.2253521126759"/>
+            <point key="canvasLocation" x="3176" y="3009.75"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="TdW-2U-yfr">
@@ -3190,7 +3267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sSX-fd-a3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2958" y="3006.75"/>
+            <point key="canvasLocation" x="2958" y="3762.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bRN-jb-g8h">
@@ -3210,7 +3287,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3O-up-xea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257.5" y="2254.2253521126759"/>
+            <point key="canvasLocation" x="2257" y="3009.75"/>
         </scene>
         <!--Add Contact View Controller-->
         <scene sceneID="qzI-3h-YPR">
@@ -3523,6 +3600,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AboutProject" width="51" height="38"/>
         <image name="Add" width="18" height="19"/>
         <image name="ArrowHorizontaly" width="12" height="7"/>
         <image name="Back" width="59" height="18"/>
@@ -3540,6 +3618,7 @@
         <image name="Mark" width="10" height="16"/>
         <image name="Menu1" width="24" height="17"/>
         <image name="Note" width="24" height="25"/>
+        <image name="OnPlan" width="50" height="41"/>
         <image name="Pan" width="18" height="18"/>
         <image name="Phone" width="20" height="20"/>
         <image name="Tasks" width="36" height="36"/>
