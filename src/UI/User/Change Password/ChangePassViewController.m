@@ -111,7 +111,9 @@
 - (IBAction) onShowPassword: (UIButton*) sender
 {
     [self.oldPasswordField resignFirstResponder];
+    
     self.oldPasswordField.secureTextEntry = sender.selected;
+    
     [self.oldPasswordField becomeFirstResponder];
     
     sender.selected = !sender.selected;
@@ -138,7 +140,7 @@
         
         self.updatedPassWarnings.hidden = YES;
         
-        [signal subscribeCompleted: ^{
+        [signal subscribeNext: ^(id x) {
             
             [SVProgressHUD showSuccessWithStatus: @"Пароль успешно обновлен"];
             

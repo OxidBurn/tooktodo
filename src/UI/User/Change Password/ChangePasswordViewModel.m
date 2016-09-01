@@ -59,12 +59,14 @@
                                                          if ( [self.model isCorrectOldPassword: oldPass] == NO )
                                                          {
                                                              self.isCorrectEnteredInfo = NO;
+                                                             
                                                              return @"Старый пароль не совпадает с текущим";
                                                          }
                                                          else
                                                              if ( [newPass isEqualToString: confirmPass] == NO )
                                                              {
                                                                  self.isCorrectEnteredInfo = NO;
+                                                                 
                                                                  return @"Новый данные не совпадают.";
                                                              }
                                                          else

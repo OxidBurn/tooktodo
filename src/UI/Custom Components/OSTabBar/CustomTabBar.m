@@ -113,8 +113,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                                   @"",
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
-                                  @"ShowAboutProject",
-                                  @"ShowAboutProject"];
+                                  @"",
+                                  @""];
     }
     
     return _selectedControllerID;
@@ -141,8 +141,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     NSString* showedControllerID = self.selectedControllerID[index];
     
     //TODO: Delete second expression, when add button controller will be done
-//    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] && showedControllerID.length > 0 )
-//        [self.delegate showControllerWithSegueID: showedControllerID];
+    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] && showedControllerID.length > 0 )
+        [self.delegate showControllerWithSegueID: showedControllerID];
 }
 
 #pragma mark - Actions -
