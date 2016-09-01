@@ -22,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIButton    *resetPassBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *registerBtn;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceToRecoverBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningTopConstraint;
+
 
 @property (strong, nonatomic) RecoveryViewModel* viewModel;
 
@@ -125,10 +126,10 @@
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
-            self.warningLabel.text = emailWarning;
-            self.warningLabel.hidden = (emailWarning.length == 0);
-            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 15 : 27;
-            self.distanceToRecoverBtn.constant = (emailWarning.length == 0) ? 233 : 221;
+            self.warningLabel.text                     = emailWarning;
+            self.warningLabel.hidden                   = (emailWarning.length == 0);
+            self.emailWarningHeightConstraint.constant = (emailWarning.length == 0) ? 5 : 12;
+            self.emailWarningTopConstraint.constant    = (emailWarning.length == 0) ? 0 : 5;
             
             NSLog(@"Email warning message %@", emailWarning);
             

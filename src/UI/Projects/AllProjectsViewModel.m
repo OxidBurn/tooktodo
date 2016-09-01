@@ -84,11 +84,6 @@ static CGFloat sectionHeaderHeight = 30;
                                                         toArray: self.projectsContent];
 }
 
-- (NSString*) getSearchBarPlaceholderText
-{
-    return @"Введите пожалуйста ключевое слово поиска";
-}
-
 #pragma mark - Table view data source methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

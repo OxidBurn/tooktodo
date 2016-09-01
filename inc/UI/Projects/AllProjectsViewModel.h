@@ -24,6 +24,4 @@
 
 - (void) updateProjectsContent;
 
-- (NSString*) getSearchBarPlaceholderText;
-
 @end

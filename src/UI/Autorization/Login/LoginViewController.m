@@ -36,7 +36,10 @@
 // Constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEmail;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforePassword;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *distanceBeforeEnterButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgotBtnTopConstraint;
 
 // methods
 
@@ -148,11 +151,6 @@
 {
     @weakify(self)
     
-    __block CGFloat distance = self.distanceBeforeEnterButton.constant;
-    
-    BOOL isWarning1 = (self.distanceBeforeEmail.constant > 5);
-    BOOL isWarning2 = (self.distanceBeforeEmail.constant > 12);
-    
     [self.loginBtn.rac_command.errors subscribeNext: ^(NSError* error) {
         
         @strongify(self)
@@ -164,46 +162,21 @@
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
-            self.emailWarningLable.text       = emailWarning;
-            self.emailWarningLable.hidden     = (emailWarning.length == 0);
-            self.distanceBeforeEmail.constant = (emailWarning.length == 0) ? 5 : 18;
-            
-            if (isWarning1)
-            {
-                if (!isWarning2)
-                {
-                    distance -=9;
-                }
-                else
-                    if (isWarning2)
-                    {
-                        distance = 8;
-                    }
-            }
-            else
-                if (!isWarning1)
-                {
-                    if (!isWarning2)
-                    {
-                        distance = 21;
-                    }
-                    else
-                        if (isWarning2)
-                        {
-                            distance -= 13;
-                            distance -= 9;
-                        }
-                }
-            
-            self.distanceBeforeEnterButton.constant = distance;
+            self.emailWarningLable.text                = emailWarning;
+            self.emailWarningLable.hidden              = (emailWarning.length == 0);
+            self.distanceBeforeEmail.constant          = (emailWarning.length == 0) ? 0 : 5;
+            self.emailWarningHeightConstraint.constant = (emailWarning.length == 0) ? 5 : 12;
+            self.distanceBeforePassword.constant       = (emailWarning.length == 0) ? 0 : 5;
+            self.forgotBtnTopConstraint.constant       = (emailWarning.length == 0) ? 40 : 25;
             
         }];
         
         [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
             
-            self.passwordWarningLabel.text       = passWarning;
-            self.passwordWarningLabel.hidden     = (passWarning.length == 0);
-            self.distanceBeforePassword.constant = (passWarning.length == 0) ? 12 : 21;
+            self.passwordWarningLabel.text                = passWarning;
+            self.passwordWarningLabel.hidden              = (passWarning.length == 0);
+            self.passwordWarningHeightConstraint.constant = (passWarning.length == 0) ? 5 : 12;
+            self.passwordWarningTopConstraint.constant    = (passWarning.length == 0) ? 0 : 5;            self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
             
         }];
         

@@ -63,18 +63,18 @@
                                                              return @"Старый пароль не совпадает с текущим";
                                                          }
                                                          else
+                                                             if ( newPass.length < 6 )
+                                                             {
+                                                                 self.isCorrectEnteredInfo = NO;
+                                                                 
+                                                                 return @"Новый пароль должен содержать более 5и символов";
+                                                             }
+                                                         else
                                                              if ( [newPass isEqualToString: confirmPass] == NO )
                                                              {
                                                                  self.isCorrectEnteredInfo = NO;
                                                                  
                                                                  return @"Новый данные не совпадают.";
-                                                             }
-                                                         else
-                                                             if ( newPass.length < 6 || oldPass.length < 6 )
-                                                             {
-                                                                 self.isCorrectEnteredInfo = NO;
-                                                                 
-                                                                 return @"Новый пароль должен содержать более 5и символов";
                                                              }
                                                          
                                                               self.isCorrectEnteredInfo  = YES;

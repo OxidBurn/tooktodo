@@ -120,9 +120,6 @@
     self.projectsTable.delegate   = self.viewModel;
     self.searchBar.delegate       = self.viewModel;
     
-#warning 'Need to move to the storyboard'
-    self.searchBar.placeholder = [self.viewModel getSearchBarPlaceholderText];
-    
     [self handleModelActions];
 }
 
