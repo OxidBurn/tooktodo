@@ -20,14 +20,7 @@ static KeyChainManager* sharedInstance = nil;
 
 // properties
 
-@property (strong, nonatomic) UICKeyChainStore* keyChainStore;
-
 // methods
-
-/**
- *  Setup defaults
- */
-- (void) setupDefaults;
 
 @end
 
@@ -52,20 +45,10 @@ static KeyChainManager* sharedInstance = nil;
 {
     if ( self = [super init] )
     {
-        [self setupDefaults];
+        
     }
     
     return self;
-}
-
-
-#pragma mark - Defautls -
-
-- (void) setupDefaults
-{
-    // Setup keychain store for current application
-    // Specific key: app site url
-    self.keyChainStore = [UICKeyChainStore keyChainStoreWithService: keychainServiceKey];
 }
 
 
@@ -73,7 +56,10 @@ static KeyChainManager* sharedInstance = nil;
 
 - (void) storeAccessToken: (NSString*) token
 {
-    self.keyChainStore[accessToken] = token;
+    [UserDefaults setValue: token
+                    forKey: accessToken];
+    
+    [UserDefaults synchronize];
 }
 
 - (BOOL) isExistTokenForCurrentUser
@@ -83,22 +69,29 @@ static KeyChainManager* sharedInstance = nil;
 
 - (NSString*) getAccessToken
 {
-    return self.keyChainStore[accessToken];
+    return [UserDefaults valueForKey: accessToken];
 }
 
 - (void) deleteToken
 {
-    [self.keyChainStore removeItemForKey: accessToken];
+    [UserDefaults removeObjectForKey: accessToken];
+    [UserDefaults removeObjectForKey: @"UserNotificationSettingsKey"];
+    [UserDefaults removeObjectForKey: passwordKey];
+    
+    [UserDefaults synchronize];
 }
 
 - (void) storeUserPassword: (NSString*) password
 {
-    self.keyChainStore[passwordKey] = password;
+    [UserDefaults setValue: password
+                    forKey: passwordKey];
+    
+    [UserDefaults synchronize];
 }
 
 - (BOOL) isCorrectEnteredPassword: (NSString*) password
 {
-    BOOL isEqual = ([self.keyChainStore[passwordKey] isEqualToString: password]);
+    BOOL isEqual = ([[UserDefaults valueForKey: passwordKey] isEqualToString: password]);
     
     return isEqual;
 }

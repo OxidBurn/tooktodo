@@ -27,16 +27,20 @@
 
 - (void) fillCellWithText: (NSString*) cellText
             withSwitchTag: (NSNumber*) switchTag
+          withSwitchValue: (BOOL)      switchValue
 {
     self.titleLabel.text    = cellText;
     self.switchControll.tag = switchTag.integerValue;
+    self.switchControll.on  = switchValue;
+    
 }
 
 #pragma mark - Actions -
 
 - (IBAction) onSwitchBtn: (UISwitch*) sender
 {
-    NSLog(@"Switch nubmer %ld", (long)sender.tag);
+    if ( self.didChangeValue )
+        self.didChangeValue(self.tag, sender.tag, sender.isOn);
 }
 
 @end

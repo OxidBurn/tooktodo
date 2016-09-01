@@ -9,9 +9,11 @@
 #import "UserNotificationModel.h"
 #import "UserNotificationCell.h"
 
-static NSString* CellID       = @"CellID";
-static NSString* LabelTextKey = @"LabelTextKey";
-static NSString* SwitchTagKey = @"SwitchTagKey";
+static NSString* CellID               = @"CellID";
+static NSString* LabelTextKey         = @"LabelTextKey";
+static NSString* SwitchTagKey         = @"SwitchTagKey";
+static NSString* EnableStateKey       = @"EnableStateKey";
+static NSString* StoreUserSettingsKey = @"UserNotificationSettingsKey";
 
 @interface UserNotificationModel()
 
@@ -20,10 +22,63 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
 
 // methods
 
+- (void) setupDefaults;
 
 @end
 
 @implementation UserNotificationModel
+
+
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    if ( self = [super init] )
+    {
+        [self setupDefaults];
+    }
+    
+    return self;
+}
+
+- (void) setupDefaults
+{
+    if ( [UserDefaults valueForKey: StoreUserSettingsKey] == nil )
+    {
+        [UserDefaults setValue: @[@[@{LabelTextKey: @"Все сообщения",
+                                      SwitchTagKey: @(AllMessageType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Где я участвую",
+                                      SwitchTagKey: @(WhereIParticipateType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Где я ответственный\n или утверждающий",
+                                      SwitchTagKey: @(WhereIResponsibleType),
+                                      EnableStateKey : @(YES)}],
+                                  
+                                  @[@{LabelTextKey: @"Сообщения в ленту",
+                                      SwitchTagKey: @(MessageInFeedsType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Задачи",
+                                      SwitchTagKey: @(TasksType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Документы",
+                                      SwitchTagKey: @(DocumentsType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Команды",
+                                      SwitchTagKey: @(TeamsType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Профиль проекта",
+                                      SwitchTagKey: @(ProjectProfileType),
+                                      EnableStateKey : @(YES)},
+                                    @{LabelTextKey: @"Системные",
+                                      SwitchTagKey: @(SystemsType),
+                                      EnableStateKey : @(YES)}],
+                                  ]
+                        forKey: StoreUserSettingsKey];
+        
+        [UserDefaults synchronize];
+    }
+}
 
 #pragma mark - Properties -
 
@@ -31,28 +86,43 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
 {
     if ( _tableRowsData == nil )
     {
-        _tableRowsData = @[@[@{LabelTextKey: @"Все сообщения",
-                               SwitchTagKey: @1},
-                             @{LabelTextKey: @"Где я участвую",
-                               SwitchTagKey: @2},
-                             @{LabelTextKey: @"Где я ответственный\n или утверждающий",
-                               SwitchTagKey: @3}],
-                           
-                           @[@{LabelTextKey: @"Сообщения в ленту",
-                               SwitchTagKey: @4},
-                             @{LabelTextKey: @"Задачи",
-                               SwitchTagKey: @5},
-                             @{LabelTextKey: @"Документы",
-                               SwitchTagKey: @6},
-                             @{LabelTextKey: @"Команды",
-                               SwitchTagKey: @7},
-                             @{LabelTextKey: @"Профиль проекта",
-                               SwitchTagKey: @8},
-                             @{LabelTextKey: @"Системные",
-                               SwitchTagKey: @9}],
-                           ];
+        _tableRowsData = [UserDefaults valueForKey: StoreUserSettingsKey];
     }
     return _tableRowsData;
+}
+
+
+#pragma mark - Publi methods -
+
+- (void) saveUserSettings
+{
+    [UserDefaults setValue: self.tableRowsData
+                    forKey: StoreUserSettingsKey];
+    
+    [UserDefaults synchronize];
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) updateNotificationSetting: (NSUInteger) tag
+                      withValueTag: (NSUInteger) valueTag
+                         withValue: (BOOL)       value
+{
+    NSMutableArray* tmpArray    = self.tableRowsData.mutableCopy;
+    NSMutableArray* tmpSubArray = [tmpArray[tag] mutableCopy];
+    NSMutableDictionary* tmpDic = [tmpSubArray[valueTag] mutableCopy];
+    
+    tmpDic[EnableStateKey] = @(value);
+    
+    tmpSubArray[valueTag] = tmpDic;
+    tmpArray[tag]         = tmpSubArray;
+    
+    self.tableRowsData = tmpArray.copy;
+    
+    tmpArray    = nil;
+    tmpSubArray = nil;
+    tmpDic      = nil;
 }
 
 #pragma mark - UITableViewDataSource methods -
@@ -73,14 +143,29 @@ static NSString* SwitchTagKey = @"SwitchTagKey";
 {
     UserNotificationCell* cell = [tableView dequeueReusableCellWithIdentifier: CellID];
     
+    cell.tag = indexPath.section;
+    
     NSDictionary* info = self.tableRowsData[indexPath.section][indexPath.row];
     
     NSString* cellText = info[LabelTextKey];
     
     NSNumber* switchTag = info[SwitchTagKey];
     
+    BOOL switchValue = [info[EnableStateKey] boolValue];
+    
     [cell fillCellWithText: cellText
-             withSwitchTag: switchTag];
+             withSwitchTag: switchTag
+           withSwitchValue: switchValue];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    cell.didChangeValue = ^(NSUInteger cellTag, NSUInteger valueTag, BOOL value){
+        
+        [blockSelf updateNotificationSetting: cellTag
+                                withValueTag: valueTag
+                                   withValue: value];
+        
+    };
     
     return cell;
 }

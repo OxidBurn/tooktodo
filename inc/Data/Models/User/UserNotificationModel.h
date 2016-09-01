@@ -9,6 +9,21 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
+typedef NS_ENUM(NSUInteger, UserNotificaitonType)
+{
+    AllMessageType,
+    WhereIParticipateType,
+    WhereIResponsibleType,
+    MessageInFeedsType,
+    TasksType,
+    DocumentsType,
+    TeamsType,
+    ProjectProfileType,
+    SystemsType,
+};
+
 @interface UserNotificationModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+
+- (void) saveUserSettings;
 
 @end

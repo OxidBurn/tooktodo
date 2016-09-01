@@ -10,7 +10,14 @@
 
 @interface UserNotificationCell : UITableViewCell
 
+// properties
+
+@property (copy, nonatomic) void(^didChangeValue)(NSUInteger cellTag, NSUInteger valueTag, BOOL value);
+
+// methods
+
 - (void) fillCellWithText: (NSString*) cellText
-            withSwitchTag: (NSNumber*) switchTag;
+            withSwitchTag: (NSNumber*) switchTag
+          withSwitchValue: (BOOL)      switchValue;
 
 @end

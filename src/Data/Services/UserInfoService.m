@@ -84,9 +84,12 @@ static bool isFirstAccess = YES;
                                         @"phoneNumber"           : newInfo.phoneNumber,
                                         @"additionalPhoneNumber" : newInfo.additionalPhoneNumber};
     
-    [[[UserAPIService sharedInstance] updateUserInfoOnServer: requestParameters] subscribeNext: ^(RACTuple* x) {
+    [[[UserAPIService sharedInstance] updateUserInfoOnServer: requestParameters] subscribeNext: ^(NSDictionary* info) {
         
-        NSLog(@"Server response: %@", x);
+        BOOL isSuccess = [[info valueForKey: @"isSuccess"] boolValue];
+        
+        if ( isSuccess )
+            [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
         
     }
                                                               error: ^(NSError *error) {

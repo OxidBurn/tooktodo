@@ -40,15 +40,35 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) updateUserInfoOnServer: (NSDictionary*) parameters
 {
-    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
+    AFHTTPRequestOperationManager* manager = [self getRawManager];
     
-    return [[[manager rac_PUT: updateUserInfoURL parameters: parameters] logError] replayLazily];
+    RACSignal* requestSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [manager PUT: updateUserInfoURL
+          parameters: parameters
+             success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+                 
+                 [subscriber sendNext: responseObject];
+                 [subscriber sendCompleted];
+                 
+             }
+             failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+                 
+                 [subscriber sendError: error];
+                 
+             }];
+        
+        
+        return nil;
+    }];
+    
+    return requestSignal;
 }
 
 - (RACSignal*) updatePasswordFromOld: (NSString*) old
                                toNew: (NSString*) pass
 {
-    AFHTTPRequestOperationManager* manager = [self getDefaultManager];
+    AFHTTPRequestOperationManager* manager = [self getRawManager];
     
     NSDictionary* parameters = @{@"oldPassword"     : old,
                                  @"newPassword"     : pass,
@@ -92,7 +112,7 @@ static bool isFirstAccess = YES;
     [request setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
    forHTTPHeaderField: @"Authorization"];
     
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration: [NSURLSessionConfiguration defaultSessionConfiguration]];
     
     NSURLSessionUploadTask *uploadTask;
     

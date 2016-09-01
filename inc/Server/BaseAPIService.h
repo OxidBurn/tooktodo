@@ -27,4 +27,8 @@
 
 - (AFHTTPRequestOperationManager*) getManagerWithToken;
 
+- (AFHTTPRequestOperationManager*) getRawManager;
+
+- (AFHTTPRequestOperationManager*) addHeadersToManager: (AFHTTPRequestOperationManager*) manager;
+
 @end

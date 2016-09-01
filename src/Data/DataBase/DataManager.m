@@ -41,7 +41,7 @@
 {
 	if ( self = [super init] )
 	{
-        [MagicalRecord setupCoreDataStackWithStoreNamed: @"DataBaseModel.sqlite"];
+        [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed: @"DataBaseModel"];
         
 		self.listeners = [NSMutableArray array];
 	}

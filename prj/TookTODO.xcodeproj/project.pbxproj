@@ -43,6 +43,8 @@
 		56A19EE51D6AB659004AC3D3 /* OfflineSettingsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EE41D6AB659004AC3D3 /* OfflineSettingsItem.m */; };
 		56A19EEB1D6AB8B5004AC3D3 /* OfflineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A19EEA1D6AB8B5004AC3D3 /* OfflineTableViewCell.m */; };
 		56A19EEE1D6AF437004AC3D3 /* OfflineSyncSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */; };
+		56B3E7B11D77C5BD002C7CD9 /* UserNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B3E7AF1D77C5BD002C7CD9 /* UserNotifications.m */; };
+		56B3E7B21D77C5BD002C7CD9 /* UserNotifications+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 56B3E7B01D77C5BD002C7CD9 /* UserNotifications+CoreDataProperties.m */; };
 		56E1B97A1D6E6820003E46DA /* PopoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9761D6E6820003E46DA /* PopoverCell.m */; };
 		56E1B97C1D6E6820003E46DA /* PopoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9781D6E6820003E46DA /* PopoverModel.m */; };
 		56E1B97D1D6E6820003E46DA /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1B9791D6E6820003E46DA /* PopoverViewController.m */; };
@@ -205,6 +207,10 @@
 		56A19EEA1D6AB8B5004AC3D3 /* OfflineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineTableViewCell.m; sourceTree = "<group>"; };
 		56A19EEC1D6AB8D0004AC3D3 /* OfflineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineTableViewCell.h; sourceTree = "<group>"; };
 		56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OfflineSyncSettings.plist; path = ../res/settings/OfflineSyncSettings.plist; sourceTree = "<group>"; };
+		56B3E7AF1D77C5BD002C7CD9 /* UserNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNotifications.m; sourceTree = "<group>"; };
+		56B3E7B01D77C5BD002C7CD9 /* UserNotifications+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserNotifications+CoreDataProperties.m"; sourceTree = "<group>"; };
+		56B3E7B31D77C5E3002C7CD9 /* UserNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotifications.h; sourceTree = "<group>"; };
+		56B3E7B41D77C5E3002C7CD9 /* UserNotifications+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserNotifications+CoreDataProperties.h"; sourceTree = "<group>"; };
 		56E1B9211D6D0A28003E46DA /* ConfigurationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ConfigurationManager.m; path = Managers/ConfigurationManager.m; sourceTree = "<group>"; };
 		56E1B9221D6D0A9F003E46DA /* ProjectsEnumerations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectsEnumerations.h; sourceTree = "<group>"; };
 		56E1B9761D6E6820003E46DA /* PopoverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverCell.m; sourceTree = "<group>"; };
@@ -718,6 +724,8 @@
 		56E1B9E61D6F7671003E46DA /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				56B3E7B31D77C5E3002C7CD9 /* UserNotifications.h */,
+				56B3E7B41D77C5E3002C7CD9 /* UserNotifications+CoreDataProperties.h */,
 				56E1B9E71D6F7671003E46DA /* OfflineSettings+CoreDataProperties.h */,
 				56E1B9E81D6F7671003E46DA /* OfflineSettings.h */,
 				56E1B9E91D6F7671003E46DA /* ProjectCountry+CoreDataProperties.h */,
@@ -750,6 +758,8 @@
 		56E1B9F91D6F7677003E46DA /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				56B3E7AF1D77C5BD002C7CD9 /* UserNotifications.m */,
+				56B3E7B01D77C5BD002C7CD9 /* UserNotifications+CoreDataProperties.m */,
 				56E1B9FA1D6F7677003E46DA /* OfflineSettings+CoreDataProperties.m */,
 				56E1B9FB1D6F7677003E46DA /* OfflineSettings.m */,
 				56E1B9FC1D6F7677003E46DA /* ProjectCountry+CoreDataProperties.m */,
@@ -1466,6 +1476,7 @@
 				56A19ED41D6AB317004AC3D3 /* UserNotificationCell.m in Sources */,
 				56EA69EC1D7062C700717CCA /* ChangePasswordViewModel.m in Sources */,
 				56A19ECE1D6AB317004AC3D3 /* ChangePasswordModel.m in Sources */,
+				56B3E7B11D77C5BD002C7CD9 /* UserNotifications.m in Sources */,
 				F72851291D63F79A0086873D /* CustomTabBar.m in Sources */,
 				56E1B99F1D6F0FC2003E46DA /* AboutProjectViewController.m in Sources */,
 				CFE215551D745A40005E3C9E /* RolesViewModel.m in Sources */,
@@ -1549,6 +1560,7 @@
 				59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */,
 				56E1BA161D6F7677003E46DA /* UserInfo+CoreDataProperties.m in Sources */,
 				56E1B9A21D6F0FC2003E46DA /* SystemInfoViewController.m in Sources */,
+				56B3E7B21D77C5BD002C7CD9 /* UserNotifications+CoreDataProperties.m in Sources */,
 				CFE2154F1D744C9B005E3C9E /* AddContactModel.m in Sources */,
 				59A7F2EA1D5DEACC005CF274 /* RecoverySuccessViewController.m in Sources */,
 			);

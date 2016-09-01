@@ -62,8 +62,9 @@
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoImagePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="notificationSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserNotifications" inverseName="userInfo" inverseEntity="UserNotifications" syncable="YES"/>
     </entity>
-    <entity name="UserNotifications" syncable="YES">
+    <entity name="UserNotifications" representedClassName="UserNotifications" syncable="YES">
         <attribute name="allProject" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="documents" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="mine" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -73,15 +74,16 @@
         <attribute name="systems" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="tasks" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="userInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="notificationSettings" inverseEntity="UserInfo" syncable="YES"/>
     </entity>
     <elements>
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
         <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="450"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
-        <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="225"/>
-        <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="178"/>
         <element name="Team" positionX="-45" positionY="99" width="128" height="75"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="60"/>
+        <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
+        <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
     </elements>
 </model>

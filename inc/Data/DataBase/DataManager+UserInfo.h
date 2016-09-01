@@ -10,6 +10,7 @@
 #import "UserInfo.h"
 #import "UserInfoData.h"
 #import "UpdatedUserInfo.h"
+#import "UserNotifications.h"
 
 @interface DataManager (UserInfo)
 

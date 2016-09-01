@@ -35,6 +35,13 @@
     [self titleLabel];
 }
 
+- (void) viewWillDisappear: (BOOL) animated
+{
+    [super viewWillDisappear: animated];
+    
+    [self.dataModel saveUserSettings];
+}
+
 #pragma mark - Properties -
 
 - (UserNotificationModel*) dataModel
