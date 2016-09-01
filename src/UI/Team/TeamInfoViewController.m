@@ -8,6 +8,9 @@
 
 #import "TeamInfoViewController.h"
 
+// Classes
+#import "ProjectsControllersDelegate.h"
+#import "MainTabBarController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -15,6 +18,8 @@
 @interface TeamInfoViewController ()
 
 // Properties
+@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UITableView* teamInfoTableView;
 @property (nonatomic, strong) InviteInfo* inviteInfo;
 
@@ -29,6 +34,9 @@
 - (void) loadView
 {
     [super loadView];
+    
+    // setup delegate
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
@@ -51,6 +59,16 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Actions -
+
+- (IBAction) onShowMenu: (UIBarButtonItem*) sender
+{
+    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
+    {
+        [self.delegate showMainMenu];
+    }
 }
 
 @end

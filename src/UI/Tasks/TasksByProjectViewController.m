@@ -8,9 +8,18 @@
 
 #import "TasksByProjectViewController.h"
 
+// Classes
+#import "ProjectsControllersDelegate.h"
+#import "MainTabBarController.h"
+
+// Categories
+#import "BaseMainViewController+NavigationTitle.h"
+
 @interface TasksByProjectViewController ()
 
 // Properties
+@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
 // Methods
@@ -19,12 +28,21 @@
 
 @implementation TasksByProjectViewController
 
+
 #pragma mark - Life cycle -
 
-- (void) viewDidLoad
+- (void) loadView
 {
-    [super viewDidLoad];
+    [super loadView];
+    
+    // Setup main navigation delegate
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"Задачи"
+                                               withSubTitle: @"Квартира на Ходынке"];
 }
+
 
 #pragma mark - Memory managment -
 
@@ -34,5 +52,14 @@
 }
 
 
+#pragma mark - Actions -
+
+- (IBAction) onShowMenu: (UIBarButtonItem*) sender
+{
+    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
+    {
+        [self.delegate showMainMenu];
+    }
+}
 
 @end
