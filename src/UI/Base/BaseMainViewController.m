@@ -50,6 +50,11 @@ static CGFloat const yPadding                   = 20.0f;
     [self.view addGestureRecognizer: self.slidingViewController.panGesture];
 }
 
+- (UIStatusBarStyle) preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 #pragma mark - Memory managment -
 
