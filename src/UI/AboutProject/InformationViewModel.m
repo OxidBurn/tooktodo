@@ -27,7 +27,7 @@
 {
     if (_textLabelsArray == nil)
     {
-        _textLabelsArray = [NSArray arrayWithObjects: @"", @"Класс недвижимости", @"Тип объекта", @"Страна", @"Регион", @"Город / населенный пункт", @"Улица", @"Дом", @"Корпус / строение", @"Этаж", @"Квартира", @"Комментарий", nil];
+        _textLabelsArray = [NSArray arrayWithObjects: @"Класс недвижимости", @"Тип объекта", @"Страна", @"Регион", @"Город / населенный пункт", @"Улица", @"Дом", @"Корпус / строение", @"Этаж", @"Квартира", @"Комментарий", nil];
     }
     return _textLabelsArray;
 }
@@ -36,7 +36,7 @@
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
 {
-    return 2;
+    return 1;
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -69,31 +69,25 @@
     
     NSString* fillInfo  = projectInfoArray[indexPath.row];
     NSString* textLabel = self.textLabelsArray[indexPath.row];
+//    
+//    NSLog(@"arr %@", self.textLabelsArray);
     
 //    if (indexPath.row == 0)
 //    {
 //        cell.textLabel.text = self.projectInfo.title;
 //    }
     
-    cell.textLabel.text = textLabel;
-    cell.detailTextLabel.text = fillInfo;
+        cell.textLabel.text       = textLabel;
+        cell.detailTextLabel.text = fillInfo;
     
     return cell;
 }
 
 - (NSInteger) tableView: (UITableView*) tableView
-  numberOfRowsInSection: (NSInteger) section
+  numberOfRowsInSection: (NSInteger)    section
 {
-    return 5;
+    return self.textLabelsArray.count;
 }
 
 
-
-//- (void) fillContent: (ProjectInfo*) info
-//{
-//    self.projectTitle.text  = info.title;
-//    self.projectDetail.text = [NSString stringWithFormat: @"%@ %@ %@", (info.street) ? info.street : @"", (info.building) ? info.building : @"", (info.apartment) ? info.apartment : @""];
-//
-//    self.projectID = info.projectID;
-//}
 @end

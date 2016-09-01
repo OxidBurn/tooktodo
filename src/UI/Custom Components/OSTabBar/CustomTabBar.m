@@ -10,7 +10,10 @@
 
 typedef NS_ENUM(NSUInteger, ButtonTag) {
     
+    FeedTabButton         = 0,
     TaskTabButton         = 1,
+    AddTabButton          = 2,
+    DocumentsTabButton    = 3,
     TeamTabButton         = 4,
     TasksOnPlanTabButton  = 5,
     AboutProjectTabButton = 6,
@@ -110,8 +113,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                                   @"",
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
-                                  @"ShowAboutProject",
-                                  @""];
+                                  @"",
+                                  @"ShowAboutProject"];
     }
     
     return _selectedControllerID;
@@ -153,17 +156,19 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (IBAction) didSelectedTasks: (UIButton*) sender
 {
-    [self updateSelectedItem: sender.tag];
+   [self updateSelectedItem: sender.tag];
     
     if (self.grayView)
     {
         [self dismissGrayView];
     }
+    
     NSLog(@"didSelectedTasks");
 }
 
 - (IBAction) didSelectedAdd: (UIButton*) sender
 {
+    
     [self updateSelectedItem: sender.tag];
     
     NSLog(@"didSelectedAdd");
@@ -191,20 +196,27 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 //actions for new buttons
 - (IBAction) didSelectTasksOnPlan: (UIButton*) sender
 {
+   // [self updateSelectedItem: sender.tag];
+    
     if (self.grayView)
     {
         [self dismissGrayView];
     }
+    
+    
     NSLog(@"didSelectTasksOnPlan");
 }
 
 
 - (IBAction) didSelectProjectInfo: (UIButton*) sender
 {
+   // [self updateSelectedItem: sender.tag];
+    
     if (self.grayView)
     {
         [self dismissGrayView];
     }
+    
     NSLog(@"didSelectProjectInfo");
 }
 
@@ -218,8 +230,9 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     if ( self.tasksLongTapGesture == nil )
     {
-        UILongPressGestureRecognizer* longPressForTasks = [[UILongPressGestureRecognizer alloc] initWithTarget: self
-                                                                                                        action: @selector(handleLongGestureForTasks:)];
+        UILongPressGestureRecognizer* longPressForTasks = [[UILongPressGestureRecognizer alloc]
+                                                            initWithTarget: self
+                                                                    action: @selector(handleLongGestureForTasks:)];
         self.tasksLongTapGesture = longPressForTasks;
         
         [self.tasksTab addGestureRecognizer: longPressForTasks];
@@ -228,8 +241,9 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     if ( self.teamLongTapGesture == nil)
     {
-    UILongPressGestureRecognizer* longPressForTeam = [[UILongPressGestureRecognizer alloc] initWithTarget: self
-                                                                                                   action: @selector(handleLongGestureForTeam:)];
+    UILongPressGestureRecognizer* longPressForTeam = [[UILongPressGestureRecognizer alloc]
+                                                        initWithTarget: self
+                                                                action: @selector(handleLongGestureForTeam:)];
         self.teamLongTapGesture = longPressForTeam;
     
     [self.teamTab addGestureRecognizer: longPressForTeam];
@@ -355,6 +369,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             
             [self.grayView addSubview: buttonOnGrayView];
             
+            
             NSLog(@"Gesture began");
             
         }
@@ -369,9 +384,9 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     [self updateSelectedItem: self.choosenButtonTag];
     
-    self.tappedButtonTag = 10;
+    self.tappedButtonTag = -1;
     
-    self.choosenButtonTag = 11;
+    self.choosenButtonTag = -1;
     
     NSLog(@"Did select button on gray view");
 }
@@ -395,6 +410,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             self.tasksOnPlanTab.hidden = NO;
             
             NSLog(@"Switched tasks to tasks on plan");
+            
             
             break;
             
