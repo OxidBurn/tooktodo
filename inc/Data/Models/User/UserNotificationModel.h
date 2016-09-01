@@ -14,6 +14,10 @@ typedef NS_ENUM(NSUInteger, UserNotificaitonType)
     AllMessageType,
     WhereIParticipateType,
     WhereIResponsibleType,
+};
+
+typedef NS_ENUM(NSUInteger, ProjectUserNotificationType)
+{
     MessageInFeedsType,
     TasksType,
     DocumentsType,
