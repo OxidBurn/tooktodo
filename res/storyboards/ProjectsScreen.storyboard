@@ -7335,7 +7335,7 @@
                                         <state key="disabled" image="OnPlanGray"/>
                                         <state key="selected" image="OnPlan"/>
                                         <connections>
-                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="whT-hP-bul"/>
+                                            <action selector="didSelectTasksOnPlan:" destination="gwG-21-5Mr" eventType="touchUpInside" id="nyW-R5-BAR"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="6" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNr-wt-jVW">
@@ -7346,7 +7346,7 @@
                                         <state key="disabled" image="AboutProjectGray"/>
                                         <state key="selected" image="AboutProjectLight"/>
                                         <connections>
-                                            <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="bpb-RB-N0M"/>
+                                            <action selector="didSelectProjectInfo:" destination="gwG-21-5Mr" eventType="touchUpInside" id="ron-do-J06"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZ3-jn-vrh">
@@ -7356,7 +7356,7 @@
                                         </state>
                                         <state key="selected" image="Feed isolated"/>
                                         <connections>
-                                            <action selector="didSelectedFeed:" destination="gwG-21-5Mr" eventType="touchUpInside" id="4QS-NV-K3Q"/>
+                                            <action selector="didSelectedFeed:" destination="gwG-21-5Mr" eventType="touchUpInside" id="Ltr-jf-D6K"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-I2-5P9">
@@ -7366,7 +7366,7 @@
                                         </state>
                                         <state key="selected" image="Tasks isolated"/>
                                         <connections>
-                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zja-aF-Tw0"/>
+                                            <action selector="didSelectedTasks:" destination="gwG-21-5Mr" eventType="touchUpInside" id="YqH-gt-0Bw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-rx-1Da">
@@ -7375,7 +7375,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didSelectedTasks:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zKa-DP-glz"/>
+                                            <action selector="didSelectedAdd:" destination="gwG-21-5Mr" eventType="touchUpInside" id="ien-Ly-idQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfF-oq-eji">
@@ -7385,7 +7385,7 @@
                                         </state>
                                         <state key="selected" image="Documents isolated"/>
                                         <connections>
-                                            <action selector="didSelectedAdd:" destination="gwG-21-5Mr" eventType="touchUpInside" id="dcj-gV-Qsx"/>
+                                            <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="bFV-8k-fW7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3M6-ty-EJO">
@@ -7395,7 +7395,7 @@
                                         </state>
                                         <state key="selected" image="Team icolated"/>
                                         <connections>
-                                            <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="zf2-g6-8tF"/>
+                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="hWM-NC-Kfl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -7464,9 +7464,11 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <outlet property="aboutProjectTab" destination="oNr-wt-jVW" id="OPS-Em-rOZ"/>
                                     <outlet property="addTab" destination="w8A-rx-1Da" id="jhR-2F-Fg2"/>
                                     <outlet property="documentsTab" destination="vfF-oq-eji" id="qqV-tn-Kag"/>
                                     <outlet property="feedTab" destination="tZ3-jn-vrh" id="YH9-qc-drS"/>
+                                    <outlet property="tasksOnPlanTab" destination="rEi-UQ-ZEm" id="AHo-Lt-Q9S"/>
                                     <outlet property="tasksTab" destination="Nav-I2-5P9" id="zAB-4G-2TV"/>
                                     <outlet property="teamTab" destination="3M6-ty-EJO" id="cnb-JF-hD6"/>
                                 </connections>
