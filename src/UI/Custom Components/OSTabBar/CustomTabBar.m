@@ -141,8 +141,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     NSString* showedControllerID = self.selectedControllerID[index];
     
     //TODO: Delete second expression, when add button controller will be done
-    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] && showedControllerID.length > 0 )
-        [self.delegate showControllerWithSegueID: showedControllerID];
+//    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] && showedControllerID.length > 0 )
+//        [self.delegate showControllerWithSegueID: showedControllerID];
 }
 
 #pragma mark - Actions -
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (void) handleLongGestureForTasksOnPlan: (UILongPressGestureRecognizer*) longTap
 {
-    UIImage* btnBackgroundImage = [UIImage imageNamed: @"Tasks"];
+    UIImage* btnBackgroundImage = [UIImage imageNamed: @"Tasks isolated"];
     
     [self putButtonOnGrayView: self.tasksTab
                   aboveButton: self.tasksOnPlanTab
@@ -299,7 +299,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (void) handleLongGestureForAboutProject: (UILongPressGestureRecognizer*) longTap
 {
-    UIImage* btnBackgroundImage = [UIImage imageNamed: @"Team"];
+    UIImage* btnBackgroundImage = [UIImage imageNamed: @"TeamLight"];
     
     [self putButtonOnGrayView: self.teamTab
                   aboveButton: self.aboutProjectTab
