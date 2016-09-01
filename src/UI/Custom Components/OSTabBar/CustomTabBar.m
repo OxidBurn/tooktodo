@@ -10,7 +10,10 @@
 
 typedef NS_ENUM(NSUInteger, ButtonTag) {
     
+    FeedTabButton         = 0,
     TaskTabButton         = 1,
+    AddTabButton          = 2,
+    DocumentsTabButton    = 3,
     TeamTabButton         = 4,
     TasksOnPlanTabButton  = 5,
     AboutProjectTabButton = 6,
@@ -111,7 +114,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
                                   @"ShowAboutProject",
-                                  @""];
+                                  @"ShowAboutProject"];
     }
     
     return _selectedControllerID;
@@ -148,6 +151,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 {
     [self updateSelectedItem: sender.tag];
     
+    [self checkGrayView];
+    
     NSLog(@"didSelectedFeed");
 }
 
@@ -155,16 +160,16 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 {
     [self updateSelectedItem: sender.tag];
     
-    if (self.grayView)
-    {
-        [self dismissGrayView];
-    }
+    [self checkGrayView];
+    
     NSLog(@"didSelectedTasks");
 }
 
 - (IBAction) didSelectedAdd: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
+    
+    [self checkGrayView];
     
     NSLog(@"didSelectedAdd");
 }
@@ -173,6 +178,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 {
     [self updateSelectedItem: sender.tag];
     
+    [self checkGrayView];
+
     NSLog(@"didSelectedDocuments");
 }
 
@@ -180,10 +187,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 {
     [self updateSelectedItem: sender.tag];
     
-    if (self.grayView)
-    {
-        [self dismissGrayView];
-    }
+    [self checkGrayView];
     
     NSLog(@"didSelectedTeam");
 }
@@ -191,20 +195,16 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 //actions for new buttons
 - (IBAction) didSelectTasksOnPlan: (UIButton*) sender
 {
-    if (self.grayView)
-    {
-        [self dismissGrayView];
-    }
+    [self checkGrayView];
+
     NSLog(@"didSelectTasksOnPlan");
 }
 
 
 - (IBAction) didSelectProjectInfo: (UIButton*) sender
 {
-    if (self.grayView)
-    {
-        [self dismissGrayView];
-    }
+    [self checkGrayView];
+
     NSLog(@"didSelectProjectInfo");
 }
 
@@ -383,6 +383,14 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 {
     [self.grayView removeFromSuperview];
     self.grayView = nil;
+}
+
+- (void) checkGrayView
+{
+    if (self.grayView)
+    {
+        [self dismissGrayView];
+    }
 }
 
 - (void) switchButtonForTag: (NSUInteger) buttonsTag
