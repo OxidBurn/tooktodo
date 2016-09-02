@@ -196,6 +196,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 - (IBAction) didSelectTasksOnPlan: (UIButton*) sender
 {
     [self checkGrayView];
+    
+    [self updateSelectedItem: sender.tag];
 
     NSLog(@"didSelectTasksOnPlan");
 }
@@ -204,6 +206,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 - (IBAction) didSelectProjectInfo: (UIButton*) sender
 {
     [self checkGrayView];
+    
+    [self updateSelectedItem: sender.tag];
 
     NSLog(@"didSelectProjectInfo");
 }
