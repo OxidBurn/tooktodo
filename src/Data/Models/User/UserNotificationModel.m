@@ -80,6 +80,7 @@ static NSString* StoreUserSettingsKey = @"UserNotificationSettingsKey";
     }
 }
 
+
 #pragma mark - Properties -
 
 - (NSArray*) tableRowsData

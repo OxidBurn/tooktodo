@@ -87,7 +87,7 @@
                 [self.model updateUserValues: [self getFilledObject]
                               withCompletion: ^(BOOL isSuccess) {
                                   
-                                  [subscriber sendNext: nil];
+                                  [subscriber sendNext: @(isSuccess)];
                                   [subscriber sendCompleted];
                                   
                               }];

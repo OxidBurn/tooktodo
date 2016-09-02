@@ -103,11 +103,12 @@
     
     [self.doneBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
        
-        [signal subscribeNext: ^(id x) {
+        [signal subscribeNext: ^(NSNumber* isSuccess) {
            
             @strongify(self)
             
-            [self.navigationController popViewControllerAnimated: YES];
+            if ( isSuccess.boolValue )
+                [self.navigationController popViewControllerAnimated: YES];
             
         }];
         

@@ -73,10 +73,7 @@ static bool isFirstAccess = YES;
                withNewInfo: (UpdatedUserInfo*)        newInfo
             withCompletion: (void(^)(BOOL isSuccess)) completion
 {
-    // Update info localy
-    [[DataManager sharedInstance] updateUserInfo: newInfo
-                                         forUser: user
-                                  withCompletion: completion];
+    
     
     // Update info on server
     NSDictionary* requestParameters = @{@"firstName"             : newInfo.name,
@@ -89,12 +86,24 @@ static bool isFirstAccess = YES;
         BOOL isSuccess = [[info valueForKey: @"isSuccess"] boolValue];
         
         if ( isSuccess )
+        {
             [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
+            
+            // Update info localy
+            [[DataManager sharedInstance] updateUserInfo: newInfo
+                                                 forUser: user
+                                          withCompletion: completion];
+        }
+        
+        
         
     }
                                                               error: ^(NSError *error) {
                                                                   
-                                                                  NSLog(@"Error with request: %@", error.localizedDescription);
+                                                                  [SVProgressHUD showErrorWithStatus: error.localizedDescription];
+                                                                  
+                                                                  if ( completion )
+                                                                      completion(NO);
                                                                   
                                                               }
                                                           completed: ^{
