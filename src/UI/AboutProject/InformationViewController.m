@@ -46,5 +46,14 @@
     
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    [self.viewModel updateProjectInfo];
+    
+    [self.informationTableView reloadData];
+}
+
 
 @end

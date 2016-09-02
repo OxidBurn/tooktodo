@@ -38,7 +38,7 @@
 {
     self.titleLabel.text           = info.title;
     self.descriptionLabel.text     = [NSString stringWithFormat: @"%@ %@ %@", (info.street) ? info.street : @"", (info.building) ? info.building : @"", (info.apartment) ? info.apartment : @""];
-    self.selectedStateImage.hidden = !info.isSelected;
+    self.selectedStateImage.hidden = !info.isSelected.boolValue;
 }
 
 @end

@@ -8,14 +8,18 @@
 
 
 #import "LoginModel.h"
+
+// Classes
 #import "LoginAPIService.h"
 #import "UserAPIService.h"
 #import "KeyChainManager.h"
 #import "UserInfoData.h"
+#import "ProjectsService.h"
 
 // Extensions
 #import "NSString+Utils.h"
 #import "DataManager+UserInfo.h"
+#import "DataManager+ProjectInfo.h"
 
 @implementation LoginModel
 
@@ -82,9 +86,12 @@
             [[[UserAPIService sharedInstance] getUserInfo] subscribeNext: ^(RACTuple* response) {
                 
                 [KeyChain storeUserPassword: password];
+                
                 [self parsingLoginResponseInfo: [response objectAtIndex: 0]
                                 withCompletion: ^(BOOL isSuccess) {
                     
+                                    [self getUserProjects];
+                                    
                                     [subscriber sendNext: [response objectAtIndex: 0]];
                                     [subscriber sendCompleted];
                                     
@@ -114,6 +121,15 @@
         [subscriber sendCompleted];
         
         return nil;
+        
+    }];
+}
+
+- (void) getUserProjects
+{
+    [[[ProjectsService sharedInstance] getAllProjectsList] subscribeCompleted:^{
+        
+        [DataManagerShared markFirstProjectAsSelected];
         
     }];
 }

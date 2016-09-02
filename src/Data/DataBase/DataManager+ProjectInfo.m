@@ -67,7 +67,6 @@
     projectInfo.commercialObjectTypeDescription  = data.commercialObjectTypeDescription;
     projectInfo.floor                            = data.floor;
     projectInfo.address                          = [NSString stringWithFormat: @"%@ %@ %@ %@", data.regionName, data.city, data.street, data.building];
-    projectInfo.isSelected                       = @(NO);
     
 }
 
@@ -98,6 +97,31 @@
         ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
         
         firstProject.isSelected = @(YES);
+        
+    }];
+}
+
+- (ProjectInfo*) getSelectedProjectInfo
+{
+    NSPredicate* selectedPredicate = [NSPredicate predicateWithFormat: @"isSelected == YES"];
+    
+    ProjectInfo* selectedProject = [ProjectInfo MR_findFirstWithPredicate: selectedPredicate];
+    
+    return selectedProject;
+}
+
+- (void) markProjectAsSelected: (ProjectInfo*)            project
+                withCompletion: (void(^)(BOOL isSuccess)) completion
+{
+    ProjectInfo* prevSelectedProject = [self getSelectedProjectInfo];
+    
+    prevSelectedProject.isSelected = @(NO);
+    project.isSelected             = @(YES);
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+        
+        if ( completion )
+            completion(contextDidSave);
         
     }];
 }

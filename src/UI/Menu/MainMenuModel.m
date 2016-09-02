@@ -116,6 +116,12 @@
     return [[ProjectsService sharedInstance] getAllProjectsList];
 }
 
+- (void) setSelectedProject: (ProjectInfo*)            project
+             withCompletion: (void(^)(BOOL isSuccess)) completion
+{
+    [DataManagerShared markProjectAsSelected: project
+                              withCompletion: completion];
+}
 
 #pragma mark - Internal methods -
 

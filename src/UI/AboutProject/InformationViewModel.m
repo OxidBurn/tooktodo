@@ -22,12 +22,30 @@
 
 #pragma mark - Properties -
 
+- (void) updateProjectInfo
+{
+    ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
+    
+    self.itemInfo = @[
+                  @[projectInfo.title        ? projectInfo.title : @"NO TITLE",
+                    projectInfo.commercialObjectTypeDescription ? projectInfo.commercialObjectTypeDescription : @"нет",
+                    @"нет"],
+                  @[@"нет",
+                    projectInfo.regionName   ? projectInfo.regionName : @"нет",
+                    projectInfo.city         ? projectInfo.city : @"нет",
+                    projectInfo.street       ? projectInfo.street : @"нет",
+                    projectInfo.building     ? projectInfo.building : @"нет",
+                    projectInfo.residentialObjectTypeDescription ? projectInfo.residentialObjectTypeDescription : @"нет",
+                    projectInfo.floor        ? projectInfo.floor.stringValue : @"нет",
+                    projectInfo.apartment    ? projectInfo.apartment : @"нет",
+                    @"нет"]];
+}
+
 - (NSArray*) itemInfo
 {
     if (_itemInfo == nil)
     {
-        
-        ProjectInfo* projectInfo =  [[DataManagerShared getAllProjects] objectAtIndex: 0];
+        ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
         
         _itemInfo = @[
                       @[projectInfo.title        ? projectInfo.title : @"NO TITLE",

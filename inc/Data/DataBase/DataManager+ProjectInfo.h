@@ -23,4 +23,9 @@
 
 - (void) markFirstProjectAsSelected;
 
+- (ProjectInfo*) getSelectedProjectInfo;
+
+- (void) markProjectAsSelected: (ProjectInfo*)            project
+                withCompletion: (void(^)(BOOL isSuccess)) completion;
+
 @end

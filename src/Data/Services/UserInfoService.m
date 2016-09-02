@@ -134,18 +134,13 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) getUserInfo
 {
-    @weakify(self)
-    
     RACSignal* getUserInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
        
         [[[UserAPIService sharedInstance] getUserInfo] subscribeNext:^(id x) {
             
             [subscriber sendNext: x];
             
-            @strongify(self)
-            
             // Get all user projects from server and store them into database
-            [self getUserProjects];
         }
                                                                error: ^(NSError* error) {
                                                                    
@@ -163,13 +158,6 @@ static bool isFirstAccess = YES;
     }];
     
     return getUserInfoSignal;
-}
-
-- (void) getUserProjects
-{
-    [[ProjectsService sharedInstance] getAllProjectsList];
-    
-    [DataManagerShared markFirstProjectAsSelected];
 }
 
 - (void) updateAvatarWithFile: (NSString*) filePath

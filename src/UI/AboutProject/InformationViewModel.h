@@ -13,4 +13,6 @@
 
 @interface InformationViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+- (void) updateProjectInfo;
+
 @end

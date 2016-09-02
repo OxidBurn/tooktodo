@@ -127,6 +127,17 @@
 {
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    [self.model setSelectedProject: self.projectsContent[indexPath.row]
+                    withCompletion: ^(BOOL isSuccess) {
+                        
+                        [blockSelf updateUserData];
+                        
+                        [tableView reloadData];
+                        
+                    }];
 }
 
 
