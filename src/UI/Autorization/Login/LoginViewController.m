@@ -164,6 +164,7 @@
             
             self.emailWarningLable.text                = emailWarning;
             self.emailWarningLable.hidden              = (emailWarning.length == 0);
+            
             self.distanceBeforeEmail.constant          = (emailWarning.length == 0) ? 0 : 5;
             self.emailWarningHeightConstraint.constant = (emailWarning.length == 0) ? 5 : 12;
             self.distanceBeforePassword.constant       = (emailWarning.length == 0) ? 0 : 5;
@@ -175,8 +176,10 @@
             
             self.passwordWarningLabel.text                = passWarning;
             self.passwordWarningLabel.hidden              = (passWarning.length == 0);
+            
             self.passwordWarningHeightConstraint.constant = (passWarning.length == 0) ? 5 : 12;
-            self.passwordWarningTopConstraint.constant    = (passWarning.length == 0) ? 0 : 5;            self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
+            self.passwordWarningTopConstraint.constant    = (passWarning.length == 0) ? 0 : 5;
+            self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
             
         }];
         
