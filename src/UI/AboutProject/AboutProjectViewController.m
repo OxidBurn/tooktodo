@@ -7,11 +7,14 @@
 //
 
 #import "AboutProjectViewController.h"
+#import "MainTabBarController.h"
+#import "ProjectsControllersDelegate.h"
 
 @interface AboutProjectViewController ()
 
 // properties
 
+@property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
 
 // methods
 
@@ -29,6 +32,12 @@
     [super loadView];
     
     [self twoLineTitleView];
+    
+    // setup delegate
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
+    
+    [self showInfoScreenWithID: @"GoToProjInformation"];
+    
 }
 
 - (void) viewDidLoad
@@ -49,10 +58,31 @@
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
 {
+    if ( sender.selectedSegmentIndex == 1 )
+    {
+        [self showInfoScreenWithID: @"GoToRoles"];
+    }
+    
+    else if ( sender.selectedSegmentIndex == 0 )
+    {
+        [self showInfoScreenWithID: @"GoToProjInformation"];
+    }
+    
+    else
+    {
+        [self showInfoScreenWithID: @"GoToSystemInfo"];
+    }
     
 }
 
 #pragma mark - Internal method -
+
+- (void) showInfoScreenWithID: (NSString*) storyboardID
+{
+    [self performSegueWithIdentifier: storyboardID
+                              sender: self];
+}
+
 
 - (UIView*) twoLineTitleView
 {
