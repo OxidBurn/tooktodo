@@ -10,6 +10,7 @@
 
 // Classes
 #import "UserAPIService.h"
+#import "ProjectsService.h"
 
 @implementation UserInfoService
 
@@ -130,7 +131,40 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) getUserInfo
 {
-    return [[UserAPIService sharedInstance] getUserInfo];
+    @weakify(self)
+    
+    RACSignal* getUserInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[UserAPIService sharedInstance] getUserInfo] subscribeNext:^(id x) {
+            
+            [subscriber sendNext: x];
+            
+            @strongify(self)
+            
+            // Get all user projects from server and store them into database
+            [self getUserProjects];
+        }
+                                                               error: ^(NSError* error) {
+                                                                   
+                                                                   [subscriber sendError: error];
+                                                                   
+                                                               }
+         
+                                                           completed:^{
+                                                              
+                                                               [subscriber sendCompleted];
+                                                               
+                                                           }];
+        
+        return nil;
+    }];
+    
+    return getUserInfoSignal;
+}
+
+- (void) getUserProjects
+{
+    [[ProjectsService sharedInstance] getAllProjectsList];
 }
 
 - (void) updateAvatarWithFile: (NSString*) filePath
