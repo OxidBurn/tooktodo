@@ -94,6 +94,21 @@ static bool isFirstAccess = YES;
                                                  forUser: user
                                           withCompletion: completion];
         }
+        else
+        {
+            NSArray* modelErrors = info[@"modelErrors"];
+            NSString* message    = modelErrors[0][@"message"];
+            
+            [message stringByReplacingOccurrencesOfString: @"Last Name"
+                                               withString: @"Поле Фамилия"];
+            [message stringByReplacingOccurrencesOfString: @"First Name"
+                                               withString: @"Поле Имя"];
+            
+            [SVProgressHUD showErrorWithStatus: message];
+            
+            if ( completion )
+                completion(NO);
+        }
         
         
         

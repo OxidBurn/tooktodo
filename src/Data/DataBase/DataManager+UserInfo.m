@@ -76,7 +76,7 @@
 
 - (UserInfo*) getCurrentUserInfo
 {
-    return [UserInfo MR_findFirst];
+    return [UserInfo MR_findFirstInContext: [NSManagedObjectContext MR_defaultContext]];
 }
 
 - (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
@@ -88,6 +88,8 @@
         UserInfo* userInfo = [user MR_inContext: localContext];
         
         userInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
+        userInfo.firstName         = newInfo.name;
+        userInfo.lastName          = newInfo.surname;
         userInfo.phoneNumber       = newInfo.phoneNumber;
         userInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
         

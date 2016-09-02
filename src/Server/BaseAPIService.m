@@ -51,8 +51,9 @@
 {
     AFHTTPRequestOperationManager* requestManager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
-    requestManager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingAllowFragments];
-    requestManager.requestSerializer  = [AFJSONRequestSerializer serializer];
+    requestManager.responseSerializer                = [AFJSONResponseSerializer serializerWithReadingOptions: NSJSONReadingAllowFragments];
+    requestManager.requestSerializer                 = [AFJSONRequestSerializer serializer];
+    requestManager.requestSerializer.timeoutInterval = 10.0f;
     
     requestManager = [self addHeadersToManager: requestManager];
     

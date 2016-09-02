@@ -43,22 +43,12 @@
 
 - (NSString*) getUserName
 {
-    NSArray* names = [self.currentUserInfo.fullName componentsSeparatedByString: @" "];
-    
-    if ( names.count > 0 )
-        return names.firstObject;
-    
-    return @"";
+    return self.currentUserInfo.firstName;
 }
 
 - (NSString*) getSurName
 {
-    NSArray* names = [self.currentUserInfo.fullName componentsSeparatedByString: @" "];
-    
-    if ( names.count > 1 )
-        return names.lastObject;
-    
-    return @"";
+    return self.currentUserInfo.lastName;
 }
 
 - (NSString*) getUserPhoneNumber
