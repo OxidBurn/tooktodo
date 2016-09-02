@@ -21,4 +21,6 @@
 
 - (BOOL) deleteAllProjects;
 
+- (void) markFirstProjectAsSelected;
+
 @end

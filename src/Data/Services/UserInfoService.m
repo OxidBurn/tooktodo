@@ -12,6 +12,9 @@
 #import "UserAPIService.h"
 #import "ProjectsService.h"
 
+// Categories
+#import "DataManager+ProjectInfo.h"
+
 @implementation UserInfoService
 
 static dispatch_once_t onceToken;
@@ -165,6 +168,8 @@ static bool isFirstAccess = YES;
 - (void) getUserProjects
 {
     [[ProjectsService sharedInstance] getAllProjectsList];
+    
+    [DataManagerShared markFirstProjectAsSelected];
 }
 
 - (void) updateAvatarWithFile: (NSString*) filePath

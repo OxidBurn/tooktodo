@@ -114,7 +114,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
                                   @"",
-                                  @"ShowProjectInfo"];
+                                  @"ShowAboutProjectID"];
     }
     
     return _selectedControllerID;

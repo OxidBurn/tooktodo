@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* descriptionLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *selectedStateImage;
+@property (weak, nonatomic) IBOutlet UILabel *expiredTasksCount;
 
 // methods
 
@@ -24,12 +26,19 @@
 
 @implementation MenuProjectCell
 
+- (void) awakeFromNib
+{
+    self.expiredTasksCount.clipsToBounds      = YES;
+    self.expiredTasksCount.layer.cornerRadius = 11;
+}
+
 #pragma mark - Public methods -
 
 - (void) fillInfo: (ProjectInfo*) info
 {
-    self.titleLabel.text       = info.title;
-    self.descriptionLabel.text = [NSString stringWithFormat: @"%@ %@ %@", (info.street) ? info.street : @"", (info.building) ? info.building : @"", (info.apartment) ? info.apartment : @""];
+    self.titleLabel.text           = info.title;
+    self.descriptionLabel.text     = [NSString stringWithFormat: @"%@ %@ %@", (info.street) ? info.street : @"", (info.building) ? info.building : @"", (info.apartment) ? info.apartment : @""];
+    self.selectedStateImage.hidden = !info.isSelected;
 }
 
 @end

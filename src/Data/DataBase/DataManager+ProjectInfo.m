@@ -67,7 +67,7 @@
     projectInfo.commercialObjectTypeDescription  = data.commercialObjectTypeDescription;
     projectInfo.floor                            = data.floor;
     projectInfo.address                          = [NSString stringWithFormat: @"%@ %@ %@ %@", data.regionName, data.city, data.street, data.building];
-//    projectInfo.
+    projectInfo.isSelected                       = @(NO);
     
 }
 
@@ -89,6 +89,17 @@
     [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
     
     return isSuccess;
+}
+
+- (void) markFirstProjectAsSelected
+{
+    [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
+        
+        firstProject.isSelected = @(YES);
+        
+    }];
 }
 
 - (OfflineSettings*) createOfflineSettingForProject: (ProjectInfo*)            project
