@@ -11,6 +11,7 @@
 // Classes
 #import "TeamInfoModel.h"
 #import "TeamMember.h"
+#import "TeamInfoTableViewCell.h"
 
 @interface TeamInfoViewModel()
 
@@ -56,9 +57,12 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
+    TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
     
     TeamMember* memberInfo = [self.model teamMemberByIndex: indexPath.row];
+    
+    [cell fillCellWithInfo: memberInfo
+              forIndexPath: indexPath];
     
     NSLog(@"Member info: %@", memberInfo.firstName);
     

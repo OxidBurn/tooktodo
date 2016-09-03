@@ -6441,7 +6441,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCellID" id="NN9-wq-jz4">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCellID" id="NN9-wq-jz4" customClass="TeamInfoTableViewCell">
                                         <rect key="frame" x="0.0" y="72" width="600" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NN9-wq-jz4" id="PiK-Cw-i5k">
@@ -6606,6 +6606,9 @@
                                                             <exclude reference="kjT-9K-Q73"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="onCallToTeamMemberBtn:" destination="NN9-wq-jz4" eventType="touchUpInside" id="ml1-FU-9sm"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rn5-5y-uL8">
                                                     <rect key="frame" x="501" y="6" width="40" height="44"/>
@@ -6650,6 +6653,9 @@
                                                             <include reference="pQ1-N9-nXb"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <action selector="onSendEmailToTeamMemberBtn:" destination="NN9-wq-jz4" eventType="touchUpInside" id="rwt-92-882"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -6800,6 +6806,11 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="callToTeamMemberBtn" destination="Bhu-Y2-RM9" id="Xxl-cV-ZDH"/>
+                                            <outlet property="sendEmailToTeamMemberBtn" destination="rn5-5y-uL8" id="Jgr-xr-sZ3"/>
+                                            <outlet property="teamMemberAvatar" destination="IaR-gt-qPz" id="t9R-xc-lXn"/>
+                                            <outlet property="teamMemberName" destination="fgN-Cy-DBp" id="S5E-xV-XC7"/>
+                                            <outlet property="teamMemberPermission" destination="hmb-VL-BR6" id="51l-Hk-6VM"/>
                                             <segue destination="voL-eB-vFQ" kind="show" identifier="ShowMemberInfoID" id="5M9-nH-bKo"/>
                                         </connections>
                                     </tableViewCell>
