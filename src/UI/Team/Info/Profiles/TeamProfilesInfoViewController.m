@@ -8,13 +8,43 @@
 
 #import "TeamProfilesInfoViewController.h"
 
+// Classes
+#import "TeamProfilesInfoViewModel.h"
+#import "AvatarImageView.h"
+
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 
 @interface TeamProfilesInfoViewController ()
 
-- (IBAction)onDismiss:(UIBarButtonItem *)sender;
+// properties
+@property (strong, nonatomic) TeamProfilesInfoViewModel* viewModel;
 
+// outlets
+
+@property (weak, nonatomic) IBOutlet AvatarImageView* teamMemberAvatarImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberNameLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton* callToTeamMemberBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberPhoneNumberLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberEmailLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton* sendToteamMemberEmailBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberRoleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberCompanyLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel* teamMemberPermissionLabel;
+
+
+// methods
+- (IBAction) onDismiss: (UIBarButtonItem*) sender;
+
+- (IBAction) onChangeAvatarBtn: (UIButton*) sender;
 
 @end
 
@@ -27,13 +57,17 @@
     [super loadView];
     
     // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
-                                               withSubTitle: @"Квартира на Ходынке"];
+//    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
+//                                               withSubTitle: @"Квартира на Ходынке"];
+
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+//    self.tableView.dataSource = self.viewModel;
+//    self.tableView.delegate   = self.viewModel;
 }
 
 #pragma mark - Memory managment -
@@ -41,6 +75,18 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Properties -
+
+- (TeamProfilesInfoViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [TeamProfilesInfoViewModel new];
+    }
+    
+    return _viewModel;
 }
 
 
@@ -52,6 +98,11 @@
     // for changing selected state in team member value
     
     [self.navigationController popViewControllerAnimated: YES];
+}
+
+- (IBAction) onChangeAvatarBtn: (UIButton*) sender
+{
+    
 }
 
 @end

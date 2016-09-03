@@ -8,6 +8,18 @@
 
 #import "TeamProfilesInfoModel.h"
 
+@interface TeamProfilesInfoModel()
+
+// properties
+
+
+// methods
+
+
+@end
+
 @implementation TeamProfilesInfoModel
+
+
 
 @end

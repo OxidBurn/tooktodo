@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TeamProfilesInfoViewModel : NSObject
+// Frameworks
+@import UIKit;
+
+@interface TeamProfilesInfoViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @end

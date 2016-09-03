@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseMainViewController.h"
 
-@interface TeamProfilesInfoViewController : BaseMainViewController
+@interface TeamProfilesInfoViewController : UITableViewController
 
 @end
