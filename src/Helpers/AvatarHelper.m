@@ -97,10 +97,10 @@ static AvatarHelper* sharedInstance = nil;
 
 - (NSString*) generateAvatarForName: (NSString*) name
                    withAbbreviation: (NSString*) abbreviation
+                      withImageSize: (CGSize)    imageSize
 {
     NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", [Utils getEmailPrefix: name]];
     UIColor* avatarColor     = [self getRandomAvatarColor];
-    CGSize avatarImageSize   = CGSizeMake(60, 60);
     
     // Generate avatar and write it to file in external queue
     NSOperationQueue* writeFileQueue = [NSOperationQueue new];
@@ -109,7 +109,7 @@ static AvatarHelper* sharedInstance = nil;
         
         UIImage* generatedAvatarImage = [[AvatarGenerator alloc] initWithText: abbreviation
                                                           withBackgroundColor: avatarColor
-                                                                     withSize: avatarImageSize];
+                                                                     withSize: imageSize];
         
         
         

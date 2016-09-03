@@ -39,13 +39,13 @@
             completion(YES);
         
     }
-    error:^(NSError *error) {
+    error: ^(NSError *error) {
         
         if ( completion )
             completion(NO);
         
     }
-    completed:^{
+    completed: ^{
         
         if ( completion )
             completion(YES);
@@ -65,22 +65,22 @@
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index
 {
-    TeamMember* teamMember = self.teamList[index];
+    TeamMember* teamMember = [self teamMemberByIndex: index];
     
-    if ( teamMember.phoneNumber && (teamMember.additionalPhoneNumber == nil) )
+    if ( teamMember.phoneNumber.length > 0 && teamMember.additionalPhoneNumber.length > 0 )
     {
-        //handle call to main number
-        
+        if ( [self.delegate respondsToSelector: @selector(returnPhoneNumbers:with:)] )
+        {
+            [self.delegate returnPhoneNumbers: teamMember.phoneNumber
+                                         with: teamMember.additionalPhoneNumber];
+        }
     }
     else
-        if ( teamMember.phoneNumber && teamMember.additionalPhoneNumber )
-        {
-            if ( [self.delegate respondsToSelector: @selector(returnPhoneNumbers:with:)] )
-            {
-                [self.delegate returnPhoneNumbers: teamMember.phoneNumber
-                                             with: teamMember.additionalPhoneNumber];
-            }
-        }
+    {
+        // call
+        NSLog(@"Phone number: %@", teamMember.phoneNumber);
+    }
+    
 }
 
 @end

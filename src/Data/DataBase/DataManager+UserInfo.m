@@ -33,7 +33,9 @@
             if ( info.avatarSrc.length == 0 )
             {
                 userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: info.email
-                                                                              withAbbreviation: [NSString stringWithFormat: @"%c%c", [userInfo.firstName characterAtIndex: 0], [userInfo.lastName characterAtIndex: 0]]];
+                                                                              withAbbreviation: [Utils getAbbreviationWithName: info.firstName
+                                                                                                                   withSurname: info.lastName]
+                                                                                 withImageSize: CGSizeMake(60, 60)];
             }
             else
             {

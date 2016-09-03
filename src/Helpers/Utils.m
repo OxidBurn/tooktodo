@@ -295,6 +295,12 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return basePath;
 }
 
++ (NSString*) getAbbreviationWithName: (NSString*) name
+                          withSurname: (NSString*) surname
+{
+    return [NSString stringWithFormat: @"%c%c", [name characterAtIndex: 0], [surname characterAtIndex: 0]];
+}
+
 + (NSString*) getAvatarsDirectoryPath
 {
     NSString* avatarsDirectoryPath = [[Utils applicationSupportDirectory] stringByAppendingString: @"/Avatars/"];

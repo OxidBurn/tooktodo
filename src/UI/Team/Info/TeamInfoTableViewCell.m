@@ -8,6 +8,9 @@
 
 #import "TeamInfoTableViewCell.h"
 
+// Classes
+#import "Utils.h"
+
 @interface TeamInfoTableViewCell()
 
 // properties
@@ -73,7 +76,7 @@
     [self checkIfPhoneNumberExists: teamMember];
     [self chechIfEmailExists:       teamMember];
     
-    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: teamMember.avatarPath];
+    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamMember.avatarPath]];
     self.teamMemberName.text       = [NSString stringWithFormat: @"%@%@", teamMemberFullName, teamMemberPosition];
     self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!%@", teamMemberCompany];
 }

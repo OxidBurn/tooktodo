@@ -11,6 +11,7 @@
 // Classes
 #import "TeamMemberObject.h"
 #import "AvatarHelper.h"
+#import "Utils.h"
 
 @implementation DataManager (Team)
 
@@ -72,8 +73,10 @@
     member.userID                = object.memberID;
     member.createrUserId         = object.createrUserId;
     member.project               = [self getSelectedProjectInfoInContext: context];
-    member.avatarPath            = [[AvatarHelper sharedInstance] generateAvatarForName: object.email
-                                                                       withAbbreviation: [NSString stringWithFormat: @"%c%c", [object.firstName characterAtIndex: 0], [object.lastName characterAtIndex: 0]]];
+    member.avatarPath            = [[AvatarHelper sharedInstance] generateAvatarForName: object.memberID.stringValue
+                                                                       withAbbreviation: [Utils getAbbreviationWithName: object.firstName
+                                                                                                            withSurname: object.lastName]
+                                                                          withImageSize: CGSizeMake(20, 20)];
 }
 
 - (TeamMember*) getMemberWithID: (NSNumber*)               memberID

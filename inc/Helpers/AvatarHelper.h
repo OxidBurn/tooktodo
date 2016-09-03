@@ -28,7 +28,8 @@
  *  @return path to the avatar image
  */
 - (NSString*) generateAvatarForName: (NSString*) name
-                   withAbbreviation: (NSString*) abbreviation;
+                   withAbbreviation: (NSString*) abbreviation
+                      withImageSize: (CGSize)    imageSize;
 
 - (NSString*) getAvatarPathForName: (NSString*) name;
 

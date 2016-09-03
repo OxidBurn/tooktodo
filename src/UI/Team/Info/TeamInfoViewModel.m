@@ -69,6 +69,7 @@
               forIndexPath: indexPath];
     
     NSLog(@"Member info: %@", memberInfo.firstName);
+    NSLog(@"Phone number: %@", memberInfo.phoneNumber);
     
     return cell;
 }

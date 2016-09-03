@@ -99,6 +99,9 @@
 
 + (NSString*) getNameAbbreviation: (NSString*) name;
 
++ (NSString*) getAbbreviationWithName: (NSString*) name
+                          withSurname: (NSString*) surname;
+
 + (NSString*) getEmailPrefix: (NSString*) email;
 
 #pragma mark - Date/time -
