@@ -15,6 +15,12 @@
 // Categories
 #import "DataManager+Team.h"
 
+typedef NS_ENUM(NSUInteger, FilteringMemebersState)
+{
+    TableNormalState,
+    TableFilteringState,
+};
+
 @protocol TeamInfoModelDelegate;
 
 @interface TeamInfoModel : NSObject
@@ -32,6 +38,14 @@
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index;
+
+- (void) filteringWithKeyWord: (NSString*) keyWord;
+
+- (BOOL) isEnableFiltering;
+
+- (void) startFiltering;
+
+- (void) stopFiltering;
 
 @end
 

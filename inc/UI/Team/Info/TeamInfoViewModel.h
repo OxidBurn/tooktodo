@@ -16,6 +16,10 @@
 // properties
 @property (weak, nonatomic) id <TeamInfoViewModelDelegate> delegate;
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
+@property (nonatomic, copy) void(^endFiltering)();
+
 // methods
 
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;

@@ -76,6 +76,9 @@
     if ( member == nil )
     {
         member = [TeamMember MR_createEntityInContext: context];
+        
+        [self generateAvatarForMember: member
+                             withInfo: object];
     }
     
     member.firstName             = object.firstName;
@@ -89,13 +92,17 @@
     member.userID                = object.memberID;
     member.createrUserId         = object.createrUserId;
     member.project               = [self getSelectedProjectInfoInContext: context];
-    
-    NSString* fullNameAbbreviation = [Utils getAbbreviationWithName: object.firstName
-                                                        withSurname: object.lastName];
-    
-    member.avatarPath            = [[AvatarHelper sharedInstance] generateAvatarForName: object.memberID.stringValue
-                                                                       withAbbreviation: fullNameAbbreviation
-                                                                          withImageSize: CGSizeMake(20, 20)];
+}
+
+- (void) generateAvatarForMember: (TeamMember*)       member
+                        withInfo: (TeamMemberObject*) info
+{
+    NSString* fullNameAbbreviation = [Utils getAbbreviationWithName: info.firstName
+                                                        withSurname: info.lastName];
+
+    member.avatarPath              = [[AvatarHelper sharedInstance] generateAvatarForName: info.memberID.stringValue
+                                                                         withAbbreviation: fullNameAbbreviation
+                                                                            withImageSize: CGSizeMake(20, 20)];
 }
 
 - (TeamMember*) getMemberWithID: (NSNumber*)               memberID

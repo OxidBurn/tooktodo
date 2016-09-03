@@ -110,7 +110,8 @@ static CGFloat sectionHeaderHeight = 30;
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)     tableView: (UITableView*) tableView
+ heightForHeaderInSection: (NSInteger) section
 {
     return (self.tableState == TableNormalState) ? 0 : sectionHeaderHeight;
 }

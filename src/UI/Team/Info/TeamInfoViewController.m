@@ -35,6 +35,8 @@
 
 - (void) bindingUI;
 
+- (void) handleViewModelActions;
+
 @end
 
 @implementation TeamInfoViewController
@@ -125,6 +127,26 @@
     self.teamInfoTableView.dataSource = self.viewModel;
     self.teamInfoTableView.delegate   = self.viewModel;
     self.searchBar.delegate           = self.viewModel;
+    
+    [self handleViewModelActions];
+}
+
+- (void) handleViewModelActions
+{
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.teamInfoTableView reloadData];
+        
+    };
+    
+    self.viewModel.endFiltering = ^(){
+        
+        [blockSelf.searchBar resignFirstResponder];
+        [blockSelf.view endEditing: YES];
+        
+    };
 }
 
 #pragma mark - Actions -
@@ -151,7 +173,8 @@
                                                      style: UIAlertActionStyleDefault
                                                    handler: ^(UIAlertAction * _Nonnull action) {
                                                        
-                                                       NSLog(@"Main number %@", mainNumber);
+                                                       // call
+                                                       [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", mainNumber]]];
                                                        
                                                    }]];
     
@@ -159,8 +182,7 @@
                                                      style: UIAlertActionStyleDefault
                                                    handler: ^(UIAlertAction * _Nonnull action) {
                                                        
-                                                       NSLog(@"Addition number %@", additionNumber);
-                                                       
+                                                       [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", additionNumber]]];
                                                    }]];
     
     [actionSheet addAction: [UIAlertAction actionWithTitle: @"Cancel"

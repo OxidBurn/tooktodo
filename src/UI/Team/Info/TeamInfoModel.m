@@ -17,6 +17,10 @@
 
 @property (strong, nonatomic) NSArray* teamList;
 
+@property (strong, nonatomic) NSArray* filteringList;
+
+@property (assign, nonatomic) FilteringMemebersState memberListState;
+
 // methods
 
 
@@ -55,12 +59,40 @@
 
 - (NSUInteger) countOfItems
 {
-    return self.teamList.count;
+    switch (self.memberListState)
+    {
+        case TableNormalState:
+        {
+            return self.teamList.count;
+            break;
+        }
+        case TableFilteringState:
+        {
+            return self.filteringList.count;
+            break;
+        }
+    }
+    
+    return 0;
 }
 
 - (TeamMember*) teamMemberByIndex: (NSUInteger) index
 {
-    return self.teamList[index];
+    switch (self.memberListState)
+    {
+        case TableNormalState:
+        {
+            return self.teamList[index];
+            break;
+        }
+        case TableFilteringState:
+        {
+            return self.filteringList[index];
+            break;
+        }
+    }
+    
+    return nil;
 }
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index
@@ -78,7 +110,7 @@
     else
     {
         // call
-        NSLog(@"Phone number: %@", teamMember.phoneNumber);
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", teamMember.phoneNumber]]];
     }
     
 }
@@ -89,6 +121,45 @@
     
     [DataManagerShared changeItemSelectedState: YES
                                        forItem: member];
+}
+
+
+#pragma mark - Filtering -
+
+- (void) stopFiltering
+{
+    self.filteringList   = nil;
+    self.memberListState = TableNormalState;
+}
+
+- (void) startFiltering
+{
+    self.memberListState = TableFilteringState;
+    self.filteringList   = self.teamList.copy;
+}
+
+- (BOOL) isEnableFiltering
+{
+    return (self.memberListState == TableFilteringState);
+}
+
+- (void) filteringWithKeyWord: (NSString*) keyWord
+{
+    if ( keyWord.length > 0 )
+    {
+        NSPredicate* filteredPredicate = [NSPredicate predicateWithFormat: [self getFilteringPredicateFormatString], keyWord, keyWord, keyWord, keyWord, keyWord];
+        
+        self.filteringList = [self.teamList filteredArrayUsingPredicate: filteredPredicate];
+    }
+    else
+    {
+        self.filteringList = self.teamList;
+    }
+}
+
+- (NSString*) getFilteringPredicateFormatString
+{
+    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber CONTAINS[c] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
 }
 
 @end
