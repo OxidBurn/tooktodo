@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,7 +46,17 @@
         <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="team" inverseEntity="TeamMember" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="team" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
-    <entity name="TeamMember" syncable="YES">
+    <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
+        <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createrUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patronymicName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="member" inverseEntity="Team" syncable="YES"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
@@ -82,7 +92,7 @@
         <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="450"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="Team" positionX="-45" positionY="99" width="128" height="75"/>
-        <element name="TeamMember" positionX="-36" positionY="108" width="128" height="60"/>
+        <element name="TeamMember" positionX="-36" positionY="108" width="128" height="210"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
     </elements>

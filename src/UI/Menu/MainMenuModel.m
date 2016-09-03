@@ -119,6 +119,8 @@
 - (void) setSelectedProject: (ProjectInfo*)            project
              withCompletion: (void(^)(BOOL isSuccess)) completion
 {
+    NSLog(@"Project ID: %lu", (unsigned long)project.projectID.integerValue);
+    
     [DataManagerShared markProjectAsSelected: project
                               withCompletion: completion];
 }
