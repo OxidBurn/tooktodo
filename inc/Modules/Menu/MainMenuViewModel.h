@@ -20,7 +20,7 @@
 // for now it's just stub, will be worked when application would be on AppStore
 @property (strong, nonatomic) RACCommand* reviewActionCommand;
 
-
+@property (copy, nonatomic) void(^hideMenu)();
 
 // methods
 

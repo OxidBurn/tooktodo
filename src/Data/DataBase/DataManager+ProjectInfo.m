@@ -110,6 +110,16 @@
     return selectedProject;
 }
 
+- (ProjectInfo*) getSelectedProjectInfoInContext: (NSManagedObjectContext*) context
+{
+    NSPredicate* selectedPredicate = [NSPredicate predicateWithFormat: @"isSelected == YES"];
+    
+    ProjectInfo* selectedProject = [ProjectInfo MR_findFirstWithPredicate: selectedPredicate
+                                                                inContext: context];
+    
+    return selectedProject;
+}
+
 - (void) markProjectAsSelected: (ProjectInfo*)            project
                 withCompletion: (void(^)(BOOL isSuccess)) completion
 {

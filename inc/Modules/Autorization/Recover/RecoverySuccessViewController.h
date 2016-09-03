@@ -6,13 +6,11 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-// Frameworks
-#import <UIKit/UIKit.h>
-
 // Classes
+#import "BaseMainViewController.h"
 #import "RecoveryViewModel.h"
 
-@interface RecoverySuccessViewController : UIViewController
+@interface RecoverySuccessViewController : BaseMainViewController
 
 // properties
 

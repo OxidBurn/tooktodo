@@ -6,8 +6,12 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa.h"
+
+// Classes
+#import "InviteInfo.h"
 
 @interface TeamService : NSObject
 
@@ -18,5 +22,7 @@
 + (TeamService*) sharedInstance;
 
 - (RACSignal*) getTeamInfo;
+
+- (RACSignal*) inviteUserWithInfo: (InviteInfo*) info;
 
 @end

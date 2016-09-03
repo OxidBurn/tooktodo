@@ -25,6 +25,8 @@
 
 - (ProjectInfo*) getSelectedProjectInfo;
 
+- (ProjectInfo*) getSelectedProjectInfoInContext: (NSManagedObjectContext*) context;
+
 - (void) markProjectAsSelected: (ProjectInfo*)            project
                 withCompletion: (void(^)(BOOL isSuccess)) completion;
 

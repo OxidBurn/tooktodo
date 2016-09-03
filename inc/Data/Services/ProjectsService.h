@@ -6,7 +6,11 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
 #import "ReactiveCocoa.h"
+
+// Classes
+#import "ProjectInfo.h"
 
 typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 
@@ -21,5 +25,7 @@ typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 - (RACSignal*) getAllProjectsList;
 
 - (RACSignal*) updateAllProjectsListWithServer;
+
+- (void) loadProjectData: (ProjectInfo*) project;
 
 @end

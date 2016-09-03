@@ -86,6 +86,16 @@ static bool isFirstAccess = YES;
     return fetchTeamInfoSignal;
 }
 
+- (RACSignal*) inviteUserWithInfo: (InviteInfo*) info
+{
+//    NSDictionary* inviteParameter = @{};
+//    NSArray* invites = @[@{}];
+//    NSDictionary* requestParameter = @{@"invites" : @[
+//                                               ]};
+    
+    return nil;
+}
+
 
 #pragma mark - Internal methods -
 

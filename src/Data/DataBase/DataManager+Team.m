@@ -13,6 +13,9 @@
 #import "AvatarHelper.h"
 #import "Utils.h"
 
+// Categories
+#import "DataManager+ProjectInfo.h"
+
 @implementation DataManager (Team)
 
 
@@ -43,7 +46,9 @@
 
 - (NSArray*) getAllTeamInfo
 {
-    return [TeamMember MR_findAll];
+    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
+    
+    return selectedProject.team.allObjects;
 }
 
 - (void) changeItemSelectedState: (BOOL)        isSelected
@@ -112,16 +117,6 @@
     return [TeamMember MR_findFirstByAttribute: @"userID"
                                      withValue: memberID
                                      inContext: context];
-}
-
-- (ProjectInfo*) getSelectedProjectInfoInContext: (NSManagedObjectContext*) context
-{
-    NSPredicate* selectedPredicate = [NSPredicate predicateWithFormat: @"isSelected == YES"];
-    
-    ProjectInfo* selectedProject = [ProjectInfo MR_findFirstWithPredicate: selectedPredicate
-                                                                inContext: context];
-    
-    return selectedProject;
 }
 
 @end

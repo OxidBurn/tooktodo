@@ -120,6 +120,14 @@
         [self.projectsTableView reloadData];
         
     }];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.hideMenu = ^(){
+        
+        [blockSelf.slidingViewController resetTopViewAnimated: YES];
+        
+    };
 }
 
 - (IBAction) showWelcomeTour: (UIButton*) sender

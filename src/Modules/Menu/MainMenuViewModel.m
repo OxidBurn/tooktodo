@@ -137,6 +137,9 @@
                         
                         [tableView reloadData];
                         
+                        if ( blockSelf.hideMenu )
+                            blockSelf.hideMenu();
+                        
                     }];
 }
 

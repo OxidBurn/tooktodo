@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/3/16.
+//  Created by Nikolay Chaban on 9/4/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
+@property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
 
 @end
 
@@ -56,6 +57,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeTeamObject:(TeamMember *)value;
 - (void)addTeam:(NSSet<TeamMember *> *)values;
 - (void)removeTeam:(NSSet<TeamMember *> *)values;
+
+- (void)addRolesObject:(ProjectRoles *)value;
+- (void)removeRolesObject:(ProjectRoles *)value;
+- (void)addRoles:(NSSet<ProjectRoles *> *)values;
+- (void)removeRoles:(NSSet<ProjectRoles *> *)values;
 
 @end
 

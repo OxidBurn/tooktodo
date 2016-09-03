@@ -30,6 +30,8 @@ static NSString* updateUserInfoURL   = @"api/v2/account/info/common";
 static NSString* userProjectsListURL = @"api/project/list";
 static NSString* fileInfoURL         = @"api/file";
 static NSString* updateAvatarURL     = @"/api/Account/avatar";
-static NSString* projectTeamInfoURL  = @"/api/v2/project/{projectID}/contacts";
+static NSString* projectTeamInfoURL  = @"api/v2/project/{projectID}/contacts";
+static NSString* inviteURL           = @"api/invite/send";
+static NSString* projectRolesURL     = @"api/project/{projectID}/roleType/list";
 
 #endif /* APIConstance_h */

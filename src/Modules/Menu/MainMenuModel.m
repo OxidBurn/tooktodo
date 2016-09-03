@@ -34,19 +34,6 @@
 @implementation MainMenuModel
 
 
-#pragma mark - Initialization -
-
-- (instancetype) init
-{
-    if ( self = [super init] )
-    {
-        
-    }
-    
-    return self;
-}
-
-
 #pragma mark - Properties -
 
 - (UserInfo*) currentUserInfo
@@ -119,8 +106,10 @@
 - (void) setSelectedProject: (ProjectInfo*)            project
              withCompletion: (void(^)(BOOL isSuccess)) completion
 {
-    NSLog(@"Project ID: %lu", (unsigned long)project.projectID.integerValue);
+    // Load project info
+    [[ProjectsService sharedInstance] loadProjectData: project];
     
+    // Mark project as selected in DB
     [DataManagerShared markProjectAsSelected: project
                               withCompletion: completion];
 }

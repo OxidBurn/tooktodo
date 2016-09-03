@@ -37,8 +37,6 @@
         
         self.teamList = teamInfo;
         
-        NSLog(@"Team list %@", self.teamList);
-        
         if ( completion )
             completion(YES);
         

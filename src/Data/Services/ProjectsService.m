@@ -11,6 +11,8 @@
 // Classes
 #import "ProjectsAPIService.h"
 #import "ProjectInfoData.h"
+#import "TeamService.h"
+#import "RolesService.h"
 
 // Extensions
 #import "DataManager+ProjectInfo.h"
@@ -78,6 +80,16 @@ static bool isFirstAccess = YES;
 - (RACSignal*) updateAllProjectsListWithServer
 {
     return [RACSignal empty];
+}
+
+- (void) loadProjectData: (ProjectInfo*) project
+{
+    // Load all roles
+    [[[RolesService sharedInstance] loadAllRolesForProject: project] subscribeCompleted: ^{
+        
+    }];
+    
+    // Load team
 }
 
 #pragma mark - Internal methods -
