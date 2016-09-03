@@ -31,6 +31,8 @@
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
 
+- (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index;
+
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index;
 
 @end

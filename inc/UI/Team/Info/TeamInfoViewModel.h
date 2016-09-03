@@ -28,4 +28,6 @@
 - (void) createActionSheetWithMainNumber: (NSString*) mainNumber
                        andAdditionNumber: (NSString*) additionNumber;
 
+- (void) showEmailComposerForMail: (NSString*) email;
+
 @end

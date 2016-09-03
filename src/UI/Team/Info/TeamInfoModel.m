@@ -63,6 +63,13 @@
     return self.teamList[index];
 }
 
+- (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index
+{
+    TeamMember* member = [self teamMemberByIndex: index];
+    
+    return member.email;
+}
+
 - (void) handleCallForUserAtIndex: (NSUInteger) index
 {
     TeamMember* teamMember = [self teamMemberByIndex: index];

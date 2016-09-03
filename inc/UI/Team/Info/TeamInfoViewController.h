@@ -8,8 +8,9 @@
 
 #import "BaseMainViewController.h"
 #import "InviteInfo.h"
+#import <MessageUI/MessageUI.h>
 
-@interface TeamInfoViewController : BaseMainViewController
+@interface TeamInfoViewController : BaseMainViewController <MFMailComposeViewControllerDelegate>
 
 - (void) fillInviteInfo: (InviteInfo*) userInf;
 

@@ -91,6 +91,16 @@
     [self.model handleCallForUserAtIndex: index];
 }
 
+- (void) didTriggerEmailActionIndex: (NSUInteger) index
+{
+    NSString* email = [self.model getEmailOfMemberAtIndex: index];
+    
+    if ([self.delegate respondsToSelector: @selector(showEmailComposerForMail:)])
+    {
+        [self.delegate showEmailComposerForMail: email];
+    }
+}
+
 #pragma mark - TeamModelDelegate methods -
 
 - (void) returnPhoneNumbers: (NSString*) mainNumber
