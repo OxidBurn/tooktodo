@@ -46,6 +46,22 @@
     return [TeamMember MR_findAll];
 }
 
+- (void) changeItemSelectedState: (BOOL)        isSelected
+                         forItem: (TeamMember*) member
+{
+    member.isSelected = @(isSelected);
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+}
+
+- (TeamMember*) getSelectedItem
+{
+    TeamMember* member = [TeamMember MR_findFirstByAttribute: @"isSelected"
+                                                   withValue: @(YES)
+                                                   inContext: [NSManagedObjectContext MR_defaultContext]];
+    
+    return member;
+}
 
 #pragma mark - Internal methods -
 

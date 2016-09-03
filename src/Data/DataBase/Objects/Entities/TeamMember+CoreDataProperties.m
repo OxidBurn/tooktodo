@@ -24,6 +24,7 @@
 @dynamic phoneNumber;
 @dynamic userID;
 @dynamic avatarPath;
+@dynamic isSelected;
 @dynamic project;
 
 @end

@@ -13,6 +13,9 @@
 
 @interface TeamProfilesInfoViewController ()
 
+- (IBAction)onDismiss:(UIBarButtonItem *)sender;
+
+
 @end
 
 @implementation TeamProfilesInfoViewController
@@ -38,6 +41,17 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - Acitons -
+
+- (IBAction) onDismiss: (UIBarButtonItem*) sender
+{
+    // Need to call method in viewModel and model
+    // for changing selected state in team member value
+    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 @end

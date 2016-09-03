@@ -24,8 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *lastName;
 @property (nullable, nonatomic, retain) NSString *patronymicName;
 @property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSNumber *userID;
 @property (nullable, nonatomic, retain) NSString *avatarPath;
+@property (nullable, nonatomic, retain) NSNumber *userID;
+@property (nullable, nonatomic, retain) NSNumber* isSelected;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 
 @end

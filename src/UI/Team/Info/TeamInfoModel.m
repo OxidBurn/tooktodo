@@ -83,4 +83,12 @@
     
 }
 
+- (void) markItemAsSelectedAtIndex: (NSUInteger) index
+{
+    TeamMember* member = [self teamMemberByIndex: index];
+    
+    [DataManagerShared changeItemSelectedState: YES
+                                       forItem: member];
+}
+
 @end

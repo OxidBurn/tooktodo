@@ -75,6 +75,15 @@
 }
 
 
+#pragma mark - Table view delegate methods -
+
+- (void)       tableView: (UITableView*) tableView
+ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [self.model markItemAsSelectedAtIndex: indexPath.row];
+}
+
+
 #pragma mark - TeamCellDelegate methods -
 
 - (void) didTriggerCallActionAtIndex: (NSUInteger) index

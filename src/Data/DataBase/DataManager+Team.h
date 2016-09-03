@@ -20,4 +20,9 @@
 
 - (NSArray*) getAllTeamInfo;
 
+- (void) changeItemSelectedState: (BOOL)        isSelected
+                         forItem: (TeamMember*) member;
+
+- (TeamMember*) getSelectedItem;
+
 @end

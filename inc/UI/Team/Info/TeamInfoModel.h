@@ -31,6 +31,8 @@
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
 
+- (void) markItemAsSelectedAtIndex: (NSUInteger) index;
+
 @end
 
 @protocol TeamInfoModelDelegate <NSObject>
