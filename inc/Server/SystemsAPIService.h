@@ -6,14 +6,17 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Classes
+#import "BaseAPIService.h"
 
-@interface SystemsAPIService : NSObject
+@interface SystemsAPIService : BaseAPIService
 
 /**
  * gets singleton object.
  * @return singleton
  */
 + (SystemsAPIService*) sharedInstance;
+
+- (RACSignal*) loadProjectSystemsInfo: (NSString*) requestString;
 
 @end

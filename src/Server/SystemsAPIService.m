@@ -30,7 +30,12 @@ static bool isFirstAccess = YES;
 
 #pragma mark - Methods -
 
-
+- (RACSignal*) loadProjectSystemsInfo: (NSString*) requestString
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return [[[requestManager rac_GET: requestString parameters: nil] logError] replayLazily];
+}
 
 
 #pragma mark - Life Cycle -

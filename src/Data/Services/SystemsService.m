@@ -9,7 +9,12 @@
 #import "SystemsService.h"
 
 // Classes
-//#import ""
+#import "SystemsAPIService.h"
+#import "APIConstance.h"
+#import "ProjectSystemsObject.h"
+
+// Categories
+#import "DataManager+Systems.h"
 
 @implementation SystemsService
 
@@ -31,11 +36,40 @@ static bool isFirstAccess = YES;
 }
 
 
-#pragma mark - Methods -
+#pragma mark - Public methods -
 
 - (RACSignal*) loadCurrentProjectSystems: (NSNumber*) projectID
 {
-    return nil;
+    NSString* requestURL = [projectSystemsURL stringByReplacingOccurrencesOfString: @"{projectID}"
+                                                                        withString: projectID.stringValue];
+    @weakify(self)
+    
+    RACSignal* loadSystemsSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[SystemsAPIService sharedInstance] loadProjectSystemsInfo: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+            
+             @strongify(self)
+             
+             [self parseLoadSystemsResponse: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+                                
+                                 [subscriber sendNext: nil];
+                                 [subscriber sendCompleted];
+                                 
+                             }];
+             
+        }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadSystemsSignal;
 }
 
 - (NSArray*) getCurrentProjectSystems
@@ -44,6 +78,25 @@ static bool isFirstAccess = YES;
 }
 
 
+#pragma mark - Internal methods -
+
+- (void) parseLoadSystemsResponse: (NSArray*)              response
+                   withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError = nil;
+    NSArray* systemsArr = [ProjectSystemsObject arrayOfModelsFromDictionaries: response
+                                                                        error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> Parse roles error: %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistSystemsForProject: systemsArr
+                                     withCompletion: completion];
+    }
+}
 
 
 #pragma mark - Life Cycle -

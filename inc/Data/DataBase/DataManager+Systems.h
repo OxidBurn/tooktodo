@@ -8,6 +8,14 @@
 
 #import "DataManager.h"
 
+// Classes
+#import "ProjectSystem.h"
+
 @interface DataManager (Systems)
+
+- (void) persistSystemsForProject: (NSArray*)              systems
+                   withCompletion: (CompletionWithSuccess) completion;
+
+- (NSArray*) getAllSystemsForCurrentProject;
 
 @end
