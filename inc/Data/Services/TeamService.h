@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 @interface TeamService : NSObject
 
@@ -15,5 +16,7 @@
  * @return singleton
  */
 + (TeamService*) sharedInstance;
+
+- (RACSignal*) getTeamInfo;
 
 @end

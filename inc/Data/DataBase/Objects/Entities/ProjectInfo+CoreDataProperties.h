@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 8/24/16.
+//  Created by Nikolay Chaban on 9/3/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectInfo (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *address;
 @property (nullable, nonatomic, retain) NSString *apartment;
 @property (nullable, nonatomic, retain) NSString *building;
 @property (nullable, nonatomic, retain) NSString *city;
@@ -24,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDate *endDate;
 @property (nullable, nonatomic, retain) NSNumber *floor;
 @property (nullable, nonatomic, retain) NSNumber *isRolesInvitationAppealClosed;
+@property (nullable, nonatomic, retain) NSNumber *isSelected;
 @property (nullable, nonatomic, retain) NSNumber *isTaskAddAppealClosed;
 @property (nullable, nonatomic, retain) NSDate *lastVisit;
 @property (nullable, nonatomic, retain) NSNumber *ownerUserId;
@@ -36,11 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, retain) NSString *street;
 @property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) NSString *address;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
-@property (nullable, nonatomic, retain) NSNumber* isSelected;
+@property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
 
 @end
 
@@ -50,6 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeOfflineSettingsObject:(OfflineSettings *)value;
 - (void)addOfflineSettings:(NSSet<OfflineSettings *> *)values;
 - (void)removeOfflineSettings:(NSSet<OfflineSettings *> *)values;
+
+- (void)addTeamObject:(TeamMember *)value;
+- (void)removeTeamObject:(TeamMember *)value;
+- (void)addTeam:(NSSet<TeamMember *> *)values;
+- (void)removeTeam:(NSSet<TeamMember *> *)values;
 
 @end
 

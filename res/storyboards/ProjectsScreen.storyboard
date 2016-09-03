@@ -6799,6 +6799,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="voL-eB-vFQ" kind="show" identifier="ShowMemberInfoID" id="5M9-nH-bKo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -6870,6 +6873,9 @@
                     <navigationItem key="navigationItem" id="bwC-nA-oQu">
                         <barButtonItem key="leftBarButtonItem" image="Menu1" id="0QD-e7-wxr">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onShowMenu:" destination="ZJX-wC-jxj" id="8t1-uD-QqN"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Add" id="5eF-H2-g3V">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -6879,20 +6885,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchDisplayController" destination="7oY-qY-piz" id="1ED-6c-IzC"/>
+                        <outlet property="searchBar" destination="jdF-xI-sGi" id="ezv-kA-2hY"/>
                         <outlet property="teamInfoTableView" destination="wH7-Or-ohX" id="Iu1-8W-drU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HYM-GZ-fdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="7oY-qY-piz">
-                    <connections>
-                        <outlet property="delegate" destination="ZJX-wC-jxj" id="Yta-9W-krZ"/>
-                        <outlet property="searchBar" destination="jdF-xI-sGi" id="KZb-u0-6XK"/>
-                        <outlet property="searchContentsController" destination="ZJX-wC-jxj" id="HMD-jj-IP7"/>
-                        <outlet property="searchResultsDataSource" destination="ZJX-wC-jxj" id="U4n-De-wLW"/>
-                        <outlet property="searchResultsDelegate" destination="ZJX-wC-jxj" id="q45-CM-sG0"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3255" y="1537.5"/>
         </scene>
@@ -6905,7 +6902,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0Nf-qq-GVa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3lw-Qy-aLE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fDH-fK-pN2">
@@ -7733,6 +7730,9 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="115" width="600" height="685"/>
+                                </variation>
                             </tableView>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qaG-hs-grR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
@@ -7923,7 +7923,8 @@
                                         <exclude reference="yLa-C2-mtj"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular">
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="20" width="600" height="95"/>
                                     <mask key="constraints">
                                         <include reference="Lvm-Ac-AoC"/>
                                         <include reference="x89-9H-Way"/>
@@ -8087,7 +8088,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saN-5N-jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="2248"/>
+            <point key="canvasLocation" x="3255" y="2258.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qy4-A3-TMt">
@@ -8586,17 +8587,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Квартира на Ходынке" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdy-Qo-flC">
-                                                    <rect key="frame" x="15" y="12" width="160" height="18"/>
+                                                    <rect key="frame" x="15" y="12" width="154" height="17.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact">
                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jih-Rd-ZfD">
-                                                    <rect key="frame" x="549.5" y="14" width="35.5" height="16"/>
+                                                    <rect key="frame" x="552" y="14" width="33" height="15.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>

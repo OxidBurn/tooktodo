@@ -125,7 +125,7 @@
 
 - (void) setupTableView
 {
-    [self.projectsTable setContentOffset: CGPointMake(0, self.searchBar.frame.size.height)];
+    [self.projectsTable setContentOffset: CGPointMake(0, self.searchBar.height)];
 }
 
 - (void) handleModelActions

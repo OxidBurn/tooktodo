@@ -15,17 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TeamMember (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *company;
-@property (nullable, nonatomic, retain) NSString *comment;
-@property (nullable, nonatomic, retain) NSString *patronymicName;
-@property (nullable, nonatomic, retain) NSString *lastName;
-@property (nullable, nonatomic, retain) NSString *firstName;
 @property (nullable, nonatomic, retain) NSString *additionalPhoneNumber;
-@property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSString *email;
-@property (nullable, nonatomic, retain) NSNumber *userID;
+@property (nullable, nonatomic, retain) NSString *comment;
+@property (nullable, nonatomic, retain) NSString *company;
 @property (nullable, nonatomic, retain) NSNumber *createrUserId;
-@property (nullable, nonatomic, retain) NSManagedObject *team;
+@property (nullable, nonatomic, retain) NSString *email;
+@property (nullable, nonatomic, retain) NSString *firstName;
+@property (nullable, nonatomic, retain) NSString *lastName;
+@property (nullable, nonatomic, retain) NSString *patronymicName;
+@property (nullable, nonatomic, retain) NSString *phoneNumber;
+@property (nullable, nonatomic, retain) NSNumber *userID;
+@property (nullable, nonatomic, retain) NSString *avatarPath;
+@property (nullable, nonatomic, retain) ProjectInfo *project;
 
 @end
 

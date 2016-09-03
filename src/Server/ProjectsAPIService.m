@@ -39,7 +39,6 @@ static bool isFirstAccess = YES;
 }
 
 
-
 #pragma mark - Life Cycle
 
 + (id) allocWithZone:(NSZone *)zone

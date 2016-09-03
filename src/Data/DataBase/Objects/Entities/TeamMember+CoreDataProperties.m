@@ -13,16 +13,17 @@
 
 @implementation TeamMember (CoreDataProperties)
 
-@dynamic company;
-@dynamic comment;
-@dynamic patronymicName;
-@dynamic lastName;
-@dynamic firstName;
 @dynamic additionalPhoneNumber;
-@dynamic phoneNumber;
-@dynamic email;
-@dynamic userID;
+@dynamic comment;
+@dynamic company;
 @dynamic createrUserId;
-@dynamic team;
+@dynamic email;
+@dynamic firstName;
+@dynamic lastName;
+@dynamic patronymicName;
+@dynamic phoneNumber;
+@dynamic userID;
+@dynamic avatarPath;
+@dynamic project;
 
 @end

@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 8/24/16.
+//  Created by Nikolay Chaban on 9/3/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,6 +13,7 @@
 
 @implementation ProjectInfo (CoreDataProperties)
 
+@dynamic address;
 @dynamic apartment;
 @dynamic building;
 @dynamic city;
@@ -22,6 +23,7 @@
 @dynamic endDate;
 @dynamic floor;
 @dynamic isRolesInvitationAppealClosed;
+@dynamic isSelected;
 @dynamic isTaskAddAppealClosed;
 @dynamic lastVisit;
 @dynamic ownerUserId;
@@ -34,10 +36,9 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
-@dynamic address;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic region;
-@dynamic isSelected;
+@dynamic team;
 
 @end

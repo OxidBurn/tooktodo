@@ -16,4 +16,6 @@
  */
 + (TeamAPIService*) sharedInstance;
 
+- (RACSignal*) getProjectTeamWithRequestURL: (NSString*) url;
+
 @end

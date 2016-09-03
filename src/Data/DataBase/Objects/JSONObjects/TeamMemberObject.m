@@ -10,4 +10,9 @@
 
 @implementation TeamMemberObject
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id": @"memberID"}];
+}
+
 @end
