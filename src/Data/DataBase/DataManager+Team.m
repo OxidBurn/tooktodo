@@ -73,9 +73,12 @@
     member.userID                = object.memberID;
     member.createrUserId         = object.createrUserId;
     member.project               = [self getSelectedProjectInfoInContext: context];
+    
+    NSString* fullNameAbbreviation = [Utils getAbbreviationWithName: object.firstName
+                                                        withSurname: object.lastName];
+    
     member.avatarPath            = [[AvatarHelper sharedInstance] generateAvatarForName: object.memberID.stringValue
-                                                                       withAbbreviation: [Utils getAbbreviationWithName: object.firstName
-                                                                                                            withSurname: object.lastName]
+                                                                       withAbbreviation: fullNameAbbreviation
                                                                           withImageSize: CGSizeMake(20, 20)];
 }
 

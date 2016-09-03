@@ -33,7 +33,7 @@
 {
     UIColor* textColor = [UIColor whiteColor];
     UIFont* font       = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 26];
+                                         size: self.size.height / 2.5];
     
     // Compute rect to draw the text inside
     CGSize imageSize = self.size;

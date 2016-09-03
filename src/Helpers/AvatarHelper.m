@@ -99,35 +99,27 @@ static AvatarHelper* sharedInstance = nil;
                    withAbbreviation: (NSString*) abbreviation
                       withImageSize: (CGSize)    imageSize
 {
-    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", [Utils getEmailPrefix: name]];
+    NSString* avatarFilePath = [NSString stringWithFormat: @"%@.png", name];
     UIColor* avatarColor     = [self getRandomAvatarColor];
     
     // Generate avatar and write it to file in external queue
-    NSOperationQueue* writeFileQueue = [NSOperationQueue new];
+    UIImage* generatedAvatarImage = [[AvatarGenerator alloc] initWithText: abbreviation
+                                                      withBackgroundColor: avatarColor
+                                                                 withSize: imageSize];
     
-    [writeFileQueue addOperationWithBlock:^{
-        
-        UIImage* generatedAvatarImage = [[AvatarGenerator alloc] initWithText: abbreviation
-                                                          withBackgroundColor: avatarColor
-                                                                     withSize: imageSize];
-        
-        
-        
-        NSData* avatarImageData = UIImagePNGRepresentation(generatedAvatarImage);
-        
-        NSString* fullAvatarPath = [self getAvatarPathForName: name];
-        
-        [avatarImageData writeToFile: fullAvatarPath
-                          atomically: YES];
-        
-    }];
+    NSData* avatarImageData = UIImagePNGRepresentation(generatedAvatarImage);
+    
+    NSString* fullAvatarPath = [self getAvatarPathForName: name];
+    
+    [avatarImageData writeToFile: fullAvatarPath
+                      atomically: YES];
     
     return avatarFilePath;
 }
 
 - (NSString*) getAvatarPathForName: (NSString*) name
 {
-    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", [Utils getEmailPrefix: name]];
+    return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", name];
 }
 
 - (void) loadAvatarFromWeb: (NSString*) filePath

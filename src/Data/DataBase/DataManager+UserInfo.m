@@ -32,7 +32,7 @@
             
             if ( info.avatarSrc.length == 0 )
             {
-                userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: info.email
+                userInfo.photoImagePath = [[AvatarHelper sharedInstance] generateAvatarForName: [Utils getEmailPrefix: info.email]
                                                                               withAbbreviation: [Utils getAbbreviationWithName: info.firstName
                                                                                                                    withSurname: info.lastName]
                                                                                  withImageSize: CGSizeMake(60, 60)];
