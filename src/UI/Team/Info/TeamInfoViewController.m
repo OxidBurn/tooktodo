@@ -16,7 +16,7 @@
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 
-@interface TeamInfoViewController ()
+@interface TeamInfoViewController () <TeamInfoViewModelDelegate>
 
 // Properties
 
@@ -98,6 +98,8 @@
     if ( _viewModel == nil )
     {
         _viewModel = [[TeamInfoViewModel alloc] init];
+        
+        _viewModel.delegate = self;
     }
     
     return _viewModel;
@@ -133,6 +135,41 @@
     {
         [self.delegate showMainMenu];
     }
+}
+
+
+#pragma mark - ViewModel delegate methods -
+
+- (void) createActionSheetWithMainNumber: (NSString*) mainNumber
+                       andAdditionNumber: (NSString*) additionNumber
+{
+    UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle: nil
+                                                                         message: nil
+                                                                  preferredStyle: UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction: [UIAlertAction actionWithTitle: mainNumber
+                                                     style: UIAlertActionStyleDefault
+                                                   handler: ^(UIAlertAction * _Nonnull action) {
+                                                       
+                                                       NSLog(@"Main number %@", mainNumber);
+                                                       
+                                                   }]];
+    
+    [actionSheet addAction: [UIAlertAction actionWithTitle: additionNumber
+                                                     style: UIAlertActionStyleDefault
+                                                   handler: ^(UIAlertAction * _Nonnull action) {
+                                                       
+                                                       NSLog(@"Addition number %@", additionNumber);
+                                                       
+                                                   }]];
+    
+    [actionSheet addAction: [UIAlertAction actionWithTitle: @"Cancel"
+                                                     style: UIAlertActionStyleCancel
+                                                   handler: nil]];
+    
+    [self presentViewController: actionSheet
+                       animated: YES
+                     completion: nil];
 }
 
 @end

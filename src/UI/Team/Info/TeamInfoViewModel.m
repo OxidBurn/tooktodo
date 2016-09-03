@@ -13,7 +13,7 @@
 #import "TeamMember.h"
 #import "TeamInfoTableViewCell.h"
 
-@interface TeamInfoViewModel()
+@interface TeamInfoViewModel() <TeamInfoModelDelegate, TeamInfoTableViewCellDelegate>
 
 // properties
 @property (strong, nonatomic) TeamInfoModel* model;
@@ -32,6 +32,8 @@
     if ( _model == nil )
     {
         _model = [[TeamInfoModel alloc] init];
+        
+        _model.delegate = self;
     }
     
     return _model;
@@ -61,12 +63,34 @@
     
     TeamMember* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
+    cell.delegate = self;
+    
     [cell fillCellWithInfo: memberInfo
               forIndexPath: indexPath];
     
     NSLog(@"Member info: %@", memberInfo.firstName);
     
     return cell;
+}
+
+
+#pragma mark - TeamCellDelegate methods -
+
+- (void) didTriggerCallActionAtIndex: (NSUInteger) index
+{
+    [self.model handleCallForUserAtIndex: index];
+}
+
+#pragma mark - TeamModelDelegate methods -
+
+- (void) returnPhoneNumbers: (NSString*) mainNumber
+                       with: (NSString*) additionNumber
+{
+    if ( [self.delegate respondsToSelector: @selector(createActionSheetWithMainNumber:andAdditionNumber:)] )
+    {
+        [self.delegate createActionSheetWithMainNumber: mainNumber
+                                     andAdditionNumber: additionNumber];
+    }
 }
 
 @end

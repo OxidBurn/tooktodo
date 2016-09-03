@@ -15,12 +15,27 @@
 // Categories
 #import "DataManager+Team.h"
 
+@protocol TeamInfoModelDelegate;
+
 @interface TeamInfoModel : NSObject
 
+//properties
+@property (weak, nonatomic) id <TeamInfoModelDelegate> delegate;
+
+//methods
 - (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSUInteger) countOfItems;
 
 - (TeamMember*) teamMemberByIndex: (NSUInteger) index;
+
+- (void) handleCallForUserAtIndex: (NSUInteger) index;
+
+@end
+
+@protocol TeamInfoModelDelegate <NSObject>
+
+- (void) returnPhoneNumbers: (NSString*) mainNumber
+                       with: (NSString*) additionNumber;
 
 @end

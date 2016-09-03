@@ -40,12 +40,15 @@
 
 - (IBAction) onCallToTeamMemberBtn: (UIButton*) sender
 {
-    
+    if ( [self.delegate respondsToSelector: @selector(didTriggerCallActionAtIndex:)] )
+    {
+        [self.delegate didTriggerCallActionAtIndex: sender.tag];
+    }
 }
 
 - (IBAction) onSendEmailToTeamMemberBtn: (UIButton*) sender
 {
-    
+    //handle sending email to user with index sender.tag
 }
 
 #pragma mark - Public -
@@ -66,6 +69,7 @@
     [self checkIfPhoneNumberExists: teamMember];
     [self chechIfEmailExists:       teamMember];
     
+    self.teamMemberAvatar          = [UIImage imageNamed: teamMember.avatarPath];
     self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamMemberFullName, teamMemberPosition];
     self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!, %@", teamMemberCompany];
 }

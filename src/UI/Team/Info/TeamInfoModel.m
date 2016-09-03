@@ -63,4 +63,24 @@
     return self.teamList[index];
 }
 
+- (void) handleCallForUserAtIndex: (NSUInteger) index
+{
+    TeamMember* teamMember = self.teamList[index];
+    
+    if ( teamMember.phoneNumber && (teamMember.additionalPhoneNumber == nil) )
+    {
+        //handle call to main number
+        
+    }
+    else
+        if ( teamMember.phoneNumber && teamMember.additionalPhoneNumber )
+        {
+            if ( [self.delegate respondsToSelector: @selector(returnPhoneNumbers:with:)] )
+            {
+                [self.delegate returnPhoneNumbers: teamMember.phoneNumber
+                                             with: teamMember.additionalPhoneNumber];
+            }
+        }
+}
+
 @end
