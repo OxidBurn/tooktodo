@@ -59,19 +59,23 @@
     self.callToTeamMemberBtn.tag      = indexPath.row;
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
-    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMember.firstName,
-                                                                         teamMember.lastName];
-    NSString* teamMemberPosition = teamMember.comment;
+    NSString* teamMemberFirstName = (teamMember.firstName) ? teamMember.firstName : @"";
     
-    NSString* teamMemberCompany  = teamMember.company;
+    NSString* teamMemberLastName  = (teamMember.lastName) ? teamMember.lastName : @"";
+    
+    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
+                                                                         teamMemberLastName];
+    NSString* teamMemberPosition = (teamMember.comment) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
+    
+    NSString* teamMemberCompany  = (teamMember.company) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
     
     
     [self checkIfPhoneNumberExists: teamMember];
     [self chechIfEmailExists:       teamMember];
     
-    self.teamMemberAvatar          = [UIImage imageNamed: teamMember.avatarPath];
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamMemberFullName, teamMemberPosition];
-    self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!, %@", teamMemberCompany];
+    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: teamMember.avatarPath];
+    self.teamMemberName.text       = [NSString stringWithFormat: @"%@%@", teamMemberFullName, teamMemberPosition];
+    self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!%@", teamMemberCompany];
 }
 
 #pragma mark - Helpers -
