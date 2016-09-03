@@ -1,5 +1,5 @@
 //
-//  ProjectInfo.h
+//  ProjectSystem.h
 //  
 //
 //  Created by Nikolay Chaban on 9/4/16.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OfflineSettings, ProjectCountry, ProjectRegion, ProjectRoles, ProjectSystem, TeamMember;
+@class ProjectInfo;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProjectInfo : NSManagedObject
+@interface ProjectSystem : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -21,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "ProjectInfo+CoreDataProperties.h"
+#import "ProjectSystem+CoreDataProperties.h"

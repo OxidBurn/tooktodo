@@ -43,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
+@property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 
 @end
 
@@ -62,6 +63,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeRolesObject:(ProjectRoles *)value;
 - (void)addRoles:(NSSet<ProjectRoles *> *)values;
 - (void)removeRoles:(NSSet<ProjectRoles *> *)values;
+
+- (void)addSystemsObject:(ProjectSystem *)value;
+- (void)removeSystemsObject:(ProjectSystem *)value;
+- (void)addSystems:(NSSet<ProjectSystem *> *)values;
+- (void)removeSystems:(NSSet<ProjectSystem *> *)values;
 
 @end
 

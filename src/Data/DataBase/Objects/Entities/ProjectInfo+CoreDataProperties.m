@@ -41,5 +41,6 @@
 @dynamic region;
 @dynamic team;
 @dynamic roles;
+@dynamic systems;
 
 @end

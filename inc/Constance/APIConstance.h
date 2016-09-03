@@ -33,5 +33,6 @@ static NSString* updateAvatarURL     = @"/api/Account/avatar";
 static NSString* projectTeamInfoURL  = @"api/v2/project/{projectID}/contacts";
 static NSString* inviteURL           = @"api/invite/send";
 static NSString* projectRolesURL     = @"api/project/{projectID}/roleType/list";
+static NSString* projectSystemsURL   = @"api/project/{projectID}/workAreas";
 
 #endif /* APIConstance_h */
