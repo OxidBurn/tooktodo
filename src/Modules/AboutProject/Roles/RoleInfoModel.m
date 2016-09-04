@@ -8,10 +8,14 @@
 
 #import "RoleInfoModel.h"
 
+// Classes
+#import "RolesService.h"
+
 @interface RoleInfoModel()
 
 // properties
 
+@property (strong, nonatomic) NSArray* rolesItems;
 
 // methods
 
@@ -22,14 +26,37 @@
 
 #pragma mark - Public methods -
 
+- (RACSignal*) updateInfo
+{
+    @weakify(self)
+    
+    RACSignal* fetchRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[RolesService sharedInstance] getProjectsOfSelectedProject] subscribeNext: ^(NSArray* roles) {
+            
+            @strongify(self)
+            
+            self.rolesItems = roles;
+            
+            [subscriber sendNext: nil];
+            [subscriber sendCompleted];
+            
+        }];
+        
+        return nil;
+    }];
+    
+    return fetchRolesSignal;
+}
+
 - (NSUInteger) countOfRoleItems
 {
-    return 1;
+    return self.rolesItems.count;
 }
 
 - (ProjectRoles*) getRoleInfoAtIndex: (NSUInteger) index
 {
-    return nil;
+    return self.rolesItems[index];
 }
 
 

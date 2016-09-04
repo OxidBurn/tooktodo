@@ -8,7 +8,17 @@
 
 #import "ProjectRoles.h"
 
+// Frameworks
+#import "ReactiveCocoa.h"
+
 @interface RoleInfoModel : NSObject
+
+// properties
+
+
+// methods
+
+- (RACSignal*) updateInfo;
 
 - (NSUInteger) countOfRoleItems;
 
