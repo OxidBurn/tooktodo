@@ -46,9 +46,16 @@
 
 - (NSArray*) getAllSystemsForCurrentProject
 {
-    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
+    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
     
-    return currentProject.systems.allObjects;
+    NSSortDescriptor* alphabeticalTitleSort      = [NSSortDescriptor sortDescriptorWithKey: @"title"
+                                                                                 ascending: YES];
+    NSSortDescriptor* alphabeticalShortTitleSort = [NSSortDescriptor sortDescriptorWithKey: @"shortTitle"
+                                                                                 ascending: YES];
+    
+    NSArray* systems = [currentProject.systems.allObjects sortedArrayUsingDescriptors: @[alphabeticalTitleSort, alphabeticalShortTitleSort]];
+    
+    return systems;
 }
 
 
@@ -69,6 +76,7 @@
         system.title      = info.title;
         system.shortTitle = info.shortTitle;
         system.hasTasks   = @(info.hasTasks);
+        system.project    = project;
     }
 }
 

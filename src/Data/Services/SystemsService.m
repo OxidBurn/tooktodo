@@ -74,7 +74,7 @@ static bool isFirstAccess = YES;
 
 - (NSArray*) getCurrentProjectSystems
 {
-    return @[];
+    return [DataManagerShared getAllSystemsForCurrentProject];
 }
 
 

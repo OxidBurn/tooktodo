@@ -22,6 +22,8 @@
 		560B89C11D7C36C000746682 /* UISearchBar+TextFieldControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89BF1D7C36C000746682 /* UISearchBar+TextFieldControl.m */; };
 		560B89C21D7C36C000746682 /* UIView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89C01D7C36C000746682 /* UIView+Utilities.m */; };
 		560B89DB1D7C373200746682 /* SecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89DA1D7C373200746682 /* SecureTextField.m */; };
+		560B89E11D7C3C2200746682 /* SystemsInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89E01D7C3C2200746682 /* SystemsInfoViewModel.m */; };
+		560B89E41D7C3C2D00746682 /* SystemsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89E31D7C3C2D00746682 /* SystemsInfoModel.m */; };
 		561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615332C1D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m */; };
 		561533411D7A70A100BDEC3E /* OfflineSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615332D1D7A70A100BDEC3E /* OfflineSettings.m */; };
 		561533421D7A70A100BDEC3E /* ProjectCountry+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615332E1D7A70A100BDEC3E /* ProjectCountry+CoreDataProperties.m */; };
@@ -192,6 +194,10 @@
 		560B89DC1D7C37B900746682 /* SecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecureTextField.h; sourceTree = "<group>"; };
 		560B89DD1D7C3BB900746682 /* RoleInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoModel.h; sourceTree = "<group>"; };
 		560B89DE1D7C3BB900746682 /* RoleInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoViewModel.h; sourceTree = "<group>"; };
+		560B89E01D7C3C2200746682 /* SystemsInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemsInfoViewModel.m; sourceTree = "<group>"; };
+		560B89E31D7C3C2D00746682 /* SystemsInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemsInfoModel.m; sourceTree = "<group>"; };
+		560B89E51D7C669B00746682 /* SystemsInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemsInfoModel.h; sourceTree = "<group>"; };
+		560B89E61D7C669B00746682 /* SystemsInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemsInfoViewModel.h; sourceTree = "<group>"; };
 		5615332C1D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OfflineSettings+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5615332D1D7A70A100BDEC3E /* OfflineSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineSettings.m; sourceTree = "<group>"; };
 		5615332E1D7A70A100BDEC3E /* ProjectCountry+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectCountry+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -733,6 +739,8 @@
 			isa = PBXGroup;
 			children = (
 				564DF0B41D7C19BD00067B60 /* SystemInfoViewController.m */,
+				560B89E01D7C3C2200746682 /* SystemsInfoViewModel.m */,
+				560B89E31D7C3C2D00746682 /* SystemsInfoModel.m */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -768,6 +776,8 @@
 		564DF0C31D7C19CA00067B60 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
+				560B89E51D7C669B00746682 /* SystemsInfoModel.h */,
+				560B89E61D7C669B00746682 /* SystemsInfoViewModel.h */,
 				564DF0C41D7C19CA00067B60 /* SystemInfoViewController.h */,
 			);
 			path = Systems;
@@ -1745,6 +1755,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560B89E41D7C3C2D00746682 /* SystemsInfoModel.m in Sources */,
 				56E1B9821D6E6898003E46DA /* ConfigurationManager.m in Sources */,
 				56EAC22D1D7B51060087B3FF /* RecoveryViewController.m in Sources */,
 				56EAC2411D7B51060087B3FF /* OfflineSettingsItem.m in Sources */,
@@ -1865,6 +1876,7 @@
 				560B89B71D7C36B500746682 /* BaseNavigationBar.m in Sources */,
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,
 				564DF0831D7B7B1100067B60 /* ProjectRoles.m in Sources */,
+				560B89E11D7C3C2200746682 /* SystemsInfoViewModel.m in Sources */,
 				564DF0841D7B7B1100067B60 /* ProjectRoles+CoreDataProperties.m in Sources */,
 				5615334F1D7A70A100BDEC3E /* ProjectInfoData.m in Sources */,
 				56EAC2431D7B51060087B3FF /* OfflineSyncModel.m in Sources */,
