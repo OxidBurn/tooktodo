@@ -7,6 +7,11 @@
 //
 
 #import "RoleInfoViewController.h"
+
+// Frameworks
+#import "ReactiveCocoa.h"
+
+// Classes
 #import "RoleInfoViewModel.h"
 
 @interface RoleInfoViewController ()
@@ -35,6 +40,14 @@
     [self bindingUI];
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    // Update all info on scree
+    [self updateInfo];
+}
+
 
 #pragma mark - Memory managment -
 
@@ -47,7 +60,7 @@
 
 #pragma mark - Properties -
 
-- (RoleInfoViewModel *)viewModel
+- (RoleInfoViewModel*) viewModel
 {
     if ( _viewModel == nil )
     {
@@ -64,6 +77,19 @@
 {
     self.roleInfoTableView.dataSource = self.viewModel;
     self.roleInfoTableView.delegate   = self.viewModel;
+}
+
+- (void) updateInfo
+{
+    @weakify(self)
+    
+    [[self.viewModel updateInfo] subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        [self.roleInfoTableView reloadData];
+        
+    }];
 }
 
 @end

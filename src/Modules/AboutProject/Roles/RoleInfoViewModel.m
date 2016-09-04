@@ -10,6 +10,7 @@
 
 // Classes
 #import "RoleInfoModel.h"
+#import "ProjectRoles.h"
 
 @interface RoleInfoViewModel()
 
@@ -24,6 +25,7 @@
 
 @implementation RoleInfoViewModel
 
+
 #pragma mark - Properties -
 
 - (RoleInfoModel*) model
@@ -34,6 +36,35 @@
     }
     
     return _model;
+}
+
+
+#pragma mark - Public methods -
+
+- (RACSignal*) updateInfo
+{
+    return [self.model updateInfo];
+}
+
+
+#pragma mark - UITable view data source methods -
+
+- (NSInteger) tableView: (UITableView*) tableView
+  numberOfRowsInSection: (NSInteger)    section
+{
+    return [self.model countOfRoleItems];
+}
+
+- (UITableViewCell*) tableView: (UITableView*) tableView
+         cellForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RoleCellID"];
+    
+    ProjectRoles* roleInfo = [self.model getRoleInfoAtIndex: indexPath.row];
+    
+    cell.textLabel.text = roleInfo.title;
+    
+    return cell;
 }
 
 

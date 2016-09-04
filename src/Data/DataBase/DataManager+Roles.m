@@ -47,7 +47,12 @@
 {
     ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
     
-    return currentProject.roles.allObjects;
+    NSSortDescriptor* alphabeticalSort = [NSSortDescriptor sortDescriptorWithKey: @"title"
+                                                                       ascending: YES];
+    
+    NSArray* roles = [currentProject.roles.allObjects sortedArrayUsingDescriptors: @[alphabeticalSort]];
+    
+    return roles;
 }
 
 
