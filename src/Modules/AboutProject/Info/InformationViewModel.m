@@ -12,9 +12,9 @@
 
 @interface InformationViewModel()
 
-@property (nonatomic, strong) ProjectInfo* projectInfo;
-@property (nonatomic, strong) NSArray* sectionContentArray;
-@property (nonatomic, strong) NSArray* itemInfo;
+@property (nonatomic, strong) ProjectInfo * projectInfo;
+@property (nonatomic, strong) NSArray     * sectionContentArray;
+@property (nonatomic, strong) NSArray     * itemInfo;
 
 @end
 
@@ -96,6 +96,12 @@
     return 2;
 }
 
+- (NSInteger) tableView: (UITableView*) tableView
+  numberOfRowsInSection: (NSInteger)    section
+{
+    return [self.itemInfo[section] count];
+}
+
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
@@ -134,12 +140,6 @@
     return cell;
 }
 
-- (NSInteger) tableView: (UITableView*) tableView
-  numberOfRowsInSection: (NSInteger)    section
-{
-    
-    return [self.itemInfo[section] count];
-}
 
 #pragma mark - TableView Delegate methods -
 
@@ -150,7 +150,10 @@ estimatedHeightForHeaderInSection: (NSInteger)    section
     {
         return 0;
     }
-    else return 1.f;
+    else
+    {
+        return 1.f;
+    }
 }
 
 

@@ -42,6 +42,14 @@
 		564DF09F1D7B92DC00067B60 /* ProjectSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF09D1D7B92DC00067B60 /* ProjectSystem.m */; };
 		564DF0A01D7B92DC00067B60 /* ProjectSystem+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF09E1D7B92DC00067B60 /* ProjectSystem+CoreDataProperties.m */; };
 		564DF0AA1D7B95BF00067B60 /* SystemsAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0971D7B912900067B60 /* SystemsAPIService.m */; };
+		564DF0B51D7C19BD00067B60 /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0AC1D7C19BD00067B60 /* InformationViewController.m */; };
+		564DF0B61D7C19BD00067B60 /* InformationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0AD1D7C19BD00067B60 /* InformationViewModel.m */; };
+		564DF0B71D7C19BD00067B60 /* AboutProjectSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0AF1D7C19BD00067B60 /* AboutProjectSegue.m */; };
+		564DF0B81D7C19BD00067B60 /* AboutProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0B01D7C19BD00067B60 /* AboutProjectViewController.m */; };
+		564DF0B91D7C19BD00067B60 /* RoleInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0B21D7C19BD00067B60 /* RoleInfoViewController.m */; };
+		564DF0BA1D7C19BD00067B60 /* SystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0B41D7C19BD00067B60 /* SystemInfoViewController.m */; };
+		564DF0C71D7C1A3700067B60 /* RoleInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0C61D7C1A3700067B60 /* RoleInfoViewModel.m */; };
+		564DF0CA1D7C1A4000067B60 /* RoleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DF0C91D7C1A4000067B60 /* RoleInfoModel.m */; };
 		5664F6161D7A79A100E23565 /* DataManager+Team.m in Sources */ = {isa = PBXBuildFile; fileRef = 5664F6151D7A79A100E23565 /* DataManager+Team.m */; };
 		566A72581D739EC1004F63D3 /* ProjectsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A72571D739EC1004F63D3 /* ProjectsService.m */; };
 		566A725C1D73A12E004F63D3 /* BaseAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 566A725B1D73A12E004F63D3 /* BaseAPIService.m */; };
@@ -58,12 +66,6 @@
 		56EAC09B1D7A80340087B3FF /* TeamService.m in Sources */ = {isa = PBXBuildFile; fileRef = 561533691D7A715200BDEC3E /* TeamService.m */; };
 		56EAC09C1D7A81950087B3FF /* TeamAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615336B1D7A716500BDEC3E /* TeamAPIService.m */; };
 		56EAC1AE1D7B4E990087B3FF /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1681D7B4E990087B3FF /* TabBarSegue.m */; };
-		56EAC2221D7B51060087B3FF /* AboutProjectSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B41D7B51060087B3FF /* AboutProjectSegue.m */; };
-		56EAC2231D7B51060087B3FF /* AboutProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B51D7B51060087B3FF /* AboutProjectViewController.m */; };
-		56EAC2241D7B51060087B3FF /* InformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B61D7B51060087B3FF /* InformationViewController.m */; };
-		56EAC2251D7B51060087B3FF /* InformationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B71D7B51060087B3FF /* InformationViewModel.m */; };
-		56EAC2261D7B51060087B3FF /* RoleInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B81D7B51060087B3FF /* RoleInfoViewController.m */; };
-		56EAC2271D7B51060087B3FF /* SystemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1B91D7B51060087B3FF /* SystemInfoViewController.m */; };
 		56EAC2281D7B51060087B3FF /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1BC1D7B51060087B3FF /* LoginModel.m */; };
 		56EAC2291D7B51060087B3FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1BD1D7B51060087B3FF /* LoginViewController.m */; };
 		56EAC22A1D7B51060087B3FF /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAC1BE1D7B51060087B3FF /* LoginViewModel.m */; };
@@ -227,6 +229,22 @@
 		564DF0A71D7B935700067B60 /* ProjectSystemsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSystemsObject.h; sourceTree = "<group>"; };
 		564DF0A81D7B935F00067B60 /* RolesAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesAPIService.h; sourceTree = "<group>"; };
 		564DF0A91D7B935F00067B60 /* SystemsAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemsAPIService.h; sourceTree = "<group>"; };
+		564DF0AC1D7C19BD00067B60 /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
+		564DF0AD1D7C19BD00067B60 /* InformationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewModel.m; sourceTree = "<group>"; };
+		564DF0AF1D7C19BD00067B60 /* AboutProjectSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectSegue.m; sourceTree = "<group>"; };
+		564DF0B01D7C19BD00067B60 /* AboutProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectViewController.m; sourceTree = "<group>"; };
+		564DF0B21D7C19BD00067B60 /* RoleInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleInfoViewController.m; sourceTree = "<group>"; };
+		564DF0B41D7C19BD00067B60 /* SystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfoViewController.m; sourceTree = "<group>"; };
+		564DF0BC1D7C19CA00067B60 /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
+		564DF0BD1D7C19CA00067B60 /* InformationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewModel.h; sourceTree = "<group>"; };
+		564DF0BF1D7C19CA00067B60 /* AboutProjectSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectSegue.h; sourceTree = "<group>"; };
+		564DF0C01D7C19CA00067B60 /* AboutProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectViewController.h; sourceTree = "<group>"; };
+		564DF0C21D7C19CA00067B60 /* RoleInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoViewController.h; sourceTree = "<group>"; };
+		564DF0C41D7C19CA00067B60 /* SystemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInfoViewController.h; sourceTree = "<group>"; };
+		564DF0C51D7C1A3700067B60 /* RoleInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoViewModel.h; sourceTree = "<group>"; };
+		564DF0C61D7C1A3700067B60 /* RoleInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleInfoViewModel.m; sourceTree = "<group>"; };
+		564DF0C81D7C1A4000067B60 /* RoleInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoModel.h; sourceTree = "<group>"; };
+		564DF0C91D7C1A4000067B60 /* RoleInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleInfoModel.m; sourceTree = "<group>"; };
 		5664F6151D7A79A100E23565 /* DataManager+Team.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+Team.m"; sourceTree = "<group>"; };
 		566A72541D739E9D004F63D3 /* ProjectsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsService.h; sourceTree = "<group>"; };
 		566A72571D739EC1004F63D3 /* ProjectsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsService.m; sourceTree = "<group>"; };
@@ -254,10 +272,6 @@
 		56E1B9F81D6F7677003E46DA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		56EA69F91D70694E00717CCA /* ProjectsAPIService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectsAPIService.m; sourceTree = "<group>"; };
 		56EAC09E1D7A85F40087B3FF /* ConstanceBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstanceBlocks.h; sourceTree = "<group>"; };
-		56EAC14E1D7B4E990087B3FF /* AboutProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectViewController.h; sourceTree = "<group>"; };
-		56EAC14F1D7B4E990087B3FF /* InformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewController.h; sourceTree = "<group>"; };
-		56EAC1501D7B4E990087B3FF /* RoleInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoViewController.h; sourceTree = "<group>"; };
-		56EAC1511D7B4E990087B3FF /* SystemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInfoViewController.h; sourceTree = "<group>"; };
 		56EAC1541D7B4E990087B3FF /* LoginModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
 		56EAC1551D7B4E990087B3FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		56EAC1561D7B4E990087B3FF /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
@@ -326,14 +340,6 @@
 		56EAC1AC1D7B4E990087B3FF /* WelcomeTourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeTourModel.h; sourceTree = "<group>"; };
 		56EAC1AD1D7B4E990087B3FF /* WelcomeTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeTourViewController.h; sourceTree = "<group>"; };
 		56EAC1AF1D7B4F4A0087B3FF /* DataManager+Team.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+Team.h"; sourceTree = "<group>"; };
-		56EAC1B01D7B50E10087B3FF /* AboutProjectSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectSegue.h; sourceTree = "<group>"; };
-		56EAC1B11D7B50E10087B3FF /* InformationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationViewModel.h; sourceTree = "<group>"; };
-		56EAC1B41D7B51060087B3FF /* AboutProjectSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectSegue.m; sourceTree = "<group>"; };
-		56EAC1B51D7B51060087B3FF /* AboutProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectViewController.m; sourceTree = "<group>"; };
-		56EAC1B61D7B51060087B3FF /* InformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewController.m; sourceTree = "<group>"; };
-		56EAC1B71D7B51060087B3FF /* InformationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationViewModel.m; sourceTree = "<group>"; };
-		56EAC1B81D7B51060087B3FF /* RoleInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleInfoViewController.m; sourceTree = "<group>"; };
-		56EAC1B91D7B51060087B3FF /* SystemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInfoViewController.m; sourceTree = "<group>"; };
 		56EAC1BC1D7B51060087B3FF /* LoginModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
 		56EAC1BD1D7B51060087B3FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		56EAC1BE1D7B51060087B3FF /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
@@ -542,6 +548,78 @@
 			path = JSONObjects;
 			sourceTree = "<group>";
 		};
+		564DF0AB1D7C19BD00067B60 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0AC1D7C19BD00067B60 /* InformationViewController.m */,
+				564DF0AD1D7C19BD00067B60 /* InformationViewModel.m */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		564DF0AE1D7C19BD00067B60 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0AF1D7C19BD00067B60 /* AboutProjectSegue.m */,
+				564DF0B01D7C19BD00067B60 /* AboutProjectViewController.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		564DF0B11D7C19BD00067B60 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0B21D7C19BD00067B60 /* RoleInfoViewController.m */,
+				564DF0C51D7C1A3700067B60 /* RoleInfoViewModel.h */,
+				564DF0C61D7C1A3700067B60 /* RoleInfoViewModel.m */,
+				564DF0C81D7C1A4000067B60 /* RoleInfoModel.h */,
+				564DF0C91D7C1A4000067B60 /* RoleInfoModel.m */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		564DF0B31D7C19BD00067B60 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0B41D7C19BD00067B60 /* SystemInfoViewController.m */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
+		564DF0BB1D7C19CA00067B60 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0BC1D7C19CA00067B60 /* InformationViewController.h */,
+				564DF0BD1D7C19CA00067B60 /* InformationViewModel.h */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		564DF0BE1D7C19CA00067B60 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0BF1D7C19CA00067B60 /* AboutProjectSegue.h */,
+				564DF0C01D7C19CA00067B60 /* AboutProjectViewController.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		564DF0C11D7C19CA00067B60 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0C21D7C19CA00067B60 /* RoleInfoViewController.h */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		564DF0C31D7C19CA00067B60 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				564DF0C41D7C19CA00067B60 /* SystemInfoViewController.h */,
+			);
+			path = Systems;
+			sourceTree = "<group>";
+		};
 		566A72521D739E82004F63D3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -637,12 +715,10 @@
 		56EAC14D1D7B4E990087B3FF /* AboutProject */ = {
 			isa = PBXGroup;
 			children = (
-				56EAC1B01D7B50E10087B3FF /* AboutProjectSegue.h */,
-				56EAC1B11D7B50E10087B3FF /* InformationViewModel.h */,
-				56EAC14E1D7B4E990087B3FF /* AboutProjectViewController.h */,
-				56EAC14F1D7B4E990087B3FF /* InformationViewController.h */,
-				56EAC1501D7B4E990087B3FF /* RoleInfoViewController.h */,
-				56EAC1511D7B4E990087B3FF /* SystemInfoViewController.h */,
+				564DF0BB1D7C19CA00067B60 /* Info */,
+				564DF0BE1D7C19CA00067B60 /* Main */,
+				564DF0C11D7C19CA00067B60 /* Roles */,
+				564DF0C31D7C19CA00067B60 /* Systems */,
 			);
 			path = AboutProject;
 			sourceTree = "<group>";
@@ -925,12 +1001,10 @@
 		56EAC1B31D7B51060087B3FF /* AboutProject */ = {
 			isa = PBXGroup;
 			children = (
-				56EAC1B41D7B51060087B3FF /* AboutProjectSegue.m */,
-				56EAC1B51D7B51060087B3FF /* AboutProjectViewController.m */,
-				56EAC1B61D7B51060087B3FF /* InformationViewController.m */,
-				56EAC1B71D7B51060087B3FF /* InformationViewModel.m */,
-				56EAC1B81D7B51060087B3FF /* RoleInfoViewController.m */,
-				56EAC1B91D7B51060087B3FF /* SystemInfoViewController.m */,
+				564DF0AB1D7C19BD00067B60 /* Info */,
+				564DF0AE1D7C19BD00067B60 /* Main */,
+				564DF0B11D7C19BD00067B60 /* Roles */,
+				564DF0B31D7C19BD00067B60 /* Systems */,
 			);
 			path = AboutProject;
 			sourceTree = "<group>";
@@ -1637,6 +1711,7 @@
 				56EAC22F1D7B51060087B3FF /* BaseMainViewController+NavigationTitle.m in Sources */,
 				561355AB1D75BE3C0079697A /* UIView+Utilities.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
+				564DF0B71D7C19BD00067B60 /* AboutProjectSegue.m in Sources */,
 				56EAC24A1D7B51060087B3FF /* ProjectInfoCellModel.m in Sources */,
 				56EAC2601D7B51060087B3FF /* UserInfoModel.m in Sources */,
 				564DF09F1D7B92DC00067B60 /* ProjectSystem.m in Sources */,
@@ -1646,7 +1721,6 @@
 				56EAC2341D7B51060087B3FF /* PopoverModel.m in Sources */,
 				56EAC2671D7B51060087B3FF /* ProfileViewController.m in Sources */,
 				56EAC23E1D7B51060087B3FF /* MainMenuViewController.m in Sources */,
-				56EAC2241D7B51060087B3FF /* InformationViewController.m in Sources */,
 				561533511D7A70A100BDEC3E /* TeamMemberObject.m in Sources */,
 				561533411D7A70A100BDEC3E /* OfflineSettings.m in Sources */,
 				564DF0AA1D7B95BF00067B60 /* SystemsAPIService.m in Sources */,
@@ -1654,16 +1728,16 @@
 				56EAC2421D7B51060087B3FF /* OfflineSynchronizeViewController.m in Sources */,
 				56EAC2611D7B51060087B3FF /* UserInfoSegue.m in Sources */,
 				561533431D7A70A100BDEC3E /* ProjectCountry.m in Sources */,
+				564DF0B91D7C19BD00067B60 /* RoleInfoViewController.m in Sources */,
 				56EAC24D1D7B51060087B3FF /* TaskMarkerComponent.m in Sources */,
 				56EAC22E1D7B51060087B3FF /* RecoveryViewModel.m in Sources */,
 				566A72641D73A589004F63D3 /* UserInfoService.m in Sources */,
-				56EAC2221D7B51060087B3FF /* AboutProjectSegue.m in Sources */,
+				564DF0C71D7C1A3700067B60 /* RoleInfoViewModel.m in Sources */,
 				564DF0801D7B77BA00067B60 /* ProjectRoleObject.m in Sources */,
 				5615334C1D7A70A100BDEC3E /* UserNotifications+CoreDataProperties.m in Sources */,
 				561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */,
 				566A726A1D73A6B2004F63D3 /* UserAPIService.m in Sources */,
 				56EAC25D1D7B51060087B3FF /* ChangePassViewController.m in Sources */,
-				56EAC2271D7B51060087B3FF /* SystemInfoViewController.m in Sources */,
 				56EAC2561D7B51060087B3FF /* TeamProfilesInfoViewController.m in Sources */,
 				56EAC2661D7B51060087B3FF /* UserNotificationModel.m in Sources */,
 				56EAC2691D7B51060087B3FF /* UpdatedUserInfo.m in Sources */,
@@ -1683,12 +1757,13 @@
 				56E1BA081D6F7677003E46DA /* DataManager+ProjectInfo.m in Sources */,
 				5615334A1D7A70A100BDEC3E /* UserInfo+CoreDataProperties.m in Sources */,
 				56EAC23D1D7B51060087B3FF /* MainMenuModel.m in Sources */,
+				564DF0B81D7C19BD00067B60 /* AboutProjectViewController.m in Sources */,
 				56EAC2291D7B51060087B3FF /* LoginViewController.m in Sources */,
 				564DF08A1D7B801800067B60 /* RolesService.m in Sources */,
+				564DF0BA1D7C19BD00067B60 /* SystemInfoViewController.m in Sources */,
 				56EAC22C1D7B51060087B3FF /* RecoverySuccessViewController.m in Sources */,
 				56EAC24C1D7B51060087B3FF /* StatusMarkerComponent.m in Sources */,
 				561533461D7A70A100BDEC3E /* ProjectRegion+CoreDataProperties.m in Sources */,
-				56EAC2261D7B51060087B3FF /* RoleInfoViewController.m in Sources */,
 				56EAC2571D7B51060087B3FF /* AddContactModel.m in Sources */,
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				56EAC2681D7B51060087B3FF /* TermsViewController.m in Sources */,
@@ -1702,12 +1777,11 @@
 				56EAC26E1D7B51060087B3FF /* WelcomeTourViewController.m in Sources */,
 				56EAC22B1D7B51060087B3FF /* RecoveryModel.m in Sources */,
 				56EAC22A1D7B51060087B3FF /* LoginViewModel.m in Sources */,
-				56EAC2231D7B51060087B3FF /* AboutProjectViewController.m in Sources */,
 				5615334D1D7A70A100BDEC3E /* UserNotifications.m in Sources */,
 				591344231D5F68D00027889F /* NSDate+Helper.m in Sources */,
+				564DF0CA1D7C1A4000067B60 /* RoleInfoModel.m in Sources */,
 				56EAC2321D7B51060087B3FF /* BaseNavigationBar.m in Sources */,
 				561533421D7A70A100BDEC3E /* ProjectCountry+CoreDataProperties.m in Sources */,
-				56EAC2251D7B51060087B3FF /* InformationViewModel.m in Sources */,
 				56EAC2311D7B51060087B3FF /* BaseMainViewController.m in Sources */,
 				56EAC25A1D7B51060087B3FF /* InviteInfo.m in Sources */,
 				56EAC2541D7B51060087B3FF /* TeamInfoViewController.m in Sources */,
@@ -1743,10 +1817,12 @@
 				59B0BE9A1D6130FC0016AE13 /* AvatarHelper.m in Sources */,
 				564DF0901D7B820200067B60 /* DataManager+Roles.m in Sources */,
 				564DF0A01D7B92DC00067B60 /* ProjectSystem+CoreDataProperties.m in Sources */,
+				564DF0B61D7C19BD00067B60 /* InformationViewModel.m in Sources */,
 				56EAC25F1D7B51060087B3FF /* ChangePasswordViewModel.m in Sources */,
 				564DF0981D7B912D00067B60 /* SystemsService.m in Sources */,
 				56EAC2481D7B51060087B3FF /* AllProjectsViewModel.m in Sources */,
 				56EAC23F1D7B51060087B3FF /* MainMenuViewModel.m in Sources */,
+				564DF0B51D7C19BD00067B60 /* InformationViewController.m in Sources */,
 				56EAC1AE1D7B4E990087B3FF /* TabBarSegue.m in Sources */,
 				561533471D7A70A100BDEC3E /* ProjectRegion.m in Sources */,
 				56EAC2381D7B51060087B3FF /* FeedsViewController.m in Sources */,
