@@ -11,6 +11,7 @@
 // Classes
 #import "AddContactModel.h"
 #import "Utils.h"
+#import "InviteInfo.h"
 
 @interface AddContactViewModel() 
 
@@ -67,11 +68,14 @@
     
     
     //Создает команду, которая активна тогда, когда activeReadySignal возвращает тру,
+    @weakify(self)
+    
     self.readyCommand = [[RACCommand alloc] initWithEnabled: activeReadySignal
                                                 signalBlock: ^RACSignal *(id input) {
                                                     
-                                                    return  [[RACSignal empty]
-                                                             delay: 2];
+                                                    @strongify(self)
+                                                    
+                                                    return  [self sendInvite];
                                                 }];
     
 }
@@ -99,14 +103,19 @@
     }];
 }
 
-- (RACSignal*) returnInvitationInfo
+- (RACSignal*) sendInvite
 {
-    return  [self.model getUserInfo: self.lastnameText
-                           withName: self.nameText
-                          withEmail: self.emailText
-                           withRole: self.roleText
-                           withText: self.messageText];
+    InviteInfo* info = [InviteInfo new];
+    
+    info.firstName         = self.nameText;
+    info.lastName          = self.lastnameText;
+    info.email             = self.emailText;
+    info.projectRoleTypeId = self.roleID;
+    info.message           = self.messageText;
+    info.userId            = @0;
+    info.contactId         = @0;
+    
+    return [self.model sendInvite: info];
 }
-
 
 @end

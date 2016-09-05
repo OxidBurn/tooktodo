@@ -7,32 +7,37 @@
 //
 
 #import "AddContactViewController.h"
+
+// Classes
 #import "AddContactViewModel.h"
 #import "RolesViewController.h"
 #import "InviteInfo.h"
 #import "TeamInfoViewController.h"
+#import "ProjectRoles.h"
 
 @interface AddContactViewController () <RolesViewControllerDelegate, UITableViewDelegate>
 
 // Properties
 
-@property (weak, nonatomic) IBOutlet UITextField *lastnameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UILabel *roleLabel;
-@property (weak, nonatomic) IBOutlet UITextView *messageTextView;
-@property (weak, nonatomic) IBOutlet UITextField *emailLabel;
+@property (weak, nonatomic) IBOutlet UITextField     *lastnameTextField;
+@property (weak, nonatomic) IBOutlet UITextField     *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField     *emailTextField;
+@property (weak, nonatomic) IBOutlet UILabel         *roleLabel;
+@property (weak, nonatomic) IBOutlet UITextView      *messageTextView;
+@property (weak, nonatomic) IBOutlet UITextField     *emailLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *readyBtn;
 
-@property (nonatomic, strong) AddContactViewModel* addContactViewModel;
-@property (nonatomic, strong) InviteInfo* filledInfo;
-@property (nonatomic, assign) BOOL firstCheck;
+@property (nonatomic, strong) AddContactViewModel * addContactViewModel;
+@property (nonatomic, strong) InviteInfo          * filledInfo;
+@property (nonatomic, assign) BOOL                firstCheck;
+
 
 // Methods
 
 @end
 
 @implementation AddContactViewController
+
 
 #pragma mark - Properties -
 
@@ -64,16 +69,12 @@
     [super loadView];
     
     [self twoLineTitleView];
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
     
     [self bindViewModel];
     
     self.firstCheck = YES;
 }
+
 
 #pragma mark - Memory managment -
 
@@ -82,6 +83,7 @@
     [super didReceiveMemoryWarning];
 }
 
+
 #pragma mark - Internal method -
 
 - (void) bindViewModel
@@ -89,36 +91,19 @@
     RAC(self.addContactViewModel, lastnameText) = self.lastnameTextField.rac_textSignal;
     RAC(self.addContactViewModel, nameText)     = self.nameTextField.rac_textSignal;
     RAC(self.addContactViewModel, emailText)    = [self.emailTextField.rac_textSignal distinctUntilChanged];
+    RAC(self.addContactViewModel, messageText)  = self.messageTextView.rac_textSignal;
     
+    @weakify(self) 
     
-    RAC(self.addContactViewModel, messageText) = self.messageTextView.rac_textSignal;
-    RAC(self.addContactViewModel, roleText)    = RACObserve(self.roleLabel, text);
-    
-    @weakify(self)
-    
-    [RACObserve(self.roleLabel, text) subscribeNext: ^(NSString* x) {
-        
-        @strongify(self)
-        
-        self.filledInfo.role = x;
-        
-    }];
-    
-    [self.addContactViewModel.readyCommand.executionSignals subscribeNext: ^(RACSignal* readySignal) {
-        
-        @strongify(self)
-        
-         [[self.addContactViewModel returnInvitationInfo] subscribeNext: ^(InviteInfo* userInfo) {
-             
-             self.filledInfo = userInfo;
-             
-         }
-                                                     completed: ^{
-                                                         
-                                                         [self.navigationController popViewControllerAnimated: YES];
-                                                         
-                                                     }];
+    [self.addContactViewModel.readyCommand.executionSignals
+     subscribeNext: ^(RACSignal* readySignal) {
          
+     }
+     completed:^{
+         
+         @strongify(self)
+         
+         [self.navigationController popViewControllerAnimated: YES];
          
      }];
     
@@ -178,8 +163,8 @@
 
 #pragma mark - Segue -
 
--(void) prepareForSegue: (UIStoryboardSegue*) segue
-                 sender: (id)sender
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
 {
     [super prepareForSegue: segue
                     sender: sender];
@@ -217,9 +202,10 @@
 
 #pragma mark - RolesViewControllerDelegate methods -
 
-- (void) didSelectRole: (NSString*) value
+- (void) didSelectRole: (ProjectRoles*) value
 {
-    self.roleLabel.text = value;
+    self.roleLabel.text             = value.title;
+    self.addContactViewModel.roleID = value.sort;
 }
 
 - (void) tableView: (UITableView*) tableView
@@ -227,19 +213,21 @@
  forRowAtIndexPath: (NSIndexPath*) indexPath
 {
     // Remove seperator inset
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)])
+    if ([cell respondsToSelector: @selector(setSeparatorInset:)])
     {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setSeparatorInset: UIEdgeInsetsZero];
     }
     
     // Prevent the cell from inheriting the Table View's margin settings
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [cell setPreservesSuperviewLayoutMargins:NO];
+    if ([cell respondsToSelector: @selector(setPreservesSuperviewLayoutMargins:)])
+    {
+        [cell setPreservesSuperviewLayoutMargins: NO];
     }
     
     // Explictly set your cell's layout margins
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
+    if ([cell respondsToSelector: @selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins: UIEdgeInsetsZero];
     }
 }
 

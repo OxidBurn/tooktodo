@@ -6,7 +6,8 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+// Classes
+#import "ProjectRoles.h"
 
 @protocol RolesViewControllerDelegate; // делегат этого контроллера
 
@@ -18,6 +19,6 @@
 
 @protocol RolesViewControllerDelegate
 
-- (void) didSelectRole: (NSString*) value; //устанавливает выбранную роль
+- (void) didSelectRole: (ProjectRoles*) value; //устанавливает выбранную роль
 
 @end

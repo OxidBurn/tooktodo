@@ -7,15 +7,19 @@
 //
 
 #import "RolesViewModel.h"
+
+// Classes
 #import "InviteInfo.h"
+#import "RolesService.h"
+#import "ProjectRoles.h"
 
 @interface RolesViewModel()
 
-@property (nonatomic, strong) NSArray* rolesArray;
-@property (strong, nonatomic) NSIndexPath* lastIndexPath;
-@property (nonatomic, strong) NSString* chosenRole;
-@property (nonatomic, strong) InviteInfo* user;
-@property (nonatomic, strong) UITableViewCell* cell;
+@property (nonatomic, strong) NSArray         * rolesArray;
+@property (strong, nonatomic) NSIndexPath     * lastIndexPath;
+@property (nonatomic, strong) NSString        * chosenRole;
+@property (nonatomic, strong) InviteInfo      * user;
+@property (nonatomic, strong) UITableViewCell * cell;
 
 @end
 
@@ -23,15 +27,27 @@
 
 #pragma mark - Properties -
 
-- (NSArray*) rolesArray
+- (RACSignal*) updateRolesInfo
 {
-    if (_rolesArray == nil)
-    {
-        _rolesArray = [NSArray arrayWithObjects: @"Архитектор", @"Генподрядчик", @"Дизайнер", @"Заказчик", @"Технадзор", @"Строитель", @"Прораб", @"Подрядчик", nil];
-        
-    }
+    @weakify(self)
     
-    return _rolesArray;
+    RACSignal* fetchRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[RolesService sharedInstance] getRolesOfTheSelectedProject] subscribeNext: ^(NSArray* roles) {
+            
+            @strongify(self)
+            
+            self.rolesArray = roles;
+            
+            [subscriber sendNext: nil];
+            [subscriber sendCompleted];
+            
+        }];
+        
+        return nil;
+    }];
+    
+    return fetchRolesSignal;
 }
 
 - (InviteInfo*) user
@@ -46,7 +62,7 @@
 
 #pragma mark - Public -
 
-- (NSString*) getSelectedItem;
+- (ProjectRoles*) getSelectedItem;
 {
     return self.rolesArray[self.lastIndexPath.row];
 }
@@ -72,9 +88,9 @@
     }
     
     
-    NSString* role = self.rolesArray[indexPath.row];
+    ProjectRoles* role = self.rolesArray[indexPath.row];
     
-    self.cell.textLabel.text = role;
+    self.cell.textLabel.text = role.title;
     
     UIFont* unselectedCustomFont = [UIFont fontWithName: @"SFUIText-Regular"
                                          size: 13.0f];
@@ -82,7 +98,7 @@
     UIFont* selectedCustomFont = [UIFont fontWithName: @"SFUIText-Medium"
                                                    size: 13.0f];
     
-    if ([indexPath compare:self.lastIndexPath] == NSOrderedSame)
+    if ([indexPath compare: self.lastIndexPath] == NSOrderedSame)
     {
         self.cell.accessoryType = UITableViewCellAccessoryCheckmark;
         self.cell.textLabel.font = selectedCustomFont;

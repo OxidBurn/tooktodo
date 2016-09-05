@@ -32,7 +32,7 @@
     
     RACSignal* fetchRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        [[[RolesService sharedInstance] getProjectsOfSelectedProject] subscribeNext: ^(NSArray* roles) {
+        [[[RolesService sharedInstance] getRolesOfTheSelectedProject] subscribeNext: ^(NSArray* roles) {
             
             @strongify(self)
             

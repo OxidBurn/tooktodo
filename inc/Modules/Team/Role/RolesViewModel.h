@@ -6,10 +6,16 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Frameworks
+#import "ReactiveCocoa.h"
+
+// Classes
+#import "ProjectRoles.h"
 
 @interface RolesViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-- (NSString*) getSelectedItem;
+- (ProjectRoles*) getSelectedItem;
+
+- (RACSignal*) updateRolesInfo;
 
 @end

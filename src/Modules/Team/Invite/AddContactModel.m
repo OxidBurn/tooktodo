@@ -13,67 +13,13 @@
 
 // Classes
 #import "Utils.h"
+#import "TeamService.h"
 
 typedef void(^ReturnInfoBlock)(InviteInfo* userInfo);
 
 @implementation AddContactModel
 
 #pragma mark - Public methods -
-
-- (void)  getUserLastname: (NSString*)       lastname
-                 withName: (NSString*)       name
-                withEmail: (NSString*)       email
-                 withRole: (NSString*)       role
-              withMessage: (NSString*)       message
-            withInfoBlock: (ReturnInfoBlock) completionBlock
-{
-    InviteInfo* user = [[InviteInfo alloc] init];
-    
-    user.lastname = lastname;
-    user.name     = name;
-    user.email    = email;
-    user.role     = role;
-    user.message  = message;
-    
-    if (completionBlock)
-    {
-        completionBlock(user);
-    }
-    
-}
-
-
-- (RACSignal*) getUserInfo: (NSString*) lastname
-                  withName: (NSString*) name
-                 withEmail: (NSString*) email
-                  withRole: (NSString*) role
-                  withText: (NSString*) message
-{
-    @weakify(self);
-    
-    RACSignal* sign = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        @strongify(self)
-        
-        [self getUserLastname: lastname
-                     withName: name
-                    withEmail: email
-                     withRole: role
-                  withMessage: message
-                withInfoBlock: ^(InviteInfo *userInfo) {
-                    
-                    [subscriber sendNext: userInfo];
-                    [subscriber sendCompleted];
-                    
-                }];
-        
-        return nil;
-    }];
-    
-    
-    return sign;
-}
-
 
 - (NSString*) getEmailWarningText: (NSString*) email
 {
@@ -98,6 +44,11 @@ typedef void(^ReturnInfoBlock)(InviteInfo* userInfo);
 - (BOOL) isValidLastName: (NSString*) lastname
 {
     return lastname.length >= 2;
+}
+
+- (RACSignal*) sendInvite: (InviteInfo*) info
+{
+    return [[TeamService sharedInstance] inviteUserWithInfo: info];
 }
 
 @end

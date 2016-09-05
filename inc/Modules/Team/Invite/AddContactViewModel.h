@@ -15,16 +15,15 @@
 @property (strong, nonatomic)  NSString* lastnameText;
 @property (strong, nonatomic)  NSString* nameText;
 @property (strong, nonatomic)  NSString* emailText;
-@property (strong, nonatomic)  NSString* roleText;
+@property (strong, nonatomic)  NSNumber* roleID;
 @property (strong, nonatomic)  NSString* messageText;
-@property (nonatomic, strong) RACSignal* validEmailSignal;
-@property (nonatomic, strong) RACCommand* readyCommand;
-@property (nonatomic, strong) RACSignal* notEmptyLastnameSignal;
-@property (nonatomic, strong) RACSignal* notEmptyNameSignal;
+
+@property (nonatomic, strong) RACSignal  * validEmailSignal;
+@property (nonatomic, strong) RACCommand * readyCommand;
+@property (nonatomic, strong) RACSignal  * notEmptyLastnameSignal;
+@property (nonatomic, strong) RACSignal  * notEmptyNameSignal;
 
 //Methods
 - (RACSignal*) getEmailWarningSignal;
-
-- (RACSignal*) returnInvitationInfo;
 
 @end

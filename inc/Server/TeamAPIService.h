@@ -18,4 +18,6 @@
 
 - (RACSignal*) getProjectTeamWithRequestURL: (NSString*) url;
 
+- (RACSignal*) sendInviteToTeam: (NSDictionary*) parameter;
+
 @end

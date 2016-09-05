@@ -22,6 +22,6 @@
 
 - (RACSignal*) loadAllRolesForProject: (ProjectInfo*) project;
 
-- (RACSignal*) getProjectsOfSelectedProject;
+- (RACSignal*) getRolesOfTheSelectedProject;
 
 @end

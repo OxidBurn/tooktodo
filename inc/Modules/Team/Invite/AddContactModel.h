@@ -6,7 +6,10 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Frameworks
+#import "ReactiveCocoa.h"
+
+// Classes
 #import "InviteInfo.h"
 
 @interface AddContactModel : NSObject
@@ -17,9 +20,6 @@
 
 - (NSString*) getEmailWarningText: (NSString*) email;
 
-- (RACSignal*) getUserInfo: (NSString*) lastname
-                  withName: (NSString*) name
-                 withEmail: (NSString*) email
-                  withRole: (NSString*) role
-                  withText: (NSString*) message;
+- (RACSignal*) sendInvite: (InviteInfo*) info;
+
 @end

@@ -74,7 +74,7 @@ static bool isFirstAccess = YES;
     return loadingRolesSignal;
 }
 
-- (RACSignal*) getProjectsOfSelectedProject
+- (RACSignal*) getRolesOfTheSelectedProject
 {
     RACSignal* fetchProjectsRolesSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         

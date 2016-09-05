@@ -88,12 +88,57 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) inviteUserWithInfo: (InviteInfo*) info
 {
-//    NSDictionary* inviteParameter = @{};
-//    NSArray* invites = @[@{}];
-//    NSDictionary* requestParameter = @{@"invites" : @[
-//                                               ]};
+    info.projectId                 = @([[self getProjectID] integerValue]);
     
-    return nil;
+    NSDictionary* inviteParameter  = [info toDictionary];
+    NSArray* invites               = @[inviteParameter];
+    NSDictionary* requestParameter = @{@"invites" : invites};
+    
+    @weakify(self)
+    
+    RACSignal* inviteSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TeamAPIService sharedInstance] sendInviteToTeam: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             BOOL isSuccess = [response[0][@"succeeded"] boolValue];
+             
+             @strongify(self)
+             
+             if ( isSuccess )
+             {
+                 [self addNewTeamMember: info
+                         withCompletion: ^(BOOL isSuccess) {
+                             
+                             [subscriber sendNext: nil];
+                             
+                         }];
+             }
+             else
+             {
+                 NSString* errorMessage = response[0][@"errors"][0];
+                 
+                 [SVProgressHUD showErrorWithStatus: errorMessage];
+                 
+                 [subscriber sendNext: nil];
+             }
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }
+         completed: ^{
+             
+             [subscriber sendCompleted];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return inviteSignal;
 }
 
 
@@ -137,6 +182,20 @@ static bool isFirstAccess = YES;
                                                                          withString: [self getProjectID]];
     
     return requestURL;
+}
+
+- (void) addNewTeamMember: (InviteInfo*)           info
+           withCompletion: (CompletionWithSuccess) completion
+{
+    TeamMemberObject* object = [[TeamMemberObject alloc] init];
+    
+    object.firstName = info.firstName;
+    object.lastName = info.lastName;
+    object.email = info.email;
+    
+    [DataManagerShared persistTeamMemebers: @[object]
+                                 inProject: [self getSelectedProject]
+                            withCompletion: completion];
 }
 
 #pragma mark - Life Cycle -

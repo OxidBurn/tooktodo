@@ -47,7 +47,8 @@ static CGFloat const yPadding                   = 20.0f;
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];
     
-    [self.view addGestureRecognizer: self.slidingViewController.panGesture];
+    if ( self.slidingViewController.panGesture )
+        [self.view addGestureRecognizer: self.slidingViewController.panGesture];
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle

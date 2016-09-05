@@ -15,8 +15,7 @@
 static NSString* registerPageURL = @"https://tooktodo.ru/login";
 
 #ifdef DEBUG
-//static NSString* serverURL           = @"http://api.taketowork.com:80/";
-static NSString* serverURL           = @"https://api.tooktodo.ru/";
+static NSString* serverURL           = @"http://api.taketowork.com:80/";
 #else
 static NSString* serverURL           = @"https://api.tooktodo.ru/";
 #endif

@@ -38,6 +38,13 @@ static bool isFirstAccess = YES;
     return [[[requestManager rac_GET: url parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) sendInviteToTeam: (NSDictionary*) parameter
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_POST: inviteURL parameters: parameter] logError] replayLazily];
+}
+
 #pragma mark - Life Cycle -
 
 + (instancetype) allocWithZone: (NSZone*) zone

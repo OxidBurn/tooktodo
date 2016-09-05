@@ -11,10 +11,13 @@
 
 @interface RolesViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *rolesTableView;
-@property (nonatomic, strong) RolesViewModel* rolesViewModel;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *readyBtn;
-@property (nonatomic, weak) id<RolesViewControllerDelegate> delegate;
+// properties
+@property (weak, nonatomic  ) IBOutlet UITableView             * rolesTableView;
+@property (strong, nonatomic) RolesViewModel                   * rolesViewModel;
+@property (weak, nonatomic  ) IBOutlet UIBarButtonItem         * readyBtn;
+@property (weak, nonatomic  ) id <RolesViewControllerDelegate> delegate;
+
+// methods
 
 @end
 
@@ -34,15 +37,28 @@
 
 #pragma mark - Life cycle -
 
-- (void) viewDidLoad
+- (void) loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     
-    self.rolesTableView.dataSource = self.rolesViewModel;
-    self.rolesTableView.delegate = self.rolesViewModel;
+    // Binding between UI and model
+    [self bindingUI];
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
     
-    //  [self handleModelActions];
+    // Fetch latest data of the project roles
+    @weakify(self)
     
+    [[self.rolesViewModel updateRolesInfo] subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        [self.rolesTableView reloadData];
+        
+    }];
 }
 
 #pragma mark - Public methods -
@@ -50,6 +66,14 @@
 - (void) setRolesViewControllerDelegate: (id<RolesViewControllerDelegate>) delegate
 {
     self.delegate = delegate;
+}
+
+#pragma mark - Internal methods -
+
+- (void) bindingUI
+{
+    self.rolesTableView.dataSource = self.rolesViewModel;
+    self.rolesTableView.delegate   = self.rolesViewModel;
 }
 
 #pragma mark - Actions -

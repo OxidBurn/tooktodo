@@ -11,10 +11,13 @@
 @interface InviteInfo : JSONModel
 
 //properties
-@property (nonatomic, strong) NSString* lastname;
-@property (nonatomic, strong) NSString* name;
+@property (strong, nonatomic) NSNumber* projectId;
 @property (nonatomic, strong) NSString* email;
-@property (nonatomic, strong) NSString* role;
+@property (strong, nonatomic) NSNumber* userId;
 @property (nonatomic, strong) NSString* message;
+@property (nonatomic, strong) NSNumber* projectRoleTypeId;
+@property (nonatomic, strong) NSString* firstName;
+@property (nonatomic, strong) NSString* lastName;
+@property (strong, nonatomic) NSNumber* contactId;
 
 @end
