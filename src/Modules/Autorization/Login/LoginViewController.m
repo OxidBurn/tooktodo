@@ -55,6 +55,7 @@
 
 - (IBAction) onToggleShowPass: (UIButton*) sender;
 
+- (IBAction)onClosedKeyboardGesture:(UITapGestureRecognizer *)sender;
 
 @end
 
@@ -251,6 +252,9 @@
     [self.passwordTextField becomeFirstResponder];
     
     sender.selected = !sender.selected;
+}
+
+- (IBAction)onClosedKeyboardGesture:(UITapGestureRecognizer *)sender {
 }
 
 - (void) successLogin
