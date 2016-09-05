@@ -81,6 +81,28 @@
     return [ProjectInfo MR_findAll];
 }
 
+- (NSArray*) getProjectsForMenu
+{
+    NSArray* allProjects = [ProjectInfo MR_findAllSortedBy: @"lastVisit"
+                                                 ascending: YES];
+    NSArray* menuProjectsList = nil;
+    
+    // Show only 4 projects in menu
+    if ( allProjects.count > 4 )
+    {
+        menuProjectsList = @[allProjects[0],
+                             allProjects[1],
+                             allProjects[2],
+                             allProjects[3]];
+    }
+    else
+    {
+        menuProjectsList = allProjects;
+    }
+    
+    return menuProjectsList;
+}
+
 - (BOOL) deleteAllProjects
 {
     BOOL isSuccess = [ProjectInfo MR_truncateAll];

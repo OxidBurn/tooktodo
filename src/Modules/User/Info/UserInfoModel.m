@@ -30,7 +30,7 @@
 
 #pragma mark - Properties -
 
-- (UserInfo *)currentUserInfo
+- (UserInfo*) currentUserInfo
 {
     if ( _currentUserInfo == nil )
     {
@@ -43,9 +43,39 @@
 
 #pragma mark - Public -
 
-- (void) updateInfo
+- (RACSignal*) updateInfo
 {
-    self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+    @weakify(self)
+    
+    RACSignal* updateUserInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        @strongify(self)
+        
+        [[RACScheduler mainThreadScheduler] schedule:^{
+            
+            self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+            
+            [subscriber sendNext: nil];
+            
+        }];
+        
+        [[[UserInfoService sharedInstance] getNewUserInfo] subscribeNext:^(id x) {
+           
+            [[RACScheduler mainThreadScheduler] schedule:^{
+                
+                self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+                
+                [subscriber sendNext: nil];
+                [subscriber sendCompleted];
+                
+            }];
+            
+        }];
+        
+        return nil;
+    }];
+    
+    return updateUserInfoSignal;
 }
 
 - (NSString*) getFullUserName

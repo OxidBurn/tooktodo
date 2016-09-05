@@ -95,7 +95,7 @@
 
 - (NSArray*) getProjects
 {
-    return [DataManagerShared getAllProjects];
+    return [DataManagerShared getProjectsForMenu];
 }
 
 - (RACSignal*) loadProjectsList

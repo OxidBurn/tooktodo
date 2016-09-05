@@ -16,7 +16,7 @@
 
 // methods
 
-- (void) updateInfo;
+- (RACSignal*) updateInfo;
 
 - (NSString*) getFullUserName;
 

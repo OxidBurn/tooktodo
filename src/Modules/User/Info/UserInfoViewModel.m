@@ -43,9 +43,9 @@
 
 #pragma mark - Public -
 
-- (void) updateInfo
+- (RACSignal*) updateInfo
 {
-    [self.model updateInfo];
+    return [self.model updateInfo];
 }
 
 - (UIImage*) userAvatar

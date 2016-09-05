@@ -132,15 +132,21 @@ static bool isFirstAccess = YES;
                                                           }];
 }
 
-- (RACSignal*) getUserInfo
+- (RACSignal*) getNewUserInfo
 {
     RACSignal* getUserInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        [[[UserAPIService sharedInstance] getUserInfo] subscribeNext:^(id x) {
+        [[[UserAPIService sharedInstance] getUserInfo] subscribeNext: ^(RACTuple* response) {
             
-            [subscriber sendNext: x];
+            [self parsingLoginResponseInfo: [response objectAtIndex: 0]
+                            withCompletion: ^(BOOL isSuccess) {
+                                
+                                [subscriber sendNext: nil];
+                                [subscriber sendCompleted];
+                                
+                            }];
             
-            // Get all user projects from server and store them into database
+            
         }
                                                                error: ^(NSError* error) {
                                                                    
@@ -163,7 +169,7 @@ static bool isFirstAccess = YES;
 - (void) updateAvatarWithFile: (NSString*) filePath
 {
     [[UserAPIService sharedInstance] getAvatarFileID: filePath
-                                      withCompletion:^(NSDictionary *response, NSError *error) {
+                                      withCompletion: ^(NSDictionary *response, NSError *error) {
                                           
                                           if ( error == nil )
                                           {
@@ -186,6 +192,23 @@ static bool isFirstAccess = YES;
                                           }
                                           
                                       }];
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) parsingLoginResponseInfo: (NSDictionary*)           info
+                   withCompletion: (void(^)(BOOL isSuccess)) completion
+{
+    UserInfoData* userInfo = [[UserInfoData alloc] initWithDictionary: info
+                                                                error: nil];
+    
+    [DataManagerShared persistUserWithInfo: userInfo
+                            withCompletion: ^(BOOL isSuccess) {
+                                
+                                completion(isSuccess);
+                                
+                            }];
 }
 
 

@@ -19,6 +19,8 @@
 
 - (NSArray*) getAllProjects;
 
+- (NSArray*) getProjectsForMenu;
+
 - (BOOL) deleteAllProjects;
 
 - (void) markFirstProjectAsSelected;

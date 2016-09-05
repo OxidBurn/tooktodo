@@ -50,6 +50,11 @@
     [self updateValue];
 }
 
+- (NSString*) text
+{
+    return self.actualText;
+}
+
 
 #pragma mark - Event methods -
 

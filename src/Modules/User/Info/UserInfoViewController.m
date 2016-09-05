@@ -256,23 +256,30 @@
     // Added checking if avatar image data is empty and not loaded yet
     // can happened when user make first autorization
     
+    @weakify(self)
     
-    UIImage* userAvatar = [self.viewModel userAvatar];
-    
-    if ( userAvatar )
-    {
-        self.avatarImageView.image  = [self.viewModel userAvatar];
-    }
-    else
-    {
-        [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
-    }
-    
-    self.fullNameLabel.text                  = [self.viewModel fullUserName];
-    self.phoneInfoTable.dataSource           = self.viewModel;
-    self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
-    
-    [self.phoneInfoTable reloadData];
+    [[self.viewModel updateInfo] subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        UIImage* userAvatar = [self.viewModel userAvatar];
+        
+        if ( userAvatar )
+        {
+            self.avatarImageView.image  = [self.viewModel userAvatar];
+        }
+        else
+        {
+            [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
+        }
+        
+        self.fullNameLabel.text                  = [self.viewModel fullUserName];
+        self.phoneInfoTable.dataSource           = self.viewModel;
+        self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
+        
+        [self.phoneInfoTable reloadData];
+        
+    }];
 }
 
 //photo editing methods

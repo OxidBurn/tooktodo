@@ -17,7 +17,7 @@
 
 // methods
 
-- (void) updateInfo;
+- (RACSignal*) updateInfo;
 
 - (UIImage*) userAvatar;
 

@@ -32,4 +32,6 @@
 
 - (void) updateAvatarWithFile: (NSString*) filePath;
 
+- (RACSignal*) getNewUserInfo;
+
 @end
