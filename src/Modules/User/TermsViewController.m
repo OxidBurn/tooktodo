@@ -16,13 +16,17 @@
 
 @implementation TermsViewController
 
+
 #pragma mark - Life cycle -
 
-- (void) viewDidLoad
+- (void) loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     // Do any additional setup after loading the view.
+    
+    [self titleLabel];
 }
+
 
 #pragma mark - Memory managment -
 
@@ -33,5 +37,38 @@
 }
 
 
+#pragma mark - Actions -
+
+
+- (IBAction) onDismiss: (UIButton*) sender
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+
+#pragma mark - Internal methods -
+
+- (UILabel*) titleLabel
+{
+    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 14.0f];
+    
+    UILabel* label        = [[UILabel alloc] initWithFrame:CGRectMake((self.view.width - 250) / 2, 0, 250, 36)];
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines   = 2;
+    label.font            = customFont;
+    label.textAlignment   = NSTextAlignmentCenter;
+    label.textColor       = [UIColor whiteColor];
+    label.text            = @"ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ";
+    
+    [label sizeToFit];
+    
+    
+    
+    self.navigationItem.titleView = label;
+    
+    return label;
+}
 
 @end

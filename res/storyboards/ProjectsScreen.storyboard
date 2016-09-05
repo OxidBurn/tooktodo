@@ -73,6 +73,9 @@
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -3287,7 +3290,7 @@
             </objects>
             <point key="canvasLocation" x="-1078.5" y="1374.75"/>
         </scene>
-        <!--ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ-->
+        <!--Terms View Controller-->
         <scene sceneID="DdA-1y-v35">
             <objects>
                 <viewController storyboardIdentifier="ServiceTermsControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kk9-my-5yN" customClass="TermsViewController" sceneMemberID="viewController">
@@ -3705,23 +3708,26 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ" id="5XB-VW-Pcq">
-                        <barButtonItem key="backBarButtonItem" title="Отменить" id="gPm-lS-pr1">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" id="5XB-VW-Pcq">
                         <barButtonItem key="leftBarButtonItem" id="73x-Em-lIW">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HDl-b2-4fp">
+                            <button key="customView" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HDl-b2-4fp">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="Back"/>
+                                <connections>
+                                    <action selector="onDismiss:" destination="kk9-my-5yN" eventType="touchUpInside" id="039-HO-HL9"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <action selector="onDismiss:" destination="kk9-my-5yN" id="5oQ-RE-VZk"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dLb-LL-77Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1159" y="2895.75"/>
+            <point key="canvasLocation" x="-241.5" y="2895.75"/>
         </scene>
         <!--User Notification Info Controller-->
         <scene sceneID="MuO-LU-ASQ">
@@ -4179,7 +4185,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="kk9-my-5yN" kind="show" id="ey2-HH-TtH"/>
+                                    <segue destination="ydD-O8-aKk" kind="presentation" id="ey2-HH-TtH"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-wp-lxS">
@@ -4696,7 +4702,7 @@
                                             <constraint firstAttribute="height" constant="41" id="L0j-au-KZ9"/>
                                             <constraint firstAttribute="height" constant="41" id="weG-qq-kkF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -4771,7 +4777,6 @@
                                         </variation>
                                         <connections>
                                             <action selector="onShowNewPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="rC7-J6-94J"/>
-                                            <action selector="onShowPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="fMs-Ak-IYs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -4871,7 +4876,7 @@
                                             <constraint firstAttribute="height" constant="41" id="cfN-SW-jx1"/>
                                             <constraint firstAttribute="height" constant="41" id="sc2-u9-C9F"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -4944,7 +4949,6 @@
                                         </variation>
                                         <connections>
                                             <action selector="onShowConfirmPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="mpN-gj-ZHU"/>
-                                            <action selector="onShowPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="a8m-Rw-5vH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -5044,8 +5048,8 @@
                                             <constraint firstAttribute="height" constant="41" id="prW-44-MzK"/>
                                             <constraint firstAttribute="height" constant="41" id="tts-xc-U3r"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="kP7-Ii-Esw"/>
@@ -8378,7 +8382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saN-5N-jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="2449"/>
+            <point key="canvasLocation" x="4173" y="2448.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qy4-A3-TMt">
@@ -8850,7 +8854,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXk-tZ-9Ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="3086.25"/>
+            <point key="canvasLocation" x="4173" y="3086.25"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="TdW-2U-yfr">
@@ -9303,6 +9307,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aj0-jA-OYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4921.875" y="1538.0281690140844"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FOX-MY-09S">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ydD-O8-aKk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ofM-p5-MDH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kk9-my-5yN" kind="relationship" relationship="rootViewController" id="cxl-w5-kBU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NMS-1c-3Lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1159.5" y="2895.75"/>
         </scene>
     </scenes>
     <resources>
