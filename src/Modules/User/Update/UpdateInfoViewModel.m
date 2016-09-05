@@ -63,7 +63,7 @@
 
 - (NSString*) getPhoneNumberFormatString
 {
-    return @"+* (***) ***-**-**";
+    return @"+*(***)***-**-**";
 }
 
 - (AKNumericFormatter*) getPhoneNumberFormat

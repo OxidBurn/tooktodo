@@ -40,7 +40,7 @@
     
     self.imageContentView.pageControl = self.pageIndicatorView;
     
-    self.imageContentView.infiniteLooping = YES;
+    self.imageContentView.infiniteLooping = NO;
 }
 
 - (void) didReceiveMemoryWarning

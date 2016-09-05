@@ -51,7 +51,7 @@ static NSString* StoreUserSettingsKey = @"UserNotificationSettingsKey";
                                     @{LabelTextKey: @"Где я участвую",
                                       SwitchTagKey: @(WhereIParticipateType),
                                       EnableStateKey : @(YES)},
-                                    @{LabelTextKey: @"Где я ответственный\n или утверждающий",
+                                    @{LabelTextKey: @"Где я ответственный\nили утверждающий",
                                       SwitchTagKey: @(WhereIResponsibleType),
                                       EnableStateKey : @(YES)}],
                                   

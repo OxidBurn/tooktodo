@@ -7,7 +7,10 @@
 //
 
 #import "UserInfoViewModel.h"
+
+// Classes
 #import "UserInfoModel.h"
+#import "UserInfoTableViewCell.h"
 
 @interface UserInfoViewModel()
 
@@ -102,9 +105,9 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserPhoneNumCellID"];
+    UserInfoTableViewCell* cell = (UserInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"UserPhoneNumCellID"];
     
-    cell.textLabel.text = self.userContactInfo[indexPath.row];
+    cell.titleLabel.text = self.userContactInfo[indexPath.row];
     
     return cell;
 }
