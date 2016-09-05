@@ -55,7 +55,7 @@
 
 - (IBAction) onToggleShowPass: (UIButton*) sender;
 
-- (IBAction)onClosedKeyboardGesture:(UITapGestureRecognizer *)sender;
+- (IBAction) onClosedKeyboardGesture: (UITapGestureRecognizer*) sender;
 
 @end
 
@@ -254,7 +254,9 @@
     sender.selected = !sender.selected;
 }
 
-- (IBAction)onClosedKeyboardGesture:(UITapGestureRecognizer *)sender {
+- (IBAction) onClosedKeyboardGesture: (UITapGestureRecognizer*) sender
+{
+    [self.view endEditing: YES];
 }
 
 - (void) successLogin
