@@ -34,6 +34,9 @@
 
 - (void) handleModelOperations;
 
+- (IBAction) onDismiss: (UIButton*) sender;
+- (IBAction) onHideKeyboard: (UITapGestureRecognizer*) sender;
+
 @end
 
 @implementation RecoveryViewController
@@ -136,6 +139,17 @@
         }];
         
     }];
+}
+
+- (IBAction) onDismiss: (UIButton*) sender
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+- (IBAction) onHideKeyboard: (UITapGestureRecognizer*) sender
+{
+    [self.view endEditing: YES];
 }
 
 - (void) handleInternetConnection
