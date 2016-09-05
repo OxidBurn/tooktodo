@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecureTextField : UITextField
+@interface OSSecureTextField : UITextField
+
+- (void) updateSecureState: (BOOL) isSecure;
 
 @end

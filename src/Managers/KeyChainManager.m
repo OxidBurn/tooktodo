@@ -81,8 +81,14 @@ static KeyChainManager* sharedInstance = nil;
     [UserDefaults synchronize];
 }
 
-- (void) storeUserPassword: (NSString*) password
+- (void) storeUserEmail: (NSString*) email
+            andPassword: (NSString*) password
 {
+    if ( email.length > 0 )
+    {
+        [UserDefaults setValue: email
+                        forKey: emailKey];
+    }
     [UserDefaults setValue: password
                     forKey: passwordKey];
     
@@ -94,6 +100,11 @@ static KeyChainManager* sharedInstance = nil;
     BOOL isEqual = ([[UserDefaults valueForKey: passwordKey] isEqualToString: password]);
     
     return isEqual;
+}
+
+- (NSString*) getUserEmail
+{
+    return [UserDefaults valueForKey: emailKey];
 }
 
 @end

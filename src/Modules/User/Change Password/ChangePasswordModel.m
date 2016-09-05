@@ -29,7 +29,8 @@
 
 - (void) needToUpdatePassword: (NSString*) newPass
 {
-    [KeyChain storeUserPassword: newPass];
+    [KeyChain storeUserEmail: @""
+                 andPassword: newPass];
 }
 
 @end

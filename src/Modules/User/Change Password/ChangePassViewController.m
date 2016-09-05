@@ -12,13 +12,16 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 
+// Classes
+#import "OSSecureTextField.h"
+
 @interface ChangePassViewController ()
 
 // properties
-@property (weak, nonatomic) IBOutlet UILabel     *updatedPassWarnings;
-@property (weak, nonatomic) IBOutlet UITextField *oldPasswordField;
-@property (weak, nonatomic) IBOutlet UITextField *updatedPasswordField;
-@property (weak, nonatomic) IBOutlet UITextField *confirmPasswordField;
+@property (weak, nonatomic) IBOutlet UILabel           *updatedPassWarnings;
+@property (weak, nonatomic) IBOutlet OSSecureTextField *oldPasswordField;
+@property (weak, nonatomic) IBOutlet OSSecureTextField *updatedPasswordField;
+@property (weak, nonatomic) IBOutlet OSSecureTextField *confirmPasswordField;
 
 @property (weak, nonatomic) IBOutlet UIButton *updatePasswordBtn;
 
@@ -110,11 +113,21 @@
 
 - (IBAction) onShowPassword: (UIButton*) sender
 {
-    [self.oldPasswordField resignFirstResponder];
+    [self.oldPasswordField updateSecureState: sender.selected];
     
-    self.oldPasswordField.secureTextEntry = sender.selected;
+    sender.selected = !sender.selected;
+}
+
+- (IBAction) onShowNewPassword: (UIButton*) sender
+{
+    [self.updatedPasswordField updateSecureState: sender.selected];
     
-    [self.oldPasswordField becomeFirstResponder];
+    sender.selected = !sender.selected;
+}
+
+- (IBAction) onShowConfirmPassword: (UIButton*) sender
+{
+    [self.confirmPasswordField updateSecureState: sender.selected];
     
     sender.selected = !sender.selected;
 }

@@ -66,6 +66,11 @@
     return @"";
 }
 
+- (NSString*) getStoredEmailValue
+{
+    return [[KeyChainManager sharedInstance] getUserEmail];
+}
+
 - (RACSignal*) sendRequestWithCredentials: (NSString*) email
                              withPassword: (NSString*) password
 {
@@ -85,7 +90,8 @@
             
             [[[UserAPIService sharedInstance] getUserInfo] subscribeNext: ^(RACTuple* response) {
                 
-                [KeyChain storeUserPassword: password];
+                [KeyChain storeUserEmail: email
+                             andPassword: password];
                 
                 [self parsingLoginResponseInfo: [response objectAtIndex: 0]
                                 withCompletion: ^(BOOL isSuccess) {

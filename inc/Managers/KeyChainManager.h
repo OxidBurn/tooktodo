@@ -43,7 +43,8 @@
  *
  *  @param password string password value
  */
-- (void) storeUserPassword: (NSString*) password;
+- (void) storeUserEmail: (NSString*) email
+            andPassword: (NSString*) password;
 
 /**
  *  Check if entered user password is equal with stored
@@ -53,6 +54,8 @@
  *  @return bool state if passwords is equals
  */
 - (BOOL) isCorrectEnteredPassword: (NSString*) password;
+
+- (NSString*) getUserEmail;
 
 
 @end

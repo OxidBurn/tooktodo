@@ -30,4 +30,6 @@
 
 - (RACSignal*) openRegistrationPage;
 
+- (NSString*) getStoredEmailValue;
+
 @end

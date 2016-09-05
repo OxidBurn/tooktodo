@@ -14,20 +14,21 @@
 #import "LoginViewModel.h"
 #import "RecoveryViewModel.h"
 #import "RecoveryViewController.h"
+#import "OSSecureTextField.h"
 
 @interface LoginViewController ()
 
 // properties
 
 // Outlets
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (weak, nonatomic) IBOutlet UIButton    *forgotPassBtn;
-@property (weak, nonatomic) IBOutlet UIButton    *registerBtn;
-@property (weak, nonatomic) IBOutlet UIButton    *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton    *showHidePassBtn;
-@property (weak, nonatomic) IBOutlet UILabel     *emailWarningLable;
-@property (weak, nonatomic) IBOutlet UILabel     *passwordWarningLabel;
+@property (weak, nonatomic) IBOutlet UITextField       *emailTextField;
+@property (weak, nonatomic) IBOutlet OSSecureTextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton          *forgotPassBtn;
+@property (weak, nonatomic) IBOutlet UIButton          *registerBtn;
+@property (weak, nonatomic) IBOutlet UIButton          *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton          *showHidePassBtn;
+@property (weak, nonatomic) IBOutlet UILabel           *emailWarningLable;
+@property (weak, nonatomic) IBOutlet UILabel           *passwordWarningLabel;
 
 // Models
 @property (strong, nonatomic) LoginViewModel    * viewModel;
@@ -133,6 +134,8 @@
     self.loginBtn.rac_command      = self.viewModel.loginCommand;
     self.forgotPassBtn.rac_command = self.viewModel.restorePassCommand;
     self.registerBtn.rac_command   = self.viewModel.registerCommand;
+    
+    self.emailTextField.text = [self.viewModel getStoredEmailValue];
     
     [self handleModelOperations];
 }
@@ -247,9 +250,7 @@
 
 - (IBAction) onToggleShowPass: (UIButton*) sender
 {
-    [self.passwordTextField resignFirstResponder];
-    self.passwordTextField.secureTextEntry = sender.selected;
-    [self.passwordTextField becomeFirstResponder];
+    [self.passwordTextField updateSecureState: sender.selected];
     
     sender.selected = !sender.selected;
 }

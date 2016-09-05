@@ -27,9 +27,10 @@
 
 @implementation LoginViewModel
 
+
 #pragma mark - Properties -
 
-- (LoginModel *)model
+- (LoginModel*) model
 {
     if ( _model == nil )
     {
@@ -37,6 +38,14 @@
     }
     
     return _model;
+}
+
+
+#pragma mark - Publi methods -
+
+- (NSString*) getStoredEmailValue
+{
+    return [self.model getStoredEmailValue];
 }
 
 #pragma mark - Warnings messages -

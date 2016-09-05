@@ -97,7 +97,7 @@
                                     </constraint>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Введите пожалуйста ключевое слово поиска" id="FAs-ru-wJn">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Поиск" id="FAs-ru-wJn">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -4685,7 +4685,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b3J-EE-oxr">
                                 <rect key="frame" x="0.0" y="51" width="600" height="41"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Новый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mU3-4D-ha8">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Новый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mU3-4D-ha8" customClass="OSSecureTextField">
                                         <rect key="frame" x="20" y="0.0" width="525" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="Ec9-WA-PDI"/>
@@ -4766,6 +4766,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <action selector="onShowNewPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="rC7-J6-94J"/>
                                             <action selector="onShowPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="fMs-Ak-IYs"/>
                                         </connections>
                                     </button>
@@ -4859,7 +4860,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AMX-3T-vH2">
                                 <rect key="frame" x="0.0" y="93" width="600" height="41"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Подтверждение пароля" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBi-Lc-pdR">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Подтверждение пароля" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBi-Lc-pdR" customClass="OSSecureTextField">
                                         <rect key="frame" x="20" y="0.0" width="525" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="bpm-5a-vof"/>
@@ -4938,6 +4939,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
+                                            <action selector="onShowConfirmPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="mpN-gj-ZHU"/>
                                             <action selector="onShowPassword:" destination="Zn5-Su-BRm" eventType="touchUpInside" id="a8m-Rw-5vH"/>
                                         </connections>
                                     </button>
@@ -5031,7 +5033,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iQI-ZE-dpa">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Старый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-hF-iXX">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Старый пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iYP-hF-iXX" customClass="OSSecureTextField">
                                         <rect key="frame" x="20" y="0.0" width="525" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="kP7-Ii-Esw"/>

@@ -21,7 +21,7 @@
 		560B89BE1D7C36B500746682 /* TabBarSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89B31D7C36B500746682 /* TabBarSegue.m */; };
 		560B89C11D7C36C000746682 /* UISearchBar+TextFieldControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89BF1D7C36C000746682 /* UISearchBar+TextFieldControl.m */; };
 		560B89C21D7C36C000746682 /* UIView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89C01D7C36C000746682 /* UIView+Utilities.m */; };
-		560B89DB1D7C373200746682 /* SecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89DA1D7C373200746682 /* SecureTextField.m */; };
+		560B89DB1D7C373200746682 /* OSSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89DA1D7C373200746682 /* OSSecureTextField.m */; };
 		560B89E11D7C3C2200746682 /* SystemsInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89E01D7C3C2200746682 /* SystemsInfoViewModel.m */; };
 		560B89E41D7C3C2D00746682 /* SystemsInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560B89E31D7C3C2D00746682 /* SystemsInfoModel.m */; };
 		561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5615332C1D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m */; };
@@ -191,8 +191,8 @@
 		560B89D31D7C36DA00746682 /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
 		560B89D51D7C36DA00746682 /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
 		560B89D61D7C36DA00746682 /* TabBarSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarSegue.h; sourceTree = "<group>"; };
-		560B89DA1D7C373200746682 /* SecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureTextField.m; sourceTree = "<group>"; };
-		560B89DC1D7C37B900746682 /* SecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecureTextField.h; sourceTree = "<group>"; };
+		560B89DA1D7C373200746682 /* OSSecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSSecureTextField.m; sourceTree = "<group>"; };
+		560B89DC1D7C37B900746682 /* OSSecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSSecureTextField.h; sourceTree = "<group>"; };
 		560B89DD1D7C3BB900746682 /* RoleInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoModel.h; sourceTree = "<group>"; };
 		560B89DE1D7C3BB900746682 /* RoleInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleInfoViewModel.h; sourceTree = "<group>"; };
 		560B89E01D7C3C2200746682 /* SystemsInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemsInfoViewModel.m; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 		566A72671D73A5FB004F63D3 /* BaseAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseAPIService.h; sourceTree = "<group>"; };
 		566A72681D73A5FB004F63D3 /* LoginAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginAPIService.h; sourceTree = "<group>"; };
 		566A72691D73A6B2004F63D3 /* UserAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAPIService.m; sourceTree = "<group>"; };
-		568129661D7D9A3100A811B5 /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
 		568129671D7D9A3100A811B5 /* UserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoTableViewCell.m; sourceTree = "<group>"; };
+		568129691D7DBC7600A811B5 /* UserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoTableViewCell.h; sourceTree = "<group>"; };
 		56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OfflineSyncSettings.plist; path = ../res/settings/OfflineSyncSettings.plist; sourceTree = "<group>"; };
 		56E1B9211D6D0A28003E46DA /* ConfigurationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ConfigurationManager.m; path = Managers/ConfigurationManager.m; sourceTree = "<group>"; };
 		56E1B9221D6D0A9F003E46DA /* ProjectsEnumerations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectsEnumerations.h; sourceTree = "<group>"; };
@@ -619,7 +619,7 @@
 		560B89D71D7C371800746682 /* OSSecureTextField */ = {
 			isa = PBXGroup;
 			children = (
-				560B89DA1D7C373200746682 /* SecureTextField.m */,
+				560B89DA1D7C373200746682 /* OSSecureTextField.m */,
 			);
 			path = OSSecureTextField;
 			sourceTree = "<group>";
@@ -627,7 +627,7 @@
 		560B89D81D7C372000746682 /* OSSecureTextField */ = {
 			isa = PBXGroup;
 			children = (
-				560B89DC1D7C37B900746682 /* SecureTextField.h */,
+				560B89DC1D7C37B900746682 /* OSSecureTextField.h */,
 			);
 			path = OSSecureTextField;
 			sourceTree = "<group>";
@@ -1053,6 +1053,7 @@
 		56EAC19B1D7B4E990087B3FF /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				568129691D7DBC7600A811B5 /* UserInfoTableViewCell.h */,
 				56EAC19C1D7B4E990087B3FF /* UserInfoModel.h */,
 				56EAC19D1D7B4E990087B3FF /* UserInfoSegue.h */,
 				56EAC19E1D7B4E990087B3FF /* UserInfoViewController.h */,
@@ -1289,8 +1290,8 @@
 			isa = PBXGroup;
 			children = (
 				56EAC20C1D7B51060087B3FF /* ChangePassViewController.m */,
-				56EAC20D1D7B51060087B3FF /* ChangePasswordModel.m */,
 				56EAC20E1D7B51060087B3FF /* ChangePasswordViewModel.m */,
+				56EAC20D1D7B51060087B3FF /* ChangePasswordModel.m */,
 			);
 			path = "Change Password";
 			sourceTree = "<group>";
@@ -1302,7 +1303,6 @@
 				56EAC2131D7B51060087B3FF /* UserInfoViewModel.m */,
 				56EAC2101D7B51060087B3FF /* UserInfoModel.m */,
 				56EAC2111D7B51060087B3FF /* UserInfoSegue.m */,
-				568129661D7D9A3100A811B5 /* UserInfoTableViewCell.h */,
 				568129671D7D9A3100A811B5 /* UserInfoTableViewCell.m */,
 			);
 			path = Info;
@@ -1822,7 +1822,7 @@
 				56EAC2461D7B51060087B3FF /* AllProjectsModel.m in Sources */,
 				561533451D7A70A100BDEC3E /* ProjectInfo.m in Sources */,
 				56EAC2451D7B51060087B3FF /* OfflineTableViewCell.m in Sources */,
-				560B89DB1D7C373200746682 /* SecureTextField.m in Sources */,
+				560B89DB1D7C373200746682 /* OSSecureTextField.m in Sources */,
 				56E1BA081D6F7677003E46DA /* DataManager+ProjectInfo.m in Sources */,
 				5615334A1D7A70A100BDEC3E /* UserInfo+CoreDataProperties.m in Sources */,
 				56EAC23D1D7B51060087B3FF /* MainMenuModel.m in Sources */,

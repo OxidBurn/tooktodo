@@ -12,5 +12,6 @@
 static NSString* const keychainServiceKey = @"ru.tooktodo";
 static NSString* accessToken              = @"access_token";
 static NSString* const passwordKey        = @"user_password";
+static NSString* const emailKey           = @"user_email";
 
 #endif /* ConstanceKeys_h */

@@ -29,6 +29,8 @@
 
 // methods
 
+- (NSString*) getStoredEmailValue;
+
 - (RACSignal*) emailWarningMessage;
 
 - (RACSignal*) passwordWarningMessage;
