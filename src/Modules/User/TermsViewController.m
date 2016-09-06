@@ -7,6 +7,7 @@
 //
 
 #import "TermsViewController.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface TermsViewController ()
 
@@ -22,9 +23,8 @@
 - (void) loadView
 {
     [super loadView];
-    // Do any additional setup after loading the view.
     
-    [self titleLabel];
+    [self twoLineTitleView];
 }
 
 
@@ -46,29 +46,52 @@
                              completion: nil];
 }
 
+#pragma mark - Internal method -
 
-#pragma mark - Internal methods -
-
-- (UILabel*) titleLabel
+- (UIView*) twoLineTitleView
 {
-    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 14.0f];
+    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
+                                                    size: 14.0f];
     
-    UILabel* label        = [[UILabel alloc] initWithFrame:CGRectMake((self.view.width - 250) / 2, 0, 250, 36)];
-    label.backgroundColor = [UIColor clearColor];
-    label.numberOfLines   = 2;
-    label.font            = customFont;
-    label.textAlignment   = NSTextAlignmentCenter;
-    label.textColor       = [UIColor whiteColor];
-    label.text            = @"ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ";
+    UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor       = [UIColor whiteColor];
+    titleLabel.font            = customFont;
+    titleLabel.textAlignment   = NSTextAlignmentCenter;
+    titleLabel.text            = @"ПОЛЬЗОВАТЕЛЬСКОЕ";
+    [titleLabel sizeToFit];
     
-    [label sizeToFit];
+    UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
+    subTitleLabel.backgroundColor = [UIColor clearColor];
+    subTitleLabel.textColor       = [UIColor whiteColor];
+    subTitleLabel.font            = customFont;
+    subTitleLabel.textAlignment   = NSTextAlignmentCenter;
+    subTitleLabel.text            = @"СОГЛАШЕНИЕ";
+    [subTitleLabel sizeToFit];
     
+    UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
     
+    [twoLineTitleView addSubview: titleLabel];
+    [twoLineTitleView addSubview: subTitleLabel];
     
-    self.navigationItem.titleView = label;
+    float widthDiff = subTitleLabel.frame.size.width - titleLabel.frame.size.width;
     
-    return label;
+    if (widthDiff > 0)
+    {
+        CGRect frame     = titleLabel.frame;
+        frame.origin.x   = widthDiff / 2;
+        titleLabel.frame = CGRectIntegral(frame);
+    }
+    else
+    {
+        CGRect frame        = subTitleLabel.frame;
+        frame.origin.x      = fabsf(widthDiff) / 2;
+        subTitleLabel.frame = CGRectIntegral(frame);
+    }
+    
+    self.navigationItem.titleView = twoLineTitleView;
+    
+    return twoLineTitleView;
 }
 
 @end
