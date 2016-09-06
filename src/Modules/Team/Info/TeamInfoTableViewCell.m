@@ -63,15 +63,15 @@
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
     NSString* teamMemberFirstName = (teamMember.firstName) ? teamMember.firstName : @"";
-    
+
     NSString* teamMemberLastName  = (teamMember.lastName) ? teamMember.lastName : @"";
-    
-    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
+
+    NSString* teamMemberFullName  = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
                                                                          teamMemberLastName];
-    NSString* teamMemberPosition = (teamMember.comment) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
-    
-    NSString* teamMemberCompany  = (teamMember.company) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
-    
+    NSString* teamMemberPosition  = (teamMember.comment) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
+
+    NSString* teamMemberCompany   = (teamMember.company) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
+
     
     [self checkIfPhoneNumberExists: teamMember];
     [self chechIfEmailExists:       teamMember];

@@ -159,6 +159,9 @@
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
+		CF000D051D7D997700D6F282 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF000D041D7D997700D6F282 /* TeamProfileInfoViewModel.m */; };
+		CF000D0A1D7D9A4000D6F282 /* ProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF000D091D7D9A4000D6F282 /* ProfileInfoCell.m */; };
+		CF000D0D1D7DB6C700D6F282 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF000D0C1D7DB6C700D6F282 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -464,6 +467,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF000D031D7D997700D6F282 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoViewModel.h; path = ../../../../src/Modules/Team/Info/TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
+		CF000D041D7D997700D6F282 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
+		CF000D081D7D9A4000D6F282 /* ProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileInfoCell.h; sourceTree = "<group>"; };
+		CF000D091D7D9A4000D6F282 /* ProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileInfoCell.m; path = ../../../../inc/Modules/Team/Info/ProfileInfoCell.m; sourceTree = "<group>"; };
+		CF000D0B1D7DB6C700D6F282 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../../src/Modules/Team/Info/TeamProfileInfoModel.h; sourceTree = "<group>"; };
+		CF000D0C1D7DB6C700D6F282 /* TeamProfileInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoModel.m; sourceTree = "<group>"; };
 		F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeTour.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -995,11 +1004,11 @@
 		56EAC1881D7B4E990087B3FF /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				CF000D071D7D99D800D6F282 /* ProfileInfo */,
 				56EAC1891D7B4E990087B3FF /* TeamInfoModel.h */,
 				56EAC18A1D7B4E990087B3FF /* TeamInfoTableViewCell.h */,
 				56EAC18B1D7B4E990087B3FF /* TeamInfoViewController.h */,
 				56EAC18C1D7B4E990087B3FF /* TeamInfoViewModel.h */,
-				56EAC18D1D7B4E990087B3FF /* TeamProfilesInfoViewController.h */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1240,11 +1249,11 @@
 		56EAC1FC1D7B51060087B3FF /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				CF000D061D7D99BD00D6F282 /* ProfileInfo */,
 				56EAC1FD1D7B51060087B3FF /* TeamInfoModel.m */,
 				56EAC1FE1D7B51060087B3FF /* TeamInfoTableViewCell.m */,
 				56EAC1FF1D7B51060087B3FF /* TeamInfoViewController.m */,
 				56EAC2001D7B51060087B3FF /* TeamInfoViewModel.m */,
-				56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1608,6 +1617,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CF000D061D7D99BD00D6F282 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */,
+				CF000D041D7D997700D6F282 /* TeamProfileInfoViewModel.m */,
+				CF000D0C1D7DB6C700D6F282 /* TeamProfileInfoModel.m */,
+				CF000D091D7D9A4000D6F282 /* ProfileInfoCell.m */,
+			);
+			name = ProfileInfo;
+			sourceTree = "<group>";
+		};
+		CF000D071D7D99D800D6F282 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				56EAC18D1D7B4E990087B3FF /* TeamProfilesInfoViewController.h */,
+				CF000D031D7D997700D6F282 /* TeamProfileInfoViewModel.h */,
+				CF000D081D7D9A4000D6F282 /* ProfileInfoCell.h */,
+				CF000D0B1D7DB6C700D6F282 /* TeamProfileInfoModel.h */,
+			);
+			name = ProfileInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1776,6 +1807,7 @@
 				564DF0B71D7C19BD00067B60 /* AboutProjectSegue.m in Sources */,
 				56EAC24A1D7B51060087B3FF /* ProjectInfoCellModel.m in Sources */,
 				56EAC2601D7B51060087B3FF /* UserInfoModel.m in Sources */,
+				CF000D051D7D997700D6F282 /* TeamProfileInfoViewModel.m in Sources */,
 				564DF09F1D7B92DC00067B60 /* ProjectSystem.m in Sources */,
 				56EAC2651D7B51060087B3FF /* UserNotificationInfoController.m in Sources */,
 				56EAC2531D7B51060087B3FF /* TeamInfoTableViewCell.m in Sources */,
@@ -1804,6 +1836,7 @@
 				56EAC2661D7B51060087B3FF /* UserNotificationModel.m in Sources */,
 				56EAC2691D7B51060087B3FF /* UpdatedUserInfo.m in Sources */,
 				56EAC2371D7B51060087B3FF /* DocumentsViewController.m in Sources */,
+				CF000D0D1D7DB6C700D6F282 /* TeamProfileInfoModel.m in Sources */,
 				59D9BD0E1D586960009DFBA8 /* main.m in Sources */,
 				56EAC09B1D7A80340087B3FF /* TeamService.m in Sources */,
 				59B0BEAC1D6132F80016AE13 /* NSString+APUtils.m in Sources */,
@@ -1827,6 +1860,7 @@
 				56EAC22C1D7B51060087B3FF /* RecoverySuccessViewController.m in Sources */,
 				56EAC24C1D7B51060087B3FF /* StatusMarkerComponent.m in Sources */,
 				561533461D7A70A100BDEC3E /* ProjectRegion+CoreDataProperties.m in Sources */,
+				CF000D0A1D7D9A4000D6F282 /* ProfileInfoCell.m in Sources */,
 				56EAC2571D7B51060087B3FF /* AddContactModel.m in Sources */,
 				5913441E1D5F06060027889F /* KeyChainManager.m in Sources */,
 				56EAC2681D7B51060087B3FF /* TermsViewController.m in Sources */,
