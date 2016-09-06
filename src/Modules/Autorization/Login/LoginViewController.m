@@ -161,7 +161,18 @@
         
         if ( error.code == -1011 )
         {
-            [SVProgressHUD showErrorWithStatus: @"Ошибка авторизации\nПара Логин \\ Пароль, не верна"];
+            UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle: @"Неверный пароль"
+                                                                                message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
+                                                                         preferredStyle: UIAlertControllerStyleAlert];
+            
+            UIAlertAction* action = [UIAlertAction actionWithTitle: @"Попробуйте еще раз"
+                                                             style: UIAlertActionStyleDefault
+                                                           handler: nil];
+            [errorAlert addAction: action];
+            
+            [self presentViewController: errorAlert
+                               animated: YES
+                             completion: nil];
         }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
