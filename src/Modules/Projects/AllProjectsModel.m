@@ -34,7 +34,8 @@
         
         [[[ProjectsService sharedInstance] getAllProjectsList] subscribeNext: ^(NSArray* projectsArray) {
             
-            NSArray* sortedArray = [self applyDefaultSorting: projectsArray];
+            NSArray* sortedArray = [self applyDefaultSorting: projectsArray
+                                                  isAcceding: YES];
             
             [subscriber sendNext: sortedArray];
             
@@ -50,17 +51,25 @@
     return fetchAllProjectsSignal;
 }
 
-- (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
-                              toArray: (NSArray*)               array
+- (NSArray*) applyProjectsSortingType: (AllProjectsSortingType)     type
+                              toArray: (NSArray*)                   array
+                           isAcceding: (ContentAccedingSortingType) isAcceding
 {
-    [[ConfigurationManager sharedInstance] saveSortingProjectsType: type];
+    [[ConfigurationManager sharedInstance] saveSortingProjectsType: type
+                                                  withAccedingType: isAcceding];
     
-    return [self applyDefaultSorting: array];
+    return [self applyDefaultSorting: array
+                          isAcceding: isAcceding];
 }
 
 - (NSUInteger) getProjectsSortedType
 {
     return [[ConfigurationManager sharedInstance] getProjectsSortingType];
+}
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType
+{
+    return [[ConfigurationManager sharedInstance] getAccedingType];
 }
 
 - (NSArray*) getProjectsSortedPopoverContent
@@ -82,9 +91,10 @@
 #pragma mark - Internal methods -
 
 - (NSArray*) applyDefaultSorting: (NSArray*) array
+                      isAcceding: (BOOL)     isAcceding
 {
     NSSortDescriptor* sortingDescriptor = [NSSortDescriptor sortDescriptorWithKey: [self getSortingKey]
-                                                                        ascending: YES];
+                                                                        ascending: isAcceding];
     
     NSArray* sortedArray = [array sortedArrayUsingDescriptors: @[sortingDescriptor]];
 

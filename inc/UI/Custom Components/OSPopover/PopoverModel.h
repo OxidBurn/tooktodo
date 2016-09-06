@@ -6,7 +6,8 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Classes
+#import "ProjectsEnumerations.h"
 
 @protocol PopoverModelDataSource;
 @protocol PopoverModelDelegate;
@@ -34,11 +35,15 @@
 
 - (NSUInteger) selectedItem;
 
+- (ContentAccedingSortingType) getProjectsSortAccedingType;
+
 @end
 
 @protocol PopoverModelDelegate <NSObject>
 
 // methods
-- (void) didSelectItemAtIndex: (NSUInteger) index;
+- (void) didGrowSortingAtIndex: (NSUInteger) index;
+
+- (void) didDiminutionSortingAtIndex: (NSUInteger) index;
 
 @end

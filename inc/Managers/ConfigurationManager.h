@@ -24,8 +24,11 @@
  *
  *  @param type sorting type
  */
-- (void) saveSortingProjectsType: (AllProjectsSortingType) type;
+- (void) saveSortingProjectsType: (AllProjectsSortingType)     type
+                withAccedingType: (ContentAccedingSortingType) acceding;
 
 - (AllProjectsSortingType) getProjectsSortingType;
+
+- (ContentAccedingSortingType) getAccedingType;
 
 @end

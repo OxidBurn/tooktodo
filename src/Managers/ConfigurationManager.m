@@ -89,10 +89,13 @@ static bool isFirstAccess = YES;
 
 #pragma mark - Public mehtods -
 
-- (void) saveSortingProjectsType: (AllProjectsSortingType) type
+- (void) saveSortingProjectsType: (AllProjectsSortingType)     type
+                withAccedingType: (ContentAccedingSortingType) acceding
 {
     [UserDefaults setInteger: type
                       forKey: @"AllProjectsSortingType"];
+    [UserDefaults setInteger: acceding
+                      forKey: @"AllProjectsSortingAccedingType"];
     
     [UserDefaults synchronize];
 }
@@ -100,6 +103,11 @@ static bool isFirstAccess = YES;
 - (AllProjectsSortingType) getProjectsSortingType
 {
     return [UserDefaults integerForKey: @"AllProjectsSortingType"];
+}
+
+- (ContentAccedingSortingType) getAccedingType
+{
+    return [UserDefaults integerForKey: @"AllProjectsSortingAccedingType"];
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "AllProjectsModel.h"
 #import "ProjectInfo.h"
 #import "ProjectInfoCell.h"
+#import "ProjectsEnumerations.h"
 
 // Extensions
 #import "UISearchBar+TextFieldControl.h"
@@ -78,10 +79,12 @@ static CGFloat sectionHeaderHeight = 30;
     }];
 }
 
-- (void) applySortingForProjecstList: (AllProjectsSortingType) type
+- (void) applySortingForProjecstList: (AllProjectsSortingType)     type
+                          isAcceding: (ContentAccedingSortingType) isAcceding
 {
     self.projectsContent = [self.model applyProjectsSortingType: type
-                                                        toArray: self.projectsContent];
+                                                        toArray: self.projectsContent
+                                                     isAcceding: isAcceding];
 }
 
 #pragma mark - Table view data source methods -
@@ -182,10 +185,22 @@ static CGFloat sectionHeaderHeight = 30;
 
 #pragma mark - Sorting popover delegate -
 
-- (void) didSelectItemAtIndex: (NSUInteger) index
+- (void) didGrowSortingAtIndex: (NSUInteger) index
 {
     // Apply sorting type to the projects table content
-    [self applySortingForProjecstList: index];
+    [self applySortingForProjecstList: index
+                           isAcceding: GrowsSortingType];
+    
+    // Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
+}
+
+- (void) didDiminutionSortingAtIndex: (NSUInteger) index
+{
+    // Apply sorting type to the projects table content
+    [self applySortingForProjecstList: index
+                           isAcceding: DiminutionSortingType];
     
     // Load new data for table
     if ( self.reloadTable )
@@ -252,6 +267,11 @@ static CGFloat sectionHeaderHeight = 30;
 - (NSUInteger) selectedItem
 {
     return [self.model getProjectsSortedType];
+}
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType
+{
+    return [self.model getProjectsSortAccedingType];
 }
 
 - (NSArray*) getPopoverContent

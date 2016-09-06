@@ -22,7 +22,7 @@
 
 @implementation PopoverCell
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
+- (instancetype) initWithCoder: (NSCoder*) aDecoder
 {
     if ( self = [super initWithCoder: aDecoder] )
     {
@@ -80,7 +80,14 @@
         self.optionRowLabel.font = [UIFont fontWithName: @"SFUIText-Medium"
                                                    size: 14.0f];
         
-        self.optionRowLabel.text = [self.defaultTitleText stringByAppendingString: @" ↓"];
+        if ( self.sortType == DiminutionSortingType )
+        {
+            self.optionRowLabel.text = [self.defaultTitleText stringByAppendingString: @" ↑"];
+        }
+        else
+        {
+            self.optionRowLabel.text = [self.defaultTitleText stringByAppendingString: @" ↓"];
+        }
     }
     else
     {

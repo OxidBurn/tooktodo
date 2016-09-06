@@ -20,10 +20,13 @@
 
 - (RACSignal*) getProjectsContent;
 
-- (NSArray*) applyProjectsSortingType: (AllProjectsSortingType) type
-                              toArray: (NSArray*)               array;
+- (NSArray*) applyProjectsSortingType: (AllProjectsSortingType)     type
+                              toArray: (NSArray*)                   array
+                           isAcceding: (ContentAccedingSortingType) isAcceding;
 
 - (NSUInteger) getProjectsSortedType;
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType;
 
 - (NSArray*) getProjectsSortedPopoverContent;
 

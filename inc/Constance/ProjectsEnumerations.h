@@ -11,10 +11,17 @@
 
 typedef NS_ENUM(NSUInteger, AllProjectsSortingType)
 {
-    SortingByNameType,
     SortingByLastVisitingType,
+    SortingByNameType,
     SortingByAdressType,
     SortingByCreationDateType,
 };
+
+typedef NS_ENUM(NSUInteger, ContentAccedingSortingType)
+{
+    GrowsSortingType      = 1,
+    DiminutionSortingType = 0,
+};
+
 
 #endif /* ProjectsEnumerations_h */

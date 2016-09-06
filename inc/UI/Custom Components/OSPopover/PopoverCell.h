@@ -6,14 +6,14 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-
+// Classes
+#import "ProjectsEnumerations.h"
 
 @interface PopoverCell : UITableViewCell 
 
 //properties
 
+@property (assign, nonatomic) ContentAccedingSortingType sortType;
 
 //methods
 - (void) fillCellWithOptionString: (NSString*) option;

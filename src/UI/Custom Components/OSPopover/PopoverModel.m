@@ -77,16 +77,50 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
    willDisplayCell: (UITableViewCell*) cell
  forRowAtIndexPath: (NSIndexPath*)     indexPath
 {
+    PopoverCell* popCell = (PopoverCell*)cell;
+    
     if ( self.selectedPopoverItem == indexPath.row )
-        cell.selected = YES;
+    {
+        popCell.sortType = [self.dataSource getProjectsSortAccedingType];
+        popCell.selected = YES;
+    }
 }
 
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
-{    
-    if ( [self.delegate respondsToSelector: @selector(didSelectItemAtIndex:)])
+{
+    PopoverCell* selectedCell = (PopoverCell*)[tableView cellForRowAtIndexPath: indexPath];
+    
+    switch (selectedCell.sortType)
     {
-        [self.delegate didSelectItemAtIndex: indexPath.row];
+        case GrowsSortingType:
+        {
+            selectedCell.sortType = DiminutionSortingType;
+            break;
+        }
+        case DiminutionSortingType:
+        {
+            selectedCell.sortType = GrowsSortingType;
+            break;
+        }
+    }
+    
+    if ( [self.delegate respondsToSelector: @selector(didGrowSortingAtIndex:)] &&
+         [self.delegate respondsToSelector: @selector(didDiminutionSortingAtIndex:)])
+    {
+        switch (selectedCell.sortType)
+        {
+            case GrowsSortingType:
+            {
+                [self.delegate didGrowSortingAtIndex: indexPath.row];
+                break;
+            }
+            case DiminutionSortingType:
+            {
+                [self.delegate didDiminutionSortingAtIndex: indexPath.row];
+                break;
+            }
+        }
     }
     
     // dismiss popover
