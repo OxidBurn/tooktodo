@@ -148,6 +148,7 @@
 		591344231D5F68D00027889F /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 591344221D5F68D00027889F /* NSDate+Helper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 591344251D5F6F880027889F /* ProjectsScreen.storyboard */; };
 		592517DC1D7725A90078B584 /* TaskByProjectScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */; };
+		59575DC01D7F0ED600A28227 /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -443,6 +444,8 @@
 		591344241D5F68D60027889F /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		591344251D5F6F880027889F /* ProjectsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProjectsScreen.storyboard; sourceTree = "<group>"; };
 		592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskByProjectScreen.storyboard; sourceTree = "<group>"; };
+		59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoCell.h; sourceTree = "<group>"; };
+		59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoCell.m; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -1244,11 +1247,13 @@
 		56EAC1FC1D7B51060087B3FF /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				56EAC1FD1D7B51060087B3FF /* TeamInfoModel.m */,
+				56EAC1FE1D7B51060087B3FF /* TeamInfoTableViewCell.m */,
 				56EAC1FF1D7B51060087B3FF /* TeamInfoViewController.m */,
 				56EAC2001D7B51060087B3FF /* TeamInfoViewModel.m */,
-				56EAC1FD1D7B51060087B3FF /* TeamInfoModel.m */,
 				56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */,
-				56EAC1FE1D7B51060087B3FF /* TeamInfoTableViewCell.m */,
+				59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */,
+				59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1804,6 +1809,7 @@
 				5615334C1D7A70A100BDEC3E /* UserNotifications+CoreDataProperties.m in Sources */,
 				561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */,
 				566A726A1D73A6B2004F63D3 /* UserAPIService.m in Sources */,
+				59575DC01D7F0ED600A28227 /* ContactInfoCell.m in Sources */,
 				56EAC25D1D7B51060087B3FF /* ChangePassViewController.m in Sources */,
 				568129681D7D9A3100A811B5 /* UserInfoTableViewCell.m in Sources */,
 				56EAC2561D7B51060087B3FF /* TeamProfilesInfoViewController.m in Sources */,
