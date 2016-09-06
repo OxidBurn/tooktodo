@@ -47,6 +47,21 @@
     
     [parent addSubview: child];
     
+    NSLayoutConstraint* xPositionConstraint = [NSLayoutConstraint constraintWithItem: child
+                                                                           attribute: NSLayoutAttributeLeft
+                                                                           relatedBy: NSLayoutRelationEqual
+                                                                              toItem: parent
+                                                                           attribute: NSLayoutAttributeLeft
+                                                                          multiplier: 1.0f
+                                                                            constant: 0.0f];
+    NSLayoutConstraint* yPositionConstraint = [NSLayoutConstraint constraintWithItem: child
+                                                                           attribute: NSLayoutAttributeTop
+                                                                           relatedBy: NSLayoutRelationEqual
+                                                                              toItem: parent
+                                                                           attribute: NSLayoutAttributeTop
+                                                                          multiplier: 1.0f
+                                                                            constant: 0.0f];
+    
     NSLayoutConstraint* heightConstraint = [NSLayoutConstraint constraintWithItem: child
                                                                         attribute: NSLayoutAttributeHeight
                                                                         relatedBy: NSLayoutRelationEqual
@@ -63,7 +78,9 @@
                                                                         constant: 0];
     
     [parent addConstraints: @[heightConstraint,
-                              widthConstraint]];
+                              widthConstraint,
+                              xPositionConstraint,
+                              yPositionConstraint]];
 }
 
 - (void) removeChildViewControllerFromParent: (MainTabBarController*) parent
