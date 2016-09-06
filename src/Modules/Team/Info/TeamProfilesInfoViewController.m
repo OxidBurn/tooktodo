@@ -21,20 +21,20 @@
 #import "Utils.h"
 #import "RolesViewController.h"
 
-@interface TeamProfilesInfoViewController ()
+@interface TeamProfilesInfoViewController () <TeamProfileViewModelDelegate>
 
 // Properties
 @property (nonatomic, strong) TeamProfileInfoViewModel* viewModel;
 
 // Outlets
-@property (weak, nonatomic) IBOutlet UITableView *profileInfoTableView;
+@property (weak, nonatomic) IBOutlet UITableView* profileInfoTableView;
 
-@property (weak, nonatomic) IBOutlet AvatarImageView *profileAvatarImageView;
+@property (weak, nonatomic) IBOutlet AvatarImageView* profileAvatarImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *profileFullNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel* profileFullNameLabel;
 
 // Methods
-- (IBAction)onDismiss:(UIBarButtonItem *)sender;
+- (IBAction) onDismiss: (UIBarButtonItem*) sender;
 
 
 @end
@@ -50,6 +50,16 @@
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
                                                withSubTitle: @"Квартира на Ходынке"];
+    
+    self.profileInfoTableView.dataSource = self.viewModel;
+    self.profileInfoTableView.delegate   = self.viewModel;
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    [self updateUserInfo];
 }
 
 - (void) viewDidLoad
@@ -64,6 +74,23 @@
     [super didReceiveMemoryWarning];
 }
 
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    [super prepareForSegue: segue
+                    sender: sender];
+    
+    
+    if ([segue.identifier isEqualToString: @"ShowRolesForUser"])
+    {
+        RolesViewController* controller = segue.destinationViewController;
+    }
+    
+}
+
 #pragma mark - Properties -
 
 - (TeamProfileInfoViewModel*) viewModel
@@ -71,6 +98,8 @@
     if (_viewModel == nil)
     {
         _viewModel = [[TeamProfileInfoViewModel alloc] init];
+        
+        _viewModel.delegate = self;
     }
     
     return _viewModel;
@@ -97,14 +126,46 @@
         
         @strongify(self)
         
-//        self.nameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
-//        
-//        self.avatarImgView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
-//                                                                      stringByAppendingString: teamMember.avatarPath]];
-//        
-//        [self.profileTableView reloadData];
+        self.profileFullNameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
+        
+        self.profileAvatarImageView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
+                                                                               stringByAppendingString: teamMember.avatarPath]];
+        
+        [self.profileInfoTableView reloadData];
         
     }];
+}
+
+
+#pragma mark - TeamProfileViewModelDelegate Methods -
+
+- (void) showControllerWithIdentifier: (NSString*) segueID
+{
+    [self performSegueWithIdentifier: segueID
+                              sender: self];
+}
+
+- (void) showDesignationAlert: (NSString*) userName
+{
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle: @"Назначить администратором"
+                                                                             message: [NSString stringWithFormat:@"Изменить данные для пользователя %@", userName]
+                                                                      preferredStyle: UIAlertControllerStyleAlert];
+    
+    [alertController addAction: [UIAlertAction actionWithTitle: @"Назначить"
+                                                         style: UIAlertActionStyleDefault
+                                                       handler: ^(UIAlertAction * _Nonnull action) {
+                                                           NSLog(@"Пользователь %@ назначен администратором", userName);
+                                                       }]];
+    
+    [alertController addAction: [UIAlertAction actionWithTitle: @"Отменить"
+                                                         style: UIAlertActionStyleCancel
+                                                       handler: ^(UIAlertAction * _Nonnull action) {
+                                                           
+                                                       }]];
+    
+    [self presentViewController: alertController
+                       animated: YES
+                     completion: nil ];
 }
 
 @end

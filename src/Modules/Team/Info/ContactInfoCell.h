@@ -12,7 +12,7 @@
 
 // methods
 
-- (void) fillCellWithContantInfo: (NSString*)    contactValue
+- (void) fillCellWithContactInfo: (NSString*)    contactValue
                     withBtnImage: (UIImage*)     btnImage
                     forIndexPath: (NSIndexPath*) indexPath;
 @end

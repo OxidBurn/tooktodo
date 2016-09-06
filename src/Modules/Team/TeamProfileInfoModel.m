@@ -21,10 +21,24 @@
 
 @property (nonatomic, strong) NSArray* contactsContent;
 
+@property (strong, nonatomic) NSArray* roleCellsContent;
+
 @end
 
 
 @implementation TeamProfileInfoModel
+
+#pragma mark - Properties -
+
+- (NSArray*) roleCellsContent
+{
+    if ( _roleCellsContent == nil )
+    {
+        _roleCellsContent = @[@"Роль в проекте", @"Права доступа"];
+    }
+    
+    return _roleCellsContent;
+}
 
 - (NSArray*) contactsContent
 {
@@ -59,7 +73,7 @@
             
             @strongify(self)
             
-            // self.memberInfo = [DataManagerShared getSelectedItem];
+             self.memberInfo = [DataManagerShared getSelectedItem];
             
             [subscriber sendNext: self.memberInfo];
             [subscriber sendCompleted];
@@ -76,7 +90,7 @@
 {
     return self.contactsContent.count;
 }
-//
+
 - (NSString*) getEmail
 {
     return self.memberInfo.email ? self.memberInfo.email : @"";
@@ -128,7 +142,6 @@
                                @"Btn"   : [UIImage imageNamed:@"Mail"]};
         
         if (![dic[@"Contact"] isEqualToString: @""])
-            //            [tmp removeObject: dic];
         {
             [tmp addObject: dic];
         }
@@ -136,13 +149,6 @@
         
         
     };
-    
-    //    [tmp enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    //        if ([obj[@"Contact"] isEqualToString: @""])
-    //        {
-    //            [tmp removeObjectAtIndex: idx];
-    //        }
-    //    }];
     
     return tmp.copy;
     
@@ -170,5 +176,10 @@
     NSString* action  = dic[@"Action"];
     
     NSLog(@"%@ %@", action, contact);
+}
+
+- (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath
+{
+    return self.roleCellsContent[indexPath.row];
 }
 @end

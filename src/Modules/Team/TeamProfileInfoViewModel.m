@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, CellType)
     PermissionType,
 };
 
-static NSString* SegueID = @"ShowRolesForUser";
+static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 @interface TeamProfileInfoViewModel()
 
@@ -73,9 +73,11 @@ static NSString* SegueID = @"ShowRolesForUser";
     {
         ContactInfoCell* cell = (ContactInfoCell*)[tableView dequeueReusableCellWithIdentifier: @"UserContactCellID"];
         
-        [cell fillCellWithContantInfo: [self.model getContactValueForIndexPath: indexPath]
+        [cell fillCellWithContactInfo: [self.model getContactValueForIndexPath: indexPath]
                          withBtnImage: [self.model getBtnImageForIndexPath: indexPath]
                          forIndexPath: indexPath];
+        
+        cell.tag = indexPath.row;
         
         return cell;
     }
@@ -85,7 +87,9 @@ static NSString* SegueID = @"ShowRolesForUser";
         
         cell.tag = indexPath.row;
         
-        cell.textLabel.text  = [self labelsArray][indexPath.row];
+        
+        
+        cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
         
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
@@ -106,7 +110,7 @@ static NSString* SegueID = @"ShowRolesForUser";
     }
     
     else
-        return [[self labelsArray] count];
+        return 2;
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -136,7 +140,7 @@ static NSString* SegueID = @"ShowRolesForUser";
     {
         if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
         {
-            [self.delegate showControllerWithIdentifier: SegueID];
+            [self.delegate showControllerWithIdentifier: RoleControllerSegueID];
         }
     }
     
@@ -150,19 +154,5 @@ static NSString* SegueID = @"ShowRolesForUser";
         }
     
 }
-
-#pragma mark - RolesControllerDelegate methods-
-
-- (void) didSelectRole: (ProjectRoles*) value
-{
-    // self.cell.detailTextLabel.text = value.title;
-}
-
-
-- (NSArray*) labelsArray
-{
-    return @[@"Роль в проекте", @"Права доступа"];
-}
-
 
 @end

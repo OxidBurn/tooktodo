@@ -36,4 +36,6 @@
 
 - (void) performActionForIndex: (NSUInteger) index;
 
+- (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
+
 @end
