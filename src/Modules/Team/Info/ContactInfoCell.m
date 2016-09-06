@@ -8,32 +8,58 @@
 
 #import "ContactInfoCell.h"
 
+// Classes
+#import "TeamProfileInfoViewModel.h"
+
 @interface ContactInfoCell ()
 
-//Properties
+// Properties
+@property (strong, nonatomic) TeamProfileInfoViewModel* viewModel;
 
-@property (weak, nonatomic) IBOutlet UILabel *contactInfoLabel;
-@property (weak, nonatomic) IBOutlet UIButton *contactActionBtn;
+// Outlets
+@property (weak, nonatomic) IBOutlet UILabel* contactInfoLabel;
+@property (weak, nonatomic) IBOutlet UIButton* contactActionBtn;
 
 
-//Method
-- (IBAction)onContactActionBtn:(UIButton *)sender;
+// Methods
+- (IBAction) onContactActionBtn: (UIButton*) sender;
 
 @end
 
 @implementation ContactInfoCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+#pragma mark - Properties -
+
+- (TeamProfileInfoViewModel *)viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [TeamProfileInfoViewModel new];
+    }
+    
+    return _viewModel;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+#pragma mark - Actions -
 
-    // Configure the view for the selected state
+- (IBAction) onContactActionBtn: (UIButton*) sender
+{
+    [self.viewModel performActionForIndex: sender.tag];
 }
 
-- (IBAction)onContactActionBtn:(UIButton *)sender {
+#pragma mark - Public -
+
+
+- (void) fillCellWithContactInfo: (NSString*)      contactValue
+                    withBtnImage: (UIImage*)       btnImage
+                    forIndexPath: (NSIndexPath*)   indexPath
+{
+    self.contactInfoLabel.text = contactValue;
+    
+    [self.contactActionBtn setImage: btnImage
+                           forState: UIControlStateNormal];
+    
+    self.contactActionBtn.tag = indexPath.row;
 }
+
 @end

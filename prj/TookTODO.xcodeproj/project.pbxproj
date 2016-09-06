@@ -161,6 +161,8 @@
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
+		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
+		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -407,7 +409,7 @@
 		56EAC1FE1D7B51060087B3FF /* TeamInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoTableViewCell.m; sourceTree = "<group>"; };
 		56EAC1FF1D7B51060087B3FF /* TeamInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewController.m; sourceTree = "<group>"; };
 		56EAC2001D7B51060087B3FF /* TeamInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoViewModel.m; sourceTree = "<group>"; };
-		56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfilesInfoViewController.m; sourceTree = "<group>"; };
+		56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamProfilesInfoViewController.m; path = Info/TeamProfilesInfoViewController.m; sourceTree = "<group>"; };
 		56EAC2031D7B51060087B3FF /* AddContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactModel.m; sourceTree = "<group>"; };
 		56EAC2041D7B51060087B3FF /* AddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactViewController.m; sourceTree = "<group>"; };
 		56EAC2051D7B51060087B3FF /* AddContactViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactViewModel.m; sourceTree = "<group>"; };
@@ -444,8 +446,8 @@
 		591344241D5F68D60027889F /* NSDate+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helper.h"; sourceTree = "<group>"; };
 		591344251D5F6F880027889F /* ProjectsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProjectsScreen.storyboard; sourceTree = "<group>"; };
 		592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskByProjectScreen.storyboard; sourceTree = "<group>"; };
-		59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoCell.h; sourceTree = "<group>"; };
-		59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoCell.m; sourceTree = "<group>"; };
+		59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoCell.h; path = Info/ContactInfoCell.h; sourceTree = "<group>"; };
+		59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoCell.m; path = Info/ContactInfoCell.m; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -470,6 +472,10 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
+		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
+		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamProfileInfoModel.h; sourceTree = "<group>"; };
+		F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoModel.m; sourceTree = "<group>"; };
 		F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeTour.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1237,6 +1243,7 @@
 		56EAC1FB1D7B51060087B3FF /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				F781BEE91D7F118700F63962 /* TeamProfileInfo */,
 				56EAC1FC1D7B51060087B3FF /* Info */,
 				56EAC2021D7B51060087B3FF /* Invite */,
 				56EAC2071D7B51060087B3FF /* Role */,
@@ -1251,9 +1258,6 @@
 				56EAC1FE1D7B51060087B3FF /* TeamInfoTableViewCell.m */,
 				56EAC1FF1D7B51060087B3FF /* TeamInfoViewController.m */,
 				56EAC2001D7B51060087B3FF /* TeamInfoViewModel.m */,
-				56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */,
-				59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */,
-				59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1618,6 +1622,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F781BEE91D7F118700F63962 /* TeamProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				56EAC2011D7B51060087B3FF /* TeamProfilesInfoViewController.m */,
+				F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */,
+				F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */,
+				F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */,
+				F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */,
+				59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */,
+				59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */,
+			);
+			name = TeamProfileInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1828,6 +1846,7 @@
 				56EAC2461D7B51060087B3FF /* AllProjectsModel.m in Sources */,
 				561533451D7A70A100BDEC3E /* ProjectInfo.m in Sources */,
 				56EAC2451D7B51060087B3FF /* OfflineTableViewCell.m in Sources */,
+				F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */,
 				560B89DB1D7C373200746682 /* OSSecureTextField.m in Sources */,
 				56E1BA081D6F7677003E46DA /* DataManager+ProjectInfo.m in Sources */,
 				5615334A1D7A70A100BDEC3E /* UserInfo+CoreDataProperties.m in Sources */,
@@ -1854,6 +1873,7 @@
 				56EAC22A1D7B51060087B3FF /* LoginViewModel.m in Sources */,
 				5615334D1D7A70A100BDEC3E /* UserNotifications.m in Sources */,
 				591344231D5F68D00027889F /* NSDate+Helper.m in Sources */,
+				F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */,
 				564DF0CA1D7C1A4000067B60 /* RoleInfoModel.m in Sources */,
 				561533421D7A70A100BDEC3E /* ProjectCountry+CoreDataProperties.m in Sources */,
 				56EAC25A1D7B51060087B3FF /* InviteInfo.m in Sources */,

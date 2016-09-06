@@ -10,4 +10,9 @@
 
 @interface ContactInfoCell : UITableViewCell
 
+// methods
+
+- (void) fillCellWithContantInfo: (NSString*)    contactValue
+                    withBtnImage: (UIImage*)     btnImage
+                    forIndexPath: (NSIndexPath*) indexPath;
 @end
