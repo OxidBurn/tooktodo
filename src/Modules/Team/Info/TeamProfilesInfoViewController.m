@@ -26,6 +26,13 @@
 // Properties
 @property (nonatomic, strong) TeamProfileInfoViewModel* viewModel;
 
+// Outlets
+@property (weak, nonatomic) IBOutlet UITableView *profileInfoTableView;
+
+@property (weak, nonatomic) IBOutlet AvatarImageView *profileAvatarImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *profileFullNameLabel;
+
 // Methods
 - (IBAction)onDismiss:(UIBarButtonItem *)sender;
 
