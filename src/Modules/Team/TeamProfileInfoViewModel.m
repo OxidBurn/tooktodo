@@ -26,11 +26,13 @@ typedef NS_ENUM(NSUInteger, CellType)
 
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
-@interface TeamProfileInfoViewModel()
+@interface TeamProfileInfoViewModel() 
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
 
 @property (nonatomic, strong) TeamMember* memberInfo;
+
+@property (nonatomic, strong) UITableViewCell* cell;
 
 @end
 
@@ -83,21 +85,17 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     }
     else
     {
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
+        self.cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
         
-        cell.tag = indexPath.row;
-        
-        
-        
-        cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
+        self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
         
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
-        cell.detailTextLabel.textColor = [UIColor blackColor];
-        cell.detailTextLabel.font = customFont;
+        self.cell.detailTextLabel.textColor = [UIColor blackColor];
+        self.cell.detailTextLabel.font = customFont;
         
-        return cell;
+        return self.cell;
     }
 }
 
@@ -135,24 +133,39 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 - (void)        tableView: (UITableView*) tableView
   didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView cellForRowAtIndexPath: indexPath];
-    if (cell.tag == RoleType)
-    {
-        if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
-        {
-            [self.delegate showControllerWithIdentifier: RoleControllerSegueID];
-        }
-    }
+    self.cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    else
-        if (cell.tag == PermissionType)
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    if (indexPath.section == 1)
+    {
+        self.cell.tag = indexPath.row;
+        if (self.cell.tag == RoleType)
         {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:)])
+            if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
             {
-                [self.delegate showDesignationAlert: [self.model getMemberName]];
+                [self.delegate showControllerWithIdentifier: RoleControllerSegueID];
             }
         }
+        
+        else
+            if (self.cell.tag == PermissionType)
+            {
+                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:)])
+                {
+                    [self.delegate showDesignationAlert: [self.model getMemberName]];
+                }
+            }
+    }
     
 }
 
+
+#pragma mark - RolesViewControllerDelegate methods -
+
+- (void) didSelectRole: (ProjectRoles*) value
+{
+    self.cell.detailTextLabel.text = value.title;
+}
 @end

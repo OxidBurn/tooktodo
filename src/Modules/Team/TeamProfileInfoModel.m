@@ -168,7 +168,7 @@
     return temp[@"Btn"];
 }
 
-- (void)performActionForIndex:(NSUInteger)index
+- (void) performActionForIndex: (NSUInteger)index
 {
     NSDictionary* dic = self.contactsContent[index];
     
