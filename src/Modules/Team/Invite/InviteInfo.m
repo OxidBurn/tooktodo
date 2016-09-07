@@ -8,6 +8,38 @@
 
 #import "InviteInfo.h"
 
+@interface InviteInfo()
+
+// properties
+
+
+// methods
+
+- (void) setupDefaults;
+
+@end
+
 @implementation InviteInfo
+
+
+#pragma mark - Initialization -
+
+- (instancetype)init
+{
+    if ( self = [super init] )
+    {
+        [self setupDefaults];
+    }
+    
+    return self;
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) setupDefaults
+{
+    self.projectId = @5;
+}
 
 @end
