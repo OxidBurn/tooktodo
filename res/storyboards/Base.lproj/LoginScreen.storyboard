@@ -41,7 +41,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                                 </variation>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="QPs-cJ-EJN" appends="YES" id="VS5-P6-4Jb"/>
+                                    <outletCollection property="gestureRecognizers" destination="j9L-CD-oQD" appends="YES" id="J8v-ij-sKJ"/>
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eja-8Z-YSM">
@@ -428,6 +428,11 @@
                         <action selector="onClosedKeyboardGesture:" destination="BYZ-38-t0r" id="SdQ-Vl-UYg"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="j9L-CD-oQD">
+                    <connections>
+                        <action selector="onClosedKeyboardGesture:" destination="BYZ-38-t0r" id="goG-1W-qvX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1142" y="306"/>
         </scene>
@@ -443,16 +448,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-QN-PHW">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-QN-PHW">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
-                                <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="800"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
-                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="I0h-pW-p4v" appends="YES" id="D4y-29-vea"/>
                                 </connections>
@@ -516,7 +515,7 @@
                                                 <include reference="idu-tm-slB"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="20" y="261" width="360" height="50"/>
                                         </variation>
                                     </textField>
@@ -604,7 +603,7 @@
                                         <include reference="e0Y-gx-nli"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" fixedFrame="YES">
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="20" y="326" width="360" height="50"/>
                                 </variation>
                             </button>
@@ -627,6 +626,9 @@
                                         <include reference="gLG-QA-CfS"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="p75-Rd-HMe" appends="YES" id="she-dv-YpR"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -638,7 +640,10 @@
                             </constraint>
                             <constraint firstAttribute="trailing" secondItem="97B-WF-2Zq" secondAttribute="trailing" constant="20" id="Fa4-qP-Ael"/>
                             <constraint firstAttribute="trailing" secondItem="7Op-8z-HHt" secondAttribute="trailing" constant="20" id="Lrx-4x-guw"/>
+                            <constraint firstItem="CnK-QN-PHW" firstAttribute="top" secondItem="M5b-VM-iww" secondAttribute="top" id="Qog-OD-xv0"/>
                             <constraint firstItem="uSP-tP-3hW" firstAttribute="top" secondItem="M5b-VM-iww" secondAttribute="top" constant="71" id="SCK-b6-hQR"/>
+                            <constraint firstItem="CnK-QN-PHW" firstAttribute="width" secondItem="M5b-VM-iww" secondAttribute="width" id="TL7-al-jMa"/>
+                            <constraint firstItem="CnK-QN-PHW" firstAttribute="height" secondItem="M5b-VM-iww" secondAttribute="height" id="Tbh-Ck-Fst"/>
                             <constraint firstItem="jeo-ad-G8u" firstAttribute="top" secondItem="M5b-VM-iww" secondAttribute="top" constant="4" id="ZWE-bw-h4G">
                                 <variation key="heightClass=regular-widthClass=compact" constant="12"/>
                             </constraint>
@@ -646,6 +651,7 @@
                             <constraint firstItem="NWl-C9-5cy" firstAttribute="leading" secondItem="M5b-VM-iww" secondAttribute="leading" constant="20" id="gJ3-01-jFo"/>
                             <constraint firstAttribute="trailing" secondItem="NWl-C9-5cy" secondAttribute="trailing" constant="20" id="iQ8-18-1lE"/>
                             <constraint firstItem="97B-WF-2Zq" firstAttribute="leading" secondItem="M5b-VM-iww" secondAttribute="leading" constant="20" id="kqS-JO-lhO"/>
+                            <constraint firstItem="CnK-QN-PHW" firstAttribute="leading" secondItem="M5b-VM-iww" secondAttribute="leading" id="s3c-o7-dim"/>
                             <constraint firstItem="NWl-C9-5cy" firstAttribute="top" secondItem="7Op-8z-HHt" secondAttribute="bottom" constant="10" id="soR-yb-gXO"/>
                             <constraint firstItem="FuH-EQ-APQ" firstAttribute="top" secondItem="CBq-EP-TMP" secondAttribute="bottom" constant="28" id="w34-ae-vG4"/>
                             <constraint firstItem="7Op-8z-HHt" firstAttribute="top" secondItem="97B-WF-2Zq" secondAttribute="bottom" id="wdh-qg-BPA"/>
@@ -655,6 +661,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="Qog-OD-xv0"/>
+                                <exclude reference="TL7-al-jMa"/>
+                                <exclude reference="Tbh-Ck-Fst"/>
+                                <exclude reference="s3c-o7-dim"/>
                                 <exclude reference="2YR-Bf-Ji2"/>
                                 <exclude reference="3Ga-e2-Vwv"/>
                                 <exclude reference="ZWE-bw-h4G"/>
@@ -676,6 +686,10 @@
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
+                                <include reference="Qog-OD-xv0"/>
+                                <include reference="TL7-al-jMa"/>
+                                <include reference="Tbh-Ck-Fst"/>
+                                <include reference="s3c-o7-dim"/>
                                 <include reference="2YR-Bf-Ji2"/>
                                 <include reference="3Ga-e2-Vwv"/>
                                 <include reference="SCK-b6-hQR"/>
@@ -716,6 +730,11 @@
                 <tapGestureRecognizer cancelsTouchesInView="NO" id="I0h-pW-p4v">
                     <connections>
                         <action selector="onHideKeyboard:" destination="2VD-ty-wfS" id="kx1-Ss-GrO"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="p75-Rd-HMe">
+                    <connections>
+                        <action selector="onHideKeyboard:" destination="2VD-ty-wfS" id="eo1-fN-EiU"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

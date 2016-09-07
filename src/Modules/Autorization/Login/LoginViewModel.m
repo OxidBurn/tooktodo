@@ -45,7 +45,9 @@
 
 - (NSString*) getStoredEmailValue
 {
-    return [self.model getStoredEmailValue];
+    self.emailValue = [self.model getStoredEmailValue];
+    
+    return self.emailValue;
 }
 
 #pragma mark - Warnings messages -

@@ -39,8 +39,7 @@
 
 #pragma mark - Actions -
 
-
-- (IBAction) onDismiss: (UIButton*) sender
+- (IBAction) onDismiss: (UIBarButtonItem*) sender
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
