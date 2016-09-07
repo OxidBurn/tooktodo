@@ -12,7 +12,7 @@
 
 @protocol TeamProfileViewModelDelegate;
 
-@interface TeamProfileInfoViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface TeamProfileInfoViewModel : NSObject <RolesViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) id<TeamProfileViewModelDelegate> delegate;
 

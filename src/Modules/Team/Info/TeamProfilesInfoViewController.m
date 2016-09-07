@@ -84,9 +84,11 @@
                     sender: sender];
     
     
-    if ([segue.identifier isEqualToString: @"ShowRolesForUser"])
+    if ([segue.identifier isEqualToString: @"ShowRolesControllerID"])
     {
         RolesViewController* controller = segue.destinationViewController;
+        
+        [controller setRolesViewControllerDelegate: self.viewModel];
     }
     
 }
