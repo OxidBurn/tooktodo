@@ -21,7 +21,7 @@
 
 @protocol OSAlertDesignateAdminControllerDelegate <NSObject>
 
-- (void) performAction;
+- (void) performActionForButtonTag: (NSUInteger) btnTag;
 
 @end
 

@@ -28,6 +28,12 @@ typedef NS_ENUM(NSUInteger, CellType)
     PermissionType,
 };
 
+typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
+{
+    Cancel,
+    Ready,
+};
+
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
@@ -198,8 +204,14 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 #pragma mark - DesignateAdminControllerDelegate  methods-
 
-- (void) performAction
+- (void) performActionForButtonTag: (NSUInteger) btnTag
 {
-    NSLog(@"Action performed");
+    if (btnTag == Cancel)
+    {
+        NSLog(@"Action cancel performed");
+    }
+    
+    else
+        NSLog(@"Action ready performed");
 }
 @end

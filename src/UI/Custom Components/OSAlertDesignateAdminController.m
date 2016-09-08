@@ -79,12 +79,12 @@
 
 - (IBAction) onCancel: (UIButton*) sender
 {
-    [self.delegate performAction];
+    [self.delegate performActionForButtonTag: sender.tag];
 }
 
 - (IBAction) onReady: (UIButton*) sender
 {
-    [self.delegate performAction];
+    [self.delegate performActionForButtonTag: sender.tag];
 }
 
 
