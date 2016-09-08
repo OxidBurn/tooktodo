@@ -360,10 +360,10 @@
             </objects>
             <point key="canvasLocation" x="1985" y="1152"/>
         </scene>
-        <!--Alert Designate Admin Controller-->
+        <!--Default Alert Controller-->
         <scene sceneID="TE6-6u-Dko">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HCd-1i-L4u" customClass="OSAlertDesignateAdminController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DefaultAlertControllerID" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HCd-1i-L4u" customClass="OSDefaultAlertController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ClJ-w7-1lK"/>
                         <viewControllerLayoutGuide type="bottom" id="Sj8-C6-SrV"/>
@@ -386,7 +386,7 @@
                                             <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="onCancel:" destination="HCd-1i-L4u" eventType="touchUpInside" id="yrb-hV-emi"/>
+                                            <action selector="onButton:" destination="HCd-1i-L4u" eventType="touchUpInside" id="bt7-ki-s4e"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Назначить администратором" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKo-Pu-N68">
@@ -448,7 +448,9 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="cancelBtn" destination="ACo-3L-ZoY" id="56c-i3-Kvo"/>
+                        <outlet property="btn" destination="ACo-3L-ZoY" id="QUi-Rs-axc"/>
+                        <outlet property="messageLabel" destination="dw9-eS-OVQ" id="e4G-vw-hMC"/>
+                        <outlet property="titleLabel" destination="nKo-Pu-N68" id="EW5-pb-hEF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPP-KM-bYN" userLabel="First Responder" sceneMemberID="firstResponder"/>

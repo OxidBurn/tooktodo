@@ -7,8 +7,9 @@
 //
 
 #import "BaseMainViewController.h"
+#import "OSDefaultAlertController.h"
 
-@interface LoginViewController : BaseMainViewController
+@interface LoginViewController : BaseMainViewController <OSDefaultAlertControllerDelegate>
 
 @property (nonatomic, copy) void(^dismissLoginView)();
 

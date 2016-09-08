@@ -153,6 +153,7 @@
 		592517DC1D7725A90078B584 /* TaskByProjectScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */; };
 		59575DC01D7F0ED600A28227 /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */; };
 		59575DC21D81722200A28227 /* OSAlertStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59575DC11D81722200A28227 /* OSAlertStoryboard.storyboard */; };
+		59575DC61D81A8FE00A28227 /* OSDefaultAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -467,6 +468,8 @@
 		59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoCell.h; path = ../../../src/Modules/Team/Info/ContactInfoCell.h; sourceTree = "<group>"; };
 		59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoCell.m; path = Info/ContactInfoCell.m; sourceTree = "<group>"; };
 		59575DC11D81722200A28227 /* OSAlertStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OSAlertStoryboard.storyboard; sourceTree = "<group>"; };
+		59575DC41D81A8FE00A28227 /* OSDefaultAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSDefaultAlertController.h; sourceTree = "<group>"; };
+		59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSDefaultAlertController.m; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -1473,6 +1476,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		59575DC31D81A87200A28227 /* OSDefaultAlert */ = {
+			isa = PBXGroup;
+			children = (
+				59575DC41D81A8FE00A28227 /* OSDefaultAlertController.h */,
+				59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */,
+			);
+			name = OSDefaultAlert;
+			sourceTree = "<group>";
+		};
 		59A793421D59D2DD0062007E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1691,6 +1703,7 @@
 		CFEACEFA1D8171E0005BA6D9 /* OSAlertController */ = {
 			isa = PBXGroup;
 			children = (
+				59575DC31D81A87200A28227 /* OSDefaultAlert */,
 				CFEACEFB1D8172B0005BA6D9 /* OSAlertBase */,
 				CFEACF001D81737E005BA6D9 /* OSAlertPlanNotLoaded */,
 				CFEACEFF1D817372005BA6D9 /* OSAlertDeleteTask */,
@@ -2075,6 +2088,7 @@
 				56EAC23C1D7B51060087B3FF /* MainTabBarController.m in Sources */,
 				560B89B91D7C36B500746682 /* AvatarImageView.m in Sources */,
 				5615334B1D7A70A100BDEC3E /* UserInfo.m in Sources */,
+				59575DC61D81A8FE00A28227 /* OSDefaultAlertController.m in Sources */,
 				56EAC26C1D7B51060087B3FF /* UpdateUserInfoModel.m in Sources */,
 				560B89B71D7C36B500746682 /* BaseNavigationBar.m in Sources */,
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,

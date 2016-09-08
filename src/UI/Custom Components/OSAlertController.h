@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OSDefaultAlertController.h"
 
 @interface OSAlertController : NSObject
 
@@ -17,5 +18,11 @@
                onController: (UIViewController*) controller;
 
 + (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller;
+
++ (void) showDefaultAlertWithTitle: (NSString*)         title
+                           message: (NSString*)         message
+                        andBtnText: (NSString*)         btnText
+                      onController: (UIViewController*) controller
+                      withDelegate: (id<OSDefaultAlertControllerDelegate>) delegate;
 
 @end

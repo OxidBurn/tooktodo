@@ -10,6 +10,7 @@
 #import "OSAlertDesignateAdminController.h"
 #import "OSAlertPlanNotLoadedController.h"
 #import "OSAlertDeleteTaskController.h"
+#import "OSDefaultAlertController.h"
 
 @implementation OSAlertController
 
@@ -44,11 +45,33 @@
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
+    
     OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskControllerID"];
     
     [controller presentViewController: alertController
                              animated: YES
                            completion: nil];
+}
+
++ (void) showDefaultAlertWithTitle: (NSString*)                            title
+                           message: (NSString*)                            message
+                        andBtnText: (NSString*)                            btnText
+                      onController: (UIViewController*)                    controller
+                      withDelegate: (id<OSDefaultAlertControllerDelegate>) delegate
+{
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
+                                                              bundle: [NSBundle mainBundle]];
+    OSDefaultAlertController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DefaultAlertControllerID"];
+    
+    [controller presentViewController: alertController
+                             animated: YES
+                           completion: nil];
+    
+    alertController.delegate = delegate;
+    
+    [alertController setTitle: title
+                  withMessage: message
+                  withBtnText: btnText];
 }
 
 @end
