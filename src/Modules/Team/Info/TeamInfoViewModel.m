@@ -47,6 +47,11 @@ static CGFloat sectionHeaderHeight = 30;
 
 #pragma mark - Public methods -
 
+- (NSString*) getProjectName
+{
+    return [self.model getProjectName];
+}
+
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion
 {
     [self.model updateTeamInfoWithCompletion: completion];
@@ -122,6 +127,17 @@ static CGFloat sectionHeaderHeight = 30;
 {
     [self.model handleCallForUserAtIndex: index];
 }
+
+- (void) didTriggerEmailActionIndex: (NSUInteger) index
+{
+    NSString* email = [self.model getEmailOfMemberAtIndex: index];
+    
+    if ([self.delegate respondsToSelector: @selector(showEmailComposerForMail:)])
+    {
+        [self.delegate showEmailComposerForMail: email];
+    }
+}
+
 
 #pragma mark - TeamModelDelegate methods -
 

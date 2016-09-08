@@ -14,6 +14,13 @@
 // Categories
 #import "DataManager+Team.h"
 
+typedef NS_ENUM(NSUInteger, ContactType)
+{
+    ContactPhoneNumberType,
+    ContactAdditionalPhoneNumberType,
+    ContactEmailType,
+};
+
 @interface TeamProfileInfoModel ()
 
 // properties
@@ -119,8 +126,8 @@
     if ([self getPhone] && ![[self getPhone] isEqualToString: @""])
     {
         NSDictionary* dic = @{ @"Contact" : [self getPhone],
-                               @"Action": @"Call to user with number",
-                               @"Btn"   : [UIImage imageNamed:@"Phone"]};
+                               @"Action"  : @(ContactPhoneNumberType),
+                               @"Btn"     : [UIImage imageNamed: @"Phone"]};
         [tmp addObject: dic];
         
     };
@@ -129,8 +136,8 @@
     if ([self getAdditionalPhone] && ![[self getAdditionalPhone] isEqualToString: @""])
     {
         NSDictionary* dic = @{ @"Contact" : [self getAdditionalPhone],
-                               @"Action"   : @"Call to user with additional number",
-                               @"Btn"   : [UIImage imageNamed:@"Phone"]};
+                               @"Action"  : @(ContactAdditionalPhoneNumberType),
+                               @"Btn"     : [UIImage imageNamed: @"Phone"]};
         [tmp addObject: dic];
         
     };
@@ -138,16 +145,13 @@
     if ([self getEmail] )
     {
         NSDictionary* dic = @{ @"Contact" : [self getEmail],
-                               @"Action": @"Send email to user ",
-                               @"Btn"   : [UIImage imageNamed:@"Mail"]};
+                               @"Action"  : @(ContactEmailType),
+                               @"Btn"     : [UIImage imageNamed: @"Mail"]};
         
         if (![dic[@"Contact"] isEqualToString: @""])
         {
             [tmp addObject: dic];
         }
-        
-        
-        
     };
     
     return tmp.copy;
@@ -172,10 +176,30 @@
 {
     NSDictionary* dic = self.contactsContent[index];
     
-    NSString* contact = dic[@"Contact"];
-    NSString* action  = dic[@"Action"];
+    NSString* contact      = dic[@"Contact"];
+    ContactType actionType = [dic[@"Action"] integerValue];
     
-    NSLog(@"%@ %@", action, contact);
+    switch (actionType)
+    {
+        case ContactPhoneNumberType:
+        {
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", contact]]];
+            break;
+        }
+        case ContactAdditionalPhoneNumberType:
+        {
+            [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", contact]]];
+            break;
+        }
+        case ContactEmailType:
+        {
+            if ( [self.delegate respondsToSelector: @selector(sendEmailToAdress:)] )
+            {
+                [self.delegate sendEmailToAdress: contact];
+            }
+            break;
+        }
+    }
 }
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath

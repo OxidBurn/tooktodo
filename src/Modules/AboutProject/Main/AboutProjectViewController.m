@@ -7,14 +7,19 @@
 //
 
 #import "AboutProjectViewController.h"
+
+// Classes
 #import "MainTabBarController.h"
 #import "ProjectsControllersDelegate.h"
+#import "AboutProjectViewModel.h"
 
 @interface AboutProjectViewController ()
 
 // properties
 
 @property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
+
+@property (strong, nonatomic) AboutProjectViewModel* viewModel;
 
 // methods
 
@@ -40,10 +45,6 @@
     
 }
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 #pragma mark - Memory managment -
 
@@ -54,7 +55,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Properties -
+
+- (AboutProjectViewModel *)viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [AboutProjectViewModel new];
+    }
+    
+    return _viewModel;
+}
+
 #pragma mark - Action -
+
+- (IBAction) onShowMenu: (UIBarButtonItem*) sender
+{
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
+}
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
 {
@@ -104,7 +123,7 @@
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-    subTitleLabel.text            = @"Квартира на Ходынке";
+    subTitleLabel.text            = [self.viewModel getProjectName];
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];

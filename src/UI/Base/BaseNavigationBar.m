@@ -36,7 +36,7 @@ IB_DESIGNABLE
 
 #pragma mark - Defaults -
 
-- (void)setupDefaultsAppearance
+- (void) setupDefaultsAppearance
 {
     [self setBackgroundImage: [[UIImage alloc] init]
               forBarPosition: UIBarPositionAny

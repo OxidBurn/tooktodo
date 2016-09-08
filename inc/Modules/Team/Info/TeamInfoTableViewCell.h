@@ -28,4 +28,6 @@
 
 - (void) didTriggerCallActionAtIndex: (NSUInteger) index;
 
+- (void) didTriggerEmailActionIndex: (NSUInteger) index;
+
 @end

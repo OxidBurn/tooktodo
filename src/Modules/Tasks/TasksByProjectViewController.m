@@ -14,6 +14,7 @@
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface TasksByProjectViewController ()
 
@@ -40,7 +41,7 @@
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"Задачи"
-                                               withSubTitle: @"Квартира на Ходынке"];
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
 

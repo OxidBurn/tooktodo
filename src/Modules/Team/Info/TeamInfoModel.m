@@ -10,6 +10,10 @@
 
 // Classes
 #import "TeamService.h"
+#import "ProjectInfo.h"
+
+// Categories
+#import "DataManager+ProjectInfo.h"
 
 @interface TeamInfoModel()
 
@@ -29,6 +33,13 @@
 @implementation TeamInfoModel
 
 #pragma mark - Public methods -
+
+- (NSString*) getProjectName
+{
+    ProjectInfo* projectInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return projectInfo.title;
+}
 
 - (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
 {
@@ -91,6 +102,13 @@
     }
     
     return nil;
+}
+
+- (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index
+{
+    TeamMember* member = [self teamMemberByIndex: index];
+    
+    return member.email;
 }
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index

@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 @property (weak, nonatomic) id <TeamInfoModelDelegate> delegate;
 
 //methods
+- (NSString*) getProjectName;
+
 - (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSUInteger) countOfItems;
@@ -36,6 +38,8 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 - (TeamMember*) teamMemberByIndex: (NSUInteger) index;
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
+
+- (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index;
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index;
 

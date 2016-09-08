@@ -8,6 +8,9 @@
 
 #import "OfflineSynchronizeViewController.h"
 
+// Categories
+#import "DataManager+ProjectInfo.h"
+
 @interface OfflineSynchronizeViewController ()
 
 // properties
@@ -71,7 +74,7 @@
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-    subTitleLabel.text            = @"Квартира на Ходынке";
+    subTitleLabel.text            = [DataManagerShared getSelectedProjectName];
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];

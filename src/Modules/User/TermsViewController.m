@@ -25,9 +25,16 @@
     [super loadView];
     
     [self twoLineTitleView];
+    
+    [self setupTermsTextView];
 }
 
-
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.termsText setContentOffset:CGPointZero animated:NO];
+}
 #pragma mark - Memory managment -
 
 - (void) didReceiveMemoryWarning
@@ -91,6 +98,15 @@
     self.navigationItem.titleView = twoLineTitleView;
     
     return twoLineTitleView;
+}
+
+- (void) setupTermsTextView
+{
+    self.termsText.textContainerInset = UIEdgeInsetsMake(20, 18, 0, 22);
+    self.termsText.text               = [NSString stringWithContentsOfFile: [MainBundle pathForResource: @"service_agreements"
+                                                                                                 ofType: @"txt"]
+                                                                  encoding: NSUTF8StringEncoding
+                                                                     error: nil];
 }
 
 @end

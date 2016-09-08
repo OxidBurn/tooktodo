@@ -12,7 +12,6 @@
 
 static CGFloat const MEZoomAnimationScaleFactor = 0.95f;
 static CGFloat const yPadding                   = 20.0f;
-static CGFloat const widthMenu                  = 266;
 
 @interface BaseMainViewController () 
 
@@ -201,8 +200,8 @@ static CGFloat const widthMenu                  = 266;
 {
     CGRect frame = slidingViewController.view.bounds;
     
-    frame.origin.x    = widthMenu;
-    frame.size.width  = widthMenu;
+    frame.origin.x    = slidingViewController.anchorRightRevealAmount - 10;
+    frame.size.width  = frame.size.width  * MEZoomAnimationScaleFactor;
     frame.size.height = frame.size.height * MEZoomAnimationScaleFactor;
     frame.origin.y    = (slidingViewController.view.bounds.size.height - frame.size.height) / 2 + yPadding;
     

@@ -11,10 +11,13 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 
+@protocol TeamProfileInfoModelDelegate;
+
 @interface TeamProfileInfoModel : NSObject
 
 // properties
 
+@property (weak, nonatomic) id<TeamProfileInfoModelDelegate> delegate;
 
 // methods
 
@@ -37,5 +40,13 @@
 - (void) performActionForIndex: (NSUInteger) index;
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
+
+@end
+
+@protocol TeamProfileInfoModelDelegate <NSObject>
+
+// methods
+
+- (void) sendEmailToAdress: (NSString*) email;
 
 @end

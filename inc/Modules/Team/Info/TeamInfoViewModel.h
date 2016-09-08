@@ -24,6 +24,8 @@
 
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
 
+- (NSString*) getProjectName;
+
 
 @end
 
@@ -31,5 +33,7 @@
 
 - (void) createActionSheetWithMainNumber: (NSString*) mainNumber
                        andAdditionNumber: (NSString*) additionNumber;
+
+- (void) showEmailComposerForMail: (NSString*) email;
 
 @end

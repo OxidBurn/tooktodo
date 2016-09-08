@@ -104,8 +104,9 @@
 {
     NSString* fullNameAbbreviation = [Utils getAbbreviationWithName: info.firstName
                                                         withSurname: info.lastName];
-
-    member.avatarPath              = [[AvatarHelper sharedInstance] generateAvatarForName: info.memberID.stringValue
+    NSString* fileName = (info.memberID.stringValue.length > 0) ? info.memberID.stringValue : [NSString stringWithFormat: @"%@%@", info.firstName, info.lastName];
+    
+    member.avatarPath              = [[AvatarHelper sharedInstance] generateAvatarForName: fileName
                                                                          withAbbreviation: fullNameAbbreviation
                                                                             withImageSize: CGSizeMake(20, 20)];
 }

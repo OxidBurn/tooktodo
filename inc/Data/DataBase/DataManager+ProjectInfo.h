@@ -32,4 +32,6 @@
 - (void) markProjectAsSelected: (ProjectInfo*)            project
                 withCompletion: (void(^)(BOOL isSuccess)) completion;
 
+- (NSString*) getSelectedProjectName;
+
 @end

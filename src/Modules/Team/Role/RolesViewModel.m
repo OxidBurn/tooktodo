@@ -25,7 +25,41 @@
 
 @implementation RolesViewModel
 
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    if ( self = [super init] )
+    {
+        
+    }
+    
+    return self;
+}
+
 #pragma mark - Properties -
+
+- (void) loadDefaultRolesWithCompletion: (CompletionWithSuccess) completion
+{
+    if ([UserDefaults boolForKey: @"isLoadedNewVersion"] == NO )
+    {
+        [[[RolesService sharedInstance] loadDefaultListOfRoles] subscribeNext: ^(id x) {
+            
+            [UserDefaults setBool: YES
+                           forKey: @"isLoadedNewVersion"];
+            [UserDefaults synchronize];
+            
+            if ( completion )
+                completion(YES);
+            
+        }];
+    }
+    else
+    {
+        if ( completion )
+            completion(YES);
+    }
+}
 
 - (RACSignal*) updateRolesInfo
 {
@@ -37,11 +71,28 @@
             
             @strongify(self)
             
-            self.rolesArray = roles;
-            
-            [subscriber sendNext: nil];
-            [subscriber sendCompleted];
-            
+            if ( roles.count > 0 )
+            {
+                self.rolesArray = roles;
+                
+                [subscriber sendNext: nil];
+                [subscriber sendCompleted];
+            }
+            else
+            {
+                [self loadDefaultRolesWithCompletion: ^(BOOL isSuccess) {
+                   
+                    [[[RolesService sharedInstance] getDefaultRoles] subscribeNext: ^(NSArray* roles) {
+                        
+                        self.rolesArray = roles;
+                        
+                        [subscriber sendNext: nil];
+                        [subscriber sendCompleted];
+                        
+                    }];
+                    
+                }];
+            }
         }];
         
         return nil;
@@ -49,6 +100,8 @@
     
     return fetchRolesSignal;
 }
+
+
 
 - (InviteInfo*) user
 {
@@ -64,7 +117,10 @@
 
 - (ProjectRoles*) getSelectedItem;
 {
-    return self.rolesArray[self.lastIndexPath.row];
+    if ( self.lastIndexPath.row < self.rolesArray.count )
+        return self.rolesArray[self.lastIndexPath.row];
+    else
+        return nil;
 }
 
 #pragma mark - Table view data source

@@ -12,6 +12,7 @@
 #import "APIConstance.h"
 #import "RolesAPIService.h"
 #import "ProjectRoleObject.h"
+#import "DefaultRoleObject.h"
 
 // Categories
 #import "DataManager+Roles.h"
@@ -92,6 +93,59 @@ static bool isFirstAccess = YES;
     return fetchProjectsRolesSignal;
 }
 
+- (RACSignal*) loadDefaultListOfRoles
+{
+    @weakify(self)
+    
+    RACSignal* getDefaultListOfRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[RolesAPIService sharedInstance] loadDefaultRoles]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseDefaultRolesRequestResponse: response[0]
+                                     withCompletion: ^(BOOL isSuccess) {
+                                         
+                                         [subscriber sendNext: nil];
+                                         [subscriber sendCompleted];
+                                         
+                                     }];
+             
+         }
+         error: ^(NSError* error) {
+             
+             [subscriber sendError: error];
+             
+         }
+         completed: ^{
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return getDefaultListOfRolesSignal;
+}
+
+- (RACSignal*) getDefaultRoles
+{
+    RACSignal* fetchDefaultRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[RACScheduler mainThreadScheduler] schedule: ^{
+            
+            [subscriber sendNext: [DataManagerShared getAllDefaultRoles]];
+            
+            [subscriber sendCompleted];
+            
+        }];
+        
+        return nil;
+    }];
+    
+    return fetchDefaultRolesSignal;
+}
+
 
 #pragma mark - Internal methods -
 
@@ -111,10 +165,25 @@ static bool isFirstAccess = YES;
         [DataManagerShared persistNewRoles: rolesInfo
                             withCompletion: completion];
     }
-    
-    
 }
 
+- (void) parseDefaultRolesRequestResponse: (NSArray*)              response
+                           withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError = nil;
+    NSArray* rolesInfo  = [DefaultRoleObject arrayOfModelsFromDictionaries: response
+                                                                     error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> Parse roles error: %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewDefaultRoles: rolesInfo
+                                   withCompletion: completion];
+    }
+}
 
 #pragma mark - Life Cycle -
 

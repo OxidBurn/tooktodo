@@ -20,6 +20,8 @@
 
 - (void) performActionForIndex: (NSUInteger) index;
 
+- (NSString*) getProjectName;
+
 @end
 
 @protocol TeamProfileViewModelDelegate <NSObject>
@@ -27,5 +29,7 @@
 - (void) showControllerWithIdentifier: (NSString*) segueID;
 
 - (void) showDesignationAlert: (NSString*) userName;
+
+- (void) showEmailComposerForMail: (NSString*) email;
 
 @end

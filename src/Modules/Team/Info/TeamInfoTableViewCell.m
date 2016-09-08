@@ -51,7 +51,10 @@
 
 - (IBAction) onSendEmailToTeamMemberBtn: (UIButton*) sender
 {
-    //handle sending email to user with index sender.tag
+    if ([self.delegate respondsToSelector: @selector(didTriggerEmailActionIndex:)])
+    {
+        [self.delegate didTriggerEmailActionIndex: sender.tag];
+    }
 }
 
 #pragma mark - Public -

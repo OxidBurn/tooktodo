@@ -95,17 +95,35 @@
     
     @weakify(self) 
     
-    [self.addContactViewModel.readyCommand.executionSignals
-     subscribeNext: ^(RACSignal* readySignal) {
-         
-     }
-     completed:^{
-         
-         @strongify(self)
-         
-         [self.navigationController popViewControllerAnimated: YES];
-         
-     }];
+    [self.addContactViewModel.readyCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
+        
+        [signal subscribeCompleted:^{
+            
+            @strongify(self)
+            
+            [self.navigationController popViewControllerAnimated: YES];
+            
+        }];
+        
+    }];
+    
+    [self.addContactViewModel.readyCommand.errors subscribeNext: ^(NSError* error) {
+        
+        UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle: @"Ошибка"
+                                                                            message: error.localizedDescription
+                                                                     preferredStyle: UIAlertControllerStyleAlert];
+        
+        UIAlertAction* action = [UIAlertAction actionWithTitle: @"Попробуйте еще раз"
+                                                         style: UIAlertActionStyleDefault
+                                                       handler: nil];
+        [errorAlert addAction: action];
+        
+        [self presentViewController: errorAlert
+                           animated: YES
+                         completion: nil];
+
+        
+    }];
     
     //связь кнопки и команды, которая за нее отвечает
     self.readyBtn.rac_command = self.addContactViewModel.readyCommand;

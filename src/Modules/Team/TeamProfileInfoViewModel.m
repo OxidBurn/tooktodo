@@ -18,6 +18,9 @@
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
 
+// Categories
+#import "DataManager+ProjectInfo.h"
+
 typedef NS_ENUM(NSUInteger, CellType)
 {
     RoleType,
@@ -26,7 +29,7 @@ typedef NS_ENUM(NSUInteger, CellType)
 
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
-@interface TeamProfileInfoViewModel() 
+@interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
 
@@ -45,7 +48,9 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 {
     if ( _model == nil )
     {
-        _model = [TeamProfileInfoModel new];
+        _model = [[TeamProfileInfoModel alloc] init];
+        
+        _model.delegate = self;
     }
     
     return _model;
@@ -53,6 +58,11 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 
 #pragma mark - Public -
+
+- (NSString*) getProjectName
+{
+    return [DataManagerShared getSelectedProjectName];;
+}
 
 - (RACSignal*) updateInfo
 {
@@ -168,4 +178,17 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 {
     self.cell.detailTextLabel.text = value.title;
 }
+
+
+#pragma mark - Model delegate methods -
+
+- (void) sendEmailToAdress: (NSString*) email
+{
+    if ( [self.delegate respondsToSelector: @selector(showEmailComposerForMail:)] )
+    {
+        [self.delegate showEmailComposerForMail: email];
+    }
+}
+
+
 @end

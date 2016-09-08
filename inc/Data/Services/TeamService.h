@@ -25,4 +25,6 @@
 
 - (RACSignal*) inviteUserWithInfo: (InviteInfo*) info;
 
+- (RACSignal*) getProjectUserPermission;
+
 @end

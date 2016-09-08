@@ -111,6 +111,7 @@ static bool isFirstAccess = YES;
                          withCompletion: ^(BOOL isSuccess) {
                              
                              [subscriber sendNext: nil];
+                             [subscriber sendCompleted];
                              
                          }];
              }
@@ -131,7 +132,7 @@ static bool isFirstAccess = YES;
          }
          completed: ^{
              
-             [subscriber sendCompleted];
+
              
          }];
         
@@ -139,6 +140,11 @@ static bool isFirstAccess = YES;
     }];
     
     return inviteSignal;
+}
+
+- (RACSignal*) getProjectUserPermission
+{
+    return [RACSignal empty];
 }
 
 
@@ -178,10 +184,17 @@ static bool isFirstAccess = YES;
 
 - (NSString*) buildRequestURL
 {
-    NSString* requestURL = [projectTeamInfoURL stringByReplacingOccurrencesOfString: @"{projectID}"
-                                                                         withString: [self getProjectID]];
-    
-    return requestURL;
+    if ( [self getProjectID] )
+    {
+        NSString* requestURL = [projectTeamInfoURL stringByReplacingOccurrencesOfString: @"{projectID}"
+                                                                             withString: [self getProjectID]];
+        
+        return requestURL;
+    }
+    else
+    {
+        return @"";
+    }
 }
 
 - (void) addNewTeamMember: (InviteInfo*)           info

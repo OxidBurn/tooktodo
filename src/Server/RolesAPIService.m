@@ -34,7 +34,14 @@ static bool isFirstAccess = YES;
 {
     AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
     
-    return [requestManager rac_GET: requestURL parameters: nil];
+    return [[[requestManager rac_GET: requestURL parameters: nil] logError] replayLazily];
+}
+
+- (RACSignal*) loadDefaultRoles
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return [[[requestManager rac_GET: defaultRolesURL parameters: nil] logError] replayLazily];
 }
 
 

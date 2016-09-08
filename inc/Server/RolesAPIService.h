@@ -18,4 +18,6 @@
 
 - (RACSignal*) loadProjectsRoles: (NSString*) requestURL;
 
+- (RACSignal*) loadDefaultRoles;
+
 @end

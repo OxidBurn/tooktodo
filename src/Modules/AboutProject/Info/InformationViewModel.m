@@ -111,16 +111,20 @@
                                                             forIndexPath: indexPath];
     
     UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 17.0f];
+                                         size: 15.0f];
+    UIFont* detailFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                         size: 13.0f];
     
+    
+    cell.detailTextLabel.font = detailFont;
+    cell.textLabel.font       = customFont;
     
     if (indexPath.section == 0 && indexPath.row == 0)
     {
+        
         cell.textLabel.text       = self.itemInfo[0][0];
         cell.detailTextLabel.text = @"";
-        cell.textLabel.font       = customFont;
     }
-    
     else
     {
         NSString* fillInfo  = self.itemInfo[indexPath.section][indexPath.row];

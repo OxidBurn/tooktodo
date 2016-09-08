@@ -94,7 +94,7 @@ static bool isFirstAccess = YES;
     
     [loadProjectInfo subscribeCompleted: ^{
         
-        [SVProgressHUD showSuccessWithStatus: @"Load project info is successful!"];
+//        [SVProgressHUD showSuccessWithStatus: @"Load project info is successful!"];
         
     }];
 }

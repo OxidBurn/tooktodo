@@ -171,4 +171,11 @@
     return settings;
 }
 
+- (NSString*) getSelectedProjectName
+{
+    ProjectInfo* projectInfo = [self getSelectedProjectInfo];
+    
+    return projectInfo.title;
+}
+
 @end

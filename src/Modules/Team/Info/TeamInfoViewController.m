@@ -8,6 +8,9 @@
 
 #import "TeamInfoViewController.h"
 
+// Frameworks
+#import <MessageUI/MessageUI.h>
+
 // Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
@@ -16,7 +19,7 @@
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 
-@interface TeamInfoViewController () <TeamInfoViewModelDelegate>
+@interface TeamInfoViewController () <TeamInfoViewModelDelegate, MFMailComposeViewControllerDelegate>
 
 // Properties
 
@@ -52,7 +55,7 @@
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
-                                               withSubTitle: @"Квартира на Ходынке"];
+                                               withSubTitle: [self.viewModel getProjectName]];
     
     // Binding controller UI
     [self bindingUI];
@@ -62,8 +65,7 @@
 {
     [super viewDidAppear: animated];
     
-    // Hide search bar on show
-    [self setupTableView];
+    
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -83,6 +85,9 @@
         }
         
     }];
+    
+    // Hide search bar on show
+    [self setupTableView];
 }
 
 #pragma mark - Memory managment -
@@ -192,6 +197,57 @@
     [self presentViewController: actionSheet
                        animated: YES
                      completion: nil];
+}
+
+- (void) showEmailComposerForMail: (NSString*) email
+{
+    NSString* emailTitle  = @"TookToDo";
+    
+    if ( [MFMailComposeViewController canSendMail] )
+    {
+        MFMailComposeViewController* mc = [[MFMailComposeViewController alloc] init];
+        
+        mc.mailComposeDelegate = self;
+        
+        [mc setSubject: emailTitle];
+        
+        [self presentViewController: mc
+                           animated: YES
+                         completion: NULL];
+    }
+}
+
+
+#pragma mark - Mail composer delegate methods -
+
+- (void) mailComposeController: (MFMailComposeViewController*) controller
+           didFinishWithResult: (MFMailComposeResult)          result
+                         error: (nullable NSError *)           error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+            
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+            
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+            
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self dismissViewControllerAnimated: YES
+                             completion: NULL];
 }
 
 @end

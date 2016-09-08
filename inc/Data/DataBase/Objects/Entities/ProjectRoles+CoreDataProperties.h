@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *projectID;
 @property (nullable, nonatomic, retain) NSNumber *hasProjectRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
+@property (nullable, nonatomic, retain) NSNumber* isDefault;
 
 @end
 

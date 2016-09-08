@@ -19,5 +19,6 @@
 @dynamic projectID;
 @dynamic hasProjectRoleAssignments;
 @dynamic project;
+@dynamic isDefault;
 
 @end

@@ -16,9 +16,14 @@
 
 // methods
 
+- (void) persistNewDefaultRoles: (NSArray*)              roles
+                 withCompletion: (CompletionWithSuccess) completion;
+
 - (void) persistNewRoles: (NSArray*)              roles
           withCompletion: (CompletionWithSuccess) completion;
 
 - (NSArray*) getAllRolesInCurrentProject;
+
+- (NSArray*) getAllDefaultRoles;
 
 @end

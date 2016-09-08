@@ -12,6 +12,7 @@
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface FeedsViewController ()
 
@@ -30,7 +31,7 @@
     
     // Setup navigation title view
      [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЛЕНТА"
-                                                withSubTitle: @"Квартира на Ходынке"];
+                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
 - (void) viewDidLoad

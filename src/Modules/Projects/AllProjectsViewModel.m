@@ -82,9 +82,23 @@ static CGFloat sectionHeaderHeight = 30;
 - (void) applySortingForProjecstList: (AllProjectsSortingType)     type
                           isAcceding: (ContentAccedingSortingType) isAcceding
 {
-    self.projectsContent = [self.model applyProjectsSortingType: type
-                                                        toArray: self.projectsContent
-                                                     isAcceding: isAcceding];
+    switch (self.tableState)
+    {
+        case TableNormalState:
+        {
+            self.projectsContent = [self.model applyProjectsSortingType: type
+                                                                toArray: self.projectsContent
+                                                             isAcceding: isAcceding];
+            break;
+        }
+        case TableSearchState:
+        {
+            self.filteredProjectsContent = [self.model applyProjectsSortingType: type
+                                                                        toArray: self.filteredProjectsContent
+                                                                     isAcceding: isAcceding];
+            break;
+        }
+    }
 }
 
 #pragma mark - Table view data source methods -
