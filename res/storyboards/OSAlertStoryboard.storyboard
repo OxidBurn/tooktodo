@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="khY-CR-kSM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="khY-CR-kSM">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
             <string>SFUIText-Regular</string>
@@ -27,7 +30,6 @@
                     <view key="view" contentMode="scaleToFill" id="p74-PL-F3q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49795258620689653" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <connections>
@@ -38,6 +40,7 @@
                         <segue destination="Sf9-b4-SU4" kind="custom" identifier="ShowAlertWithImageID" customClass="AlertControllerSegue" id="9FV-PV-LQW"/>
                         <segue destination="SbO-aN-FbD" kind="custom" identifier="ShowAlertWithTableFirstID" customClass="AlertControllerSegue" id="9Fr-U8-kA7"/>
                         <segue destination="8ix-FU-wSl" kind="custom" identifier="ShowAlertWithTableSecondID" customClass="AlertControllerSegue" id="pHg-xM-hEc"/>
+                        <segue destination="HCd-1i-L4u" kind="custom" identifier="ShowIncorrectCredentialsID" customClass="AlertControllerSegue" id="rAj-zl-8gT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udh-4v-h9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -66,7 +69,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVR-WM-vV6">
                                         <rect key="frame" x="0.0" y="158" width="134" height="40"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ANs-fQ-Ax9"/>
                                             <constraint firstAttribute="width" constant="134" id="FNm-KI-jhF"/>
@@ -81,7 +83,6 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Назначить администратором" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdR-lb-aaF">
                                         <rect key="frame" x="12" y="24" width="247" height="20"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="247" id="gq3-6l-3HO"/>
                                             <constraint firstAttribute="height" constant="20" id="yYx-6L-hSk"/>
@@ -91,7 +92,6 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7bK-tc-C9S">
                                         <rect key="frame" x="52" y="52" width="26" height="26"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="26" id="1zT-zr-gKv"/>
                                             <constraint firstAttribute="height" constant="26" id="cKe-df-hfU"/>
@@ -99,7 +99,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt4-gx-Uhi">
                                         <rect key="frame" x="88" y="57" width="157" height="17"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="157" id="DV3-ZK-h5D"/>
                                             <constraint firstAttribute="height" constant="17" id="epx-Ew-Yg2"/>
@@ -110,7 +109,6 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Администратор имеет возможность управлять настройками проекта, задачами, участниками." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3H-bg-kvk">
                                         <rect key="frame" x="16" y="87" width="237" height="60"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="237" id="KES-95-Vgg"/>
                                             <constraint firstAttribute="height" constant="60" id="acN-X5-GDT"/>
@@ -121,7 +119,6 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8I-Of-gWY">
                                         <rect key="frame" x="135" y="158" width="135" height="40"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Qli-Co-Ecb"/>
                                             <constraint firstAttribute="width" constant="135" id="f2Y-9S-qG5"/>
@@ -136,7 +133,6 @@
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kdk-Ct-l4V">
                                         <rect key="frame" x="0.0" y="157" width="270" height="1"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Xzu-7J-5Jt"/>
@@ -144,7 +140,6 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n1l-WW-i4R">
                                         <rect key="frame" x="134" y="158" width="1" height="40"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="KzW-qa-OAD"/>
@@ -152,7 +147,6 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="w8I-Of-gWY" firstAttribute="top" secondItem="kdk-Ct-l4V" secondAttribute="bottom" id="1vD-Yh-vdK"/>
@@ -182,7 +176,6 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49057112068965519" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
@@ -226,7 +219,6 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Gd-jbh">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="148"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <color key="sectionIndexBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
@@ -241,15 +233,12 @@
                                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yet-Fn-2fj">
                                                             <rect key="frame" x="15" y="0.0" width="240" height="40"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
                                                             <color key="textColor" red="0.22352941176470587" green="0.74117647058823533" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                 </tableViewCellContentView>
-                                                <animations/>
                                             </tableViewCell>
                                         </prototypes>
                                         <userDefinedRuntimeAttributes>
@@ -259,7 +248,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Hlx-Gd-jbh" firstAttribute="leading" secondItem="Cg3-62-X4K" secondAttribute="leading" id="61O-xo-g9U"/>
@@ -276,7 +264,6 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Cg3-62-X4K" firstAttribute="centerY" secondItem="OsA-mO-NVR" secondAttribute="centerY" id="BNR-MI-ck7"/>
@@ -289,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Sw-sB-y8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811" y="1152"/>
+            <point key="canvasLocation" x="1291" y="1152"/>
         </scene>
         <!--Alert Delete Task Controller-->
         <scene sceneID="Rr1-SE-x9M">
@@ -308,7 +295,6 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a4B-F7-aZj">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="192"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="sectionIndexBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
@@ -321,7 +307,6 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0O-AY-xJo">
                                                             <rect key="frame" x="15" y="11" width="241" height="20"/>
-                                                            <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="241" id="HBI-rb-MFj"/>
                                                                 <constraint firstAttribute="height" constant="20" id="ayk-Ao-M5g"/>
@@ -331,13 +316,11 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstItem="a0O-AY-xJo" firstAttribute="top" secondItem="Nd1-zg-Cec" secondAttribute="top" constant="11" id="fir-jv-M4e"/>
                                                         <constraint firstItem="a0O-AY-xJo" firstAttribute="centerX" secondItem="Nd1-zg-Cec" secondAttribute="centerX" id="vSc-Cs-CyI"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <animations/>
                                             </tableViewCell>
                                         </prototypes>
                                         <userDefinedRuntimeAttributes>
@@ -347,7 +330,6 @@
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="270" id="9Bg-Rh-MQI"/>
@@ -364,7 +346,6 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="v54-Hp-uLR" firstAttribute="centerY" secondItem="AMV-bE-vth" secondAttribute="centerY" id="3hz-3J-3gA"/>
@@ -377,7 +358,107 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hys-eQ-Hbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="1152"/>
+            <point key="canvasLocation" x="1985" y="1152"/>
+        </scene>
+        <!--Alert Designate Admin Controller-->
+        <scene sceneID="TE6-6u-Dko">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HCd-1i-L4u" customClass="OSAlertDesignateAdminController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ClJ-w7-1lK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sj8-C6-SrV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r1U-h4-1y7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pD0-Tt-DgV">
+                                <rect key="frame" x="165" y="217" width="270" height="166"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACo-3L-ZoY">
+                                        <rect key="frame" x="0.0" y="123" width="270" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="4hA-Uz-1VS"/>
+                                            <constraint firstAttribute="width" constant="270" id="bYb-NU-AgY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                        <state key="normal" title="Попробовать еще раз">
+                                            <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onCancel:" destination="HCd-1i-L4u" eventType="touchUpInside" id="yrb-hV-emi"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Назначить администратором" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKo-Pu-N68">
+                                        <rect key="frame" x="12" y="24" width="247" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="247" id="kwS-Y1-14E"/>
+                                            <constraint firstAttribute="height" constant="20" id="xnf-Ow-THv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LtP-An-dTO">
+                                        <rect key="frame" x="0.0" y="122" width="270" height="1"/>
+                                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="qUM-Qq-Fpe"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw9-eS-OVQ">
+                                        <rect key="frame" x="30" y="48" width="211" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="211" id="HQw-HK-EYi"/>
+                                            <constraint firstAttribute="height" constant="60" id="uaI-0L-3Eh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="166" id="D0m-pn-6my"/>
+                                    <constraint firstItem="nKo-Pu-N68" firstAttribute="top" secondItem="pD0-Tt-DgV" secondAttribute="top" constant="24" id="Gs6-Eg-0hB"/>
+                                    <constraint firstItem="ACo-3L-ZoY" firstAttribute="top" secondItem="LtP-An-dTO" secondAttribute="bottom" id="PlJ-mP-us4"/>
+                                    <constraint firstItem="nKo-Pu-N68" firstAttribute="centerX" secondItem="pD0-Tt-DgV" secondAttribute="centerX" id="SB3-CB-weE"/>
+                                    <constraint firstItem="ACo-3L-ZoY" firstAttribute="leading" secondItem="pD0-Tt-DgV" secondAttribute="leading" id="c0X-6A-Nhw"/>
+                                    <constraint firstItem="LtP-An-dTO" firstAttribute="top" secondItem="pD0-Tt-DgV" secondAttribute="top" constant="122" id="eVE-jC-mbl"/>
+                                    <constraint firstItem="dw9-eS-OVQ" firstAttribute="top" secondItem="nKo-Pu-N68" secondAttribute="bottom" constant="4" id="jXI-yH-Xpx"/>
+                                    <constraint firstItem="dw9-eS-OVQ" firstAttribute="centerX" secondItem="pD0-Tt-DgV" secondAttribute="centerX" id="nfe-mQ-mcb"/>
+                                    <constraint firstItem="LtP-An-dTO" firstAttribute="leading" secondItem="pD0-Tt-DgV" secondAttribute="leading" id="oDW-Kg-STI"/>
+                                    <constraint firstAttribute="width" constant="270" id="oRp-x8-17o"/>
+                                    <constraint firstAttribute="trailing" secondItem="LtP-An-dTO" secondAttribute="trailing" id="w09-eo-lEj"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49057112069999997" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="pD0-Tt-DgV" firstAttribute="centerY" secondItem="r1U-h4-1y7" secondAttribute="centerY" id="Dgx-m7-4MG"/>
+                            <constraint firstItem="pD0-Tt-DgV" firstAttribute="centerX" secondItem="r1U-h4-1y7" secondAttribute="centerX" id="tVA-EV-xjo"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="H2W-1X-i8g" appends="YES" id="tvb-nD-lbd"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="cancelBtn" destination="ACo-3L-ZoY" id="56c-i3-Kvo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPP-KM-bYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="H2W-1X-i8g">
+                    <connections>
+                        <action selector="onDismiss:" destination="HCd-1i-L4u" id="0tn-JX-rJb"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="659" y="1152"/>
         </scene>
     </scenes>
 </document>
