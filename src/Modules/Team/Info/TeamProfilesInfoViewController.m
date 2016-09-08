@@ -152,32 +152,16 @@
 - (void) showDesignationAlert: (NSString*) userName
                    withAvatar: (UIImage*)  avatar
 {
-//    UIAlertController* alertController = [UIAlertController alertControllerWithTitle: @"Назначить администратором"
-//                                                                             message: [NSString stringWithFormat:@"Изменить данные для пользователя %@", userName]
-//                                                                      preferredStyle: UIAlertControllerStyleAlert];
-//    
-//    [alertController addAction: [UIAlertAction actionWithTitle: @"Назначить"
-//                                                         style: UIAlertActionStyleDefault
-//                                                       handler: ^(UIAlertAction * _Nonnull action) {
-//                                                           NSLog(@"Пользователь %@ назначен администратором", userName);
-//                                                       }]];
-//    
-//    [alertController addAction: [UIAlertAction actionWithTitle: @"Отменить"
-//                                                         style: UIAlertActionStyleCancel
-//                                                       handler: ^(UIAlertAction * _Nonnull action) {
-//                                                           
-//                                                       }]];
-    
-    
-//    
-//    [self presentViewController: alertController
-//                       animated: YES
-//                     completion: nil ];
-    
     
     [OSAlertController showAlertWithImage: avatar
                                  withName: userName
                              onController: self];
+    
+    
+    //ПАДАЕТ ИЗ-ЗА ДЕЛЕГАТА НАДО ПОФИКСИТЬ
+  //  [OSAlertController showAlertWithPlanTableOnController: self];
+    
+   // [OSAlertController showAlertWithDeleteTaskOnController: self];
 }
 
 - (void) showEmailComposerForMail: (NSString*) email

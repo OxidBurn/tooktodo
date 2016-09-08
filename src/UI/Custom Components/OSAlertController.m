@@ -8,12 +8,20 @@
 
 #import "OSAlertController.h"
 #import "OSAlertDesignateAdminController.h"
+#import "OSAlertPlanNotLoadedController.h"
+#import "OSAlertDeleteTaskController.h"
 
 @implementation OSAlertController
 
 + (void) showAlertWithPlanTableOnController: (UIViewController*) controller
 {
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
+                                                              bundle: [NSBundle mainBundle]];
+    OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"PlanNotLoadedControllerID"];
     
+    [controller presentViewController: alertController
+                             animated: YES
+                           completion: nil];
 }
 
 + (void) showAlertWithImage: (UIImage*)  image
@@ -29,11 +37,18 @@
                            completion: nil];
     
     [alertController setImage: image
-                     withName: name];}
+                     withName: name];
+}
 
 + (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller
 {
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
+                                                              bundle: [NSBundle mainBundle]];
+    OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskControllerID"];
     
+    [controller presentViewController: alertController
+                             animated: YES
+                           completion: nil];
 }
 
 @end

@@ -45,17 +45,17 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: identifier
                                                             forIndexPath: indexPath];
     
-    if (cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-                                      reuseIdentifier: identifier];
-    }
+//    if (cell == nil)
+//    {
+//        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+//                                      reuseIdentifier: identifier];
+//    }
     
-    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
-                                                    size: 17.0f];
-    
+//    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
+//                                                    size: 17.0f];
+//    
     cell.textLabel.text = self.titlesArray[indexPath.row];
-    cell.textLabel.font = customFont;
+   // cell.textLabel.font = customFont;
     
     if (indexPath.row == 0)
     {
@@ -64,14 +64,19 @@
     
     else if (indexPath.row == 1)
     {
-        cell.textLabel.textColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor colorWithRed: 1
+                                                   green: 0.274f
+                                                    blue: 0.274f
+                                                   alpha: 1.f];
     }
     
     else
     {
-        cell.textLabel.textColor = [UIColor blueColor];
+        cell.textLabel.textColor = [UIColor colorWithRed: 0.223f
+                                                   green: 0.741f
+                                                    blue: 0.717f
+                                                   alpha: 1.f];
     }
-    
     return cell;
 }
 
@@ -92,7 +97,7 @@
         return 64.f;
     }
     else
-        return 42.f;
+        return 43.f;
 }
 
 - (void)        tableView: (UITableView*) tableView
