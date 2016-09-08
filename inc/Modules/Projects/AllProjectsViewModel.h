@@ -16,6 +16,8 @@
 
 @property (copy, nonatomic) void(^didSelectedProject)(NSNumber* projectID);
 
+@property (nonatomic, copy) void(^didShowProjectSettings)(NSNumber* projectID);
+
 @property (nonatomic, copy) void(^reloadTable)();
 
 @property (copy, nonatomic) void(^endSearching)();

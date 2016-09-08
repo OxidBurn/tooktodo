@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "ProjectInfo.h"
 
 @interface AllProjectsModel : NSObject
 
@@ -24,7 +25,7 @@
                               toArray: (NSArray*)                   array
                            isAcceding: (ContentAccedingSortingType) isAcceding;
 
-- (NSUInteger) getProjectsSortedType;
+- (AllProjectsSortingType) getProjectsSortedType;
 
 - (ContentAccedingSortingType) getProjectsSortAccedingType;
 
@@ -32,5 +33,8 @@
 
 - (NSArray*) filteredContentWithSearchText: (NSString*) searchText
                                    inArray: (NSArray*)  array;
+
+- (void) markProjectAsSelected: (ProjectInfo*)          info
+                withCompletion: (CompletionWithSuccess) completion;
 
 @end

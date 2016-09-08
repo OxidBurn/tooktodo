@@ -9,7 +9,12 @@
 #import "AllProjectsViewController.h"
 #import "AllProjectsViewModel.h"
 
+// Classes
+#import "ProjectsControllersDelegate.h"
+#import "MainTabBarController.h"
+
 // Extensions
+#import "BaseMainViewController+Popover.h"
 #import "UISearchBar+TextFieldControl.h"
 
 @interface AllProjectsViewController ()
@@ -18,10 +23,13 @@
 
 @property (strong, nonatomic) AllProjectsViewModel* viewModel;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem* sortBtn;
-@property (weak, nonatomic) IBOutlet UITableView *projectsTable;
-@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
-@property (strong, nonatomic) UITextField* searchTextField;
+@property (weak, nonatomic  ) IBOutlet UIBarButtonItem * sortBtn;
+@property (weak, nonatomic  ) IBOutlet UITableView     *projectsTable;
+@property (weak, nonatomic  ) IBOutlet UISearchBar     * searchBar;
+
+@property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
+
+@property (strong, nonatomic) UITextField * searchTextField;
 
 // methods
 
@@ -42,11 +50,14 @@
     
     // Binding UI components with model
     [self bindingUI];
+    
+    // Delegate for sending response to open selected project info
+    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
 }
 
-- (void) viewDidAppear: (BOOL) animated
+- (void) viewWillAppear: (BOOL) animated
 {
-    [super viewDidAppear: animated];
+    [super viewWillAppear: animated];
     
     // Setup table view with search bar
     [self setupTableView];
@@ -133,6 +144,15 @@
     __weak typeof(self) blockSelf = self;
     
     self.viewModel.didSelectedProject = ^(NSNumber* projectID){
+        
+        if ( [blockSelf.delegate respondsToSelector: @selector(showFeedsForSelectedProject)] )
+        {
+            [blockSelf.delegate showFeedsForSelectedProject];
+        }
+        
+    };
+    
+    self.viewModel.didShowProjectSettings = ^(NSNumber* projectID){
         
         NSLog(@"<INFO> Project id: %lu", (unsigned long)projectID.integerValue);
         

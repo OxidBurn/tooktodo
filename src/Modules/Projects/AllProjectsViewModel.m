@@ -180,8 +180,8 @@ static CGFloat sectionHeaderHeight = 30;
     
     cell.didSelectedProject = ^( NSNumber* projectID ){
         
-        if ( blockSelf.didSelectedProject )
-            blockSelf.didSelectedProject(projectID);
+        if ( blockSelf.didShowProjectSettings )
+            blockSelf.didShowProjectSettings(projectID);
         
     };
     
@@ -195,6 +195,33 @@ static CGFloat sectionHeaderHeight = 30;
 {
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
+    
+    // Get selected project info
+    ProjectInfo* selectedProject = nil;
+    
+    switch (self.tableState)
+    {
+        case TableNormalState:
+        {
+            selectedProject = self.projectsContent[indexPath.row];
+            break;
+        }
+        case TableSearchState:
+        {
+            selectedProject = self.filteredProjectsContent[indexPath.row];
+            break;
+        }
+    }
+    
+    __weak typeof(self) blockSelf = self;
+    
+    [self.model markProjectAsSelected: selectedProject
+                       withCompletion: ^(BOOL isSuccess) {
+                          
+                           if ( blockSelf.didSelectedProject )
+                               blockSelf.didSelectedProject(selectedProject.projectID);
+                           
+                       }];
 }
 
 #pragma mark - Sorting popover delegate -

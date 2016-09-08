@@ -20,4 +20,6 @@
 
 - (void) showControllerWithSegueID: (NSString*) segueID;
 
+- (void) showFeedsForSelectedProject;
+
 @end

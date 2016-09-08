@@ -51,6 +51,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Action -
+
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )

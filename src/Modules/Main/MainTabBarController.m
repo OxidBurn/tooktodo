@@ -122,5 +122,10 @@
                               sender: self];
 }
 
+- (void) showFeedsForSelectedProject
+{
+    [self showControllerWithSegueID: @"ShowFeeds"];
+}
+
 
 @end

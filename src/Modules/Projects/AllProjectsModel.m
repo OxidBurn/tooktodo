@@ -62,7 +62,7 @@
                           isAcceding: isAcceding];
 }
 
-- (NSUInteger) getProjectsSortedType
+- (AllProjectsSortingType) getProjectsSortedType
 {
     return [[ConfigurationManager sharedInstance] getProjectsSortingType];
 }
@@ -86,6 +86,13 @@
     NSPredicate* filteredPredicate = [NSPredicate predicateWithFormat: @"(SELF.title CONTAINS[c] %@) OR (SELF.address CONTAINS[c] %@)", searchText, searchText];
     
     return [array filteredArrayUsingPredicate: filteredPredicate];
+}
+
+- (void) markProjectAsSelected: (ProjectInfo*)          info
+                withCompletion: (CompletionWithSuccess) completion
+{
+    [DataManagerShared markProjectAsSelected: info
+                              withCompletion: completion];
 }
 
 #pragma mark - Internal methods -
