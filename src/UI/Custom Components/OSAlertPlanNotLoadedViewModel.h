@@ -18,7 +18,7 @@
 
 @protocol OSAlertPlanNotLoadedViewModelDelegate <NSObject>
 
-- (void) showControllerWithIdentifier: (NSString*) segueID;
+- (void) performActionForIndexPath: (NSIndexPath*) indexPath;
 
 @end
 

@@ -87,12 +87,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if (indexPath.row == 1)
+    else
     {
         //делегатом обработать нажатие на ячейку
-        if ([self.delegate performSelector:@selector(showControllerWithIdentifier:)])
+        if ([self.delegate performSelector:@selector(performActionForIndexPath:)])
         {
-            [self.delegate showControllerWithIdentifier: @"ShowImgAlert"];
+            [self.delegate performActionForIndexPath: indexPath];
         }
     }
 }

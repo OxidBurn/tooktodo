@@ -8,6 +8,14 @@
 
 #import "OSAlertViewController.h"
 
+@protocol OSAlertDeleteTaskControllerDelegate;
+
 @interface OSAlertDeleteTaskController : OSAlertViewController
+
+@end
+
+@protocol OSAlertDeleteTaskControllerDelegate <NSObject>
+
+- (void) performActionAtIndexPath: (NSIndexPath*) indexPath;
 
 @end

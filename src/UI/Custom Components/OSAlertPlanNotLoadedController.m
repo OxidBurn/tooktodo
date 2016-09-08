@@ -48,10 +48,6 @@
 
 #pragma mark - OSAlertPlanNotLoadedViewModelDelegate methods -
 
-- (void) showControllerWithIdentifier: (NSString*) segueID
-{
-    [self performSegueWithIdentifier: segueID
-                              sender: self];
-}
+
 
 @end
