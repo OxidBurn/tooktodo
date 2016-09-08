@@ -18,6 +18,7 @@
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
 
+
 // Categories
 #import "DataManager+ProjectInfo.h"
 
@@ -44,7 +45,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 #pragma mark - Properties -
 
-- (TeamProfileInfoModel *)model
+- (TeamProfileInfoModel*) model
 {
     if ( _model == nil )
     {
@@ -69,7 +70,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     return [self.model updateUserInfo];
 }
 
-- (void)performActionForIndex:(NSUInteger)index
+- (void) performActionForIndex: (NSUInteger) index
 {
     [self.model performActionForIndex: index];
 }
@@ -162,9 +163,13 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         else
             if (self.cell.tag == PermissionType)
             {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:)])
+                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:)])
                 {
-                    [self.delegate showDesignationAlert: [self.model getMemberName]];
+                    
+                    [self.delegate showDesignationAlert: [self.model getMemberName]
+                                             withAvatar: [self.model getAvatar]];
+                    
+                    
                 }
             }
     }
@@ -191,4 +196,10 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 }
 
 
+#pragma mark - DesignateAdminControllerDelegate  methods-
+
+- (void) performAction
+{
+    NSLog(@"Action performed");
+}
 @end

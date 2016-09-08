@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "RolesViewController.h"
+#import "OSAlertDesignateAdminController.h"
 
 @protocol TeamProfileViewModelDelegate;
 
-@interface TeamProfileInfoViewModel : NSObject <RolesViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TeamProfileInfoViewModel : NSObject <RolesViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, OSAlertDesignateAdminControllerDelegate>
 
 @property (nonatomic, weak) id<TeamProfileViewModelDelegate> delegate;
 
@@ -28,7 +29,10 @@
 
 - (void) showControllerWithIdentifier: (NSString*) segueID;
 
-- (void) showDesignationAlert: (NSString*) userName;
+//- (void) showDesignationAlert: (NSString*) userName;
+
+- (void) showDesignationAlert: (NSString*) userName
+                   withAvatar: (UIImage*)  avatar;
 
 - (void) showEmailComposerForMail: (NSString*) email;
 

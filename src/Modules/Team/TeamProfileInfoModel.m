@@ -10,6 +10,7 @@
 
 // Classes
 #import "TeamMember.h"
+#import "Utils.h"
 
 // Categories
 #import "DataManager+Team.h"
@@ -117,6 +118,11 @@ typedef NS_ENUM(NSUInteger, ContactType)
 - (NSString*) getMemberName
 {
     return [NSString stringWithFormat: @"%@ %@", self.memberInfo.firstName, self.memberInfo.lastName];
+}
+
+- (UIImage*) getAvatar
+{
+    return [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.memberInfo.avatarPath]];
 }
 
 - (NSArray*) returnContactsInfo

@@ -33,6 +33,8 @@
 
 - (NSInteger) countOfContactsContent;
 
+- (UIImage*) getAvatar;
+
 - (NSString*) getContactValueForIndexPath: (NSIndexPath*) indexPath;
 
 - (UIImage*) getBtnImageForIndexPath: (NSIndexPath*) indexPath;

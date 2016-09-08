@@ -7,8 +7,13 @@
 //
 
 #import "OSAlertDesignateAdminController.h"
+#import "TeamProfileInfoViewModel.h"
 
 @interface OSAlertDesignateAdminController ()
+
+//properties
+
+@property (nonatomic, strong) TeamProfileInfoViewModel* viewModel;
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet UILabel* nameLabel;
@@ -35,6 +40,7 @@
 - (void) loadView
 {
     [super loadView];
+    self.delegate = self.viewModel;
 }
 
 - (void) didReceiveMemoryWarning
@@ -43,6 +49,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Properties -
+
+-(TeamProfileInfoViewModel *)viewModel
+{
+    if (_viewModel == nil)
+    {
+        _viewModel = [TeamProfileInfoViewModel new];
+    }
+    
+    return _viewModel;
+}
 
 #pragma mark - Public -
 
