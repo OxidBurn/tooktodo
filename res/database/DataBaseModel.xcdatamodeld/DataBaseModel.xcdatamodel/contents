@@ -61,8 +61,31 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="systems" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectTask" syncable="YES">
+        <attribute name="closedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descriptionValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="extraId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isAllRooms" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isExpired" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isIncludedRestDays" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTaskStatusChanged" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isUrgent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="mapPreviewImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="parentTaskId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="projectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="projectRelatedId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="statusDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storageDirectoryId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storageFilesCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskAccess" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskMarker" syncable="YES"/>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
@@ -114,10 +137,10 @@
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="150"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="120"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="420"/>
+        <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="45"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="75"/>
-        <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="45"/>
     </elements>
 </model>

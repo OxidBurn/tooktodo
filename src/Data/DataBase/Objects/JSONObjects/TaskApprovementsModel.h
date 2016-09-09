@@ -10,7 +10,7 @@
 
 @interface TaskApprovementsModel : JSONModel
 
-@property (strong, nonatomic) NSDate* createdDate;
-@property (strong, nonatomic) NSNumber* approverUserId;
+@property (strong, nonatomic) NSDate   * createdDate;
+@property (strong, nonatomic) NSNumber * approverUserId;
 
 @end
