@@ -211,7 +211,9 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         NSLog(@"Action cancel performed");
     }
     
-    else
+    if (btnTag == Ready)
+    {
         NSLog(@"Action ready performed");
+    }
 }
 @end
