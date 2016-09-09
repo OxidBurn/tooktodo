@@ -164,6 +164,8 @@
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
+		CF21C9EB1D82AF4400EB693E /* PermissionAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF21C9EA1D82AF4400EB693E /* PermissionAPIService.m */; };
+		CF21C9EE1D82B62D00EB693E /* PermissionService.m in Sources */ = {isa = PBXBuildFile; fileRef = CF21C9ED1D82B62D00EB693E /* PermissionService.m */; };
 		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
 		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
@@ -480,6 +482,10 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF21C9E91D82AF4400EB693E /* PermissionAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionAPIService.h; sourceTree = "<group>"; };
+		CF21C9EA1D82AF4400EB693E /* PermissionAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PermissionAPIService.m; path = ../../inc/Server/PermissionAPIService.m; sourceTree = "<group>"; };
+		CF21C9EC1D82B62D00EB693E /* PermissionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PermissionService.h; path = ../../../src/Data/Services/PermissionService.h; sourceTree = "<group>"; };
+		CF21C9ED1D82B62D00EB693E /* PermissionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionService.m; sourceTree = "<group>"; };
 		F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoViewModel.h; path = ../../../src/Modules/Team/TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
 		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
 		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../src/Modules/Team/TeamProfileInfoModel.h; sourceTree = "<group>"; };
@@ -824,6 +830,7 @@
 				561533691D7A715200BDEC3E /* TeamService.m */,
 				564DF0891D7B801400067B60 /* RolesService.m */,
 				564DF0921D7B90F400067B60 /* SystemsService.m */,
+				CF21C9ED1D82B62D00EB693E /* PermissionService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -836,6 +843,7 @@
 				5615336C1D7A71A000BDEC3E /* TeamService.h */,
 				566A72541D739E9D004F63D3 /* ProjectsService.h */,
 				566A72611D73A56E004F63D3 /* UserInfoService.h */,
+				CF21C9EC1D82B62D00EB693E /* PermissionService.h */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1474,6 +1482,7 @@
 				566A72601D73A2D1004F63D3 /* LoginAPIService.m */,
 				5615336B1D7A716500BDEC3E /* TeamAPIService.m */,
 				564DF0971D7B912900067B60 /* SystemsAPIService.m */,
+				CF21C9EA1D82AF4400EB693E /* PermissionAPIService.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -1497,6 +1506,7 @@
 				566A72681D73A5FB004F63D3 /* LoginAPIService.h */,
 				566A72591D73A072004F63D3 /* ProjectsAPIService.h */,
 				566A72651D73A5C2004F63D3 /* UserAPIService.h */,
+				CF21C9E91D82AF4400EB693E /* PermissionAPIService.h */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -1924,6 +1934,7 @@
 				564DF08D1D7B805D00067B60 /* RolesAPIService.m in Sources */,
 				56EAC25C1D7B51060087B3FF /* RolesViewModel.m in Sources */,
 				56EAC26A1D7B51060087B3FF /* UpdateInfoViewController.m in Sources */,
+				CF21C9EB1D82AF4400EB693E /* PermissionAPIService.m in Sources */,
 				561533501D7A70A100BDEC3E /* ProjectRegionData.m in Sources */,
 				560B89BE1D7C36B500746682 /* TabBarSegue.m in Sources */,
 				560B89BD1D7C36B500746682 /* CustomTabBar.m in Sources */,
@@ -1957,6 +1968,7 @@
 				564DF0B51D7C19BD00067B60 /* InformationViewController.m in Sources */,
 				561533471D7A70A100BDEC3E /* ProjectRegion.m in Sources */,
 				56EAC2381D7B51060087B3FF /* FeedsViewController.m in Sources */,
+				CF21C9EE1D82B62D00EB693E /* PermissionService.m in Sources */,
 				56EAC25E1D7B51060087B3FF /* ChangePasswordModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
