@@ -10,6 +10,7 @@
 
 // Classes
 #import "TaskMarkerModel.h"
+#import "TaskOwnerModel.h"
 
 @interface ProjectTaskModel : JSONModel
 
@@ -22,6 +23,6 @@
 @property (strong, nonatomic) NSString        * statusDescription;
 @property (strong, nonatomic) NSString        * taskTypeDescription;
 @property (assign, nonatomic) NSUInteger      duration;
-@property (strong, nonatomic) NSString        * ownerUser;
+@property (strong, nonatomic) TaskOwnerModel  * ownerUser;
 
 @end
