@@ -87,7 +87,87 @@
         <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="ProjectTaskMarker" syncable="YES"/>
+    <entity name="ProjectTaskAssignee" syncable="YES">
+        <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailConfirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isTourViewed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskMapContour" syncable="YES">
+        <attribute name="geoJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="previewImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roomId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskMarker" syncable="YES">
+        <attribute name="mapId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="markerID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="roomLevelId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskOwner" syncable="YES">
+        <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailConfirmed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+        <attribute name="isTourViewed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskResponsible" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="invite" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="projectPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoleAssignment" syncable="YES"/>
+    <entity name="ProjectTaskRoleAssignments" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskRoleType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskRoleTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoleType" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoom" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="roomLevelId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tasksCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tasksWithoutMarkers" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoomLavel" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskStage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="isCommon" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskSubTasks" syncable="YES"/>
+    <entity name="ProjectTaskWorkArea" syncable="YES">
+        <attribute name="hasTasks" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="shortTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
         <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
@@ -138,9 +218,21 @@
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="150"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="120"/>
         <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="420"/>
-        <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="45"/>
+        <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="120"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="225"/>
+        <element name="ProjectTaskRoomLavel" positionX="-36" positionY="108" width="128" height="75"/>
+        <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="105"/>
+        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="135"/>
+        <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="90"/>
+        <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="90"/>
+        <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="105"/>
+        <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="225"/>
+        <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="75"/>
+        <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="105"/>
+        <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="45"/>
+        <element name="ProjectTaskRoleAssignment" positionX="-9" positionY="135" width="128" height="45"/>
     </elements>
 </model>
