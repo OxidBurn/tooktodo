@@ -30,11 +30,6 @@ static bool isFirstAccess = YES;
     return SINGLETON;
 }
 
-
-
-
-
-
 #pragma mark - Life Cycle -
 
 + (instancetype) allocWithZone: (NSZone*) zone
@@ -79,5 +74,18 @@ static bool isFirstAccess = YES;
     return self;
 }
 
+#pragma mark - Public -
+
+- (NSDictionary*) loadUserPermissionForProject: (ProjectInfo*) projectInfo
+{
+    
+    
+    NSString* buildRequstURL = [projectUserPermissionURL stringByReplacingOccurrencesOfString: @"{projectID}"
+                                                                                   withString: projectInfo.projectID.stringValue];
+    
+    PermissionAPIService* manager = [PermissionAPIService new];
+    
+    return [manager loadProjectPermissions: buildRequstURL];
+}
 
 @end

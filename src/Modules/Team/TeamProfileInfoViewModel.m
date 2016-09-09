@@ -105,6 +105,8 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
         
+        self.cell.detailTextLabel.text = [self.model getPermissioForUser];
+        
         return self.cell;
     }
 }

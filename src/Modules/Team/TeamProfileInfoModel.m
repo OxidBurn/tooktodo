@@ -10,9 +10,11 @@
 
 // Classes
 #import "TeamMember.h"
+#import "PermissionService.h"
 
 // Categories
 #import "DataManager+Team.h"
+#import "DataManager+ProjectInfo.h"
 
 typedef NS_ENUM(NSUInteger, ContactType)
 {
@@ -29,6 +31,8 @@ typedef NS_ENUM(NSUInteger, ContactType)
 @property (nonatomic, strong) NSArray* contactsContent;
 
 @property (strong, nonatomic) NSArray* roleCellsContent;
+
+@property (strong, nonatomic) ProjectInfo* projectInfo;
 
 @end
 
@@ -206,4 +210,14 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     return self.roleCellsContent[indexPath.row];
 }
+
+- (NSString*) getPermissioForUser
+{
+    self.projectInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    NSDictionary* permissionDic = [[PermissionService sharedInstance] loadUserPermissionForProject: self.projectInfo];
+    
+    return permissionDic[@"projectPermission"];
+}
+
 @end

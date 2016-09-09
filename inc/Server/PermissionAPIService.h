@@ -12,6 +12,9 @@
 
 + (PermissionAPIService*) sharedInstance;
 
-- (RACSignal*) loadProjectsPermissions: (NSString*) requestURL;
+//- (RACSignal*) loadProjectsPermissions: (NSString*) requestURL;
+
+- (NSDictionary*) loadProjectPermissions: (NSString*) requestURL;
+
 
 @end

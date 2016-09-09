@@ -41,6 +41,8 @@
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 
+- (NSString*) getPermissioForUser;
+
 @end
 
 @protocol TeamProfileInfoModelDelegate <NSObject>

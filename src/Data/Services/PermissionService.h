@@ -22,6 +22,6 @@
 
 + (PermissionService*) sharedInstance;
 
-- (RACSignal*) loadPermissionsForProject: (ProjectInfo*) project;
+- (NSDictionary*) loadUserPermissionForProject: (ProjectInfo*) projectInfo;
 
 @end
