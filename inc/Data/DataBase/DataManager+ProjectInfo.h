@@ -37,6 +37,6 @@
 - (void) updateSelectedProjectPermission: (BOOL)                  permission
                           withCompletion: (CompletionWithSuccess) completion;
 
-- (BOOL) getSelectedProjectPermission;
+- (NSInteger) getSelectedProjectPermission;
 
 @end

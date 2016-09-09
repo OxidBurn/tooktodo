@@ -2,7 +2,7 @@
 //  ProjectInfo.h
 //  
 //
-//  Created by Nikolay Chaban on 9/9/16.
+//  Created by Глеб on 09.09.16.
 //
 //
 

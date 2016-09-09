@@ -196,11 +196,11 @@
                       }];
 }
 
-- (BOOL) getSelectedProjectPermission
+- (NSInteger) getSelectedProjectPermission
 {
     ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
     
-    return selectedProjectInfo.projectPermission.boolValue;
+    return selectedProjectInfo.projectPermission.integerValue;
 }
 
 @end

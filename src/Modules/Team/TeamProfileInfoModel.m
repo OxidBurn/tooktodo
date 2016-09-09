@@ -13,6 +13,8 @@
 
 // Categories
 #import "DataManager+Team.h"
+#import "DataManager+ProjectInfo.h"
+#import "DataManager+UserInfo.h"
 
 typedef NS_ENUM(NSUInteger, ContactType)
 {
@@ -20,6 +22,7 @@ typedef NS_ENUM(NSUInteger, ContactType)
     ContactAdditionalPhoneNumberType,
     ContactEmailType,
 };
+
 
 @interface TeamProfileInfoModel ()
 
@@ -206,4 +209,14 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     return self.roleCellsContent[indexPath.row];
 }
+
+- (NSInteger) getCurrentUserPermission
+{
+
+    NSInteger permissionForProject = [DataManagerShared getSelectedProjectPermission];
+
+    return permissionForProject;
+    
+}
+
 @end

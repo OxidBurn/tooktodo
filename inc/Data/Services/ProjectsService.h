@@ -12,6 +12,14 @@
 // Classes
 #import "ProjectInfo.h"
 
+typedef NS_ENUM(NSUInteger, PermissionType) {
+    
+    SystemAdmin   = -1,
+    Participant   = 0,
+    Owner         = 1,
+    Administrator = 2,
+};
+
 typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 
 @interface ProjectsService : NSObject
