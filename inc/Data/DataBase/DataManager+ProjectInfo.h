@@ -34,4 +34,9 @@
 
 - (NSString*) getSelectedProjectName;
 
+- (void) updateSelectedProjectPermission: (BOOL)                  permission
+                          withCompletion: (CompletionWithSuccess) completion;
+
+- (BOOL) getSelectedProjectPermission;
+
 @end

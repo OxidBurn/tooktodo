@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Nikolay Chaban on 9/9/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -36,11 +36,12 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
+@dynamic projectPermission;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic region;
-@dynamic team;
 @dynamic roles;
 @dynamic systems;
+@dynamic team;
 
 @end

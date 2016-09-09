@@ -38,6 +38,12 @@ static bool isFirstAccess = YES;
     return [[[manager rac_GET: userProjectsListURL parameters: parameters] logError] replayLazily];
 }
 
+- (RACSignal*) getProjectPermission: (NSString*) requestURL
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return [[[requestManager rac_GET: requestURL parameters: nil] logError] replayLazily];
+}
 
 #pragma mark - Life Cycle
 

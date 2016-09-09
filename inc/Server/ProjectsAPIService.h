@@ -19,4 +19,6 @@
 
 - (RACSignal*) getProjectsList: (NSDictionary*) parameters;
 
+- (RACSignal*) getProjectPermission: (NSString*) requestURL;
+
 @end

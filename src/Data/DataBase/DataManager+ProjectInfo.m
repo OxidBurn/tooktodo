@@ -178,4 +178,29 @@
     return projectInfo.title;
 }
 
+- (void) updateSelectedProjectPermission: (BOOL)                  permission
+                          withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
+        
+        selectedProject.projectPermission = @(permission);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+- (BOOL) getSelectedProjectPermission
+{
+    ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
+    
+    return selectedProjectInfo.projectPermission.boolValue;
+}
+
 @end

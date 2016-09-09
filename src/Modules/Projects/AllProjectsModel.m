@@ -91,6 +91,8 @@
 - (void) markProjectAsSelected: (ProjectInfo*)          info
                 withCompletion: (CompletionWithSuccess) completion
 {
+    [[ProjectsService sharedInstance] loadProjectData: info];
+    
     [DataManagerShared markProjectAsSelected: info
                               withCompletion: completion];
 }
