@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "ProjectSystemsObject.h"
+#import "ProjectSystemsModel.h"
 
-@implementation ProjectSystemsObject
+@implementation ProjectSystemsModel
 
 + (JSONKeyMapper*) keyMapper
 {

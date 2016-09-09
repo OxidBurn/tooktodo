@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectsAPIService.h"
-#import "ProjectInfoData.h"
+#import "ProjectInfoModel.h"
 #import "TeamService.h"
 #import "RolesService.h"
 #import "SystemsService.h"
@@ -106,7 +106,7 @@ static bool isFirstAccess = YES;
 {
     NSError* parseError       = nil;
     NSArray* responseProjects = response[@"list"];
-    NSArray* projectsList     = [ProjectInfoData arrayOfModelsFromDictionaries: responseProjects
+    NSArray* projectsList     = [ProjectInfoModel arrayOfModelsFromDictionaries: responseProjects
                                                                          error: &parseError];
     
     if ( parseError )

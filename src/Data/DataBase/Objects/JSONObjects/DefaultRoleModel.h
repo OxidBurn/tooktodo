@@ -8,7 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface DefaultRoleObject : JSONModel
+@interface DefaultRoleModel : JSONModel
 
 @property (strong, nonatomic) NSNumber * roleID;
 @property (strong, nonatomic) NSString * title;

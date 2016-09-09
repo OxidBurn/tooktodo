@@ -11,7 +11,7 @@
 // Classes
 #import "SystemsAPIService.h"
 #import "APIConstance.h"
-#import "ProjectSystemsObject.h"
+#import "ProjectSystemsModel.h"
 
 // Categories
 #import "DataManager+Systems.h"
@@ -84,7 +84,7 @@ static bool isFirstAccess = YES;
                    withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parseError = nil;
-    NSArray* systemsArr = [ProjectSystemsObject arrayOfModelsFromDictionaries: response
+    NSArray* systemsArr = [ProjectSystemsModel arrayOfModelsFromDictionaries: response
                                                                         error: &parseError];
     
     if ( parseError )

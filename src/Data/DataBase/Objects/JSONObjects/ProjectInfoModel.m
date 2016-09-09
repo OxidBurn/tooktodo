@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "ProjectInfoData.h"
+#import "ProjectInfoModel.h"
 
-@implementation ProjectInfoData
+@implementation ProjectInfoModel
 
 + (JSONKeyMapper*) keyMapper
 {

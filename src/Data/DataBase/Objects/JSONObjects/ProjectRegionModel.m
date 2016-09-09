@@ -1,18 +1,18 @@
 //
-//  ProjectCountry.m
+//  ProjectRegion.m
 //  TookTODO
 //
 //  Created by Nikolay Chaban on 8/22/16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "ProjectCountryData.h"
+#import "ProjectRegionModel.h"
 
-@implementation ProjectCountryData
+@implementation ProjectRegionModel
 
 + (JSONKeyMapper*) keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id"    : @"countryID",
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id"    : @"regionID",
                                                         @"value" : @"name"}];
 }
 

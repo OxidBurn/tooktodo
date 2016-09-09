@@ -11,8 +11,8 @@
 // Classes
 #import "APIConstance.h"
 #import "RolesAPIService.h"
-#import "ProjectRoleObject.h"
-#import "DefaultRoleObject.h"
+#import "ProjectRoleModel.h"
+#import "DefaultRoleModel.h"
 
 // Categories
 #import "DataManager+Roles.h"
@@ -153,7 +153,7 @@ static bool isFirstAccess = YES;
                     withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parseError = nil;
-    NSArray* rolesInfo  = [ProjectRoleObject arrayOfModelsFromDictionaries: response
+    NSArray* rolesInfo  = [ProjectRoleModel arrayOfModelsFromDictionaries: response
                                                                      error: &parseError];
     
     if ( parseError )
@@ -171,7 +171,7 @@ static bool isFirstAccess = YES;
                            withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parseError = nil;
-    NSArray* rolesInfo  = [DefaultRoleObject arrayOfModelsFromDictionaries: response
+    NSArray* rolesInfo  = [DefaultRoleModel arrayOfModelsFromDictionaries: response
                                                                      error: &parseError];
     
     if ( parseError )

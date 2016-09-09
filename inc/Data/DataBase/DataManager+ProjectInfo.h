@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectInfo.h"
-#import "ProjectInfoData.h"
+#import "ProjectInfoModel.h"
 
 @interface DataManager (ProjectInfo)
 

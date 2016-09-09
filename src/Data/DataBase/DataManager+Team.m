@@ -9,7 +9,7 @@
 #import "DataManager+Team.h"
 
 // Classes
-#import "TeamMemberObject.h"
+#import "TeamMemberModel.h"
 #import "AvatarHelper.h"
 #import "Utils.h"
 
@@ -27,7 +27,7 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        [teamList enumerateObjectsUsingBlock: ^(TeamMemberObject* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [teamList enumerateObjectsUsingBlock: ^(TeamMemberModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             [self persistNewTeamMember: obj
                              inProject: project
@@ -70,7 +70,7 @@
 
 #pragma mark - Internal methods -
 
-- (void) persistNewTeamMember: (TeamMemberObject*)       object
+- (void) persistNewTeamMember: (TeamMemberModel*)       object
                     inProject: (ProjectInfo*)            project
                     inContext: (NSManagedObjectContext*) context
 {
@@ -100,7 +100,7 @@
 }
 
 - (void) generateAvatarForMember: (TeamMember*)       member
-                        withInfo: (TeamMemberObject*) info
+                        withInfo: (TeamMemberModel*) info
 {
     NSString* fullNameAbbreviation = [Utils getAbbreviationWithName: info.firstName
                                                         withSurname: info.lastName];

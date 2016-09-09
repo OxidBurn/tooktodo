@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "TeamMemberObject.h"
+#import "TeamMemberModel.h"
 
-@implementation TeamMemberObject
+@implementation TeamMemberModel
 
 + (JSONKeyMapper*) keyMapper
 {

@@ -12,7 +12,7 @@
 #import "ProjectInfo.h"
 #import "APIConstance.h"
 #import "TeamAPIService.h"
-#import "TeamMemberObject.h"
+#import "TeamMemberModel.h"
 
 // Categories
 #import "DataManager+Team.h"
@@ -155,7 +155,7 @@ static bool isFirstAccess = YES;
 {
     NSError* parseError   = nil;
     NSArray* responseTeam = response[@"list"];
-    NSArray* teamList     = [TeamMemberObject arrayOfModelsFromDictionaries: responseTeam
+    NSArray* teamList     = [TeamMemberModel arrayOfModelsFromDictionaries: responseTeam
                                                                       error: &parseError];
     
     if ( parseError )
@@ -200,7 +200,7 @@ static bool isFirstAccess = YES;
 - (void) addNewTeamMember: (InviteInfo*)           info
            withCompletion: (CompletionWithSuccess) completion
 {
-    TeamMemberObject* object = [[TeamMemberObject alloc] init];
+    TeamMemberModel* object = [[TeamMemberModel alloc] init];
     
     object.firstName = info.firstName;
     object.lastName = info.lastName;

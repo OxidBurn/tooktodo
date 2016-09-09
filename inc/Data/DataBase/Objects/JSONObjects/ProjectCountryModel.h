@@ -1,5 +1,5 @@
 //
-//  ProjectRegion.h
+//  ProjectCountry.h
 //  TookTODO
 //
 //  Created by Nikolay Chaban on 8/22/16.
@@ -8,9 +8,9 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface ProjectRegionData : JSONModel
+@interface ProjectCountryModel : JSONModel
 
-@property (nonatomic, strong) NSString* regionID;
+@property (nonatomic, strong) NSString* countryID;
 
 @property (nonatomic, strong) NSString* name;
 

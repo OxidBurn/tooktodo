@@ -8,7 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface ProjectSystemsObject : JSONModel
+@interface ProjectSystemsModel : JSONModel
 
 @property (strong, nonatomic) NSNumber* systemID;
 @property (strong, nonatomic) NSString* title;

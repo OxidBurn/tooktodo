@@ -8,7 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface ProjectRoleObject : JSONModel
+@interface ProjectRoleModel : JSONModel
 
 @property (strong, nonatomic) NSNumber * roleID;
 @property (strong, nonatomic) NSString * title;

@@ -10,10 +10,10 @@
 #import <JSONModel/JSONModel.h>
 
 // Classes
-#import "ProjectCountryData.h"
-#import "ProjectRegionData.h"
+#import "ProjectCountryModel.h"
+#import "ProjectRegionModel.h"
 
-@interface ProjectInfoData : JSONModel
+@interface ProjectInfoModel : JSONModel
 
 @property (nonatomic, strong) NSDate<Optional>* lastVisit;
 
@@ -23,11 +23,11 @@
 
 @property (nonatomic, strong) NSString* title;
 
-@property (nonatomic, strong) ProjectCountryData* country;
+@property (nonatomic, strong) ProjectCountryModel* country;
 
 @property (nonatomic, assign) NSUInteger ownerUserId;
 
-@property (nonatomic, strong) ProjectRegionData<Optional>* region;
+@property (nonatomic, strong) ProjectRegionModel<Optional>* region;
 
 @property (nonatomic, strong) NSString<Optional>* street;
 

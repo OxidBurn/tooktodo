@@ -9,7 +9,7 @@
 #import "DataManager+Systems.h"
 
 // Classes
-#import "ProjectSystemsObject.h"
+#import "ProjectSystemsModel.h"
 #import "ProjectInfo.h"
 
 // Categories
@@ -27,7 +27,7 @@
      
         ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfoInContext: localContext];
         
-        [systems enumerateObjectsUsingBlock: ^(ProjectSystemsObject* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [systems enumerateObjectsUsingBlock: ^(ProjectSystemsModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             [self persistNewSystemForProject: obj
                                   forProject: currentProject
@@ -61,7 +61,7 @@
 
 #pragma mark - Internal methods -
 
-- (void) persistNewSystemForProject: (ProjectSystemsObject*)   info
+- (void) persistNewSystemForProject: (ProjectSystemsModel*)   info
                          forProject: (ProjectInfo*)            project
                           inContext: (NSManagedObjectContext*) context
 {

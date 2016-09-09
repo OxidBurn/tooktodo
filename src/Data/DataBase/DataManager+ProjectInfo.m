@@ -19,7 +19,7 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        [projects enumerateObjectsUsingBlock: ^(ProjectInfoData* data, NSUInteger idx, BOOL * _Nonnull stop) {
+        [projects enumerateObjectsUsingBlock: ^(ProjectInfoModel* data, NSUInteger idx, BOOL * _Nonnull stop) {
             
             [self persistNewProjectWithInfo: data
                                   inContext: localContext];
@@ -35,7 +35,7 @@
                       }];
 }
 
-- (void) persistNewProjectWithInfo: (ProjectInfoData*)        data
+- (void) persistNewProjectWithInfo: (ProjectInfoModel*)        data
                          inContext: (NSManagedObjectContext*) context
 {
     ProjectInfo* projectInfo = [self getIfExistProjectWithID: data.projectID];

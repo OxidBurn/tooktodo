@@ -8,7 +8,7 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface TeamMemberObject : JSONModel
+@interface TeamMemberModel : JSONModel
 
 @property (strong, nonatomic) NSString* firstName;
 @property (strong, nonatomic) NSString* lastName;

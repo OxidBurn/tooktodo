@@ -9,7 +9,7 @@
 #import "DataManager+Roles.h"
 
 // Classes
-#import "ProjectRoleObject.h"
+#import "ProjectRoleModel.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -25,7 +25,7 @@
      
         ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
         
-        [roles enumerateObjectsUsingBlock: ^(ProjectRoleObject* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [roles enumerateObjectsUsingBlock: ^(ProjectRoleModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             [self persistNewRole: obj
                       forProject: project
@@ -47,7 +47,7 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        [roles enumerateObjectsUsingBlock: ^(ProjectRoleObject* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [roles enumerateObjectsUsingBlock: ^(ProjectRoleModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             [self persistNewRole: obj
                        inContext: localContext];
@@ -79,7 +79,7 @@
 
 #pragma mark - Internal methods -
 
-- (void) persistNewRole: (ProjectRoleObject*)      info
+- (void) persistNewRole: (ProjectRoleModel*)      info
              forProject: (ProjectInfo*)            project
               inContext: (NSManagedObjectContext*) context
 {
@@ -100,7 +100,7 @@
     }
 }
 
-- (void) persistNewRole: (ProjectRoleObject*)      info
+- (void) persistNewRole: (ProjectRoleModel*)      info
               inContext: (NSManagedObjectContext*) context
 {
     ProjectRoles* role = [self getRolesWithID: info.roleID
