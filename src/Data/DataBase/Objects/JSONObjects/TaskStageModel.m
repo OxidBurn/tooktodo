@@ -10,4 +10,9 @@
 
 @implementation TaskStageModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"stageID"}];
+}
+
 @end

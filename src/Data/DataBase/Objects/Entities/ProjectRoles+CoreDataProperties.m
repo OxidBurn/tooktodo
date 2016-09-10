@@ -2,7 +2,7 @@
 //  ProjectRoles+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Nikolay Chaban on 9/11/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,12 +13,14 @@
 
 @implementation ProjectRoles (CoreDataProperties)
 
-@dynamic roleID;
-@dynamic title;
-@dynamic sort;
-@dynamic projectID;
 @dynamic hasProjectRoleAssignments;
-@dynamic project;
 @dynamic isDefault;
+@dynamic projectID;
+@dynamic roleID;
+@dynamic sort;
+@dynamic title;
+@dynamic project;
+@dynamic taskAssignee;
+@dynamic taskOwner;
 
 @end

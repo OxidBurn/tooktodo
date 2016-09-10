@@ -10,4 +10,9 @@
 
 @implementation TaskResponsibleModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"responsibleID"}];
+}
+
 @end

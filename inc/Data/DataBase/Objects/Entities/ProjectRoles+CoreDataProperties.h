@@ -2,7 +2,7 @@
 //  ProjectRoles+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Nikolay Chaban on 9/11/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,13 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectRoles (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *roleID;
-@property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) NSNumber *sort;
-@property (nullable, nonatomic, retain) NSNumber *projectID;
 @property (nullable, nonatomic, retain) NSNumber *hasProjectRoleAssignments;
+@property (nullable, nonatomic, retain) NSNumber *isDefault;
+@property (nullable, nonatomic, retain) NSNumber *projectID;
+@property (nullable, nonatomic, retain) NSNumber *roleID;
+@property (nullable, nonatomic, retain) NSNumber *sort;
+@property (nullable, nonatomic, retain) NSString *title;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
-@property (nullable, nonatomic, retain) NSNumber* isDefault;
+@property (nullable, nonatomic, retain) ProjectTaskAssignee *taskAssignee;
+@property (nullable, nonatomic, retain) NSManagedObject *taskOwner;
 
 @end
 

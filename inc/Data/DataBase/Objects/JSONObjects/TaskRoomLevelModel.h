@@ -8,9 +8,9 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface TaskRoomLavelModel : JSONModel
+@interface TaskRoomLevelModel : JSONModel
 
-@property (assign, nonatomic) NSUInteger id;
+@property (assign, nonatomic) NSUInteger roomLevelID;
 @property (assign, nonatomic) NSUInteger level;
 
 @end

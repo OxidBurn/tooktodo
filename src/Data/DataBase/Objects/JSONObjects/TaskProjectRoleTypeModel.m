@@ -10,4 +10,9 @@
 
 @implementation TaskProjectRoleTypeModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"roleTypeID"}];
+}
+
 @end

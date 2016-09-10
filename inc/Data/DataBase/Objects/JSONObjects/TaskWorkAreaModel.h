@@ -11,7 +11,7 @@
 @interface TaskWorkAreaModel : JSONModel
 
 @property (assign, nonatomic) BOOL       hasTasks;
-@property (assign, nonatomic) NSUInteger id;
+@property (assign, nonatomic) NSUInteger workAreaID;
 @property (strong, nonatomic) NSString   * shortTitle;
 @property (strong, nonatomic) NSString   * title;
 

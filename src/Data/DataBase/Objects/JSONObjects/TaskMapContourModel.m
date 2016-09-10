@@ -10,4 +10,9 @@
 
 @implementation TaskMapContourModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"mapContourID"}];
+}
+
 @end

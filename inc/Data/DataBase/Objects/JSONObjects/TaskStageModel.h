@@ -1,5 +1,5 @@
 //
-//  TaskProjectRoleTypeModel.h
+//  TaskStageModel.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 9/9/16.
@@ -8,9 +8,10 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface TaskProjectRoleTypeModel : JSONModel
+@interface TaskStageModel : JSONModel
 
-@property (assign, nonatomic) NSUInteger id;
+@property (assign, nonatomic) NSUInteger stageID;
+@property (assign, nonatomic) BOOL isCommon;
 @property (strong, nonatomic) NSString* title;
 
 @end

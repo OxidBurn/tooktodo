@@ -10,4 +10,9 @@
 
 @implementation TaskAssigneeModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"assigneeID"}];
+}
+
 @end

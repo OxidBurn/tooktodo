@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSString*                   email;
 @property (assign, nonatomic) BOOL                        emailConfirmed;
 @property (strong, nonatomic) NSString*                   firstName;
-@property (assign, nonatomic) NSUInteger                  id;
+@property (assign, nonatomic) NSUInteger                  ownerID;
 @property (assign, nonatomic) BOOL                        isSubscribedOnEmailNotifications;
 @property (assign, nonatomic) BOOL                        isTourViewed;
 @property (strong, nonatomic) NSString*                   lastName;

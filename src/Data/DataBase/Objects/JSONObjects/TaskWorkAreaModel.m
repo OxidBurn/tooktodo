@@ -10,4 +10,9 @@
 
 @implementation TaskWorkAreaModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"workAreaID"}];
+}
+
 @end

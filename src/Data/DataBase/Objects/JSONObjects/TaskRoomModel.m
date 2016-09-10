@@ -10,4 +10,9 @@
 
 @implementation TaskRoomModel
 
++ (JSONKeyMapper*) keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"roomID"}];
+}
+
 @end

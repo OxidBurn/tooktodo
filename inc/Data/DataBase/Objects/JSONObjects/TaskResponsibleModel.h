@@ -13,7 +13,7 @@
 @interface TaskResponsibleModel : JSONModel
 
 @property (strong, nonatomic) TaskAssigneeModel        * assignee;
-@property (assign, nonatomic) NSUInteger                 id;
+@property (assign, nonatomic) NSUInteger                 responsibleID;
 @property (assign, nonatomic) BOOL                     * invite;
 @property (assign, nonatomic) BOOL                     isBlocked;
 @property (assign, nonatomic) NSUInteger               projectPermission;

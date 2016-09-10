@@ -10,9 +10,9 @@
 
 @interface TaskMapContourModel : JSONModel
 
-@property (strong, nonatomic) NSString* geoJson;
-@property (assign, nonatomic) NSUInteger id;
-@property (strong, nonatomic) NSString* previewImage;
+@property (strong, nonatomic) NSString   * geoJson;
+@property (assign, nonatomic) NSUInteger mapContourID;
+@property (strong, nonatomic) NSString   * previewImage;
 @property (assign, nonatomic) NSUInteger roomId;
 
 @end

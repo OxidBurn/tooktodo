@@ -10,4 +10,9 @@
 
 @implementation TaskOwnerModel
 
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id" : @"ownerID"}];
+}
+
 @end

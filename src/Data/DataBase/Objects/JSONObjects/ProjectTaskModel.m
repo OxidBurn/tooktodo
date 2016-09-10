@@ -12,7 +12,8 @@
 
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id": @"taskID"}];
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id": @"taskID",
+                                                        @"description" : @"taskDescription"}];
 }
 
 @end

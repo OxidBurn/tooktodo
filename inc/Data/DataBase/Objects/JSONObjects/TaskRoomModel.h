@@ -11,7 +11,7 @@
 
 @interface TaskRoomModel : JSONModel
 
-@property (assign, nonatomic) NSUInteger id;
+@property (assign, nonatomic) NSUInteger roomID;
 @property (strong, nonatomic) TaskMapContourModel* mapContour;
 @property (assign, nonatomic) NSUInteger number;
 @property (assign, nonatomic) NSUInteger roomLevelId;
