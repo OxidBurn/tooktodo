@@ -51,10 +51,10 @@
 @property (assign, nonatomic) NSUInteger          taskType;
 @property (strong, nonatomic) NSString*           title;
 @property (strong, nonatomic) TaskResponsibleModel              * responsible;
-@property (strong, nonatomic) NSArray<TaskRoomModel>            * rooms;
+@property (strong, nonatomic) NSArray<TaskRoomModel *>            * rooms;
 @property (strong, nonatomic) TaskStageModel                    * stage;
-@property (strong, nonatomic) NSArray<TaskSubTasksModel>        * subTasks;
-@property (strong, nonatomic) NSArray<TaskRoleAssignmentsModel> * taskRoleAssignments;
+@property (strong, nonatomic) NSArray<TaskSubTasksModel *>        * subTasks;
+@property (strong, nonatomic) NSArray<TaskRoleAssignmentsModel *> * taskRoleAssignments;
 @property (strong, nonatomic) TaskWorkAreaModel                 * workArea;
 
 
