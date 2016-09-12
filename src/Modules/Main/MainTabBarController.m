@@ -10,10 +10,11 @@
 #import "LoginViewController.h"
 #import "WelcomeTourViewController.h"
 #import "CustomTabBar.h"
+#import "OSAlertController.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController() 
+@interface MainTabBarController()  <CustomTabBarDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
 
@@ -29,6 +30,7 @@
     [super loadView];
     
     self.mainTabBar.delegate = self;
+    self.mainTabBar.taskDelegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -122,5 +124,11 @@
                               sender: self];
 }
 
+#pragma mark - CustomTabBarDelegate methods -
+
+- (void) showTaskOptions
+{
+    [OSAlertController showTaskOptionControllerOnController: self];
+}
 
 @end

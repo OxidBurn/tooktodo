@@ -42,6 +42,7 @@
                         <segue destination="SbO-aN-FbD" kind="custom" identifier="ShowAlertWithTableFirstID" customClass="AlertControllerSegue" id="9Fr-U8-kA7"/>
                         <segue destination="8ix-FU-wSl" kind="custom" identifier="ShowAlertWithTableSecondID" customClass="AlertControllerSegue" id="pHg-xM-hEc"/>
                         <segue destination="HCd-1i-L4u" kind="custom" identifier="ShowIncorrectCredentialsID" customClass="AlertControllerSegue" id="rAj-zl-8gT"/>
+                        <segue destination="xrm-M9-K8c" kind="custom" identifier="ShowOptionsMenu" customClass="AlertControllerSegue" id="1uS-5s-lKL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udh-4v-h9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -51,7 +52,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="439" y="436"/>
+            <point key="canvasLocation" x="915" y="52"/>
         </scene>
         <!--Alert Designate Admin Controller-->
         <scene sceneID="NJC-XP-IY5">
@@ -382,6 +383,133 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hys-eQ-Hbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1985" y="1152"/>
+        </scene>
+        <!--Task Options Controller-->
+        <scene sceneID="BDQ-A9-q2v">
+            <objects>
+                <viewController storyboardIdentifier="TaskOptionsControllerID" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xrm-M9-K8c" customClass="TaskOptionsController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f4S-6G-2Vv"/>
+                        <viewControllerLayoutGuide type="bottom" id="U7J-6L-VGF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PkS-iS-vx3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twT-S6-p6g">
+                                <rect key="frame" x="278" y="551" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Y5e-ye-3br"/>
+                                    <constraint firstAttribute="width" constant="44" id="tFl-Ow-jBW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Dismiss"/>
+                                <connections>
+                                    <action selector="onDismiss:" destination="xrm-M9-K8c" eventType="touchUpInside" id="s73-Zs-iX3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-T8-Azu">
+                                <rect key="frame" x="163" y="518" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="00e-N5-qev"/>
+                                    <constraint firstAttribute="height" constant="44" id="Zz3-ds-uAd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Coment"/>
+                                <connections>
+                                    <action selector="onAddComment:" destination="xrm-M9-K8c" eventType="touchUpInside" id="Ww1-8y-U6a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-z7-Hpe">
+                                <rect key="frame" x="213" y="470" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="U6F-qf-UaR"/>
+                                    <constraint firstAttribute="height" constant="44" id="qIU-Hu-B0Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Mark"/>
+                                <connections>
+                                    <action selector="onAddMark:" destination="xrm-M9-K8c" eventType="touchUpInside" id="7Ae-iH-yeW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xh-Zs-WNm">
+                                <rect key="frame" x="278" y="448" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Yb5-H7-RMr"/>
+                                    <constraint firstAttribute="height" constant="44" id="l3V-Hx-Kef"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Task"/>
+                                <connections>
+                                    <action selector="onAddNewTask:" destination="xrm-M9-K8c" eventType="touchUpInside" id="sOd-ZE-Y9U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvz-Gy-ymd">
+                                <rect key="frame" x="394" y="518" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="YRw-Y7-Cua"/>
+                                    <constraint firstAttribute="height" constant="44" id="eb8-UK-9U3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="User"/>
+                                <connections>
+                                    <action selector="onAddUser:" destination="xrm-M9-K8c" eventType="touchUpInside" id="ziX-pb-kPi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oN-ce-48H">
+                                <rect key="frame" x="344" y="470" width="44" height="44"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.99987326679999999" green="1" blue="0.99626847119999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="huP-aa-nF3"/>
+                                    <constraint firstAttribute="width" constant="44" id="xK3-gL-X6T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Docs"/>
+                                <connections>
+                                    <action selector="onAddDocument:" destination="xrm-M9-K8c" eventType="touchUpInside" id="GaC-KK-wdM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="7oN-ce-48H" firstAttribute="bottom" secondItem="IX3-z7-Hpe" secondAttribute="bottom" id="386-NK-E8N"/>
+                            <constraint firstItem="twT-S6-p6g" firstAttribute="centerX" secondItem="PkS-iS-vx3" secondAttribute="centerX" id="6Bn-9I-ClT"/>
+                            <constraint firstItem="Lvz-Gy-ymd" firstAttribute="top" secondItem="7oN-ce-48H" secondAttribute="bottom" constant="4" id="6Hh-lR-Crb"/>
+                            <constraint firstItem="IX3-z7-Hpe" firstAttribute="leading" secondItem="AnP-T8-Azu" secondAttribute="trailing" constant="6" id="6Kl-43-tfE"/>
+                            <constraint firstItem="AnP-T8-Azu" firstAttribute="top" secondItem="IX3-z7-Hpe" secondAttribute="bottom" constant="4" id="7QC-V5-r0Q"/>
+                            <constraint firstItem="5Xh-Zs-WNm" firstAttribute="leading" secondItem="twT-S6-p6g" secondAttribute="leading" id="86h-hc-CvY"/>
+                            <constraint firstItem="twT-S6-p6g" firstAttribute="top" secondItem="5Xh-Zs-WNm" secondAttribute="bottom" constant="59" id="99i-IO-J8P"/>
+                            <constraint firstItem="Lvz-Gy-ymd" firstAttribute="leading" secondItem="7oN-ce-48H" secondAttribute="trailing" constant="6" id="Cyc-ob-ELp"/>
+                            <constraint firstItem="7oN-ce-48H" firstAttribute="leading" secondItem="5Xh-Zs-WNm" secondAttribute="trailing" constant="22" id="Kwr-Gd-hag"/>
+                            <constraint firstItem="U7J-6L-VGF" firstAttribute="top" secondItem="twT-S6-p6g" secondAttribute="bottom" constant="5" id="aHg-cq-NU4"/>
+                            <constraint firstItem="twT-S6-p6g" firstAttribute="leading" secondItem="AnP-T8-Azu" secondAttribute="trailing" constant="71" id="mpV-J8-TfA"/>
+                            <constraint firstItem="twT-S6-p6g" firstAttribute="top" secondItem="AnP-T8-Azu" secondAttribute="bottom" constant="-11" id="n7M-MQ-97I"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addComment" destination="AnP-T8-Azu" id="NAw-02-icI"/>
+                        <outlet property="addDocument" destination="7oN-ce-48H" id="7sC-5a-LkG"/>
+                        <outlet property="addMark" destination="IX3-z7-Hpe" id="7Nl-iu-ckp"/>
+                        <outlet property="addNewTask" destination="5Xh-Zs-WNm" id="qTK-HT-D4G"/>
+                        <outlet property="addUser" destination="Lvz-Gy-ymd" id="aIE-N0-PrS"/>
+                        <outlet property="dismiss" destination="twT-S6-p6g" id="xb7-Xw-iGA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CZi-Xa-Wi7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2792" y="1152"/>
         </scene>
         <!--Default Alert Controller-->
         <scene sceneID="TE6-6u-Dko">

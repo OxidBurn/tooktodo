@@ -175,6 +175,7 @@
 		CFEACF201D8177D3005BA6D9 /* OSAlertDeleteTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF1F1D8177D3005BA6D9 /* OSAlertDeleteTaskController.m */; };
 		CFEACF231D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */; };
 		CFEACF261D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */; };
+		CFFA37B21D86E8A700F7EB60 /* TaskOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA37B11D86E8A700F7EB60 /* TaskOptionsController.m */; };
 		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
 		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
@@ -513,6 +514,8 @@
 		CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertPlanNotLoadedController.m; sourceTree = "<group>"; };
 		CFEACF241D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertPlanNotLoadedViewModel.h; path = "../../../src/UI/Custom Components/OSAlertPlanNotLoadedViewModel.h"; sourceTree = "<group>"; };
 		CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertPlanNotLoadedViewModel.m; sourceTree = "<group>"; };
+		CFFA37B01D86E8A700F7EB60 /* TaskOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOptionsController.h; sourceTree = "<group>"; };
+		CFFA37B11D86E8A700F7EB60 /* TaskOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOptionsController.m; sourceTree = "<group>"; };
 		F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoViewModel.h; path = ../../../src/Modules/Team/TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
 		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
 		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../src/Modules/Team/TeamProfileInfoModel.h; sourceTree = "<group>"; };
@@ -555,6 +558,7 @@
 		560B89A81D7C36B500746682 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				CFFA37AF1D86E86000F7EB60 /* OSTaskOptionsController */,
 				CFEACEFA1D8171E0005BA6D9 /* OSAlertController */,
 				560B89D71D7C371800746682 /* OSSecureTextField */,
 				560B89A91D7C36B500746682 /* OSAvatarGenerator */,
@@ -1798,6 +1802,15 @@
 			name = OSAlertDesignateAdmin;
 			sourceTree = "<group>";
 		};
+		CFFA37AF1D86E86000F7EB60 /* OSTaskOptionsController */ = {
+			isa = PBXGroup;
+			children = (
+				CFFA37B01D86E8A700F7EB60 /* TaskOptionsController.h */,
+				CFFA37B11D86E8A700F7EB60 /* TaskOptionsController.m */,
+			);
+			name = OSTaskOptionsController;
+			sourceTree = "<group>";
+		};
 		F781BEE91D7F118700F63962 /* TeamProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1977,6 +1990,7 @@
 				56EAC26D1D7B51060087B3FF /* WelcomeTourModel.m in Sources */,
 				59B0BE9B1D6130FC0016AE13 /* Utils.m in Sources */,
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
+				CFFA37B21D86E8A700F7EB60 /* TaskOptionsController.m in Sources */,
 				564DF0B71D7C19BD00067B60 /* AboutProjectSegue.m in Sources */,
 				56EAC24A1D7B51060087B3FF /* ProjectInfoCellModel.m in Sources */,
 				56EAC2601D7B51060087B3FF /* UserInfoModel.m in Sources */,
