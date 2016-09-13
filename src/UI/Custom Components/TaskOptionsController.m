@@ -41,6 +41,16 @@
 @implementation TaskOptionsController
 
 
+#pragma mark - Life Cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    [self roundButtons];
+}
+
+
 #pragma mark - Actions -
 
 - (IBAction) onAddComment: (UIButton*) sender
@@ -83,6 +93,18 @@
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
+}
+
+#pragma mark - Helpers -
+
+- (void) roundButtons
+{
+    self.addComment.layer.cornerRadius  = 22;
+    self.addMark.layer.cornerRadius     = 22;
+    self.addNewTask.layer.cornerRadius  = 22;
+    self.addDocument.layer.cornerRadius = 22;
+    self.addUser.layer.cornerRadius     = 22;
+    self.dismiss.layer.cornerRadius     = 22;
 }
 
 @end
