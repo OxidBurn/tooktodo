@@ -8,6 +8,9 @@
 
 #import "TaskOptionsController.h"
 
+//classes
+#import "AddTaskViewController.h"
+
 @interface TaskOptionsController ()
 
 // Outlets
@@ -54,7 +57,16 @@
 
 - (IBAction) onAddNewTask: (UIButton*) sender
 {
-    NSLog(@"onAddNewTask");
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                         bundle: nil];
+    
+    AddTaskViewController* addTaskController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskControllerID"];
+    
+    
+    [self presentViewController: addTaskController
+                       animated: NO
+                     completion: nil];
+
 }
 
 - (IBAction) onAddDocument: (UIButton*) sender
@@ -64,7 +76,7 @@
 
 - (IBAction) onAddUser: (UIButton*) sender
 {
-    NSLog(@"onAddUser");
+   // [self performSegueWithIdentifier: @"" sender: ]
 }
 
 - (IBAction) onDismiss: (UIButton*) sender

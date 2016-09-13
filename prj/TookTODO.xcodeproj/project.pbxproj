@@ -176,6 +176,8 @@
 		CFEACF231D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */; };
 		CFEACF261D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */; };
 		CFFA37B21D86E8A700F7EB60 /* TaskOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA37B11D86E8A700F7EB60 /* TaskOptionsController.m */; };
+		CFFA37B41D86FA9400F7EB60 /* TaskOptionsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFFA37B31D86FA9400F7EB60 /* TaskOptionsScreen.storyboard */; };
+		CFFA37BA1D86FFA700F7EB60 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA37B91D86FFA700F7EB60 /* AddTaskViewController.m */; };
 		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
 		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
@@ -516,6 +518,9 @@
 		CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertPlanNotLoadedViewModel.m; sourceTree = "<group>"; };
 		CFFA37B01D86E8A700F7EB60 /* TaskOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskOptionsController.h; sourceTree = "<group>"; };
 		CFFA37B11D86E8A700F7EB60 /* TaskOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskOptionsController.m; sourceTree = "<group>"; };
+		CFFA37B31D86FA9400F7EB60 /* TaskOptionsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskOptionsScreen.storyboard; sourceTree = "<group>"; };
+		CFFA37B81D86FFA700F7EB60 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddTaskViewController.h; path = AddTask/AddTaskViewController.h; sourceTree = "<group>"; };
+		CFFA37B91D86FFA700F7EB60 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddTaskViewController.m; path = AddTask/AddTaskViewController.m; sourceTree = "<group>"; };
 		F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoViewModel.h; path = ../../../src/Modules/Team/TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
 		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
 		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../src/Modules/Team/TeamProfileInfoModel.h; sourceTree = "<group>"; };
@@ -1283,6 +1288,7 @@
 		56EAC1ED1D7B51060087B3FF /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				CFFA37BB1D86FFB400F7EB60 /* AddTask */,
 				56EAC1EE1D7B51060087B3FF /* ProjectsNameTableViewCell.h */,
 				56EAC1EF1D7B51060087B3FF /* ProjectsNameTableViewCell.m */,
 				56EAC1F01D7B51060087B3FF /* StatusMarkerComponent.h */,
@@ -1637,6 +1643,7 @@
 				59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */,
 				F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */,
 				592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */,
+				CFFA37B31D86FA9400F7EB60 /* TaskOptionsScreen.storyboard */,
 			);
 			name = storyboards;
 			path = ../res/storyboards;
@@ -1811,6 +1818,15 @@
 			name = OSTaskOptionsController;
 			sourceTree = "<group>";
 		};
+		CFFA37BB1D86FFB400F7EB60 /* AddTask */ = {
+			isa = PBXGroup;
+			children = (
+				CFFA37B81D86FFA700F7EB60 /* AddTaskViewController.h */,
+				CFFA37B91D86FFA700F7EB60 /* AddTaskViewController.m */,
+			);
+			name = AddTask;
+			sourceTree = "<group>";
+		};
 		F781BEE91D7F118700F63962 /* TeamProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1887,6 +1903,7 @@
 				59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */,
 				F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */,
 				5636E8FF1D80A80700CF06FA /* service_agreements.txt in Resources */,
+				CFFA37B41D86FA9400F7EB60 /* TaskOptionsScreen.storyboard in Resources */,
 				56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */,
 				56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */,
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
@@ -2101,6 +2118,7 @@
 				563337621D73AB7A00A9321E /* LoginAPIService.m in Sources */,
 				56EAC23C1D7B51060087B3FF /* MainTabBarController.m in Sources */,
 				560B89B91D7C36B500746682 /* AvatarImageView.m in Sources */,
+				CFFA37BA1D86FFA700F7EB60 /* AddTaskViewController.m in Sources */,
 				5615334B1D7A70A100BDEC3E /* UserInfo.m in Sources */,
 				59575DC61D81A8FE00A28227 /* OSDefaultAlertController.m in Sources */,
 				56EAC26C1D7B51060087B3FF /* UpdateUserInfoModel.m in Sources */,

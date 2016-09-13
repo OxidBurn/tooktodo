@@ -11,13 +11,14 @@
 #import "WelcomeTourViewController.h"
 #import "CustomTabBar.h"
 #import "OSAlertController.h"
+#import "TaskOptionsController.h"
+#import "AddTaskViewController.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController()  <CustomTabBarDelegate>
+@interface MainTabBarController()  <CustomTabBarDelegate, TaskOptionsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
-
 
 @end
 
@@ -52,6 +53,9 @@
             [self showWelcomeTour];
         }
 }
+
+#pragma mark - Properties -
+
 
 #pragma mark - Internal methods -
 
@@ -131,4 +135,17 @@
     [OSAlertController showTaskOptionControllerOnController: self];
 }
 
+
+#pragma mark - TaskOptionsControllerDelegate -
+
+- (void) showAnotherScreen
+{
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                              bundle: [NSBundle mainBundle]];
+    
+    AddTaskViewController* addTaskController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsScreenID"];
+    
+    [self.navigationController pushViewController: addTaskController
+                                         animated: YES];
+}
 @end

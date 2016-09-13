@@ -8,6 +8,16 @@
 
 #import "OSAlertViewController.h"
 
+@protocol TaskOptionsControllerDelegate;
+
 @interface TaskOptionsController : OSAlertViewController
+
+@property (nonatomic, weak) id<TaskOptionsControllerDelegate> delegate;
+
+@end
+
+@protocol TaskOptionsControllerDelegate <NSObject>
+
+- (void) showAnotherScreen;
 
 @end
