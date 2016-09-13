@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Nikolay Chaban on 9/13/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -38,12 +38,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, retain) NSString *street;
 @property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSNumber *isExpanded;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
-@property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
+@property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
+@property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskStage *> *stage;
 
 @end
 
@@ -54,11 +57,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addOfflineSettings:(NSSet<OfflineSettings *> *)values;
 - (void)removeOfflineSettings:(NSSet<OfflineSettings *> *)values;
 
-- (void)addTeamObject:(TeamMember *)value;
-- (void)removeTeamObject:(TeamMember *)value;
-- (void)addTeam:(NSSet<TeamMember *> *)values;
-- (void)removeTeam:(NSSet<TeamMember *> *)values;
-
 - (void)addRolesObject:(ProjectRoles *)value;
 - (void)removeRolesObject:(ProjectRoles *)value;
 - (void)addRoles:(NSSet<ProjectRoles *> *)values;
@@ -68,6 +66,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeSystemsObject:(ProjectSystem *)value;
 - (void)addSystems:(NSSet<ProjectSystem *> *)values;
 - (void)removeSystems:(NSSet<ProjectSystem *> *)values;
+
+- (void)addTasksObject:(ProjectTask *)value;
+- (void)removeTasksObject:(ProjectTask *)value;
+- (void)addTasks:(NSSet<ProjectTask *> *)values;
+- (void)removeTasks:(NSSet<ProjectTask *> *)values;
+
+- (void)addTeamObject:(TeamMember *)value;
+- (void)removeTeamObject:(TeamMember *)value;
+- (void)addTeam:(NSSet<TeamMember *> *)values;
+- (void)removeTeam:(NSSet<TeamMember *> *)values;
+
+- (void)addStageObject:(ProjectTaskStage *)value;
+- (void)removeStageObject:(ProjectTaskStage *)value;
+- (void)addStage:(NSSet<ProjectTaskStage *> *)values;
+- (void)removeStage:(NSSet<ProjectTaskStage *> *)values;
 
 @end
 

@@ -2,7 +2,7 @@
 //  ProjectTaskStage+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 9/13/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,10 @@
 
 @implementation ProjectTaskStage (CoreDataProperties)
 
-@dynamic stageID;
 @dynamic isCommon;
+@dynamic stageID;
 @dynamic title;
 @dynamic task;
+@dynamic project;
 
 @end

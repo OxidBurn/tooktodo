@@ -14,6 +14,7 @@
 #import "TeamService.h"
 #import "RolesService.h"
 #import "SystemsService.h"
+#import "TasksService.h"
 
 // Extensions
 #import "DataManager+ProjectInfo.h"
@@ -88,13 +89,14 @@ static bool isFirstAccess = YES;
     // Load all roles
     // Load systems
     NSArray* signals = @[[[RolesService sharedInstance] loadAllRolesForProject: project],
-                         [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID]];
+                         [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID],
+                         [[TasksService sharedInstance] loadAllTasksForProjectWithID: project.projectID]];
     
     RACSignal* loadProjectInfo = [RACSignal combineLatest: signals];
     
     [loadProjectInfo subscribeCompleted: ^{
         
-//        [SVProgressHUD showSuccessWithStatus: @"Load project info is successful!"];
+        NSLog(@"<INFO> Load project info is successful!");
         
     }];
 }

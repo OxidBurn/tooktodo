@@ -142,6 +142,16 @@
     return selectedProject;
 }
 
+- (ProjectInfo*) getProjectWithID: (NSNumber*)               projectID
+                         inCotext: (NSManagedObjectContext*) context
+{
+    ProjectInfo* project = [ProjectInfo MR_findFirstByAttribute: @"projectID"
+                                                      withValue: projectID
+                                                      inContext: context];
+    
+    return project;
+}
+
 - (void) markProjectAsSelected: (ProjectInfo*)            project
                 withCompletion: (void(^)(BOOL isSuccess)) completion
 {

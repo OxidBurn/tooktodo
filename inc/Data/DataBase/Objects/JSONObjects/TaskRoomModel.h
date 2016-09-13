@@ -9,6 +9,8 @@
 #import <JSONModel/JSONModel.h>
 #import "TaskMapContourModel.h"
 
+@protocol TaskRoomModel;
+
 @interface TaskRoomModel : JSONModel
 
 @property (assign, nonatomic) NSUInteger roomID;

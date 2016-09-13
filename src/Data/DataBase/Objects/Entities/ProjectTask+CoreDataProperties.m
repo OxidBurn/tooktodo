@@ -46,5 +46,6 @@
 @dynamic rooms;
 @dynamic subTasks;
 @dynamic taskRoleAssignments;
+@dynamic project;
 
 @end

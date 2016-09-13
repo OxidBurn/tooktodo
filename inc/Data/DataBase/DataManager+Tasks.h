@@ -9,12 +9,16 @@
 #import "DataManager.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectTask.h"
+#import "TasksGroupedByProjects.h"
 
 
 @interface DataManager (Tasks)
 
-- (void) persistNewTasks: (NSArray*)              tasks
-          withCompletion: (CompletionWithSuccess) completion;
+- (void) persistTasks: (NSArray*)              tasks
+       withCompletion: (CompletionWithSuccess) completion;
+
+- (void) persistTasksForProjects: (TasksGroupedByProjects*) info
+                  withCompletion: (CompletionWithSuccess)   completion;
 
 @end

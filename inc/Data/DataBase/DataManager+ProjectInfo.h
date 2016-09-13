@@ -34,4 +34,7 @@
 
 - (NSString*) getSelectedProjectName;
 
+- (ProjectInfo*) getProjectWithID: (NSNumber*)               projectID
+                         inCotext: (NSManagedObjectContext*) context;
+
 @end

@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskResponsible (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *responsibleID;
-@property (nullable, nonatomic, retain) NSNumber *invite;
-@property (nullable, nonatomic, retain) NSNumber *isBlocked;
-@property (nullable, nonatomic, retain) NSNumber *projectPermission;
+@property (nullable, nonatomic, retain) NSNumber        *responsibleID;
+@property (nullable, nonatomic, retain) NSNumber        *invite;
+@property (nullable, nonatomic, retain) NSNumber        *isBlocked;
+@property (nullable, nonatomic, retain) NSNumber        *projectPermission;
 @property (nullable, nonatomic, retain) NSManagedObject *assignee;
 @property (nullable, nonatomic, retain) NSManagedObject *projectRoleType;
 @property (nullable, nonatomic, retain) NSManagedObject *task;

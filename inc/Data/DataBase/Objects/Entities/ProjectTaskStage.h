@@ -2,12 +2,14 @@
 //  ProjectTaskStage.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 9/13/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
+@class ProjectInfo, ProjectTask;
 
 NS_ASSUME_NONNULL_BEGIN
 

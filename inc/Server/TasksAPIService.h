@@ -17,4 +17,6 @@
 
 - (RACSignal*) loadTasksForProjectWithURL: (NSString*) url;
 
+- (RACSignal*) loadAllUserTasks;
+
 @end

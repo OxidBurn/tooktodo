@@ -8,6 +8,15 @@
 
 #import <JSONModel/JSONModel.h>
 
+// classes
+@class ProjectTaskModel;
+
+@protocol ProjectTaskModel;
+
 @interface TaskSubTasksModel : JSONModel
+
+@property (assign, nonatomic) NSUInteger count;
+@property (strong, nonatomic) NSArray<ProjectTaskModel> * list;
+
 
 @end

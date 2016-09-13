@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectTaskMarker, ProjectTaskResponsible, ProjectTaskRoleAssignments, ProjectTaskRoomLevel, ProjectTaskStage, ProjectTaskSubTasks, ProjectTaskWorkArea;
+@class ProjectInfo, ProjectTaskMarker, ProjectTaskOwner, ProjectTaskResponsible, ProjectTaskRoleAssignments, ProjectTaskRoom, ProjectTaskRoomLevel, ProjectTaskStage, ProjectTaskSubTasks, ProjectTaskWorkArea;
 
 NS_ASSUME_NONNULL_BEGIN
 

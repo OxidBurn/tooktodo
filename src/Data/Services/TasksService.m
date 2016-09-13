@@ -12,6 +12,7 @@
 #import "TasksAPIService.h"
 #import "ProjectTaskModel.h"
 #import "APIConstance.h"
+#import "TasksGroupedByProjects.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -74,6 +75,37 @@
     return loadTasksForProjectSignal;
 }
 
+- (RACSignal*) loadAllTasksForCurrentUser
+{
+    @weakify(self)
+    
+    RACSignal* loadAllUserTasksSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] loadAllUserTasks]
+         subscribeNext: ^(RACTuple* response) {
+            
+             @strongify(self)
+             
+             [self parseTasksForCurrentUser: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+                                
+                                 [subscriber sendCompleted];
+                                 
+                             }];
+             
+        }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadAllUserTasksSignal;
+}
+
 
 #pragma mark - Internal methods -
 
@@ -90,8 +122,26 @@
     }
     else
     {
-        [DataManagerShared persistNewTasks: tasks
-                            withCompletion: completion];
+        [DataManagerShared persistTasks: tasks
+                         withCompletion: completion];
+    }
+}
+
+- (void) parseTasksForCurrentUser: (NSDictionary*)         response
+                   withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parsingError              = nil;
+    TasksGroupedByProjects* parsedInfo = [[TasksGroupedByProjects alloc] initWithDictionary: response
+                                                                                      error: &parsingError];
+    
+    if ( parsingError )
+    {
+        NSLog(@"<ERROR> Error with parsing tasks response: \n%@", parsingError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistTasksForProjects: parsedInfo
+                                    withCompletion: completion];
     }
 }
 

@@ -35,7 +35,7 @@ static bool isFirstAccess = YES;
 {
     AFHTTPRequestOperationManager* manager = [self getDefaultManager];
     
-    return [[[manager rac_GET: userProjectsListURL parameters: parameters] logError] replayLazily];
+    return [[[manager rac_GET: userProjectsListURL parameters: nil] logError] replayLazily];
 }
 
 

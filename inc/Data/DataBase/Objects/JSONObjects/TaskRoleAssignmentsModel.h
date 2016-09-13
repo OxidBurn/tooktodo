@@ -9,6 +9,8 @@
 #import <JSONModel/JSONModel.h>
 #import "TaskProjectRoleAssignmentModel.h"
 
+@protocol TaskRoleAssignmentsModel;
+
 @interface TaskRoleAssignmentsModel : JSONModel
 
 @property (assign, nonatomic) NSUInteger                     roleAssignmentsID;

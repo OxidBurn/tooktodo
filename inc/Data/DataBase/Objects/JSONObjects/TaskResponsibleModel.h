@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) TaskAssigneeModel        * assignee;
 @property (assign, nonatomic) NSUInteger                 responsibleID;
-@property (assign, nonatomic) BOOL                     * invite;
+@property (assign, nonatomic) BOOL                     invite;
 @property (assign, nonatomic) BOOL                     isBlocked;
 @property (assign, nonatomic) NSUInteger               projectPermission;
 @property (strong, nonatomic) TaskProjectRoleTypeModel * projectRoleType;

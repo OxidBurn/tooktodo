@@ -20,4 +20,6 @@
 
 - (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID;
 
+- (RACSignal*) loadAllTasksForCurrentUser;
+
 @end
