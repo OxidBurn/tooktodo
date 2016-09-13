@@ -36,7 +36,7 @@
     self.projectAddressLabel.text = info.address;
     self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%ld", info.tasks.count];
     
-    [self updateExpandedState: info.isExpanded];
+    [self updateExpandedState: info.isExpanded.boolValue];
 }
 
 
@@ -45,7 +45,8 @@
 
 - (IBAction) onShowTasks: (UIButton*) sender
 {
-    
+    if ( self.didChangeExpandState )
+        self.didChangeExpandState(self.tag);
 }
 
 
@@ -57,11 +58,19 @@
     
     if ( isExpanded )
     {
-        expandedStateImage = [UIImage imageNamed: @"ArrowHorizontaly"];
+        self.countOfTasksLabel.backgroundColor   = [UIColor clearColor];
+        self.countOfTasksLabel.layer.borderColor = [UIColor colorWithRed:0.349 green:0.3922 blue:0.4431 alpha:1.0].CGColor;
+        self.countOfTasksLabel.layer.borderWidth = 1.0f;
+        expandedStateImage                       = [UIImage imageNamed: @"ArrowHorizontaly"];
+        self.backgroundColor                     = [UIColor colorWithRed:0.902 green:0.9098 blue:0.9176 alpha:1.0];
     }
     else
     {
-        expandedStateImage = [UIImage imageNamed: @"ArrowVertical"];
+        self.countOfTasksLabel.backgroundColor   = [UIColor colorWithRed:0.8235 green:0.8902 blue:0.8824 alpha:1.0];
+        self.countOfTasksLabel.layer.borderColor = [UIColor clearColor].CGColor;
+        self.countOfTasksLabel.layer.borderWidth = 0.0f;
+        expandedStateImage                       = [UIImage imageNamed: @"ArrowVertical"];
+        self.backgroundColor                     = [UIColor whiteColor];
     }
     
     self.expandedStateImage.image = expandedStateImage;

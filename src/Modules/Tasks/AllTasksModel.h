@@ -27,5 +27,8 @@
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section;
 
+- (void) markProjectAsExpanded: (NSUInteger)            projectIndex
+                withCompletion: (CompletionWithSuccess) completion;
+
 
 @end

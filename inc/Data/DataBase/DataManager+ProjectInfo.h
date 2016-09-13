@@ -37,4 +37,7 @@
 - (ProjectInfo*) getProjectWithID: (NSNumber*)               projectID
                          inCotext: (NSManagedObjectContext*) context;
 
+- (void) updateProjectExpandedState: (ProjectInfo*)          project
+                     withCompletion: (CompletionWithSuccess) completion;
+
 @end

@@ -73,10 +73,26 @@
     TasksProjectTitleView* projectInfoView = [[MainBundle loadNibNamed: @"AllTasksProjectTitleView"
                                                                  owner: self
                                                                options: nil] firstObject];
+
+    projectInfoView.tag = section;
     
     ProjectInfo* project = [self.model getProjectInfoForSection: section];
-    
+
     [projectInfoView fillInfo: project];
+    
+    // Handle changing expand state of the project
+    __weak typeof(self) blockSelf = self;
+    
+    projectInfoView.didChangeExpandState = ^( NSUInteger section ){
+        
+        [blockSelf.model markProjectAsExpanded: section
+                                withCompletion: ^(BOOL isSuccess) {
+                                   
+                                    [tableView reloadData];
+                                    
+                                }];
+        
+    };
     
     return projectInfoView;
 }

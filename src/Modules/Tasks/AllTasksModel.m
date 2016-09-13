@@ -50,7 +50,10 @@
 {
     ProjectInfo* project = self.projectsInfo[section];
     
-    return project.stage.count;
+    if ( project.isExpanded.boolValue )
+        return project.stage.count;
+    else
+        return 0;
 }
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section
@@ -58,6 +61,22 @@
     return self.projectsInfo[section];
 }
 
-
+- (void) markProjectAsExpanded: (NSUInteger)            projectIndex
+                withCompletion: (CompletionWithSuccess) completion
+{
+    ProjectInfo* project = [self getProjectInfoForSection: projectIndex];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    [DataManagerShared updateProjectExpandedState: project
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       blockSelf.projectsInfo = [DataManagerShared getAllProjects];
+                                       
+                                       if ( completion )
+                                           completion(YES);
+                                       
+                                   }];
+}
 
 @end

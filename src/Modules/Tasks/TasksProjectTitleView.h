@@ -13,6 +13,7 @@
 
 // properties
 
+@property (nonatomic, copy) void(^didChangeExpandState)(NSUInteger section);
 
 // methods
 

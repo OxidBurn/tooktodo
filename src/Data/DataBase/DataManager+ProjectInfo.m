@@ -78,7 +78,8 @@
 
 - (NSArray*) getAllProjects
 {
-    return [ProjectInfo MR_findAll];
+    return [ProjectInfo MR_findAllSortedBy: @"title"
+                                 ascending: YES];
 }
 
 - (NSArray*) getProjectsForMenu
@@ -186,6 +187,22 @@
     ProjectInfo* projectInfo = [self getSelectedProjectInfo];
     
     return projectInfo.title;
+}
+
+- (void) updateProjectExpandedState: (ProjectInfo*)          project
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        project.isExpanded = @(!project.isExpanded.boolValue);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 @end
