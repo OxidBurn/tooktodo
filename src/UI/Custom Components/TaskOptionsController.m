@@ -99,12 +99,12 @@
 
 - (void) roundButtons
 {
-    self.addComment.layer.cornerRadius  = 22;
-    self.addMark.layer.cornerRadius     = 22;
-    self.addNewTask.layer.cornerRadius  = 22;
-    self.addDocument.layer.cornerRadius = 22;
-    self.addUser.layer.cornerRadius     = 22;
-    self.dismiss.layer.cornerRadius     = 22;
+    self.addComment.layer.cornerRadius  = self.addComment.frame.size.width/2;
+    self.addMark.layer.cornerRadius     = self.addMark.frame.size.width/2;
+    self.addNewTask.layer.cornerRadius  = self.addNewTask.frame.size.width/2;
+    self.addDocument.layer.cornerRadius = self.addDocument.frame.size.width/2;
+    self.addUser.layer.cornerRadius     = self.addUser.frame.size.width/2;
+    self.dismiss.layer.cornerRadius     = self.dismiss.frame.size.width/2;
 }
 
 @end
