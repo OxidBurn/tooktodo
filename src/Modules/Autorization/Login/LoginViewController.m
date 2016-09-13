@@ -15,10 +15,14 @@
 #import "RecoveryViewModel.h"
 #import "RecoveryViewController.h"
 #import "OSSecureTextField.h"
+#import "OSAlertController.h"
+#import "OSDefaultAlertController.h"
 
 @interface LoginViewController ()
 
 // properties
+
+@property (nonatomic, strong) OSDefaultAlertController* alertController;
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField       *emailTextField;
@@ -75,6 +79,7 @@
     
     // binding all UI components
     [self bindingUI];
+    
 }
 
 
@@ -113,6 +118,16 @@
     return _viewModel;
 }
 
+- (OSDefaultAlertController*) alertController
+{
+    if (_alertController == nil)
+    {
+        _alertController = [[OSDefaultAlertController alloc] init];
+        _alertController.delegate = self;
+    }
+    
+    return _alertController;
+}
 
 #pragma mark - Internal methods -
 
@@ -161,18 +176,11 @@
         
         if ( error.code == -1011 )
         {
-            UIAlertController* errorAlert = [UIAlertController alertControllerWithTitle: @"Неверный пароль"
-                                                                                message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
-                                                                         preferredStyle: UIAlertControllerStyleAlert];
-            
-            UIAlertAction* action = [UIAlertAction actionWithTitle: @"Попробуйте еще раз"
-                                                             style: UIAlertActionStyleDefault
-                                                           handler: nil];
-            [errorAlert addAction: action];
-            
-            [self presentViewController: errorAlert
-                               animated: YES
-                             completion: nil];
+            [OSAlertController showDefaultAlertWithTitle:@"Неверный пароль"
+                                                 message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
+                                              andBtnText: @"Попробуйте еще раз"
+                                            onController: self
+                                            withDelegate: self];
         }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
@@ -280,5 +288,13 @@
                              completion: nil];
 }
 
+
+#pragma mark - OSDefaultAlertControllerDelegate methods -
+
+- (void) performAction
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
 
 @end

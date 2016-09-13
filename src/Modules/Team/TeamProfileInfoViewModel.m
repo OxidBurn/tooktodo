@@ -18,6 +18,7 @@
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
 
+
 // Categories
 #import "DataManager+ProjectInfo.h"
 
@@ -25,6 +26,12 @@ typedef NS_ENUM(NSUInteger, CellType)
 {
     RoleType,
     PermissionType,
+};
+
+typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
+{
+    Cancel,
+    Ready,
 };
 
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
@@ -44,7 +51,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 #pragma mark - Properties -
 
-- (TeamProfileInfoModel *)model
+- (TeamProfileInfoModel*) model
 {
     if ( _model == nil )
     {
@@ -69,7 +76,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     return [self.model updateUserInfo];
 }
 
-- (void)performActionForIndex:(NSUInteger)index
+- (void) performActionForIndex: (NSUInteger) index
 {
     [self.model performActionForIndex: index];
 }
@@ -162,9 +169,13 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         else
             if (self.cell.tag == PermissionType)
             {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:)])
+                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:)])
                 {
-                    [self.delegate showDesignationAlert: [self.model getMemberName]];
+                    
+                    [self.delegate showDesignationAlert: [self.model getMemberName]
+                                             withAvatar: [self.model getAvatar]];
+                    
+                    
                 }
             }
     }
@@ -191,4 +202,18 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 }
 
 
+#pragma mark - DesignateAdminControllerDelegate  methods-
+
+- (void) performActionForButtonTag: (NSUInteger) btnTag
+{
+    if (btnTag == Cancel)
+    {
+        NSLog(@"Action cancel performed");
+    }
+    
+    if (btnTag == Ready)
+    {
+        NSLog(@"Action ready performed");
+    }
+}
 @end

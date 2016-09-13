@@ -152,6 +152,8 @@
 		591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 591344251D5F6F880027889F /* ProjectsScreen.storyboard */; };
 		592517DC1D7725A90078B584 /* TaskByProjectScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */; };
 		59575DC01D7F0ED600A28227 /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */; };
+		59575DC21D81722200A28227 /* OSAlertStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59575DC11D81722200A28227 /* OSAlertStoryboard.storyboard */; };
+		59575DC61D81A8FE00A28227 /* OSDefaultAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
@@ -164,6 +166,15 @@
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
+		CFEACF081D817495005BA6D9 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF071D817495005BA6D9 /* AlertView.m */; };
+		CFEACF0B1D81750F005BA6D9 /* OSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF0A1D81750E005BA6D9 /* OSAlertController.m */; };
+		CFEACF0E1D817568005BA6D9 /* AlertControllerSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF0D1D817568005BA6D9 /* AlertControllerSegue.m */; };
+		CFEACF111D817608005BA6D9 /* OSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF101D817608005BA6D9 /* OSAlertViewController.m */; };
+		CFEACF171D8176B0005BA6D9 /* OSAlertDesignateAdminController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF161D8176B0005BA6D9 /* OSAlertDesignateAdminController.m */; };
+		CFEACF1D1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF1C1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.m */; };
+		CFEACF201D8177D3005BA6D9 /* OSAlertDeleteTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF1F1D8177D3005BA6D9 /* OSAlertDeleteTaskController.m */; };
+		CFEACF231D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */; };
+		CFEACF261D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */; };
 		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
 		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
@@ -456,6 +467,9 @@
 		592517DB1D7725A90078B584 /* TaskByProjectScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskByProjectScreen.storyboard; sourceTree = "<group>"; };
 		59575DBE1D7F0ED600A28227 /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoCell.h; path = ../../../src/Modules/Team/Info/ContactInfoCell.h; sourceTree = "<group>"; };
 		59575DBF1D7F0ED600A28227 /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoCell.m; path = Info/ContactInfoCell.m; sourceTree = "<group>"; };
+		59575DC11D81722200A28227 /* OSAlertStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OSAlertStoryboard.storyboard; sourceTree = "<group>"; };
+		59575DC41D81A8FE00A28227 /* OSDefaultAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSDefaultAlertController.h; sourceTree = "<group>"; };
+		59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSDefaultAlertController.m; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -480,6 +494,25 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CFEACF061D817495005BA6D9 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = "../../../src/UI/Custom Components/AlertView.h"; sourceTree = "<group>"; };
+		CFEACF071D817495005BA6D9 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		CFEACF091D81750E005BA6D9 /* OSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertController.h; path = "../../../src/UI/Custom Components/OSAlertController.h"; sourceTree = "<group>"; };
+		CFEACF0A1D81750E005BA6D9 /* OSAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertController.m; sourceTree = "<group>"; };
+		CFEACF0C1D817568005BA6D9 /* AlertControllerSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertControllerSegue.h; path = "../../../src/UI/Custom Components/AlertControllerSegue.h"; sourceTree = "<group>"; };
+		CFEACF0D1D817568005BA6D9 /* AlertControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerSegue.m; sourceTree = "<group>"; };
+		CFEACF0F1D817608005BA6D9 /* OSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertViewController.h; path = "../../../src/UI/Custom Components/OSAlertViewController.h"; sourceTree = "<group>"; };
+		CFEACF101D817608005BA6D9 /* OSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertViewController.m; sourceTree = "<group>"; };
+		CFEACF151D8176B0005BA6D9 /* OSAlertDesignateAdminController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertDesignateAdminController.h; path = "../../../src/UI/Custom Components/OSAlertDesignateAdminController.h"; sourceTree = "<group>"; };
+		CFEACF161D8176B0005BA6D9 /* OSAlertDesignateAdminController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDesignateAdminController.m; sourceTree = "<group>"; };
+		CFEACF181D81771D005BA6D9 /* OSAlertDesignateAdminViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertDesignateAdminViewModel.h; path = "../../../src/UI/Custom Components/OSAlertDesignateAdminViewModel.h"; sourceTree = "<group>"; };
+		CFEACF1B1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertDeleteTaskViewModel.h; path = "../../../src/UI/Custom Components/OSAlertDeleteTaskViewModel.h"; sourceTree = "<group>"; };
+		CFEACF1C1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTaskViewModel.m; sourceTree = "<group>"; };
+		CFEACF1E1D8177D3005BA6D9 /* OSAlertDeleteTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertDeleteTaskController.h; path = "../../../src/UI/Custom Components/OSAlertDeleteTaskController.h"; sourceTree = "<group>"; };
+		CFEACF1F1D8177D3005BA6D9 /* OSAlertDeleteTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTaskController.m; sourceTree = "<group>"; };
+		CFEACF211D81791E005BA6D9 /* OSAlertPlanNotLoadedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertPlanNotLoadedController.h; path = "../../../src/UI/Custom Components/OSAlertPlanNotLoadedController.h"; sourceTree = "<group>"; };
+		CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertPlanNotLoadedController.m; sourceTree = "<group>"; };
+		CFEACF241D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAlertPlanNotLoadedViewModel.h; path = "../../../src/UI/Custom Components/OSAlertPlanNotLoadedViewModel.h"; sourceTree = "<group>"; };
+		CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertPlanNotLoadedViewModel.m; sourceTree = "<group>"; };
 		F781BEEA1D7F133B00F63962 /* TeamProfileInfoViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoViewModel.h; path = ../../../src/Modules/Team/TeamProfileInfoViewModel.h; sourceTree = "<group>"; };
 		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
 		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../src/Modules/Team/TeamProfileInfoModel.h; sourceTree = "<group>"; };
@@ -522,6 +555,7 @@
 		560B89A81D7C36B500746682 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				CFEACEFA1D8171E0005BA6D9 /* OSAlertController */,
 				560B89D71D7C371800746682 /* OSSecureTextField */,
 				560B89A91D7C36B500746682 /* OSAvatarGenerator */,
 				560B89AB1D7C36B500746682 /* OSAvatarImageView */,
@@ -589,6 +623,7 @@
 		560B89CB1D7C36DA00746682 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				CFEACF011D8173FD005BA6D9 /* OSAlertController */,
 				560B89D81D7C372000746682 /* OSSecureTextField */,
 				560B89CC1D7C36DA00746682 /* OSAvatarGenerator */,
 				560B89CE1D7C36DA00746682 /* OSAvatarImageView */,
@@ -1441,6 +1476,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		59575DC31D81A87200A28227 /* OSDefaultAlert */ = {
+			isa = PBXGroup;
+			children = (
+				59575DC41D81A8FE00A28227 /* OSDefaultAlertController.h */,
+				59575DC51D81A8FE00A28227 /* OSDefaultAlertController.m */,
+			);
+			name = OSDefaultAlert;
+			sourceTree = "<group>";
+		};
 		59A793421D59D2DD0062007E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1583,6 +1627,7 @@
 		59D9BD111D586974009DFBA8 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				59575DC11D81722200A28227 /* OSAlertStoryboard.storyboard */,
 				591344251D5F6F880027889F /* ProjectsScreen.storyboard */,
 				59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */,
 				59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */,
@@ -1653,6 +1698,104 @@
 				56EAC18D1D7B4E990087B3FF /* TeamProfilesInfoViewController.h */,
 			);
 			name = TeamProfileInfo;
+			sourceTree = "<group>";
+		};
+		CFEACEFA1D8171E0005BA6D9 /* OSAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				59575DC31D81A87200A28227 /* OSDefaultAlert */,
+				CFEACEFB1D8172B0005BA6D9 /* OSAlertBase */,
+				CFEACF001D81737E005BA6D9 /* OSAlertPlanNotLoaded */,
+				CFEACEFF1D817372005BA6D9 /* OSAlertDeleteTask */,
+				CFEACEFE1D81735B005BA6D9 /* OSAlertDesignateAdmin */,
+			);
+			name = OSAlertController;
+			sourceTree = "<group>";
+		};
+		CFEACEFB1D8172B0005BA6D9 /* OSAlertBase */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF071D817495005BA6D9 /* AlertView.m */,
+				CFEACF0A1D81750E005BA6D9 /* OSAlertController.m */,
+				CFEACF0D1D817568005BA6D9 /* AlertControllerSegue.m */,
+				CFEACF101D817608005BA6D9 /* OSAlertViewController.m */,
+			);
+			name = OSAlertBase;
+			sourceTree = "<group>";
+		};
+		CFEACEFE1D81735B005BA6D9 /* OSAlertDesignateAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF161D8176B0005BA6D9 /* OSAlertDesignateAdminController.m */,
+			);
+			name = OSAlertDesignateAdmin;
+			sourceTree = "<group>";
+		};
+		CFEACEFF1D817372005BA6D9 /* OSAlertDeleteTask */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF1C1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.m */,
+				CFEACF1F1D8177D3005BA6D9 /* OSAlertDeleteTaskController.m */,
+			);
+			name = OSAlertDeleteTask;
+			sourceTree = "<group>";
+		};
+		CFEACF001D81737E005BA6D9 /* OSAlertPlanNotLoaded */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF221D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m */,
+				CFEACF251D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m */,
+			);
+			name = OSAlertPlanNotLoaded;
+			sourceTree = "<group>";
+		};
+		CFEACF011D8173FD005BA6D9 /* OSAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF021D817409005BA6D9 /* OSAlertBase */,
+				CFEACF031D817426005BA6D9 /* OSAlertPlanNotLoaded */,
+				CFEACF051D81745A005BA6D9 /* OSAlertDesignateAdmin */,
+				CFEACF041D81744E005BA6D9 /* OSAlertDeleteTask */,
+			);
+			name = OSAlertController;
+			sourceTree = "<group>";
+		};
+		CFEACF021D817409005BA6D9 /* OSAlertBase */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF061D817495005BA6D9 /* AlertView.h */,
+				CFEACF091D81750E005BA6D9 /* OSAlertController.h */,
+				CFEACF0C1D817568005BA6D9 /* AlertControllerSegue.h */,
+				CFEACF0F1D817608005BA6D9 /* OSAlertViewController.h */,
+			);
+			name = OSAlertBase;
+			sourceTree = "<group>";
+		};
+		CFEACF031D817426005BA6D9 /* OSAlertPlanNotLoaded */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF211D81791E005BA6D9 /* OSAlertPlanNotLoadedController.h */,
+				CFEACF241D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.h */,
+			);
+			name = OSAlertPlanNotLoaded;
+			sourceTree = "<group>";
+		};
+		CFEACF041D81744E005BA6D9 /* OSAlertDeleteTask */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF1B1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.h */,
+				CFEACF1E1D8177D3005BA6D9 /* OSAlertDeleteTaskController.h */,
+			);
+			name = OSAlertDeleteTask;
+			sourceTree = "<group>";
+		};
+		CFEACF051D81745A005BA6D9 /* OSAlertDesignateAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				CFEACF151D8176B0005BA6D9 /* OSAlertDesignateAdminController.h */,
+				CFEACF181D81771D005BA6D9 /* OSAlertDesignateAdminViewModel.h */,
+			);
+			name = OSAlertDesignateAdmin;
 			sourceTree = "<group>";
 		};
 		F781BEE91D7F118700F63962 /* TeamProfileInfo */ = {
@@ -1734,6 +1877,7 @@
 				56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */,
 				56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */,
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
+				59575DC21D81722200A28227 /* OSAlertStoryboard.storyboard in Resources */,
 				591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */,
 				592517DC1D7725A90078B584 /* TaskByProjectScreen.storyboard in Resources */,
 				59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */,
@@ -1825,6 +1969,7 @@
 				56EAC2491D7B51060087B3FF /* ProjectInfoCell.m in Sources */,
 				564DF09C1D7B91E300067B60 /* ProjectSystemsObject.m in Sources */,
 				564DF0951D7B910300067B60 /* DataManager+Systems.m in Sources */,
+				CFEACF111D817608005BA6D9 /* OSAlertViewController.m in Sources */,
 				56EAC2621D7B51060087B3FF /* UserInfoViewController.m in Sources */,
 				566A72581D739EC1004F63D3 /* ProjectsService.m in Sources */,
 				56EAC24E1D7B51060087B3FF /* TasksByProjectViewController.m in Sources */,
@@ -1836,6 +1981,7 @@
 				56EAC24A1D7B51060087B3FF /* ProjectInfoCellModel.m in Sources */,
 				56EAC2601D7B51060087B3FF /* UserInfoModel.m in Sources */,
 				564DF09F1D7B92DC00067B60 /* ProjectSystem.m in Sources */,
+				CFEACF231D81791E005BA6D9 /* OSAlertPlanNotLoadedController.m in Sources */,
 				56EAC2651D7B51060087B3FF /* UserNotificationInfoController.m in Sources */,
 				56EAC2531D7B51060087B3FF /* TeamInfoTableViewCell.m in Sources */,
 				561533441D7A70A100BDEC3E /* ProjectInfo+CoreDataProperties.m in Sources */,
@@ -1854,6 +2000,7 @@
 				560B89BC1D7C36B500746682 /* PopoverViewController.m in Sources */,
 				566A72641D73A589004F63D3 /* UserInfoService.m in Sources */,
 				564DF0C71D7C1A3700067B60 /* RoleInfoViewModel.m in Sources */,
+				CFEACF081D817495005BA6D9 /* AlertView.m in Sources */,
 				564DF0801D7B77BA00067B60 /* ProjectRoleObject.m in Sources */,
 				5615334C1D7A70A100BDEC3E /* UserNotifications+CoreDataProperties.m in Sources */,
 				561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */,
@@ -1874,6 +2021,8 @@
 				5664F6161D7A79A100E23565 /* DataManager+Team.m in Sources */,
 				56EAC24B1D7B51060087B3FF /* ProjectsNameTableViewCell.m in Sources */,
 				560B89BA1D7C36B500746682 /* PopoverCell.m in Sources */,
+				CFEACF261D81799C005BA6D9 /* OSAlertPlanNotLoadedViewModel.m in Sources */,
+				CFEACF201D8177D3005BA6D9 /* OSAlertDeleteTaskController.m in Sources */,
 				56EAC2461D7B51060087B3FF /* AllProjectsModel.m in Sources */,
 				561533451D7A70A100BDEC3E /* ProjectInfo.m in Sources */,
 				56EAC2451D7B51060087B3FF /* OfflineTableViewCell.m in Sources */,
@@ -1915,12 +2064,15 @@
 				56EAC2281D7B51060087B3FF /* LoginModel.m in Sources */,
 				56EAC09C1D7A81950087B3FF /* TeamAPIService.m in Sources */,
 				560B89C21D7C36C000746682 /* UIView+Utilities.m in Sources */,
+				CFEACF1D1D8177AA005BA6D9 /* OSAlertDeleteTaskViewModel.m in Sources */,
+				CFEACF171D8176B0005BA6D9 /* OSAlertDesignateAdminController.m in Sources */,
 				56EAC2641D7B51060087B3FF /* UserNotificationCell.m in Sources */,
 				56EAC24F1D7B51060087B3FF /* TasksListTableViewCell.m in Sources */,
 				561533521D7A70A100BDEC3E /* UserInfoData.m in Sources */,
 				5615334E1D7A70A100BDEC3E /* ProjectCountryData.m in Sources */,
 				56EAC2471D7B51060087B3FF /* AllProjectsViewController.m in Sources */,
 				56EAC2551D7B51060087B3FF /* TeamInfoViewModel.m in Sources */,
+				CFEACF0E1D817568005BA6D9 /* AlertControllerSegue.m in Sources */,
 				564DF08D1D7B805D00067B60 /* RolesAPIService.m in Sources */,
 				56EAC25C1D7B51060087B3FF /* RolesViewModel.m in Sources */,
 				56EAC26A1D7B51060087B3FF /* UpdateInfoViewController.m in Sources */,
@@ -1936,6 +2088,7 @@
 				56EAC23C1D7B51060087B3FF /* MainTabBarController.m in Sources */,
 				560B89B91D7C36B500746682 /* AvatarImageView.m in Sources */,
 				5615334B1D7A70A100BDEC3E /* UserInfo.m in Sources */,
+				59575DC61D81A8FE00A28227 /* OSDefaultAlertController.m in Sources */,
 				56EAC26C1D7B51060087B3FF /* UpdateUserInfoModel.m in Sources */,
 				560B89B71D7C36B500746682 /* BaseNavigationBar.m in Sources */,
 				59B0BEA81D6131CC0016AE13 /* UIImage+AvatarGenerator.m in Sources */,
@@ -1951,6 +2104,7 @@
 				564DF0B61D7C19BD00067B60 /* InformationViewModel.m in Sources */,
 				56EAC25F1D7B51060087B3FF /* ChangePasswordViewModel.m in Sources */,
 				564DF0981D7B912D00067B60 /* SystemsService.m in Sources */,
+				CFEACF0B1D81750F005BA6D9 /* OSAlertController.m in Sources */,
 				56EAC2481D7B51060087B3FF /* AllProjectsViewModel.m in Sources */,
 				56EAC23F1D7B51060087B3FF /* MainMenuViewModel.m in Sources */,
 				560B89B51D7C36B500746682 /* BaseMainViewController+Popover.m in Sources */,
