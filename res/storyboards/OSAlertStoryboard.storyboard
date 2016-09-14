@@ -392,7 +392,7 @@
                                     <constraint firstAttribute="height" constant="40" id="Alv-U5-6dh"/>
                                     <constraint firstAttribute="width" constant="40" id="PQg-Fo-DLR"/>
                                 </constraints>
-                                <state key="normal" image="Mark"/>
+                                <state key="normal" image="MarkButton"/>
                                 <connections>
                                     <action selector="onAddMark:" destination="xrm-M9-K8c" eventType="touchUpInside" id="7Ae-iH-yeW"/>
                                 </connections>
@@ -433,7 +433,7 @@
                                     <action selector="onAddDocument:" destination="xrm-M9-K8c" eventType="touchUpInside" id="GaC-KK-wdM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twT-S6-p6g">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twT-S6-p6g">
                                 <rect key="frame" x="280" y="552" width="40" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -441,6 +441,8 @@
                                     <constraint firstAttribute="height" constant="40" id="viT-E5-aRV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="CrossButton"/>
+                                <variation key="heightClass=regular"/>
                                 <connections>
                                     <action selector="onDismiss:" destination="xrm-M9-K8c" eventType="touchUpInside" id="s73-Zs-iX3"/>
                                 </connections>
@@ -580,8 +582,9 @@
     </scenes>
     <resources>
         <image name="CheckMarc" width="34" height="24"/>
+        <image name="CrossButton" width="16" height="16"/>
         <image name="DocumentMark" width="16" height="20"/>
-        <image name="Mark" width="10" height="16"/>
+        <image name="MarkButton" width="16" height="23"/>
         <image name="NoteMark" width="20" height="20"/>
         <image name="UserMark" width="18" height="22"/>
     </resources>
