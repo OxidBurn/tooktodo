@@ -147,6 +147,8 @@
     // Added image for selected state in show/hide password button
     [self.showHidePassBtn setImage: [UIImage imageNamed: @"closedEyes"]
                           forState: UIControlStateSelected];
+    
+    
 }
 
 - (void) bindingUI
@@ -188,12 +190,7 @@
         
         if ( error.code == -1011 )
         {
-//            [OSAlertController showDefaultAlertWithTitle:@"Неверный пароль"
-//                                                 message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
-//                                              andBtnText: @"Попробуйте еще раз"
-//                                            onController: self
-//                                            withDelegate: self];
-        
+            
             [self failedLogin];
             
         }
@@ -312,11 +309,12 @@
                          
                          self.alertView.hidden        = NO;
                          self.contentAlertView.hidden = NO;
+                         [self prefersStatusBarHidden];
                          
                      }
                      completion:^(BOOL finished) {
                          
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                              
                              // Hide alert and dismiss login
                              [UIView animateWithDuration: 0.5
@@ -338,6 +336,8 @@
 
 - (void) customizeErrorAlert
 {
+   
+    
     self.alertView.hidden        = NO;
     self.contentAlertView.hidden = NO;
     
@@ -358,6 +358,10 @@
 
 - (void) customizeSuccessRestoreAlert
 {
+//    UIWindow* myWindow = [[UIWindow alloc] init];
+    
+    
+    
     self.alertView.hidden        = NO;
     self.contentAlertView.hidden = NO;
     
@@ -375,10 +379,6 @@
     self.alertImg.image  = [UIImage imageNamed: @"successRestoreIcon"];
 }
 
-- (BOOL) prefersStatusBarHidden
-{
-    return YES;
-}
 
 #pragma mark - OSDefaultAlertControllerDelegate methods -
 
@@ -392,8 +392,9 @@
 #pragma mark - Recovere vc delegate -
 
 - (void) showSuccessRestoreAlert: (NSString*)text
-{
+{    
     [self customizeSuccessRestoreAlert];
+    
     self.alertLabel.text = text;
     
     [UIView animateWithDuration: 0.5
@@ -402,10 +403,12 @@
                          self.alertView.hidden        = NO;
                          self.contentAlertView.hidden = NO;
                          
+                         [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
+                         
                      }
                      completion:^(BOOL finished) {
                          
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                              
                              // Hide alert and dismiss login
                              [UIView animateWithDuration: 0.5
@@ -415,6 +418,7 @@
                                                   self.alertView.hidden        = YES;
                                                   self.contentAlertView.hidden = YES;
                                                   
+                                                  [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelNormal];
                                               }
                                               completion: nil];
                              
