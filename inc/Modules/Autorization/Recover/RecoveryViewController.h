@@ -10,14 +10,24 @@
 #import "BaseMainViewController.h"
 #import "RecoveryViewModel.h"
 
+
+@protocol RecoveryViewControllerDeledate;
+
 @interface RecoveryViewController : BaseMainViewController
 
 // properties
 
+@property (nonatomic, weak) id<RecoveryViewControllerDeledate> delegate;
 
 // methods
 
 - (void) setRecoveryModel: (RecoveryViewModel*) model;
 
+
+@end
+
+@protocol RecoveryViewControllerDeledate <NSObject>
+
+- (void) showSuccessRestoreAlert: (NSString*) text;
 
 @end

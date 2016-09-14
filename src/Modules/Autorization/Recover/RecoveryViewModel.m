@@ -71,7 +71,7 @@
 - (RACCommand*) resetPassCommand
 {
     return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
-       
+        
         return [self sendingResetRequest];
         
     }];

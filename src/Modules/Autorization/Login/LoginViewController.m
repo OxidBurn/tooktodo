@@ -18,11 +18,12 @@
 #import "OSAlertController.h"
 #import "OSDefaultAlertController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <RecoveryViewControllerDeledate>
 
 // properties
 
 @property (nonatomic, strong) OSDefaultAlertController* alertController;
+@property (nonatomic, assign) BOOL isAlert;
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField       *emailTextField;
@@ -33,6 +34,11 @@
 @property (weak, nonatomic) IBOutlet UIButton          *showHidePassBtn;
 @property (weak, nonatomic) IBOutlet UILabel           *emailWarningLable;
 @property (weak, nonatomic) IBOutlet UILabel           *passwordWarningLabel;
+@property (weak, nonatomic) IBOutlet UIView *alertView;
+@property (weak, nonatomic) IBOutlet UIView *contentAlertView;
+@property (weak, nonatomic) IBOutlet UIImageView *alertImg;
+@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
+
 
 // Models
 @property (strong, nonatomic) LoginViewModel    * viewModel;
@@ -103,6 +109,8 @@
     RecoveryViewController* controller = [segue destinationViewController];
     
     [controller setRecoveryModel: self.recoveryModel];
+    
+    controller.delegate = self;
 }
 
 
@@ -152,6 +160,10 @@
     
     self.emailTextField.text = [self.viewModel getStoredEmailValue];
     
+    //hidden alerts by default
+    self.alertView.hidden        = YES;
+    self.contentAlertView.hidden = YES;
+    
     [self handleModelOperations];
 }
 
@@ -176,11 +188,14 @@
         
         if ( error.code == -1011 )
         {
-            [OSAlertController showDefaultAlertWithTitle:@"Неверный пароль"
-                                                 message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
-                                              andBtnText: @"Попробуйте еще раз"
-                                            onController: self
-                                            withDelegate: self];
+//            [OSAlertController showDefaultAlertWithTitle:@"Неверный пароль"
+//                                                 message: @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз."
+//                                              andBtnText: @"Попробуйте еще раз"
+//                                            onController: self
+//                                            withDelegate: self];
+        
+            [self failedLogin];
+            
         }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
@@ -188,9 +203,9 @@
             self.emailWarningLable.text                = emailWarning;
             self.emailWarningLable.hidden              = (emailWarning.length == 0);
             
-            self.distanceBeforeEmail.constant          = (emailWarning.length == 0) ? 0 : 5;
-            self.emailWarningHeightConstraint.constant = (emailWarning.length == 0) ? 5 : 12;
-            self.distanceBeforePassword.constant       = (emailWarning.length == 0) ? 0 : 5;
+            self.distanceBeforeEmail.constant          = (emailWarning.length == 0) ? 0  : 5;
+            self.emailWarningHeightConstraint.constant = (emailWarning.length == 0) ? 5  : 12;
+            self.distanceBeforePassword.constant       = (emailWarning.length == 0) ? 0  : 5;
             self.forgotBtnTopConstraint.constant       = (emailWarning.length == 0) ? 40 : 25;
             
         }];
@@ -200,8 +215,8 @@
             self.passwordWarningLabel.text                = passWarning;
             self.passwordWarningLabel.hidden              = (passWarning.length == 0);
             
-            self.passwordWarningHeightConstraint.constant = (passWarning.length == 0) ? 5 : 12;
-            self.passwordWarningTopConstraint.constant    = (passWarning.length == 0) ? 0 : 5;
+            self.passwordWarningHeightConstraint.constant = (passWarning.length == 0) ? 5  : 12;
+            self.passwordWarningTopConstraint.constant    = (passWarning.length == 0) ? 0  : 5;
             self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
             
         }];
@@ -288,6 +303,82 @@
                              completion: nil];
 }
 
+- (void) failedLogin
+{
+    [self customizeErrorAlert];
+
+    [UIView animateWithDuration: 0.5
+                     animations: ^{
+                         
+                         self.alertView.hidden        = NO;
+                         self.contentAlertView.hidden = NO;
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                             
+                             // Hide alert and dismiss login
+                             [UIView animateWithDuration: 0.5
+                                              animations:^{
+                                                  
+                                                  // Hide animation of the error alert
+                                                  self.alertView.hidden        = YES;
+                                                  self.contentAlertView.hidden = YES;
+                                                  
+                                              }
+                                              completion: nil];
+                             
+                         });
+                         
+                     }];
+    
+}
+
+
+- (void) customizeErrorAlert
+{
+    self.alertView.hidden        = NO;
+    self.contentAlertView.hidden = NO;
+    
+    self.alertView.backgroundColor = [UIColor colorWithRed: 1.f
+                                                     green: 0.317f
+                                                      blue: 0.305f
+                                                     alpha: 1];
+    
+    self.contentAlertView.backgroundColor = [UIColor colorWithRed: 1.f
+                                                            green: 0.317f
+                                                             blue: 0.305f
+                                                            alpha: 1];
+    
+    self.alertImg.image = [UIImage imageNamed: @"errorLoginIcon"];
+    self.alertLabel.text = @"Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз.";
+
+}
+
+- (void) customizeSuccessRestoreAlert
+{
+    self.alertView.hidden        = NO;
+    self.contentAlertView.hidden = NO;
+    
+    self.alertView.backgroundColor = [UIColor colorWithRed: 0.309f
+                                                     green: 0.77f
+                                                      blue: 0.176f
+                                                     alpha: 1];
+    
+    self.contentAlertView.backgroundColor = [UIColor colorWithRed: 0.309f
+                                                            green: 0.77f
+                                                             blue: 0.176f
+                                                            alpha: 1];
+    
+
+    self.alertImg.image  = [UIImage imageNamed: @"successRestoreIcon"];
+}
+
+- (BOOL) prefersStatusBarHidden
+{
+    return YES;
+}
 
 #pragma mark - OSDefaultAlertControllerDelegate methods -
 
@@ -297,4 +388,38 @@
                              completion: nil];
 }
 
+
+#pragma mark - Recovere vc delegate -
+
+- (void) showSuccessRestoreAlert: (NSString*)text
+{
+    [self customizeSuccessRestoreAlert];
+    self.alertLabel.text = text;
+    
+    [UIView animateWithDuration: 0.5
+                     animations: ^{
+                         
+                         self.alertView.hidden        = NO;
+                         self.contentAlertView.hidden = NO;
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                             
+                             // Hide alert and dismiss login
+                             [UIView animateWithDuration: 0.5
+                                              animations:^{
+                                                  
+                                                  // Hide animation of the error alert
+                                                  self.alertView.hidden        = YES;
+                                                  self.contentAlertView.hidden = YES;
+                                                  
+                                              }
+                                              completion: nil];
+                             
+                         });
+                         
+                     }];
+}
 @end

@@ -13,5 +13,11 @@
 
 @property (nonatomic, copy) void(^dismissLoginView)();
 
+@property (nonatomic, strong) NSString* alertEmailText;
+
+//methods
+
+
+
 @end
 
