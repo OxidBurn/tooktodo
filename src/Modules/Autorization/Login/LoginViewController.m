@@ -309,7 +309,8 @@
                          
                          self.alertView.hidden        = NO;
                          self.contentAlertView.hidden = NO;
-                         [self prefersStatusBarHidden];
+                         
+                         [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
                          
                      }
                      completion:^(BOOL finished) {
@@ -324,6 +325,7 @@
                                                   self.alertView.hidden        = YES;
                                                   self.contentAlertView.hidden = YES;
                                                   
+                                                  [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelNormal];
                                               }
                                               completion: nil];
                              
@@ -337,7 +339,6 @@
 - (void) customizeErrorAlert
 {
    
-    
     self.alertView.hidden        = NO;
     self.contentAlertView.hidden = NO;
     
