@@ -10,6 +10,14 @@
 
 @interface AddTaskViewController ()
 
+//Properties
+@property (weak, nonatomic) IBOutlet UITableView *addTaskTableView;
+
+//Methods
+- (IBAction)onAddAndCreateNewBtn:(UIButton *)sender;
+
+- (IBAction)onAddTaskBtn:(UIButton *)sender;
+
 @end
 
 @implementation AddTaskViewController
@@ -86,4 +94,8 @@
 }
 
 
+- (IBAction)onAddAndCreateNew:(UIButton *)sender {
+}
+- (IBAction)onAddTaskBtn:(UIButton *)sender {
+}
 @end
