@@ -15,14 +15,11 @@
 #import "RecoveryViewModel.h"
 #import "RecoveryViewController.h"
 #import "OSSecureTextField.h"
-#import "OSAlertController.h"
-#import "OSDefaultAlertController.h"
 
 @interface LoginViewController () <RecoveryViewControllerDeledate>
 
 // properties
 
-@property (nonatomic, strong) OSDefaultAlertController* alertController;
 @property (nonatomic, assign) BOOL isAlert;
 
 // Outlets
@@ -34,10 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIButton          *showHidePassBtn;
 @property (weak, nonatomic) IBOutlet UILabel           *emailWarningLable;
 @property (weak, nonatomic) IBOutlet UILabel           *passwordWarningLabel;
-@property (weak, nonatomic) IBOutlet UIView *alertView;
-@property (weak, nonatomic) IBOutlet UIView *contentAlertView;
-@property (weak, nonatomic) IBOutlet UIImageView *alertImg;
-@property (weak, nonatomic) IBOutlet UILabel *alertLabel;
+@property (weak, nonatomic) IBOutlet UIView            *alertView;
+@property (weak, nonatomic) IBOutlet UIView            *contentAlertView;
+@property (weak, nonatomic) IBOutlet UIImageView       *alertImg;
+@property (weak, nonatomic) IBOutlet UILabel           *alertLabel;
 
 
 // Models
@@ -124,17 +121,6 @@
     }
     
     return _viewModel;
-}
-
-- (OSDefaultAlertController*) alertController
-{
-    if (_alertController == nil)
-    {
-        _alertController = [[OSDefaultAlertController alloc] init];
-        _alertController.delegate = self;
-    }
-    
-    return _alertController;
 }
 
 #pragma mark - Internal methods -
@@ -277,6 +263,24 @@
 }
 
 
+- (void) successLogin
+{
+    if ( self.dismissLoginView )
+        self.dismissLoginView();
+    
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+- (void) failedLogin
+{
+    [self customizeErrorAlert];
+    
+    [self animateLoginAlert];
+    
+}
+
+
 #pragma mark - Actions -
 
 - (IBAction) onToggleShowPass: (UIButton*) sender
@@ -291,57 +295,12 @@
     [self.view endEditing: YES];
 }
 
-- (void) successLogin
-{
-    if ( self.dismissLoginView )
-        self.dismissLoginView();
-    
-    [self dismissViewControllerAnimated: YES
-                             completion: nil];
-}
 
-- (void) failedLogin
-{
-    [self customizeErrorAlert];
-
-    [UIView animateWithDuration: 0.5
-                     animations: ^{
-                         
-                         self.alertView.hidden        = NO;
-                         self.contentAlertView.hidden = NO;
-                         
-                         [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelStatusBar+1];
-                         
-                     }
-                     completion:^(BOOL finished) {
-                         
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                             
-                             // Hide alert and dismiss login
-                             [UIView animateWithDuration: 0.5
-                                              animations:^{
-                                                  
-                                                  // Hide animation of the error alert
-                                                  self.alertView.hidden        = YES;
-                                                  self.contentAlertView.hidden = YES;
-                                                  
-                                                  [[[[UIApplication sharedApplication] delegate] window] setWindowLevel:UIWindowLevelNormal];
-                                              }
-                                              completion: nil];
-                             
-                         });
-                         
-                     }];
-    
-}
-
+#pragma mark - Helpers -
 
 - (void) customizeErrorAlert
 {
    
-    self.alertView.hidden        = NO;
-    self.contentAlertView.hidden = NO;
-    
     self.alertView.backgroundColor = [UIColor colorWithRed: 1.f
                                                      green: 0.317f
                                                       blue: 0.305f
@@ -359,13 +318,7 @@
 
 - (void) customizeSuccessRestoreAlert
 {
-//    UIWindow* myWindow = [[UIWindow alloc] init];
-    
-    
-    
-    self.alertView.hidden        = NO;
-    self.contentAlertView.hidden = NO;
-    
+   
     self.alertView.backgroundColor = [UIColor colorWithRed: 0.309f
                                                      green: 0.77f
                                                       blue: 0.176f
@@ -380,24 +333,8 @@
     self.alertImg.image  = [UIImage imageNamed: @"successRestoreIcon"];
 }
 
-
-#pragma mark - OSDefaultAlertControllerDelegate methods -
-
-- (void) performAction
+- (void) animateLoginAlert
 {
-    [self dismissViewControllerAnimated: YES
-                             completion: nil];
-}
-
-
-#pragma mark - Recovere vc delegate -
-
-- (void) showSuccessRestoreAlert: (NSString*)text
-{    
-    [self customizeSuccessRestoreAlert];
-    
-    self.alertLabel.text = text;
-    
     [UIView animateWithDuration: 0.5
                      animations: ^{
                          
@@ -427,4 +364,18 @@
                          
                      }];
 }
+
+
+#pragma mark - RecoverViewControllerDelegate methods -
+
+- (void) showSuccessRestoreAlert: (NSString*) text
+{
+     self.alertLabel.text = text;
+    
+    [self customizeSuccessRestoreAlert];
+    
+    [self animateLoginAlert];
+
+}
+
 @end
