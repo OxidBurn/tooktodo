@@ -8,15 +8,20 @@
 
 #import "AddTaskViewController.h"
 
+// Classes
+#import "AddTaskViewModel.h"
+
 @interface AddTaskViewController ()
 
 //Properties
-@property (weak, nonatomic) IBOutlet UITableView *addTaskTableView;
+@property (weak, nonatomic) IBOutlet UITableView* addTaskTableView;
+
+@property (strong, nonatomic) AddTaskViewModel* viewModel;
 
 //Methods
-- (IBAction)onAddAndCreateNewBtn:(UIButton *)sender;
+- (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
-- (IBAction)onAddTaskBtn:(UIButton *)sender;
+- (IBAction) onAddTaskBtn:         (UIButton*) sender;
 
 @end
 
@@ -29,6 +34,8 @@
     [super loadView];
     
     [self twoLineTitleView];
+    
+    [self setUpDefaults];
 }
 
 - (void) viewDidLoad
@@ -41,6 +48,30 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Properties -
+
+- (AddTaskViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [AddTaskViewModel new];
+    }
+    
+    return _viewModel;
+}
+
+#pragma mark - Actions -
+
+- (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onAddTaskBtn:         (UIButton*) sender
+{
+    
 }
 
 #pragma mark - Internal methods -
@@ -65,7 +96,7 @@
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-//    subTitleLabel.text            = [self.viewModel getProjectName];
+    //    subTitleLabel.text            = [self.viewModel getProjectName];
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
@@ -93,9 +124,10 @@
     return twoLineTitleView;
 }
 
+- (void) setUpDefaults
+{
+    self.addTaskTableView.dataSource = self.viewModel;
+    self.addTaskTableView.delegate   = self.viewModel;
+}
 
-- (IBAction)onAddAndCreateNew:(UIButton *)sender {
-}
-- (IBAction)onAddTaskBtn:(UIButton *)sender {
-}
 @end
