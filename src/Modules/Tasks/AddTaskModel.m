@@ -166,7 +166,7 @@ static NSString* SegueIdKey        = @"SegueIdKey";
 
 #pragma mark - Helpers -
 
-- (NSString*) determineCellIdForGroupArray: (NSArray*) membersGroup
+- (NSString*) determineCellIdForGroupOfMembers: (NSArray*) membersGroup
 {
     NSString* cellID = [NSString new];
     
