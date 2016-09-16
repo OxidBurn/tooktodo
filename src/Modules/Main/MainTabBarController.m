@@ -11,12 +11,12 @@
 #import "WelcomeTourViewController.h"
 #import "CustomTabBar.h"
 #import "OSAlertController.h"
-#import "TaskOptionsController.h"
+#import "OSTaskOptionsController.h"
 #import "AddTaskViewController.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController()  <CustomTabBarDelegate, TaskOptionsControllerDelegate>
+@interface MainTabBarController()  <CustomTabBarDelegate, OSTaskOptionsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
 

@@ -1,5 +1,5 @@
 //
-//  FlexibleTextTableCell.h
+//  MarkedRightDetailCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 9/15/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlexibleTextTableCell : UITableViewCell
+@interface OSMarkedRightDetailCell : UITableViewCell
 
 @end

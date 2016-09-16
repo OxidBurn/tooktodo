@@ -1,5 +1,5 @@
 //
-//  SingleUserInfoCell.h
+//  FlexibleTextTableCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 9/15/16.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SingleUserInfoCell : UITableViewCell
+@interface OSFlexibleTextTableCell : UITableViewCell
+
+// methods
+
+- (void) fillCellWithText: (NSString*) textContent;
 
 @end

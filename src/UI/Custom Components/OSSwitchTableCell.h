@@ -1,5 +1,5 @@
 //
-//  MarkedRightDetailCell.h
+//  SwitchTableCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 9/15/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MarkedRightDetailCell : UITableViewCell
+@interface OSSwitchTableCell : UITableViewCell
 
 @end

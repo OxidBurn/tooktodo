@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "RightDetailCell.h"
+#import "OSRightDetailCell.h"
 
-@interface RightDetailCell()
+@interface OSRightDetailCell()
 
 // properties
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
@@ -20,6 +20,6 @@
 
 @end
 
-@implementation RightDetailCell
+@implementation OSRightDetailCell
 
 @end

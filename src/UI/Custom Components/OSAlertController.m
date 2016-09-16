@@ -13,7 +13,7 @@
 #import "OSAlertPlanNotLoadedController.h"
 #import "OSAlertDeleteTaskController.h"
 #import "OSDefaultAlertController.h"
-#import "TaskOptionsController.h"
+#import "OSTaskOptionsController.h"
 
 @implementation OSAlertController
 
@@ -82,7 +82,7 @@
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
-    TaskOptionsController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsControllerID"];
+    OSTaskOptionsController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsControllerID"];
     
     [controller presentViewController: alertController
                              animated: YES

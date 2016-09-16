@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RightDetailCell : UITableViewCell
+@interface OSRightDetailCell : UITableViewCell
 
 @end

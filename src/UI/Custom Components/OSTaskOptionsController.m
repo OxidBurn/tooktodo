@@ -6,12 +6,12 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "TaskOptionsController.h"
+#import "OSTaskOptionsController.h"
 
 //classes
 #import "AddTaskViewController.h"
 
-@interface TaskOptionsController ()
+@interface OSTaskOptionsController ()
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UIButton* addComment;
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation TaskOptionsController
+@implementation OSTaskOptionsController
 
 
 #pragma mark - Life Cycle -

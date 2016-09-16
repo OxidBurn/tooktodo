@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "GroupOfUserInfoCell.h"
+#import "OSGroupOfUserInfoCell.h"
 
-@interface GroupOfUserInfoCell()
+@interface OSGroupOfUserInfoCell()
 
 // properties
 @property (weak, nonatomic) IBOutlet UIImageView *firstAvatarImageView;
@@ -25,6 +25,6 @@
 
 @end
 
-@implementation GroupOfUserInfoCell
+@implementation OSGroupOfUserInfoCell
 
 @end

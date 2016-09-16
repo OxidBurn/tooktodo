@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupOfUserInfoCell : UITableViewCell
+@interface OSGroupOfUserInfoCell : UITableViewCell
 
 @end

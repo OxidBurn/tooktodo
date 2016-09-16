@@ -10,4 +10,13 @@
 
 @interface AddTaskModel : NSObject
 
+// methods
+
+- (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
+
+- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
+                               forIndexPath: (NSIndexPath*) indexPath;
+
+- (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
+
 @end

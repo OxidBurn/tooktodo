@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "MarkedRightDetailCell.h"
+#import "OSMarkedRightDetailCell.h"
 
-@interface MarkedRightDetailCell()
+@interface OSMarkedRightDetailCell()
 
 // properties
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
@@ -22,6 +22,6 @@
 
 @end
 
-@implementation MarkedRightDetailCell
+@implementation OSMarkedRightDetailCell
 
 @end

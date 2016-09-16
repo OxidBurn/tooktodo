@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SingleUserInfoCell.h"
+#import "OSSingleUserInfoCell.h"
 
-@interface SingleUserInfoCell()
+@interface OSSingleUserInfoCell()
 
 // properties
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarImageView;
@@ -21,6 +21,6 @@
 
 @end
 
-@implementation SingleUserInfoCell
+@implementation OSSingleUserInfoCell
 
 @end

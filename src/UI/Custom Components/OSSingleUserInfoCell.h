@@ -1,5 +1,5 @@
 //
-//  SwitchTableCell.h
+//  SingleUserInfoCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 9/15/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwitchTableCell : UITableViewCell
+@interface OSSingleUserInfoCell : UITableViewCell
 
 @end

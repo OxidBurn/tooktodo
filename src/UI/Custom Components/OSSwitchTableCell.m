@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SwitchTableCell.h"
+#import "OSSwitchTableCell.h"
 
-@interface SwitchTableCell()
+@interface OSSwitchTableCell()
 
 // properties
 @property (weak, nonatomic) IBOutlet UISwitch *switchControl;
@@ -21,8 +21,10 @@
 
 @end
 
-@implementation SwitchTableCell
+@implementation OSSwitchTableCell
 
-- (IBAction)onSwitchControl:(UISwitch *)sender {
+- (IBAction) onSwitchControl: (UISwitch*) sender
+{
+    
 }
 @end
