@@ -11,7 +11,7 @@
 // Classes
 #import "AddTaskViewModel.h"
 
-@interface AddTaskViewController ()
+@interface AddTaskViewController () <AddTaskViewModelDelegate>
 
 //Properties
 @property (weak, nonatomic) IBOutlet UITableView* addTaskTableView;
@@ -57,6 +57,8 @@
     if ( _viewModel == nil )
     {
         _viewModel = [AddTaskViewModel new];
+        
+        _viewModel.delegate = self;
     }
     
     return _viewModel;
@@ -72,6 +74,17 @@
 - (IBAction) onAddTaskBtn:         (UIButton*) sender
 {
     
+}
+
+#pragma mark - AddTaskViewModel delegate methods -
+
+- (void) performSegueWithSegueId: (NSString*) segueId
+{
+    if ( segueId )
+    {
+        [self performSegueWithIdentifier: segueId
+                                  sender: self];
+    }
 }
 
 #pragma mark - Internal methods -
@@ -128,6 +141,9 @@
 {
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
+    
+    self.addTaskTableView.rowHeight = UITableViewAutomaticDimension;
+    self.addTaskTableView.estimatedRowHeight = 42;
 }
 
 @end

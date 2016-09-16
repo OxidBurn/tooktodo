@@ -186,8 +186,8 @@
 		CFFA37BA1D86FFA700F7EB60 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA37B91D86FFA700F7EB60 /* AddTaskViewController.m */; };
 		F781BEEC1D7F133B00F63962 /* TeamProfileInfoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */; };
 		F781BEEF1D7F135A00F63962 /* TeamProfileInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */; };
-		F7837B0F1D8BFD15002CDDCF /* AddTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7837B0E1D8BFD15002CDDCF /* AddTaskViewModel.m */; };
 		F7837B121D8BFD23002CDDCF /* AddTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7837B111D8BFD23002CDDCF /* AddTaskModel.m */; };
+		F7837B151D8C0630002CDDCF /* AddTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7837B141D8C0630002CDDCF /* AddTaskViewModel.m */; };
 		F7C0C4AA1D5B912F00114AB6 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -545,10 +545,10 @@
 		F781BEEB1D7F133B00F63962 /* TeamProfileInfoViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoViewModel.m; sourceTree = "<group>"; };
 		F781BEED1D7F135A00F63962 /* TeamProfileInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamProfileInfoModel.h; path = ../../../src/Modules/Team/TeamProfileInfoModel.h; sourceTree = "<group>"; };
 		F781BEEE1D7F135A00F63962 /* TeamProfileInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamProfileInfoModel.m; sourceTree = "<group>"; };
-		F7837B0D1D8BFD15002CDDCF /* AddTaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddTaskViewModel.h; path = AddTask/AddTaskViewModel.h; sourceTree = "<group>"; };
-		F7837B0E1D8BFD15002CDDCF /* AddTaskViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddTaskViewModel.m; path = AddTask/AddTaskViewModel.m; sourceTree = "<group>"; };
 		F7837B101D8BFD23002CDDCF /* AddTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskModel.h; sourceTree = "<group>"; };
 		F7837B111D8BFD23002CDDCF /* AddTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskModel.m; sourceTree = "<group>"; };
+		F7837B131D8C0630002CDDCF /* AddTaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewModel.h; sourceTree = "<group>"; };
+		F7837B141D8C0630002CDDCF /* AddTaskViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewModel.m; sourceTree = "<group>"; };
 		F7C0C4A91D5B912F00114AB6 /* WelcomeTour.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WelcomeTour.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1867,8 +1867,8 @@
 			children = (
 				CFFA37B81D86FFA700F7EB60 /* AddTaskViewController.h */,
 				CFFA37B91D86FFA700F7EB60 /* AddTaskViewController.m */,
-				F7837B0D1D8BFD15002CDDCF /* AddTaskViewModel.h */,
-				F7837B0E1D8BFD15002CDDCF /* AddTaskViewModel.m */,
+				F7837B131D8C0630002CDDCF /* AddTaskViewModel.h */,
+				F7837B141D8C0630002CDDCF /* AddTaskViewModel.m */,
 				F7837B101D8BFD23002CDDCF /* AddTaskModel.h */,
 				F7837B111D8BFD23002CDDCF /* AddTaskModel.m */,
 			);
@@ -2057,6 +2057,7 @@
 				590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */,
 				CFFA37B21D86E8A700F7EB60 /* TaskOptionsController.m in Sources */,
 				564DF0B71D7C19BD00067B60 /* AboutProjectSegue.m in Sources */,
+				F7837B151D8C0630002CDDCF /* AddTaskViewModel.m in Sources */,
 				56EAC24A1D7B51060087B3FF /* ProjectInfoCellModel.m in Sources */,
 				56EAC2601D7B51060087B3FF /* UserInfoModel.m in Sources */,
 				564DF09F1D7B92DC00067B60 /* ProjectSystem.m in Sources */,
@@ -2168,7 +2169,6 @@
 				56EAC2401D7B51060087B3FF /* MenuProjectCell.m in Sources */,
 				56EAC2591D7B51060087B3FF /* AddContactViewModel.m in Sources */,
 				560B89C11D7C36C000746682 /* UISearchBar+TextFieldControl.m in Sources */,
-				F7837B0F1D8BFD15002CDDCF /* AddTaskViewModel.m in Sources */,
 				563337621D73AB7A00A9321E /* LoginAPIService.m in Sources */,
 				56EAC23C1D7B51060087B3FF /* MainTabBarController.m in Sources */,
 				560B89B91D7C36B500746682 /* AvatarImageView.m in Sources */,

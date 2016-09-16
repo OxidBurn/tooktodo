@@ -11,6 +11,17 @@
 //Frameworks
 @import UIKit;
 
+@protocol AddTaskViewModelDelegate;
+
 @interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+
+// properties
+@property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
+
+@end
+
+@protocol AddTaskViewModelDelegate <NSObject>
+
+- (void) performSegueWithSegueId: (NSString*) segueId;
 
 @end
