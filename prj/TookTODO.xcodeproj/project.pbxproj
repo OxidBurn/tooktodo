@@ -151,6 +151,10 @@
 		590375AF1D8AD9F40058FC15 /* OSMarkedRightDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375AE1D8AD9F40058FC15 /* OSMarkedRightDetailCell.m */; };
 		590375B21D8ADC360058FC15 /* OSRightDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375B11D8ADC360058FC15 /* OSRightDetailCell.m */; };
 		590375B61D8C353C0058FC15 /* AddMassageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375B51D8C353C0058FC15 /* AddMassageViewController.m */; };
+		590375BA1D8C44170058FC15 /* AddTermTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375B91D8C44170058FC15 /* AddTermTasksViewController.m */; };
+		590375BE1D8C4D2B0058FC15 /* FilterForResponsibleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375BD1D8C4D2B0058FC15 /* FilterForResponsibleViewController.m */; };
+		590375C01D8C5A0F0058FC15 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 590375BF1D8C5A0F0058FC15 /* SF-UI-Text-Semibold.otf */; };
+		590375C41D8C5D800058FC15 /* SelectionPremisesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 590375C31D8C5D800058FC15 /* SelectionPremisesController.m */; };
 		590C8F411D5B35390053A735 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 590C8F401D5B35390053A735 /* NSString+Utils.m */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -485,6 +489,13 @@
 		590375B11D8ADC360058FC15 /* OSRightDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSRightDetailCell.m; sourceTree = "<group>"; };
 		590375B41D8C353C0058FC15 /* AddMassageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMassageViewController.h; sourceTree = "<group>"; };
 		590375B51D8C353C0058FC15 /* AddMassageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMassageViewController.m; sourceTree = "<group>"; };
+		590375B81D8C44170058FC15 /* AddTermTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTermTasksViewController.h; sourceTree = "<group>"; };
+		590375B91D8C44170058FC15 /* AddTermTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTermTasksViewController.m; sourceTree = "<group>"; };
+		590375BC1D8C4D2B0058FC15 /* FilterForResponsibleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterForResponsibleViewController.h; sourceTree = "<group>"; };
+		590375BD1D8C4D2B0058FC15 /* FilterForResponsibleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterForResponsibleViewController.m; sourceTree = "<group>"; };
+		590375BF1D8C5A0F0058FC15 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
+		590375C21D8C5D800058FC15 /* SelectionPremisesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionPremisesController.h; sourceTree = "<group>"; };
+		590375C31D8C5D800058FC15 /* SelectionPremisesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionPremisesController.m; sourceTree = "<group>"; };
 		590C8F391D5B35220053A735 /* APIConstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIConstance.h; sourceTree = "<group>"; };
 		590C8F3B1D5B35220053A735 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
 		590C8F401D5B35390053A735 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
@@ -1216,6 +1227,8 @@
 		56EAC1B21D7B51060087B3FF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				590375C11D8C5D4C0058FC15 /* OnPlanTasks */,
+				590375B71D8C43C70058FC15 /* Terms */,
 				56EAC1B31D7B51060087B3FF /* AboutProject */,
 				56EAC1D11D7B51060087B3FF /* Documents */,
 				56EAC1E71D7B51060087B3FF /* Projects */,
@@ -1335,6 +1348,7 @@
 		56EAC1ED1D7B51060087B3FF /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				590375BB1D8C4CE40058FC15 /* Filter */,
 				CFFA37BB1D86FFB400F7EB60 /* AddTask */,
 				56EAC1EE1D7B51060087B3FF /* ProjectsNameTableViewCell.h */,
 				56EAC1EF1D7B51060087B3FF /* ProjectsNameTableViewCell.m */,
@@ -1489,6 +1503,33 @@
 			name = OSAddNewMassageController;
 			sourceTree = "<group>";
 		};
+		590375B71D8C43C70058FC15 /* Terms */ = {
+			isa = PBXGroup;
+			children = (
+				590375B81D8C44170058FC15 /* AddTermTasksViewController.h */,
+				590375B91D8C44170058FC15 /* AddTermTasksViewController.m */,
+			);
+			name = Terms;
+			sourceTree = "<group>";
+		};
+		590375BB1D8C4CE40058FC15 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				590375BC1D8C4D2B0058FC15 /* FilterForResponsibleViewController.h */,
+				590375BD1D8C4D2B0058FC15 /* FilterForResponsibleViewController.m */,
+			);
+			name = Filter;
+			sourceTree = "<group>";
+		};
+		590375C11D8C5D4C0058FC15 /* OnPlanTasks */ = {
+			isa = PBXGroup;
+			children = (
+				590375C21D8C5D800058FC15 /* SelectionPremisesController.h */,
+				590375C31D8C5D800058FC15 /* SelectionPremisesController.m */,
+			);
+			name = OnPlanTasks;
+			sourceTree = "<group>";
+		};
 		590C8F381D5B35220053A735 /* Constance */ = {
 			isa = PBXGroup;
 			children = (
@@ -1574,6 +1615,7 @@
 		59A793421D59D2DD0062007E /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				590375BF1D8C5A0F0058FC15 /* SF-UI-Text-Semibold.otf */,
 				56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */,
 				56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */,
 				56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */,
@@ -2005,6 +2047,7 @@
 				CFFA37B41D86FA9400F7EB60 /* TaskOptionsScreen.storyboard in Resources */,
 				56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */,
 				56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */,
+				590375C01D8C5A0F0058FC15 /* SF-UI-Text-Semibold.otf in Resources */,
 				59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */,
 				59575DC21D81722200A28227 /* OSAlertStoryboard.storyboard in Resources */,
 				591344261D5F6F880027889F /* ProjectsScreen.storyboard in Resources */,
@@ -2137,6 +2180,7 @@
 				590375A91D8AD8390058FC15 /* OSSingleUserInfoCell.m in Sources */,
 				564DF0C71D7C1A3700067B60 /* RoleInfoViewModel.m in Sources */,
 				CFEACF081D817495005BA6D9 /* AlertView.m in Sources */,
+				590375C41D8C5D800058FC15 /* SelectionPremisesController.m in Sources */,
 				564DF0801D7B77BA00067B60 /* ProjectRoleObject.m in Sources */,
 				5615334C1D7A70A100BDEC3E /* UserNotifications+CoreDataProperties.m in Sources */,
 				561533401D7A70A100BDEC3E /* OfflineSettings+CoreDataProperties.m in Sources */,
@@ -2211,6 +2255,7 @@
 				561533521D7A70A100BDEC3E /* UserInfoData.m in Sources */,
 				5615334E1D7A70A100BDEC3E /* ProjectCountryData.m in Sources */,
 				56EAC2471D7B51060087B3FF /* AllProjectsViewController.m in Sources */,
+				590375BE1D8C4D2B0058FC15 /* FilterForResponsibleViewController.m in Sources */,
 				56EAC2551D7B51060087B3FF /* TeamInfoViewModel.m in Sources */,
 				CFEACF0E1D817568005BA6D9 /* AlertControllerSegue.m in Sources */,
 				564DF08D1D7B805D00067B60 /* RolesAPIService.m in Sources */,
@@ -2252,6 +2297,7 @@
 				56EAC2481D7B51060087B3FF /* AllProjectsViewModel.m in Sources */,
 				56EAC23F1D7B51060087B3FF /* MainMenuViewModel.m in Sources */,
 				560B89B51D7C36B500746682 /* BaseMainViewController+Popover.m in Sources */,
+				590375BA1D8C44170058FC15 /* AddTermTasksViewController.m in Sources */,
 				564DF0B51D7C19BD00067B60 /* InformationViewController.m in Sources */,
 				590375B21D8ADC360058FC15 /* OSRightDetailCell.m in Sources */,
 				561533471D7A70A100BDEC3E /* ProjectRegion.m in Sources */,
