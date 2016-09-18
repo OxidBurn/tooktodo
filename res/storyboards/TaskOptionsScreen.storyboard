@@ -602,11 +602,20 @@
                     <navigationItem key="navigationItem" id="2Q4-x7-LOD">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="5RU-Ft-d3n">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBackBtn:" destination="llT-OI-rLY" id="rGg-Id-hi2"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="tTc-kl-ZsD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onDoneBtn:" destination="llT-OI-rLY" id="9VC-h9-e02"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="titleTextView" destination="L0r-dB-zrn" id="Jhx-OL-qwM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOf-cb-MnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -633,6 +642,9 @@
                                 <state key="normal" title="Сохранить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSaveBtn:" destination="slz-WN-5qc" eventType="touchUpInside" id="68h-8K-rPY"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SLP-qe-FKY">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -721,11 +733,20 @@
                     <navigationItem key="navigationItem" id="BAk-QK-Yhb">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="B8a-S4-qZW">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBackBtn:" destination="slz-WN-5qc" id="tTS-Gx-r5c"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="gUI-4Z-qbI">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onDoneBtn:" destination="slz-WN-5qc" id="06F-X4-sdS"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addTermTasksTableView" destination="SLP-qe-FKY" id="nwK-B5-s43"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBE-aO-FaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -752,6 +773,9 @@
                                 <state key="normal" title="Выбрать всех">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSelectedAllBtn:" destination="Lr3-oG-7Wp" eventType="touchUpInside" id="jjS-zV-ck4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lMz-Qi-Pcc">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -762,6 +786,9 @@
                                 <state key="normal" title="Сохранить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSaveBtn:" destination="Lr3-oG-7Wp" eventType="touchUpInside" id="WDZ-OU-pX4"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hbr-8n-zVp">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -830,11 +857,21 @@
                     <navigationItem key="navigationItem" id="fTI-89-JSU">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="DmJ-hl-MhR">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBackBtn:" destination="Lr3-oG-7Wp" id="sdX-WH-dRc"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="1ud-9p-2ct">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onDoneBtn:" destination="Lr3-oG-7Wp" id="BVz-ri-SCI"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="filterForResponsibleTableView" destination="hbr-8n-zVp" id="b3P-rQ-N6a"/>
+                        <outlet property="searchBar" destination="Z1I-G1-hch" id="MnG-is-uyZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OlN-6b-qjh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -861,6 +898,9 @@
                                 <state key="normal" title="Сбросить">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onResetBtn:" destination="qwA-lN-if4" eventType="touchUpInside" id="pwb-Fj-6SP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5L-Bi-GKf">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -871,6 +911,9 @@
                                 <state key="normal" title="Сохранить">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSaveBtn:" destination="qwA-lN-if4" eventType="touchUpInside" id="I5K-NC-yIG"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ry9-4k-7Fe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -978,11 +1021,20 @@
                     <navigationItem key="navigationItem" id="E1g-W0-Vao">
                         <barButtonItem key="leftBarButtonItem" image="Cancel" id="XKm-Vo-bbf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onCancelBtn:" destination="qwA-lN-if4" id="EPM-Xt-o31"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="EbW-BI-CtB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onDoneBtn:" destination="qwA-lN-if4" id="Wmh-gJ-OzJ"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="selectionPremisesTableView" destination="Ry9-4k-7Fe" id="EEI-9r-ZVJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vot-EP-8ik" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
