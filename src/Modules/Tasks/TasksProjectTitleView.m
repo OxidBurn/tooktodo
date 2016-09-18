@@ -8,6 +8,9 @@
 
 #import "TasksProjectTitleView.h"
 
+// Classes
+#import "ProjectTask+CoreDataClass.h"
+
 @interface TasksProjectTitleView()
 
 // properties
@@ -35,6 +38,18 @@
     self.projectNameLabel.text    = info.title;
     self.projectAddressLabel.text = info.address;
     self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%ld", info.tasks.count];
+    
+    NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: info.tasks.allObjects];
+    
+    if ( countOfExpiredTasks > 0 )
+    {
+        self.countOfExpiredTasksLabel.hidden = NO;
+        self.countOfExpiredTasksLabel.text   = [NSString stringWithFormat: @"%ld", countOfExpiredTasks];
+    }
+    else
+    {
+        self.countOfExpiredTasksLabel.hidden = YES;
+    }
     
     [self updateExpandedState: info.isExpanded.boolValue];
 }
@@ -75,5 +90,20 @@
     
     self.expandedStateImage.image = expandedStateImage;
 }
+
+- (NSUInteger) getCountOfExpiredTasks: (NSArray*) tasks
+{
+    __block NSUInteger count = 0;
+    
+    [tasks enumerateObjectsUsingBlock:^(ProjectTask* task, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( task.isExpired.boolValue )
+            count++;
+        
+    }];
+    
+    return count;
+}
+
 
 @end

@@ -7,8 +7,17 @@
 //
 
 #import "TasksListTableViewCell.h"
+
+// Classes
 #import "StatusMarkerComponent.h"
 #import "TaskMarkerComponent.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "ProjectTaskResponsible.h"
+#import "ProjectTaskAssignee.h"
+#import "NSDate+Helper.h"
+
+// Categories
+#import "UIImageView+WebCache.h"
 
 @interface TasksListTableViewCell()
 
@@ -30,16 +39,52 @@
 
 @implementation TasksListTableViewCell
 
+
+#pragma mark - Initialization -
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.cellType = AllTasksTaskCellType;
 }
+
+
+#pragma mark - Delegate methods -
 
 - (void) setSelected: (BOOL) selected
             animated: (BOOL) animated
 {
     [super setSelected: selected
               animated: animated];
+}
+
+
+#pragma mark - Public methods -
+
+- (void) fillInfoForCell: (id) info
+{
+    ProjectTask* taskInfo = (ProjectTask*)info;
+    
+    self.titleTaskLabel.text = taskInfo.title;
+    
+    
+    // Setting avatar url
+    // first time it will be loaded from web and then grab from cache
+    ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)taskInfo.responsible.assignee;
+    
+    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: assignee.avatarSrc]];
+    
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSString*) executionDateString: (ProjectTask*) task
+{
+//    NSString* startDayString = task.
+    
+    return @"";
 }
 
 @end

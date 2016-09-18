@@ -2,21 +2,23 @@
 //  ProjectTaskStage+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/13/16.
+//  Created by Nikolay Chaban on 9/16/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "ProjectTaskStage+CoreDataProperties.h"
 
 @implementation ProjectTaskStage (CoreDataProperties)
 
++ (NSFetchRequest<ProjectTaskStage *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskStage"];
+}
+
 @dynamic isCommon;
 @dynamic stageID;
 @dynamic title;
-@dynamic task;
+@dynamic isExpanded;
 @dynamic project;
+@dynamic tasks;
 
 @end

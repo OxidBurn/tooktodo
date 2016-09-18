@@ -12,11 +12,11 @@
 
 @interface TaskResponsibleModel : JSONModel
 
-@property (strong, nonatomic) TaskAssigneeModel        * assignee;
-@property (assign, nonatomic) NSUInteger                 responsibleID;
-@property (assign, nonatomic) BOOL                     invite;
-@property (assign, nonatomic) BOOL                     isBlocked;
-@property (assign, nonatomic) NSUInteger               projectPermission;
-@property (strong, nonatomic) TaskProjectRoleTypeModel * projectRoleType;
+@property (strong, nonatomic) TaskAssigneeModel<Optional>* assignee;
+@property (strong, nonatomic) NSNumber<Optional>* responsibleID;
+@property (strong, nonatomic) NSNumber<Optional>* invite;
+@property (strong, nonatomic) NSNumber<Optional>* isBlocked;
+@property (strong, nonatomic) NSNumber<Optional>* projectPermission;
+@property (strong, nonatomic) TaskProjectRoleTypeModel<Optional> * projectRoleType;
 
 @end

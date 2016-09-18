@@ -13,9 +13,9 @@
 
 @interface TaskRoleAssignmentsModel : JSONModel
 
-@property (assign, nonatomic) NSUInteger                     roleAssignmentsID;
-@property (strong, nonatomic) TaskProjectRoleAssignmentModel * projectRoleAssignment;
-@property (assign, nonatomic) NSUInteger                     taskRoleType;
-@property (strong, nonatomic) NSString                       * taskRoleTypeDescription;
+@property (assign, nonatomic) NSUInteger roleAssignmentsID;
+@property (assign, nonatomic) NSUInteger taskRoleType;
+@property (strong, nonatomic) NSString* taskRoleTypeDescription;
+@property (strong, nonatomic) TaskProjectRoleAssignmentModel<Optional> * projectRoleAssignment;
 
 @end

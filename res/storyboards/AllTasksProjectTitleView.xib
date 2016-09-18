@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SF-UI-Text-Regular.otf">
+        <array key="SF-UI-Text-Regular.otf">
             <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,7 +18,6 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowVertical" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-sZ-a5t">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="11" id="ZTB-wj-K6S"/>
                         <constraint firstAttribute="height" constant="11" id="uf0-d4-Wn5"/>
@@ -38,8 +35,7 @@
                         </mask>
                     </variation>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Проект" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peU-P5-cTg">
-                    <rect key="frame" x="50" y="18" width="214" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проект" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peU-P5-cTg">
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="9yw-ms-WrV"/>
                         <constraint firstAttribute="width" constant="214" id="SbN-6x-qHR"/>
@@ -48,21 +44,21 @@
                         <constraint firstAttribute="height" constant="18" id="nVb-TO-oXk"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
-                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="highlightedColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="highlightedColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="nVb-TO-oXk"/>
                             <exclude reference="9yw-ms-WrV"/>
-                            <exclude reference="jHp-NN-vgh"/>
-                            <exclude reference="aL6-3G-GGH"/>
                             <exclude reference="SbN-6x-qHR"/>
+                            <exclude reference="aL6-3G-GGH"/>
+                            <exclude reference="jHp-NN-vgh"/>
+                            <exclude reference="nVb-TO-oXk"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular">
                         <mask key="constraints">
-                            <include reference="nVb-TO-oXk"/>
                             <include reference="jHp-NN-vgh"/>
+                            <include reference="nVb-TO-oXk"/>
                         </mask>
                     </variation>
                     <variation key="widthClass=compact">
@@ -73,23 +69,22 @@
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
-                            <exclude reference="nVb-TO-oXk"/>
                             <exclude reference="9yw-ms-WrV"/>
-                            <exclude reference="jHp-NN-vgh"/>
-                            <include reference="aL6-3G-GGH"/>
                             <exclude reference="SbN-6x-qHR"/>
+                            <include reference="aL6-3G-GGH"/>
+                            <exclude reference="jHp-NN-vgh"/>
+                            <exclude reference="nVb-TO-oXk"/>
                         </mask>
                     </variation>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aw9-ja-tIX">
-                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                    <color key="backgroundColor" red="0.82352941176470584" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.82352941176470584" green="0.8901960784313725" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="R8r-MN-Cel"/>
                         <constraint firstAttribute="height" constant="20" id="ejj-9Y-UcP"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
-                    <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -104,19 +99,18 @@
                         </mask>
                     </variation>
                 </label>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvB-su-qtA">
-                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                    <color key="backgroundColor" red="1" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvB-su-qtA" customClass="LabelWithRoundCorners">
+                    <color key="backgroundColor" red="1" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="WrX-FB-I23"/>
                         <constraint firstAttribute="height" constant="16" id="o3q-fP-mDX"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <variation key="default">
@@ -132,8 +126,7 @@
                         </mask>
                     </variation>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Адрес" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNs-2S-dvc">
-                    <rect key="frame" x="50" y="18" width="214" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Адрес" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNs-2S-dvc">
                     <constraints>
                         <constraint firstAttribute="height" constant="18" id="74r-Rq-cjN"/>
                         <constraint firstAttribute="height" constant="18" id="P5Y-Jp-i6x"/>
@@ -142,8 +135,8 @@
                         <constraint firstAttribute="width" constant="214" id="pbN-7g-aQT"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
-                    <color key="textColor" red="0.56862745098039214" green="0.60784313725490191" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                    <color key="highlightedColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.56862745098039214" green="0.60784313725490191" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="highlightedColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="74r-Rq-cjN"/>
@@ -173,13 +166,12 @@
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qg-nA-Zm6">
-                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <connections>
                         <action selector="onShowTasks:" destination="iN0-l3-epB" eventType="touchUpInside" id="AYi-XS-yRV"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qNs-2S-dvc" firstAttribute="trailing" secondItem="peU-P5-cTg" secondAttribute="trailing" id="8Gd-gb-a9F"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="CAS-Gk-7ik"/>
@@ -214,18 +206,18 @@
                     <exclude reference="RIj-3M-Yof"/>
                     <exclude reference="l4K-Eo-5J2"/>
                     <exclude reference="lqt-LB-tRX"/>
-                    <exclude reference="Jam-bB-Roo"/>
-                    <exclude reference="Wgh-pq-7ah"/>
-                    <exclude reference="Ttm-Nw-gsO"/>
-                    <exclude reference="mpE-1O-liQ"/>
-                    <exclude reference="8Gd-gb-a9F"/>
-                    <exclude reference="Qia-HR-XkW"/>
-                    <exclude reference="c5h-KI-DBc"/>
                     <exclude reference="Rn8-i9-Wlm"/>
                     <exclude reference="acN-Vg-aI3"/>
                     <exclude reference="t2F-tT-zep"/>
                     <exclude reference="f7y-2b-Ycs"/>
                     <exclude reference="p1T-WL-uBF"/>
+                    <exclude reference="Ttm-Nw-gsO"/>
+                    <exclude reference="mpE-1O-liQ"/>
+                    <exclude reference="8Gd-gb-a9F"/>
+                    <exclude reference="Qia-HR-XkW"/>
+                    <exclude reference="c5h-KI-DBc"/>
+                    <exclude reference="Jam-bB-Roo"/>
+                    <exclude reference="Wgh-pq-7ah"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -242,18 +234,18 @@
                     <include reference="RIj-3M-Yof"/>
                     <include reference="l4K-Eo-5J2"/>
                     <include reference="lqt-LB-tRX"/>
-                    <include reference="Jam-bB-Roo"/>
-                    <include reference="Wgh-pq-7ah"/>
-                    <include reference="Ttm-Nw-gsO"/>
-                    <include reference="mpE-1O-liQ"/>
-                    <include reference="8Gd-gb-a9F"/>
-                    <include reference="Qia-HR-XkW"/>
-                    <include reference="c5h-KI-DBc"/>
                     <include reference="Rn8-i9-Wlm"/>
                     <include reference="acN-Vg-aI3"/>
                     <include reference="t2F-tT-zep"/>
                     <include reference="f7y-2b-Ycs"/>
                     <include reference="p1T-WL-uBF"/>
+                    <include reference="Ttm-Nw-gsO"/>
+                    <include reference="mpE-1O-liQ"/>
+                    <include reference="8Gd-gb-a9F"/>
+                    <include reference="Qia-HR-XkW"/>
+                    <include reference="c5h-KI-DBc"/>
+                    <include reference="Jam-bB-Roo"/>
+                    <include reference="Wgh-pq-7ah"/>
                 </mask>
             </variation>
             <connections>

@@ -1,8 +1,8 @@
 //
-//  ProjectTask.h
+//  ProjectTask+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 9/18/16.
 //
 //
 
@@ -14,8 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTask : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 

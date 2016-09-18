@@ -23,5 +23,11 @@ typedef NS_ENUM(NSUInteger, ContentAccedingSortingType)
     DiminutionSortingType = 0,
 };
 
+typedef NS_ENUM(NSUInteger, AllTasksCellType)
+{
+    AllTasksStageCellType,
+    AllTasksTaskCellType,
+};
+
 
 #endif /* ProjectsEnumerations_h */

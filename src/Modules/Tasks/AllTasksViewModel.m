@@ -12,6 +12,8 @@
 #import "AllTasksModel.h"
 #import "TasksProjectTitleView.h"
 #import "ProjectInfo.h"
+#import "AllTaskBaseTableViewCell.h"
+#import "ProjectsEnumerations.h"
 
 @interface AllTasksViewModel()
 
@@ -67,6 +69,12 @@
     return 59.0f;
 }
 
+- (CGFloat)    tableView: (UITableView*) tableView
+ heightForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    return [self.model getCellHeightAtIndexPath: indexPath];
+}
+
 - (nullable UIView*) tableView: (UITableView*) tableView
         viewForHeaderInSection: (NSInteger)    section
 {
@@ -100,11 +108,45 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"StageTypeCellID"];
+    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
+    
+    [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
     return cell;
 }
 
 
+#pragma mark - Table view delegate methods -
+
+- (void)       tableView: (UITableView*) tableView
+ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
+    
+    AllTasksCellType selectedCellType = cell.cellType;
+    
+    switch (selectedCellType)
+    {
+        case AllTasksStageCellType:
+        {
+            [self.model markStageAsExpandedAtIndexPath: indexPath
+                                        withCompletion: ^(BOOL isSuccess) {
+                                            
+                                            [tableView reloadData];
+                                            
+                                        }];
+        }
+            break;
+            
+        case AllTasksTaskCellType:
+        {
+            
+        }
+            break;
+    }
+}
 
 @end

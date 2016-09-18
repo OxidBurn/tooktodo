@@ -8,7 +8,7 @@
 
 #import "ProjectTaskOwner.h"
 #import "ProjectRoles.h"
-#import "ProjectTask.h"
+#import "ProjectTask+CoreDataClass.h"
 
 @implementation ProjectTaskOwner
 

@@ -8,6 +8,12 @@
 
 #import "WorksNamesTableViewCell.h"
 
+// Classes
+#import "ProjectTask+CoreDataClass.h"
+
+// Categories
+#import "ProjectTaskStage+CoreDataClass.h"
+
 @interface WorksNamesTableViewCell()
 
 // properties
@@ -24,16 +30,80 @@
 
 @implementation WorksNamesTableViewCell
 
+
+#pragma mark - Initialization -
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
+    
+    self.unreadTasksLabel.layer.cornerRadius = 8.0f;
+    self.cellType                            = AllTasksStageCellType;
 }
 
-- (void) setSelected: (BOOL) selected
-            animated: (BOOL) animated
+
+#pragma mark - Public methods -
+
+- (void) fillInfoForCell: (id) info
 {
-    [super setSelected: selected
-              animated: animated];
+    ProjectTaskStage* stageInfo = (ProjectTaskStage*) info;
+    
+    NSString* countOfTasks         = [NSString stringWithFormat: @"%ld", stageInfo.tasks.count];
+    NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: stageInfo.tasks.allObjects];
+    
+    self.titleWorkNamesLabel.text = stageInfo.title;
+    self.amountTasksLabel.text    = countOfTasks;
+    
+    if ( countOfExpiredTasks > 0 )
+    {
+        NSString* expiredCountString  = [NSString stringWithFormat: @"%ld", countOfExpiredTasks];
+        self.unreadTasksLabel.text    = expiredCountString;
+        self.unreadTasksLabel.hidden  = NO;
+    }
+    else
+    {
+        self.unreadTasksLabel.hidden = YES;
+    }
+    
+    [self updateExpandedState: stageInfo.isExpanded.boolValue];
+}
+
+- (CGFloat) getHeightForCell
+{
+    return 55;
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSUInteger) getCountOfExpiredTasks: (NSArray*) tasks
+{
+    __block NSUInteger count = 0;
+    
+    [tasks enumerateObjectsUsingBlock:^(ProjectTask* task, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( task.isExpired.boolValue )
+            count++;
+        
+    }];
+    
+    return count;
+}
+
+- (void) updateExpandedState: (BOOL) isExpanded
+{
+    UIImage* expandedStateImage = nil;
+    
+    if ( isExpanded )
+    {
+        expandedStateImage = [UIImage imageNamed: @"ArrowHorizontaly"];
+    }
+    else
+    {
+        expandedStateImage = [UIImage imageNamed: @"ArrowVertical"];
+    }
+    
+    self.arrowImage.image = expandedStateImage;
 }
 
 @end

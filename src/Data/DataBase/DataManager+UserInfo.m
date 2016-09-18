@@ -54,7 +54,7 @@
         userInfo.extendPhoneNumber                = info.additionalPhoneNumber;
         
         [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
-                                                withName: info.email];
+                                                withName: [Utils getEmailPrefix: info.email]];
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {

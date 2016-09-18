@@ -11,6 +11,7 @@
 
 // Classes
 #import "ProjectInfo.h"
+#import "ProjectsEnumerations.h"
 
 @interface AllTasksModel : NSObject
 
@@ -25,10 +26,18 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
 
+- (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path;
+
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section;
 
 - (void) markProjectAsExpanded: (NSUInteger)            projectIndex
                 withCompletion: (CompletionWithSuccess) completion;
 
+- (void) markStageAsExpandedAtIndexPath: (NSIndexPath*)          indexPath
+                         withCompletion: (CompletionWithSuccess) completion;
+
+- (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path;
+
+- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
 @end

@@ -2,24 +2,34 @@
 //  ProjectTaskStage+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/13/16.
+//  Created by Nikolay Chaban on 9/16/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskStage.h"
+#import "ProjectTaskStage+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskStage (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *isCommon;
-@property (nullable, nonatomic, retain) NSNumber *stageID;
-@property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) ProjectTask *task;
++ (NSFetchRequest<ProjectTaskStage *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSNumber *isCommon;
+@property (nullable, nonatomic, copy) NSNumber *stageID;
+@property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSNumber *isExpanded;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
+@property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
+
+@end
+
+@interface ProjectTaskStage (CoreDataGeneratedAccessors)
+
+- (void)addTasksObject:(ProjectTask *)value;
+- (void)removeTasksObject:(ProjectTask *)value;
+- (void)addTasks:(NSSet<ProjectTask *> *)values;
+- (void)removeTasks:(NSSet<ProjectTask *> *)values;
 
 @end
 

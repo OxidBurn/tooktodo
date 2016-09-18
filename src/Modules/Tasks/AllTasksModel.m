@@ -8,14 +8,23 @@
 
 #import "AllTasksModel.h"
 
+// Classes
+#import "ProjectTaskStage+CoreDataClass.h"
+
 // Categories
 #import "DataManager+ProjectInfo.h"
+#import "DataManager+Tasks.h"
+
+static NSString* projectKey = @"projectInfoKey";
+static NSString* contentKey = @"contentInfoKey";
 
 @interface AllTasksModel()
 
 // properties
 
 @property (strong, nonatomic) NSArray* projectsInfo;
+
+@property (strong, nonatomic) NSArray* rowsInfo;
 
 // methods
 
@@ -31,7 +40,7 @@
 {
     RACSignal* updateInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        self.projectsInfo = [DataManagerShared getAllProjects];
+        [self updateAllTasksData];
         
         [subscriber sendCompleted];
         
@@ -48,17 +57,14 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
 {
-    ProjectInfo* project = self.projectsInfo[section];
+    NSArray* rowsInfoCount = self.projectsInfo[section][contentKey];
     
-    if ( project.isExpanded.boolValue )
-        return project.stage.count;
-    else
-        return 0;
+    return rowsInfoCount.count;
 }
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section
 {
-    return self.projectsInfo[section];
+    return self.projectsInfo[section][projectKey];
 }
 
 - (void) markProjectAsExpanded: (NSUInteger)            projectIndex
@@ -71,12 +77,115 @@
     [DataManagerShared updateProjectExpandedState: project
                                    withCompletion: ^(BOOL isSuccess) {
                                        
-                                       blockSelf.projectsInfo = [DataManagerShared getAllProjects];
+                                       [blockSelf updateAllTasksData];
                                        
                                        if ( completion )
                                            completion(YES);
                                        
                                    }];
+}
+
+- (void) markStageAsExpandedAtIndexPath: (NSIndexPath*)          indexPath
+                         withCompletion: (CompletionWithSuccess) completion
+{
+    ProjectInfo* project    = [self getProjectInfoForSection: indexPath.section];
+    ProjectTaskStage* stage = project.stage.allObjects[indexPath.row];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    [DataManagerShared updateExpandedStateOfStage: stage
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       [blockSelf updateAllTasksData];
+                                       
+                                       if ( completion )
+                                           completion(YES);
+                                       
+                                   }];
+}
+
+- (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path
+{
+    id cellInfo = [self getInfoForCellAtIndexPath: path];
+    
+    if ( [cellInfo isKindOfClass: [ProjectTaskStage class]] )
+    {
+        return @"StageTypeCellID";
+    }
+    else
+    {
+        return @"TaskInfoCellID";
+    }
+    
+    return @"";
+}
+
+- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
+{
+    NSArray* cellsContentInfo = self.projectsInfo[path.section][contentKey];
+    id cellInfo               = cellsContentInfo[path.row];
+    
+    return cellInfo;
+}
+
+- (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path
+{
+    NSString* cellID = [self getCellIDAtIndexPath: path];
+    
+    if ( [cellID isEqualToString: @"StageTypeCellID"] )
+        return 55.0f;
+    else
+        return 139.0f;
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) updateAllTasksData
+{
+    self.projectsInfo = [DataManagerShared getAllProjects];
+    
+    __block NSMutableArray* tmpRowsInfo     = [NSMutableArray array];
+    __block NSMutableArray* tmpProjectsInfo = [NSMutableArray array];
+    
+    [self.projectsInfo enumerateObjectsUsingBlock:^(ProjectInfo* project, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        NSMutableDictionary* projectsInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{projectKey : project}];
+        
+        if ( project.isExpanded.boolValue )
+        {
+            [project.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                [tmpRowsInfo addObject: obj];
+                
+                if ( obj.isExpanded.boolValue )
+                {
+                    [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+                        
+                        [tmpRowsInfo addObject: obj];
+                        
+                    }];
+                }
+                
+            }];
+        }
+        
+        if ( tmpRowsInfo.count > 0 )
+        {
+            [projectsInfoDic setObject: tmpRowsInfo.copy
+                                forKey: contentKey];
+            
+            [tmpRowsInfo removeAllObjects];
+        }
+        
+        [tmpProjectsInfo addObject: projectsInfoDic];
+        
+    }];
+    
+    self.projectsInfo = tmpProjectsInfo.copy;
+    
+    tmpRowsInfo     = nil;
+    tmpProjectsInfo = nil;
 }
 
 @end

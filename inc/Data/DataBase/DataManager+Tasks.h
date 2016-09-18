@@ -9,7 +9,7 @@
 #import "DataManager.h"
 
 // Classes
-#import "ProjectTask.h"
+#import "ProjectTask+CoreDataClass.h"
 #import "TasksGroupedByProjects.h"
 
 
@@ -20,5 +20,8 @@
 
 - (void) persistTasksForProjects: (TasksGroupedByProjects*) info
                   withCompletion: (CompletionWithSuccess)   completion;
+
+- (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
+                     withCompletion: (CompletionWithSuccess) completion;
 
 @end

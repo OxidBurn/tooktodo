@@ -7,7 +7,7 @@
 //
 
 #import "ProjectTaskRoom.h"
-#import "ProjectTask.h"
+#import "ProjectTask+CoreDataClass.h"
 
 @implementation ProjectTaskRoom
 

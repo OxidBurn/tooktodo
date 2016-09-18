@@ -12,6 +12,7 @@
 // Classes
 #import "ProjectCountryModel.h"
 #import "ProjectRegionModel.h"
+#import "TaskAssigneeModel.h"
 
 @interface ProjectInfoModel : JSONModel
 
@@ -41,7 +42,7 @@
 
 @property (nonatomic, strong) NSString<Optional>* regionName;
 
-@property (nonatomic, strong) id<Ignore> projectRoleAssignments;
+@property (nonatomic, strong) NSArray<TaskAssigneeModel>* projectRoleAssignments;
 
 @property (nonatomic, strong) id<Optional> info;
 

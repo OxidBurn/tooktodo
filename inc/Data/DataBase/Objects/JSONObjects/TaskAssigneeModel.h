@@ -9,21 +9,23 @@
 #import <JSONModel/JSONModel.h>
 #import "ProjectRoleModel.h"
 
+@protocol TaskAssigneeModel;
+
 @interface TaskAssigneeModel : JSONModel
 
 @property (strong, nonatomic) NSString<Optional> * additionalPhoneNumber;
-@property (strong, nonatomic) NSString   * avatarSrc;
-@property (strong, nonatomic) NSString   * displayName;
-@property (strong, nonatomic) NSString   * email;
-@property (assign, nonatomic) BOOL       emailConfirmed;
-@property (strong, nonatomic) NSString   * firstName;
+@property (strong, nonatomic) NSString<Optional>   * avatarSrc;
+@property (strong, nonatomic) NSString<Optional>   * displayName;
+@property (strong, nonatomic) NSString<Optional>   * email;
+@property (strong, nonatomic) NSNumber<Optional>* emailConfirmed;
+@property (strong, nonatomic) NSString<Optional>   * firstName;
 @property (assign, nonatomic) NSUInteger assigneeID;
-@property (assign, nonatomic) BOOL       isSubscribedOnEmailNotifications;
-@property (assign, nonatomic) BOOL       isTourViewed;
-@property (strong, nonatomic) NSString   * lastName;
-@property (strong, nonatomic) NSString   * phoneNumber;
-@property (strong, nonatomic) ProjectRoleModel<Optional  > * role;
-@property (strong, nonatomic) NSString   * userName;
+@property (strong, nonatomic) NSNumber<Optional>* isSubscribedOnEmailNotifications;
+@property (strong, nonatomic) NSNumber<Optional>* isTourViewed;
+@property (strong, nonatomic) NSString<Optional>* lastName;
+@property (strong, nonatomic) NSString<Optional>* phoneNumber;
+@property (strong, nonatomic) ProjectRoleModel<Optional> * role;
+@property (strong, nonatomic) NSString<Optional>   * userName;
 
 
 

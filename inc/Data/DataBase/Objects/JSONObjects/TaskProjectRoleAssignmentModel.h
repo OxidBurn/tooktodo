@@ -12,7 +12,7 @@
 
 @interface TaskProjectRoleAssignmentModel : JSONModel
 
-@property (strong, nonatomic) TaskAssigneeModel        * assignee;
-@property (strong, nonatomic) TaskProjectRoleTypeModel * projectRoleType;
+@property (strong, nonatomic) TaskAssigneeModel<Optional>        * assignee;
+@property (strong, nonatomic) TaskProjectRoleTypeModel<Optional> * projectRoleType;
 
 @end

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "AllTaskBaseTableViewCell.h"
 
-@interface WorksNamesTableViewCell : UITableViewCell
+@interface WorksNamesTableViewCell : AllTaskBaseTableViewCell
 
 @end
