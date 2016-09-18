@@ -7,7 +7,7 @@
 //
 
 #import "ProjectTaskRoleType.h"
-#import "ProjectTaskResponsible.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment.h"
 
 @implementation ProjectTaskRoleType

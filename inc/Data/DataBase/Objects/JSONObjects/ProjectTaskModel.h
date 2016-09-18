@@ -61,6 +61,7 @@
 @property (strong, nonatomic) NSNumber<Optional> * isTaskStatusChanged;
 @property (strong, nonatomic) NSNumber* isUrgent;
 @property (strong, nonatomic) NSArray<TaskRoomModel, Optional> * rooms;
+@property (strong, nonatomic) TaskRoomModel<Optional>* room;
 
 
 

@@ -19,4 +19,10 @@
 @property (strong, nonatomic) NSNumber<Optional>* projectPermission;
 @property (strong, nonatomic) TaskProjectRoleTypeModel<Optional> * projectRoleType;
 
+@property (strong, nonatomic) NSString<Optional>* firstName;
+@property (strong, nonatomic) NSString<Optional>* lastName;
+@property (strong, nonatomic) NSString<Optional>* displayName;
+@property (strong, nonatomic) NSString<Optional>* avatarSrc;
+@property (strong, nonatomic) NSNumber<Optional>* isActiveUser;
+
 @end

@@ -14,11 +14,11 @@
 @interface TaskRoomModel : JSONModel
 
 @property (assign, nonatomic) NSUInteger roomID;
-@property (strong, nonatomic) TaskMapContourModel* mapContour;
-@property (assign, nonatomic) NSUInteger number;
-@property (assign, nonatomic) NSUInteger roomLevelId;
-@property (assign, nonatomic) NSUInteger tasksCount;
-@property (assign, nonatomic) NSUInteger tasksWithoutMarkers;
+@property (strong, nonatomic) NSNumber* number;
 @property (strong, nonatomic) NSString* title;
+@property (strong, nonatomic) TaskMapContourModel<Optional>* mapContour;
+@property (strong, nonatomic) NSNumber<Optional>* roomLevelId;
+@property (strong, nonatomic) NSNumber<Optional>* tasksCount;
+@property (strong, nonatomic) NSNumber<Optional>* tasksWithoutMarkers;
 
 @end

@@ -52,5 +52,6 @@
 @dynamic subTasks;
 @dynamic taskRoleAssignments;
 @dynamic workArea;
+@dynamic room;
 
 @end

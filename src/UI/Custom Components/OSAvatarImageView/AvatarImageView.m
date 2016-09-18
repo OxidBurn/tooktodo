@@ -9,40 +9,27 @@
 #import "AvatarImageView.h"
 #import "AvatarGenerator.h"
 
+IB_DESIGNABLE
+
 @interface AvatarImageView()
 
 // properties
 
+@property (assign, nonatomic) IBInspectable CGFloat cornerRadius;
 
 // methods
-
-- (void) setupDefaults;
 
 @end
 
 @implementation AvatarImageView
 
 
-#pragma mark - Initialization -
+#pragma mark - Designable -
 
-- (instancetype) initWithCoder: (NSCoder*) aDecoder
+- (void) setCornerRadius: (CGFloat) cornerRadius
 {
-    if ( self = [super initWithCoder: aDecoder] )
-    {
-        [self setupDefaults];
-    }
-    
-    return self;
+    self.layer.cornerRadius = cornerRadius;
 }
-
-#pragma mark - Defaults -
-
-- (void) setupDefaults
-{
-    self.layer.cornerRadius = self.frame.size.width / 2;
-    self.clipsToBounds      = YES;
-}
-
 
 #pragma mark - Public -
 

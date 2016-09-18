@@ -63,11 +63,39 @@
     UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Light"
                                                     size: 11.0f];
     
-    self.componentString.font          = customFont;
-    self.componentString.textColor     = [UIColor colorWithRed:0.349 green:0.3922 blue:0.4431 alpha:1.0];
-    self.componentString.textAlignment = NSTextAlignmentCenter;
+    self.componentString.font                                      = customFont;
+    self.componentString.textColor                                 = [UIColor colorWithRed:0.349 green:0.3922 blue:0.4431 alpha:1.0];
+    self.componentString.textAlignment                             = NSTextAlignmentLeft;
+    self.componentString.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self addSubview: self.componentString];
+    
+    // Setup constraints
+    NSLayoutConstraint* rightConstraint = [NSLayoutConstraint constraintWithItem: self.componentString
+                                                                       attribute: NSLayoutAttributeRight
+                                                                       relatedBy: NSLayoutRelationEqual
+                                                                          toItem: self
+                                                                       attribute: NSLayoutAttributeRight
+                                                                      multiplier: 1.0f
+                                                                        constant: 0.0f];
+    NSLayoutConstraint* topConstraint = [NSLayoutConstraint constraintWithItem: self.componentString
+                                                                     attribute: NSLayoutAttributeTop
+                                                                     relatedBy: NSLayoutRelationEqual
+                                                                        toItem: self
+                                                                     attribute: NSLayoutAttributeTop
+                                                                    multiplier: 1.0f
+                                                                      constant: 0.0f];
+    NSLayoutConstraint* leftConstraint = [NSLayoutConstraint constraintWithItem: self.componentString
+                                                                      attribute: NSLayoutAttributeLeft
+                                                                      relatedBy: NSLayoutRelationEqual
+                                                                         toItem: self
+                                                                      attribute: NSLayoutAttributeLeft
+                                                                     multiplier: 1.0f
+                                                                       constant: 15.0f];
+    
+    [self addConstraint: rightConstraint];
+    [self addConstraint: topConstraint];
+    [self addConstraint: leftConstraint];
 }
 
 #pragma mark - Public methods -
@@ -88,12 +116,12 @@
     {
         case StatusMarkerBlueType:
         {
-            markerImage = [UIImage imageNamed:@"Orange"];
+            markerImage = [UIImage imageNamed: @"Orange"];
             break;
         }
         case StatusMarkerOrangeType:
         {
-            markerImage =  [UIImage imageNamed:@"Blue"];
+            markerImage =  [UIImage imageNamed: @"Blue"];
             break;
         }
     }

@@ -67,6 +67,7 @@
     </entity>
     <entity name="ProjectTask" representedClassName="ProjectTask" syncable="YES">
         <attribute name="access" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="attachments" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="closedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="descriptionValue" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -93,11 +94,11 @@
         <attribute name="taskType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAttachment" inverseName="task" inverseEntity="ProjectTaskAttachment" syncable="YES"/>
         <relationship name="marker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMarker" inverseName="task" inverseEntity="ProjectTaskMarker" syncable="YES"/>
         <relationship name="ownerUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="task" inverseEntity="ProjectTaskOwner" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="tasks" inverseEntity="ProjectInfo" syncable="YES"/>
         <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="task" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="roomTask" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="task" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="tasks" inverseEntity="ProjectTaskStage" syncable="YES"/>
@@ -123,7 +124,7 @@
         <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="assignee" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskAttachment" syncable="YES">
-        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="attachments" inverseEntity="ProjectTask" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskMapContour" representedClassName="ProjectTaskMapContour" syncable="YES">
         <attribute name="geoJson" optional="YES" attributeType="String" syncable="YES"/>
@@ -157,8 +158,13 @@
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="ownerUser" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskResponsible" representedClassName="ProjectTaskResponsible" syncable="YES">
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="invite" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isActiveUser" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="projectPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="responsibleID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="responsible" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
@@ -189,6 +195,7 @@
         <attribute name="tasksWithoutMarkers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mapContour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="room" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
+        <relationship name="roomTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="room" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="rooms" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoomLevel" representedClassName="ProjectTaskRoomLevel" syncable="YES">
@@ -263,16 +270,17 @@
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="120"/>
-        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="615"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="630"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="270"/>
+        <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
         <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="120"/>
         <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
         <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="255"/>
-        <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="150"/>
+        <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="225"/>
         <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="75"/>
         <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="105"/>
         <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="105"/>
-        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="165"/>
+        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="180"/>
         <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="90"/>
         <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="135"/>
         <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="60"/>
@@ -280,6 +288,5 @@
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
     </elements>
 </model>

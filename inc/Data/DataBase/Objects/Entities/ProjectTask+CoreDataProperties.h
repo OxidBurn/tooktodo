@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *attachments;
+@property (nullable, nonatomic, copy) NSNumber *attachments;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
@@ -53,15 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskSubTasks *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
+@property (nullable, nonatomic, retain) ProjectTaskRoom *room;
 
 @end
 
 @interface ProjectTask (CoreDataGeneratedAccessors)
-
-- (void)addAttachmentsObject:(NSManagedObject *)value;
-- (void)removeAttachmentsObject:(NSManagedObject *)value;
-- (void)addAttachments:(NSSet<NSManagedObject *> *)values;
-- (void)removeAttachments:(NSSet<NSManagedObject *> *)values;
 
 - (void)addRoomsObject:(ProjectTaskRoom *)value;
 - (void)removeRoomsObject:(ProjectTaskRoom *)value;

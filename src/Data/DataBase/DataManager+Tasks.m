@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectInfo.h"
-#import "ProjectTaskRoom.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskOwner.h"
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectTaskMarker.h"
@@ -20,7 +20,7 @@
 #import "ProjectTaskWorkArea.h"
 #import "ProjectTaskRoomLevel.h"
 #import "ProjectTaskMapContour.h"
-#import "ProjectTaskResponsible.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment.h"
 #import "ProjectTaskRoleAssignments.h"
 #import "ProjectTaskModel.h"
@@ -190,8 +190,14 @@
     if ( project )
         task.project = project;
     
-//    if ( info.startDate )
-////        task.startda
+    if ( info.startDate )
+        task.startDay = info.startDate;
+    
+    if ( info.access )
+        task.access = info.access;
+    
+    if ( info.attachments.count )
+        task.attachments = info.attachments.count;
     
     // Store task responsible
     if ( info.responsible )
@@ -242,6 +248,15 @@
                          inContext: context];
     }
     
+    // Store room value
+    if ( info.room )
+    {
+        [self persistTaskRoom: info.room
+                      forTask: task
+                 isSingleRoom: YES
+                    inContext: context];
+    }
+    
     // Store task rooms
     if ( info.rooms )
     {
@@ -249,6 +264,7 @@
             
             [self persistTaskRoom: obj
                           forTask: task
+                     isSingleRoom: NO
                         inContext: context];
             
         }];
@@ -288,11 +304,52 @@
                                                                                         withValue: info.responsibleID
                                                                                         inContext: context];
     
-    responsible.responsibleID     = info.responsibleID;
-    responsible.invite            = info.invite;
-    responsible.isBlocked         = info.isBlocked;
-    responsible.projectPermission = info.projectPermission;
-    responsible.task              = task;
+    if ( info.responsibleID )
+    {
+        responsible.responsibleID = info.responsibleID;
+    }
+    
+    if ( info.invite )
+    {
+        responsible.invite = info.invite;
+    }
+    
+    if ( info.isBlocked )
+    {
+        responsible.isBlocked = info.isBlocked;
+    }
+    
+    if ( info.projectPermission )
+    {
+        responsible.projectPermission = info.projectPermission;
+    }
+    
+    if ( info.firstName )
+    {
+        responsible.firstName = info.firstName;
+    }
+    
+    if ( info.lastName )
+    {
+        responsible.lastName = info.lastName;
+    }
+    
+    if ( info.displayName )
+    {
+        responsible.displayName = info.displayName;
+    }
+    
+    if ( info.avatarSrc )
+    {
+        responsible.avatarSrc = info.avatarSrc;
+    }
+    
+    if ( info.isActiveUser )
+    {
+        responsible.isActiveUser = info.isActiveUser;
+    }
+    
+    responsible.task = task;
     
     // Store responsible assignee
     [self persistAssignee: info.assignee
@@ -413,21 +470,26 @@
     roomLevel.level     = @(info.level);
 }
 
-- (void) persistTaskRoom: (TaskRoomModel*)         info
+- (void) persistTaskRoom: (TaskRoomModel*)          info
                  forTask: (ProjectTask*)            task
+            isSingleRoom: (BOOL)                    isSingle
                inContext: (NSManagedObjectContext*) context
 {
     ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstOrCreateByAttribute: @"roomID"
                                                                    withValue: @(info.roomID)
                                                                    inContext: context];
     
-    room.task                = task;
-    room.roomID              = @(info.roomID);
-    room.number              = @(info.number);
-    room.roomLevelId         = @(info.roomLevelId);
-    room.tasksCount          = @(info.tasksCount);
-    room.tasksWithoutMarkers = @(info.tasksWithoutMarkers);
-    room.title               = info.title;
+    room.task   = task;
+    room.roomID = @(info.roomID);
+    room.number = info.number;
+    room.title  = info.title;
+    
+    if ( isSingle == NO )
+    {
+        room.roomLevelId         = info.roomLevelId;
+        room.tasksCount          = info.tasksCount;
+        room.tasksWithoutMarkers = info.tasksWithoutMarkers;
+    }
     
     [self persistMapContour: info.mapContour
                     forRoom: room
