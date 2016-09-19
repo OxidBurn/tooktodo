@@ -127,6 +127,14 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self didSelectedFeed: self.feedTab];
 }
 
+- (void) setSelectedItemAtIndex: (NSUInteger) index
+{
+    [self.items enumerateObjectsUsingBlock: ^(UIButton*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.selected = (idx == index);
+        
+    }];
+}
 
 #pragma mark - Internal methods -
 

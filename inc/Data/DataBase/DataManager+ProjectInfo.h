@@ -9,8 +9,8 @@
 #import "DataManager.h"
 
 // Classes
-#import "ProjectInfo.h"
-#import "ProjectInfoData.h"
+#import "ProjectInfo+CoreDataClass.h"
+#import "ProjectInfoModel.h"
 
 @interface DataManager (ProjectInfo)
 
@@ -34,9 +34,10 @@
 
 - (NSString*) getSelectedProjectName;
 
-- (void) updateSelectedProjectPermission: (BOOL)                  permission
-                          withCompletion: (CompletionWithSuccess) completion;
+- (ProjectInfo*) getProjectWithID: (NSNumber*)               projectID
+                         inCotext: (NSManagedObjectContext*) context;
 
-- (BOOL) getSelectedProjectPermission;
+- (void) updateProjectExpandedState: (ProjectInfo*)          project
+                     withCompletion: (CompletionWithSuccess) completion;
 
 @end

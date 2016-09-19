@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
-        <attribute name="isEnable" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="children" inverseEntity="OfflineSettings" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="offlineSettings" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectCountry" representedClassName="ProjectCountry" syncable="YES">
+        <attribute name="countryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectInfo" representedClassName="ProjectInfo" syncable="YES">
@@ -15,103 +17,312 @@
         <attribute name="apartment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="building" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="commercialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="commercialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="commercialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createdDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="floor" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="isRolesInvitationAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isTaskAddAppealClosed" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="lastVisit" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isExpanded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isRolesInvitationAppealClosed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isTaskAddAppealClosed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastVisit" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="projectPermission" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="realtyClass" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="realtyClass" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="realtyClassDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="regionName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="residentialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="residentialObjectType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="residentialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
         <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
+        <relationship name="projectRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="project" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
         <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="project" inverseEntity="ProjectRoles" syncable="YES"/>
+        <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
         <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="project" inverseEntity="ProjectSystem" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="project" inverseEntity="TeamMember" syncable="YES"/>
+    </entity>
+    <entity name="ProjectInviteInfo" representedClassName="ProjectInviteInfo" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inviteID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inviteStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isCanceled" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUsed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="invite" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleType" inverseName="projectInvite" inverseEntity="ProjectRoleType" syncable="YES"/>
     </entity>
     <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="region" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
+    <entity name="ProjectRoleAssignments" representedClassName="ProjectRoleAssignments" syncable="YES">
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectPermission" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roleID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="projectRoleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="invite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectRoleAssignment" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="projectRoleAssignments" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleType" inverseName="roleAssignment" inverseEntity="ProjectRoleType" syncable="YES"/>
+    </entity>
     <entity name="ProjectRoles" representedClassName="ProjectRoles" syncable="YES">
-        <attribute name="hasProjectRoleAssignments" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isDefault" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="roleID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hasProjectRoleAssignments" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roleID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sort" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="roles" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="taskAssignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="role" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="taskOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="role" inverseEntity="ProjectTaskOwner" syncable="YES"/>
+    </entity>
+    <entity name="ProjectRoleType" representedClassName="ProjectRoleType" syncable="YES">
+        <attribute name="roleTypeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectInvite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectRoleType" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="projectRoleType" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
     </entity>
     <entity name="ProjectSystem" representedClassName="ProjectSystem" syncable="YES">
-        <attribute name="hasTasks" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasTasks" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="shortTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="systemID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="systemID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="systems" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
+    <entity name="ProjectTask" representedClassName="ProjectTask" syncable="YES">
+        <attribute name="access" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="attachments" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="closedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="descriptionValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="extraId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isAllRooms" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isExpired" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isIncludedRestDays" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isTaskStatusChanged" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUrgent" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mapPreviewImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ownerUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="parentTaskId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectRelatedId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startDay" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="statusDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storageDirectoryId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storageFilesCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskAccess" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="marker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMarker" inverseName="task" inverseEntity="ProjectTaskMarker" syncable="YES"/>
+        <relationship name="ownerUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="task" inverseEntity="ProjectTaskOwner" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="tasks" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="task" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="roomTask" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+        <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="task" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+        <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="tasks" inverseEntity="ProjectTaskStage" syncable="YES"/>
+        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskSubTasks" inverseName="task" inverseEntity="ProjectTaskSubTasks" syncable="YES"/>
+        <relationship name="taskRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignments" inverseName="task" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
+        <relationship name="workArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="task" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskAssignee" representedClassName="ProjectTaskAssignee" syncable="YES">
+        <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="assigneeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailConfirmed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isTourViewed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="assignee" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
+        <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="assignee" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
+        <relationship name="role" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="taskAssignee" inverseEntity="ProjectRoles" syncable="YES"/>
+        <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="assignee" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskAttachment" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskMapContour" representedClassName="ProjectTaskMapContour" syncable="YES">
+        <attribute name="geoJson" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mapContourID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="previewImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roomId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="mapContour" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskMarker" representedClassName="ProjectTaskMarker" syncable="YES">
+        <attribute name="mapId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="markerID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomLevelId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="marker" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskOwner" representedClassName="ProjectTaskOwner" syncable="YES">
+        <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="emailConfirmed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isTourViewed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ownerID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="role" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="taskOwner" inverseEntity="ProjectRoles" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="ownerUser" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskResponsible" representedClassName="ProjectTaskResponsible" syncable="YES">
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="invite" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isActiveUser" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="responsibleID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="responsible" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleType" inverseName="responsible" inverseEntity="ProjectTaskRoleType" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="responsible" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoleAssignment" representedClassName="ProjectTaskRoleAssignment" syncable="YES">
+        <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="roleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleType" inverseName="roleAssignment" inverseEntity="ProjectTaskRoleType" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoleAssignments" representedClassName="ProjectTaskRoleAssignments" syncable="YES">
+        <attribute name="roleAssignmentsID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskRoleType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskRoleTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="taskRoleAssignments" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoleType" representedClassName="ProjectTaskRoleType" syncable="YES">
+        <attribute name="roleTypeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="projectRoleType" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
+        <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="projectRoleType" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoom" representedClassName="ProjectTaskRoom" syncable="YES">
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomLevelId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tasksCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tasksWithoutMarkers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mapContour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="room" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
+        <relationship name="roomTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="room" inverseEntity="ProjectTask" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="rooms" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskRoomLevel" representedClassName="ProjectTaskRoomLevel" syncable="YES">
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="roomLevel" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskStage" representedClassName="ProjectTaskStage" syncable="YES">
+        <attribute name="isCommon" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isExpanded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="stageID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="stage" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="stage" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskSubTasks" representedClassName="ProjectTaskSubTasks" syncable="YES">
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="ProjectTaskWorkArea" representedClassName="ProjectTaskWorkArea" syncable="YES">
+        <attribute name="hasTasks" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="shortTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workAreaID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="workArea" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
         <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="avatarPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="createrUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="createrUserId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="patronymicName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="team" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="UserInfo" representedClassName="UserInfo" syncable="YES">
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="expireTokenDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="expireTokenDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="extendPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isSubscribedOnEmailNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notificationSettingsPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoImagePath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="notificationSettings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserNotifications" inverseName="userInfo" inverseEntity="UserNotifications" syncable="YES"/>
     </entity>
     <entity name="UserNotifications" representedClassName="UserNotifications" syncable="YES">
-        <attribute name="allProject" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="documents" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="mine" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="newsMessages" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="projectProfile" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="responder" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="systems" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="tasks" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="team" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="allProject" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="documents" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mine" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="newsMessages" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectProfile" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="responder" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="systems" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tasks" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="team" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="userInfo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserInfo" inverseName="notificationSettings" inverseEntity="UserInfo" syncable="YES"/>
     </entity>
     <elements>
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
-        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="495"/>
+        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="540"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
-        <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="150"/>
+        <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="120"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="630"/>
+        <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="285"/>
+        <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
+        <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="120"/>
+        <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
+        <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="255"/>
+        <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="225"/>
+        <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="75"/>
+        <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="105"/>
+        <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="105"/>
+        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="180"/>
+        <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="90"/>
+        <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="135"/>
+        <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="60"/>
+        <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="120"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="150"/>
+        <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="225"/>
+        <element name="ProjectRoleType" positionX="-27" positionY="117" width="128" height="105"/>
     </elements>
 </model>

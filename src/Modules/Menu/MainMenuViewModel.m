@@ -9,7 +9,7 @@
 #import "MainMenuViewModel.h"
 #import "MainMenuModel.h"
 #import "MenuProjectCell.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 
 @interface MainMenuViewModel()

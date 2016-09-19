@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
+#import "AllTasksViewModel.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -23,7 +24,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
+@property (strong, nonatomic) AllTasksViewModel* viewModel;
+
 // Methods
+
+- (void) bindingUI;
 
 @end
 
@@ -40,8 +45,27 @@
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"Задачи"
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
+    
+    // Binding UI components with model
+    [self bindingUI];
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    @weakify(self)
+    
+    [[self.viewModel updateContent]
+     subscribeCompleted: ^{
+     
+         @strongify(self)
+         
+         [self.tasksByProjectTableView reloadData];
+         
+    }];
 }
 
 
@@ -50,6 +74,28 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - Properties -
+
+- (AllTasksViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [[AllTasksViewModel alloc] init];
+    }
+    
+    return _viewModel;
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) bindingUI
+{
+    self.tasksByProjectTableView.dataSource = self.viewModel;
+    self.tasksByProjectTableView.delegate   = self.viewModel;
 }
 
 

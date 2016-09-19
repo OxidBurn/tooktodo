@@ -266,7 +266,7 @@
         
         if ( userAvatar )
         {
-            self.avatarImageView.image  = [self.viewModel userAvatar];
+            self.avatarImageView.image  = userAvatar;
         }
         else
         {

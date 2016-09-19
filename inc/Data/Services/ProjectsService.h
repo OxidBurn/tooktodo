@@ -10,7 +10,7 @@
 #import "ReactiveCocoa.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 

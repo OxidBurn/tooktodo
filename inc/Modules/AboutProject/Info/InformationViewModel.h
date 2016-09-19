@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface InformationViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 

@@ -23,5 +23,21 @@ typedef NS_ENUM(NSUInteger, ContentAccedingSortingType)
     DiminutionSortingType = 0,
 };
 
+typedef NS_ENUM(NSUInteger, AllTasksCellType)
+{
+    AllTasksStageCellType,
+    AllTasksTaskCellType,
+};
+
+typedef NS_ENUM(NSUInteger, TaskStatusType)
+{
+    TaskWaitingStatusType      = 0,
+    TaskInProgressStatusType   = 1,
+    TaskCompletedStatusType    = 2,
+    TaskCanceledStatusType     = 3,
+    TaskOnApprovingStatusType  = 4,
+    TaskOnCompletionStatusType = 5,
+};
+
 
 #endif /* ProjectsEnumerations_h */

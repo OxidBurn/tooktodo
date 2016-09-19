@@ -10,10 +10,11 @@
 
 // Classes
 #import "ProjectsAPIService.h"
-#import "ProjectInfoData.h"
+#import "ProjectInfoModel.h"
 #import "TeamService.h"
 #import "RolesService.h"
 #import "SystemsService.h"
+#import "TasksService.h"
 
 // Extensions
 #import "DataManager+ProjectInfo.h"
@@ -89,61 +90,25 @@ static bool isFirstAccess = YES;
     // Load systems
     NSArray* signals = @[[[RolesService sharedInstance] loadAllRolesForProject: project],
                          [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID],
-                         [self loadUserPermissionForProjectWithID: project.projectID]];
+                         [[TasksService sharedInstance] loadAllTasksForProjectWithID: project.projectID]];
     
     RACSignal* loadProjectInfo = [RACSignal combineLatest: signals];
     
     [loadProjectInfo subscribeCompleted: ^{
         
-        
+        NSLog(@"<INFO> Load project info is successful!");
         
     }];
 }
 
 #pragma mark - Internal methods -
 
-- (RACSignal*) loadUserPermissionForProjectWithID: (NSNumber*) projectID
-{
-    NSString* requestURL = [projectUserPermissionURL stringByReplacingOccurrencesOfString: @"{projectId}"
-                                                                               withString: projectID.stringValue];
-    
-    @weakify(self)
-    
-    RACSignal* loadUserPermissionSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [[[ProjectsAPIService sharedInstance] getProjectPermission: requestURL]
-         subscribeNext: ^(RACTuple* response) {
-             
-             @strongify(self)
-             
-             [self updateProjectPermissionValue: response[0]
-                                 withCompletion: ^(BOOL isSuccess) {
-                                     
-                                     [subscriber sendNext: nil];
-                                     [subscriber sendCompleted];
-                                     
-                                 }];
-             
-         }
-         error: ^(NSError* error) {
-             
-             [subscriber sendError: error];
-             
-         }];
-        
-        
-        return nil;
-    }];
-    
-    return loadUserPermissionSignal;
-}
-
 - (void) parseGettingProjectsResponse: (NSDictionary*) response
                        withCompletion: (void(^)())     completion
 {
     NSError* parseError       = nil;
     NSArray* responseProjects = response[@"list"];
-    NSArray* projectsList     = [ProjectInfoData arrayOfModelsFromDictionaries: responseProjects
+    NSArray* projectsList     = [ProjectInfoModel arrayOfModelsFromDictionaries: responseProjects
                                                                          error: &parseError];
     
     if ( parseError )
@@ -159,15 +124,6 @@ static bool isFirstAccess = YES;
                                    
                                }];
     }
-}
-
-- (void) updateProjectPermissionValue: (NSDictionary*)         response
-                       withCompletion: (CompletionWithSuccess) completion
-{
-    BOOL projectPermissionValue = [response[@"projectPermission"] boolValue];
-    
-    [DataManagerShared updateSelectedProjectPermission: projectPermissionValue
-                                        withCompletion: completion];
 }
 
 

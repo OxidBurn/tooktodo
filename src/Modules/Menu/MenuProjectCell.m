@@ -28,6 +28,8 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.expiredTasksCount.clipsToBounds      = YES;
     self.expiredTasksCount.layer.cornerRadius = 11;
 }

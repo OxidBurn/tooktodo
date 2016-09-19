@@ -2,14 +2,14 @@
 //  ProjectRoles.h
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Nikolay Chaban on 9/11/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectInfo;
+@class ProjectInfo, ProjectTaskAssignee;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -31,5 +31,7 @@ static NSString* projectRolesURL          = @"api/project/{projectID}/roleType/l
 static NSString* projectSystemsURL        = @"api/project/{projectID}/workAreas";
 static NSString* projectUserPermissionURL = @"api/project/{projectId}/participant/currentUserPermission";
 static NSString* defaultRolesURL          = @"api/project/roleType/defaultList";
+static NSString* projectTasksURL          = @"/api/project/{id}/tasks";
+static NSString* allUserTasksURL          = @"api/v2/tasks/groupsByProject";
 
 #endif /* APIConstance_h */

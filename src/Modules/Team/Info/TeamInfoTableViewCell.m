@@ -65,15 +65,15 @@
     self.callToTeamMemberBtn.tag      = indexPath.row;
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
-    NSString* teamMemberFirstName = (teamMember.firstName) ? teamMember.firstName : @"";
+    NSString* teamMemberFirstName = (teamMember.firstName.length > 0) ? teamMember.firstName : @"";
     
-    NSString* teamMemberLastName  = (teamMember.lastName) ? teamMember.lastName : @"";
+    NSString* teamMemberLastName  = (teamMember.lastName.length > 0) ? teamMember.lastName : @"";
     
     NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
                                                                          teamMemberLastName];
-    NSString* teamMemberPosition = (teamMember.comment) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
+    NSString* teamMemberPosition = (teamMember.comment.length > 0) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
     
-    NSString* teamMemberCompany  = (teamMember.company) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
+    NSString* teamMemberCompany  = (teamMember.company.length > 0) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
     
     
     [self checkIfPhoneNumberExists: teamMember];

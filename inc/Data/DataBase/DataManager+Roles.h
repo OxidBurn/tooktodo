@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectRoles.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface DataManager (Roles)
 

@@ -10,7 +10,7 @@
 
 // Classes
 #import "TeamService.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"

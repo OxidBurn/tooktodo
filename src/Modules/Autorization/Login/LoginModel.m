@@ -15,6 +15,7 @@
 #import "KeyChainManager.h"
 #import "UserInfoData.h"
 #import "ProjectsService.h"
+#import "TasksService.h"
 
 // Extensions
 #import "NSString+Utils.h"
@@ -96,7 +97,7 @@
                 [self parsingLoginResponseInfo: [response objectAtIndex: 0]
                                 withCompletion: ^(BOOL isSuccess) {
                     
-                                    [self getUserProjects];
+                                    [self loadUserContent];
                                     
                                     [subscriber sendNext: [response objectAtIndex: 0]];
                                     [subscriber sendCompleted];
@@ -131,9 +132,17 @@
     }];
 }
 
-- (void) getUserProjects
+- (void) loadUserContent
 {
-    [[[ProjectsService sharedInstance] getAllProjectsList] subscribeCompleted:^{
+    RACSignal* loadAllProjectsSignal      = [[ProjectsService sharedInstance] getAllProjectsList];
+    RACSignal* loadAllUserTasksByProjects = [[TasksService sharedInstance] loadAllTasksForCurrentUser];
+    
+    NSArray* loadingUserDataSignals = @[loadAllProjectsSignal,
+                                        loadAllUserTasksByProjects];
+    
+    RACSignal* loadUserDataSignal = [RACSignal combineLatest: loadingUserDataSignals];
+    
+    [loadUserDataSignal subscribeCompleted: ^{
         
         [DataManagerShared markFirstProjectAsSelected];
         
