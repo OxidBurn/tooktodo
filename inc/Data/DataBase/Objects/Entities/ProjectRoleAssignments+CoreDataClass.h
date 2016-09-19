@@ -2,7 +2,7 @@
 //  ProjectRoleAssignments+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Lera on 19.09.16.
 //
 //
 

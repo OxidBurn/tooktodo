@@ -2,14 +2,17 @@
 //  TeamProfileInfoModel.m
 //  TookTODO
 //
-//  Created by Глеб on 06.09.16.
+//  Created by Nikolay Chaban on 06.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import "TeamProfileInfoModel.h"
 
 // Classes
-#import "TeamMember.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 #import "Utils.h"
 
 // Categories

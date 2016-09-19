@@ -11,6 +11,8 @@
 // Classes
 #import "ProjectTask+CoreDataClass.h"
 #import "TasksGroupedByProjects.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 
 
 @interface DataManager (Tasks)
@@ -23,5 +25,10 @@
 
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;
+
+- (ProjectTaskRoleAssignments*) getSelectedItem;
+
+- (void) changeItemSelectedState: (BOOL)                    isSelected
+                   forAssignment: (ProjectRoleAssignments*) assignment;
 
 @end

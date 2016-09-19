@@ -11,6 +11,7 @@
 
 // Classes
 #import "ProjectRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 
 // Categories
 #import "DataManager+Team.h"
@@ -35,7 +36,7 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 
 - (NSUInteger) countOfItems;
 
-- (ProjectRoleAssignments*) teamMemberByIndex: (NSUInteger) index;
+- (FilledTeamInfo*) teamMemberByIndex: (NSUInteger) index;
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
 

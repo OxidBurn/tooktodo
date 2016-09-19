@@ -541,4 +541,21 @@
                       }];
 }
 
+- (ProjectRoleAssignments*) getSelectedItem
+{
+    ProjectRoleAssignments* assignment = [ProjectRoleAssignments MR_findFirstByAttribute:
+                                                                            @"isSelected"
+                                                                               withValue: @(YES)
+                                                                               inContext: [NSManagedObjectContext MR_defaultContext]];
+    
+    return assignment;
+}
+
+- (void) changeItemSelectedState: (BOOL)                    isSelected
+                         forItem: (ProjectRoleAssignments*) assignment
+{
+    assignment.isSelected = @(isSelected);
+    
+    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+}
 @end

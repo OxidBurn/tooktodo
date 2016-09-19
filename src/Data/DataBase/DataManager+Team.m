@@ -44,11 +44,18 @@
                       }];
 }
 
+//- (NSArray*) getAllTeamInfo
+//{
+//    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
+//    
+//    return selectedProject.team.allObjects;
+//}
+
 - (NSArray*) getAllTeamInfo
 {
     ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
     
-    return selectedProject.team.allObjects;
+    return selectedProject.projectRoleAssignments.allObjects;
 }
 
 - (void) changeItemSelectedState: (BOOL)        isSelected
