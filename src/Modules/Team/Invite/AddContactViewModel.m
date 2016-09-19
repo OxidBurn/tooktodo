@@ -13,6 +13,12 @@
 #import "Utils.h"
 #import "InviteInfo.h"
 
+typedef NS_ENUM(NSUInteger, InviteTextFieldType)
+{
+    NameTextFieldType  = 0,
+    EmailTextFieldType = 1,
+};
+
 @interface AddContactViewModel() 
 
 @property (nonatomic, strong) AddContactModel* model;
@@ -116,6 +122,46 @@
     info.contactId         = @0;
     
     return [self.model sendInvite: info];
+}
+
+
+#pragma mark - Text field delegate methods -
+
+- (BOOL)             textField: (UITextField*) textField
+ shouldChangeCharactersInRange: (NSRange)      range
+             replacementString: (NSString*)    string
+{
+    if ( textField.tag == NameTextFieldType )
+    {
+        BOOL isShould = NO;
+        
+        if ( textField.text.length < 64 )
+            isShould = YES;
+        
+        return isShould;
+    }
+    
+    return YES;
+}
+
+- (void) textFieldDidEndEditing: (UITextField*) textField
+{
+    if ( textField.tag == EmailTextFieldType )
+    {
+        NSString* emailWarningText = [self.model getEmailWarningText: textField.text];
+        
+        if ( self.showValidEmailWarning )
+            self.showValidEmailWarning(emailWarningText);
+    }
+}
+
+- (void) textFieldDidBeginEditing: (UITextField*) textField
+{
+    if ( textField.tag == EmailTextFieldType )
+    {
+        if ( self.showValidEmailWarning )
+            self.showValidEmailWarning(@"Электронная почта");
+    }
 }
 
 @end

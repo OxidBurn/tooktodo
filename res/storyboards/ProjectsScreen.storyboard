@@ -4182,6 +4182,7 @@
                         <outlet property="avatarImageView" destination="MAT-rZ-3PA" id="ZDa-6d-u7X"/>
                         <outlet property="fullNameLabel" destination="uhF-2U-BYr" id="SAq-T1-Hdl"/>
                         <outlet property="phoneInfoTable" destination="SLK-wp-lxS" id="D3T-Dy-eEM"/>
+                        <outlet property="phoneTableHeightConstraint" destination="stA-oo-Enu" id="WiU-dL-2ZN"/>
                         <outlet property="showUserTerms" destination="Y3t-FM-VxG" id="rni-qS-so7"/>
                         <outlet property="userLogOut" destination="vBt-dm-Zy7" id="6PG-kH-DTh"/>
                     </connections>
@@ -5875,7 +5876,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nv6-3D-IR2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z6T-tS-f49" customClass="BaseNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z6T-tS-f49" customClass="BaseNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -7786,7 +7787,7 @@
                 <navigationController storyboardIdentifier="ProjectInfoNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" id="elg-i0-rbR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="iNt-CU-dUD" customClass="BaseNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iNt-CU-dUD" customClass="BaseNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -7895,16 +7896,13 @@
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Не выбрано" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCO-WS-CLz">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Не выбрано" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pCO-WS-CLz">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="S0I-a3-NIm"/>
                                                         <constraint firstAttribute="width" constant="139" id="t2H-Y3-8Gf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="h0O-AN-3fa" id="JqM-dI-paL"/>
-                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Электронная почта" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8HX-O4-hgA">
                                                     <constraints>
@@ -9479,6 +9477,6 @@
         <image name="Сogwheel" width="19" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="m24-6A-Iqb"/>
+        <segue reference="M0Z-jZ-ob8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -147,6 +147,7 @@
 		56A9A9E81D8FF7A900A133C3 /* AddTaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A9A9E51D8FF7A900A133C3 /* AddTaskViewModel.m */; };
 		56A9A9EE1D8FF7F000A133C3 /* TaskOptionsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A9A9ED1D8FF7F000A133C3 /* TaskOptionsScreen.storyboard */; };
 		56A9AA211D9013AE00A133C3 /* ProjectRoleInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A9AA201D9013AE00A133C3 /* ProjectRoleInfoTableViewCell.m */; };
+		56A9AA251D904D7F00A133C3 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56A9AA241D904D7F00A133C3 /* UITextView+PlaceHolder.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		56BD40A51D8059BA001E0B1F /* AboutProjectViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40A41D8059BA001E0B1F /* AboutProjectViewModel.m */; };
 		56BD40A81D80890B001E0B1F /* DefaultRoleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56BD40A71D80890B001E0B1F /* DefaultRoleModel.m */; };
 		56D8E1071D8ACE8A00BDC6E1 /* AllTaskBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D8E1061D8ACE8A00BDC6E1 /* AllTaskBaseTableViewCell.m */; };
@@ -570,6 +571,8 @@
 		56A9A9ED1D8FF7F000A133C3 /* TaskOptionsScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskOptionsScreen.storyboard; sourceTree = "<group>"; };
 		56A9AA1F1D9013AE00A133C3 /* ProjectRoleInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectRoleInfoTableViewCell.h; sourceTree = "<group>"; };
 		56A9AA201D9013AE00A133C3 /* ProjectRoleInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectRoleInfoTableViewCell.m; sourceTree = "<group>"; };
+		56A9AA231D904D7F00A133C3 /* UITextView+PlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+PlaceHolder.h"; sourceTree = "<group>"; };
+		56A9AA241D904D7F00A133C3 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
 		56BD40A31D8059BA001E0B1F /* AboutProjectViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectViewModel.h; sourceTree = "<group>"; };
 		56BD40A41D8059BA001E0B1F /* AboutProjectViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectViewModel.m; sourceTree = "<group>"; };
 		56BD40A71D80890B001E0B1F /* DefaultRoleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultRoleModel.m; sourceTree = "<group>"; };
@@ -806,6 +809,7 @@
 		560B89A81D7C36B500746682 /* Custom Components */ = {
 			isa = PBXGroup;
 			children = (
+				56A9AA221D904D7F00A133C3 /* UITextView+Placeholder */,
 				56A9A9B71D8FF6CD00A133C3 /* OSCustomCells */,
 				56A9A98F1D8FE79E00A133C3 /* OSAlertController */,
 				56A122A61D8C44920029A755 /* OSLabelWithBorder */,
@@ -1369,6 +1373,15 @@
 				56A9A9D11D8FF6CD00A133C3 /* OSSwitchTableCellFactory.m */,
 			);
 			path = CellsFactories;
+			sourceTree = "<group>";
+		};
+		56A9AA221D904D7F00A133C3 /* UITextView+Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				56A9AA231D904D7F00A133C3 /* UITextView+PlaceHolder.h */,
+				56A9AA241D904D7F00A133C3 /* UITextView+PlaceHolder.m */,
+			);
+			path = "UITextView+Placeholder";
 			sourceTree = "<group>";
 		};
 		56E1B9E21D6F7671003E46DA /* DataBase */ = {
@@ -2479,6 +2492,7 @@
 				56EAC25B1D7B51060087B3FF /* RolesViewController.m in Sources */,
 				56A9A9E01D8FF6CD00A133C3 /* OSTaskOptionsController.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
+				56A9AA251D904D7F00A133C3 /* UITextView+PlaceHolder.m in Sources */,
 				563337631D73AB8000A9321E /* ProjectsAPIService.m in Sources */,
 				56A9A9E81D8FF7A900A133C3 /* AddTaskViewModel.m in Sources */,
 				56278B831D8EDFD3004A5161 /* ProjectTask+CoreDataClass.m in Sources */,

@@ -119,12 +119,12 @@
 {
     NSMutableArray* userInfo = [NSMutableArray new];
     
-    if ( [self getUserPhoneNumber] )
+    if ( [[self getUserPhoneNumber] length] > 0 )
     {
         [userInfo addObject: [self getUserPhoneNumber]];
     }
     
-    if ( [self getUserAdditionalPhoneNumber] )
+    if ( [[self getUserAdditionalPhoneNumber] length] > 0 )
     {
         [userInfo addObject: [self getUserAdditionalPhoneNumber]];
     }

@@ -121,4 +121,7 @@
 
 + (NSString*) stringByStrippingHTML: (NSString*) inputString;
 
++ (NSString*) getInducendentStringWithValue: (NSUInteger) count
+                     withSearchedObjectName: (NSString*)  value;
+
 @end
