@@ -98,6 +98,7 @@ typedef NS_ENUM(NSInteger, Permission)
     if (_memberInfo == nil)
     {
         _memberInfo = [FilledTeamInfo new];
+        [_memberInfo fillTeamInfo: self.assignment];
     }
     
     return _memberInfo;
