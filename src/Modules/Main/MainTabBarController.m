@@ -135,6 +135,16 @@
     [OSAlertController showTaskOptionControllerOnController: self];
 }
 
+- (void) showFeedsForSelectedProject
+{
+    [self showControllerWithSegueID: @"ShowFeeds"];
+}
+
+- (void) setSelectedTabBarItemAtIndex: (NSUInteger) index
+{
+    [self.mainTabBar setSelectedItemAtIndex: index];
+}
+
 
 #pragma mark - TaskOptionsControllerDelegate -
 
