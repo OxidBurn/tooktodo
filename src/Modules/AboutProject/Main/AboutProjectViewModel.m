@@ -9,7 +9,7 @@
 #import "AboutProjectViewModel.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 // Categories
 #import "DataManager+ProjectInfo.h"
 

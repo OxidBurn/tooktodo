@@ -9,7 +9,7 @@
 #import "TeamService.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "APIConstance.h"
 #import "TeamAPIService.h"
 #import "TeamMemberModel.h"

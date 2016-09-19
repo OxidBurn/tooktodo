@@ -7,7 +7,7 @@
 //
 
 #import "OfflineSettings.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @implementation OfflineSettings
 

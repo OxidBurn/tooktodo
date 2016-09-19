@@ -2,51 +2,52 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/13/16.
+//  Created by Nikolay Chaban on 9/19/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectInfo (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *address;
-@property (nullable, nonatomic, retain) NSString *apartment;
-@property (nullable, nonatomic, retain) NSString *building;
-@property (nullable, nonatomic, retain) NSString *city;
-@property (nullable, nonatomic, retain) NSNumber *commercialObjectType;
-@property (nullable, nonatomic, retain) NSString *commercialObjectTypeDescription;
-@property (nullable, nonatomic, retain) NSDate *createdDate;
-@property (nullable, nonatomic, retain) NSDate *endDate;
-@property (nullable, nonatomic, retain) NSNumber *floor;
-@property (nullable, nonatomic, retain) NSNumber *isRolesInvitationAppealClosed;
-@property (nullable, nonatomic, retain) NSNumber *isSelected;
-@property (nullable, nonatomic, retain) NSNumber *isTaskAddAppealClosed;
-@property (nullable, nonatomic, retain) NSDate *lastVisit;
-@property (nullable, nonatomic, retain) NSNumber *ownerUserId;
-@property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSNumber *projectID;
-@property (nullable, nonatomic, retain) NSNumber *realtyClass;
-@property (nullable, nonatomic, retain) NSString *realtyClassDescription;
-@property (nullable, nonatomic, retain) NSString *regionName;
-@property (nullable, nonatomic, retain) NSNumber *residentialObjectType;
-@property (nullable, nonatomic, retain) NSString *residentialObjectTypeDescription;
-@property (nullable, nonatomic, retain) NSString *street;
-@property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) NSNumber *isExpanded;
++ (NSFetchRequest<ProjectInfo *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *address;
+@property (nullable, nonatomic, copy) NSString *apartment;
+@property (nullable, nonatomic, copy) NSString *building;
+@property (nullable, nonatomic, copy) NSString *city;
+@property (nullable, nonatomic, copy) NSNumber *commercialObjectType;
+@property (nullable, nonatomic, copy) NSString *commercialObjectTypeDescription;
+@property (nullable, nonatomic, copy) NSDate *createdDate;
+@property (nullable, nonatomic, copy) NSDate *endDate;
+@property (nullable, nonatomic, copy) NSNumber *floor;
+@property (nullable, nonatomic, copy) NSNumber *isExpanded;
+@property (nullable, nonatomic, copy) NSNumber *isRolesInvitationAppealClosed;
+@property (nullable, nonatomic, copy) NSNumber *isSelected;
+@property (nullable, nonatomic, copy) NSNumber *isTaskAddAppealClosed;
+@property (nullable, nonatomic, copy) NSDate *lastVisit;
+@property (nullable, nonatomic, copy) NSNumber *ownerUserId;
+@property (nullable, nonatomic, copy) NSString *phoneNumber;
+@property (nullable, nonatomic, copy) NSNumber *projectID;
+@property (nullable, nonatomic, copy) NSNumber *realtyClass;
+@property (nullable, nonatomic, copy) NSString *realtyClassDescription;
+@property (nullable, nonatomic, copy) NSString *regionName;
+@property (nullable, nonatomic, copy) NSNumber *residentialObjectType;
+@property (nullable, nonatomic, copy) NSString *residentialObjectTypeDescription;
+@property (nullable, nonatomic, copy) NSString *street;
+@property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskStage *> *stage;
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskStage *> *stage;
+@property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
 
 @end
 
@@ -61,6 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeRolesObject:(ProjectRoles *)value;
 - (void)addRoles:(NSSet<ProjectRoles *> *)values;
 - (void)removeRoles:(NSSet<ProjectRoles *> *)values;
+
+- (void)addStageObject:(ProjectTaskStage *)value;
+- (void)removeStageObject:(ProjectTaskStage *)value;
+- (void)addStage:(NSSet<ProjectTaskStage *> *)values;
+- (void)removeStage:(NSSet<ProjectTaskStage *> *)values;
 
 - (void)addSystemsObject:(ProjectSystem *)value;
 - (void)removeSystemsObject:(ProjectSystem *)value;
@@ -77,10 +83,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addTeam:(NSSet<TeamMember *> *)values;
 - (void)removeTeam:(NSSet<TeamMember *> *)values;
 
-- (void)addStageObject:(ProjectTaskStage *)value;
-- (void)removeStageObject:(ProjectTaskStage *)value;
-- (void)addStage:(NSSet<ProjectTaskStage *> *)values;
-- (void)removeStage:(NSSet<ProjectTaskStage *> *)values;
+- (void)addProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
+- (void)removeProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
+- (void)addProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
+- (void)removeProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
 
 @end
 

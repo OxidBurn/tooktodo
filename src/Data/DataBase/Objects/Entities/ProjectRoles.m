@@ -7,7 +7,7 @@
 //
 
 #import "ProjectRoles.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @implementation ProjectRoles
 

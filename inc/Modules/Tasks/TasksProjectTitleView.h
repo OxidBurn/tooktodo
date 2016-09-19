@@ -7,7 +7,7 @@
 //
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface TasksProjectTitleView : UIView
 

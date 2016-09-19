@@ -11,7 +11,7 @@
 #import "ReactiveCocoa.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface MainMenuModel : NSObject
 

@@ -7,7 +7,7 @@
 //
 
 #import "ProjectTaskStage+CoreDataClass.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
 @implementation ProjectTaskStage
 

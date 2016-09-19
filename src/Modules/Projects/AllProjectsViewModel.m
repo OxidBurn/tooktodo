@@ -13,7 +13,7 @@
 
 // Classes
 #import "AllProjectsModel.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "ProjectInfoCell.h"
 #import "ProjectsEnumerations.h"
 

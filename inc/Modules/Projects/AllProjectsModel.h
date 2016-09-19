@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface AllProjectsModel : NSObject
 

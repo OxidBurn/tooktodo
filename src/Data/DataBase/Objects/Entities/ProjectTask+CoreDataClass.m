@@ -7,7 +7,7 @@
 //
 
 #import "ProjectTask+CoreDataClass.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskMarker.h"
 #import "ProjectTaskOwner.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"

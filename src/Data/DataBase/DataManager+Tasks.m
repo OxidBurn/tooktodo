@@ -9,12 +9,12 @@
 #import "DataManager+Tasks.h"
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskOwner.h"
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectTaskMarker.h"
-#import "ProjectTaskAssignee.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectTaskRoleType.h"
 #import "ProjectTaskSubTasks.h"
 #import "ProjectTaskWorkArea.h"

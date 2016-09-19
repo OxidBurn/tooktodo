@@ -11,8 +11,22 @@
 // Classes
 #import "OfflineSettings.h"
 #import "OfflineSettingsTypes.h"
+#import "ProjectCountryModel.h"
+#import "ProjectCountry.h"
+#import "ProjectRegion.h"
+#import "ProjectRegionModel.h"
+#import "TaskAssigneeModel.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectRoleAssignmentsModel.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "ProjectRoleType+CoreDataProperties.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
+#import "ProjectInviteInfoModel.h"
 
 @implementation DataManager (ProjectInfo)
+
+
+#pragma mark - Creation methods -
 
 - (void) persistNewProjects: (NSArray*)  projects
              withCompletion: (void(^)()) completion
@@ -38,12 +52,9 @@
 - (void) persistNewProjectWithInfo: (ProjectInfoModel*)        data
                          inContext: (NSManagedObjectContext*) context
 {
-    ProjectInfo* projectInfo = [self getIfExistProjectWithID: data.projectID];
-    
-    if ( projectInfo == nil )
-    {
-        projectInfo = [ProjectInfo MR_createEntityInContext: context];
-    }
+    ProjectInfo* projectInfo = [ProjectInfo MR_findFirstOrCreateByAttribute: @"projectID"
+                                                                  withValue: @(data.projectID)
+                                                                  inContext: context];
     
     projectInfo.lastVisit                        = data.lastVisit;
     projectInfo.isTaskAddAppealClosed            = @(data.isTaskAddAppealClosed);
@@ -68,7 +79,130 @@
     projectInfo.floor                            = data.floor;
     projectInfo.address                          = [NSString stringWithFormat: @"%@ %@ %@ %@", data.regionName, data.city, data.street, data.building];
     
+    if ( data.projectRoleAssignments )
+    {
+        [data.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignmentsModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistProjectRoleAssignment: obj
+                                    forProject: projectInfo
+                                     inContext: context];
+            
+        }];
+    }
+    
 }
+
+- (void) persistProjectRoleAssignment: (ProjectRoleAssignmentsModel*) info
+                           forProject: (ProjectInfo*)                 project
+                            inContext: (NSManagedObjectContext*)      context
+{
+    ProjectRoleAssignments* roleAssignment = [ProjectRoleAssignments MR_findFirstOrCreateByAttribute: @"roleID"
+                                                                                           withValue: info.roleID
+                                                                                           inContext: context];
+    
+    roleAssignment.roleID            = info.roleID;
+    roleAssignment.isBlocked         = @(info.isBlocked);
+    roleAssignment.projectPermission = @(info.projectPermission);
+    roleAssignment.project           = project;
+    
+    if ( info.assignee )
+    {
+        [self persistProjectRoleAssignee: info.assignee
+                      forRoleAssignments: roleAssignment
+                               inContext: context];
+    }
+    
+    if ( info.invite )
+    {
+        [self persistProjectRoleAssignmentInviteInfo: info.invite
+                                    forRoleAssigment: roleAssignment
+                                           inContext: context];
+    }
+    
+    if ( info.projectRoleType )
+    {
+        [self persistProjectRoleType: info.projectRoleType
+                  forRoleAssignments: roleAssignment
+                           inContext: context];
+    }
+}
+
+- (void) persistProjectRoleAssignee: (TaskAssigneeModel*)      info
+                 forRoleAssignments: (ProjectRoleAssignments*) role
+                          inContext: (NSManagedObjectContext*) context
+{
+    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstOrCreateByAttribute: @"assigneeID"
+                                                                               withValue: @(info.assigneeID)
+                                                                               inContext: context];
+    
+    assignee.projectRoleAssignment            = role;
+    assignee.assigneeID                       = @(info.assigneeID);
+    assignee.email                            = info.email;
+    assignee.firstName                        = info.firstName;
+    assignee.lastName                         = info.lastName;
+    assignee.displayName                      = info.displayName;
+    assignee.avatarSrc                        = info.avatarSrc;
+    assignee.phoneNumber                      = info.phoneNumber;
+    assignee.additionalPhoneNumber            = info.additionalPhoneNumber;
+    assignee.isSubscribedOnEmailNotifications = info.isSubscribedOnEmailNotifications;
+    assignee.isTourViewed                     = info.isTourViewed;
+}
+
+- (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
+             forRoleAssignments: (ProjectRoleAssignments*) role
+                      inContext: (NSManagedObjectContext*) context
+{
+    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstOrCreateByAttribute: @"roleTypeID"
+                                                                       withValue: info.roleTypeID
+                                                                       inContext: context];
+    
+    roleType.roleAssignment = role;
+    roleType.roleTypeID     = info.roleTypeID;
+    roleType.title          = info.title;
+}
+
+- (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
+               forProjectInvite: (ProjectInviteInfo*)      invite
+                      inContext: (NSManagedObjectContext*) context
+{
+    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstOrCreateByAttribute: @"roleTypeID"
+                                                                       withValue: info.roleTypeID
+                                                                       inContext: context];
+    
+    roleType.projectInvite  = invite;
+    roleType.roleTypeID     = info.roleTypeID;
+    roleType.title          = info.title;
+}
+
+- (void) persistProjectRoleAssignmentInviteInfo: (ProjectInviteInfoModel*) info
+                               forRoleAssigment: (ProjectRoleAssignments*) role
+                                      inContext: (NSManagedObjectContext*) context
+{
+    ProjectInviteInfo* inviteInfo = [ProjectInviteInfo MR_findFirstOrCreateByAttribute: @""
+                                                                             withValue: info.inviteID
+                                                                             inContext: context];
+    
+    inviteInfo.projectRoleAssignment = role;
+    inviteInfo.email                 = info.email;
+    inviteInfo.firstName             = info.firstName;
+    inviteInfo.lastName              = info.lastName;
+    inviteInfo.inviteID              = info.inviteID;
+    inviteInfo.inviteStatus          = info.inviteStatus;
+    inviteInfo.isCanceled            = info.isCanceled;
+    inviteInfo.isUsed                = info.isUsed;
+    inviteInfo.message               = info.message;
+    inviteInfo.projectId             = info.projectId;
+    inviteInfo.projectName           = info.projectName;
+    
+    if ( info.projectRoleType )
+    {
+        [self persistProjectRoleType: info.projectRoleType
+                    forProjectInvite: inviteInfo
+                           inContext: context];
+    }
+}
+
+#pragma mark - Get methods -
 
 - (ProjectInfo*) getIfExistProjectWithID: (NSUInteger) projectID
 {
@@ -113,17 +247,6 @@
     return isSuccess;
 }
 
-- (void) markFirstProjectAsSelected
-{
-    [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext * _Nonnull localContext) {
-        
-        ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
-        
-        firstProject.isSelected = @(YES);
-        
-    }];
-}
-
 - (ProjectInfo*) getSelectedProjectInfo
 {
     NSPredicate* selectedPredicate = [NSPredicate predicateWithFormat: @"isSelected == YES"];
@@ -153,6 +276,27 @@
     return project;
 }
 
+- (NSString*) getSelectedProjectName
+{
+    ProjectInfo* projectInfo = [self getSelectedProjectInfo];
+    
+    return projectInfo.title;
+}
+
+
+#pragma mark - Updating methods -
+
+- (void) markFirstProjectAsSelected
+{
+    [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
+        
+        firstProject.isSelected = @(YES);
+        
+    }];
+}
+
 - (void) markProjectAsSelected: (ProjectInfo*)            project
                 withCompletion: (void(^)(BOOL isSuccess)) completion
 {
@@ -180,13 +324,6 @@
     
     
     return settings;
-}
-
-- (NSString*) getSelectedProjectName
-{
-    ProjectInfo* projectInfo = [self getSelectedProjectInfo];
-    
-    return projectInfo.title;
 }
 
 - (void) updateProjectExpandedState: (ProjectInfo*)          project

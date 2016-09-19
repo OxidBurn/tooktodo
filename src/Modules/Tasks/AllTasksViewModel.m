@@ -11,7 +11,7 @@
 // Classes
 #import "AllTasksModel.h"
 #import "TasksProjectTitleView.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
 #import "ProjectsEnumerations.h"
 

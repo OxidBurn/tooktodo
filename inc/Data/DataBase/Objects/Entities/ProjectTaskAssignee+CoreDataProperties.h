@@ -2,34 +2,35 @@
 //  ProjectTaskAssignee+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 9/19/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskAssignee.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskAssignee (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *additionalPhoneNumber;
-@property (nullable, nonatomic, retain) NSString *avatarSrc;
-@property (nullable, nonatomic, retain) NSString *displayName;
-@property (nullable, nonatomic, retain) NSString *email;
-@property (nullable, nonatomic, retain) NSNumber *emailConfirmed;
-@property (nullable, nonatomic, retain) NSString *firstName;
-@property (nullable, nonatomic, retain) NSNumber *assigneeID;
-@property (nullable, nonatomic, retain) NSNumber *isSubscribedOnEmailNotifications;
-@property (nullable, nonatomic, retain) NSNumber *isTourViewed;
-@property (nullable, nonatomic, retain) NSString *lastName;
-@property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSString *userName;
++ (NSFetchRequest<ProjectTaskAssignee *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *additionalPhoneNumber;
+@property (nullable, nonatomic, copy) NSNumber *assigneeID;
+@property (nullable, nonatomic, copy) NSString *avatarSrc;
+@property (nullable, nonatomic, copy) NSString *displayName;
+@property (nullable, nonatomic, copy) NSString *email;
+@property (nullable, nonatomic, copy) NSNumber *emailConfirmed;
+@property (nullable, nonatomic, copy) NSString *firstName;
+@property (nullable, nonatomic, copy) NSNumber *isSubscribedOnEmailNotifications;
+@property (nullable, nonatomic, copy) NSNumber *isTourViewed;
+@property (nullable, nonatomic, copy) NSString *lastName;
+@property (nullable, nonatomic, copy) NSString *phoneNumber;
+@property (nullable, nonatomic, copy) NSString *userName;
 @property (nullable, nonatomic, retain) ProjectTaskResponsible *responsible;
-@property (nullable, nonatomic, retain) ProjectTaskRoleAssignment *roleAssignment;
 @property (nullable, nonatomic, retain) ProjectRoles *role;
+@property (nullable, nonatomic, retain) ProjectTaskRoleAssignment *roleAssignment;
+@property (nullable, nonatomic, retain) ProjectRoleAssignments *projectRoleAssignment;
 
 @end
 

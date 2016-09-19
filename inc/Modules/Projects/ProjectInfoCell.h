@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 // Classes
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface ProjectInfoCell : UITableViewCell
 

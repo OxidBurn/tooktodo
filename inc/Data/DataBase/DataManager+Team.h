@@ -10,7 +10,7 @@
 
 // Classes
 #import "TeamMember.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @interface DataManager (Team)
 

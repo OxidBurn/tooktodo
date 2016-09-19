@@ -8,6 +8,8 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="offlineSettings" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectCountry" representedClassName="ProjectCountry" syncable="YES">
+        <attribute name="countryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="country" inverseEntity="ProjectInfo" syncable="YES"/>
     </entity>
     <entity name="ProjectInfo" representedClassName="ProjectInfo" syncable="YES">
@@ -37,6 +39,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
         <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
+        <relationship name="projectRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="project" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
         <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="project" inverseEntity="ProjectRoles" syncable="YES"/>
         <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
@@ -44,8 +47,31 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="project" inverseEntity="TeamMember" syncable="YES"/>
     </entity>
+    <entity name="ProjectInviteInfo" representedClassName="ProjectInviteInfo" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inviteID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="inviteStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isCanceled" optional="YES" attributeType="Boolean" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isUsed" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="invite" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleType" inverseName="projectInvite" inverseEntity="ProjectRoleType" syncable="YES"/>
+    </entity>
     <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="region" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
+    <entity name="ProjectRoleAssignments" representedClassName="ProjectRoleAssignments" syncable="YES">
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectPermission" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roleID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="projectRoleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="invite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectRoleAssignment" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="projectRoleAssignments" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleType" inverseName="roleAssignment" inverseEntity="ProjectRoleType" syncable="YES"/>
     </entity>
     <entity name="ProjectRoles" representedClassName="ProjectRoles" syncable="YES">
         <attribute name="hasProjectRoleAssignments" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -57,6 +83,12 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="roles" inverseEntity="ProjectInfo" syncable="YES"/>
         <relationship name="taskAssignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="role" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
         <relationship name="taskOwner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="role" inverseEntity="ProjectTaskOwner" syncable="YES"/>
+    </entity>
+    <entity name="ProjectRoleType" representedClassName="ProjectRoleType" syncable="YES">
+        <attribute name="roleTypeID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectInvite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectRoleType" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="projectRoleType" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
     </entity>
     <entity name="ProjectSystem" representedClassName="ProjectSystem" syncable="YES">
         <attribute name="hasTasks" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
@@ -119,6 +151,7 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="assignee" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="assignee" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
         <relationship name="role" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="taskAssignee" inverseEntity="ProjectRoles" syncable="YES"/>
         <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="assignee" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
@@ -265,13 +298,13 @@
     </entity>
     <elements>
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
-        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="60"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="525"/>
+        <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="540"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="120"/>
         <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="630"/>
-        <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="270"/>
+        <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="285"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
         <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="120"/>
         <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
@@ -288,5 +321,8 @@
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="150"/>
+        <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="225"/>
+        <element name="ProjectRoleType" positionX="-27" positionY="117" width="128" height="105"/>
     </elements>
 </model>

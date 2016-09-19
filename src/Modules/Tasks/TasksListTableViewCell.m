@@ -15,7 +15,7 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskWorkArea.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskAssignee.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 
 // Categories

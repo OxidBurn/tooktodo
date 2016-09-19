@@ -2,16 +2,17 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/13/16.
+//  Created by Nikolay Chaban on 9/19/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "ProjectInfo+CoreDataProperties.h"
 
 @implementation ProjectInfo (CoreDataProperties)
+
++ (NSFetchRequest<ProjectInfo *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectInfo"];
+}
 
 @dynamic address;
 @dynamic apartment;
@@ -22,6 +23,7 @@
 @dynamic createdDate;
 @dynamic endDate;
 @dynamic floor;
+@dynamic isExpanded;
 @dynamic isRolesInvitationAppealClosed;
 @dynamic isSelected;
 @dynamic isTaskAddAppealClosed;
@@ -36,14 +38,14 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
-@dynamic isExpanded;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic region;
 @dynamic roles;
+@dynamic stage;
 @dynamic systems;
 @dynamic tasks;
 @dynamic team;
-@dynamic stage;
+@dynamic projectRoleAssignments;
 
 @end
