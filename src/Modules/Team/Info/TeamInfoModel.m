@@ -108,7 +108,7 @@
 {
     ProjectRoleAssignments* member = [self teamMemberByIndex: index];
     
-    return member.email;
+    return @"";
 }
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index

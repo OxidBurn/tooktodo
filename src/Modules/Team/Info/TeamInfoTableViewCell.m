@@ -67,41 +67,41 @@
     self.callToTeamMemberBtn.tag      = indexPath.row;
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
-    NSString* teamMemberFirstName = (teamMember.firstName.length > 0) ? teamMember.firstName : @"";
+//    NSString* teamMemberFirstName = (teamMember.firstName.length > 0) ? teamMember.firstName : @"";
+//    
+//    NSString* teamMemberLastName  = (teamMember.lastName.length > 0) ? teamMember.lastName : @"";
+//    
+//    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
+//                                                                         teamMemberLastName];
+//    NSString* teamMemberPosition = (teamMember.comment.length > 0) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
+//    
+//    NSString* teamMemberCompany  = (teamMember.company.length > 0) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
     
-    NSString* teamMemberLastName  = (teamMember.lastName.length > 0) ? teamMember.lastName : @"";
     
-    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
-                                                                         teamMemberLastName];
-    NSString* teamMemberPosition = (teamMember.comment.length > 0) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
+//    [self checkIfPhoneNumberExists: teamMember];
+//    [self chechIfEmailExists:       teamMember];
     
-    NSString* teamMemberCompany  = (teamMember.company.length > 0) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
-    
-    
-    [self checkIfPhoneNumberExists: teamMember];
-    [self chechIfEmailExists:       teamMember];
-    
-    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamMember.avatarPath]];
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@%@", teamMemberFullName, teamMemberPosition];
-    self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!%@", teamMemberCompany];
+//    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamMember.avatarPath]];
+//    self.teamMemberName.text       = [NSString stringWithFormat: @"%@%@", teamMemberFullName, teamMemberPosition];
+//    self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!%@", teamMemberCompany];
 }
 
 #pragma mark - Helpers -
 
-- (void) checkIfPhoneNumberExists: (TeamMember*) teamMember
-{
-    if ( teamMember.phoneNumber == nil )
-    {
-        self.callToTeamMemberBtn.hidden = YES;
-    }
-}
+//- (void) checkIfPhoneNumberExists: (TeamMember*) teamMember
+//{
+//    if ( teamMember.phoneNumber == nil )
+//    {
+//        self.callToTeamMemberBtn.hidden = YES;
+//    }
+//}
 
-- (void) chechIfEmailExists: (TeamMember*) teamMember
-{
-    if ( teamMember.email == nil )
-    {
-        self.sendEmailToTeamMemberBtn.hidden = YES;
-    }
-}
+//- (void) chechIfEmailExists: (TeamMember*) teamMember
+//{
+//    if ( teamMember.email == nil )
+//    {
+//        self.sendEmailToTeamMemberBtn.hidden = YES;
+//    }
+//}
 
 @end
