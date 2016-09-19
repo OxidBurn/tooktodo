@@ -58,13 +58,13 @@
     return selectedProject.projectRoleAssignments.allObjects;
 }
 
-- (void) changeItemSelectedState: (BOOL)        isSelected
-                         forItem: (TeamMember*) member
-{
-    member.isSelected = @(isSelected);
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
-}
+//- (void) changeItemSelectedState: (BOOL)        isSelected
+//                         forItem: (TeamMember*) member
+//{
+//    member.isSelected = @(isSelected);
+//    
+//    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+//}
 
 - (TeamMember*) getSelectedItem
 {

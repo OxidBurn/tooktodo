@@ -35,6 +35,10 @@
 
 - (UIImage*) getAvatar;
 
+- (NSNumber*) getPermissions;
+
+
+
 - (NSString*) getContactValueForIndexPath: (NSIndexPath*) indexPath;
 
 - (UIImage*) getBtnImageForIndexPath: (NSIndexPath*) indexPath;
@@ -43,6 +47,7 @@
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 
+- (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 @end
 
 @protocol TeamProfileInfoModelDelegate <NSObject>

@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 - (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index;
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index;
+//- (RACSignal*) markItemAsSelectedAtIndex: (NSUInteger) index;
 
 - (void) filteringWithKeyWord: (NSString*) keyWord;
 

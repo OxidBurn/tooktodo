@@ -26,9 +26,9 @@
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;
 
-- (ProjectTaskRoleAssignments*) getSelectedItem;
+- (ProjectRoleAssignments*) getSelectedItem;
 
 - (void) changeItemSelectedState: (BOOL)                    isSelected
-                   forAssignment: (ProjectRoleAssignments*) assignment;
+                         forItem: (ProjectRoleAssignments*) assignment;
 
 @end

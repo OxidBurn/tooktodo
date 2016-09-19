@@ -34,13 +34,13 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     Ready,
 };
 
+
+
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
-
-@property (nonatomic, strong) TeamMember* memberInfo;
 
 @property (nonatomic, strong) UITableViewCell* cell;
 
@@ -109,6 +109,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
+        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
         
@@ -216,4 +217,8 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         NSLog(@"Action ready performed");
     }
 }
+
+
+
+
 @end

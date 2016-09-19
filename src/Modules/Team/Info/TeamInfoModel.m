@@ -158,12 +158,28 @@
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index
 {
-//    FilledTeamInfo* member = [self teamMemberByIndex: index];
+//    FilledTeamInfo* member = ;
     
-//    [DataManagerShared changeItemSelectedState: YES
-//                                 forAssignment: [self.rawTeamListData objectAtIndex:index]];
+    [DataManagerShared changeItemSelectedState: YES
+                                       forItem: [self.rawTeamListData objectAtIndex:index]];
+    
 }
 
+
+//- (RACSignal*) markItemAsSelectedAtIndex: (NSUInteger) index
+//{
+//    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//    [DataManagerShared changeItemSelectedState: YES
+//                                       forItem: [self.rawTeamListData objectAtIndex: index]];
+//        
+//        FilledTeamInfo* member = [self.rawTeamListData objectAtIndex:index];
+//        [subscriber sendNext: member];
+//        
+//        return nil;
+//    }];
+//    
+//}
 
 #pragma mark - Filtering -
 
