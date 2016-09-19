@@ -11,8 +11,8 @@
 @interface OSSwitchTableCell()
 
 // properties
-@property (weak, nonatomic) IBOutlet UISwitch *switchControl;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UISwitch* switchControl;
+@property (weak, nonatomic) IBOutlet UILabel*  titleLabel;
 
 
 // methods
@@ -23,8 +23,22 @@
 
 @implementation OSSwitchTableCell
 
+
+#pragma mark - Actions -
+
 - (IBAction) onSwitchControl: (UISwitch*) sender
 {
     
 }
+
+#pragma mark - Public -
+
+- (void) fillCellWithTitle: (NSString*) titleText
+           withSwitchState: (BOOL)      isSelected
+{
+    self.titleLabel.text  = titleText;
+    
+    self.switchControl.on = !isSelected;
+}
+
 @end

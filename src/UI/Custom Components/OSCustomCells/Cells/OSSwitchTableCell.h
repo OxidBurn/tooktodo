@@ -10,4 +10,9 @@
 
 @interface OSSwitchTableCell : UITableViewCell
 
+// methods
+
+- (void) fillCellWithTitle: (NSString*) titleText
+           withSwitchState: (BOOL)      isSelected;
+
 @end

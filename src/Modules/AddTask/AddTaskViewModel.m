@@ -56,13 +56,32 @@
                                  forIndexPath: (NSIndexPath*) indexPath];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView*)  tableView: (UITableView*) tableView
+viewForHeaderInSection: (NSInteger)    section
 {
-    UIView* view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 20, 10)];
+    switch ( section )
+    {
+        case 0:
+            
+            return nil;
+            
+            break;
+            
+        case 1 ... 2:
+        {
+            
+            UIView* view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 20, 10)];
+            
+            view.backgroundColor = [UIColor lightGrayColor];
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
     
-    view.backgroundColor = [UIColor lightGrayColor];
-    
-    return view;
+    return nil;
 }
 
 - (CGFloat)    tableView: (UITableView*) tableView

@@ -10,4 +10,10 @@
 
 @interface OSMarkedRightDetailCellFactory : NSObject
 
+// methods
+- (UITableViewCell*) returnMarkedRightDetailCellWithTitle: (NSString*)    titleText
+                                           withDetailText: (NSString*)    detailText
+                                            withMarkImage: (UIImage*)     markImage
+                                             forTableView: (UITableView*) tableView;
+
 @end

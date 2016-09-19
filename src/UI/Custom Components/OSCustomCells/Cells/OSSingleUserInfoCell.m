@@ -23,4 +23,15 @@
 
 @implementation OSSingleUserInfoCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithTitle: (NSString*) titleText
+          withUserFullName: (NSString*) userFullName
+            withUserAvatar: (UIImage*) userAvatar
+{
+    self.userNameLabel.text        = userFullName;
+    self.infoTitleLabel.text       = titleText;
+    self.userAvatarImageView.image = userAvatar;
+}
+
 @end

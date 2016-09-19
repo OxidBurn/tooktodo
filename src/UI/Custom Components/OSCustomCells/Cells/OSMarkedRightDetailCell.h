@@ -10,4 +10,10 @@
 
 @interface OSMarkedRightDetailCell : UITableViewCell
 
+// methods
+
+- (void) fillCellWithTitle: (NSString*) titleText
+             withMarkImage: (UIImage*)  markImage
+                withDetail: (NSString*) detailText;
+
 @end

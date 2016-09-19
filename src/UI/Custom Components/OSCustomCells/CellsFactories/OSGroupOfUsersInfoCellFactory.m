@@ -8,6 +8,22 @@
 
 #import "OSGroupOfUsersInfoCellFactory.h"
 
+// Classes
+#import "OSGroupOfUserInfoCell.h"
+
 @implementation OSGroupOfUsersInfoCellFactory
+
+#pragma mark - Public -
+
+- (UITableViewCell*) returnGroupOfUsersCellWithTitle: (NSString*)    titleText
+                                        forTableView: (UITableView*) tableView
+{
+    OSGroupOfUserInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"GroupOfUsersCellID"];
+    
+    [cell fillCellWithTitle: titleText];
+    
+    return cell;
+}
+
 
 @end

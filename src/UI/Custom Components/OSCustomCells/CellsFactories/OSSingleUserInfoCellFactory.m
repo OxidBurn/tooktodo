@@ -8,6 +8,25 @@
 
 #import "OSSingleUserInfoCellFactory.h"
 
+// Classes
+#import "OSSingleUserInfoCell.h"
+
 @implementation OSSingleUserInfoCellFactory
+
+#pragma mark - Public -
+
+- (UITableViewCell*) returnSingleUserCellWithTitle: (NSString*)    titleText
+                                  withUserFullName: (NSString*)    userFullName
+                                    withUserAvatar: (UIImage*)     userAvatar
+                                      forTableView: (UITableView*) tableView
+{
+    OSSingleUserInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SingleUserInfoCellID"];
+    
+    [cell fillCellWithTitle: titleText
+           withUserFullName: userFullName
+             withUserAvatar: userAvatar];
+    
+    return cell;
+}
 
 @end

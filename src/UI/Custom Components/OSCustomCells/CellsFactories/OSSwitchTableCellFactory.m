@@ -8,6 +8,23 @@
 
 #import "OSSwitchTableCellFactory.h"
 
+// Classes
+#import "OSSwitchTableCell.h"
+
 @implementation OSSwitchTableCellFactory
+
+#pragma mark - Public -
+
+- (UITableViewCell*) returnSwitchCellWithTitle: (NSString*)    titleText
+                               withSwitchState: (BOOL)         isEnabled
+                                  forTableView: (UITableView*) tableView
+{
+    OSSwitchTableCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SwitchCellID"];
+    
+    [cell fillCellWithTitle: titleText
+            withSwitchState: isEnabled];
+    
+    return cell;
+}
 
 @end

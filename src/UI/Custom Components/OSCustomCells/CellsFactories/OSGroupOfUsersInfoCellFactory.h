@@ -10,4 +10,7 @@
 
 @interface OSGroupOfUsersInfoCellFactory : NSObject
 
+// methods
+- (UITableViewCell*) returnGroupOfUsersCellWithTitle: (NSString*)    titleText
+                                        forTableView: (UITableView*) tableView;
 @end

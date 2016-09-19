@@ -10,4 +10,10 @@
 
 @interface OSSingleUserInfoCellFactory : NSObject
 
+// methods
+- (UITableViewCell*) returnSingleUserCellWithTitle: (NSString*)    titleText
+                                  withUserFullName: (NSString*)    userFullName
+                                    withUserAvatar: (UIImage*)     userAvatar
+                                      forTableView: (UITableView*) tableView;
+
 @end

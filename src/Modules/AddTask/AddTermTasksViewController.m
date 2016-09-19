@@ -8,12 +8,18 @@
 
 #import "AddTermTasksViewController.h"
 
+// Classes
+#import "AddTaskTermsViewModel.h"
+
 @interface AddTermTasksViewController ()
 
-//Properties
+// outlets
 @property (weak, nonatomic) IBOutlet UITableView* addTermTasksTableView;
 
-//Methods
+// properties
+@property (strong, nonatomic) AddTaskTermsViewModel* viewModel;
+
+// methods
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender;
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 - (IBAction) onSaveBtn: (UIButton*) sender;
@@ -28,6 +34,8 @@
 - (void) loadView
 {
     [super loadView];
+    
+    [self setUpDefaults];
 }
 
 - (void) viewDidLoad
@@ -40,6 +48,18 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Properties -
+
+- (AddTaskTermsViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [AddTaskTermsViewModel new];
+    }
+    
+    return _viewModel;
 }
 
 #pragma mark - Action -
@@ -58,4 +78,13 @@
 {
     
 }
+
+#pragma mark - Internal -
+
+- (void) setUpDefaults
+{
+    self.addTermTasksTableView.dataSource = self.viewModel;
+    self.addTermTasksTableView.delegate   = self.viewModel;
+}
+
 @end

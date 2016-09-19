@@ -8,6 +8,23 @@
 
 #import "OSRightDetailCellFactory.h"
 
+// Classes
+#import "OSRightDetailCell.h"
+
 @implementation OSRightDetailCellFactory
+
+#pragma mark - Public -
+
+- (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    titleText
+                                     withDetailText: (NSString*)    detailText
+                                       forTableView: (UITableView*) tableView
+{
+    OSRightDetailCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RightDetailCellID"];
+    
+    [cell fillCellWithTitle: titleText
+                 withDetail: detailText];
+    
+    return cell;
+}
 
 @end

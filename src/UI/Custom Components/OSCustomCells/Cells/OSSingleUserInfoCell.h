@@ -10,4 +10,9 @@
 
 @interface OSSingleUserInfoCell : UITableViewCell
 
+// methods
+- (void) fillCellWithTitle: (NSString*) titleText
+          withUserFullName: (NSString*) userFullName
+            withUserAvatar: (UIImage*) userAvatar;
+
 @end

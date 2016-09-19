@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
+@import UIKit;
+
 @interface OSRightDetailCellFactory : NSObject
 
+// methods
+- (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    titleText
+                                     withDetailText: (NSString*)    detailText
+                                       forTableView: (UITableView*) tableView;
 @end

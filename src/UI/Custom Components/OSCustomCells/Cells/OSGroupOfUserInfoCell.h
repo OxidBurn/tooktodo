@@ -10,4 +10,8 @@
 
 @interface OSGroupOfUserInfoCell : UITableViewCell
 
+// metthods
+
+- (void) fillCellWithTitle: (NSString*) titleText;
+
 @end

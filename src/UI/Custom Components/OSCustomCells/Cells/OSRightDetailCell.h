@@ -10,4 +10,9 @@
 
 @interface OSRightDetailCell : UITableViewCell
 
+// methods
+
+- (void) fillCellWithTitle: (NSString*) titleText
+                withDetail: (NSString*) detailText;
+
 @end
