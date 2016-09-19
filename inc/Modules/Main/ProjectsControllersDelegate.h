@@ -22,4 +22,6 @@
 
 - (void) showFeedsForSelectedProject;
 
+- (void) setSelectedTabBarItemAtIndex: (NSUInteger) index;
+
 @end

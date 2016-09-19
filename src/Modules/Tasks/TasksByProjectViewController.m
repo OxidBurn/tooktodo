@@ -45,7 +45,7 @@
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
     
     // Binding UI components with model

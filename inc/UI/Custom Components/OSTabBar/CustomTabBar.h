@@ -17,4 +17,6 @@
 
 - (void) didSelectFirstMenuItem;
 
+- (void) setSelectedItemAtIndex: (NSUInteger) index;
+
 @end

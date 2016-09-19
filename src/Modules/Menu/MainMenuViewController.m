@@ -159,7 +159,10 @@
     [self.slidingViewController resetTopViewAnimated: YES];
     
     if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
+    {
         [self.delegate showControllerWithSegueID: @"ShowTasks"];
+        [self.delegate setSelectedTabBarItemAtIndex: 1];
+    }
 }
 
 @end

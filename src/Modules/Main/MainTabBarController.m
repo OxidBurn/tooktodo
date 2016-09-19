@@ -122,12 +122,15 @@
                               sender: self];
 }
 
+- (void) setSelectedTabBarItemAtIndex: (NSUInteger) index
+{
+    [self.mainTabBar setSelectedItemAtIndex: index];
+}
+
 - (void) showFeedsForSelectedProject
 {
     [self showControllerWithSegueID: @"ShowFeeds"];
 }
-
-//- (void) show
 
 
 @end
