@@ -70,11 +70,11 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
                                                          bundle: nil];
     
-    AddTaskViewController* addTaskController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskControllerID"];
+    UINavigationController* addTaskNavController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
     
     
-    [self presentViewController: addTaskController
-                       animated: NO
+    [self presentViewController: addTaskNavController
+                       animated: YES
                      completion: nil];
 
 }
