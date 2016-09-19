@@ -48,6 +48,9 @@
 
 #pragma mark - OSAlertPlanNotLoadedViewModelDelegate methods -
 
-
+- (void) performActionForIndexPath: (NSIndexPath*) indexPath
+{
+    
+}
 
 @end
