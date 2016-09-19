@@ -13,6 +13,7 @@
 #import "APIConstance.h"
 #import "TeamAPIService.h"
 #import "TeamMemberModel.h"
+#import "ProjectRoleAssignmentsModel.h"
 
 // Categories
 #import "DataManager+Team.h"
@@ -50,7 +51,7 @@ static bool isFirstAccess = YES;
         
         [[RACScheduler mainThreadScheduler] schedule: ^{
             
-            [subscriber sendNext: [DataManagerShared getAllTeamInfo]];
+            [subscriber sendNext: [DataManagerShared getSelectedProjectRoleAssignments]];
             
         }];
         
@@ -62,7 +63,8 @@ static bool isFirstAccess = YES;
                                  
                                  [[RACScheduler mainThreadScheduler] schedule: ^{
                                      
-                                     [subscriber sendNext: [DataManagerShared getAllTeamInfo]];
+                                     [subscriber sendNext: [DataManagerShared getSelectedProjectRoleAssignments]];
+                                     [subscriber sendCompleted];
                                      
                                  }];
                                  
@@ -71,11 +73,6 @@ static bool isFirstAccess = YES;
          error: ^(NSError *error) {
              
              [subscriber sendError: error];
-             
-         }
-         completed: ^{
-             
-             [subscriber sendCompleted];
              
          }];
         
@@ -150,13 +147,12 @@ static bool isFirstAccess = YES;
 
 #pragma mark - Internal methods -
 
-- (void) parseGettingTeamResponse: (NSDictionary*)         response
+- (void) parseGettingTeamResponse: (NSArray*)              response
                    withCompletion: (CompletionWithSuccess) completion
 {
-    NSError* parseError   = nil;
-    NSArray* responseTeam = response[@"list"];
-    NSArray* teamList     = [TeamMemberModel arrayOfModelsFromDictionaries: responseTeam
-                                                                      error: &parseError];
+    NSError* parseError = nil;
+    NSArray* teamList   = [ProjectRoleAssignmentsModel arrayOfModelsFromDictionaries: response
+                                                                               error: &parseError];
     
     if ( parseError )
     {
@@ -164,9 +160,8 @@ static bool isFirstAccess = YES;
     }
     else
     {
-        [DataManagerShared persistTeamMemebers: teamList
-                                     inProject: [self getSelectedProject]
-                                withCompletion: completion];
+        [DataManagerShared persistSelectedProjectRoleAssignments: teamList
+                                                  withCompletion: completion];
     }
 }
 
@@ -186,8 +181,8 @@ static bool isFirstAccess = YES;
 {
     if ( [self getProjectID] )
     {
-        NSString* requestURL = [projectTeamInfoURL stringByReplacingOccurrencesOfString: @"{projectID}"
-                                                                             withString: [self getProjectID]];
+        NSString* requestURL = [projectRoleAssignmentsURL stringByReplacingOccurrencesOfString: @"{id}"
+                                                                                    withString: [self getProjectID]];
         
         return requestURL;
     }

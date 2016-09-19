@@ -10,7 +10,7 @@
 #import "ReactiveCocoa.h"
 
 // Classes
-#import "TeamMember.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
 
 // Categories
 #import "DataManager+Team.h"
@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 
 - (NSUInteger) countOfItems;
 
-- (TeamMember*) teamMemberByIndex: (NSUInteger) index;
+- (ProjectRoleAssignments*) teamMemberByIndex: (NSUInteger) index;
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index;
 

@@ -17,6 +17,9 @@
 - (void) persistNewProjects: (NSArray*)  projects
              withCompletion: (void(^)()) completion;
 
+- (void) persistSelectedProjectRoleAssignments: (NSArray*)              roleAssignemnts
+                                withCompletion: (CompletionWithSuccess) completion;
+
 - (NSArray*) getAllProjects;
 
 - (NSArray*) getProjectsForMenu;
@@ -39,5 +42,7 @@
 
 - (void) updateProjectExpandedState: (ProjectInfo*)          project
                      withCompletion: (CompletionWithSuccess) completion;
+
+- (NSArray*) getSelectedProjectRoleAssignments;
 
 @end

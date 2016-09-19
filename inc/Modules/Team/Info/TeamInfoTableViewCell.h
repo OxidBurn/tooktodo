@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TeamMember.h"
+
+// Classes
+#import "ProjectRoleAssignments+CoreDataClass.h"
 
 @protocol TeamInfoTableViewCellDelegate;
 
@@ -19,8 +21,8 @@
 
 // methods
 
-- (void) fillCellWithInfo: (TeamMember*) teamMember
-             forIndexPath: (NSIndexPath*) indexPath;
+- (void) fillCellWithInfo: (ProjectRoleAssignments*) teamMember
+             forIndexPath: (NSIndexPath*)            indexPath;
 
 @end
 

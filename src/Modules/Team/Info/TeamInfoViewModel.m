@@ -10,7 +10,7 @@
 
 // Classes
 #import "TeamInfoModel.h"
-#import "TeamMember.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
 #import "TeamInfoTableViewCell.h"
 
 // Categories
@@ -76,7 +76,7 @@ static CGFloat sectionHeaderHeight = 30;
 {
     TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
     
-    TeamMember* memberInfo = [self.model teamMemberByIndex: indexPath.row];
+    ProjectRoleAssignments* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
     cell.delegate = self;
     

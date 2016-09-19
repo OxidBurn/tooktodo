@@ -10,6 +10,8 @@
 
 // Classes
 #import "Utils.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
 
 @interface TeamInfoTableViewCell()
 
@@ -59,8 +61,8 @@
 
 #pragma mark - Public -
 
-- (void) fillCellWithInfo: (TeamMember*) teamMember
-             forIndexPath: (NSIndexPath*) indexPath
+- (void) fillCellWithInfo: (ProjectRoleAssignments*) teamMember
+             forIndexPath: (NSIndexPath*)            indexPath
 {
     self.callToTeamMemberBtn.tag      = indexPath.row;
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;

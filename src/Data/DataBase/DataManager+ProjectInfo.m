@@ -202,6 +202,30 @@
     }
 }
 
+- (void) persistSelectedProjectRoleAssignments: (NSArray*)              roleAssignemnts
+                                withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
+        
+        [roleAssignemnts enumerateObjectsUsingBlock: ^(ProjectRoleAssignmentsModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistProjectRoleAssignment: obj
+                                    forProject: selectedProject
+                                     inContext: localContext];
+            
+        }];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 #pragma mark - Get methods -
 
 - (ProjectInfo*) getIfExistProjectWithID: (NSUInteger) projectID
@@ -283,6 +307,12 @@
     return projectInfo.title;
 }
 
+- (NSArray*) getSelectedProjectRoleAssignments
+{
+    ProjectInfo* project = [self getSelectedProjectInfo];
+    
+    return project.projectRoleAssignments.allObjects;
+}
 
 #pragma mark - Updating methods -
 

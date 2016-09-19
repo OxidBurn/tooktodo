@@ -85,7 +85,7 @@
     return 0;
 }
 
-- (TeamMember*) teamMemberByIndex: (NSUInteger) index
+- (ProjectRoleAssignments*) teamMemberByIndex: (NSUInteger) index
 {
     switch (self.memberListState)
     {
@@ -106,7 +106,7 @@
 
 - (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index
 {
-    TeamMember* member = [self teamMemberByIndex: index];
+    ProjectRoleAssignments* member = [self teamMemberByIndex: index];
     
     return member.email;
 }
