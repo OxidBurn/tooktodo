@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// Classes
 #import "OSDefaultAlertController.h"
 
 @interface OSAlertController : NSObject
@@ -24,5 +26,7 @@
                         andBtnText: (NSString*)         btnText
                       onController: (UIViewController*) controller
                       withDelegate: (id<OSDefaultAlertControllerDelegate>) delegate;
+
++ (void) showTaskOptionControllerOnController: (UIViewController*) controller;
 
 @end

@@ -15,8 +15,16 @@
 
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
+@property (nonatomic, weak) id<CustomTabBarDelegate> taskDelegate;
+
 - (void) didSelectFirstMenuItem;
 
 - (void) setSelectedItemAtIndex: (NSUInteger) index;
+
+@end
+
+@protocol CustomTabBarDelegate <NSObject>
+
+- (void) showTaskOptions;
 
 @end

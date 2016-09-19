@@ -179,6 +179,11 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     [self checkGrayView];
     
+    if ([self.taskDelegate respondsToSelector:@selector(showTaskOptions)])
+    {
+        [self.taskDelegate showTaskOptions];
+    }
+    
     NSLog(@"didSelectedAdd");
 }
 

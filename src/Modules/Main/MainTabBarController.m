@@ -10,13 +10,15 @@
 #import "LoginViewController.h"
 #import "WelcomeTourViewController.h"
 #import "CustomTabBar.h"
+#import "OSAlertController.h"
+#import "OSTaskOptionsController.h"
+#import "AddTaskViewController.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController() 
+@interface MainTabBarController()  <CustomTabBarDelegate, OSTaskOptionsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
-
 
 @end
 
@@ -29,6 +31,7 @@
     [super loadView];
     
     self.mainTabBar.delegate = self;
+    self.mainTabBar.taskDelegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -50,6 +53,9 @@
             [self showWelcomeTour];
         }
 }
+
+#pragma mark - Properties -
+
 
 #pragma mark - Internal methods -
 
@@ -122,15 +128,24 @@
                               sender: self];
 }
 
-- (void) setSelectedTabBarItemAtIndex: (NSUInteger) index
-{
-    [self.mainTabBar setSelectedItemAtIndex: index];
-}
+#pragma mark - CustomTabBarDelegate methods -
 
-- (void) showFeedsForSelectedProject
+- (void) showTaskOptions
 {
-    [self showControllerWithSegueID: @"ShowFeeds"];
+    [OSAlertController showTaskOptionControllerOnController: self];
 }
 
 
+#pragma mark - TaskOptionsControllerDelegate -
+
+- (void) showAnotherScreen
+{
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                              bundle: [NSBundle mainBundle]];
+    
+    AddTaskViewController* addTaskController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsScreenID"];
+    
+    [self.navigationController pushViewController: addTaskController
+                                         animated: YES];
+}
 @end

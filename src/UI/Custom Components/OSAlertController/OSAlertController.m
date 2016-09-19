@@ -7,10 +7,13 @@
 //
 
 #import "OSAlertController.h"
+
+// Classes
 #import "OSAlertDesignateAdminController.h"
 #import "OSAlertPlanNotLoadedController.h"
 #import "OSAlertDeleteTaskController.h"
 #import "OSDefaultAlertController.h"
+#import "OSTaskOptionsController.h"
 
 @implementation OSAlertController
 
@@ -72,6 +75,18 @@
     [alertController setTitle: title
                   withMessage: message
                   withBtnText: btnText];
+}
+
+
++ (void) showTaskOptionControllerOnController: (UIViewController*) controller
+{
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
+                                                              bundle: [NSBundle mainBundle]];
+    OSTaskOptionsController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsControllerID"];
+    
+    [controller presentViewController: alertController
+                             animated: YES
+                           completion: nil];
 }
 
 @end
