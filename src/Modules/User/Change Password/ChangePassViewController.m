@@ -151,13 +151,16 @@
        
         @strongify(self)
         
-        self.updatedPassWarnings.hidden = YES;
-        
         [signal subscribeNext: ^(id x) {
             
-            [SVProgressHUD showSuccessWithStatus: @"Пароль успешно обновлен"];
-            
-            [self.navigationController popViewControllerAnimated: YES];
+            if ( x )
+            {
+                self.updatedPassWarnings.hidden = YES;
+                
+                [SVProgressHUD showSuccessWithStatus: @"Пароль успешно обновлен"];
+                
+                [self.navigationController popViewControllerAnimated: YES];
+            }
             
         }];
         

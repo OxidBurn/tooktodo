@@ -55,27 +55,42 @@
                                                           reduce: ^id(NSString* oldPass, NSString* newPass, NSString* confirmPass){
                                                         
                                                               @strongify(self)
-                                                              
-                                                         if ( [self.model isCorrectOldPassword: oldPass] == NO )
-                                                         {
-                                                             self.isCorrectEnteredInfo = NO;
                                                              
-                                                             return @"Старый пароль не совпадает с текущим";
-                                                         }
-                                                         else
-                                                             if ( newPass.length < 6 )
-                                                             {
-                                                                 self.isCorrectEnteredInfo = NO;
-                                                                 
-                                                                 return @"Новый пароль должен содержать более 5и символов";
-                                                             }
-                                                         else
-                                                             if ( [newPass isEqualToString: confirmPass] == NO )
-                                                             {
-                                                                 self.isCorrectEnteredInfo = NO;
-                                                                 
-                                                                 return @"Новый данные не совпадают.";
-                                                             }
+                                                              if ( newPass.length == 0 && oldPass.length == 0 && confirmPass.length == 0 )
+                                                              {
+                                                                  self.isCorrectEnteredInfo = NO;
+                                                                  
+                                                                  return @"Введите пожалуйста новые данные.";
+                                                              }
+                                                                  else
+                                                                 if ( [self.model isCorrectOldPassword: oldPass] == NO )
+                                                                 {
+                                                                     self.isCorrectEnteredInfo = NO;
+                                                                     
+                                                                     return @"Старый пароль не совпадает с текущим";
+                                                                 }
+                                                                 else
+                                                                     if ( newPass.length < 6 )
+                                                                     {
+                                                                         self.isCorrectEnteredInfo = NO;
+                                                                         
+                                                                         return @"Новый пароль должен содержать более 5и символов";
+                                                                     }
+                                                                 else
+                                                                     if ( [newPass isEqualToString: confirmPass] == NO )
+                                                                     {
+                                                                         self.isCorrectEnteredInfo = NO;
+                                                                         
+                                                                         return @"Новый данные не совпадают.";
+                                                                     }
+                                                                      else
+                                                                          if ( [newPass isEqualToString: oldPass] )
+                                                                          {
+                                                                              self.isCorrectEnteredInfo = NO;
+                                                                              
+                                                                              return @"Новый пароль не должен совпадать с предыдущим.";
+                                                                          }
+                                                              
                                                          
                                                               self.isCorrectEnteredInfo  = YES;
                                                               self.oldPasswordString     = oldPass;
@@ -90,17 +105,14 @@
 
 - (RACCommand*) changePassCommand
 {
-    if ( _changePassCommand == nil )
-    {
-        @weakify(self)
+    @weakify(self)
+    
+    _changePassCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
         
-        _changePassCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
-           
-            @strongify(self)
-            
-            return [self updatingPasswordSignal];
-        }];
-    }
+        @strongify(self)
+        
+        return [self updatingPasswordSignal];
+    }];
     
     return _changePassCommand;
 }
@@ -151,6 +163,7 @@
         else
         {
             [subscriber sendNext: nil];
+            [subscriber sendCompleted];
         }
         
         return nil;

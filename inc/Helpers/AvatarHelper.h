@@ -33,7 +33,8 @@
 
 - (NSString*) getAvatarPathForName: (NSString*) name;
 
-- (void) loadAvatarFromWeb: (NSString*) filePath
-                  withName: (NSString*) name;
+- (void) loadAvatarFromWeb: (NSString*)             filePath
+                  withName: (NSString*)             name
+            withCompletion: (CompletionWithSuccess) completion;
 
 @end
