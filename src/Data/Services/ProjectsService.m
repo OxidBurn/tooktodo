@@ -65,9 +65,9 @@ static bool isFirstAccess = YES;
                                 }];
             
         }
-                                                                  error: ^(NSError *error) {
+                                                                                         error: ^(NSError *error) {
                                                                       
-                                                                      [subscriber sendError: error];
+                                                                                             [subscriber sendError: error];
                                                                       
                                                                   }];
         

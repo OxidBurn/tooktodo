@@ -131,7 +131,7 @@
         
         @strongify(self)
         
-        self.profileFullNameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
+        self.profileFullNameLabel.text    = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
         
         self.profileAvatarImageView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
                                                                                stringByAppendingString: teamMember.avatarSrc]];
@@ -158,11 +158,6 @@
                                  withName: userName
                              onController: self];
     
-    
-    //ПАДАЕТ ИЗ-ЗА ДЕЛЕГАТА НАДО ПОФИКСИТЬ
-  //  [OSAlertController showAlertWithPlanTableOnController: self];
-    
-   // [OSAlertController showAlertWithDeleteTaskOnController: self];
 }
 
 - (void) showEmailComposerForMail: (NSString*) email
