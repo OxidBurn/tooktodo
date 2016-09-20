@@ -172,6 +172,24 @@ typedef NS_ENUM(NSInteger, Permission)
     return self.memberInfo.projectPermission ? self.memberInfo.projectPermission : @(-2);
 }
 
+
+//- (NSInteger) getCurrentUserPermission
+//{
+//    
+//    NSInteger permissionForProject = [DataManagerShared getSelectedProjectPermission];
+//    
+//    return permissionForProject;
+//    
+//}
+
+//- (NSInteger) getSelectedProjectPermission
+//{
+//    ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
+//    
+//    return selectedProjectInfo.projectPermission.integerValue;
+//}
+
+
 - (NSArray*) returnContactsInfo
 {
     NSMutableArray* tmp = [NSMutableArray new];

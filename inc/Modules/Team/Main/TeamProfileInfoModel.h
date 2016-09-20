@@ -37,7 +37,7 @@
 
 - (NSNumber*) getPermissions;
 
-
+- (NSInteger) getCurrentUserPermission;
 
 - (NSString*) getContactValueForIndexPath: (NSIndexPath*) indexPath;
 

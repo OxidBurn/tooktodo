@@ -90,7 +90,8 @@ static bool isFirstAccess = YES;
     // Load systems
     NSArray* signals = @[[[RolesService sharedInstance] loadAllRolesForProject: project],
                          [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID],
-                         [[TasksService sharedInstance] loadAllTasksForProjectWithID: project.projectID]];
+                         [[TasksService sharedInstance] loadAllTasksForProjectWithID: project.projectID],
+                          [self loadUserPermissionForProjectWithID: project.projectID]];
     
     RACSignal* loadProjectInfo = [RACSignal combineLatest: signals];
     
@@ -125,6 +126,53 @@ static bool isFirstAccess = YES;
                                }];
     }
 }
+
+- (RACSignal*) loadUserPermissionForProjectWithID: (NSNumber*) projectID
+{
+    NSString* requestURL = [projectUserPermissionURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                               withString: projectID.stringValue];
+    
+    @weakify(self)
+    
+    RACSignal* loadUserPermissionSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[ProjectsAPIService sharedInstance] getProjectPermission: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self updateProjectPermissionValue: response[0]
+                                 withCompletion: ^(BOOL isSuccess) {
+                                     
+                                     [subscriber sendNext: nil];
+                                     [subscriber sendCompleted];
+                                     
+                                 }];
+             
+         }
+         error: ^(NSError* error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        
+        return nil;
+    }];
+    
+    return loadUserPermissionSignal;
+}
+
+
+- (void) updateProjectPermissionValue: (NSDictionary*)         response
+                       withCompletion: (CompletionWithSuccess) completion
+{
+    BOOL projectPermissionValue = [response[@"projectPermission"] boolValue];
+    
+    [DataManagerShared updateSelectedProjectPermission: projectPermissionValue
+                                        withCompletion: completion];
+}
+
 
 
 #pragma mark - Life Cycle -

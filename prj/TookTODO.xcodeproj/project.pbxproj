@@ -320,7 +320,6 @@
 		561533551D7A70B100BDEC3E /* OfflineSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineSettings.h; sourceTree = "<group>"; };
 		561533561D7A70B100BDEC3E /* ProjectCountry+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectCountry+CoreDataProperties.h"; sourceTree = "<group>"; };
 		561533571D7A70B100BDEC3E /* ProjectCountry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectCountry.h; sourceTree = "<group>"; };
-		561533581D7A70B100BDEC3E /* ProjectInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		5615335A1D7A70B100BDEC3E /* ProjectRegion+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectRegion+CoreDataProperties.h"; sourceTree = "<group>"; };
 		5615335B1D7A70B100BDEC3E /* ProjectRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectRegion.h; sourceTree = "<group>"; };
 		5615335C1D7A70B100BDEC3E /* TeamMember+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TeamMember+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -489,7 +488,6 @@
 		56A9A9701D8F6AFD00A133C3 /* ProjectRoleTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectRoleTypeModel.m; sourceTree = "<group>"; };
 		56A9A9721D8F6C0500A133C3 /* ProjectInviteInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectInviteInfoModel.h; sourceTree = "<group>"; };
 		56A9A9731D8F6C0500A133C3 /* ProjectInviteInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectInviteInfoModel.m; sourceTree = "<group>"; };
-		56A9A9751D8F702F00A133C3 /* ProjectInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataClass.h"; sourceTree = "<group>"; };
 		56A9A9761D8F702F00A133C3 /* ProjectInviteInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInviteInfo+CoreDataClass.h"; sourceTree = "<group>"; };
 		56A9A9771D8F702F00A133C3 /* ProjectInviteInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInviteInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		56A9A9781D8F702F00A133C3 /* ProjectRoleAssignments+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectRoleAssignments+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -715,6 +713,8 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF04BC591D912CE50012C853 /* ProjectInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataClass.h"; sourceTree = "<group>"; };
+		CF04BC5A1D912CE50012C853 /* ProjectInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		CFE87BD31D8FF28F00709FB1 /* FilledTeamInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilledTeamInfo.h; path = ../../../../src/Modules/Team/Info/FilledTeamInfo.h; sourceTree = "<group>"; };
 		CFE87BD41D8FF28F00709FB1 /* FilledTeamInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilledTeamInfo.m; sourceTree = "<group>"; };
 		CFE87BD61D90495500709FB1 /* AlertControllerSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertControllerSegue.m; sourceTree = "<group>"; };
@@ -1032,8 +1032,9 @@
 		561533531D7A70B100BDEC3E /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				CF04BC591D912CE50012C853 /* ProjectInfo+CoreDataClass.h */,
+				CF04BC5A1D912CE50012C853 /* ProjectInfo+CoreDataProperties.h */,
 				56A9A98C1D8F747000A133C3 /* ProjectTaskAssignee+CoreDataClass.h */,
-				56A9A9751D8F702F00A133C3 /* ProjectInfo+CoreDataClass.h */,
 				56A9A9761D8F702F00A133C3 /* ProjectInviteInfo+CoreDataClass.h */,
 				56A9A9771D8F702F00A133C3 /* ProjectInviteInfo+CoreDataProperties.h */,
 				56A9A9781D8F702F00A133C3 /* ProjectRoleAssignments+CoreDataClass.h */,
@@ -1075,7 +1076,6 @@
 				561533551D7A70B100BDEC3E /* OfflineSettings.h */,
 				561533561D7A70B100BDEC3E /* ProjectCountry+CoreDataProperties.h */,
 				561533571D7A70B100BDEC3E /* ProjectCountry.h */,
-				561533581D7A70B100BDEC3E /* ProjectInfo+CoreDataProperties.h */,
 				5615335A1D7A70B100BDEC3E /* ProjectRegion+CoreDataProperties.h */,
 				5615335B1D7A70B100BDEC3E /* ProjectRegion.h */,
 				5615335C1D7A70B100BDEC3E /* TeamMember+CoreDataProperties.h */,

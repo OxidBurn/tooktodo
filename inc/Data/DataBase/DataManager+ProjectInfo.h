@@ -45,4 +45,7 @@
 
 - (NSArray*) getSelectedProjectRoleAssignments;
 
+- (void) updateSelectedProjectPermission: (BOOL)                  permission
+                          withCompletion: (CompletionWithSuccess) completion;
+
 @end
