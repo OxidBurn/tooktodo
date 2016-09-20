@@ -587,12 +587,10 @@
                       }];
 }
 
-- (ProjectRoleAssignments*) getSelectedItem
+- (ProjectRoleAssignments*) getSelectedProjectRoleAssignment
 {
-    ProjectRoleAssignments* assignment = [ProjectRoleAssignments MR_findFirstByAttribute:
-                                                                            @"isSelected"
-                                                                               withValue: @(YES)
-                                                                               inContext: [NSManagedObjectContext MR_defaultContext]];
+    ProjectRoleAssignments* assignment = [ProjectRoleAssignments MR_findFirstByAttribute: @"isSelected"
+                                                                               withValue: @(YES)];
     
     return assignment;
 }
@@ -600,8 +598,18 @@
 - (void) changeItemSelectedState: (BOOL)                    isSelected
                          forItem: (ProjectRoleAssignments*) assignment
 {
-    assignment.isSelected = @(isSelected);
+    ProjectRoleAssignments* selectedRoleAssignment = [self getSelectedProjectRoleAssignment];
     
-    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        selectedRoleAssignment.isSelected = @(NO);
+        assignment.isSelected             = @(YES);
+        
+    }
+                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          NSLog(@"Selected %@", [self getSelectedProjectRoleAssignment]);
+                          
+                      }];
 }
 @end

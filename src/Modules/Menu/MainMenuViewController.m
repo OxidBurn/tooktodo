@@ -50,9 +50,6 @@
     // Set delegate
     self.delegate = (MainTabBarController*)self.slidingViewController.topViewController;
     
-    // Update info of the user
-    [self updateInfo];
-    
     // Binding all UI with model
     [self bindingUI];
 }
@@ -60,6 +57,8 @@
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
+    
+    [self updateInfo];
 }
 
 

@@ -11,6 +11,7 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 #import <MessageUI/MessageUI.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -133,8 +134,7 @@
         
         self.profileFullNameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
         
-        self.profileAvatarImageView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
-                                                                               stringByAppendingString: teamMember.avatarSrc]];
+        [self.profileAvatarImageView sd_setImageWithURL: [NSURL URLWithString: teamMember.avatarSrc]];
         
         [self.profileInfoTableView reloadData];
         

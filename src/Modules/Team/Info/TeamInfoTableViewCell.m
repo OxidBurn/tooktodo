@@ -8,6 +8,9 @@
 
 #import "TeamInfoTableViewCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
 // Classes
 #import "Utils.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
@@ -80,7 +83,8 @@ typedef NS_ENUM(NSInteger, PermissionType)
     [self checkIfPhoneNumberExists: teamInfo];
     [self chechIfEmailExists:       teamInfo];
 
-    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamInfo.avatarSrc]];
+    [self.teamMemberAvatar sd_setImageWithURL: [NSURL URLWithString: teamInfo.avatarSrc]];
+    
     self.teamMemberName.text       = [NSString stringWithFormat: @"%@ %@", teamInfo.fullname, teamInfo.role];
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];

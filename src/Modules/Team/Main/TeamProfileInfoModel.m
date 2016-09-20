@@ -28,9 +28,9 @@ typedef NS_ENUM(NSUInteger, ContactType)
 typedef NS_ENUM(NSInteger, Permission)
 {
     SystemAdministrator = -1,
-    Participant = 0,
-    Owner = 1,
-    Administrator = 2,
+    Participant         = 0,
+    Owner               = 1,
+    Administrator       = 2,
 };
 
 @interface TeamProfileInfoModel ()
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, Permission)
 {
     if (_assignment == nil)
     {
-        _assignment = [DataManagerShared getSelectedItem];
+        _assignment = [DataManagerShared getSelectedProjectRoleAssignment];
     }
     
     return _assignment;
@@ -116,7 +116,7 @@ typedef NS_ENUM(NSInteger, Permission)
             
             @strongify(self)
             
-            self.assignment = [DataManagerShared getSelectedItem];
+            self.assignment = [DataManagerShared getSelectedProjectRoleAssignment];
             
             [self.memberInfo fillTeamInfo: self.assignment];
             

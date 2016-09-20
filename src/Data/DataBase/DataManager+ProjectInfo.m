@@ -314,7 +314,12 @@
 {
     ProjectInfo* project = [self getSelectedProjectInfo];
     
-    return project.projectRoleAssignments.allObjects;
+    NSSortDescriptor* roleDescriptor = [NSSortDescriptor sortDescriptorWithKey: @"roleID"
+                                                                     ascending: YES];
+    
+    NSArray* teamList = [project.projectRoleAssignments.allObjects sortedArrayUsingDescriptors: @[roleDescriptor]];
+    
+    return teamList;
 }
 
 #pragma mark - Updating methods -

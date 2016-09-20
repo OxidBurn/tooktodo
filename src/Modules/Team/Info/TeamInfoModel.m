@@ -16,6 +16,8 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
+#import "NSString+Utils.h"
+#import <NSString+AKNumericFormatter.h>
 
 @interface TeamInfoModel()
 
@@ -54,7 +56,7 @@
         
         __block NSMutableArray* tmpTeamList = [NSMutableArray array];
         
-        [teamInfo enumerateObjectsUsingBlock:^(ProjectRoleAssignments* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [teamInfo enumerateObjectsUsingBlock: ^(ProjectRoleAssignments* obj, NSUInteger idx, BOOL * _Nonnull stop) {
            
             FilledTeamInfo* teamMemberInfo = [FilledTeamInfo new];
             
@@ -158,10 +160,8 @@
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index
 {
-//    FilledTeamInfo* member = ;
-    
     [DataManagerShared changeItemSelectedState: YES
-                                       forItem: [self.rawTeamListData objectAtIndex:index]];
+                                       forItem: [self.rawTeamListData objectAtIndex: index]];
     
 }
 
@@ -203,8 +203,18 @@
 - (void) filteringWithKeyWord: (NSString*) keyWord
 {
     if ( keyWord.length > 0 )
-    {
-        NSPredicate* filteredPredicate = [NSPredicate predicateWithFormat: [self getFilteringPredicateFormatString], keyWord, keyWord, keyWord, keyWord, keyWord];
+    {        
+        NSPredicate* filteredPredicate = [NSPredicate predicateWithBlock:^BOOL(FilledTeamInfo* evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            NSString* phoneNumber           = [evaluatedObject.phoneNumber stringContainingOnlyDecimalDigits];
+            NSString* additionalPhoneNumber = [evaluatedObject.additionalPhoneNumber stringContainingOnlyDecimalDigits];
+            
+            return ([evaluatedObject.firstName containsString: keyWord] ||
+                    [evaluatedObject.lastName containsString: keyWord] ||
+                    [evaluatedObject.email containsString: keyWord] ||
+                    [phoneNumber containsString: keyWord] ||
+                    [additionalPhoneNumber containsString: keyWord]);
+        }];
         
         self.filteringList = [self.teamList filteredArrayUsingPredicate: filteredPredicate];
     }
@@ -216,7 +226,7 @@
 
 - (NSString*) getFilteringPredicateFormatString
 {
-    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber CONTAINS[c] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
+    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber CONTAINS[cd] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
 }
 
 @end
