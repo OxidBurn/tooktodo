@@ -203,8 +203,8 @@
 - (void) filteringWithKeyWord: (NSString*) keyWord
 {
     if ( keyWord.length > 0 )
-    {        
-        NSPredicate* filteredPredicate = [NSPredicate predicateWithBlock:^BOOL(FilledTeamInfo* evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+    {
+        NSPredicate* filteredPredicate = [NSPredicate predicateWithBlock:^BOOL(FilledTeamInfo* evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) { 
             
             NSString* phoneNumber           = [evaluatedObject.phoneNumber stringContainingOnlyDecimalDigits];
             NSString* additionalPhoneNumber = [evaluatedObject.additionalPhoneNumber stringContainingOnlyDecimalDigits];
