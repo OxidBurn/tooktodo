@@ -246,7 +246,7 @@
 - (NSArray*) getProjectsForMenu
 {
     NSArray* allProjects = [ProjectInfo MR_findAllSortedBy: @"lastVisit"
-                                                 ascending: YES];
+                                                 ascending: NO];
     NSArray* menuProjectsList = nil;
     
     // Show only 4 projects in menu

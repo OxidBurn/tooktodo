@@ -232,7 +232,7 @@ static CGFloat sectionHeaderHeight = 30;
 {
     // Apply sorting type to the projects table content
     [self applySortingForProjecstList: index
-                           isAcceding: DiminutionSortingType];
+                           isAcceding: GrowsSortingType];
     
     // Load new data for table
     if ( self.reloadTable )
@@ -243,7 +243,7 @@ static CGFloat sectionHeaderHeight = 30;
 {
     // Apply sorting type to the projects table content
     [self applySortingForProjecstList: index
-                           isAcceding: GrowsSortingType];
+                           isAcceding: DiminutionSortingType];
     
     // Load new data for table
     if ( self.reloadTable )
