@@ -11,9 +11,11 @@
 // Classes
 #import "TeamService.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
+#import "DataManager+Tasks.h"
 
 @interface TeamInfoModel()
 
@@ -23,7 +25,11 @@
 
 @property (strong, nonatomic) NSArray* filteringList;
 
+@property (nonatomic, strong) NSArray* rawTeamListData;
+
 @property (assign, nonatomic) FilteringMemebersState memberListState;
+
+
 
 // methods
 
@@ -46,7 +52,23 @@
     [[[[TeamService sharedInstance] getTeamInfo] subscribeOn: [RACScheduler mainThreadScheduler]]
     subscribeNext: ^(NSArray* teamInfo) {
         
-        self.teamList = teamInfo;
+        __block NSMutableArray* tmpTeamList = [NSMutableArray array];
+        
+        [teamInfo enumerateObjectsUsingBlock:^(ProjectRoleAssignments* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+            FilledTeamInfo* teamMemberInfo = [FilledTeamInfo new];
+            
+            [teamMemberInfo fillTeamInfo: obj];
+            
+            [tmpTeamList addObject: teamMemberInfo];
+            
+        }];
+        
+    
+        self.teamList        = tmpTeamList.copy;
+        self.rawTeamListData = teamInfo;
+        
+        tmpTeamList = nil;
         
         if ( completion )
             completion(YES);
@@ -65,6 +87,7 @@
         
     }];
 }
+
 
 - (NSUInteger) countOfItems
 {
@@ -85,7 +108,7 @@
     return 0;
 }
 
-- (ProjectRoleAssignments*) teamMemberByIndex: (NSUInteger) index
+- (FilledTeamInfo*) teamMemberByIndex: (NSUInteger) index
 {
     switch (self.memberListState)
     {
@@ -106,39 +129,57 @@
 
 - (NSString*) getEmailOfMemberAtIndex: (NSUInteger) index
 {
-    ProjectRoleAssignments* member = [self teamMemberByIndex: index];
+    FilledTeamInfo* assignment = [self teamMemberByIndex: index];
     
-    return @"";
+    return assignment.email;
 }
 
 - (void) handleCallForUserAtIndex: (NSUInteger) index
 {
-    TeamMember* teamMember = [self teamMemberByIndex: index];
+     FilledTeamInfo* member = [self teamMemberByIndex: index];
     
-    if ( teamMember.phoneNumber.length > 0 && teamMember.additionalPhoneNumber.length > 0 )
+    
+    if ( member.phoneNumber.length > 0 && member.additionalPhoneNumber.length > 0 )
     {
         if ( [self.delegate respondsToSelector: @selector(returnPhoneNumbers:with:)] )
         {
-            [self.delegate returnPhoneNumbers: teamMember.phoneNumber
-                                         with: teamMember.additionalPhoneNumber];
+            [self.delegate returnPhoneNumbers: member.phoneNumber
+                                         with: member.additionalPhoneNumber];
         }
     }
     else
     {
         // call
-        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", teamMember.phoneNumber]]];
+        [[UIApplication sharedApplication] openURL: [NSURL URLWithString: [NSString stringWithFormat: @"tel://%@", member.phoneNumber]]];
     }
     
 }
 
+
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index
 {
-    TeamMember* member = [self teamMemberByIndex: index];
+//    FilledTeamInfo* member = ;
     
     [DataManagerShared changeItemSelectedState: YES
-                                       forItem: member];
+                                       forItem: [self.rawTeamListData objectAtIndex:index]];
+    
 }
 
+
+//- (RACSignal*) markItemAsSelectedAtIndex: (NSUInteger) index
+//{
+//    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//    [DataManagerShared changeItemSelectedState: YES
+//                                       forItem: [self.rawTeamListData objectAtIndex: index]];
+//        
+//        FilledTeamInfo* member = [self.rawTeamListData objectAtIndex:index];
+//        [subscriber sendNext: member];
+//        
+//        return nil;
+//    }];
+//    
+//}
 
 #pragma mark - Filtering -
 
@@ -175,7 +216,7 @@
 
 - (NSString*) getFilteringPredicateFormatString
 {
-    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber contains[cd] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
+    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber CONTAINS[c] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
 }
 
 @end

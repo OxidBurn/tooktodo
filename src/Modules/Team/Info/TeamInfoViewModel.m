@@ -77,7 +77,7 @@ static CGFloat sectionHeaderHeight = 30;
 {
     TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
     
-    ProjectRoleAssignments* memberInfo = [self.model teamMemberByIndex: indexPath.row];
+    FilledTeamInfo* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
     cell.delegate = self;
     

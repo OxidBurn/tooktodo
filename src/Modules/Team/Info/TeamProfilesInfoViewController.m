@@ -18,7 +18,8 @@
 //Classes
 #import "AvatarImageView.h"
 #import "TeamProfileInfoViewModel.h"
-#import "TeamMember.h"
+//#import "TeamMember.h"
+#import "FilledTeamInfo.h"
 #import "Utils.h"
 #import "RolesViewController.h"
 #import "OSAlertController.h"
@@ -126,14 +127,14 @@
 {
     @weakify(self)
     
-    [[self.viewModel updateInfo] subscribeNext: ^(TeamMember* teamMember) {
+    [[self.viewModel updateInfo] subscribeNext: ^(FilledTeamInfo* teamMember) {
         
         @strongify(self)
         
         self.profileFullNameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
         
         self.profileAvatarImageView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
-                                                                               stringByAppendingString: teamMember.avatarPath]];
+                                                                               stringByAppendingString: teamMember.avatarSrc]];
         
         [self.profileInfoTableView reloadData];
         

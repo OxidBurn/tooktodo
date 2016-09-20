@@ -12,11 +12,21 @@
 #import "Utils.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
+#import "FilledTeamInfo.h"
+
+typedef NS_ENUM(NSInteger, PermissionType)
+{
+    SystemAdministrator = -1,
+    Participant = 0,
+    Owner = 1,
+    Administrator = 2,
+};
 
 @interface TeamInfoTableViewCell()
 
 // properties
 
+//@property (nonatomic, strong) FilledTeamInfo* teamInfo;
 
 // outlets
 
@@ -61,47 +71,62 @@
 
 #pragma mark - Public -
 
-- (void) fillCellWithInfo: (ProjectRoleAssignments*) teamMember
-             forIndexPath: (NSIndexPath*)            indexPath
+- (void) fillCellWithInfo: (FilledTeamInfo*) teamInfo
+             forIndexPath: (NSIndexPath*)    indexPath
 {
     self.callToTeamMemberBtn.tag      = indexPath.row;
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
-//    NSString* teamMemberFirstName = (teamMember.firstName.length > 0) ? teamMember.firstName : @"";
-//    
-//    NSString* teamMemberLastName  = (teamMember.lastName.length > 0) ? teamMember.lastName : @"";
-//    
-//    NSString* teamMemberFullName = [NSString stringWithFormat: @"%@ %@", teamMemberFirstName,
-//                                                                         teamMemberLastName];
-//    NSString* teamMemberPosition = (teamMember.comment.length > 0) ? [NSString stringWithFormat: @", %@", teamMember.comment] : @"";
-//    
-//    NSString* teamMemberCompany  = (teamMember.company.length > 0) ? [NSString stringWithFormat: @", %@",teamMember.company] : @"";
+    [self checkIfPhoneNumberExists: teamInfo];
+    [self chechIfEmailExists:       teamInfo];
+
+    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamInfo.avatarSrc]];
+    self.teamMemberName.text       = [NSString stringWithFormat: @"%@ %@", teamInfo.fullname, teamInfo.role];
     
+    self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
     
-//    [self checkIfPhoneNumberExists: teamMember];
-//    [self chechIfEmailExists:       teamMember];
-    
-//    self.teamMemberAvatar.image    = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: teamMember.avatarPath]];
-//    self.teamMemberName.text       = [NSString stringWithFormat: @"%@%@", teamMemberFullName, teamMemberPosition];
-//    self.teamMemberPermission.text = [NSString stringWithFormat: @"!Права доступа!%@", teamMemberCompany];
 }
 
 #pragma mark - Helpers -
 
-//- (void) checkIfPhoneNumberExists: (TeamMember*) teamMember
-//{
-//    if ( teamMember.phoneNumber == nil )
-//    {
-//        self.callToTeamMemberBtn.hidden = YES;
-//    }
-//}
+- (void) checkIfPhoneNumberExists: (FilledTeamInfo*) teamInfo
+{
+    if ( [teamInfo.phoneNumber isEqualToString: @""])
+    {
+        self.callToTeamMemberBtn.hidden = YES;
+    }
+}
 
-//- (void) chechIfEmailExists: (TeamMember*) teamMember
-//{
-//    if ( teamMember.email == nil )
-//    {
-//        self.sendEmailToTeamMemberBtn.hidden = YES;
-//    }
-//}
+- (void) chechIfEmailExists: (FilledTeamInfo*) teamInfo
+{
+    if ( [teamInfo.email isEqualToString: @""] )
+    {
+        self.sendEmailToTeamMemberBtn.hidden = YES;
+    }
+}
+
+- (NSString*) setPermission: (NSUInteger) permission
+{
+    switch (permission)
+    {
+        case SystemAdministrator:
+            return @"Системный администратор";
+            break;
+        case Participant:
+            return @"Участник проекта";
+            break;
+        case Owner:
+            return @"Владелец";
+            break;
+        case Administrator:
+            return @"Адмиистратор";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return @"";
+}
 
 @end
