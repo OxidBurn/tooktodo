@@ -109,7 +109,7 @@ static bool isFirstAccess = YES;
     NSError* parseError       = nil;
     NSArray* responseProjects = response[@"list"];
     NSArray* projectsList     = [ProjectInfoModel arrayOfModelsFromDictionaries: responseProjects
-                                                                         error: &parseError];
+                                                                          error: &parseError];
     
     if ( parseError )
     {

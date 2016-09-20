@@ -175,7 +175,7 @@
 
 - (NSString*) getFilteringPredicateFormatString
 {
-    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber CONTAINS[c] %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
+    return @"(SELF.firstName CONTAINS[c] %@) OR (SELF.lastName CONTAINS[c] %@) OR (SELF.phoneNumber MATCHES %@) OR (SELF.additionalPhoneNumber CONTAINS[c] %@) OR (SELF.email CONTAINS[c] %@)";
 }
 
 @end

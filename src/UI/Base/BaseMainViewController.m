@@ -10,7 +10,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "PopoverViewController.h"
 
-static CGFloat const MEZoomAnimationScaleFactor = 0.95f;
+static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
 static CGFloat const yPadding                   = 20.0f;
 
 @interface BaseMainViewController () 

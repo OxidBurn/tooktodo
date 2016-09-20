@@ -104,8 +104,8 @@ static CGFloat sectionHeaderHeight = 30;
         label.textColor       = [UIColor colorWithRed:0.75 green:0.76 blue:0.78 alpha:1.00];
         label.textAlignment   = NSTextAlignmentCenter;
         label.font            = [UIFont fontWithName: @"SFUIText-Regular" size: 12];
-        label.text            = [Utils getInducendentStringWithValue: [self.model countOfItems]
-                                              withSearchedObjectName: @"участник"];
+        label.text            = [Utils getDeclensionStringWithValue: [self.model countOfItems]
+                                             withSearchedObjectName: @"участник"];
         
         return label;
     }

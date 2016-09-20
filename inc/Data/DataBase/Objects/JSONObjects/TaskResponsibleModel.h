@@ -7,14 +7,17 @@
 //
 
 #import <JSONModel/JSONModel.h>
+
+// Classes
 #import "TaskAssigneeModel.h"
 #import "TaskProjectRoleTypeModel.h"
+#import "ProjectInviteInfoModel.h"
 
 @interface TaskResponsibleModel : JSONModel
 
 @property (strong, nonatomic) TaskAssigneeModel<Optional>* assignee;
 @property (strong, nonatomic) NSNumber<Optional>* responsibleID;
-@property (strong, nonatomic) NSNumber<Optional>* invite;
+@property (strong, nonatomic) ProjectInviteInfoModel<Optional>* invite;
 @property (strong, nonatomic) NSNumber<Optional>* isBlocked;
 @property (strong, nonatomic) NSNumber<Optional>* projectPermission;
 @property (strong, nonatomic) TaskProjectRoleTypeModel<Optional> * projectRoleType;

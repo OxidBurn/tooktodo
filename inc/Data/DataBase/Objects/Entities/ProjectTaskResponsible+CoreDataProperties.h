@@ -2,7 +2,7 @@
 //  ProjectTaskResponsible+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 9/20/16.
 //
 //
 
@@ -15,18 +15,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<ProjectTaskResponsible *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSNumber *invite;
+@property (nullable, nonatomic, copy) NSString *avatarSrc;
+@property (nullable, nonatomic, copy) NSString *displayName;
+@property (nullable, nonatomic, copy) NSString *firstName;
+@property (nullable, nonatomic, copy) NSNumber *isActiveUser;
 @property (nullable, nonatomic, copy) NSNumber *isBlocked;
+@property (nullable, nonatomic, copy) NSString *lastName;
 @property (nullable, nonatomic, copy) NSNumber *projectPermission;
 @property (nullable, nonatomic, copy) NSNumber *responsibleID;
-@property (nullable, nonatomic, copy) NSString *firstName;
-@property (nullable, nonatomic, copy) NSString *lastName;
-@property (nullable, nonatomic, copy) NSString *displayName;
-@property (nullable, nonatomic, copy) NSString *avatarSrc;
-@property (nullable, nonatomic, copy) NSNumber *isActiveUser;
 @property (nullable, nonatomic, retain) ProjectTaskAssignee *assignee;
 @property (nullable, nonatomic, retain) ProjectTaskRoleType *projectRoleType;
 @property (nullable, nonatomic, retain) ProjectTask *task;
+@property (nullable, nonatomic, retain) ProjectInviteInfo *invite;
 
 @end
 

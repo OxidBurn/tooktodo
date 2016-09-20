@@ -414,8 +414,8 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return outString; 
 }
 
-+ (NSString*) getInducendentStringWithValue: (NSUInteger) count
-                     withSearchedObjectName: (NSString*)  value
++ (NSString*) getDeclensionStringWithValue: (NSUInteger) count
+                    withSearchedObjectName: (NSString*)  value
 {
     NSString* foundWordSufix      = @"";
     NSString* searchedObjectSufix = @"";

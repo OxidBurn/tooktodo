@@ -40,6 +40,8 @@
 #import "TaskProjectRoleAssignmentModel.h"
 #import "TaskRoleAssignmentsModel.h"
 #import "TasksGroupedByProjects.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
+#import "ProjectRoleType+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -309,11 +311,6 @@
         responsible.responsibleID = info.responsibleID;
     }
     
-    if ( info.invite )
-    {
-        responsible.invite = info.invite;
-    }
-    
     if ( info.isBlocked )
     {
         responsible.isBlocked = info.isBlocked;
@@ -352,9 +349,20 @@
     responsible.task = task;
     
     // Store responsible assignee
-    [self persistAssignee: info.assignee
-           forResponsible: responsible
-                inContext: context];
+    if ( info.assignee )
+    {
+        [self persistAssignee: info.assignee
+               forResponsible: responsible
+                    inContext: context];
+    }
+    
+    // Store responsible
+    if ( info.invite )
+    {
+        [self persistTaskInviteInfo: info.invite
+                 forTaskResponsible: responsible
+                          inContext: context];
+    }
 }
 
 - (void) persistAssignee: (TaskAssigneeModel*)      info
@@ -378,6 +386,44 @@
     assignee.lastName                         = info.lastName;
     assignee.phoneNumber                      = info.phoneNumber;
     assignee.userName                         = info.userName;
+}
+
+- (void) persistTaskInviteInfo: (ProjectInviteInfoModel*) info
+            forTaskResponsible: (ProjectTaskResponsible*) responsbile
+                     inContext: (NSManagedObjectContext*) context
+{
+    ProjectInviteInfo* invite = [ProjectInviteInfo MR_findFirstOrCreateByAttribute: @"inviteID"
+                                                                         withValue: info.inviteID
+                                                                         inContext: context];
+    
+    invite.inviteID               = info.inviteID;
+    invite.email                  = info.email;
+    invite.firstName              = info.firstName;
+    invite.lastName               = info.lastName;
+    invite.isUsed                 = info.isUsed;
+    invite.isCanceled             = info.isCanceled;
+    invite.inviteStatus           = info.inviteStatus;
+    invite.message                = info.message;
+    invite.projectId              = info.projectId;
+    invite.projectName            = info.projectName;
+    invite.projectTaskResponsible = responsbile;
+    
+    [self persistProjectRoleType: info.projectRoleType
+                forProjectInvite: invite
+                       inContext: context];
+}
+
+- (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
+               forProjectInvite: (ProjectInviteInfo*)      invite
+                      inContext: (NSManagedObjectContext*) context
+{
+    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstOrCreateByAttribute: @"roleTypeID"
+                                                                       withValue: info.roleTypeID
+                                                                       inContext: context];
+    
+    roleType.projectInvite = invite;
+    roleType.title         = info.title;
+    roleType.roleTypeID    = info.roleTypeID;
 }
 
 - (void) persistRoleAssignment: (TaskProjectRoleAssignmentModel*) info

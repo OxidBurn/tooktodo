@@ -18,41 +18,31 @@
     UIFont* customFontForSubTitle = [UIFont fontWithName: @"SFUIText-Regular"
                                                     size: 13.0f];
     
-    UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
+    UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 2, 0, 14)];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
     titleLabel.text            = title;
-    [titleLabel sizeToFit];
+    titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
+    UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 20, 0, 13)];
     subTitleLabel.backgroundColor = [UIColor clearColor];
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
     subTitleLabel.text            = subTitle;
-    [subTitleLabel sizeToFit];
+    subTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
-    UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
+    UIView* twoLineTitleView = [[UIView alloc] initWithFrame: self.navigationController.navigationBar.bounds];
+    
+    twoLineTitleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     [twoLineTitleView addSubview: titleLabel];
     [twoLineTitleView addSubview: subTitleLabel];
     
-    CGFloat widthDiff = subTitleLabel.frame.size.width - titleLabel.frame.size.width;
-    
-    if (widthDiff > 0)
-    {
-        CGRect frame     = titleLabel.frame;
-        frame.origin.x   = widthDiff / 2;
-        titleLabel.frame = CGRectIntegral(frame);
-    }
-    else
-    {
-        CGRect frame        = subTitleLabel.frame;
-        frame.origin.x      = fabs(widthDiff) / 2;
-        subTitleLabel.frame = CGRectIntegral(frame);
-    }
+    titleLabel.width    = twoLineTitleView.width;
+    subTitleLabel.width = twoLineTitleView.width;
     
     self.navigationItem.titleView = twoLineTitleView;
 }

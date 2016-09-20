@@ -2,14 +2,14 @@
 //  ProjectTaskResponsible+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 9/20/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectTask, ProjectTaskAssignee, ProjectTaskRoleType;
+@class ProjectInviteInfo, ProjectTask, ProjectTaskAssignee, ProjectTaskRoleType;
 
 NS_ASSUME_NONNULL_BEGIN
 

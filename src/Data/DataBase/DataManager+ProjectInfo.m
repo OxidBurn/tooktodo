@@ -56,7 +56,10 @@
                                                                   withValue: @(data.projectID)
                                                                   inContext: context];
     
-    projectInfo.lastVisit                        = data.lastVisit;
+    if ( data.lastVisit )
+    {
+        projectInfo.lastVisit = data.lastVisit;
+    }
     projectInfo.isTaskAddAppealClosed            = @(data.isTaskAddAppealClosed);
     projectInfo.realtyClassDescription           = data.realtyClassDescription;
     projectInfo.title                            = data.title;
@@ -323,6 +326,7 @@
         ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
         
         firstProject.isSelected = @(YES);
+        firstProject.lastVisit  = [NSDate date];
         
     }];
 }
@@ -334,6 +338,7 @@
     
     prevSelectedProject.isSelected = @(NO);
     project.isSelected             = @(YES);
+    project.lastVisit              = [NSDate date];
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion: ^(BOOL contextDidSave, NSError * _Nullable error) {
         

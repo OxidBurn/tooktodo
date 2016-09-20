@@ -2,7 +2,7 @@
 //  ProjectInviteInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Nikolay Chaban on 9/20/16.
 //
 //
 
@@ -16,15 +16,16 @@
 
 @dynamic email;
 @dynamic firstName;
-@dynamic lastName;
 @dynamic inviteID;
 @dynamic inviteStatus;
 @dynamic isCanceled;
 @dynamic isUsed;
+@dynamic lastName;
 @dynamic message;
 @dynamic projectId;
 @dynamic projectName;
 @dynamic projectRoleAssignment;
 @dynamic projectRoleType;
+@dynamic projectTaskResponsible;
 
 @end
