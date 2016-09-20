@@ -9,9 +9,15 @@
 #import "BaseMainViewController.h"
 #import "OSDefaultAlertController.h"
 
-@interface LoginViewController : BaseMainViewController <OSDefaultAlertControllerDelegate>
+@interface LoginViewController : BaseMainViewController 
 
 @property (nonatomic, copy) void(^dismissLoginView)();
+
+@property (nonatomic, strong) NSString* alertEmailText;
+
+//methods
+
+
 
 @end
 
