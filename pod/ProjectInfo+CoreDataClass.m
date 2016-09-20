@@ -10,11 +10,11 @@
 #import "OfflineSettings.h"
 #import "ProjectCountry.h"
 #import "ProjectRegion.h"
-#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "ProjectRoleAssignments.h"
 #import "ProjectRoles.h"
 #import "ProjectSystem.h"
-#import "ProjectTask+CoreDataClass.h"
-#import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectTask.h"
+#import "ProjectTaskStage.h"
 #import "TeamMember.h"
 @implementation ProjectInfo
 

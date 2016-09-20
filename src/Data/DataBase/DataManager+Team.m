@@ -15,6 +15,8 @@
 
 // Categories
 #import "DataManager+ProjectInfo.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "DataManager+Tasks.h"
 
 @implementation DataManager (Team)
 
@@ -44,12 +46,7 @@
                       }];
 }
 
-//- (NSArray*) getAllTeamInfo
-//{
-//    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
-//    
-//    return selectedProject.team.allObjects;
-//}
+
 
 - (NSArray*) getAllTeamInfo
 {
@@ -65,6 +62,29 @@
 //    
 //    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
 //}
+
+
+
+- (void) updateTeamMemberPermission: (NSInteger)             permission
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
+    {
+
+        ProjectRoleAssignments* assignment  = [DataManagerShared getSelectedProjectRoleAssignment];
+        
+        assignment.projectPermission = @(permission);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+
 
 - (TeamMember*) getSelectedItem
 {

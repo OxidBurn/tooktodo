@@ -25,4 +25,7 @@
 
 - (TeamMember*) getSelectedItem;
 
+- (void) updateTeamMemberPermission: (NSInteger)             permission
+                     withCompletion: (CompletionWithSuccess) completion;
+
 @end

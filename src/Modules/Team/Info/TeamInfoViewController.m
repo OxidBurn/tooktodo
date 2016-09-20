@@ -61,14 +61,6 @@
     [self bindingUI];
 }
 
-- (void) viewDidAppear: (BOOL) animated
-{
-    [super viewDidAppear: animated];
-    
-    // setup delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
-}
-
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];

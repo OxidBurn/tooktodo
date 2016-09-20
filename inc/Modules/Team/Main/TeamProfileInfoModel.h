@@ -17,7 +17,7 @@
 
 // properties
 
-@property (weak, nonatomic) id<TeamProfileInfoModelDelegate> delegate;
+@property (weak, nonatomic) id <TeamProfileInfoModelDelegate> delegate;
 
 // methods
 
@@ -37,7 +37,7 @@
 
 - (NSNumber*) getPermissions;
 
-
+- (NSInteger) getCurrentUserPermission;
 
 - (NSString*) getContactValueForIndexPath: (NSIndexPath*) indexPath;
 
@@ -48,6 +48,9 @@
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 
 - (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
+
+- (void) updateMemberPermission: (NSInteger) permission;
+
 @end
 
 @protocol TeamProfileInfoModelDelegate <NSObject>
@@ -55,5 +58,6 @@
 // methods
 
 - (void) sendEmailToAdress: (NSString*) email;
+
 
 @end

@@ -166,21 +166,6 @@
 }
 
 
-//- (RACSignal*) markItemAsSelectedAtIndex: (NSUInteger) index
-//{
-//    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-//        
-//    [DataManagerShared changeItemSelectedState: YES
-//                                       forItem: [self.rawTeamListData objectAtIndex: index]];
-//        
-//        FilledTeamInfo* member = [self.rawTeamListData objectAtIndex:index];
-//        [subscriber sendNext: member];
-//        
-//        return nil;
-//    }];
-//    
-//}
-
 #pragma mark - Filtering -
 
 - (void) stopFiltering

@@ -38,7 +38,7 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
-@dynamic projectPermission;
+@dynamic projectPermissiom;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic projectRoleAssignments;
