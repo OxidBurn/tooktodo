@@ -32,7 +32,8 @@
 //- (void) showDesignationAlert: (NSString*) userName;
 
 - (void) showDesignationAlert: (NSString*) userName
-                   withAvatar: (UIImage*)  avatar;
+                   withAvatar: (UIImage*)  avatar
+                  withMessage: (NSString*) message;
 
 - (void) showEmailComposerForMail: (NSString*) email;
 

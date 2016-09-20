@@ -152,10 +152,12 @@
 
 - (void) showDesignationAlert: (NSString*) userName
                    withAvatar: (UIImage*)  avatar
+                  withMessage: (NSString*) message
 {
     
     [OSAlertController showAlertWithImage: avatar
                                  withName: userName
+                              withMessage: message
                              onController: self];
     
 }

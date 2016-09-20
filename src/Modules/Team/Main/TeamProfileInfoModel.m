@@ -18,6 +18,7 @@
 // Categories
 #import "DataManager+Tasks.h"
 #import "DataManager+ProjectInfo.h"
+#import "DataManager+Team.h"
 
 typedef NS_ENUM(NSUInteger, ContactType)
 {
@@ -88,7 +89,7 @@ typedef NS_ENUM(NSInteger, Permission)
 {
     if (_assignment == nil)
     {
-        _assignment = [DataManagerShared getSelectedItem];
+        _assignment = [DataManagerShared getSelectedAssignmentItem];
     }
     
     return _assignment;
@@ -117,8 +118,8 @@ typedef NS_ENUM(NSInteger, Permission)
             
             @strongify(self)
             
-            self.assignment = [DataManagerShared getSelectedItem];
-            
+            self.assignment = [DataManagerShared getSelectedAssignmentItem];
+           
             [self.memberInfo fillTeamInfo: self.assignment];
             
             [subscriber sendNext: self.memberInfo];
@@ -130,6 +131,15 @@ typedef NS_ENUM(NSInteger, Permission)
     }];
     
     return updateUserInfo;
+}
+
+- (void) updateMemberPermission: (NSInteger) permission
+{
+    [DataManagerShared updateTeamMemberPermission: permission
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       self.assignment.projectPermission = @(permission);
+                                   }];
 }
 
 - (NSInteger) countOfContactsContent

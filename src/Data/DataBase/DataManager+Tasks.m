@@ -541,7 +541,7 @@
                       }];
 }
 
-- (ProjectRoleAssignments*) getSelectedItem
+- (ProjectRoleAssignments*) getSelectedAssignmentItem
 {
     ProjectRoleAssignments* assignment = [ProjectRoleAssignments MR_findFirstByAttribute:
                                                                             @"isSelected"

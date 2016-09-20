@@ -189,6 +189,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     if (indexPath.section == 1)
     {
         self.cell.tag = indexPath.row;
+        
         if (self.cell.tag == RoleType)
         {
             if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
@@ -200,18 +201,20 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         else
             if (self.cell.tag == PermissionType)
             {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:)])
+                if ([self.model getPermissions].integerValue != Admin)
                 {
-                    
-                    [self.delegate showDesignationAlert: [self.model getMemberName]
-                                             withAvatar: [self.model getAvatar]];
-                    
-                    
+                    [self designateAdmin];
+                }
+                
+                else
+                {
+                    [self cancelAdminPermission];
                 }
             }
     }
-    
 }
+    
+
 
 - (NSIndexPath*) tableView: (UITableView*) tableView
   willSelectRowAtIndexPath: (NSIndexPath*) indexPath
@@ -231,7 +234,32 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     return indexPath;
 }
 
+#pragma mark - Helpers -
 
+- (void) designateAdmin
+{
+     if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+        {
+            
+            [self.delegate showDesignationAlert: [self.model getMemberName]
+                                     withAvatar: [self.model getAvatar]
+                                    withMessage: @"Назначить администратором"];
+            
+        }
+
+}
+
+- (void) cancelAdminPermission
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+    {
+        
+        [self.delegate showDesignationAlert: [self.model getMemberName]
+                                 withAvatar: [self.model getAvatar]
+                                withMessage: @"Отменить права администратора"];
+        
+    }
+}
 
 #pragma mark - RolesViewControllerDelegate methods -
 
@@ -264,6 +292,8 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     if (btnTag == Ready)
     {
         NSLog(@"Action ready performed");
+        [self.model updateMemberPermission: Admin];
+
     }
 }
 

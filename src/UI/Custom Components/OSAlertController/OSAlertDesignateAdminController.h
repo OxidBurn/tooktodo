@@ -15,7 +15,8 @@
 @property (nonatomic, weak) id <OSAlertDesignateAdminControllerDelegate> delegate;
 
 - (void) setImage: (UIImage*)  image
-         withName: (NSString*) name;
+         withName: (NSString*) name
+      withMessage: (NSString*) message;
 
 @end
 

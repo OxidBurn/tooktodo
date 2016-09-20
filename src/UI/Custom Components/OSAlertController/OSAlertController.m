@@ -30,6 +30,7 @@
 
 + (void) showAlertWithImage: (UIImage*)  image
                    withName: (NSString*) name
+                withMessage: (NSString*) message
                onController: (UIViewController*) controller
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
@@ -41,7 +42,8 @@
                            completion: nil];
     
     [alertController setImage: image
-                     withName: name];
+                     withName: name
+                  withMessage: message];
 }
 
 + (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller

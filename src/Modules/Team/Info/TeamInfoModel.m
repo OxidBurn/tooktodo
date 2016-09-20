@@ -158,8 +158,6 @@
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index
 {
-//    FilledTeamInfo* member = ;
-    
     [DataManagerShared changeItemSelectedState: YES
                                        forItem: [self.rawTeamListData objectAtIndex:index]];
     
