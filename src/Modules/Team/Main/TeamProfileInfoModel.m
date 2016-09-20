@@ -17,6 +17,7 @@
 
 // Categories
 #import "DataManager+Tasks.h"
+#import "DataManager+ProjectInfo.h"
 
 typedef NS_ENUM(NSUInteger, ContactType)
 {
@@ -173,21 +174,13 @@ typedef NS_ENUM(NSInteger, Permission)
 }
 
 
-//- (NSInteger) getCurrentUserPermission
-//{
-//    
-//    NSInteger permissionForProject = [DataManagerShared getSelectedProjectPermission];
-//    
-//    return permissionForProject;
-//    
-//}
-
-//- (NSInteger) getSelectedProjectPermission
-//{
-//    ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
-//    
-//    return selectedProjectInfo.projectPermission.integerValue;
-//}
+- (NSInteger) getCurrentUserPermission
+{
+    NSInteger permissionForProject = [DataManagerShared getSelectedProjectPermission];
+    
+    return permissionForProject;
+    
+}
 
 
 - (NSArray*) returnContactsInfo

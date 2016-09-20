@@ -34,7 +34,13 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     Ready,
 };
 
-
+typedef NS_ENUM(NSInteger, PermissionTypeList) {
+    
+    SystemAdmin = -1,
+    Participant = 0,
+    Owner       = 1,
+    Admin       = 2,
+};
 
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
@@ -102,6 +108,8 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     }
     else
     {
+        NSInteger currentUserPermission = [self.model getCurrentUserPermission];
+        
         self.cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
         
         self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
@@ -112,6 +120,28 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
+        
+        switch ( currentUserPermission )
+        {
+            case Admin:
+            {
+                if ( indexPath.row == 0 )
+                {
+                    self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                }
+            }
+                break;
+                
+            case Owner:
+            {
+                self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+                
+            default:
+                break;
+        }
+
+        
         
         return self.cell;
     }
@@ -183,6 +213,25 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     
 }
 
+- (NSIndexPath*) tableView: (UITableView*) tableView
+  willSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    if ( [self.model getCurrentUserPermission] == Participant )
+    {
+        
+        if ( indexPath.section == 1 )
+        {
+            
+            tableView.allowsSelection = NO;
+            
+            return nil;
+        }
+        
+    }
+    return indexPath;
+}
+
+
 
 #pragma mark - RolesViewControllerDelegate methods -
 
@@ -217,8 +266,6 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         NSLog(@"Action ready performed");
     }
 }
-
-
 
 
 @end
