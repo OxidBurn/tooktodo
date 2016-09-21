@@ -84,48 +84,31 @@
                       }];
 }
 
-
-//- (void) updateTeamMemberRole: (ProjectRoles*)         role
-//               withCompletion: (CompletionWithSuccess) completion
-//{
-//    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
-//     {
-//         
-//         ProjectRoleAssignments* assignment  = [DataManagerShared getSelectedProjectRoleAssignment];
-//        
-//         assignment.projectRoleType.roleTypeID = role.roleID;
-//         assignment.projectRoleType.title = role.title;
-//         
-//     }
-//                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
-//                          
-//                          if ( completion )
-//                              completion(contextDidSave);
-//                          
-//                      }];
-//}
-
-- (void) updateTeamMemberRole: (NSString*)         role
+- (void) updateTeamMemberRole: (ProjectRoles*)         role
                withCompletion: (CompletionWithSuccess) completion
 {
-    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
-     {
-         
-         ProjectRoleAssignments* assignment  = [ProjectRoleAssignments MR_findFirstByAttribute: @"isSelected"
-                                                                                                                          withValue: @(YES) inContext: localContext];
-         
-         //assignment.projectRoleType.roleTypeID = role.roleID;
-         assignment.projectRoleType.title = role;
-         
-     }
-                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
-                          
-                          if ( completion )
-                              completion(contextDidSave);
-                          
-                      }];
+    ProjectRoleAssignments* assignee = [self getSelectedProjectRoleAssignment];
+    
+    if ( assignee.projectRoleType )
+    {
+        assignee.projectRoleType.roleTypeID = role.roleID;
+        assignee.projectRoleType.title      = role.title;
+    }
+    else
+    {
+        ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+        
+        roleType.roleTypeID = role.roleID;
+        roleType.title      = role.title;
+        
+        assignee.projectRoleType = roleType;
+    }
+    
+    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
+    
+    if ( completion )
+        completion(YES);
 }
-
 
 - (TeamMember*) getSelectedItem
 {
