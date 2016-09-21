@@ -12,10 +12,15 @@
 // Classes
 #import "ProjectRoles.h"
 
+#import "ProjectRoleType+CoreDataClass.h"
+
 @interface RolesViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 - (ProjectRoles*) getSelectedItem;
 
 - (RACSignal*) updateRolesInfo;
+
+//- (ProjectRoleType*) getSelectedItem;
+
 
 @end

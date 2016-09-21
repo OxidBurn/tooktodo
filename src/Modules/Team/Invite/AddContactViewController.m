@@ -240,6 +240,12 @@
     self.addContactViewModel.roleID = value.sort;
 }
 
+//- (void) didSelectRole: (ProjectRoleType*) value
+//{
+//    self.roleLabel.text             = value.title;
+//    self.addContactViewModel.roleID = value.roleTypeID;
+//}
+
 - (void) tableView: (UITableView*)     tableView
    willDisplayCell: (UITableViewCell*) cell
  forRowAtIndexPath: (NSIndexPath*)     indexPath

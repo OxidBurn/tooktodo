@@ -15,7 +15,7 @@
 
 // Categories
 #import "DataManager+ProjectInfo.h"
-#import "ProjectRoleAssignments+CoreDataClass.h"
+
 #import "DataManager+Tasks.h"
 
 @implementation DataManager (Team)
@@ -84,6 +84,47 @@
                       }];
 }
 
+
+//- (void) updateTeamMemberRole: (ProjectRoles*)         role
+//               withCompletion: (CompletionWithSuccess) completion
+//{
+//    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
+//     {
+//         
+//         ProjectRoleAssignments* assignment  = [DataManagerShared getSelectedProjectRoleAssignment];
+//        
+//         assignment.projectRoleType.roleTypeID = role.roleID;
+//         assignment.projectRoleType.title = role.title;
+//         
+//     }
+//                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+//                          
+//                          if ( completion )
+//                              completion(contextDidSave);
+//                          
+//                      }];
+//}
+
+- (void) updateTeamMemberRole: (NSString*)         role
+               withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
+     {
+         
+         ProjectRoleAssignments* assignment  = [ProjectRoleAssignments MR_findFirstByAttribute: @"isSelected"
+                                                                                                                          withValue: @(YES) inContext: localContext];
+         
+         //assignment.projectRoleType.roleTypeID = role.roleID;
+         assignment.projectRoleType.title = role;
+         
+     }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
 
 
 - (TeamMember*) getSelectedItem

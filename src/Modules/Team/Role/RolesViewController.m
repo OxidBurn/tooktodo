@@ -86,8 +86,7 @@
 - (IBAction) onReady: (UIBarButtonItem*) sender
 {
     if ( self.delegate )
-        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
-    
+       [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
     [self.navigationController popViewControllerAnimated: YES];
 }
 

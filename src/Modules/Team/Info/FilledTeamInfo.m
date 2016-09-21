@@ -8,12 +8,7 @@
 
 #import "FilledTeamInfo.h"
 #import "Utils.h"
-
-@interface FilledTeamInfo()
-
-
-
-@end
+#import "TeamProfileInfoModel.h"
 
 @implementation FilledTeamInfo
 
@@ -22,17 +17,17 @@
     if (assignment.assignee != nil)
     {
         ProjectTaskAssignee* assignee = assignment.assignee;
-        ProjectRoles* role = assignee.role;
+        ProjectRoleType* roleType     = assignment.projectRoleType;
         
-        self.firstName       = assignee.firstName ? assignee.firstName : @"";
-        self.lastName        = assignee.lastName ? assignee.lastName : @"";
-        self.fullname        = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
-        self.email           = assignee.email ? assignee.email : @"";
-        self.phoneNumber        = assignee.phoneNumber ? assignee.phoneNumber : @"";
-        self.additionalPhoneNumber = assignee.additionalPhoneNumber ? assignee.additionalPhoneNumber : @"";
-        self.role            = role.title ? role.title : @"";
-        self.avatarSrc      = assignee.avatarSrc ? assignee.avatarSrc : @"";
-       self.projectPermission = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.firstName              = assignee.firstName ? assignee.firstName : @"";
+        self.lastName               = assignee.lastName ? assignee.lastName : @"";
+        self.fullname               = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+        self.email                  = assignee.email ? assignee.email : @"";
+        self.phoneNumber            = assignee.phoneNumber ? assignee.phoneNumber : @"";
+        self.additionalPhoneNumber  = assignee.additionalPhoneNumber ? assignee.additionalPhoneNumber : @"";
+        self.role                   = roleType.title ? roleType.title : @"";
+        self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
+        self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         
     }
     
@@ -40,33 +35,32 @@
     {
         
         ProjectInviteInfo* invite = assignment.invite;
-        ProjectRoleType* role = invite.projectRoleType;
+        ProjectRoleType* roleType = assignment.projectRoleType;
+
         
-        self.firstName = invite.firstName ? invite.firstName : @"";
-        self.lastName  = invite.lastName ? invite.firstName : @"";
-        self.fullname  = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
-        self.email     = invite.email ? invite.firstName : @"";
-        self.phoneNumber  = @"";
-        self.additionalPhoneNumber = @"";
-        self.role = role.title ? role.title : @"";
-        self.avatarSrc = @"";
-        self.projectPermission = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.firstName              = invite.firstName ? invite.firstName : @"";
+        self.lastName               = invite.lastName ? invite.firstName : @"";
+        self.fullname               = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+        self.email                  = invite.email ? invite.firstName : @"";
+        self.phoneNumber            = @"";
+        self.additionalPhoneNumber  = @"";
+        self.role                   = roleType.title ? roleType.title : @"";
+        self.avatarSrc              = @"";
+        self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
     }
     
     else
     {
-        self.firstName =  @"";
-        self.lastName  =  @"";
-        self.fullname  = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
-        self.email     =  @"";
-        self.phoneNumber  = @"";
-        self.additionalPhoneNumber = @"";
-        self.role = @"";
-        self.avatarSrc = @"";
-        self.projectPermission = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.firstName              = @"";
+        self.lastName               = @"";
+        self.fullname               = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+        self.email                  = @"";
+        self.phoneNumber            = @"";
+        self.additionalPhoneNumber  = @"";
+        self.role                   = @"";
+        self.avatarSrc              = @"";
+        self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
     }
 }
-
-
 
 @end

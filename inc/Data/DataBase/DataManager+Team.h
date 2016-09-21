@@ -11,6 +11,7 @@
 // Classes
 #import "TeamMember.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
 
 @interface DataManager (Team)
 
@@ -28,4 +29,9 @@
 - (void) updateTeamMemberPermission: (NSInteger)             permission
                      withCompletion: (CompletionWithSuccess) completion;
 
+//- (void) updateTeamMemberRole: (ProjectRoles*)      role
+//               withCompletion: (CompletionWithSuccess) completion;
+
+- (void) updateTeamMemberRole: (NSString*)      role
+               withCompletion: (CompletionWithSuccess) completion;
 @end

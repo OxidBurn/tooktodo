@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, PermissionType)
 
     [self.teamMemberAvatar sd_setImageWithURL: [NSURL URLWithString: teamInfo.avatarSrc]];
     
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@ %@", teamInfo.fullname, teamInfo.role];
+    self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
     

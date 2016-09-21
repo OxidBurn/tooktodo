@@ -80,13 +80,13 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 - (RACSignal*) updateInfo
 {
     return [self.model updateUserInfo];
+
 }
 
 - (void) performActionForIndex: (NSUInteger) index
 {
     [self.model performActionForIndex: index];
 }
-
 
 #pragma mark - TableView datasource methods -
 
@@ -124,6 +124,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
+        [self.model reloadContent];
         self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
@@ -272,9 +273,14 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 - (void) didSelectRole: (ProjectRoles*) value
 {
+    [self.model updateMemberRole: value.title];
     self.cell.detailTextLabel.text = value.title;
+    
+    [self.model reloadContent];
+    if ( self.reloadTableView )
+        self.reloadTableView();
+   
 }
-
 
 #pragma mark - Model delegate methods -
 
