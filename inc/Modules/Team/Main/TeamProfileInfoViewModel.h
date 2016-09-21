@@ -17,6 +17,8 @@
 
 @property (nonatomic, weak) id<TeamProfileViewModelDelegate> delegate;
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
 - (RACSignal*) updateInfo;
 
 - (void) performActionForIndex: (NSUInteger) index;

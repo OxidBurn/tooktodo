@@ -64,6 +64,15 @@
     [super viewWillAppear: animated];
     
     [self updateUserInfo];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.profileInfoTableView reloadData];
+        
+    };
+    
 }
 
 - (void) viewDidLoad
@@ -133,6 +142,7 @@
         @strongify(self)
         
         self.profileFullNameLabel.text    = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
+        
         
         [self.profileAvatarImageView sd_setImageWithURL: [NSURL URLWithString: teamMember.avatarSrc]];
         

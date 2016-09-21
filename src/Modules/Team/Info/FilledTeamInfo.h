@@ -30,4 +30,6 @@
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 
+- (void) updateRole;
+
 @end

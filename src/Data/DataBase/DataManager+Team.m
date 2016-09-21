@@ -15,7 +15,7 @@
 
 // Categories
 #import "DataManager+ProjectInfo.h"
-#import "ProjectRoleAssignments+CoreDataClass.h"
+
 #import "DataManager+Tasks.h"
 
 @implementation DataManager (Team)
@@ -84,7 +84,31 @@
                       }];
 }
 
-
+- (void) updateTeamMemberRole: (ProjectRoles*)         role
+               withCompletion: (CompletionWithSuccess) completion
+{
+    ProjectRoleAssignments* assignee = [self getSelectedProjectRoleAssignment];
+    
+    if ( assignee.projectRoleType )
+    {
+        assignee.projectRoleType.roleTypeID = role.roleID;
+        assignee.projectRoleType.title      = role.title;
+    }
+    else
+    {
+        ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+        
+        roleType.roleTypeID = role.roleID;
+        roleType.title      = role.title;
+        
+        assignee.projectRoleType = roleType;
+    }
+    
+    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
+    
+    if ( completion )
+        completion(YES);
+}
 
 - (TeamMember*) getSelectedItem
 {

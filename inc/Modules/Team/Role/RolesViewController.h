@@ -8,6 +8,7 @@
 
 // Classes
 #import "ProjectRoles.h"
+#import "ProjectRoleType+CoreDataClass.h"
 
 @protocol RolesViewControllerDelegate; // делегат этого контроллера
 
@@ -21,4 +22,5 @@
 
 - (void) didSelectRole: (ProjectRoles*) value; //устанавливает выбранную роль
 
+//- (void) didSelectRole: (ProjectRoleType*) value;
 @end

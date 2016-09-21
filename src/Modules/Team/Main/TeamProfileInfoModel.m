@@ -75,6 +75,11 @@ typedef NS_ENUM(NSInteger, Permission)
     return _detailLabelsContent;
 }
 
+- (void) reloadContent
+{
+    self.detailLabelsContent = nil;
+}
+
 - (NSArray*) contactsContent
 {
     if (_contactsContent == nil)
@@ -112,7 +117,7 @@ typedef NS_ENUM(NSInteger, Permission)
 {
     @weakify(self)
     
-    RACSignal* updateUserInfo = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* updateUserInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [[RACScheduler mainThreadScheduler] schedule: ^{
             
@@ -220,6 +225,19 @@ typedef NS_ENUM(NSInteger, Permission)
                                        
                                        self.assignment.projectPermission = @(permission);
                                    }];
+}
+
+- (void) updateMemberRole: (ProjectRoles*) role
+{
+    [DataManagerShared updateTeamMemberRole: role
+                             withCompletion:^(BOOL isSuccess) {
+                                 
+                                 FilledTeamInfo* teamMember = [FilledTeamInfo new];
+                                 [teamMember fillTeamInfo: self.assignment];
+                                 
+                                 teamMember.role = role.title;
+                                 
+                            }];
 }
 
 - (NSInteger) getCurrentUserPermission

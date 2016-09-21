@@ -10,6 +10,7 @@
 
 // Frameworks
 #import "ReactiveCocoa.h"
+#import "ProjectRoles.h"
 
 @protocol TeamProfileInfoModelDelegate;
 
@@ -50,6 +51,10 @@
 - (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 
 - (void) updateMemberPermission: (NSInteger) permission;
+
+- (void) reloadContent;
+
+- (void) updateMemberRole: (ProjectRoles*) role;
 
 @end
 
