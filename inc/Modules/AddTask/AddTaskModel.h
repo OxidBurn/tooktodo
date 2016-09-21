@@ -19,4 +19,6 @@
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
 
+- (void) updateTaskNameWithString: (NSString*) newTaskName;
+
 @end

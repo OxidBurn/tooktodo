@@ -15,9 +15,11 @@
 #import "OSGroupOfUsersInfoCellFactory.h"
 #import "OSSwitchTableCellFactory.h"
 #import "OSFlexibleTextCellFactory.h"
+#import "OSFlexibleTextFieldCellFactory.h"
 
 typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
     
+    FlexibleTextFieldCell,
     FlexibleCell,
     RightDetailCell,
     SwitchCell,
@@ -69,7 +71,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 {
     if ( _addTaskTableViewCellsInfo == nil )
     {
-        _addTaskTableViewCellsInfo = @[@"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
+        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
     }
     
     return _addTaskTableViewCellsInfo;
@@ -117,6 +119,15 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     
     switch ( cellTypeIndex )
     {
+        case FlexibleTextFieldCell:
+        {
+            OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
+            
+            cell = [factory returnFlexibleTextFieldCellWithTextContent: content[TitleTextKey]
+                                                          forTableView: tableView];
+        }
+            break;
+            
         case RightDetailCell:
         {
             OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
@@ -124,8 +135,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
             cell = [factory returnRightDetailCellWithTitle: content[TitleTextKey]
                                             withDetailText: content[DetailTextKey]
                                               forTableView: tableView];
-            break;
         }
+            break;
             
         case FlexibleCell:
         {
@@ -196,6 +207,36 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     
     return content[SegueIdKey];
 }
+
+- (void) updateTaskNameWithString: (NSString*) newTaskName
+{
+    NSArray* sectionContent = self.addTaskTableViewContent[0];
+    
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
+    
+    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    
+    if ( [newTaskName isEqualToString: @""] )
+    {
+        newTaskName = @"Название задачи";
+    }
+
+    NSDictionary* newRow = @{ CellIdKey    : self.addTaskTableViewCellsInfo[FlexibleTextFieldCell],
+                              TitleTextKey : newTaskName };
+            
+    [sectionCopy removeObjectAtIndex: 0];
+            
+    [sectionCopy insertObject: newRow atIndex: 0];
+    
+    sectionContent = [sectionCopy copy];
+    
+    [contentCopy replaceObjectAtIndex: 0 withObject: sectionContent];
+    
+    self.addTaskTableViewContent = [contentCopy copy];
+    
+}
+
+
 #pragma mark - Internal -
 
 - (NSArray*) createTableViewContent
@@ -212,7 +253,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 - (NSArray*) createSectionOne
 {
     
-    NSDictionary* rowOne   = @{ CellIdKey : self.addTaskTableViewCellsInfo[FlexibleCell],
+    NSDictionary* rowOne   = @{ CellIdKey : self.addTaskTableViewCellsInfo[FlexibleTextFieldCell],
                                 TitleTextKey  : @"Название задачи" };
     
     NSDictionary* rowTwo   = @{ CellIdKey  : self.addTaskTableViewCellsInfo[FlexibleCell],

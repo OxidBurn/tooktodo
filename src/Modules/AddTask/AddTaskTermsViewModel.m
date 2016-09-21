@@ -11,7 +11,7 @@
 // Classes
 #import "AddTaskTermsModel.h"
 
-@interface AddTaskTermsViewModel()
+@interface AddTaskTermsViewModel() <AddTaskTermsModelDelegate>
 
 // properties
 @property (strong, nonatomic) AddTaskTermsModel* model;
@@ -36,6 +36,8 @@
     if ( _model == nil )
     {
         _model = [AddTaskTermsModel new];
+        
+        _model.delegate = self;
         
         self.startDatePickerShowed = NO;
         self.endDatePickerShowed   = NO;
@@ -142,6 +144,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             break;
     }
     
+}
+
+#pragma mark - AddTaskTermsModelDelegate methods -
+
+- (void) reloadTermsTableView
+{
+    if ( [self.delegate respondsToSelector: @selector(reloadAddTaskTableView)] )
+         [self.delegate reloadAddTaskTableView];
 }
 
 #pragma mark - Helpers -

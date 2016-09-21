@@ -11,6 +11,17 @@
 // Frameworks
 @import UIKit;
 
+@protocol AddTaskTermsViewModelDelegate;
+
 @interface AddTaskTermsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+
+// properties
+@property (weak, nonatomic) id <AddTaskTermsViewModelDelegate> delegate;
+
+@end
+
+@protocol AddTaskTermsViewModelDelegate <NSObject>
+
+- (void) reloadAddTaskTableView;
 
 @end

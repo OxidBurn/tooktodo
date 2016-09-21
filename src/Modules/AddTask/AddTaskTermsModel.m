@@ -12,6 +12,8 @@
 #import "OSSwitchTableCellFactory.h"
 #import "OSRightDetailCellFactory.h"
 #import "OSDatePickerCellFactory.h"
+#import "OSDatePickerCell.h"
+
 
 typedef NS_ENUM(NSUInteger, TermsCellsId) {
     
@@ -35,7 +37,7 @@ static NSString* SwitchStateKey   = @"SwitchState";
 static NSString* DatePickerTagKey = @"DatePickerTag";
 
 
-@interface AddTaskTermsModel()
+@interface AddTaskTermsModel() <OSDatePickerCellDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* tableViewContent;
@@ -126,7 +128,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             NSUInteger tag = tagInNumber.integerValue;
             
             cell = [factory returnDatePickerCellWithTag: tag
-                                           forTableView: tableView];
+                                           forTableView: tableView
+                                           withDelegate: self];
             
         }
             break;
@@ -172,13 +175,58 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven ];
 }
 
+#pragma mark - OSDatePickerCellDelegate methods -
+
+- (void) updateDateLabelWithDate: (NSDate*)    date
+                forPickerWithTag: (NSUInteger) pickerTag
+{
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.tableViewContent];
+        
+        switch ( pickerTag )
+        {
+            case StartDatePicker:
+            {
+                
+                NSString* stringDate = [self getStringFromDate: date];
+                
+                NSDictionary* newRow = @{ CellIdKey     : self.termsCellsInfo[RightDetailCell],
+                                          DetailTextKey : stringDate,
+                                          TitleTextKey  : @"Начало" };
+                
+                [contentCopy removeObjectAtIndex: 0];
+                
+                [contentCopy insertObject: newRow atIndex: 0];
+            }
+                break;
+                
+            case EndDatePicker:
+            {
+                NSString* stringDate = [self getStringFromDate: date];
+                
+                NSDictionary* newRow = @{ CellIdKey     : self.termsCellsInfo[RightDetailCell],
+                                          DetailTextKey : stringDate,
+                                          TitleTextKey  : @"Конец" };
+                
+                [contentCopy replaceObjectAtIndex: 2 withObject: newRow];
+            }
+                
+            default:
+                break;
+        }
+        
+        self.tableViewContent = [contentCopy copy];
+        
+        if ([self.delegate respondsToSelector: @selector(reloadTermsTableView)] )
+            [self.delegate reloadTermsTableView];
+}
+
 #pragma mark - Helpers -
 
-/*- (NSString*) getStringFromDate: (NSDate*) date
+- (NSString*) getStringFromDate: (NSDate*) date
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
-    [formatter setDateFormat: @"yyyy/MM/dd HH:mm"];
+    [formatter setDateFormat: @"yyyy dd MM"];
     
     NSString* dateFromString = date ? [formatter stringFromDate: date] : @"Не выбрано";
     
@@ -188,6 +236,6 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 - (NSNumber*) getStateInNumber: (BOOL) boolValue
 {
     return boolValue ? @(1) : @(0);
-}*/
+}
 
 @end

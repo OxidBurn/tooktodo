@@ -24,4 +24,6 @@
 
 - (void) performSegueWithSegueId: (NSString*) segueId;
 
+- (void) reloadAddTaskTableView;
+
 @end

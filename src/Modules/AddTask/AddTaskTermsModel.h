@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol AddTaskTermsModelDelegate;
+
 @interface AddTaskTermsModel : NSObject
+
+// properties
+@property (weak, nonatomic) id <AddTaskTermsModelDelegate> delegate;
 
 // methods
 - (NSUInteger) getNumberOfRows;
 
 - (UITableViewCell*) returnCellForTableView: (UITableView*) tableView
                               withIndexPath: (NSIndexPath*) indexPath;
+@end
+
+@protocol AddTaskTermsModelDelegate <NSObject>
+
+- (void) reloadTermsTableView;
+
 @end

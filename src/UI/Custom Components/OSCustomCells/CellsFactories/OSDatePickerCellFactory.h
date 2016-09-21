@@ -14,7 +14,8 @@
 @interface OSDatePickerCellFactory : NSObject
 
 // methods
-- (UITableViewCell*) returnDatePickerCellWithTag: (NSUInteger) pickerTag
-                                    forTableView: (UITableView*) tableView;
+- (UITableViewCell*) returnDatePickerCellWithTag: (NSUInteger)   pickerTag
+                                    forTableView: (UITableView*) tableView
+                                    withDelegate: (id)           delegate;
 
 @end

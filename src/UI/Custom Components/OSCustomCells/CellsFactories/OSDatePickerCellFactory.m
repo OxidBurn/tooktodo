@@ -17,10 +17,12 @@
 
 - (UITableViewCell*) returnDatePickerCellWithTag: (NSUInteger)   pickerTag
                                     forTableView: (UITableView*) tableView
+                                    withDelegate: (id)           delegate
 {
     OSDatePickerCell* cell = [tableView dequeueReusableCellWithIdentifier: @"DatePickerCellID"];
     
-    [cell setTagToDatePicker: pickerTag];
+    [cell setTagToDatePicker: pickerTag
+                withDelegate: delegate];
     
     return cell;
 }

@@ -41,8 +41,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayt-HZ-0Ne">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                                    <color key="textColor" red="0.47058823529999999" green="0.52156862749999999" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -282,7 +282,7 @@
                                                         <constraint firstAttribute="height" constant="18" id="07G-w7-hBG"/>
                                                         <constraint firstAttribute="width" constant="150" id="cIV-cU-PPl"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -316,6 +316,43 @@
                                             <outlet property="markImageHorizontalToDetailConstraint" destination="rQB-Ab-gUh" id="rZv-WN-eg3"/>
                                             <outlet property="markImageView" destination="h62-3r-bMB" id="Qd4-YR-jYK"/>
                                             <outlet property="titleLabel" destination="y3u-A7-mdE" id="23c-Ee-f0a"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FlexibleTextFieldCellID" id="gLR-db-Qcl" customClass="OSFlexibleTextFieldCell">
+                                        <rect key="frame" x="0.0" y="284" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gLR-db-Qcl" id="FDz-F9-WBn">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название задачи" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFE-k6-xYP">
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                                    <color key="textColor" red="0.47058823529411764" green="0.52156862745098043" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TZ5-h6-ngS">
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="gLR-db-Qcl" id="5AF-Ds-Fy9"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TZ5-h6-ngS" firstAttribute="top" secondItem="FDz-F9-WBn" secondAttribute="top" constant="11" id="2xv-So-u5x"/>
+                                                <constraint firstAttribute="trailing" secondItem="WFE-k6-xYP" secondAttribute="trailing" constant="20" id="Ecn-Qw-5Hi"/>
+                                                <constraint firstAttribute="bottom" secondItem="TZ5-h6-ngS" secondAttribute="bottom" constant="12" id="Q15-UW-uyZ"/>
+                                                <constraint firstItem="WFE-k6-xYP" firstAttribute="leading" secondItem="FDz-F9-WBn" secondAttribute="leading" constant="20" id="S1N-1D-ooI"/>
+                                                <constraint firstAttribute="bottom" secondItem="WFE-k6-xYP" secondAttribute="bottom" constant="12" id="cg9-NG-MBA"/>
+                                                <constraint firstItem="TZ5-h6-ngS" firstAttribute="leading" secondItem="FDz-F9-WBn" secondAttribute="leading" constant="20" id="lup-ok-Wgx"/>
+                                                <constraint firstAttribute="trailing" secondItem="TZ5-h6-ngS" secondAttribute="trailing" constant="20" id="sIv-xJ-gQ3"/>
+                                                <constraint firstItem="WFE-k6-xYP" firstAttribute="top" secondItem="FDz-F9-WBn" secondAttribute="top" constant="11" id="x2q-Ta-ZZa"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="taskNameLabel" destination="WFE-k6-xYP" id="oLB-KY-Fhz"/>
+                                            <outlet property="taskNamtTextField" destination="TZ5-h6-ngS" id="hVp-8W-Bnc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -545,7 +582,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gab-O0-CQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1407" y="314"/>
+            <point key="canvasLocation" x="1405.5999999999999" y="313.49325337331339"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mz1-27-Jhc">
@@ -736,6 +773,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="495993417.99983501">
                                                         <!--2016-09-19 15:56:58 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="onDatePicker:" destination="1gS-No-HHM" eventType="valueChanged" id="Toj-pO-9CD"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

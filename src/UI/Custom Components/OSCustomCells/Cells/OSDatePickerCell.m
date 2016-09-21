@@ -15,6 +15,7 @@
 
 // methods
 
+- (IBAction) onDatePicker: (UIDatePicker*) sender;
 
 @end
 
@@ -23,8 +24,20 @@
 #pragma mark - Public -
 
 - (void) setTagToDatePicker: (NSUInteger) tag
+               withDelegate: (id)         delegate
 {
     self.datePicker.tag = tag;
+    
+    self.delegate = delegate;
+}
+
+#pragma mark - Actions -
+
+- (IBAction) onDatePicker: (UIDatePicker*) sender
+{
+    if ( [self.delegate respondsToSelector: @selector(updateDateLabelWithDate:forPickerWithTag:)] )
+         [self.delegate updateDateLabelWithDate: sender.date
+                               forPickerWithTag: sender.tag];
 }
 
 @end

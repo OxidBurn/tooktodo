@@ -10,8 +10,9 @@
 
 // Classes
 #import "AddTaskModel.h"
+#import "OSFlexibleTextFieldCell.h"
 
-@interface AddTaskViewModel()
+@interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate>
 
 // properties
 @property (strong, nonatomic) AddTaskModel* model;
@@ -107,11 +108,49 @@ heightForHeaderInSection: (NSInteger)   section
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
     NSString* segueID = [self.model getSegueIdForIndexPath: indexPath];
     
     if ( [self.delegate respondsToSelector: @selector(performSegueWithSegueId:)] )
     {
         [self.delegate performSegueWithSegueId: segueID];
     }
+    
+    if ( indexPath.section == 0 )
+    {
+        switch ( indexPath.row )
+        {
+            case 0:
+            {
+                OSFlexibleTextFieldCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+            
+                cell = (OSFlexibleTextFieldCell*)cell;
+            
+                cell.delegate = self;
+            
+                [cell editTextLabel];
+            }
+                break;
+            
+            default:
+                break;
+        }
+    }
 }
+
+#pragma mark - OSFlexibleTextFieldDelegate methods -
+
+- (void) updateFlexibleTextFieldCellWithText: (NSString*) newTaskNameString
+{
+    [self.model updateTaskNameWithString: newTaskNameString];
+    
+    if ( [self.delegate respondsToSelector: @selector(reloadAddTaskTableView)] )
+    {
+        [self.delegate reloadAddTaskTableView];
+    }
+}
+
+
 @end

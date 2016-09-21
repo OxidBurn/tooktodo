@@ -87,6 +87,11 @@
     }
 }
 
+- (void) reloadAddTaskTableView
+{
+    [self.addTaskTableView reloadData];
+}
+
 #pragma mark - Internal methods -
 
 - (UIView*) twoLineTitleView

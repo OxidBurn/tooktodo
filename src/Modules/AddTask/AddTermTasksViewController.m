@@ -11,7 +11,7 @@
 // Classes
 #import "AddTaskTermsViewModel.h"
 
-@interface AddTermTasksViewController ()
+@interface AddTermTasksViewController () <AddTaskTermsViewModelDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* addTermTasksTableView;
@@ -57,6 +57,8 @@
     if ( _viewModel == nil )
     {
         _viewModel = [AddTaskTermsViewModel new];
+        
+        _viewModel.delegate = self;
     }
     
     return _viewModel;
@@ -85,6 +87,13 @@
 {
     self.addTermTasksTableView.dataSource = self.viewModel;
     self.addTermTasksTableView.delegate   = self.viewModel;
+}
+
+#pragma mark - AddTaskTermsViewModelDelegate methods -
+
+- (void) reloadAddTaskTableView
+{
+    [self.addTermTasksTableView reloadData];
 }
 
 @end
