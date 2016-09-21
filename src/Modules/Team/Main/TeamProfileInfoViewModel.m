@@ -212,7 +212,6 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
                 {
                     [self designateAdmin];
                 }
-                
                 else
                 {
                     [self cancelAdminPermission];
