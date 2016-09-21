@@ -54,8 +54,7 @@
 
 - (void) reloadContent;
 
-//- (void) updateMemberRole: (ProjectRoles*) role;
-- (void) updateMemberRole: (NSString*) role;
+- (void) updateMemberRole: (ProjectRoles*) role;
 
 @end
 

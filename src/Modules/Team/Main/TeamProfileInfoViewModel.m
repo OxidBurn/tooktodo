@@ -273,7 +273,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 - (void) didSelectRole: (ProjectRoles*) value
 {
-    [self.model updateMemberRole: value.title];
+    [self.model updateMemberRole: value];
     self.cell.detailTextLabel.text = value.title;
     
     [self.model reloadContent];
