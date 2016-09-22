@@ -6,13 +6,19 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "FilterForResponsibleViewController.h"
+#import "SelectResponsibleViewController.h"
 
-@interface FilterForResponsibleViewController ()
+// Classes
+#import "SelectResponsibleViewModel.h"
+
+@interface SelectResponsibleViewController ()
+
+// Outlets
+@property (weak, nonatomic) IBOutlet UITableView* selectResponsibleTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
 
 // Properties
-@property (weak, nonatomic) IBOutlet UITableView* filterForResponsibleTableView;
-@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
+@property (strong, nonatomic) SelectResponsibleViewModel* viewModel;
 
 // Methods
 - (IBAction) onSelectedAllBtn: (UIButton*) sender;
@@ -23,13 +29,15 @@
 
 @end
 
-@implementation FilterForResponsibleViewController
+@implementation SelectResponsibleViewController
 
 #pragma mark - Life cycle -
 
 - (void)loadView
 {
     [super loadView];
+    
+    [self setupDefaults];
 }
 
 - (void)viewDidLoad
@@ -44,7 +52,20 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Action -
+#pragma mark - Properties -
+
+- (SelectResponsibleViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [SelectResponsibleViewModel new];
+    }
+    
+    return _viewModel;
+}
+
+
+#pragma mark - Actions -
 
 - (IBAction) onSelectedAllBtn: (UIButton*) sender
 {
@@ -65,4 +86,13 @@
 {
     
 }
+
+#pragma mark - Internal -
+
+- (void) setupDefaults
+{
+    self.selectResponsibleTableView.dataSource = self.viewModel;
+    self.selectResponsibleTableView.delegate   = self.viewModel;
+}
+
 @end
