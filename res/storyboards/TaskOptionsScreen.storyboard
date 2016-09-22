@@ -871,7 +871,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserInfoWithCheckmarkID" id="GSE-5h-H2N">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserInfoWithCheckmarkID" id="GSE-5h-H2N" customClass="OSUserInfoWithCheckmarkCell">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GSE-5h-H2N" id="gya-RT-EUC">
@@ -909,6 +909,11 @@
                                                 <constraint firstAttribute="trailing" secondItem="DcH-CM-R6a" secondAttribute="trailing" constant="15" id="sfM-94-CNl"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkMarkImageView" destination="DcH-CM-R6a" id="DWK-XN-7VC"/>
+                                            <outlet property="userAvatarImageView" destination="Tlg-Uw-7Oy" id="Eur-mQ-fj6"/>
+                                            <outlet property="userInfoTextLabel" destination="eSA-3j-mdk" id="zcN-F1-Ad2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

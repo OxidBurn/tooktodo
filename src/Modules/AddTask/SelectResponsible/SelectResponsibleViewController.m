@@ -40,9 +40,29 @@
     [self setupDefaults];
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
+}
+
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    // Update team info when appeared screen
+    // made for immediate update team info after
+    // switching between projects or adding new member to the team
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel updateInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        if ( isSuccess )
+        {
+            [blockSelf.selectResponsibleTableView reloadData];
+        }
+        
+    }];
 }
 
 #pragma mark - Memory managment -
@@ -93,6 +113,14 @@
 {
     self.selectResponsibleTableView.dataSource = self.viewModel;
     self.selectResponsibleTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.selectResponsibleTableView reloadData];
+        
+    };
 }
 
 @end

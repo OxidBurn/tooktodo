@@ -9,10 +9,20 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-//#import "FilledTeamInfo.h"
+#import "FilledTeamInfo.h"
 
 @interface SelectResponsibleModel : NSObject
 
+// methods
+
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
+
 - (NSUInteger) getNumberOfRows;
+
+- (FilledTeamInfo*) returnFilledUserInfoForIndex: (NSUInteger) index;
+
+- (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
+
+- (BOOL) getStateForMemberAtIndex: (NSUInteger) index;
 
 @end

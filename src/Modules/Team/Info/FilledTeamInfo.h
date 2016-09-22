@@ -27,9 +27,8 @@
 @property (nonatomic, strong) NSString* avatarSrc;
 @property (nonatomic, strong) NSString* fullname;
 @property (nonatomic, assign) NSNumber* projectPermission;
+@property (assign, nonatomic) BOOL isResponsible;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
-
-- (void) updateRole;
 
 @end

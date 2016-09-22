@@ -28,6 +28,7 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
         
     }
     
@@ -47,6 +48,7 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
     }
     
     else
@@ -60,6 +62,7 @@
         self.role                   = @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
     }
 }
 

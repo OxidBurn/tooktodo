@@ -8,17 +8,54 @@
 
 #import "OSUserInfoWithCheckmarkCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
+@interface OSUserInfoWithCheckmarkCell()
+
+// properties
+
+// outlets
+
+@property (weak, nonatomic) IBOutlet UIImageView* checkMarkImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView* userAvatarImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel*     userInfoTextLabel;
+
+// methods
+
+
+@end
+
 @implementation OSUserInfoWithCheckmarkCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+#pragma mark - Public -
+
+- (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo
+{
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: memberInfo.avatarSrc]];
+    
+    NSString* userInfo = [NSString stringWithFormat: @"%@, %@", memberInfo.fullname, memberInfo.role];
+    
+    self.userInfoTextLabel.text = userInfo;
+    
+//    if ( memberInfo.isResponsible )
+//    {
+//        self.checkMarkImageView.hidden = NO;
+//    }
+//    else
+//    {
+//        self.checkMarkImageView.hidden = YES;
+//    }
+    
+    self.checkMarkImageView.hidden = memberInfo.isResponsible ? NO : YES;
+    
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void) changeCheckmarkState: (BOOL) state
+{
+    self.checkMarkImageView.hidden = state ? NO : YES;
 }
 
 @end

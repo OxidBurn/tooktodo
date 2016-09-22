@@ -12,4 +12,10 @@
 
 @interface SelectResponsibleViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+// properties
+@property (nonatomic, copy) void(^reloadTableView)();
+
+// methods
+- (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
+
 @end

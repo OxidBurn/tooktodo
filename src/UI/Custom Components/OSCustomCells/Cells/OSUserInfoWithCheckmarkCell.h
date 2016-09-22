@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "FilledTeamInfo.h"
+
 @interface OSUserInfoWithCheckmarkCell : UITableViewCell
 
 // methods
-//- (void) fillCellWithUser: (
+- (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo;
+
+- (void) changeCheckmarkState: (BOOL) state;
 
 @end

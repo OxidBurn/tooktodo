@@ -11,6 +11,8 @@
 // Classes
 #import "SelectResponsibleModel.h"
 #import "OSUserInfoWithCheckmarkCell.h"
+#import "FilledTeamInfo.h"
+
 
 @interface SelectResponsibleViewModel()
 
@@ -54,11 +56,33 @@
 {
     OSUserInfoWithCheckmarkCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserInfoWithCheckmarkID"];
     
+    [cell fillCellWithFilledMemberInfo: [self.model returnFilledUserInfoForIndex: indexPath.row]];
     
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate methods -
 
+- (void)      tableView: (UITableView*) tableView
+didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    [self.model handleCheckmarkForIndexPath: indexPath];
+    
+    OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+    [cell changeCheckmarkState: [self.model getStateForMemberAtIndex: indexPath.row]];
+
+}
+
+#pragma mark - Public -
+
+- (void) updateInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model updateTeamInfoWithCompletion: completion];
+}
 
 
 @end
