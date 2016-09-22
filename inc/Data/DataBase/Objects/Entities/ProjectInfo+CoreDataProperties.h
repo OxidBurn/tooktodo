@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Lera on 20.09.16.
 //
 //
 
@@ -39,15 +39,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, copy) NSString *street;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSNumber *projectPermission;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
+@property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskStage *> *stage;
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
-@property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
 
 @end
 
@@ -57,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeOfflineSettingsObject:(OfflineSettings *)value;
 - (void)addOfflineSettings:(NSSet<OfflineSettings *> *)values;
 - (void)removeOfflineSettings:(NSSet<OfflineSettings *> *)values;
+
+- (void)addProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
+- (void)removeProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
+- (void)addProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
+- (void)removeProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
 
 - (void)addRolesObject:(ProjectRoles *)value;
 - (void)removeRolesObject:(ProjectRoles *)value;
@@ -82,11 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeTeamObject:(TeamMember *)value;
 - (void)addTeam:(NSSet<TeamMember *> *)values;
 - (void)removeTeam:(NSSet<TeamMember *> *)values;
-
-- (void)addProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
-- (void)removeProjectRoleAssignmentsObject:(ProjectRoleAssignments *)value;
-- (void)addProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
-- (void)removeProjectRoleAssignments:(NSSet<ProjectRoleAssignments *> *)values;
 
 @end
 

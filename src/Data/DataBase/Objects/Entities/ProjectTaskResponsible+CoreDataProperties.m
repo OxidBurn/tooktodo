@@ -2,7 +2,7 @@
 //  ProjectTaskResponsible+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 9/20/16.
 //
 //
 
@@ -14,17 +14,17 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskResponsible"];
 }
 
-@dynamic invite;
+@dynamic avatarSrc;
+@dynamic displayName;
+@dynamic firstName;
+@dynamic isActiveUser;
 @dynamic isBlocked;
+@dynamic lastName;
 @dynamic projectPermission;
 @dynamic responsibleID;
-@dynamic firstName;
-@dynamic lastName;
-@dynamic displayName;
-@dynamic avatarSrc;
-@dynamic isActiveUser;
 @dynamic assignee;
 @dynamic projectRoleType;
 @dynamic task;
+@dynamic invite;
 
 @end

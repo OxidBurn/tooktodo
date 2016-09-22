@@ -30,7 +30,7 @@
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (strong, nonatomic) TeamInfoViewModel* viewModel;
-@property (nonatomic, strong) InviteInfo* inviteInfo;
+@property (nonatomic, strong) InviteInfo*        inviteInfo;
 
 // Methods
 
@@ -59,13 +59,6 @@
     
     // Binding controller UI
     [self bindingUI];
-}
-
-- (void) viewDidAppear: (BOOL) animated
-{
-    [super viewDidAppear: animated];
-    
-    
 }
 
 - (void) viewWillAppear: (BOOL) animated

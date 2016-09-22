@@ -414,4 +414,27 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return outString; 
 }
 
++ (NSString*) getDeclensionStringWithValue: (NSUInteger) count
+                    withSearchedObjectName: (NSString*)  value
+{
+    NSString* foundWordSufix      = @"";
+    NSString* searchedObjectSufix = @"";
+    
+    if ( count > 1 && count <= 4 )
+    {
+        foundWordSufix      = @"o";
+        searchedObjectSufix = @"a";
+    }
+    else
+        if ( count > 4 )
+        {
+            foundWordSufix      = @"o";
+            searchedObjectSufix = @"ов";
+        }
+    
+    NSString* fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, count, value, searchedObjectSufix];
+    
+    return fullSearchingPhrase;
+}
+
 @end

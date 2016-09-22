@@ -34,13 +34,19 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     Ready,
 };
 
+typedef NS_ENUM(NSInteger, PermissionTypeList) {
+    
+    SystemAdmin = -1,
+    Participant = 0,
+    Owner       = 1,
+    Admin       = 2,
+};
+
 static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
-
-@property (nonatomic, strong) TeamMember* memberInfo;
 
 @property (nonatomic, strong) UITableViewCell* cell;
 
@@ -74,13 +80,13 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 - (RACSignal*) updateInfo
 {
     return [self.model updateUserInfo];
+
 }
 
 - (void) performActionForIndex: (NSUInteger) index
 {
     [self.model performActionForIndex: index];
 }
-
 
 #pragma mark - TableView datasource methods -
 
@@ -98,10 +104,19 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         
         cell.tag = indexPath.row;
         
+        __weak typeof(self) blockSelf = self;
+        
+        cell.didPressOnPhone = ^(NSUInteger index){
+            
+            [blockSelf performActionForIndex: index];
+        };
+        
         return cell;
     }
     else
     {
+        NSInteger currentUserPermission = [self.model getCurrentUserPermission];
+        
         self.cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
         
         self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
@@ -109,8 +124,32 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
+        [self.model reloadContent];
+        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
+        
+        switch ( currentUserPermission )
+        {
+            case Admin:
+            {
+                if ( indexPath.row == 0 )
+                {
+                    self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                }
+            }
+                break;
+                
+            case Owner:
+            {
+                self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+                
+            default:
+                break;
+        }
+
+        
         
         return self.cell;
     }
@@ -158,6 +197,7 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     if (indexPath.section == 1)
     {
         self.cell.tag = indexPath.row;
+        
         if (self.cell.tag == RoleType)
         {
             if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
@@ -169,27 +209,77 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         else
             if (self.cell.tag == PermissionType)
             {
-                if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:)])
+                if ([self.model getPermissions].integerValue != Admin)
                 {
-                    
-                    [self.delegate showDesignationAlert: [self.model getMemberName]
-                                             withAvatar: [self.model getAvatar]];
-                    
-                    
+                    [self designateAdmin];
+                }
+                else
+                {
+                    [self cancelAdminPermission];
                 }
             }
     }
+}
     
+
+
+- (NSIndexPath*) tableView: (UITableView*) tableView
+  willSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    if ( [self.model getCurrentUserPermission] == Participant )
+    {
+        
+        if ( indexPath.section == 1 )
+        {
+            
+            tableView.allowsSelection = NO;
+            
+            return nil;
+        }
+        
+    }
+    return indexPath;
 }
 
+#pragma mark - Helpers -
+
+- (void) designateAdmin
+{
+     if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+        {
+            
+            [self.delegate showDesignationAlert: [self.model getMemberName]
+                                     withAvatar: [self.model getAvatar]
+                                    withMessage: @"Назначить администратором"];
+            
+        }
+
+}
+
+- (void) cancelAdminPermission
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+    {
+        
+        [self.delegate showDesignationAlert: [self.model getMemberName]
+                                 withAvatar: [self.model getAvatar]
+                                withMessage: @"Отменить права администратора"];
+        
+    }
+}
 
 #pragma mark - RolesViewControllerDelegate methods -
 
 - (void) didSelectRole: (ProjectRoles*) value
 {
+    [self.model updateMemberRole: value];
     self.cell.detailTextLabel.text = value.title;
+    
+    [self.model reloadContent];
+    if ( self.reloadTableView )
+        self.reloadTableView();
+   
 }
-
 
 #pragma mark - Model delegate methods -
 
@@ -214,6 +304,10 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
     if (btnTag == Ready)
     {
         NSLog(@"Action ready performed");
+        [self.model updateMemberPermission: Admin];
+
     }
 }
+
+
 @end

@@ -11,6 +11,7 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 #import <MessageUI/MessageUI.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -18,7 +19,8 @@
 //Classes
 #import "AvatarImageView.h"
 #import "TeamProfileInfoViewModel.h"
-#import "TeamMember.h"
+//#import "TeamMember.h"
+#import "FilledTeamInfo.h"
 #import "Utils.h"
 #import "RolesViewController.h"
 #import "OSAlertController.h"
@@ -62,6 +64,15 @@
     [super viewWillAppear: animated];
     
     [self updateUserInfo];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.profileInfoTableView reloadData];
+        
+    };
+    
 }
 
 - (void) viewDidLoad
@@ -126,14 +137,14 @@
 {
     @weakify(self)
     
-    [[self.viewModel updateInfo] subscribeNext: ^(TeamMember* teamMember) {
+    [[self.viewModel updateInfo] subscribeNext: ^(FilledTeamInfo* teamMember) {
         
         @strongify(self)
         
-        self.profileFullNameLabel.text      = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
+        self.profileFullNameLabel.text    = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
         
-        self.profileAvatarImageView.image = [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath]
-                                                                               stringByAppendingString: teamMember.avatarPath]];
+        
+        [self.profileAvatarImageView sd_setImageWithURL: [NSURL URLWithString: teamMember.avatarSrc]];
         
         [self.profileInfoTableView reloadData];
         
@@ -151,17 +162,14 @@
 
 - (void) showDesignationAlert: (NSString*) userName
                    withAvatar: (UIImage*)  avatar
+                  withMessage: (NSString*) message
 {
     
     [OSAlertController showAlertWithImage: avatar
                                  withName: userName
+                              withMessage: message
                              onController: self];
     
-    
-    //ПАДАЕТ ИЗ-ЗА ДЕЛЕГАТА НАДО ПОФИКСИТЬ
-  //  [OSAlertController showAlertWithPlanTableOnController: self];
-    
-   // [OSAlertController showAlertWithDeleteTaskOnController: self];
 }
 
 - (void) showEmailComposerForMail: (NSString*) email

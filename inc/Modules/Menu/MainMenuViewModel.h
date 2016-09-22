@@ -30,8 +30,6 @@
 
 - (NSString*) fullUserName;
 
-- (RACSignal*) loadProjectsList;
-
 - (void) updateProjectsContent;
 
 - (NSURL*) getUserAvatarURL;

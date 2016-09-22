@@ -17,6 +17,8 @@
 
 @property (nonatomic, weak) id<TeamProfileViewModelDelegate> delegate;
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
 - (RACSignal*) updateInfo;
 
 - (void) performActionForIndex: (NSUInteger) index;
@@ -32,7 +34,8 @@
 //- (void) showDesignationAlert: (NSString*) userName;
 
 - (void) showDesignationAlert: (NSString*) userName
-                   withAvatar: (UIImage*)  avatar;
+                   withAvatar: (UIImage*)  avatar
+                  withMessage: (NSString*) message;
 
 - (void) showEmailComposerForMail: (NSString*) email;
 

@@ -12,6 +12,7 @@
 #import "TeamInfoModel.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "TeamInfoTableViewCell.h"
+#import "Utils.h"
 
 // Categories
 #import "UISearchBar+TextFieldControl.h"
@@ -76,7 +77,7 @@ static CGFloat sectionHeaderHeight = 30;
 {
     TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
     
-    ProjectRoleAssignments* memberInfo = [self.model teamMemberByIndex: indexPath.row];
+    FilledTeamInfo* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
     cell.delegate = self;
     
@@ -103,7 +104,8 @@ static CGFloat sectionHeaderHeight = 30;
         label.textColor       = [UIColor colorWithRed:0.75 green:0.76 blue:0.78 alpha:1.00];
         label.textAlignment   = NSTextAlignmentCenter;
         label.font            = [UIFont fontWithName: @"SFUIText-Regular" size: 12];
-        label.text            = [NSString stringWithFormat: @"Найдено %ld участников", (unsigned long)[self.model countOfItems]];
+        label.text            = [Utils getDeclensionStringWithValue: [self.model countOfItems]
+                                             withSearchedObjectName: @"участник"];
         
         return label;
     }

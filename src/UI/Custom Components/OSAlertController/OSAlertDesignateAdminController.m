@@ -20,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* avatarImgView;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIButton* cancelBtn;
 
 @property (weak, nonatomic) IBOutlet UIButton* readyBtn;
@@ -66,6 +69,7 @@
 
 - (void) setImage: (UIImage*)  image
          withName: (NSString*) name
+      withMessage: (NSString*) message
 
 {
     self.avatarImgView.layer.cornerRadius = CGRectGetWidth(self.avatarImgView.frame) / 2;

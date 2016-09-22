@@ -80,7 +80,12 @@
 
 - (NSString*) getFullUserName
 {
-    return self.currentUserInfo.fullName;
+    NSString* fullName = self.currentUserInfo.fullName;
+    
+    if ( fullName.length > 50 )
+        fullName = [fullName substringToIndex: 49];
+    
+    return fullName;
 }
 
 - (UIImage*) getUserAvatarImage
@@ -119,12 +124,12 @@
 {
     NSMutableArray* userInfo = [NSMutableArray new];
     
-    if ( [self getUserPhoneNumber] )
+    if ( [[self getUserPhoneNumber] length] > 0 )
     {
         [userInfo addObject: [self getUserPhoneNumber]];
     }
     
-    if ( [self getUserAdditionalPhoneNumber] )
+    if ( [[self getUserAdditionalPhoneNumber] length] > 0 )
     {
         [userInfo addObject: [self getUserAdditionalPhoneNumber]];
     }

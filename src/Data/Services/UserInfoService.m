@@ -97,6 +97,9 @@ static bool isFirstAccess = YES;
             [[DataManager sharedInstance] updateUserInfo: newInfo
                                                  forUser: user
                                           withCompletion: completion];
+            
+            if ( completion )
+                completion(YES);
         }
         else
         {
@@ -154,9 +157,7 @@ static bool isFirstAccess = YES;
                                                                    
                                                                }
          
-                                                           completed:^{
-                                                              
-                                                               [subscriber sendCompleted];
+                                                           completed: ^{
                                                                
                                                            }];
         

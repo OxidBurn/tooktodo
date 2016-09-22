@@ -2,17 +2,22 @@
 //  TeamProfileInfoModel.m
 //  TookTODO
 //
-//  Created by Глеб on 06.09.16.
+//  Created by Nikolay Chaban on 06.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import "TeamProfileInfoModel.h"
 
 // Classes
-#import "TeamMember.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 #import "Utils.h"
 
 // Categories
+#import "DataManager+Tasks.h"
+#import "DataManager+ProjectInfo.h"
 #import "DataManager+Team.h"
 
 typedef NS_ENUM(NSUInteger, ContactType)
@@ -22,14 +27,26 @@ typedef NS_ENUM(NSUInteger, ContactType)
     ContactEmailType,
 };
 
+typedef NS_ENUM(NSInteger, Permission)
+{
+    SystemAdministrator = -1,
+    Participant         = 0,
+    Owner               = 1,
+    Administrator       = 2,
+};
+
 @interface TeamProfileInfoModel ()
 
 // properties
-@property (strong, nonatomic) TeamMember* memberInfo;
+@property (strong, nonatomic) ProjectRoleAssignments* assignment;
+
+@property (nonatomic, strong) FilledTeamInfo* memberInfo;
 
 @property (nonatomic, strong) NSArray* contactsContent;
 
 @property (strong, nonatomic) NSArray* roleCellsContent;
+
+@property (strong, nonatomic) NSArray* detailLabelsContent;
 
 @end
 
@@ -48,6 +65,21 @@ typedef NS_ENUM(NSUInteger, ContactType)
     return _roleCellsContent;
 }
 
+- (NSArray*) detailLabelsContent
+{
+    if (_detailLabelsContent == nil)
+    {
+        _detailLabelsContent = @[self.memberInfo.role ? self.memberInfo.role : @"", [self setPermission: self.memberInfo.projectPermission.integerValue]];
+    }
+    
+    return _detailLabelsContent;
+}
+
+- (void) reloadContent
+{
+    self.detailLabelsContent = nil;
+}
+
 - (NSArray*) contactsContent
 {
     if (_contactsContent == nil)
@@ -58,16 +90,26 @@ typedef NS_ENUM(NSUInteger, ContactType)
     return _contactsContent;
 }
 
-- (TeamMember*) memberInfo
+- (ProjectRoleAssignments*) assignment
+{
+    if (_assignment == nil)
+    {
+        _assignment = [DataManagerShared getSelectedProjectRoleAssignment];
+    }
+    
+    return _assignment;
+}
+
+- (FilledTeamInfo*) memberInfo
 {
     if (_memberInfo == nil)
     {
-        _memberInfo = [DataManagerShared getSelectedItem];
+        _memberInfo = [FilledTeamInfo new];
+        [_memberInfo fillTeamInfo: self.assignment];
     }
     
     return _memberInfo;
 }
-
 
 #pragma mark - Public methods -
 
@@ -75,13 +117,15 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     @weakify(self)
     
-    RACSignal* updateUserInfo = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* updateUserInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [[RACScheduler mainThreadScheduler] schedule: ^{
             
             @strongify(self)
             
-             self.memberInfo = [DataManagerShared getSelectedItem];
+            self.assignment = [DataManagerShared getSelectedProjectRoleAssignment];
+            
+            [self.memberInfo fillTeamInfo: self.assignment];
             
             [subscriber sendNext: self.memberInfo];
             [subscriber sendCompleted];
@@ -122,7 +166,17 @@ typedef NS_ENUM(NSUInteger, ContactType)
 
 - (UIImage*) getAvatar
 {
-    return [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.memberInfo.avatarPath]];
+    return [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.memberInfo.avatarSrc]];
+}
+
+- (NSString*) getRole
+{
+    return self.memberInfo.role ? self.memberInfo.role : @"";
+}
+
+- (NSNumber*) getPermissions
+{
+    return self.memberInfo.projectPermission ? self.memberInfo.projectPermission : @(-2);
 }
 
 - (NSArray*) returnContactsInfo
@@ -161,6 +215,36 @@ typedef NS_ENUM(NSUInteger, ContactType)
     };
     
     return tmp.copy;
+    
+}
+
+- (void) updateMemberPermission: (NSInteger) permission
+{
+    [DataManagerShared updateTeamMemberPermission: permission
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       self.assignment.projectPermission = @(permission);
+                                   }];
+}
+
+- (void) updateMemberRole: (ProjectRoles*) role
+{
+    [DataManagerShared updateTeamMemberRole: role
+                             withCompletion:^(BOOL isSuccess) {
+                                 
+                                 FilledTeamInfo* teamMember = [FilledTeamInfo new];
+                                 [teamMember fillTeamInfo: self.assignment];
+                                 
+                                 teamMember.role = role.title;
+                                 
+                            }];
+}
+
+- (NSInteger) getCurrentUserPermission
+{
+    NSInteger permissionForProject = [DataManagerShared getSelectedProjectPermission];
+    
+    return permissionForProject;
     
 }
 
@@ -211,5 +295,34 @@ typedef NS_ENUM(NSUInteger, ContactType)
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath
 {
     return self.roleCellsContent[indexPath.row];
+}
+
+- (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath
+{
+    return self.detailLabelsContent[indexPath.row];
+}
+
+- (NSString*) setPermission: (NSUInteger) permission
+{
+    switch (permission)
+    {
+        case SystemAdministrator:
+            return @"Системный администратор";
+            break;
+        case Participant:
+            return @"Участник проекта";
+            break;
+        case Owner:
+            return @"Владелец";
+            break;
+        case Administrator:
+            return @"Адмиистратор";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return @"";
 }
 @end

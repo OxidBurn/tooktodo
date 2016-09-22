@@ -17,6 +17,7 @@
 
 + (void) showAlertWithImage: (UIImage*)  image
                    withName: (NSString*) name
+                withMessage: (NSString*) message
                onController: (UIViewController*) controller;
 
 + (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller;

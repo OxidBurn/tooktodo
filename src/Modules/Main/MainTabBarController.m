@@ -90,6 +90,8 @@
 
 - (void) showMainMenu
 {
+    [self.slidingViewController resetTopViewAnimated: YES];
+    
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 

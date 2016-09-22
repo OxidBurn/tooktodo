@@ -13,6 +13,7 @@
 #import "RolesService.h"
 #import "ProjectRoles.h"
 
+
 @interface RolesViewModel()
 
 @property (nonatomic, strong) NSArray         * rolesArray;
@@ -122,6 +123,7 @@
     else
         return nil;
 }
+
 
 #pragma mark - Table view data source
 

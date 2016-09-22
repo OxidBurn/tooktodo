@@ -12,6 +12,7 @@
 // Classes
 #import "RecoveryViewController.h"
 #import "RecoverySuccessViewController.h"
+#import "LoginViewController.h"
 
 @interface RecoveryViewController()
 
@@ -47,6 +48,8 @@
 {
     [super loadView];
     
+   NSLog(@"Navigation controller %@", self.navigationController); 
+    
     // Binding ui components with model
     [self bindingUI];
 }
@@ -58,6 +61,10 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Properties -
+
+
 
 #pragma mark - Segue -
 
@@ -78,6 +85,9 @@
 - (void) setRecoveryModel: (RecoveryViewModel*) model
 {
     self.viewModel = model;
+    
+    //
+   // self.viewModel.delegate = self;
 }
 
 
@@ -112,10 +122,17 @@
             if ( x )
             {
                 @strongify(self)
-
-                [self performSegueWithIdentifier: @"ShowSuccessResetingPassInfoID"
-                                          sender: self];
-}
+                
+                
+                if ([self.delegate respondsToSelector:@selector(showSuccessRestoreAlert:)])
+                {
+                    [self.delegate showSuccessRestoreAlert: [self.viewModel getSuccessRestorePassLabel]];
+                }
+                
+                [self dismissViewControllerAnimated: YES
+                                         completion: nil];
+                
+            }
 
     }];
     }];

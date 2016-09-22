@@ -16,6 +16,8 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 
+#import "DataManager+Tasks.h"
+
 @implementation DataManager (Team)
 
 
@@ -44,19 +46,68 @@
                       }];
 }
 
+
+
 - (NSArray*) getAllTeamInfo
 {
     ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
     
-    return selectedProject.team.allObjects;
+    return selectedProject.projectRoleAssignments.allObjects;
 }
 
-- (void) changeItemSelectedState: (BOOL)        isSelected
-                         forItem: (TeamMember*) member
+//- (void) changeItemSelectedState: (BOOL)        isSelected
+//                         forItem: (TeamMember*) member
+//{
+//    member.isSelected = @(isSelected);
+//    
+//    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+//}
+
+
+
+- (void) updateTeamMemberPermission: (NSInteger)             permission
+                     withCompletion: (CompletionWithSuccess) completion
 {
-    member.isSelected = @(isSelected);
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext)
+    {
+
+        ProjectRoleAssignments* assignment  = [DataManagerShared getSelectedProjectRoleAssignment];
+        
+        assignment.projectPermission = @(permission);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+- (void) updateTeamMemberRole: (ProjectRoles*)         role
+               withCompletion: (CompletionWithSuccess) completion
+{
+    ProjectRoleAssignments* assignee = [self getSelectedProjectRoleAssignment];
     
-    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
+    if ( assignee.projectRoleType )
+    {
+        assignee.projectRoleType.roleTypeID = role.roleID;
+        assignee.projectRoleType.title      = role.title;
+    }
+    else
+    {
+        ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+        
+        roleType.roleTypeID = role.roleID;
+        roleType.title      = role.title;
+        
+        assignee.projectRoleType = roleType;
+    }
+    
+    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
+    
+    if ( completion )
+        completion(YES);
 }
 
 - (TeamMember*) getSelectedItem

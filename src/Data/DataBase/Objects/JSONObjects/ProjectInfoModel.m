@@ -8,11 +8,14 @@
 
 #import "ProjectInfoModel.h"
 
+#import "JSONValueTransformer+CustomDate.h"
+
 @implementation ProjectInfoModel
 
 + (JSONKeyMapper*) keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id": @"projectID"}];
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"id"        : @"projectID",
+                                                        @"lastVisit" : @"lastVisit"}];
 }
 
 @end

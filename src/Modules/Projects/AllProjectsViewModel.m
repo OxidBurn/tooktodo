@@ -16,6 +16,7 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectInfoCell.h"
 #import "ProjectsEnumerations.h"
+#import "Utils.h"
 
 // Extensions
 #import "UISearchBar+TextFieldControl.h"
@@ -119,7 +120,8 @@ static CGFloat sectionHeaderHeight = 30;
         label.textColor       = [UIColor colorWithRed:0.75 green:0.76 blue:0.78 alpha:1.00];
         label.textAlignment   = NSTextAlignmentCenter;
         label.font            = [UIFont fontWithName: @"SFUIText-Regular" size: 12];
-        label.text            = [NSString stringWithFormat: @"найдено %ld проекта", (unsigned long)self.filteredProjectsContent.count];
+        label.text            = [Utils getDeclensionStringWithValue: self.filteredProjectsContent.count
+                                             withSearchedObjectName: @"проект"];
         
         return label;
     }

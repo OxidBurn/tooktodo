@@ -10,6 +10,7 @@
 
 // Frameworks
 #import "ReactiveCocoa.h"
+#import "ProjectRoles.h"
 
 @protocol TeamProfileInfoModelDelegate;
 
@@ -17,7 +18,7 @@
 
 // properties
 
-@property (weak, nonatomic) id<TeamProfileInfoModelDelegate> delegate;
+@property (weak, nonatomic) id <TeamProfileInfoModelDelegate> delegate;
 
 // methods
 
@@ -35,6 +36,10 @@
 
 - (UIImage*) getAvatar;
 
+- (NSNumber*) getPermissions;
+
+- (NSInteger) getCurrentUserPermission;
+
 - (NSString*) getContactValueForIndexPath: (NSIndexPath*) indexPath;
 
 - (UIImage*) getBtnImageForIndexPath: (NSIndexPath*) indexPath;
@@ -43,6 +48,14 @@
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
 
+- (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath;
+
+- (void) updateMemberPermission: (NSInteger) permission;
+
+- (void) reloadContent;
+
+- (void) updateMemberRole: (ProjectRoles*) role;
+
 @end
 
 @protocol TeamProfileInfoModelDelegate <NSObject>
@@ -50,5 +63,6 @@
 // methods
 
 - (void) sendEmailToAdress: (NSString*) email;
+
 
 @end

@@ -56,7 +56,10 @@
                                                                   withValue: @(data.projectID)
                                                                   inContext: context];
     
-    projectInfo.lastVisit                        = data.lastVisit;
+    if ( data.lastVisit )
+    {
+        projectInfo.lastVisit = data.lastVisit;
+    }
     projectInfo.isTaskAddAppealClosed            = @(data.isTaskAddAppealClosed);
     projectInfo.realtyClassDescription           = data.realtyClassDescription;
     projectInfo.title                            = data.title;
@@ -243,7 +246,7 @@
 - (NSArray*) getProjectsForMenu
 {
     NSArray* allProjects = [ProjectInfo MR_findAllSortedBy: @"lastVisit"
-                                                 ascending: YES];
+                                                 ascending: NO];
     NSArray* menuProjectsList = nil;
     
     // Show only 4 projects in menu
@@ -311,7 +314,12 @@
 {
     ProjectInfo* project = [self getSelectedProjectInfo];
     
-    return project.projectRoleAssignments.allObjects;
+    NSSortDescriptor* roleDescriptor = [NSSortDescriptor sortDescriptorWithKey: @"roleID"
+                                                                     ascending: YES];
+    
+    NSArray* teamList = [project.projectRoleAssignments.allObjects sortedArrayUsingDescriptors: @[roleDescriptor]];
+    
+    return teamList;
 }
 
 #pragma mark - Updating methods -
@@ -323,6 +331,7 @@
         ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
         
         firstProject.isSelected = @(YES);
+        firstProject.lastVisit  = [NSDate date];
         
     }];
 }
@@ -334,6 +343,7 @@
     
     prevSelectedProject.isSelected = @(NO);
     project.isSelected             = @(YES);
+    project.lastVisit              = [NSDate date];
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion: ^(BOOL contextDidSave, NSError * _Nullable error) {
         
@@ -372,29 +382,29 @@
                       }];
 }
 
-//- (void) updateSelectedProjectPermission: (BOOL)                  permission
-//                          withCompletion: (CompletionWithSuccess) completion
-//{
-//    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
-//        
-//        ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
-//        
-//        selectedProject.projectPermission = @(permission);
-//        
-//    }
-//                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
-//                          
-//                          if ( completion )
-//                              completion(contextDidSave);
-//                          
-//                      }];
-//}
-//
-//- (BOOL) getSelectedProjectPermission
-//{
-//    ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
-//    
-//    return selectedProjectInfo.projectPermission.boolValue;
-//}
+- (void) updateSelectedProjectPermission: (BOOL)                  permission
+                          withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
+        
+        selectedProject.projectPermission = @(permission);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+- (NSInteger) getSelectedProjectPermission
+{
+    ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
+    
+    return selectedProjectInfo.projectPermission.integerValue;
+}
 
 @end

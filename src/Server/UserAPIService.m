@@ -70,6 +70,8 @@ static bool isFirstAccess = YES;
 {
     AFHTTPRequestOperationManager* manager = [self getRawManager];
     
+    manager.requestSerializer.timeoutInterval = 10.0f;
+    
     NSDictionary* parameters = @{@"oldPassword"     : old,
                                  @"newPassword"     : pass,
                                  @"confirmPassword" : pass};

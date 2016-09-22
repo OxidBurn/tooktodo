@@ -15,6 +15,9 @@
 #import "TeamInfoViewController.h"
 #import "ProjectRoles.h"
 
+// Categories
+#import "UITextView+PlaceHolder.h"
+
 @interface AddContactViewController () <RolesViewControllerDelegate, UITableViewDelegate>
 
 // Properties
@@ -73,6 +76,9 @@
     [self bindViewModel];
     
     self.firstCheck = YES;
+    
+    // Setup message text view placeholder
+    [self setupMessageTextView];
 }
 
 
@@ -86,12 +92,24 @@
 
 #pragma mark - Internal method -
 
+- (void) setupMessageTextView
+{
+    self.messageTextView.placeHolder      = @"Личное сообщение";
+    self.messageTextView.placeHolderColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1.00];
+    self.messageTextView.placeHolderFont  = [UIFont fontWithName: @"SFUIText-Regular"
+                                                            size: 15];
+}
+
 - (void) bindViewModel
 {
     RAC(self.addContactViewModel, lastnameText) = self.lastnameTextField.rac_textSignal;
     RAC(self.addContactViewModel, nameText)     = self.nameTextField.rac_textSignal;
     RAC(self.addContactViewModel, emailText)    = [self.emailTextField.rac_textSignal distinctUntilChanged];
     RAC(self.addContactViewModel, messageText)  = self.messageTextView.rac_textSignal;
+    
+    self.nameTextField.delegate     = self.addContactViewModel;
+    self.lastnameTextField.delegate = self.addContactViewModel;
+    self.emailTextField.delegate    = self.addContactViewModel;
     
     @weakify(self) 
     
@@ -128,6 +146,14 @@
     //связь кнопки и команды, которая за нее отвечает
     self.readyBtn.rac_command = self.addContactViewModel.readyCommand;
     
+    // Show warning about incorrect email value
+    __weak typeof(self) blockSelf = self;
+    
+    self.addContactViewModel.showValidEmailWarning = ^( NSString* text){
+        
+        blockSelf.emailLabel.text = text;
+        
+    };
 }
 
 
@@ -150,7 +176,7 @@
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFont;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-    subTitleLabel.text            = @"УЧАСНИКА";
+    subTitleLabel.text            = @"УЧАСТНИКА";
     
     [subTitleLabel sizeToFit];
     
@@ -205,18 +231,6 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
-#pragma mark - TextField delegate methods -
-
-
-- (void) textFieldDidEndEditing: (UITextField*) textField
-{
-    if (textField == self.emailTextField && self.firstCheck)
-    {
-        self.firstCheck = NO;
-        
-        RAC(self.emailLabel, text) = [[self.addContactViewModel getEmailWarningSignal] distinctUntilChanged];
-    }
-}
 
 #pragma mark - RolesViewControllerDelegate methods -
 
@@ -226,9 +240,15 @@
     self.addContactViewModel.roleID = value.sort;
 }
 
-- (void) tableView: (UITableView*) tableView
+//- (void) didSelectRole: (ProjectRoleType*) value
+//{
+//    self.roleLabel.text             = value.title;
+//    self.addContactViewModel.roleID = value.roleTypeID;
+//}
+
+- (void) tableView: (UITableView*)     tableView
    willDisplayCell: (UITableViewCell*) cell
- forRowAtIndexPath: (NSIndexPath*) indexPath
+ forRowAtIndexPath: (NSIndexPath*)     indexPath
 {
     // Remove seperator inset
     if ([cell respondsToSelector: @selector(setSeparatorInset:)])

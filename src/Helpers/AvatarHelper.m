@@ -122,8 +122,9 @@ static AvatarHelper* sharedInstance = nil;
     return [[Utils getAvatarsDirectoryPath] stringByAppendingFormat: @"%@.png", name];
 }
 
-- (void) loadAvatarFromWeb: (NSString*) filePath
-                  withName: (NSString*) name
+- (void) loadAvatarFromWeb: (NSString*)             filePath
+                  withName: (NSString*)             name
+            withCompletion: (CompletionWithSuccess) completion
 {
     SDWebImageManager* manager = [SDWebImageManager sharedManager];
     
@@ -143,6 +144,9 @@ static AvatarHelper* sharedInstance = nil;
                                 
                                 [avatarImageData writeToFile: fullAvatarPath
                                                   atomically: YES];
+                                
+                                if ( completion )
+                                    completion(YES);
                                 
                             }];
                             

@@ -10,6 +10,12 @@
 
 @interface ContactInfoCell : UITableViewCell
 
+// properties
+
+@property (nonatomic, copy) void(^didPressOnPhone)(NSUInteger tag);
+
+@property (nonatomic, copy) void(^didPressOnEmail)(NSUInteger tag);
+
 // methods
 
 - (void) fillCellWithContactInfo: (NSString*)    contactValue

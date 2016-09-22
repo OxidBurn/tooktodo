@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa.h"
 
+
+
 @interface RecoveryViewModel : NSObject
 
 // properties
+
 
 // FPR
 @property (strong, nonatomic) NSString* emailValue;

@@ -103,7 +103,7 @@
                       isAcceding: (BOOL)     isAcceding
 {
     NSSortDescriptor* sortingDescriptor = [NSSortDescriptor sortDescriptorWithKey: [self getSortingKey]
-                                                                        ascending: isAcceding];
+                                                                        ascending: [self getCorrectAcceding: isAcceding]];
     
     NSArray* sortedArray = [array sortedArrayUsingDescriptors: @[sortingDescriptor]];
 
@@ -134,6 +134,35 @@
         case SortingByCreationDateType:
         {
             return @"createdDate";
+            break;
+        }
+    }
+}
+
+- (BOOL) getCorrectAcceding: (BOOL) acceding
+{
+    AllProjectsSortingType type = [[ConfigurationManager sharedInstance] getProjectsSortingType];
+    
+    switch (type)
+    {
+        case SortingByNameType:
+        {
+            return acceding;
+            break;
+        }
+        case SortingByLastVisitingType:
+        {
+            return !acceding;
+            break;
+        }
+        case SortingByAdressType:
+        {
+            return acceding;
+            break;
+        }
+        case SortingByCreationDateType:
+        {
+            return !acceding;
             break;
         }
     }

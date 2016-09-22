@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-@interface AddContactViewModel : NSObject
+@interface AddContactViewModel : NSObject <UITextFieldDelegate>
 
 // Properties
 @property (strong, nonatomic)  NSString* lastnameText;
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) RACCommand * readyCommand;
 @property (nonatomic, strong) RACSignal  * notEmptyLastnameSignal;
 @property (nonatomic, strong) RACSignal  * notEmptyNameSignal;
+
+@property (nonatomic, copy) void(^showValidEmailWarning)(NSString* text);
 
 //Methods
 - (RACSignal*) getEmailWarningSignal;

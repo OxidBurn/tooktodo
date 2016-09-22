@@ -54,11 +54,17 @@
         userInfo.extendPhoneNumber                = info.additionalPhoneNumber;
         
         [[AvatarHelper sharedInstance] loadAvatarFromWeb: userInfo.avatarSrc
-                                                withName: [Utils getEmailPrefix: info.email]];
+                                                withName: [Utils getEmailPrefix: info.email]
+                                          withCompletion: ^(BOOL isSuccess) {
+                                              
+                                              if ( completion )
+                                                  completion(isSuccess);
+                                              
+                                          }];
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
-                         
+                          
                           if ( completion )
                               completion(contextDidSave);
                           
@@ -78,7 +84,7 @@
 
 - (UserInfo*) getCurrentUserInfo
 {
-    return [UserInfo MR_findFirstInContext: [NSManagedObjectContext MR_defaultContext]];
+    return [UserInfo MR_findFirst];
 }
 
 - (void) updateUserInfo: (UpdatedUserInfo*)        newInfo

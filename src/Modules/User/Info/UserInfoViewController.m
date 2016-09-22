@@ -21,13 +21,13 @@
 // Properties
 
 
-@property (weak, nonatomic) IBOutlet UIImageView                 * avatarImageView;
-@property (weak, nonatomic) IBOutlet UILabel                     * fullNameLabel;
-@property (nonatomic, weak) IBOutlet UITableView                 * phoneInfoTable;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint          * phoneTableHeightConstraint;
-@property (nonatomic, weak) IBOutlet UIButton                    * showUserTerms;
-@property (nonatomic, weak) IBOutlet UIButton                    * userLogOut;
-@property (nonatomic, weak) id       <ProjectsControllersDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIImageView            * avatarImageView;
+@property (weak, nonatomic) IBOutlet UILabel                * fullNameLabel;
+@property (nonatomic, weak) IBOutlet UITableView            * phoneInfoTable;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint     * phoneTableHeightConstraint;
+@property (nonatomic, weak) IBOutlet UIButton               * showUserTerms;
+@property (nonatomic, weak) IBOutlet UIButton               * userLogOut;
+@property (nonatomic, weak) id<ProjectsControllersDelegate> delegate;
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
 
@@ -223,7 +223,7 @@
                    willCropImage: (UIImage*)                    originalImage
 {
     // Use when `applyMaskToCroppedImage` set to YES.
-    //    [SVProgressHUD show];
+    [SVProgressHUD show];
 }
 
 

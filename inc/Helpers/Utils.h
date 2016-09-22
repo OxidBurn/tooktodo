@@ -121,4 +121,7 @@
 
 + (NSString*) stringByStrippingHTML: (NSString*) inputString;
 
++ (NSString*) getDeclensionStringWithValue: (NSUInteger) count
+                    withSearchedObjectName: (NSString*)  value;
+
 @end

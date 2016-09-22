@@ -10,7 +10,7 @@
 #import "UIViewController+ECSlidingViewController.h"
 #import "PopoverViewController.h"
 
-static CGFloat const MEZoomAnimationScaleFactor = 0.95f;
+static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
 static CGFloat const yPadding                   = 20.0f;
 
 @interface BaseMainViewController () 
@@ -42,13 +42,18 @@ static CGFloat const yPadding                   = 20.0f;
 {
     [super loadView];
     
-    self.slidingViewController.delegate = self;
-    
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];
     
     if ( self.slidingViewController.panGesture )
         [self.view addGestureRecognizer: self.slidingViewController.panGesture];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear: animated];
+    
+    self.slidingViewController.delegate = self;
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle

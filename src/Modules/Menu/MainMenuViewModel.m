@@ -46,6 +46,8 @@
 - (void) updateUserData
 {
     [self.model updateUserData];
+    
+    [self updateProjectsContent];
 }
 
 - (NSString*) fullUserName
@@ -61,11 +63,6 @@
 - (NSURL*) getUserAvatarURL
 {
     return [self.model getUserAvatarURL];
-}
-
-- (RACSignal*) loadProjectsList
-{
-    return [self.model loadProjectsList];
 }
 
 - (void) updateProjectsContent

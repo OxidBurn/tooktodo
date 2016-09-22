@@ -58,7 +58,6 @@
 {
     [super viewWillAppear: animated];
     
-    // Update info of the user
     [self updateInfo];
 }
 
@@ -107,19 +106,6 @@
     self.userNameLabel.text = [self.viewModel fullUserName];
     
     [self.projectsTableView reloadData];
-    
-    // Projects
-    @weakify(self)
-    
-    [[self.viewModel loadProjectsList] subscribeNext: ^(id x) {
-       
-        @strongify(self)
-        
-        [self.viewModel updateProjectsContent];
-        
-        [self.projectsTableView reloadData];
-        
-    }];
     
     __weak typeof(self) blockSelf = self;
     

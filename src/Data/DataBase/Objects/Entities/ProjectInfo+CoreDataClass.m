@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataClass.m
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Lera on 20.09.16.
 //
 //
 

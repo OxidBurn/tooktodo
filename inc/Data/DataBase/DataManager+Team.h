@@ -11,6 +11,7 @@
 // Classes
 #import "TeamMember.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
 
 @interface DataManager (Team)
 
@@ -20,9 +21,17 @@
 
 - (NSArray*) getAllTeamInfo;
 
-- (void) changeItemSelectedState: (BOOL)        isSelected
-                         forItem: (TeamMember*) member;
+//- (void) changeItemSelectedState: (BOOL)        isSelected
+//                         forItem: (TeamMember*) member;
 
 - (TeamMember*) getSelectedItem;
 
+- (void) updateTeamMemberPermission: (NSInteger)             permission
+                     withCompletion: (CompletionWithSuccess) completion;
+
+- (void) updateTeamMemberRole: (ProjectRoles*)      role
+               withCompletion: (CompletionWithSuccess) completion;
+
+//- (void) updateTeamMemberRole: (NSString*)      role
+//               withCompletion: (CompletionWithSuccess) completion;
 @end

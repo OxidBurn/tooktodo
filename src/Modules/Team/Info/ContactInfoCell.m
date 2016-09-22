@@ -14,7 +14,7 @@
 @interface ContactInfoCell ()
 
 // Properties
-@property (strong, nonatomic) TeamProfileInfoViewModel* viewModel;
+
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UILabel* contactInfoLabel;
@@ -28,23 +28,13 @@
 
 @implementation ContactInfoCell
 
-#pragma mark - Properties -
-
-- (TeamProfileInfoViewModel *)viewModel
-{
-    if ( _viewModel == nil )
-    {
-        _viewModel = [TeamProfileInfoViewModel new];
-    }
-    
-    return _viewModel;
-}
 
 #pragma mark - Actions -
 
 - (IBAction) onContactActionBtn: (UIButton*) sender
 {
-    [self.viewModel performActionForIndex: sender.tag];
+    if ( self.didPressOnPhone )
+        self.didPressOnPhone(sender.tag);
 }
 
 #pragma mark - Public -

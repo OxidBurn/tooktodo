@@ -11,6 +11,7 @@
 // Classes
 #import "RoleInfoModel.h"
 #import "ProjectRoles.h"
+#import "ProjectRoleInfoTableViewCell.h"
 
 @interface RoleInfoViewModel()
 
@@ -58,11 +59,11 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RoleCellID"];
+    ProjectRoleInfoTableViewCell* cell = (ProjectRoleInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"RoleCellID"];
     
     ProjectRoles* roleInfo = [self.model getRoleInfoAtIndex: indexPath.row];
     
-    cell.textLabel.text = roleInfo.title;
+    cell.titleLabel.text = roleInfo.title;
     
     return cell;
 }
