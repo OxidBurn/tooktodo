@@ -73,7 +73,7 @@
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onSaveBtn: (UIButton*) sender

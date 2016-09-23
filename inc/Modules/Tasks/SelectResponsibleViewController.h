@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, ControllerMarkOption) {
+    
+    SingleMarkEnabled,
+    MultipleMarksEnabled,
+
+};
+
 @interface SelectResponsibleViewController : UIViewController
+
+// methods
+- (instancetype) initWithMarkOption: (ControllerMarkOption) markOption;
+
+- (void) setOption: (ControllerMarkOption) option;
 
 @end

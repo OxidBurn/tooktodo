@@ -9,7 +9,6 @@
 #import "SelectResponsibleViewModel.h"
 
 // Classes
-#import "SelectResponsibleModel.h"
 #import "OSUserInfoWithCheckmarkCell.h"
 #import "FilledTeamInfo.h"
 
@@ -84,5 +83,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateTeamInfoWithCompletion: completion];
 }
 
+- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption
+{
+    [self.model fillContollerMarkOption: controllerMarkOption];
+}
 
 @end

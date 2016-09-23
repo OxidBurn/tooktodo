@@ -15,10 +15,15 @@
 #import "TeamService.h"
 #import "ProjectInfo+CoreDataClass.h"
 
+
 @interface SelectResponsibleModel()
 
 // properties
 @property (strong, nonatomic) NSArray* membersArray;
+
+@property (assign, nonatomic) BOOL isSelectedResponsible;
+
+@property (assign, nonatomic) MarkOption controllerMarkOption;
 
 // methods
 
@@ -42,6 +47,11 @@
 
 #pragma mark - Public -
 
+- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption
+{
+    self.controllerMarkOption = controllerMarkOption;
+}
+
 - (NSUInteger) getNumberOfRows
 {
     return self.membersArray.count;
@@ -54,9 +64,48 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    FilledTeamInfo* user = self.membersArray[indexPath.row];
-    
-    user.isResponsible = !user.isResponsible;
+    switch ( self.controllerMarkOption )
+    {
+        case SingleMark:
+        {
+            FilledTeamInfo* user = self.membersArray[indexPath.row];
+            
+            if ( user.isResponsible == NO)
+            {
+                if ( self.isSelectedResponsible )
+                {
+                    user.isResponsible = NO;
+                }
+                else
+                {
+                    user.isResponsible = YES;
+                    
+                    self.isSelectedResponsible = YES;
+                }
+            }
+            else
+                if ( user.isResponsible )
+            {
+                user.isResponsible = NO;
+                
+                self.isSelectedResponsible = NO;
+            }
+            
+        }
+            
+            break;
+            
+        case MultipleMarks:
+        {
+            FilledTeamInfo* user = self.membersArray[indexPath.row];
+            
+            user.isResponsible = !user.isResponsible;
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (BOOL) getStateForMemberAtIndex: (NSUInteger) index

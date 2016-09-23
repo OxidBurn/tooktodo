@@ -32,7 +32,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     ShowAddCommentSegueId,
     ShowTermsSegueID,
-    ShowFilterForResponsibleSegueID,
+    ShowSelectResponsibleControllerSegueID,
+    ShowSelectClaimingControllerSegueID,
     ShowPremisesSegueID,
     
 };
@@ -81,7 +82,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowFilterForResponsibleController", @"ShowSelectionPremisesController"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectionPremisesController"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -266,7 +267,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     
     NSDictionary* rowFour  = @{ CellIdKey    : self.addTaskTableViewCellsInfo[SingleUserInfoCell],
                                 TitleTextKey : @"Ответственный",
-                                SegueIdKey   : self.addTaskTableViewSeguesInfo[ShowFilterForResponsibleSegueID] };
+                                SegueIdKey   : self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID] };
     
     NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: @[@"TestString"]];
     
@@ -275,7 +276,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     NSDictionary* rowFive  = @{ TitleTextKey    : @"Утверждающие",
                                 DetailTextKey   : cellFiveDetailText,
                                 CellIdKey       : cellForRowFiveId,
-                                SegueIdKey      : self.addTaskTableViewSeguesInfo[ShowFilterForResponsibleSegueID]};
+                                SegueIdKey      : self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID]};
     
     NSString* cellForRowSixId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
     
@@ -284,7 +285,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     NSDictionary* rowSix   = @{ TitleTextKey  : @"Наблюдатели",
                                 DetailTextKey : cellSixDetailText,
                                 CellIdKey     : cellForRowSixId,
-                                SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowFilterForResponsibleSegueID]};
+                                SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID]};
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }

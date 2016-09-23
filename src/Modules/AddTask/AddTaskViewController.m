@@ -10,6 +10,7 @@
 
 // Classes
 #import "AddTaskViewModel.h"
+#import "SelectResponsibleViewController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
@@ -49,6 +50,36 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    [super prepareForSegue: segue sender: sender];
+    
+    SelectResponsibleViewController* controller;
+    
+    if ( [segue.identifier isEqualToString: @"ShowSelectClaimingController"] )
+    {
+        controller = [[SelectResponsibleViewController alloc] initWithMarkOption: MultipleMarksEnabled];
+        
+        controller = segue.destinationViewController;
+        
+        [controller setOption: MultipleMarksEnabled];
+    }
+    else
+        if ( [segue.identifier isEqualToString: @"ShowSelectResponsibleController"] )
+        {
+            controller = [[SelectResponsibleViewController alloc] initWithMarkOption: SingleMarkEnabled];
+            
+            controller = segue.destinationViewController;
+            
+            [controller setOption: SingleMarkEnabled];
+
+        }
+}
+
 
 #pragma mark - Properties -
 

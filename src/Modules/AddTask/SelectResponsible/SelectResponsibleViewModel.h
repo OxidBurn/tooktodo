@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
 @import UIKit;
+
+// Classes
+#import "SelectResponsibleModel.h"
 
 @interface SelectResponsibleViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,5 +21,7 @@
 
 // methods
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
+
+- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption;
 
 @end

@@ -11,6 +11,14 @@
 // Classes
 #import "FilledTeamInfo.h"
 
+
+typedef NS_ENUM(NSUInteger, MarkOption) {
+    
+    SingleMark,
+    MultipleMarks,
+    
+};
+
 @interface SelectResponsibleModel : NSObject
 
 // methods
@@ -24,5 +32,7 @@
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
 
 - (BOOL) getStateForMemberAtIndex: (NSUInteger) index;
+
+- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption;
 
 @end

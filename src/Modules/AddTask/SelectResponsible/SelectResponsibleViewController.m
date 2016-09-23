@@ -20,8 +20,9 @@
 // Properties
 @property (strong, nonatomic) SelectResponsibleViewModel* viewModel;
 
+@property (assign, nonatomic) ControllerMarkOption controllerMarkOption;
+
 // Methods
-- (IBAction) onSelectedAllBtn: (UIButton*) sender;
 - (IBAction)        onSaveBtn: (UIButton*) sender;
 - (IBAction)        onDoneBtn: (UIBarButtonItem*) sender;
 - (IBAction)        onBackBtn: (UIBarButtonItem*) sender;
@@ -65,6 +66,20 @@
     }];
 }
 
+#pragma mark - Initialization -
+
+- (instancetype) initWithMarkOption: (ControllerMarkOption) markOption
+{
+    self = [super init];
+    
+    if ( self )
+    {
+        self.controllerMarkOption = markOption;
+    }
+    
+    return self;
+}
+
 #pragma mark - Memory managment -
 
 - (void) didReceiveMemoryWarning
@@ -87,11 +102,6 @@
 
 #pragma mark - Actions -
 
-- (IBAction) onSelectedAllBtn: (UIButton*) sender
-{
-    
-}
-
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
     
@@ -104,8 +114,17 @@
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
+
+#pragma mark - Pulbic -
+
+- (void) setOption: (ControllerMarkOption) option
+{
+    [self.viewModel fillContollerMarkOption: option];
+
+}
+
 
 #pragma mark - Internal -
 
