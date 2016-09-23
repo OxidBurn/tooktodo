@@ -10,6 +10,8 @@
 
 //Frameworks
 @import UIKit;
+#import "ReactiveCocoa/ReactiveCocoa.h"
+
 
 @protocol AddTaskViewModelDelegate;
 
@@ -17,6 +19,14 @@
 
 // properties
 @property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
+
+@property (strong, nonatomic) RACCommand* addTaskCommand;
+@property (strong, nonatomic) RACCommand* addTastAndCreateNewCommand;
+@property (strong, nonatomic) RACCommand* readyCommand;
+
+@property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
+
+@property (strong, nonatomic) RACSignal*  enableConfirmButtons;
 
 @end
 

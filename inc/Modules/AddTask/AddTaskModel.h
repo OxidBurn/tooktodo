@@ -10,6 +10,10 @@
 
 @interface AddTaskModel : NSObject
 
+// properties
+
+@property (assign, nonatomic) BOOL isValidTaskName;
+
 // methods
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;

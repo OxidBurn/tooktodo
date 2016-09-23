@@ -83,9 +83,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateTeamInfoWithCompletion: completion];
 }
 
-- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
 {
-    [self.model fillContollerMarkOption: controllerMarkOption];
+    [self.model fillContollerTypeSelection: controllerType];
+}
+
+- (ControllerTypeSelection) returnControllerType
+{
+    return [self.model returnControllerType];
 }
 
 @end

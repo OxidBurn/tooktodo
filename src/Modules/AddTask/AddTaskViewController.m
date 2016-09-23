@@ -11,15 +11,35 @@
 // Classes
 #import "AddTaskViewModel.h"
 #import "SelectResponsibleViewController.h"
+#import "ProjectsEnumerations.h"
+
+typedef NS_ENUM(NSUInteger, SeguesList) {
+    
+    ShowResponsibleSegue,
+    ShowClaimingSegue,
+    ShowObserversSegue,
+    
+};
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
-//Properties
+// outlets
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* readyBtn;
+@property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
+@property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
+
+
+// properties
 @property (weak, nonatomic) IBOutlet UITableView* addTaskTableView;
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 
-//Methods
+@property (strong, nonatomic) NSArray* seguesInfoArray;
+
+@property (assign, nonatomic) SeguesList segue;
+
+// methods
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
 - (IBAction) onAddTaskBtn:         (UIButton*) sender;
@@ -58,30 +78,51 @@
 {
     [super prepareForSegue: segue sender: sender];
     
-    SelectResponsibleViewController* controller;
+    SelectResponsibleViewController* controller = [SelectResponsibleViewController new];
     
-    if ( [segue.identifier isEqualToString: @"ShowSelectClaimingController"] )
+    controller = segue.destinationViewController;
+    
+    NSUInteger segueIndex = [self.seguesInfoArray indexOfObject: segue.identifier];
+    
+    switch ( segueIndex )
     {
-        controller = [[SelectResponsibleViewController alloc] initWithMarkOption: MultipleMarksEnabled];
-        
-        controller = segue.destinationViewController;
-        
-        [controller setOption: MultipleMarksEnabled];
-    }
-    else
-        if ( [segue.identifier isEqualToString: @"ShowSelectResponsibleController"] )
+        case ShowResponsibleSegue:
         {
-            controller = [[SelectResponsibleViewController alloc] initWithMarkOption: SingleMarkEnabled];
-            
-            controller = segue.destinationViewController;
-            
-            [controller setOption: SingleMarkEnabled];
-
+            [controller updateControllerType: SelectResponsibleController];
         }
+            break;
+            
+        case ShowClaimingSegue:
+        {
+            
+            [controller updateControllerType: SelectClaimingController];
+        }
+            break;
+            
+        case ShowObserversSegue:
+        {
+            [controller updateControllerType: SelectObserversController];
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 
 #pragma mark - Properties -
+
+- (NSArray*) seguesInfoArray
+{
+    if ( _seguesInfoArray == nil )
+    {
+        _seguesInfoArray = @[@"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController"];
+    }
+    
+    return _seguesInfoArray;
+}
 
 - (AddTaskViewModel*) viewModel
 {
@@ -175,11 +216,20 @@
 
 - (void) setUpDefaults
 {
+    [self bindUI];
+    
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
     
     self.addTaskTableView.rowHeight = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
+}
+
+- (void) bindUI
+{
+    self.readyBtn.rac_command               = self.viewModel.readyCommand;
+    self.addTaskBtn.rac_command             = self.viewModel.addTaskCommand;
+    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.addTastAndCreateNewCommand;
 }
 
 @end

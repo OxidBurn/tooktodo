@@ -14,18 +14,23 @@
 @interface SelectResponsibleViewController ()
 
 // Outlets
-@property (weak, nonatomic) IBOutlet UITableView* selectResponsibleTableView;
-@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
+@property (weak, nonatomic) IBOutlet UITableView*        selectResponsibleTableView;
+@property (weak, nonatomic) IBOutlet UISearchBar*        searchBar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* saveBtnLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIButton*           selectAllBtn;
+@property (weak, nonatomic) IBOutlet UIButton*           saveBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem*    doneBtn;
 
 // Properties
 @property (strong, nonatomic) SelectResponsibleViewModel* viewModel;
 
-@property (assign, nonatomic) ControllerMarkOption controllerMarkOption;
+@property (assign, nonatomic) ControllerTypeSelection controllerTypeSelection;
 
 // Methods
-- (IBAction)        onSaveBtn: (UIButton*) sender;
-- (IBAction)        onDoneBtn: (UIBarButtonItem*) sender;
-- (IBAction)        onBackBtn: (UIBarButtonItem*) sender;
+- (IBAction) onSaveBtn     : (UIButton*)        sender;
+- (IBAction) onDoneBtn     : (UIBarButtonItem*) sender;
+- (IBAction) onBackBtn     : (UIBarButtonItem*) sender;
+- (IBAction) onSelectAllBtn: (UIButton*)        sender;
 
 
 @end
@@ -44,6 +49,10 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.controllerTypeSelection = [self.viewModel returnControllerType];
+    
+    [self handleUI];
 }
 
 
@@ -64,20 +73,6 @@
         }
         
     }];
-}
-
-#pragma mark - Initialization -
-
-- (instancetype) initWithMarkOption: (ControllerMarkOption) markOption
-{
-    self = [super init];
-    
-    if ( self )
-    {
-        self.controllerMarkOption = markOption;
-    }
-    
-    return self;
 }
 
 #pragma mark - Memory managment -
@@ -117,11 +112,14 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
+- (IBAction)onSelectAllBtn:(UIButton *)sender {
+}
+
 #pragma mark - Pulbic -
 
-- (void) setOption: (ControllerMarkOption) option
+- (void) updateControllerType: (ControllerTypeSelection) controllerType
 {
-    [self.viewModel fillContollerMarkOption: option];
+    [self.viewModel fillContollerTypeSelection: controllerType];
 
 }
 
@@ -141,5 +139,43 @@
         
     };
 }
+
+- (void) handleUI
+{
+    switch ( self.controllerTypeSelection )
+    {
+        case SelectResponsibleController:
+        {
+            [self.selectAllBtn setHidden: YES];
+            
+            self.saveBtnLeadingConstraint.constant = 0;
+            self.saveBtnLeadingConstraint.priority = 1000;
+        }
+            break;
+            
+        case SelectClaimingController:
+        {
+            [self.selectAllBtn setHidden: YES];
+            
+            self.saveBtnLeadingConstraint.constant = 0;
+            self.saveBtnLeadingConstraint.priority = 1000;
+        }
+            
+            break;
+            
+        case SelectObserversController:
+        {
+            self.selectAllBtn.hidden = NO;
+            
+            self.saveBtnLeadingConstraint.priority = 250;
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 @end

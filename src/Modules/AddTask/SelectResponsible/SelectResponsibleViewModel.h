@@ -19,9 +19,13 @@
 // properties
 @property (nonatomic, copy) void(^reloadTableView)();
 
+
+
 // methods
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
 
-- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption;
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType;
+
+- (ControllerTypeSelection) returnControllerType;
 
 @end

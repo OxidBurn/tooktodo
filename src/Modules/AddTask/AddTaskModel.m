@@ -34,6 +34,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowTermsSegueID,
     ShowSelectResponsibleControllerSegueID,
     ShowSelectClaimingControllerSegueID,
+    ShowSelectObserversControllerSegueID,
     ShowPremisesSegueID,
     
 };
@@ -82,7 +83,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectionPremisesController"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -211,6 +212,11 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 - (void) updateTaskNameWithString: (NSString*) newTaskName
 {
+    if ( newTaskName.length > 0 && [newTaskName isEqualToString: @"Название задачи"] == NO )
+    {
+        self.isValidTaskName = YES;
+    }
+    
     NSArray* sectionContent = self.addTaskTableViewContent[0];
     
     NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
@@ -285,7 +291,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     NSDictionary* rowSix   = @{ TitleTextKey  : @"Наблюдатели",
                                 DetailTextKey : cellSixDetailText,
                                 CellIdKey     : cellForRowSixId,
-                                SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID]};
+                                SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID]};
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }

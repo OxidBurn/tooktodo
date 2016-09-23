@@ -10,4 +10,7 @@
 
 @interface SelectionPremisesController : UIViewController
 
+// properties
+
+
 @end

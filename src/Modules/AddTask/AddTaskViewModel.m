@@ -25,6 +25,20 @@
 
 @implementation AddTaskViewModel
 
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    self = [super init];
+    
+    if ( self )
+    {
+        [self initialize];
+    }
+    
+    return self;
+}
+
 #pragma mark - Properties -
 
 - (AddTaskModel*) model
@@ -151,6 +165,36 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         [self.delegate reloadAddTaskTableView];
     }
 }
+
+#pragma mark - Internal -
+
+- (void) initialize
+{
+    self.enableConfirmButtons = [RACObserve ( self, self.model.isValidTaskName)
+                                 
+                                 map:^ NSNumber* (id value) {
+        
+        BOOL boolValue = [value boolValue];
+                                     
+                                     NSLog(@"%@", value);
+        
+        NSNumber* boolInNumber = @(boolValue);
+        
+        return boolInNumber;
+        
+    }];
+    
+    self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
+                                                           signalBlock: ^RACSignal *(id input) {
+    
+                                                               return self.enableConfirmButtons;
+}];
+    
+    self.readyCommand               = self.enableAllButtonsCommand;
+    self.addTastAndCreateNewCommand = self.enableAllButtonsCommand;
+    self.addTaskCommand             = self.enableAllButtonsCommand;
+    
+};
 
 
 @end

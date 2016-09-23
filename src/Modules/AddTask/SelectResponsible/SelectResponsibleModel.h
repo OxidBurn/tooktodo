@@ -10,14 +10,7 @@
 
 // Classes
 #import "FilledTeamInfo.h"
-
-
-typedef NS_ENUM(NSUInteger, MarkOption) {
-    
-    SingleMark,
-    MultipleMarks,
-    
-};
+#import "ProjectsEnumerations.h"
 
 @interface SelectResponsibleModel : NSObject
 
@@ -33,6 +26,10 @@ typedef NS_ENUM(NSUInteger, MarkOption) {
 
 - (BOOL) getStateForMemberAtIndex: (NSUInteger) index;
 
-- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption;
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType;
+
+- (ControllerTypeSelection) returnControllerType;
+
+- (BOOL) checkIfButtonIsEnabled;
 
 @end

@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, ControllerMarkOption) {
-    
-    SingleMarkEnabled,
-    MultipleMarksEnabled,
-
-};
+// Classes
+#import "ProjectsEnumerations.h"
 
 @interface SelectResponsibleViewController : UIViewController
 
 // methods
-- (instancetype) initWithMarkOption: (ControllerMarkOption) markOption;
-
-- (void) setOption: (ControllerMarkOption) option;
+- (void) updateControllerType: (ControllerTypeSelection) controllerType;
 
 @end

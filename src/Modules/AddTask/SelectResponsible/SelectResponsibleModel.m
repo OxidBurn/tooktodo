@@ -23,7 +23,9 @@
 
 @property (assign, nonatomic) BOOL isSelectedResponsible;
 
-@property (assign, nonatomic) MarkOption controllerMarkOption;
+@property (assign, nonatomic) BOOL hasAnySelectedMembers;
+
+@property (assign, nonatomic) ControllerTypeSelection controllerType;
 
 // methods
 
@@ -47,9 +49,9 @@
 
 #pragma mark - Public -
 
-- (void) fillContollerMarkOption: (MarkOption) controllerMarkOption
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
 {
-    self.controllerMarkOption = controllerMarkOption;
+    self.controllerType = controllerType;
 }
 
 - (NSUInteger) getNumberOfRows
@@ -64,9 +66,9 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    switch ( self.controllerMarkOption )
+    switch ( self.controllerType )
     {
-        case SingleMark:
+        case SelectResponsibleController:
         {
             FilledTeamInfo* user = self.membersArray[indexPath.row];
             
@@ -95,7 +97,9 @@
             
             break;
             
-        case MultipleMarks:
+        case SelectClaimingController:
+        case SelectObserversController:
+            
         {
             FilledTeamInfo* user = self.membersArray[indexPath.row];
             
@@ -106,6 +110,9 @@
         default:
             break;
     }
+    
+    if ( self.isSelectedResponsible )
+        self.hasAnySelectedMembers = YES;
 }
 
 - (BOOL) getStateForMemberAtIndex: (NSUInteger) index
@@ -151,6 +158,16 @@
          if ( completion )
              completion (YES);
      }];
+}
+
+- (ControllerTypeSelection) returnControllerType
+{
+    return self.controllerType;
+}
+
+- (BOOL) checkIfButtonIsEnabled
+{
+    return self.hasAnySelectedMembers;
 }
 
 @end

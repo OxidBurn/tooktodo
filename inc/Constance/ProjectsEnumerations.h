@@ -39,5 +39,13 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskOnCompletionStatusType = 5,
 };
 
+typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
+    
+    SelectResponsibleController,
+    SelectClaimingController,
+    SelectObserversController
+    
+};
+
 
 #endif /* ProjectsEnumerations_h */
