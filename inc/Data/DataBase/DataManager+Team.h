@@ -31,4 +31,7 @@
 
 - (void) updateTeamMemberRole: (ProjectRoles*)      role
                withCompletion: (CompletionWithSuccess) completion;
+
+//- (void) updateTeamMemberRole: (NSString*)      role
+//               withCompletion: (CompletionWithSuccess) completion;
 @end
