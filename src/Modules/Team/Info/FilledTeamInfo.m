@@ -61,6 +61,8 @@
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
     }
+    
+    self.roleID = assignment.roleID;
 }
 
 @end

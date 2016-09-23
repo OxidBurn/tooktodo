@@ -64,9 +64,36 @@
 - (void) updateUserValues: (UpdatedUserInfo*)        newInfo
            withCompletion: (void(^)(BOOL isSuccess)) completion
 {
-    [[UserInfoService sharedInstance] updateInfoForUser: self.currentUserInfo
-                                            withNewInfo: newInfo
-                                         withCompletion: completion];
+    
+    if ( [self isEqualNewInfoWithOld: newInfo] )
+    {
+        if ( completion )
+            completion(YES);
+    }
+    else
+    {
+        [[UserInfoService sharedInstance] updateInfoForUser: self.currentUserInfo
+                                                withNewInfo: newInfo
+                                             withCompletion: completion];
+    }
+}
+
+
+#pragma mark - Internal methods -
+
+- (BOOL) isEqualNewInfoWithOld: (UpdatedUserInfo*) newInfo
+{
+    BOOL isEqual = NO;
+    
+    if ( [self.currentUserInfo.firstName isEqualToString: newInfo.name] &&
+         [self.currentUserInfo.lastName isEqualToString: newInfo.surname] &&
+         [self.currentUserInfo.phoneNumber isEqualToString: newInfo.phoneNumber] &&
+         [self.currentUserInfo.extendPhoneNumber isEqualToString: newInfo.additionalPhoneNumber] )
+    {
+        isEqual = YES;
+    }
+    
+    return isEqual;
 }
 
 @end

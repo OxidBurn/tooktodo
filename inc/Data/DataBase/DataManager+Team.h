@@ -29,9 +29,6 @@
 - (void) updateTeamMemberPermission: (NSInteger)             permission
                      withCompletion: (CompletionWithSuccess) completion;
 
-//- (void) updateTeamMemberRole: (ProjectRoles*)      role
-//               withCompletion: (CompletionWithSuccess) completion;
-
-- (void) updateTeamMemberRole: (NSString*)      role
+- (void) updateTeamMemberRole: (ProjectRoles*)      role
                withCompletion: (CompletionWithSuccess) completion;
 @end

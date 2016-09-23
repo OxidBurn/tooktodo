@@ -37,14 +37,14 @@
 {
     self.projectNameLabel.text    = info.title;
     self.projectAddressLabel.text = info.address;
-    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%ld", info.tasks.count];
+    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%lu", info.tasks.count];
     
     NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: info.tasks.allObjects];
     
     if ( countOfExpiredTasks > 0 )
     {
         self.countOfExpiredTasksLabel.hidden = NO;
-        self.countOfExpiredTasksLabel.text   = [NSString stringWithFormat: @"%ld", countOfExpiredTasks];
+        self.countOfExpiredTasksLabel.text   = [NSString stringWithFormat: @"%ld", (unsigned long)countOfExpiredTasks];
     }
     else
     {

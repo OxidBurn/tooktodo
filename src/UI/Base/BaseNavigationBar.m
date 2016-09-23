@@ -56,6 +56,4 @@ IB_DESIGNABLE
     return [UIImage new];
 }
 
-//- ()
-
 @end
