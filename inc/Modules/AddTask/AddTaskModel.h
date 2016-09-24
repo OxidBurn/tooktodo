@@ -12,7 +12,7 @@
 
 // properties
 
-@property (assign, nonatomic) BOOL isValidTaskName;
+@property (strong, nonatomic) NSString* taskName;
 
 // methods
 
@@ -24,5 +24,7 @@
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
 
 - (void) updateTaskNameWithString: (NSString*) newTaskName;
+
+- (BOOL) isValidTaskName: (NSString*) taskName;
 
 @end

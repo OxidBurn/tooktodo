@@ -47,5 +47,16 @@ typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
     
 };
 
+typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
+    
+    FlexibleTextFieldCell,
+    FlexibleCell,
+    RightDetailCell,
+    SwitchCell,
+    SingleUserInfoCell,
+    GroupOfUsersCell,
+    MarkedRightDetailCell,
+};
+
 
 #endif /* ProjectsEnumerations_h */

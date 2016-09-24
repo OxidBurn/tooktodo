@@ -16,17 +16,7 @@
 #import "OSSwitchTableCellFactory.h"
 #import "OSFlexibleTextCellFactory.h"
 #import "OSFlexibleTextFieldCellFactory.h"
-
-typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
-    
-    FlexibleTextFieldCell,
-    FlexibleCell,
-    RightDetailCell,
-    SwitchCell,
-    SingleUserInfoCell,
-    GroupOfUsersCell,
-    MarkedRightDetailCell,
-};
+#import "ProjectsEnumerations.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -125,6 +115,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
             
+            
+            
             cell = [factory returnFlexibleTextFieldCellWithTextContent: content[TitleTextKey]
                                                           forTableView: tableView];
         }
@@ -212,11 +204,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 - (void) updateTaskNameWithString: (NSString*) newTaskName
 {
-    if ( newTaskName.length > 0 && [newTaskName isEqualToString: @"Название задачи"] == NO )
-    {
-        self.isValidTaskName = YES;
-    }
-    
+    self.taskName = newTaskName;
+        
     NSArray* sectionContent = self.addTaskTableViewContent[0];
     
     NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
@@ -358,6 +347,11 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         }
     
     return cellID;
+}
+
+- (BOOL) isValidTaskName: (NSString*) taskName
+{
+    return taskName.length > 0;
 }
 
 @end

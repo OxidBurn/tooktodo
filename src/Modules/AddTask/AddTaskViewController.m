@@ -39,6 +39,7 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 
 @property (assign, nonatomic) SeguesList segue;
 
+
 // methods
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
@@ -57,6 +58,8 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
     [self twoLineTitleView];
     
     [self setUpDefaults];
+    
+    [self bindUI];
 }
 
 - (void) viewDidLoad
@@ -216,7 +219,7 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 
 - (void) setUpDefaults
 {
-    [self bindUI];
+    
     
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
@@ -227,9 +230,23 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 
 - (void) bindUI
 {
-    self.readyBtn.rac_command               = self.viewModel.readyCommand;
-    self.addTaskBtn.rac_command             = self.viewModel.addTaskCommand;
-    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.addTastAndCreateNewCommand;
+    self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
+    self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
+    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableAllButtonsCommand;
+    
+    
+    [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
+        
+        [signal subscribeCompleted:^{
+            
+            
+            
+            NSLog(@"lol");
+           // [self.navigationController popViewControllerAnimated: YES];
+            
+        }];
+        
+    }];
 }
 
 @end

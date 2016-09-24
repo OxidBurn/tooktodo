@@ -11,6 +11,7 @@
 // Classes
 #import "AddTaskModel.h"
 #import "OSFlexibleTextFieldCell.h"
+#import "ProjectsEnumerations.h"
 
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate>
 
@@ -67,8 +68,10 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model createCellForTableView: (UITableView*) tableView
-                                 forIndexPath: (NSIndexPath*) indexPath];
+    UITableViewCell* cell = [self.model createCellForTableView: (UITableView*) tableView
+                                                  forIndexPath: (NSIndexPath*) indexPath];
+
+    return cell;
 }
 
 - (UIView*)  tableView: (UITableView*) tableView
@@ -170,31 +173,28 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) initialize
 {
-    self.enableConfirmButtons = [RACObserve ( self, self.model.isValidTaskName)
+    self.enableConfirmButtons = [RACObserve (self.model, taskName)
                                  
-                                 map:^ NSNumber* (id value) {
+                                 map:^id (NSString* value) {
         
-        BOOL boolValue = [value boolValue];
-                                     
                                      NSLog(@"%@", value);
+                                     
+                                     return @([self.model isValidTaskName: value]);
         
-        NSNumber* boolInNumber = @(boolValue);
-        
-        return boolInNumber;
-        
-    }];
+                                 }];
+    
     
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               return self.enableConfirmButtons;
+                                                               //return self.enableConfirmButtons;
+                                                               
+                                                               return [RACSignal empty];
 }];
     
-    self.readyCommand               = self.enableAllButtonsCommand;
-    self.addTastAndCreateNewCommand = self.enableAllButtonsCommand;
-    self.addTaskCommand             = self.enableAllButtonsCommand;
     
 };
+
 
 
 @end
