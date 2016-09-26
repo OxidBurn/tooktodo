@@ -7,6 +7,7 @@
 //
 
 #import "OSFlexibleTextFieldCell.h"
+#import "AddTaskViewModel.h"
 
 @interface OSFlexibleTextFieldCell() <UITextFieldDelegate>
 
@@ -49,6 +50,21 @@
 {
     if ( textContent.length > 0 )
     self.taskNameLabel.text = textContent;
+    
+    if ([self.delegate respondsToSelector:@selector(getViewModel)])
+    {
+       AddTaskViewModel* viewModel = [self.delegate getViewModel];
+        
+        RAC(viewModel, taskNameText) = self.taskNamtTextField.rac_textSignal;
+        
+      
+        
+        self.taskNameLabel.text = self.taskNamtTextField.text;
+    }
+    
+    [self.taskNamtTextField.rac_textSignal subscribeNext:^(id x) {
+        NSLog(@"x %@", x);
+    }];
     
 }
 

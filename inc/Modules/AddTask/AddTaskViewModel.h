@@ -28,6 +28,8 @@
 
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
 
+@property (nonatomic, strong) NSString* taskNameText;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

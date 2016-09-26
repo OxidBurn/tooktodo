@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AddTaskViewModel.h"
 
 @protocol OSFlexibleTextFieldCellDelegate;
 
@@ -25,5 +26,7 @@
 @protocol OSFlexibleTextFieldCellDelegate <NSObject>
 
 - (void) updateFlexibleTextFieldCellWithText: (NSString*) newTaskNameString;
+
+- (AddTaskViewModel*) getViewModel;
 
 @end

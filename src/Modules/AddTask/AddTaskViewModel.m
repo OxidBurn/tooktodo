@@ -169,6 +169,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     }
 }
 
+- (AddTaskViewModel*) getViewModel
+{
+    return self;
+}
+
 #pragma mark - Internal -
 
 - (void) initialize
