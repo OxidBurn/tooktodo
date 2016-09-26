@@ -294,19 +294,37 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 
 #pragma mark - DesignateAdminControllerDelegate  methods-
 
-- (void) performActionForButtonTag: (NSUInteger) btnTag
+
+- (void) performReadyAction
 {
-    if (btnTag == Cancel)
+    NSInteger currentPermission = [self.model getPermissions].integerValue;
+    
+    switch (currentPermission)
     {
-        NSLog(@"Action cancel performed");
+        case Admin:
+            [self.model updateMemberPermission: Participant];
+            if (self.reloadTableView)
+                self.reloadTableView();
+            break;
+            
+        case Participant:
+            [self.model updateMemberPermission: Admin];
+            if (self.reloadTableView)
+                self.reloadTableView();
+            break;
+            
+        default:
+            break;
     }
     
-    if (btnTag == Ready)
-    {
-        NSLog(@"Action ready performed");
-        [self.model updateMemberPermission: Admin];
+    
+    
 
-    }
+}
+
+- (void) performCancelAction
+{
+    NSLog(@"Action cancel performed");
 }
 
 

@@ -76,6 +76,7 @@
     
     self.avatarImgView.image = image;
     self.nameLabel.text      = name;
+    self.titleLabel.text     = message;
 }
 
 
@@ -83,12 +84,18 @@
 
 - (IBAction) onCancel: (UIButton*) sender
 {
-    [self.delegate performActionForButtonTag: sender.tag];
+    [self dismissViewControllerAnimated:YES completion: nil];
+
 }
 
 - (IBAction) onReady: (UIButton*) sender
 {
-    [self.delegate performActionForButtonTag: sender.tag];
+    [self.delegate  performReadyAction];
+    
+    [self dismissViewControllerAnimated: YES completion:^{
+         [self.delegate performReadyAction];
+    }];
+
 }
 
 

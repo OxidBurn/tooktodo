@@ -65,6 +65,14 @@
     
     [self updateUserInfo];
     
+ 
+    
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
     __weak typeof(self) blockSelf = self;
     
     self.viewModel.reloadTableView = ^(){
@@ -72,12 +80,6 @@
         [blockSelf.profileInfoTableView reloadData];
         
     };
-    
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 #pragma mark - Memory managment -

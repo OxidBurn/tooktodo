@@ -24,5 +24,9 @@
 
 - (void) performActionForButtonTag: (NSUInteger) btnTag;
 
+- (void) performCancelAction;
+
+- (void) performReadyAction;
+
 @end
 
