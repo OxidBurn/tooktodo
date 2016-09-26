@@ -178,15 +178,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) initialize
 {
-    self.enableConfirmButtons = [RACObserve (self.model, taskName)
+    self.enableConfirmButtons = [RACObserve (self, taskNameText)
                                  
-                                 map:^id (NSString* value) {
+                                 map: ^id (NSString* value) {
         
-                                     NSLog(@"%@", value);
-                                     
                                      return @([self.model isValidTaskName: value]);
         
-                                 }];
+                                 }] ;
     
     
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons

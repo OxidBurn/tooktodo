@@ -51,21 +51,6 @@
     if ( textContent.length > 0 )
     self.taskNameLabel.text = textContent;
     
-    if ([self.delegate respondsToSelector:@selector(getViewModel)])
-    {
-       AddTaskViewModel* viewModel = [self.delegate getViewModel];
-        
-        RAC(viewModel, taskNameText) = self.taskNamtTextField.rac_textSignal;
-        
-      
-        
-        self.taskNameLabel.text = self.taskNamtTextField.text;
-    }
-    
-    [self.taskNamtTextField.rac_textSignal subscribeNext:^(id x) {
-        NSLog(@"x %@", x);
-    }];
-    
 }
 
 - (void) editTextLabel
@@ -86,6 +71,18 @@
 }
 
 #pragma mark - UITextFieldDelegate methods -
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(getViewModel)])
+    {
+        AddTaskViewModel* viewModel = [self.delegate getViewModel];
+        
+        RAC(viewModel, taskNameText) = [self.taskNamtTextField.rac_textSignal takeUntil: self.rac_prepareForReuseSignal];
+        
+        self.taskNameLabel.text = self.taskNamtTextField.text;
+    }
+}
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
 {
@@ -108,6 +105,8 @@
     {
          [self.delegate updateFlexibleTextFieldCellWithText: self.taskNamtTextField.text];
     }
+    
+  
 }
 
 - (BOOL) textFieldShouldReturn: (UITextField*) textField
