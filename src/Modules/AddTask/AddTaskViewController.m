@@ -12,14 +12,8 @@
 #import "AddTaskViewModel.h"
 #import "SelectResponsibleViewController.h"
 #import "ProjectsEnumerations.h"
-
-typedef NS_ENUM(NSUInteger, SeguesList) {
-    
-    ShowResponsibleSegue,
-    ShowClaimingSegue,
-    ShowObserversSegue,
-    
-};
+#import "AddMessageViewController.h"
+#import "NewTask.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
@@ -28,17 +22,11 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* readyBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
-
+@property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
 
 // properties
-@property (weak, nonatomic) IBOutlet UITableView* addTaskTableView;
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
-
-@property (strong, nonatomic) NSArray* seguesInfoArray;
-
-@property (assign, nonatomic) SeguesList segue;
-
 
 // methods
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
@@ -67,6 +55,11 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
     [super viewDidLoad];
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [self.addTaskTableView reloadData];
+}
+
 #pragma mark - Memory managment -
 
 - (void) didReceiveMemoryWarning
@@ -81,30 +74,42 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 {
     [super prepareForSegue: segue sender: sender];
     
-    SelectResponsibleViewController* controller = [SelectResponsibleViewController new];
+    NewTask* task = [self.viewModel getNewTask];
     
-    controller = segue.destinationViewController;
-    
-    NSUInteger segueIndex = [self.seguesInfoArray indexOfObject: segue.identifier];
+    NSUInteger segueIndex = [[self.viewModel returnAllSeguesArray] indexOfObject: segue.identifier];
     
     switch ( segueIndex )
     {
+        case ShowAddMessageSegue:
+        {
+            AddMessageViewController* AddMessageController = [segue destinationViewController];
+            
+            [AddMessageController updateDescription: task.description
+                                   andReturnToModel: [self.viewModel returnModel]];
+        }
+            break;
+            
         case ShowResponsibleSegue:
         {
-            [controller updateControllerType: SelectResponsibleController];
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectResponsibleController
+                                withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowClaimingSegue:
         {
-            
-            [controller updateControllerType: SelectClaimingController];
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectClaimingController
+                                withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowObserversSegue:
         {
-            [controller updateControllerType: SelectObserversController];
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectObserversController
+                                withDelegate: [self.viewModel returnModel]];
         }
             break;
             
@@ -116,16 +121,6 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 
 
 #pragma mark - Properties -
-
-- (NSArray*) seguesInfoArray
-{
-    if ( _seguesInfoArray == nil )
-    {
-        _seguesInfoArray = @[@"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController"];
-    }
-    
-    return _seguesInfoArray;
-}
 
 - (AddTaskViewModel*) viewModel
 {

@@ -32,4 +32,11 @@
 
 - (BOOL) checkIfButtonIsEnabled;
 
+- (void) updatePreviousCellIndexPath: (NSIndexPath*) indexPath;
+
+- (NSIndexPath*) returnPreviousMarkedCellIndexPath;
+
+- (NSArray*) returnSelectedUsersInfo;
+
+
 @end

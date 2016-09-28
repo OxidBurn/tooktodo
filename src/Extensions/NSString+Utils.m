@@ -34,4 +34,14 @@
     return (match != nil);
 }
 
+
++ (NSString*) getStringWithoutWhiteSpacesAndNewLines: (NSString*) string
+{
+    NSCharacterSet* whiteSpacesSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    
+    NSString* content = [string stringByTrimmingCharactersInSet: whiteSpacesSet];
+    
+    return content;
+}
+
 @end

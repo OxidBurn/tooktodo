@@ -15,8 +15,6 @@
 
 // properties
 
-@property (strong, nonatomic) NSString* taskName;
-
 // methods
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
@@ -31,5 +29,7 @@
 - (BOOL) isValidTaskName: (NSString*) taskName;
 
 - (NewTask*) returnNewTask;
+
+- (NSArray*) returnAllSeguesArray;
 
 @end

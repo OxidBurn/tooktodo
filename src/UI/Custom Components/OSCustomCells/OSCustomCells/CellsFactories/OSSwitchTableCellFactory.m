@@ -18,11 +18,13 @@
 - (UITableViewCell*) returnSwitchCellWithTitle: (NSString*)    titleText
                                withSwitchState: (BOOL)         isEnabled
                                   forTableView: (UITableView*) tableView
+                                  withDelegate: (id)           delegate
 {
     OSSwitchTableCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SwitchCellID"];
     
     [cell fillCellWithTitle: titleText
-            withSwitchState: isEnabled];
+            withSwitchState: isEnabled
+               withDelegate: delegate];
     
     return cell;
 }

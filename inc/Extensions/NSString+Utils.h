@@ -17,4 +17,6 @@
  */
 - (BOOL) isEmailString;
 
++ (NSString*) getStringWithoutWhiteSpacesAndNewLines: (NSString*) string;
+
 @end

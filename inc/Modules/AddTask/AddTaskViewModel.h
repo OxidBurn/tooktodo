@@ -30,6 +30,10 @@
 
 - (NewTask*) getNewTask;
 
+- (NSArray*) returnAllSeguesArray;
+
+- (id) returnModel;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

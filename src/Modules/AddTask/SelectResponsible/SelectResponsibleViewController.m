@@ -99,7 +99,14 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
+    NSArray* selectedUsers = [self.viewModel returnSelectedUsersInfo];
     
+    if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
+    {
+//        [self.delegate returnSelectedResponsibleInfo: selectedUsers];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
@@ -118,9 +125,11 @@
 #pragma mark - Pulbic -
 
 - (void) updateControllerType: (ControllerTypeSelection) controllerType
+                 withDelegate: (id)                      delegate
 {
     [self.viewModel fillContollerTypeSelection: controllerType];
 
+    self.delegate = delegate;
 }
 
 

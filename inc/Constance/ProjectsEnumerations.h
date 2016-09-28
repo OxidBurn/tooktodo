@@ -58,5 +58,14 @@ typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
     MarkedRightDetailCell,
 };
 
+typedef NS_ENUM(NSUInteger, AllSeguesList) {
+    
+    ShowAddMessageSegue,
+    ShowResponsibleSegue,
+    ShowClaimingSegue,
+    ShowObserversSegue,
+    
+};
+
 
 #endif /* ProjectsEnumerations_h */

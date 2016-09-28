@@ -15,9 +15,15 @@
 #import "OSGroupOfUsersInfoCellFactory.h"
 #import "OSSwitchTableCellFactory.h"
 #import "OSFlexibleTextCellFactory.h"
+#import "OSSwitchTableCell.h"
 #import "OSFlexibleTextFieldCellFactory.h"
 #import "ProjectsEnumerations.h"
 #import "AddMessageViewController.h"
+#import "SelectResponsibleViewController.h"
+#import "UserInfo+CoreDataProperties.h"
+#import "DataManager+UserInfo.h"
+#import "RowContent.h"
+#import "NSDate+Helper.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -30,18 +36,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
 };
 
-
-static NSString* CellIdKey           = @"CellIdKey";
-static NSString* SegueIdKey          = @"SegueIdKey";
-
-static NSString* TitleTextKey        = @"TitleKey";
-static NSString* DetailTextKey       = @"DetailTextKey";
-static NSString* isHiddenKey         = @"isHiddenKey";
-static NSString* SingleUserInfoKey   = @"MemberInfoKey";
-static NSString* GroupOfUsersInfoKey = @"GroupOfUsersInfoKey";
-static NSString* MarkImageKey        = @"MarkImageKey";
-
-@interface AddTaskModel() <AddMessageViewControllerDelegate>
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -52,7 +47,9 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 @property (nonatomic, strong) NewTask* task;
 
-@property (nonatomic, strong) AddMessageViewController* vc;
+@property (strong, nonatomic) NSArray* allSeguesInfoArray;
+
+
 // methods
 
 
@@ -82,6 +79,16 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     return _addTaskTableViewSeguesInfo;
 }
 
+- (NSArray*) allSeguesInfoArray
+{
+    if ( _allSeguesInfoArray == nil )
+    {
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController"];
+    }
+    
+    return _allSeguesInfoArray;
+}
+
 - (NSArray*) addTaskTableViewContent
 {
     if ( _addTaskTableViewContent == nil )
@@ -97,6 +104,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     if (_task == nil)
     {
         _task = [NewTask new];
+        
+        _task.defaultResponsible = [self getCurrentUserInfoArray];
     }
     
     return _task;
@@ -116,11 +125,11 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 {
     NSArray* section = self.addTaskTableViewContent[indexPath.section];
     
-    NSDictionary* content = section[indexPath.row];
+    RowContent* content = section[indexPath.row];
     
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     
-    NSString* cellID = content[CellIdKey];
+    NSString* cellID = content.cellId;
     
     NSUInteger cellTypeIndex = [self.addTaskTableViewCellsInfo indexOfObject: cellID];
     
@@ -130,12 +139,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
             
-            cell = [factory returnFlexibleTextFieldCellWithTextContent: content[TitleTextKey]
+            cell = [factory returnFlexibleTextFieldCellWithTextContent: content.title
                                                           forTableView: tableView];
-            
-            self.task.taskName = content[TitleTextKey];
-            NSLog(@"taskName %@", self.task.taskName);
-            
         }
             break;
             
@@ -143,8 +148,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
             
-            cell = [factory returnRightDetailCellWithTitle: content[TitleTextKey]
-                                            withDetailText: content[DetailTextKey]
+            cell = [factory returnRightDetailCellWithTitle: content.title
+                                            withDetailText: content.detail
                                               forTableView: tableView];
         }
             break;
@@ -153,11 +158,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSFlexibleTextCellFactory* factory = [OSFlexibleTextCellFactory new];
             
-            cell = [factory returnFlexibleCellWithTextContent: content[TitleTextKey]
+            cell = [factory returnFlexibleCellWithTextContent: content.title
                                                  forTableView: tableView];
-            
-            self.task.taskDescription = content[TitleTextKey];
-            
         }
             break;
             
@@ -165,15 +167,12 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSSwitchTableCellFactory* factory = [OSSwitchTableCellFactory new];
             
-            NSNumber* stateNumberValue = content[isHiddenKey];
+            BOOL stateBoolValue = content.isHidden;
             
-            BOOL stateBoolValue = stateNumberValue.boolValue;
-            
-            cell = [factory returnSwitchCellWithTitle: content[TitleTextKey]
+            cell = [factory returnSwitchCellWithTitle: content.title
                                       withSwitchState: stateBoolValue
-                                         forTableView: tableView];
-            
-            self.task.isHiddenTask = stateNumberValue.boolValue;
+                                         forTableView: tableView
+                                         withDelegate: self];
         }
             break;
             
@@ -181,9 +180,15 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
-            cell = [factory returnSingleUserCellWithTitle: content[TitleTextKey]
-                                         withUserFullName: @"Имя пользователя"
-                                           withUserAvatar: [UIImage imageNamed: @"Mail"]
+            UserInfo* user = content.membersArray[0];
+            
+            NSString* userFullName  = user.fullName;
+            
+            NSString* userAvatarSrc = user.avatarSrc;
+            
+            cell = [factory returnSingleUserCellWithTitle: content.title
+                                         withUserFullName: userFullName
+                                           withUserAvatar: userAvatarSrc
                                              forTableView: tableView];
         }
             break;
@@ -192,7 +197,7 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSGroupOfUsersInfoCellFactory* factory = [OSGroupOfUsersInfoCellFactory new];
             
-            cell = [factory returnGroupOfUsersCellWithTitle: content[TitleTextKey]
+            cell = [factory returnGroupOfUsersCellWithTitle: content.title
                                                forTableView: tableView];
 
         }
@@ -202,9 +207,9 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSMarkedRightDetailCellFactory* factory = [OSMarkedRightDetailCellFactory new];
 
-            cell = [factory returnMarkedRightDetailCellWithTitle: content[TitleTextKey]
-                                                  withDetailText: content[DetailTextKey]
-                                                   withMarkImage: content[MarkImageKey]
+            cell = [factory returnMarkedRightDetailCellWithTitle: content.title
+                                                  withDetailText: content.detail
+                                                   withMarkImage: [UIImage imageNamed: content.markImageName]
                                                     forTableView: tableView];
         }
             break;
@@ -218,45 +223,61 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath
 {
-    NSDictionary* content = self.addTaskTableViewContent[indexPath.section][indexPath.row];
+    RowContent* content = self.addTaskTableViewContent[indexPath.section][indexPath.row];
     
-    return content[SegueIdKey];
+    return content.segueId;
 }
 
 - (void) updateTaskNameWithString: (NSString*) newTaskName
 {
-    self.taskName = newTaskName;
-        
-    NSArray* sectionContent = self.addTaskTableViewContent[0];
-    
-    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
-    
-    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    self.task.taskName = newTaskName;
     
     if ( [newTaskName isEqualToString: @""] )
     {
         newTaskName = @"Название задачи";
     }
-
-    NSDictionary* newRow = @{ CellIdKey    : self.addTaskTableViewCellsInfo[FlexibleTextFieldCell],
-                              TitleTextKey : newTaskName };
-            
-    [sectionCopy removeObjectAtIndex: 0];
-            
-    [sectionCopy insertObject: newRow atIndex: 0];
     
-    sectionContent = [sectionCopy copy];
+    RowContent* newRow = self.addTaskTableViewContent[0][0];
     
-    [contentCopy replaceObjectAtIndex: 0 withObject: sectionContent];
+    newRow.title  = newTaskName;
     
-    self.addTaskTableViewContent = [contentCopy copy];
-    
+    [self updateContentWithRow: newRow
+                     inSection: 0
+                         inRow: 0];
 }
 
 - (NewTask*) returnNewTask
 {
     return self.task;
 }
+
+- (NSArray*) returnAllSeguesArray
+{
+    return self.allSeguesInfoArray;
+}
+
+#pragma mark - OSSwitchTableCellDelegate methods -
+
+- (void) updateTaskState: (BOOL) isHidden
+{
+    self.task.isHiddenTask = isHidden;
+}
+
+#pragma mark - SelectResponsibleViewControllerDelegate methods -
+
+- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
+{
+    self.task.responsible = selectedUsersArray;
+    
+    RowContent* row = self.addTaskTableViewContent[0][3];
+    
+    row.membersArray = selectedUsersArray;
+    
+    [self updateContentWithRow: row
+                     inSection: 0
+                         inRow: 3];
+}
+
 
 #pragma mark - Internal -
 
@@ -273,80 +294,109 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 - (NSArray*) createSectionOne
 {
+    RowContent* rowOne = [RowContent new];
     
-    NSDictionary* rowOne   = @{ CellIdKey : self.addTaskTableViewCellsInfo[FlexibleTextFieldCell],
-                                TitleTextKey  : @"Название задачи" };
+    rowOne.cellId = self.addTaskTableViewCellsInfo[FlexibleTextFieldCell];
+    rowOne.title  = self.task.taskName ? self.task.taskName : @"Название задачи";
     
-    NSDictionary* rowTwo   = @{ CellIdKey  : self.addTaskTableViewCellsInfo[FlexibleCell],
-                                TitleTextKey   : @"Описание задачи",
-                                SegueIdKey : self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId] };
+    RowContent* rowTwo = [RowContent new];
     
-    NSDictionary* rowThree = @{ CellIdKey  : self.addTaskTableViewCellsInfo[SwitchCell],
-                                isHiddenKey : @(0),
-                                TitleTextKey    : @"Скрытая задача"};
+    rowTwo.cellId  = self.addTaskTableViewCellsInfo[FlexibleCell];
+    rowTwo.title   = self.task.taskDescription ? self.task.taskDescription : @"Описание задачи";
+    rowTwo.segueId = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
     
-    NSDictionary* rowFour  = @{ CellIdKey    : self.addTaskTableViewCellsInfo[SingleUserInfoCell],
-                                TitleTextKey : @"Ответственный",
-                                SegueIdKey   : self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID] };
+    RowContent* rowThree = [RowContent new];
     
-    NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: @[@"TestString"]];
+    rowThree.cellId   = self.addTaskTableViewCellsInfo[SwitchCell];
+    rowThree.title    = @"Скрытая задача";
+    rowThree.isHidden = self.task.isHiddenTask? self.task.isHiddenTask : NO;
+    
+    RowContent* rowFour = [RowContent new];
+    
+    rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
+    rowFour.title        = @"Ответственный";
+    rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
+    rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
+    
+    RowContent* rowFive = [RowContent new];
+    
+    NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: self.task.claiming];
     
     NSString* cellFiveDetailText  = [cellForRowFiveId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
     
-    NSDictionary* rowFive  = @{ TitleTextKey    : @"Утверждающие",
-                                DetailTextKey   : cellFiveDetailText,
-                                CellIdKey       : cellForRowFiveId,
-                                SegueIdKey      : self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID]};
+    rowFive.cellId       = cellForRowFiveId;
+    rowFive.title        = @"Утверждающие";
+    rowFive.detail       = cellFiveDetailText;
+    rowFive.membersArray = self.task.claiming;
+    rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
     
-    NSString* cellForRowSixId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    RowContent* rowSix = [RowContent new];
+    
+    NSString* cellForRowSixId = [self determineCellIdForGroupOfMembers: self.task.observers];
     
     NSString* cellSixDetailText  = [cellForRowSixId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
     
-    NSDictionary* rowSix   = @{ TitleTextKey  : @"Наблюдатели",
-                                DetailTextKey : cellSixDetailText,
-                                CellIdKey     : cellForRowSixId,
-                                SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID]};
+    rowSix.cellId       = cellForRowSixId;
+    rowSix.title        = @"Наблюдатели";
+    rowSix.detail       = cellSixDetailText;
+    rowSix.membersArray = self.task.observers;
+    rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
 
 - (NSArray*) createSectionTwo
 {
-    NSDictionary* row = @{ TitleTextKey  : @"Сроки",
-                           DetailTextKey : @"Не выбраны",
-                           CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell],
-                           SegueIdKey    : self.addTaskTableViewSeguesInfo[ShowTermsSegueID]};
+    RowContent* row = [RowContent new];
+    
+    row.title   = @"Сроки";
+    row.detail  = [self createTermsLabelTextForStartDate: self.task.startDate
+                                         withFinishDate: self.task.finishDate
+                                           withDuration: self.task.duration];
+    row.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    row.segueId = self.addTaskTableViewSeguesInfo[ShowTermsSegueID];
     
     return @[ row ];
 }
 
 - (NSArray*) createSectionThree
 {
-    NSDictionary* rowOne   = @{ TitleTextKey  : @"Помещение",
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell] };
+    RowContent* rowOne = [RowContent new];
     
-    NSDictionary* rowTwo   = @{ TitleTextKey  : @"Задача на плане",
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell] };
+    rowOne.title  = @"Помещение";
+    rowOne.detail = @"Не реализовано";
+    rowOne.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
     
-    NSDictionary* rowThree = @{ TitleTextKey  : @"Этап",
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell] };
+    RowContent* rowTwo = [RowContent new];
     
-    NSDictionary* rowFour  = @{ TitleTextKey  : @"Система",
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell] };
+    rowTwo.title  = @"Задача на плане";
+    rowTwo.detail = @"Не реализовано";
+    rowTwo.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
     
-    NSDictionary* rowFive  = @{ TitleTextKey  : @"Тип задачи",
-                                MarkImageKey  : [UIImage imageNamed: @"GreenMark"],
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[MarkedRightDetailCell] };
+    RowContent* rowThree = [RowContent new];
     
-    NSDictionary* rowSix   = @{ TitleTextKey  : @"Документы к задаче",
-                                DetailTextKey : @"Не реализовано",
-                                CellIdKey     : self.addTaskTableViewCellsInfo[RightDetailCell] };
+    rowThree.title  = @"Этап";
+    rowThree.detail = @"Не реализовано";
+    rowThree.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
     
+    RowContent* rowFour = [RowContent new];
+    
+    rowFour.title  = @"Система";
+    rowFour.detail = @"Не реализовано";
+    rowFour.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    RowContent* rowFive = [RowContent new];
+    
+    rowFive.title         = @"Тип задачи";
+    rowFive.detail        = @"Не реализовано";
+    rowFive.markImageName = @"GreenMark";
+    rowFive.cellId        = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
+    
+    RowContent* rowSix = [RowContent new];
+    
+    rowSix.title  = @"Документы к задаче";
+    rowSix.detail = @"Не реализовано";
+    rowSix.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
@@ -357,6 +407,19 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 - (void) setTaskDescription: (NSString*) taskDescription
 {
     self.task.taskDescription = taskDescription;
+    
+    RowContent* newRow = self.addTaskTableViewContent[0][1];
+    
+    newRow.title = taskDescription;
+    
+    if ( [taskDescription isEqualToString: @"Введите описание задачи"] )
+    {
+        taskDescription = @"";
+    }
+    
+    [self updateContentWithRow: newRow
+                     inSection: 0
+                         inRow: 1];
 }
 
 #pragma mark - Helpers -
@@ -380,9 +443,62 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     return cellID;
 }
 
+- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
+                                withFinishDate: (NSDate*) finishDate
+                                  withDuration: (NSUInteger) duration
+{
+    NSString* labelText;
+    
+    if ( startDate && finishDate)
+    {
+        NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+        
+        NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+        
+        labelText = [NSString stringWithFormat: @"%@ - %@, %ld", firstDate, secondDate, duration];
+    } else
+    {
+        labelText = @"Не выбраны";
+    }
+    
+    return labelText;
+}
+
 - (BOOL) isValidTaskName: (NSString*) taskName
 {
     return taskName.length > 0;
+}
+
+- (NSArray*) getCurrentUserInfoArray
+{
+    NSArray* allUsers = [[DataManager sharedInstance] getAllUserInfo];
+    
+    UserInfo* userInfo = [allUsers firstObject];
+    
+//    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
+    
+//    NSArray* array = @[ currentUser ];
+    
+    return userInfo? @[ userInfo] : nil;
+}
+
+- (void) updateContentWithRow: (RowContent*) newRow
+                    inSection: (NSUInteger) section
+                        inRow: (NSUInteger) row
+{
+    NSArray* sectionContent = self.addTaskTableViewContent[section];
+    
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
+    
+    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    
+    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    
+    sectionContent = [sectionCopy copy];
+    
+    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    
+    self.addTaskTableViewContent = [contentCopy copy];
 }
 
 @end

@@ -13,6 +13,7 @@
 // methods
 - (UITableViewCell*) returnSwitchCellWithTitle: (NSString*)    titleText
                                withSwitchState: (BOOL)         isEnabled
-                                  forTableView: (UITableView*) tableView;
+                                  forTableView: (UITableView*) tableView
+                                  withDelegate: (id) delegate;
 
 @end

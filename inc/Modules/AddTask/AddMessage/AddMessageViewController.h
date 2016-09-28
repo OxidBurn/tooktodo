@@ -12,7 +12,12 @@
 
 @interface AddMessageViewController : UIViewController
 
+// properties
 @property (nonatomic, strong) id<AddMessageViewControllerDelegate> delegate;
+
+// methods
+- (void) updateDescription: (NSString*) descriptionText
+          andReturnToModel: (id)        model;
 
 @end
 

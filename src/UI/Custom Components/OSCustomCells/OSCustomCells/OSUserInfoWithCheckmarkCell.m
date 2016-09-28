@@ -40,15 +40,6 @@
     
     self.userInfoTextLabel.text = userInfo;
     
-//    if ( memberInfo.isResponsible )
-//    {
-//        self.checkMarkImageView.hidden = NO;
-//    }
-//    else
-//    {
-//        self.checkMarkImageView.hidden = YES;
-//    }
-    
     self.checkMarkImageView.hidden = memberInfo.isResponsible ? NO : YES;
     
 }

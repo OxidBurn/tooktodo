@@ -60,6 +60,16 @@
     return [self.model returnNewTask];
 }
 
+- (NSArray*) returnAllSeguesArray
+{
+    return [self.model returnAllSeguesArray];
+}
+
+- (id) returnModel
+{
+    return self.model;
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

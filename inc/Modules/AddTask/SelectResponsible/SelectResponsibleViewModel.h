@@ -28,4 +28,6 @@
 
 - (ControllerTypeSelection) returnControllerType;
 
+- (NSArray*) returnSelectedUsersInfo;
+
 @end

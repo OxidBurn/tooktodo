@@ -28,17 +28,23 @@
 
 - (IBAction) onSwitchControl: (UISwitch*) sender
 {
-    
+    if ( [self.delegate respondsToSelector: @selector( updateTaskState: )] )
+    {
+        [self.delegate updateTaskState: [sender isOn]];
+    }
 }
 
 #pragma mark - Public -
 
 - (void) fillCellWithTitle: (NSString*) titleText
            withSwitchState: (BOOL)      isSelected
+              withDelegate: (id)        delegate
 {
     self.titleLabel.text  = titleText;
     
-    self.switchControl.on = !isSelected;
+    self.switchControl.on = isSelected;
+    
+    self.delegate = delegate;
 }
 
 @end

@@ -65,14 +65,35 @@
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    [tableView deselectRowAtIndexPath: indexPath
-                             animated: YES];
+    ControllerTypeSelection selection = [self.model returnControllerType];
     
-    [self.model handleCheckmarkForIndexPath: indexPath];
-    
-    OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
-    
-    [cell changeCheckmarkState: [self.model getStateForMemberAtIndex: indexPath.row]];
+    switch ( selection )
+    {
+        case SelectResponsibleController:
+        {
+            [tableView deselectRowAtIndexPath: indexPath
+                                     animated: YES];
+            
+            [self.model handleCheckmarkForIndexPath: indexPath];
+            
+            OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+            
+            [cell changeCheckmarkState: YES];
+            
+            if ( [self.model returnPreviousMarkedCellIndexPath] )
+            {
+                OSUserInfoWithCheckmarkCell* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model returnPreviousMarkedCellIndexPath]];
+                
+                [prevSelectedCell changeCheckmarkState: NO];
+            }
+            
+            [self.model updatePreviousCellIndexPath: indexPath];
+        }
+            break;
+            
+        default:
+            break;
+    }
 
 }
 
@@ -91,6 +112,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (ControllerTypeSelection) returnControllerType
 {
     return [self.model returnControllerType];
+}
+
+- (NSArray*) returnSelectedUsersInfo
+{
+    return [self.model returnSelectedUsersInfo];
 }
 
 @end

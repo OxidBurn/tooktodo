@@ -24,6 +24,11 @@
 - (void) fillCellWithText: (NSString*) textContent
 {
     self.flexibleTextLabel.text = textContent;
+    
+    if ( [textContent isEqualToString: @"Описание задачи"] == NO )
+    {
+        self.flexibleTextLabel.textColor = [UIColor blackColor];
+    }
 }
 
 @end

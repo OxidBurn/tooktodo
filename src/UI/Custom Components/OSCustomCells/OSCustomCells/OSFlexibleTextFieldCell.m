@@ -7,7 +7,10 @@
 //
 
 #import "OSFlexibleTextFieldCell.h"
+
+// Classes
 #import "AddTaskViewModel.h"
+#import "NSString+Utils.h"
 
 @interface OSFlexibleTextFieldCell() <UITextFieldDelegate>
 
@@ -57,7 +60,7 @@
 {
     if ( !self.isEditedByUser )
     {
-        self.taskNameLabel.text      = @"";
+        self.taskNameLabel.text = @"";
         self.isEditedByUser = YES;
     }
     self.taskNameLabel.textColor = [UIColor blackColor];
@@ -103,7 +106,7 @@
     
     if ( [self.delegate respondsToSelector: @selector(updateFlexibleTextFieldCellWithText:)] )
     {
-         [self.delegate updateFlexibleTextFieldCellWithText: self.taskNamtTextField.text];
+         [self.delegate updateFlexibleTextFieldCellWithText: [NSString getStringWithoutWhiteSpacesAndNewLines: self.taskNamtTextField.text]];
     }
     
   
@@ -138,4 +141,5 @@ shouldChangeCharactersInRange: (NSRange)      range
         
     return shouldReturn;
 }
+
 @end

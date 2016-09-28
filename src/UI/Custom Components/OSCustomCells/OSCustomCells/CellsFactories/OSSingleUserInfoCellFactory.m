@@ -17,14 +17,14 @@
 
 - (UITableViewCell*) returnSingleUserCellWithTitle: (NSString*)    titleText
                                   withUserFullName: (NSString*)    userFullName
-                                    withUserAvatar: (UIImage*)     userAvatar
+                                    withUserAvatar: (NSString*)    userAvatarSrc
                                       forTableView: (UITableView*) tableView
 {
     OSSingleUserInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SingleUserInfoCellID"];
     
     [cell fillCellWithTitle: titleText
            withUserFullName: userFullName
-             withUserAvatar: userAvatar];
+             withUserAvatar: userAvatarSrc];
     
     return cell;
 }

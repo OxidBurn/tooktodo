@@ -8,6 +8,12 @@
 
 #import "OSSingleUserInfoCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
+// Classes
+#import "FilledTeamInfo.h"
+
 @interface OSSingleUserInfoCell()
 
 // properties
@@ -27,11 +33,12 @@
 
 - (void) fillCellWithTitle: (NSString*) titleText
           withUserFullName: (NSString*) userFullName
-            withUserAvatar: (UIImage*) userAvatar
+            withUserAvatar: (NSString*) userAvatarSrc
 {
     self.userNameLabel.text        = userFullName;
     self.infoTitleLabel.text       = titleText;
-    self.userAvatarImageView.image = userAvatar;
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userAvatarSrc]];
+
 }
 
 @end

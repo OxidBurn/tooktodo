@@ -21,11 +21,15 @@
 // properties
 @property (strong, nonatomic) NSArray* membersArray;
 
+@property (strong, nonatomic) NSArray* selectedUsersArray;
+
 @property (assign, nonatomic) BOOL isSelectedResponsible;
 
 @property (assign, nonatomic) BOOL hasAnySelectedMembers;
 
 @property (assign, nonatomic) ControllerTypeSelection controllerType;
+
+@property (strong, nonatomic) NSIndexPath* previousesSelectedIndexPath;
 
 // methods
 
@@ -45,7 +49,6 @@
     
     return _membersArray;
 }
-
 
 #pragma mark - Public -
 
@@ -70,29 +73,24 @@
     {
         case SelectResponsibleController:
         {
-            FilledTeamInfo* user = self.membersArray[indexPath.row];
-            
-            if ( user.isResponsible == NO)
+            if ( [indexPath isEqual: self.previousesSelectedIndexPath] == NO )
             {
-                if ( self.isSelectedResponsible )
+            [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                obj.isResponsible = NO;
+                
+                if ( idx == indexPath.row )
                 {
-                    user.isResponsible = NO;
+                    obj.isResponsible = YES;
                 }
-                else
-                {
-                    user.isResponsible = YES;
-                    
-                    self.isSelectedResponsible = YES;
-                }
+            }];
+                
+                self.selectedUsersArray = @[ self.membersArray[indexPath.row] ];
             }
             else
-                if ( user.isResponsible )
-            {
-                user.isResponsible = NO;
-                
-                self.isSelectedResponsible = NO;
+            {                
+                self.selectedUsersArray = nil;
             }
-            
         }
             
             break;
@@ -170,4 +168,18 @@
     return self.hasAnySelectedMembers;
 }
 
+- (NSIndexPath*) returnPreviousMarkedCellIndexPath
+{
+    return self.previousesSelectedIndexPath;
+}
+
+- (void) updatePreviousCellIndexPath: (NSIndexPath*) indexPath
+{
+    self.previousesSelectedIndexPath = indexPath;
+}
+
+- (NSArray*) returnSelectedUsersInfo
+{
+    return self.selectedUsersArray;
+}
 @end

@@ -22,8 +22,6 @@
 
 @protocol OSAlertDesignateAdminControllerDelegate <NSObject>
 
-- (void) performActionForButtonTag: (NSUInteger) btnTag;
-
 - (void) performCancelAction;
 
 - (void) performReadyAction;

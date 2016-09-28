@@ -114,7 +114,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             
             cell = [factory returnSwitchCellWithTitle: content[TitleTextKey]
                                       withSwitchState: stateBoolValue
-                                         forTableView: tableView];
+                                         forTableView: tableView
+                                         withDelegate: self];
         }
             
             break;

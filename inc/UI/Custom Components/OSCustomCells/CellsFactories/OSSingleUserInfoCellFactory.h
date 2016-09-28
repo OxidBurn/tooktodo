@@ -13,7 +13,7 @@
 // methods
 - (UITableViewCell*) returnSingleUserCellWithTitle: (NSString*)    titleText
                                   withUserFullName: (NSString*)    userFullName
-                                    withUserAvatar: (UIImage*)     userAvatar
+                                    withUserAvatar: (NSString*)    userAvatar
                                       forTableView: (UITableView*) tableView;
 
 @end
