@@ -143,7 +143,7 @@
 - (IBAction) showAllTasksByProjects: (UIButton*) sender
 {
     [self.slidingViewController resetTopViewAnimated: YES];
-    
+
     if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
     {
         [self.delegate showControllerWithSegueID: @"ShowTasks"];
