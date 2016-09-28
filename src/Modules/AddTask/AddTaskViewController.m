@@ -219,8 +219,6 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
 
 - (void) setUpDefaults
 {
-    
-    
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
     
@@ -237,11 +235,13 @@ typedef NS_ENUM(NSUInteger, SeguesList) {
     
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeCompleted:^{
+        [signal subscribeCompleted: ^{
             
+                        NSLog(@"task saved somewhere");
+            [self.viewModel getNewTask];
             
-            
-            NSLog(@"lol");
+            NewTask* t = [self.viewModel getNewTask];
+            NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
            // [self.navigationController popViewControllerAnimated: YES];
             
         }];

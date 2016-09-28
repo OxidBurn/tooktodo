@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+//Classes
+#import "NewTask.h"
+
 @interface AddTaskModel : NSObject
 
 // properties
@@ -26,5 +29,7 @@
 - (void) updateTaskNameWithString: (NSString*) newTaskName;
 
 - (BOOL) isValidTaskName: (NSString*) taskName;
+
+- (NewTask*) returnNewTask;
 
 @end

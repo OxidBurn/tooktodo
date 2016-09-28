@@ -17,6 +17,7 @@
 #import "OSFlexibleTextCellFactory.h"
 #import "OSFlexibleTextFieldCellFactory.h"
 #import "ProjectsEnumerations.h"
+#import "AddMessageViewController.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -40,7 +41,7 @@ static NSString* SingleUserInfoKey   = @"MemberInfoKey";
 static NSString* GroupOfUsersInfoKey = @"GroupOfUsersInfoKey";
 static NSString* MarkImageKey        = @"MarkImageKey";
 
-@interface AddTaskModel()
+@interface AddTaskModel() <AddMessageViewControllerDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -49,7 +50,9 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 
 @property (strong, nonatomic) NSArray* addTaskTableViewSeguesInfo;
 
+@property (nonatomic, strong) NewTask* task;
 
+@property (nonatomic, strong) AddMessageViewController* vc;
 // methods
 
 
@@ -89,7 +92,19 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     return _addTaskTableViewContent;
 }
 
+- (NewTask*) task
+{
+    if (_task == nil)
+    {
+        _task = [NewTask new];
+    }
+    
+    return _task;
+}
+
+
 #pragma mark - Public -
+
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
 {
@@ -115,10 +130,12 @@ static NSString* MarkImageKey        = @"MarkImageKey";
         {
             OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
             
-            
-            
             cell = [factory returnFlexibleTextFieldCellWithTextContent: content[TitleTextKey]
                                                           forTableView: tableView];
+            
+            self.task.taskName = content[TitleTextKey];
+            NSLog(@"taskName %@", self.task.taskName);
+            
         }
             break;
             
@@ -139,6 +156,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
             cell = [factory returnFlexibleCellWithTextContent: content[TitleTextKey]
                                                  forTableView: tableView];
             
+            self.task.taskDescription = content[TitleTextKey];
+            
         }
             break;
             
@@ -153,6 +172,8 @@ static NSString* MarkImageKey        = @"MarkImageKey";
             cell = [factory returnSwitchCellWithTitle: content[TitleTextKey]
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView];
+            
+            self.task.isHiddenTask = stateNumberValue.boolValue;
         }
             break;
             
@@ -232,6 +253,10 @@ static NSString* MarkImageKey        = @"MarkImageKey";
     
 }
 
+- (NewTask*) returnNewTask
+{
+    return self.task;
+}
 
 #pragma mark - Internal -
 
@@ -327,6 +352,12 @@ static NSString* MarkImageKey        = @"MarkImageKey";
 }
 
 
+#pragma mark - AddMessageViewControllerDelegate methods -
+
+- (void) setTaskDescription: (NSString*) taskDescription
+{
+    self.task.taskDescription = taskDescription;
+}
 
 #pragma mark - Helpers -
 

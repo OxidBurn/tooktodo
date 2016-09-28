@@ -12,23 +12,23 @@
 @import UIKit;
 #import "ReactiveCocoa/ReactiveCocoa.h"
 
+//Classes
+#import "NewTask.h"
 
 @protocol AddTaskViewModelDelegate;
 
 @interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 // properties
+
 @property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
-
-//@property (strong, nonatomic) RACCommand* addTaskCommand;
-//@property (strong, nonatomic) RACCommand* addTastAndCreateNewCommand;
-//@property (strong, nonatomic) RACCommand* readyCommand;
-
 @property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
-
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
-
 @property (nonatomic, strong) NSString* taskNameText;
+
+//methods
+
+- (NewTask*) getNewTask;
 
 @end
 

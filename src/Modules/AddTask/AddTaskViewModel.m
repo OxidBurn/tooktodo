@@ -52,6 +52,14 @@
     return _model;
 }
 
+
+#pragma mark - Public -
+
+- (NewTask*) getNewTask
+{
+    return [self.model returnNewTask];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
