@@ -15,6 +15,7 @@
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectRoles+CoreDataProperties.h"
 #import "ProjectRoleType+CoreDataProperties.h"
+#import "UserInfo.h"
 
 @interface FilledTeamInfo : NSObject
 
@@ -30,5 +31,7 @@
 @property (assign, nonatomic) BOOL isResponsible;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
+
+- (void) convertUserToTeamInfo: (UserInfo*) user;
 
 @end

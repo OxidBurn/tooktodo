@@ -68,5 +68,10 @@ typedef NS_ENUM(NSUInteger, AllSeguesList) {
     
 };
 
+typedef NS_ENUM(NSUInteger, SelectResponsibleSelectAllFlag) {
+    SelectAll,
+    DeselectAll,
+};
+
 
 #endif /* ProjectsEnumerations_h */

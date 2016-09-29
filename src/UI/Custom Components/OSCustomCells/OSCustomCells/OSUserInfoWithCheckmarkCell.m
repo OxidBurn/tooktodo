@@ -49,4 +49,9 @@
     self.checkMarkImageView.hidden = state ? NO : YES;
 }
 
+- (BOOL) currentCheckMarkState
+{
+    return self.checkMarkImageView.hidden;
+}
+
 @end

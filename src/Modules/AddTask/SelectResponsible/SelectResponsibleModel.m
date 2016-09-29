@@ -182,4 +182,37 @@
 {
     return self.selectedUsersArray;
 }
+
+- (void) selectAll
+{
+    [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.isResponsible = YES;
+    }];
+}
+
+- (void) deselectAll
+{
+    [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.isResponsible = NO;
+    }];
+}
+
+- (BOOL) checkIfAllSelected
+{
+    BOOL allSelected = NO;
+    
+    [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.isResponsible == NO)
+        {
+           
+        }
+        
+    }];
+    
+    return allSelected;
+    
+}
 @end

@@ -11,9 +11,10 @@
 // Classes
 #import "OSUserInfoWithCheckmarkCell.h"
 #import "FilledTeamInfo.h"
+#import "SelectResponsibleViewController.h"
 
 
-@interface SelectResponsibleViewModel()
+@interface SelectResponsibleViewModel() <SelectResponsibleViewControllerDelegate>
 
 // properties
 @property (strong, nonatomic) SelectResponsibleModel* model;
@@ -91,6 +92,46 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         }
             break;
             
+        case SelectClaimingController:
+        {
+            [tableView deselectRowAtIndexPath: indexPath
+                                     animated: YES];
+            
+            [self.model handleCheckmarkForIndexPath: indexPath];
+            
+            OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+            
+            if ([cell currentCheckMarkState])
+                [cell changeCheckmarkState: YES];
+            
+            else
+                [cell changeCheckmarkState: NO];
+            
+            
+            
+        }
+            break;
+            
+        case SelectObserversController:
+        {
+            [tableView deselectRowAtIndexPath: indexPath
+                                     animated: YES];
+            
+            [self.model handleCheckmarkForIndexPath: indexPath];
+            
+            OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+            
+            if ([cell currentCheckMarkState])
+                [cell changeCheckmarkState: YES];
+            
+            else
+                [cell changeCheckmarkState: NO];
+            
+            
+            
+        }
+            break;
+            
         default:
             break;
     }
@@ -117,6 +158,20 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (NSArray*) returnSelectedUsersInfo
 {
     return [self.model returnSelectedUsersInfo];
+}
+
+- (void) selectAll
+{
+    [self.model selectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) deselectAll
+{
+    [self.model deselectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
 }
 
 @end
