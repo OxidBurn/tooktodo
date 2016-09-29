@@ -35,6 +35,8 @@
 - (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo
 {
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: memberInfo.avatarSrc]];
+    self.userAvatarImageView.clipsToBounds = YES;
+    self.userAvatarImageView.layer.cornerRadius = 10;
     
     NSString* userInfo = [NSString stringWithFormat: @"%@, %@", memberInfo.fullname, memberInfo.role];
     

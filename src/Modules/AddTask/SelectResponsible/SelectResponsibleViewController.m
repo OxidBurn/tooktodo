@@ -141,27 +141,7 @@
 {
     
     [self.viewModel selectAll];
-//    switch (self.selectAllFlag)
-//    {
-//        case SelectAll:
-//        {
-//            [self.viewModel selectAll];
-//            [self.selectAllBtn setTitle: @"Сбросить"
-//                               forState: UIControlStateNormal];
-//            self.selectAllFlag = DeselectAll;
-//        }
-//            break;
-//        case DeselectAll:
-//        {
-//            [self.viewModel deselectAll];
-//            [self.selectAllBtn setTitle: @"Выбрать всех"
-//                               forState: UIControlStateNormal];
-//            self.selectAllFlag = SelectAll;
-//        }
-//        default:
-//            break;
-//    }
-    
+
 }
 
 #pragma mark - Pulbic -

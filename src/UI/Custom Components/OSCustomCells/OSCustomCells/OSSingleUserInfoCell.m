@@ -38,6 +38,8 @@
     self.userNameLabel.text        = userFullName;
     self.infoTitleLabel.text       = titleText;
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userAvatarSrc]];
+    self.userAvatarImageView.layer.cornerRadius = 10;
+    self.userAvatarImageView.clipsToBounds = YES;
 
 }
 
