@@ -127,8 +127,8 @@
     {
         case AllTasksStageCellType:
         {
-            [self.model markStageAsExpandedAtIndexPath: indexPath
-                                        withCompletion: ^(BOOL isSuccess) {
+            [self.model markStageAsExpandedAtIndexPath: indexPath.section
+                                withCompletion: ^(BOOL isSuccess) {
                                             
                                             [tableView reloadData];
                                             

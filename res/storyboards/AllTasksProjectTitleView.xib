@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -14,7 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TasksProjectTitleView">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowVertical" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-sZ-a5t">
@@ -170,9 +170,16 @@
                         <action selector="onShowTasks:" destination="iN0-l3-epB" eventType="touchUpInside" id="AYi-XS-yRV"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6V-73-8De">
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8GD-gw-AZK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="e6V-73-8De" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0e4-Fm-bng"/>
                 <constraint firstItem="qNs-2S-dvc" firstAttribute="trailing" secondItem="peU-P5-cTg" secondAttribute="trailing" id="8Gd-gb-a9F"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="CAS-Gk-7ik"/>
                 <constraint firstItem="UxW-sZ-a5t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="Jam-bB-Roo"/>
@@ -184,11 +191,13 @@
                 <constraint firstItem="Aw9-ja-tIX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="acN-Vg-aI3"/>
                 <constraint firstItem="qNs-2S-dvc" firstAttribute="top" secondItem="peU-P5-cTg" secondAttribute="bottom" id="c5h-KI-DBc"/>
                 <constraint firstAttribute="trailing" secondItem="ZvB-su-qtA" secondAttribute="trailing" constant="8" id="f7y-2b-Ycs"/>
+                <constraint firstAttribute="trailing" secondItem="e6V-73-8De" secondAttribute="trailing" id="iWc-dc-oae"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l4K-Eo-5J2"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="lqt-LB-tRX"/>
                 <constraint firstItem="peU-P5-cTg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="mpE-1O-liQ"/>
                 <constraint firstItem="ZvB-su-qtA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="p1T-WL-uBF"/>
                 <constraint firstItem="Aw9-ja-tIX" firstAttribute="leading" secondItem="peU-P5-cTg" secondAttribute="trailing" constant="8" id="t2F-tT-zep"/>
+                <constraint firstItem="e6V-73-8De" firstAttribute="top" secondItem="qNs-2S-dvc" secondAttribute="bottom" constant="11" id="xxG-eu-DRN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -206,18 +215,18 @@
                     <exclude reference="RIj-3M-Yof"/>
                     <exclude reference="l4K-Eo-5J2"/>
                     <exclude reference="lqt-LB-tRX"/>
-                    <exclude reference="Rn8-i9-Wlm"/>
-                    <exclude reference="acN-Vg-aI3"/>
-                    <exclude reference="t2F-tT-zep"/>
-                    <exclude reference="f7y-2b-Ycs"/>
-                    <exclude reference="p1T-WL-uBF"/>
+                    <exclude reference="Jam-bB-Roo"/>
+                    <exclude reference="Wgh-pq-7ah"/>
                     <exclude reference="Ttm-Nw-gsO"/>
                     <exclude reference="mpE-1O-liQ"/>
                     <exclude reference="8Gd-gb-a9F"/>
                     <exclude reference="Qia-HR-XkW"/>
                     <exclude reference="c5h-KI-DBc"/>
-                    <exclude reference="Jam-bB-Roo"/>
-                    <exclude reference="Wgh-pq-7ah"/>
+                    <exclude reference="Rn8-i9-Wlm"/>
+                    <exclude reference="acN-Vg-aI3"/>
+                    <exclude reference="t2F-tT-zep"/>
+                    <exclude reference="f7y-2b-Ycs"/>
+                    <exclude reference="p1T-WL-uBF"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -234,18 +243,18 @@
                     <include reference="RIj-3M-Yof"/>
                     <include reference="l4K-Eo-5J2"/>
                     <include reference="lqt-LB-tRX"/>
-                    <include reference="Rn8-i9-Wlm"/>
-                    <include reference="acN-Vg-aI3"/>
-                    <include reference="t2F-tT-zep"/>
-                    <include reference="f7y-2b-Ycs"/>
-                    <include reference="p1T-WL-uBF"/>
+                    <include reference="Jam-bB-Roo"/>
+                    <include reference="Wgh-pq-7ah"/>
                     <include reference="Ttm-Nw-gsO"/>
                     <include reference="mpE-1O-liQ"/>
                     <include reference="8Gd-gb-a9F"/>
                     <include reference="Qia-HR-XkW"/>
                     <include reference="c5h-KI-DBc"/>
-                    <include reference="Jam-bB-Roo"/>
-                    <include reference="Wgh-pq-7ah"/>
+                    <include reference="Rn8-i9-Wlm"/>
+                    <include reference="acN-Vg-aI3"/>
+                    <include reference="t2F-tT-zep"/>
+                    <include reference="f7y-2b-Ycs"/>
+                    <include reference="p1T-WL-uBF"/>
                 </mask>
             </variation>
             <connections>
@@ -255,7 +264,7 @@
                 <outlet property="projectAddressLabel" destination="qNs-2S-dvc" id="yET-ea-vhG"/>
                 <outlet property="projectNameLabel" destination="peU-P5-cTg" id="96T-nH-CuL"/>
             </connections>
-            <point key="canvasLocation" x="281" y="580"/>
+            <point key="canvasLocation" x="280.5" y="580"/>
         </view>
     </objects>
     <resources>
