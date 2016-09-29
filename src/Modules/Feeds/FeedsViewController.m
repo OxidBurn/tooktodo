@@ -59,7 +59,7 @@
 
 #pragma mark - Action -
 
-- (void) willGetFocus
+- (void) needToUpdateContent
 {
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЛЕНТА"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];

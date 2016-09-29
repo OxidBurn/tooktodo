@@ -15,6 +15,7 @@
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
+#import "UIViewController+Focus.h"
 
 @interface AboutProjectViewController ()
 
@@ -74,6 +75,17 @@
 }
 
 #pragma mark - Action -
+
+- (void) needToUpdateContent
+{
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"О ПРОЕКТЕ"
+                                               withSubTitle: [self.viewModel getProjectName]];
+    
+    if ( [self.containerController respondsToSelector: @selector(needToUpdateContent)] )
+    {
+        [self.containerController needToUpdateContent];
+    }
+}
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {

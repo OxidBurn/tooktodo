@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel                * fullNameLabel;
 @property (nonatomic, weak) IBOutlet UITableView            * phoneInfoTable;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint     * phoneTableHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     * phonesTableHeightConstraint;
 @property (nonatomic, weak) IBOutlet UIButton               * showUserTerms;
 @property (nonatomic, weak) IBOutlet UIButton               * userLogOut;
 @property (weak, nonatomic) IBOutlet UIButton* onChangePhoto;
@@ -157,9 +158,10 @@
             [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
         }
         
-        self.fullNameLabel.text                  = [self.viewModel fullUserName];
-        self.phoneInfoTable.dataSource           = self.viewModel;
-        self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
+        self.fullNameLabel.text                   = [self.viewModel fullUserName];
+        self.phoneInfoTable.dataSource            = self.viewModel;
+        self.phoneTableHeightConstraint.constant  = [self.viewModel contactTableHeight];
+        self.phonesTableHeightConstraint.constant = [self.viewModel contactTableHeight];
         
         [self.phoneInfoTable reloadData];
         

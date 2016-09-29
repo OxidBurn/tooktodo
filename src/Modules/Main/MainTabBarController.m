@@ -133,6 +133,15 @@
         [controller.visibleViewController willGetFocus];
 }
 
+- (void) needToUpdateContent
+{
+    UINavigationController* controller = (UINavigationController*)self.containerController;
+    
+    if ( [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
+        [controller.visibleViewController needToUpdateContent];
+
+}
+
 #pragma mark - CustomTabBarDelegate methods -
 
 - (void) showTaskOptions

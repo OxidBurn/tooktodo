@@ -12,4 +12,6 @@
 
 - (void) willGetFocus;
 
+- (void) needToUpdateContent;
+
 @end

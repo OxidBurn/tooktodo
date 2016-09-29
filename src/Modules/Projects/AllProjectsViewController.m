@@ -88,6 +88,11 @@
 
 #pragma mark - Actions -
 
+- (void) needToUpdateContent
+{
+    
+}
+
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     [self.slidingViewController anchorTopViewToRightAnimated: YES];

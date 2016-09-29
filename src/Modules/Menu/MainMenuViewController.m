@@ -61,15 +61,6 @@
     [self updateInfo];
 }
 
-- (void) viewWillDisappear: (BOOL) animated
-{
-    [super viewWillDisappear: animated];
-    
-    MainTabBarController* topViewController = ((MainTabBarController*)self.slidingViewController.topViewController);
-    
-    [topViewController willGetFocus];
-}
-
 
 #pragma mark - Memory managment -
 
@@ -121,6 +112,10 @@
     self.viewModel.hideMenu = ^(){
         
         [blockSelf.slidingViewController resetTopViewAnimated: YES];
+        
+        MainTabBarController* topViewController = ((MainTabBarController*)blockSelf.slidingViewController.topViewController);
+        
+        [topViewController needToUpdateContent];
         
     };
 }
