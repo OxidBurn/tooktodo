@@ -70,7 +70,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="showAllTasksByProjects:" destination="3FQ-Q1-hzC" eventType="touchUpInside" id="kUE-sT-PW8"/>
-                                    <segue destination="3Id-Fy-RRO" kind="show" identifier="ShowAllTasks" id="144-we-I57"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJS-DS-x4e">
@@ -1450,13 +1449,13 @@
             </objects>
             <point key="canvasLocation" x="-378" y="492"/>
         </scene>
-        <!--TaskByProject-->
+        <!--TaskByProjectNav-->
         <scene sceneID="14P-dG-Oiw">
             <objects>
-                <viewControllerPlaceholder storyboardName="TaskByProjectScreen" referencedIdentifier="TaskByProject" id="3Id-Fy-RRO" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="TaskByProjectScreen" referencedIdentifier="TaskByProjectNav" id="3Id-Fy-RRO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyu-JY-EJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-660" y="951"/>
+            <point key="canvasLocation" x="1222" y="873"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="CAP-Mi-e51">
@@ -1660,6 +1659,7 @@
                         <segue destination="wjb-5h-Dck" kind="custom" identifier="ShowTeamInfoID" customClass="TabBarSegue" id="4GW-sC-ypn"/>
                         <segue destination="kLl-YQ-SGy" kind="custom" identifier="ShowAboutProjectID" customClass="TabBarSegue" id="aBn-gR-Fvl"/>
                         <segue destination="fmF-3M-xz4" kind="custom" identifier="ShowTasks" customClass="TabBarSegue" id="yLN-0M-pEf"/>
+                        <segue destination="3Id-Fy-RRO" kind="custom" identifier="ShowAllTasks" customClass="TabBarSegue" id="DZb-q8-wWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFH-BH-NMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
