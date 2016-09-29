@@ -18,6 +18,16 @@
 // properties
 @property (weak, nonatomic) id <AddTaskTermsViewModelDelegate> delegate;
 
+// methods
+- (void) updateStartDate: (NSDate*) startDate
+          withFinishDate: (NSDate*) finishDate;
+
+- (NSDate*) returnStartDate;
+
+- (NSDate*) returnFinishDate;
+
+- (NSUInteger) returnDuration;
+
 @end
 
 @protocol AddTaskTermsViewModelDelegate <NSObject>

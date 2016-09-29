@@ -8,18 +8,21 @@
 
 #import "AddTaskModel.h"
 
-// Classes
+// Factories
 #import "OSRightDetailCellFactory.h"
 #import "OSMarkedRightDetailCellFactory.h"
 #import "OSSingleUserInfoCellFactory.h"
 #import "OSGroupOfUsersInfoCellFactory.h"
 #import "OSSwitchTableCellFactory.h"
 #import "OSFlexibleTextCellFactory.h"
-#import "OSSwitchTableCell.h"
 #import "OSFlexibleTextFieldCellFactory.h"
+#import "OSSwitchTableCell.h"
+
+// Classes
 #import "ProjectsEnumerations.h"
 #import "AddMessageViewController.h"
 #import "SelectResponsibleViewController.h"
+#import "AddTermTasksViewController.h"
 #import "UserInfo+CoreDataProperties.h"
 #import "DataManager+UserInfo.h"
 #import "RowContent.h"
@@ -36,7 +39,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
 };
 
-@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate>
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -83,7 +86,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController"];
     }
     
     return _allSeguesInfoArray;
@@ -278,6 +281,23 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
                          inRow: 3];
 }
 
+#pragma mark - AddTaskTermsControllerDelegate methods -
+
+- (void) updateTermsWithStartDate: (NSDate*)    startDate
+                    andFinishDate: (NSDate*)    finishDate
+                     withDuration: (NSUInteger) duration
+{
+    self.task.startDate  = startDate;
+    self.task.finishDate = finishDate;
+    self.task.duration   = duration;
+    
+    RowContent* row = self.addTaskTableViewContent[1][0];
+    
+    row.detail = [self createTermsLabelTextForStartDate: startDate
+                                         withFinishDate: finishDate
+                                           withDuration: duration];
+}
+
 
 #pragma mark - Internal -
 
@@ -351,8 +371,9 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     row.title   = @"Сроки";
     row.detail  = [self createTermsLabelTextForStartDate: self.task.startDate
-                                         withFinishDate: self.task.finishDate
-                                           withDuration: self.task.duration];
+                                          withFinishDate: self.task.finishDate
+                                            withDuration: self.task.duration];
+    
     row.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     row.segueId = self.addTaskTableViewSeguesInfo[ShowTermsSegueID];
     
@@ -449,7 +470,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     NSString* labelText;
     
-    if ( startDate && finishDate)
+    if ( startDate && finishDate )
     {
         NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
         

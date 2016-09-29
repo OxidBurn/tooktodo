@@ -20,6 +20,16 @@
 
 - (UITableViewCell*) returnCellForTableView: (UITableView*) tableView
                               withIndexPath: (NSIndexPath*) indexPath;
+
+- (void) updateStartDate: (NSDate*) startDate
+          withFinishDate: (NSDate*) finishDate;
+
+- (NSDate*) returnStartDate;
+
+- (NSDate*) returnFinishDate;
+
+- (NSUInteger) returnDuration;
+
 @end
 
 @protocol AddTaskTermsModelDelegate <NSObject>

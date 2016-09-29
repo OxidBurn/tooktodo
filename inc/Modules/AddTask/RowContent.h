@@ -24,4 +24,8 @@
 
 @property (strong, nonatomic) NSString* markImageName;
 
+@property (assign, nonatomic) NSUInteger pickerTag;
+
+@property (assign, nonatomic) BOOL       switchIsOn;
+
 @end

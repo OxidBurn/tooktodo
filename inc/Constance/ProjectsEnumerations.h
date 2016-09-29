@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger, AllSeguesList) {
     ShowResponsibleSegue,
     ShowClaimingSegue,
     ShowObserversSegue,
+    ShowTermsSegue,
     
 };
 

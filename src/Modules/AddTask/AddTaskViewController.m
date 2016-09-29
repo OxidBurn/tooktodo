@@ -13,6 +13,7 @@
 #import "SelectResponsibleViewController.h"
 #import "ProjectsEnumerations.h"
 #import "AddMessageViewController.h"
+#import "AddTermTasksViewController.h"
 #import "NewTask.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
@@ -110,6 +111,17 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
                                 withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowTermsSegue:
+        {
+            AddTermTasksViewController* controller = [segue destinationViewController];
+            
+            [controller updateStartDate: task.startDate
+                         withFinishDate: task.finishDate
+                           withDelegate: [self.viewModel returnModel]];
+            
         }
             break;
             

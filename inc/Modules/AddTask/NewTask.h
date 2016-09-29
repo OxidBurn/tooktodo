@@ -34,6 +34,8 @@
 
 @property (assign, nonatomic) NSUInteger duration;
 
+@property (assign, nonatomic) BOOL includingWeekends;
 
+@property (assign, nonatomic) BOOL isUrgent;
 
 @end

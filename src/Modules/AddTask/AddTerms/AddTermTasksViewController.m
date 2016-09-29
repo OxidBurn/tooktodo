@@ -78,7 +78,26 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
+    if ( [self.delegate respondsToSelector: @selector( updateTermsWithStartDate:andFinishDate:withDuration:)] )
+    {
+        [self.delegate updateTermsWithStartDate: [self.viewModel returnStartDate]
+                                  andFinishDate: [self.viewModel returnFinishDate]
+                                   withDuration: [self.viewModel returnDuration]];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+}
+
+#pragma mark - Public -
+
+- (void) updateStartDate: (NSDate*) startDate
+          withFinishDate: (NSDate*) finishDate
+            withDelegate: (id)      delegate
+{
+    self.delegate = delegate;
     
+    [self.viewModel updateStartDate: startDate
+                     withFinishDate: finishDate];
 }
 
 #pragma mark - Internal -
