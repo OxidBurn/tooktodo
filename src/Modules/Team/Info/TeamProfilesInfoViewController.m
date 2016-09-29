@@ -64,9 +64,7 @@
     [super viewWillAppear: animated];
     
     [self updateUserInfo];
-    
- 
-    
+
 }
 
 - (void) viewDidLoad

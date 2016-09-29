@@ -102,6 +102,26 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
+    if (self.controllerTypeSelection == SelectResponsibleController || self.controllerTypeSelection == SelectClaimingController)
+    {
+        NSArray* selectedUsers = [self.viewModel returnSelectedUsersInfo];
+        
+        if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
+        {
+            [self.delegate returnSelectedResponsibleInfo: selectedUsers];
+            
+            [self.navigationController popViewControllerAnimated: YES];
+        }
+    }
+    else
+    {
+        [self.viewModel deselectAll];
+    }
+    
+}
+
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
+{
     NSArray* selectedUsers = [self.viewModel returnSelectedUsersInfo];
     
     if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
@@ -112,11 +132,6 @@
     }
 }
 
-- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
-{
-    
-}
-
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
     [self.navigationController popViewControllerAnimated: YES];
@@ -124,26 +139,28 @@
 
 - (IBAction) onSelectAllBtn: (UIButton*) sender
 {
-    switch (self.selectAllFlag)
-    {
-        case SelectAll:
-        {
-            [self.viewModel selectAll];
-            [self.selectAllBtn setTitle: @"Сбросить"
-                               forState: UIControlStateNormal];
-            self.selectAllFlag = DeselectAll;
-        }
-            break;
-        case DeselectAll:
-        {
-            [self.viewModel deselectAll];
-            [self.selectAllBtn setTitle: @"Выбрать всех"
-                               forState: UIControlStateNormal];
-            self.selectAllFlag = SelectAll;
-        }
-        default:
-            break;
-    }
+    
+    [self.viewModel selectAll];
+//    switch (self.selectAllFlag)
+//    {
+//        case SelectAll:
+//        {
+//            [self.viewModel selectAll];
+//            [self.selectAllBtn setTitle: @"Сбросить"
+//                               forState: UIControlStateNormal];
+//            self.selectAllFlag = DeselectAll;
+//        }
+//            break;
+//        case DeselectAll:
+//        {
+//            [self.viewModel deselectAll];
+//            [self.selectAllBtn setTitle: @"Выбрать всех"
+//                               forState: UIControlStateNormal];
+//            self.selectAllFlag = SelectAll;
+//        }
+//        default:
+//            break;
+//    }
     
 }
 
@@ -200,6 +217,14 @@
         case SelectObserversController:
         {
             self.selectAllBtn.hidden = NO;
+            self.saveBtn.backgroundColor = [UIColor colorWithRed: 0.97f
+                                                           green: 0.84f
+                                                            blue: 0.09f
+                                                           alpha: 1];
+            [self.saveBtn setTitle: @"Сбросить"
+                          forState: UIControlStateNormal];
+            [self.saveBtn setTitleColor: [UIColor blackColor]
+                               forState: UIControlStateNormal];
             
             self.saveBtnLeadingConstraint.priority = 250;
         }

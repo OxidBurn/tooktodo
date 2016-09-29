@@ -316,7 +316,7 @@ typedef NS_ENUM(NSInteger, Permission)
             return @"Владелец";
             break;
         case Administrator:
-            return @"Адмиистратор";
+            return @"Администратор";
             break;
             
         default:
