@@ -98,6 +98,12 @@
     self.tasksByProjectTableView.delegate   = self.viewModel;
 }
 
+- (void) willGetFocus
+{
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+}
+
 
 #pragma mark - Actions -
 

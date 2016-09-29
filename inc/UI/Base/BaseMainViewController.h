@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "ECSlidingViewController.h"
 #import "UIViewController+ECSlidingViewController.h"
+#import "UIViewController+Focus.h"
 
 @interface BaseMainViewController : UIViewController <UIViewControllerAnimatedTransitioning, ECSlidingViewControllerDelegate, ECSlidingViewControllerLayout>
 

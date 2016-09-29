@@ -61,6 +61,15 @@
     [self updateInfo];
 }
 
+- (void) viewWillDisappear: (BOOL) animated
+{
+    [super viewWillDisappear: animated];
+    
+    MainTabBarController* topViewController = ((MainTabBarController*)self.slidingViewController.topViewController);
+    
+    [topViewController willGetFocus];
+}
+
 
 #pragma mark - Memory managment -
 

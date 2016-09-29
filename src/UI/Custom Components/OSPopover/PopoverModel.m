@@ -89,7 +89,14 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    PopoverCell* selectedCell = (PopoverCell*)[tableView cellForRowAtIndexPath: indexPath];
+    PopoverCell* selectedCell     = (PopoverCell*)[tableView cellForRowAtIndexPath: indexPath];
+    PopoverCell* prevSelectedCell = (PopoverCell*)[tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: self.selectedPopoverItem
+                                                                                                       inSection: 0]];
+    
+    if ( self.selectedPopoverItem != indexPath.row )
+    {
+        [prevSelectedCell updateValues: NO];
+    }
     
     switch (selectedCell.sortType)
     {
@@ -104,6 +111,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             break;
         }
     }
+    
+    [selectedCell updateValues: YES];
     
     if ( [self.delegate respondsToSelector: @selector(didGrowSortingAtIndex:)] &&
          [self.delegate respondsToSelector: @selector(didDiminutionSortingAtIndex:)])
@@ -124,8 +133,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     }
     
     // dismiss popover
-    if ( self.didDismiss )
-        self.didDismiss();
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if ( self.didDismiss )
+            self.didDismiss();
+        
+    });
 }
 
 #pragma mark - Public -

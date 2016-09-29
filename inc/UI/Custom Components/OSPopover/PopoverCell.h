@@ -18,4 +18,6 @@
 //methods
 - (void) fillCellWithOptionString: (NSString*) option;
 
+- (void) updateValues: (BOOL) selected;
+
 @end

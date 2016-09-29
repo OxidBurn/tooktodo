@@ -118,8 +118,11 @@
 {
     [timer invalidate];
     
-    [self.dotsText replaceCharactersInRange: NSMakeRange(self.dotsText.length - 1, 1)
-                                 withString: @"\u2022"];
+    if ( self.dotsText.length > 0 )
+    {
+        [self.dotsText replaceCharactersInRange: NSMakeRange(self.dotsText.length - 1, 1)
+                                     withString: @"\u2022"];
+    }
     
     [self updateValue];
 }
@@ -131,6 +134,9 @@
  shouldChangeCharactersInRange: (NSRange)      range
              replacementString: (NSString*)    string
 {
+    if ( [string isEqualToString: @"\n"] || [string isEqualToString: @" "] )
+        return  NO;
+    
     if ( string.length > 0 )
     {
         [self.actualText appendString: string];
@@ -148,6 +154,13 @@
             self.dotsText   = [NSMutableString stringWithString: [self.dotsText substringToIndex: range.location]];
             self.actualText = [NSMutableString stringWithString: [self.actualText substringToIndex: range.location]];
         }
+    
+    return YES;
+}
+
+- (BOOL) textFieldShouldReturn: (UITextField*) textField
+{
+    [textField resignFirstResponder];
     
     return YES;
 }
