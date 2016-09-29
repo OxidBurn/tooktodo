@@ -24,6 +24,7 @@
 #import "DataManager+UserInfo.h"
 #import "RowContent.h"
 #import "NSDate+Helper.h"
+#import "FilledTeamInfo.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -180,9 +181,10 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
-            UserInfo* user = content.membersArray[0];
+           // UserInfo* user = content.membersArray[0];
+            FilledTeamInfo* user = content.membersArray[0];
             
-            NSString* userFullName  = user.fullName;
+            NSString* userFullName  = user.fullname;
             
             NSString* userAvatarSrc = user.avatarSrc;
             
@@ -475,11 +477,15 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     UserInfo* userInfo = [allUsers firstObject];
     
+    FilledTeamInfo* teamInfo = [FilledTeamInfo new];
+    
+    [teamInfo convertUserToTeamInfo: userInfo];
+    
 //    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
     
 //    NSArray* array = @[ currentUser ];
     
-    return userInfo? @[ userInfo] : nil;
+    return teamInfo? @[teamInfo] : nil;
 }
 
 - (void) updateContentWithRow: (RowContent*) newRow

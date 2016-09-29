@@ -10,6 +10,7 @@
 
 // Classes
 #import "SelectResponsibleViewModel.h"
+#import "ProjectsEnumerations.h"
 
 @interface SelectResponsibleViewController ()
 
@@ -25,6 +26,8 @@
 @property (strong, nonatomic) SelectResponsibleViewModel* viewModel;
 
 @property (assign, nonatomic) ControllerTypeSelection controllerTypeSelection;
+
+@property (nonatomic, assign) SelectResponsibleSelectAllFlag selectAllFlag;
 
 // Methods
 - (IBAction) onSaveBtn     : (UIButton*)        sender;
@@ -103,7 +106,7 @@
     
     if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
     {
-//        [self.delegate returnSelectedResponsibleInfo: selectedUsers];
+        [self.delegate returnSelectedResponsibleInfo: selectedUsers];
         
         [self.navigationController popViewControllerAnimated: YES];
     }
@@ -119,7 +122,29 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
-- (IBAction)onSelectAllBtn:(UIButton *)sender {
+- (IBAction) onSelectAllBtn: (UIButton*) sender
+{
+    switch (self.selectAllFlag)
+    {
+        case SelectAll:
+        {
+            [self.viewModel selectAll];
+            [self.selectAllBtn setTitle: @"Сбросить"
+                               forState: UIControlStateNormal];
+            self.selectAllFlag = DeselectAll;
+        }
+            break;
+        case DeselectAll:
+        {
+            [self.viewModel deselectAll];
+            [self.selectAllBtn setTitle: @"Выбрать всех"
+                               forState: UIControlStateNormal];
+            self.selectAllFlag = SelectAll;
+        }
+        default:
+            break;
+    }
+    
 }
 
 #pragma mark - Pulbic -

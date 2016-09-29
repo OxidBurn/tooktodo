@@ -18,4 +18,6 @@
 
 - (void) changeCheckmarkState: (BOOL) state;
 
+- (BOOL) currentCheckMarkState;
+
 @end

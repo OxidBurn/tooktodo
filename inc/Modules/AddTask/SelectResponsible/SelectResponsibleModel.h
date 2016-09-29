@@ -38,5 +38,10 @@
 
 - (NSArray*) returnSelectedUsersInfo;
 
+- (void) selectAll;
+
+- (void) deselectAll;
+
+- (BOOL) checkIfAllSelected;
 
 @end
