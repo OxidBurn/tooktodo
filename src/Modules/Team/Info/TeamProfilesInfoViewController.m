@@ -141,7 +141,7 @@
         
         @strongify(self)
         
-        self.profileFullNameLabel.text    = [NSString stringWithFormat:@" %@ %@", teamMember.firstName, teamMember.lastName];
+        self.profileFullNameLabel.text = [NSString stringWithFormat: @" %@ %@", teamMember.firstName, teamMember.lastName];
         
         
         [self.profileAvatarImageView sd_setImageWithURL: [NSURL URLWithString: teamMember.avatarSrc]];
