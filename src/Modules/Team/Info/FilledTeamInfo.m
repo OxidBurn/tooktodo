@@ -28,6 +28,7 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
         
     }
     
@@ -47,6 +48,7 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
     }
     
     else
@@ -60,9 +62,24 @@
         self.role                   = @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
+        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
     }
     
     self.roleID = assignment.roleID;
+}
+
+- (void) convertUserToTeamInfo: (UserInfo*) user
+{
+    self.firstName             = user.firstName     ? user.firstName   : @"";
+    self.lastName              = user.lastName      ? user.lastName    : @"";
+    self.fullname              = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+    self.email                 = user.email         ? user.email       : @"";
+    self.phoneNumber           = user.phoneNumber   ? user.phoneNumber : @"";
+    self.additionalPhoneNumber = @"";
+    self.role                  = @"";
+    self.avatarSrc             = user.avatarSrc     ? user.avatarSrc   : @"";
+    self.projectPermission     = @(-2);
+    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
 }
 
 @end

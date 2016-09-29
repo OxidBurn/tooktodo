@@ -10,15 +10,26 @@
 
 // Classes
 #import "AddTaskViewModel.h"
+#import "SelectResponsibleViewController.h"
+#import "ProjectsEnumerations.h"
+#import "AddMessageViewController.h"
+#import "AddTermTasksViewController.h"
+#import "NewTask.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
-//Properties
-@property (weak, nonatomic) IBOutlet UITableView* addTaskTableView;
+// outlets
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* readyBtn;
+@property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
+@property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
+@property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
+
+// properties
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 
-//Methods
+// methods
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
 - (IBAction) onAddTaskBtn:         (UIButton*) sender;
@@ -36,11 +47,18 @@
     [self twoLineTitleView];
     
     [self setUpDefaults];
+    
+    [self bindUI];
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+    [self.addTaskTableView reloadData];
 }
 
 #pragma mark - Memory managment -
@@ -49,6 +67,70 @@
 {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    [super prepareForSegue: segue sender: sender];
+    
+    NewTask* task = [self.viewModel getNewTask];
+    
+    NSUInteger segueIndex = [[self.viewModel returnAllSeguesArray] indexOfObject: segue.identifier];
+    
+    switch ( segueIndex )
+    {
+        case ShowAddMessageSegue:
+        {
+            AddMessageViewController* AddMessageController = [segue destinationViewController];
+            
+            [AddMessageController updateDescription: task.description
+                                   andReturnToModel: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowResponsibleSegue:
+        {
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectResponsibleController
+                                withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowClaimingSegue:
+        {
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectClaimingController
+                                withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowObserversSegue:
+        {
+            SelectResponsibleViewController* controller = [segue destinationViewController];
+            [controller updateControllerType: SelectObserversController
+                                withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowTermsSegue:
+        {
+            AddTermTasksViewController* controller = [segue destinationViewController];
+            
+            [controller updateStartDate: task.startDate
+                         withFinishDate: task.finishDate
+                           withDelegate: [self.viewModel returnModel]];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+
+}
+
 
 #pragma mark - Properties -
 
@@ -85,6 +167,11 @@
         [self performSegueWithIdentifier: segueId
                                   sender: self];
     }
+}
+
+- (void) reloadAddTaskTableView
+{
+    [self.addTaskTableView reloadData];
 }
 
 #pragma mark - Internal methods -
@@ -144,6 +231,29 @@
     
     self.addTaskTableView.rowHeight = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
+}
+
+- (void) bindUI
+{
+    self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
+    self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
+    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableAllButtonsCommand;
+    
+    
+    [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
+        
+        [signal subscribeCompleted: ^{
+            
+                        NSLog(@"task saved somewhere");
+            [self.viewModel getNewTask];
+            
+            NewTask* t = [self.viewModel getNewTask];
+            NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
+           // [self.navigationController popViewControllerAnimated: YES];
+            
+        }];
+        
+    }];
 }
 
 @end

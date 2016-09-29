@@ -2,7 +2,7 @@
 //  FilledTeamInfo.h
 //  TookTODO
 //
-//  Created by Nikolay Chaban on 19.09.16.
+//  Created by Lera on 19.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectRoles+CoreDataProperties.h"
 #import "ProjectRoleType+CoreDataProperties.h"
+#import "UserInfo.h"
 
 @interface FilledTeamInfo : NSObject
 
@@ -27,8 +28,10 @@
 @property (nonatomic, strong) NSString* avatarSrc;
 @property (nonatomic, strong) NSString* fullname;
 @property (nonatomic, assign) NSNumber* projectPermission;
-@property (strong, nonatomic) NSNumber* roleID;
+@property (assign, nonatomic) BOOL isResponsible;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
+
+- (void) convertUserToTeamInfo: (UserInfo*) user;
 
 @end

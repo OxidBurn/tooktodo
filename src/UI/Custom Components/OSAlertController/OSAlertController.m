@@ -36,6 +36,7 @@
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
     OSAlertDesignateAdminController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DesignateAdminControllerID"];
+
     
     [controller presentViewController: alertController
                              animated: YES
@@ -44,6 +45,7 @@
     [alertController setImage: image
                      withName: name
                   withMessage: message];
+
 }
 
 + (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller

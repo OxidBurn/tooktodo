@@ -8,38 +8,39 @@
 
 #import "AddTaskModel.h"
 
-// Classes
+// Factories
 #import "OSRightDetailCellFactory.h"
 #import "OSMarkedRightDetailCellFactory.h"
 #import "OSSingleUserInfoCellFactory.h"
 #import "OSGroupOfUsersInfoCellFactory.h"
 #import "OSSwitchTableCellFactory.h"
 #import "OSFlexibleTextCellFactory.h"
+#import "OSFlexibleTextFieldCellFactory.h"
+#import "OSSwitchTableCell.h"
 
-typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
+// Classes
+#import "ProjectsEnumerations.h"
+#import "AddMessageViewController.h"
+#import "SelectResponsibleViewController.h"
+#import "AddTermTasksViewController.h"
+#import "UserInfo+CoreDataProperties.h"
+#import "DataManager+UserInfo.h"
+#import "RowContent.h"
+#import "NSDate+Helper.h"
+#import "FilledTeamInfo.h"
+
+typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
-    FlexibleCell,
-    RightDetailCell,
-    SwitchCell,
-    SingleUserInfoCell,
-    GroupOfUsersCell,
-    MarkedRightDetailCell,
+    ShowAddCommentSegueId,
+    ShowTermsSegueID,
+    ShowSelectResponsibleControllerSegueID,
+    ShowSelectClaimingControllerSegueID,
+    ShowSelectObserversControllerSegueID,
+    ShowPremisesSegueID,
+    
 };
 
-/*typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
-    
-    ShowResponsibleSegueID,
-    ShowApprovalsSegueID,
-    ShowWatchersSegueID,
-    ShowTermsSegueID,
-    
-};*/
-
-
-static NSString* CellIdKey         = @"CellIdKey";
-static NSString* SegueIdKey        = @"SegueIdKey";
-
-@interface AddTaskModel()
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -47,6 +48,10 @@ static NSString* SegueIdKey        = @"SegueIdKey";
 @property (strong, nonatomic) NSArray* addTaskTableViewCellsInfo;
 
 @property (strong, nonatomic) NSArray* addTaskTableViewSeguesInfo;
+
+@property (nonatomic, strong) NewTask* task;
+
+@property (strong, nonatomic) NSArray* allSeguesInfoArray;
 
 
 // methods
@@ -62,23 +67,33 @@ static NSString* SegueIdKey        = @"SegueIdKey";
 {
     if ( _addTaskTableViewCellsInfo == nil )
     {
-        _addTaskTableViewCellsInfo = @[@"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
+        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
     }
     
     return _addTaskTableViewCellsInfo;
 }
 
-/*- (NSArray*) addTaskTableViewSeguesInfo
+- (NSArray*) addTaskTableViewSeguesInfo
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowResponsible", @"ShowApprovals", @"ShowWatchers", @"ShowTerms"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController"];
     }
     
     return _addTaskTableViewSeguesInfo;
-} */
+}
 
-/* - (NSArray*) addTaskTableViewContent
+- (NSArray*) allSeguesInfoArray
+{
+    if ( _allSeguesInfoArray == nil )
+    {
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController"];
+    }
+    
+    return _allSeguesInfoArray;
+}
+
+- (NSArray*) addTaskTableViewContent
 {
     if ( _addTaskTableViewContent == nil )
     {
@@ -86,9 +101,23 @@ static NSString* SegueIdKey        = @"SegueIdKey";
     }
     
     return _addTaskTableViewContent;
-} */
+}
+
+- (NewTask*) task
+{
+    if (_task == nil)
+    {
+        _task = [NewTask new];
+        
+        _task.defaultResponsible = [self getCurrentUserInfoArray];
+    }
+    
+    return _task;
+}
+
 
 #pragma mark - Public -
+
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
 {
@@ -100,51 +129,93 @@ static NSString* SegueIdKey        = @"SegueIdKey";
 {
     NSArray* section = self.addTaskTableViewContent[indexPath.section];
     
-    NSDictionary* content = section[indexPath.row];
+    RowContent* content = section[indexPath.row];
     
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     
-    NSString* cellID = content[CellIdKey];
+    NSString* cellID = content.cellId;
     
     NSUInteger cellTypeIndex = [self.addTaskTableViewCellsInfo indexOfObject: cellID];
     
     switch ( cellTypeIndex )
     {
+        case FlexibleTextFieldCell:
+        {
+            OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
+            
+            cell = [factory returnFlexibleTextFieldCellWithTextContent: content.title
+                                                          forTableView: tableView];
+        }
+            break;
+            
         case RightDetailCell:
         {
+            OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
             
-            break;
+            cell = [factory returnRightDetailCellWithTitle: content.title
+                                            withDetailText: content.detail
+                                              forTableView: tableView];
         }
+            break;
             
         case FlexibleCell:
         {
-           // OSFlexibleTextCellFactory* factory = [OSFlexibleTextCellFactory new];
+            OSFlexibleTextCellFactory* factory = [OSFlexibleTextCellFactory new];
             
+            cell = [factory returnFlexibleCellWithTextContent: content.title
+                                                 forTableView: tableView];
         }
             break;
             
         case SwitchCell:
         {
+            OSSwitchTableCellFactory* factory = [OSSwitchTableCellFactory new];
             
+            BOOL stateBoolValue = content.isHidden;
+            
+            cell = [factory returnSwitchCellWithTitle: content.title
+                                      withSwitchState: stateBoolValue
+                                         forTableView: tableView
+                                         withDelegate: self];
         }
             break;
             
         case SingleUserInfoCell:
         {
+            OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
+           // UserInfo* user = content.membersArray[0];
+            FilledTeamInfo* user = content.membersArray[0];
+            
+            NSString* userFullName  = user.fullname;
+            
+            NSString* userAvatarSrc = user.avatarSrc;
+            
+            cell = [factory returnSingleUserCellWithTitle: content.title
+                                         withUserFullName: userFullName
+                                           withUserAvatar: userAvatarSrc
+                                             forTableView: tableView];
         }
             break;
             
         case GroupOfUsersCell:
         {
+            OSGroupOfUsersInfoCellFactory* factory = [OSGroupOfUsersInfoCellFactory new];
             
+            cell = [factory returnGroupOfUsersCellWithTitle: content.title
+                                               forTableView: tableView];
+
         }
             break;
             
         case MarkedRightDetailCell:
         {
-            
-            
+            OSMarkedRightDetailCellFactory* factory = [OSMarkedRightDetailCellFactory new];
+
+            cell = [factory returnMarkedRightDetailCellWithTitle: content.title
+                                                  withDetailText: content.detail
+                                                   withMarkImage: [UIImage imageNamed: content.markImageName]
+                                                    forTableView: tableView];
         }
             break;
             
@@ -157,12 +228,222 @@ static NSString* SegueIdKey        = @"SegueIdKey";
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath
 {
-    NSDictionary* content = self.addTaskTableViewContent[indexPath.section][indexPath.row];
+    RowContent* content = self.addTaskTableViewContent[indexPath.section][indexPath.row];
     
-    return content[SegueIdKey];
+    return content.segueId;
 }
+
+- (void) updateTaskNameWithString: (NSString*) newTaskName
+{
+    self.task.taskName = newTaskName;
+    
+    if ( [newTaskName isEqualToString: @""] )
+    {
+        newTaskName = @"Название задачи";
+    }
+    
+    RowContent* newRow = self.addTaskTableViewContent[0][0];
+    
+    newRow.title  = newTaskName;
+    
+    [self updateContentWithRow: newRow
+                     inSection: 0
+                         inRow: 0];
+}
+
+- (NewTask*) returnNewTask
+{
+    return self.task;
+}
+
+- (NSArray*) returnAllSeguesArray
+{
+    return self.allSeguesInfoArray;
+}
+
+#pragma mark - OSSwitchTableCellDelegate methods -
+
+- (void) updateTaskState: (BOOL) isHidden
+{
+    self.task.isHiddenTask = isHidden;
+}
+
+#pragma mark - SelectResponsibleViewControllerDelegate methods -
+
+- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
+{
+    self.task.responsible = selectedUsersArray;
+    
+    RowContent* row = self.addTaskTableViewContent[0][3];
+    
+    row.membersArray = selectedUsersArray;
+    
+    [self updateContentWithRow: row
+                     inSection: 0
+                         inRow: 3];
+}
+
+#pragma mark - AddTaskTermsControllerDelegate methods -
+
+- (void) updateTermsWithStartDate: (NSDate*)    startDate
+                    andFinishDate: (NSDate*)    finishDate
+                     withDuration: (NSUInteger) duration
+{
+    self.task.startDate  = startDate;
+    self.task.finishDate = finishDate;
+    self.task.duration   = duration;
+    
+    RowContent* row = self.addTaskTableViewContent[1][0];
+    
+    row.detail = [self createTermsLabelTextForStartDate: startDate
+                                         withFinishDate: finishDate
+                                           withDuration: duration];
+}
+
+
 #pragma mark - Internal -
 
+- (NSArray*) createTableViewContent
+{
+    NSArray* sectionOne   = [self createSectionOne];
+    
+    NSArray* sectionTwo   = [self createSectionTwo];
+    
+    NSArray* sectionThree = [self createSectionThree];
+    
+    return [NSArray arrayWithObjects: sectionOne, sectionTwo, sectionThree, nil];
+}
+
+- (NSArray*) createSectionOne
+{
+    RowContent* rowOne = [RowContent new];
+    
+    rowOne.cellId = self.addTaskTableViewCellsInfo[FlexibleTextFieldCell];
+    rowOne.title  = self.task.taskName ? self.task.taskName : @"Название задачи";
+    
+    RowContent* rowTwo = [RowContent new];
+    
+    rowTwo.cellId  = self.addTaskTableViewCellsInfo[FlexibleCell];
+    rowTwo.title   = self.task.taskDescription ? self.task.taskDescription : @"Описание задачи";
+    rowTwo.segueId = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
+    
+    RowContent* rowThree = [RowContent new];
+    
+    rowThree.cellId   = self.addTaskTableViewCellsInfo[SwitchCell];
+    rowThree.title    = @"Скрытая задача";
+    rowThree.isHidden = self.task.isHiddenTask? self.task.isHiddenTask : NO;
+    
+    RowContent* rowFour = [RowContent new];
+    
+    rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
+    rowFour.title        = @"Ответственный";
+    rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
+    rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
+    
+    RowContent* rowFive = [RowContent new];
+    
+    NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: self.task.claiming];
+    
+    NSString* cellFiveDetailText  = [cellForRowFiveId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
+    
+    rowFive.cellId       = cellForRowFiveId;
+    rowFive.title        = @"Утверждающие";
+    rowFive.detail       = cellFiveDetailText;
+    rowFive.membersArray = self.task.claiming;
+    rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
+    
+    RowContent* rowSix = [RowContent new];
+    
+    NSString* cellForRowSixId = [self determineCellIdForGroupOfMembers: self.task.observers];
+    
+    NSString* cellSixDetailText  = [cellForRowSixId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
+    
+    rowSix.cellId       = cellForRowSixId;
+    rowSix.title        = @"Наблюдатели";
+    rowSix.detail       = cellSixDetailText;
+    rowSix.membersArray = self.task.observers;
+    rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
+    
+    return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
+}
+
+- (NSArray*) createSectionTwo
+{
+    RowContent* row = [RowContent new];
+    
+    row.title   = @"Сроки";
+    row.detail  = [self createTermsLabelTextForStartDate: self.task.startDate
+                                          withFinishDate: self.task.finishDate
+                                            withDuration: self.task.duration];
+    
+    row.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    row.segueId = self.addTaskTableViewSeguesInfo[ShowTermsSegueID];
+    
+    return @[ row ];
+}
+
+- (NSArray*) createSectionThree
+{
+    RowContent* rowOne = [RowContent new];
+    
+    rowOne.title  = @"Помещение";
+    rowOne.detail = @"Не реализовано";
+    rowOne.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    RowContent* rowTwo = [RowContent new];
+    
+    rowTwo.title  = @"Задача на плане";
+    rowTwo.detail = @"Не реализовано";
+    rowTwo.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    RowContent* rowThree = [RowContent new];
+    
+    rowThree.title  = @"Этап";
+    rowThree.detail = @"Не реализовано";
+    rowThree.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    RowContent* rowFour = [RowContent new];
+    
+    rowFour.title  = @"Система";
+    rowFour.detail = @"Не реализовано";
+    rowFour.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    RowContent* rowFive = [RowContent new];
+    
+    rowFive.title         = @"Тип задачи";
+    rowFive.detail        = @"Не реализовано";
+    rowFive.markImageName = @"GreenMark";
+    rowFive.cellId        = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
+    
+    RowContent* rowSix = [RowContent new];
+    
+    rowSix.title  = @"Документы к задаче";
+    rowSix.detail = @"Не реализовано";
+    rowSix.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    
+    return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
+}
+
+
+#pragma mark - AddMessageViewControllerDelegate methods -
+
+- (void) setTaskDescription: (NSString*) taskDescription
+{
+    self.task.taskDescription = taskDescription;
+    
+    RowContent* newRow = self.addTaskTableViewContent[0][1];
+    
+    newRow.title = taskDescription;
+    
+    if ( [taskDescription isEqualToString: @"Введите описание задачи"] )
+    {
+        taskDescription = @"";
+    }
+    
+    [self updateContentWithRow: newRow
+                     inSection: 0
+                         inRow: 1];
+}
 
 #pragma mark - Helpers -
 
@@ -183,6 +464,68 @@ static NSString* SegueIdKey        = @"SegueIdKey";
         }
     
     return cellID;
+}
+
+- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
+                                withFinishDate: (NSDate*) finishDate
+                                  withDuration: (NSUInteger) duration
+{
+    NSString* labelText;
+    
+    if ( startDate && finishDate )
+    {
+        NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+        
+        NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+        
+        labelText = [NSString stringWithFormat: @"%@ - %@, %ld", firstDate, secondDate, duration];
+    } else
+    {
+        labelText = @"Не выбраны";
+    }
+    
+    return labelText;
+}
+
+- (BOOL) isValidTaskName: (NSString*) taskName
+{
+    return taskName.length > 0;
+}
+
+- (NSArray*) getCurrentUserInfoArray
+{
+    NSArray* allUsers = [[DataManager sharedInstance] getAllUserInfo];
+    
+    UserInfo* userInfo = [allUsers firstObject];
+    
+    FilledTeamInfo* teamInfo = [FilledTeamInfo new];
+    
+    [teamInfo convertUserToTeamInfo: userInfo];
+    
+//    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
+    
+//    NSArray* array = @[ currentUser ];
+    
+    return teamInfo? @[teamInfo] : nil;
+}
+
+- (void) updateContentWithRow: (RowContent*) newRow
+                    inSection: (NSUInteger) section
+                        inRow: (NSUInteger) row
+{
+    NSArray* sectionContent = self.addTaskTableViewContent[section];
+    
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.addTaskTableViewContent];
+    
+    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    
+    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    
+    sectionContent = [sectionCopy copy];
+    
+    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    
+    self.addTaskTableViewContent = [contentCopy copy];
 }
 
 @end

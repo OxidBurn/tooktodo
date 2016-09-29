@@ -39,5 +39,39 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskOnCompletionStatusType = 5,
 };
 
+typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
+    
+    SelectResponsibleController,
+    SelectClaimingController,
+    SelectObserversController
+    
+};
+
+typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
+    
+    FlexibleTextFieldCell,
+    FlexibleCell,
+    RightDetailCell,
+    SwitchCell,
+    SingleUserInfoCell,
+    GroupOfUsersCell,
+    MarkedRightDetailCell,
+};
+
+typedef NS_ENUM(NSUInteger, AllSeguesList) {
+    
+    ShowAddMessageSegue,
+    ShowResponsibleSegue,
+    ShowClaimingSegue,
+    ShowObserversSegue,
+    ShowTermsSegue,
+    
+};
+
+typedef NS_ENUM(NSUInteger, SelectResponsibleSelectAllFlag) {
+    SelectAll,
+    DeselectAll,
+};
+
 
 #endif /* ProjectsEnumerations_h */

@@ -10,4 +10,6 @@
 
 @interface TermsViewController : UIViewController
 
+// methods
+
 @end

@@ -25,4 +25,6 @@
 
 - (void) deleteCurrentUser: (UserInfo*) info;
 
+- (NSArray*) getAllUserInfo;
+
 @end

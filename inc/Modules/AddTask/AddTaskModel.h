@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+//Classes
+#import "NewTask.h"
+
 @interface AddTaskModel : NSObject
+
+// properties
 
 // methods
 
@@ -18,5 +23,13 @@
                                forIndexPath: (NSIndexPath*) indexPath;
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
+
+- (void) updateTaskNameWithString: (NSString*) newTaskName;
+
+- (BOOL) isValidTaskName: (NSString*) taskName;
+
+- (NewTask*) returnNewTask;
+
+- (NSArray*) returnAllSeguesArray;
 
 @end

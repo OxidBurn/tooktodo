@@ -10,8 +10,10 @@
 
 // Classes
 #import "AddTaskModel.h"
+#import "OSFlexibleTextFieldCell.h"
+#import "ProjectsEnumerations.h"
 
-@interface AddTaskViewModel()
+@interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate>
 
 // properties
 @property (strong, nonatomic) AddTaskModel* model;
@@ -24,6 +26,20 @@
 
 @implementation AddTaskViewModel
 
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    self = [super init];
+    
+    if ( self )
+    {
+        [self initialize];
+    }
+    
+    return self;
+}
+
 #pragma mark - Properties -
 
 - (AddTaskModel*) model
@@ -34,6 +50,24 @@
     }
     
     return _model;
+}
+
+
+#pragma mark - Public -
+
+- (NewTask*) getNewTask
+{
+    return [self.model returnNewTask];
+}
+
+- (NSArray*) returnAllSeguesArray
+{
+    return [self.model returnAllSeguesArray];
+}
+
+- (id) returnModel
+{
+    return self.model;
 }
 
 #pragma mark - UITableView data source -
@@ -52,17 +86,38 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model createCellForTableView: (UITableView*) tableView
-                                 forIndexPath: (NSIndexPath*) indexPath];
+    UITableViewCell* cell = [self.model createCellForTableView: (UITableView*) tableView
+                                                  forIndexPath: (NSIndexPath*) indexPath];
+
+    return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (UIView*)  tableView: (UITableView*) tableView
+viewForHeaderInSection: (NSInteger)    section
 {
-    UIView* view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 20, 10)];
+    switch ( section )
+    {
+        case 0:
+            
+            return nil;
+            
+            break;
+            
+        case 1 ... 2:
+        {
+            
+            UIView* view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 20, 10)];
+            
+            view.backgroundColor = [UIColor lightGrayColor];
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
     
-    view.backgroundColor = [UIColor lightGrayColor];
-    
-    return view;
+    return nil;
 }
 
 - (CGFloat)    tableView: (UITableView*) tableView
@@ -88,11 +143,80 @@ heightForHeaderInSection: (NSInteger)   section
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
     NSString* segueID = [self.model getSegueIdForIndexPath: indexPath];
     
     if ( [self.delegate respondsToSelector: @selector(performSegueWithSegueId:)] )
     {
         [self.delegate performSegueWithSegueId: segueID];
     }
+    
+    if ( indexPath.section == 0 )
+    {
+        switch ( indexPath.row )
+        {
+            case 0:
+            {
+                OSFlexibleTextFieldCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+            
+                cell = (OSFlexibleTextFieldCell*)cell;
+            
+                cell.delegate = self;
+            
+                [cell editTextLabel];
+            }
+                break;
+            
+            
+            default:
+                break;
+        }
+    }
 }
+
+#pragma mark - OSFlexibleTextFieldDelegate methods -
+
+- (void) updateFlexibleTextFieldCellWithText: (NSString*) newTaskNameString
+{
+    [self.model updateTaskNameWithString: newTaskNameString];
+    
+    if ( [self.delegate respondsToSelector: @selector(reloadAddTaskTableView)] )
+    {
+        [self.delegate reloadAddTaskTableView];
+    }
+}
+
+- (AddTaskViewModel*) getViewModel
+{
+    return self;
+}
+
+#pragma mark - Internal -
+
+- (void) initialize
+{
+    self.enableConfirmButtons = [RACObserve (self, taskNameText)
+                                 
+                                 map: ^id (NSString* value) {
+        
+                                     return @([self.model isValidTaskName: value]);
+        
+                                 }] ;
+    
+    
+    self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
+                                                           signalBlock: ^RACSignal *(id input) {
+    
+                                                               //return self.enableConfirmButtons;
+                                                               
+                                                               return [RACSignal empty];
+}];
+    
+    
+};
+
+
+
 @end
