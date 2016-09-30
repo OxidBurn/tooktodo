@@ -8,6 +8,9 @@
 
 #import "SelectStageModel.h"
 
+//Classes
+#import "DataManager+Tasks.h"
+
 @interface SelectStageModel()
 
 @property (nonatomic, strong) NSArray* stagesArray;
@@ -16,6 +19,17 @@
 
 @implementation SelectStageModel
 
+#pragma mark - Properties-
+
+- (NSArray*) stagesArray
+{
+    if (_stagesArray == nil)
+    {
+        _stagesArray = [DataManagerShared getStagesForCurrentProject];
+    }
+    
+    return _stagesArray;
+}
 
 #pragma mark - Public -
 
@@ -24,4 +38,8 @@
     return self.stagesArray.count;
 }
 
+- (NSArray*) getStages
+{
+    return self.stagesArray;
+}
 @end

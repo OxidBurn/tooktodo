@@ -1,33 +1,34 @@
 //
-//  SelectStageViewModel.m
+//  SelectSystemViewModel.m
 //  TookTODO
 //
 //  Created by Lera on 30.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SelectStageViewModel.h"
+#import "SelectSystemViewModel.h"
 
 //Classes
-#import "SelectStageModel.h"
+#import "SelectSystemModel.h"
 #import "OSCellWithCheckmark.h"
 
-@interface SelectStageViewModel()
 
-@property (nonatomic, strong) SelectStageModel* model;
+@interface SelectSystemViewModel()
+
+@property (nonatomic, strong) SelectSystemModel* model;
 
 @end
 
-@implementation SelectStageViewModel 
 
+@implementation SelectSystemViewModel
 
 #pragma mark - Properties -
 
-- (SelectStageModel*) model
+- (SelectSystemModel*) model
 {
     if (_model == nil)
     {
-        _model = [SelectStageModel new];
+        _model = [SelectSystemModel new];
     }
     
     return _model;
@@ -42,10 +43,10 @@
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
     
-    ProjectTaskStage* stage = [self.model getStages][indexPath.row];
+    ProjectSystem* system = [self.model getSystems][indexPath.row];
     
-    [cell fillCellWithTitle: stage.title];
-
+    [cell fillCellWithTitle: system.title];
+    
     return cell;
 }
 
@@ -55,7 +56,5 @@
     return [self.model countOfRows];
 }
 
-
-#pragma mark - TableView delegate methods -
 
 @end

@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowSelectClaimingControllerSegueID,
     ShowSelectObserversControllerSegueID,
     ShowPremisesSegueID,
+    ShowSelectStageSegueID,
+    ShowSelectSystemSegueID,
     
 };
 
@@ -77,7 +79,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -87,7 +89,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems"];
     }
     
     return _allSeguesInfoArray;
@@ -398,15 +400,17 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     RowContent* rowThree = [RowContent new];
     
-    rowThree.title  = @"Этап";
-    rowThree.detail = @"Не реализовано";
-    rowThree.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowThree.title   = @"Этап";
+    rowThree.detail  = @"Не реализовано";
+    rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
     
     RowContent* rowFour = [RowContent new];
     
-    rowFour.title  = @"Система";
-    rowFour.detail = @"Не реализовано";
-    rowFour.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowFour.title   = @"Система";
+    rowFour.detail  = @"Не реализовано";
+    rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     
     RowContent* rowFive = [RowContent new];
     

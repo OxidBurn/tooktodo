@@ -31,4 +31,6 @@
 - (void) changeItemSelectedState: (BOOL)                    isSelected
                          forItem: (ProjectRoleAssignments*) assignment;
 
+- (NSArray*) getStagesForCurrentProject;
+
 @end

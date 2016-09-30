@@ -1,5 +1,5 @@
 //
-//  SelectStageModel.h
+//  SelectSystemModel.h
 //  TookTODO
 //
 //  Created by Lera on 30.09.16.
@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 //Classes
-#import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectSystem.h"
 
-@interface SelectStageModel : NSObject
+@interface SelectSystemModel : NSObject
 
 // Methods
 - (NSInteger) countOfRows;
 
-- (NSArray*) getStages;
+- (NSArray*) getSystems;
 
 @end
