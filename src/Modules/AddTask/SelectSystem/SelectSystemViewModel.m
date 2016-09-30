@@ -34,6 +34,13 @@
     return _model;
 }
 
+#pragma mark - Public -
+
+- (ProjectSystem*) getSelectedSystem
+{
+    return [self.model getSelectedSystem];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -42,10 +49,16 @@
     //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"Не выбрано";
+    }
+    else
+    {
+        ProjectSystem* system = [self.model getSystems][indexPath.row];
     
-    ProjectSystem* system = [self.model getSystems][indexPath.row];
-    
-    [cell fillCellWithTitle: system.title];
+        [cell fillCellWithContent: system];
+    }
     
     return cell;
 }
@@ -54,6 +67,34 @@
   numberOfRowsInSection: (NSInteger)    section
 {
     return [self.model countOfRows];
+}
+
+
+#pragma mark - TableView delegate methods -
+
+- (void)        tableView: (UITableView*) tableView
+  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    [self.model handleCheckmarkForIndexPath: indexPath];
+    
+    OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+   
+        [cell changeCheckmarkState: YES];
+    
+    if ( [self.model getLastIndexPath] )
+    {
+        OSCellWithCheckmark* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model getLastIndexPath]];
+        
+        [prevSelectedCell changeCheckmarkState: NO];
+    }
+    
+    [self.model updateLastIndexPath: indexPath];
+   
+    
 }
 
 

@@ -2,7 +2,7 @@
 //  ProjectTaskStage+CoreDataClass.m
 //  
 //
-//  Created by Nikolay Chaban on 9/15/16.
+//  Created by Lera on 30.09.16.
 //
 //
 

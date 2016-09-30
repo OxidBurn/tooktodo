@@ -10,7 +10,7 @@
 #import "ReactiveCocoa.h"
 
 // Classes
-#import "ProjectSystem.h"
+#import "ProjectSystem+CoreDataClass.h"
 
 @interface SystemsInfoModel : NSObject
 

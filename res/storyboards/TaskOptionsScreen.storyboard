@@ -600,7 +600,7 @@
             <objects>
                 <navigationController storyboardIdentifier="AddTaskNavControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cg7-f8-mnr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="5TP-fl-2Yw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5TP-fl-2Yw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1169,17 +1169,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="9BB-wu-olk"/>
-                                                        <constraint firstAttribute="width" constant="20" id="Wht-pY-Ghf"/>
+                                                        <constraint firstAttribute="height" constant="13" id="9BB-wu-olk"/>
+                                                        <constraint firstAttribute="width" constant="16" id="Wht-pY-Ghf"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7m0-A9-lLL" firstAttribute="top" secondItem="J9V-xf-tHJ" secondAttribute="topMargin" constant="4" id="7p5-Fb-tu2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7m0-A9-lLL" secondAttribute="trailing" constant="7" id="FoE-uZ-wW5"/>
-                                                <constraint firstItem="7m0-A9-lLL" firstAttribute="leading" secondItem="tzv-75-k4p" secondAttribute="trailing" constant="26" id="Jgl-Zy-9fF"/>
+                                                <constraint firstItem="7m0-A9-lLL" firstAttribute="top" secondItem="J9V-xf-tHJ" secondAttribute="topMargin" constant="7" id="7p5-Fb-tu2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7m0-A9-lLL" secondAttribute="trailing" constant="17" id="FoE-uZ-wW5"/>
+                                                <constraint firstItem="7m0-A9-lLL" firstAttribute="leading" secondItem="tzv-75-k4p" secondAttribute="trailing" constant="20" id="Jgl-Zy-9fF"/>
                                                 <constraint firstItem="tzv-75-k4p" firstAttribute="top" secondItem="J9V-xf-tHJ" secondAttribute="topMargin" constant="3" id="KV6-ZE-cxx"/>
                                                 <constraint firstItem="tzv-75-k4p" firstAttribute="leading" secondItem="J9V-xf-tHJ" secondAttribute="leadingMargin" constant="6" id="TYX-Pk-iun"/>
                                             </constraints>
@@ -1246,7 +1246,7 @@
                                             <frame key="frameInset" width="375" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jW4-CW-tjM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jW4-CW-tjM">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="JOV-a2-vfz"/>
                                                         <constraint firstAttribute="width" constant="300" id="Wwy-Kc-soG"/>
@@ -1255,19 +1255,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n7Q-Oq-coS">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="n7Q-Oq-coS">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="0eR-mG-RrR"/>
-                                                        <constraint firstAttribute="width" constant="20" id="BoM-Fd-Mhi"/>
+                                                        <constraint firstAttribute="height" constant="13" id="0eR-mG-RrR"/>
+                                                        <constraint firstAttribute="width" constant="16" id="BoM-Fd-Mhi"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="n7Q-Oq-coS" firstAttribute="top" secondItem="3aN-ip-4Nd" secondAttribute="topMargin" constant="4" id="I1n-kZ-D0b"/>
+                                                <constraint firstItem="n7Q-Oq-coS" firstAttribute="top" secondItem="3aN-ip-4Nd" secondAttribute="topMargin" constant="7" id="I1n-kZ-D0b"/>
                                                 <constraint firstItem="jW4-CW-tjM" firstAttribute="leading" secondItem="3aN-ip-4Nd" secondAttribute="leadingMargin" constant="6" id="IIC-eS-6t7"/>
-                                                <constraint firstItem="n7Q-Oq-coS" firstAttribute="leading" secondItem="jW4-CW-tjM" secondAttribute="trailing" constant="26" id="YSv-Dx-Vqo"/>
+                                                <constraint firstItem="n7Q-Oq-coS" firstAttribute="leading" secondItem="jW4-CW-tjM" secondAttribute="trailing" constant="20" id="YSv-Dx-Vqo"/>
                                                 <constraint firstItem="jW4-CW-tjM" firstAttribute="top" secondItem="3aN-ip-4Nd" secondAttribute="topMargin" constant="3" id="s7S-AP-bvY"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="n7Q-Oq-coS" secondAttribute="trailing" constant="7" id="wkO-mX-TGZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="n7Q-Oq-coS" secondAttribute="trailing" constant="17" id="wkO-mX-TGZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -18,4 +18,14 @@
 
 - (NSArray*) getStages;
 
+- (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
+
+- (BOOL) getStateForStageAtIndex: (NSUInteger) index;
+
+- (void) updateLastIndexPath: (NSIndexPath*) indexPath;
+
+- (NSIndexPath*) getLastIndexPath;
+
+- (ProjectTaskStage*) getSelectedStage;
+
 @end

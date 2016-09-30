@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+//Classes
+#import "ProjectSystem+CoreDataClass.h"
+
 @interface SelectSystemViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+//Methods
+- (ProjectSystem*) getSelectedSystem;
 
 @end

@@ -42,9 +42,10 @@
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
     
-    ProjectTaskStage* stage = [self.model getStages][indexPath.row];
+        ProjectTaskStage* stage = [self.model getStages][indexPath.row];
     
-    [cell fillCellWithTitle: stage.title];
+        [cell fillCellWithContent: stage];
+
 
     return cell;
 }
@@ -57,5 +58,31 @@
 
 
 #pragma mark - TableView delegate methods -
+
+- (void)        tableView: (UITableView*) tableView
+  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    [self.model handleCheckmarkForIndexPath: indexPath];
+    
+    OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+    
+    [cell changeCheckmarkState: YES];
+    
+    if ( [self.model getLastIndexPath] )
+    {
+        OSCellWithCheckmark* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model getLastIndexPath]];
+        
+        [prevSelectedCell changeCheckmarkState: NO];
+    }
+    
+    [self.model updateLastIndexPath: indexPath];
+    
+    
+}
+
 
 @end
