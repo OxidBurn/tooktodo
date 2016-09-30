@@ -247,6 +247,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		59D9BD211D58697F009DFBA8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD1E1D58697F009DFBA8 /* AppDelegate.m */; };
+		CFF95CCD1D9E594A004FD4E8 /* SelectStageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF95CCC1D9E594A004FD4E8 /* SelectStageViewController.m */; };
+		CFF95CD01D9E5963004FD4E8 /* SelectStageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF95CCF1D9E5963004FD4E8 /* SelectStageViewModel.m */; };
+		CFF95CD31D9E5975004FD4E8 /* SelectStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF95CD21D9E5975004FD4E8 /* SelectStageModel.m */; };
 		F7954A8A1D901A0E008BC9AF /* AddMassageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7954A891D901A0E008BC9AF /* AddMassageViewController.m */; };
 		F7954A8D1D901F7C008BC9AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7954A8C1D901F7C008BC9AF /* Assets.xcassets */; };
 		F7954AC51D92A859008BC9AF /* NewTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F7954AC41D92A859008BC9AF /* NewTask.m */; };
@@ -759,6 +762,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CFF95CCC1D9E594A004FD4E8 /* SelectStageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStageViewController.m; sourceTree = "<group>"; };
+		CFF95CCF1D9E5963004FD4E8 /* SelectStageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStageViewModel.m; sourceTree = "<group>"; };
+		CFF95CD21D9E5975004FD4E8 /* SelectStageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStageModel.m; sourceTree = "<group>"; };
+		CFF95CD51D9E59CE004FD4E8 /* SelectStageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStageModel.h; sourceTree = "<group>"; };
+		CFF95CD61D9E59CE004FD4E8 /* SelectStageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStageViewController.h; sourceTree = "<group>"; };
+		CFF95CD71D9E59CE004FD4E8 /* SelectStageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStageViewModel.h; sourceTree = "<group>"; };
 		F7954A891D901A0E008BC9AF /* AddMassageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMassageViewController.m; sourceTree = "<group>"; };
 		F7954A8B1D901A21008BC9AF /* AddMassageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddMassageViewController.h; sourceTree = "<group>"; };
 		F7954A8C1D901F7C008BC9AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1355,6 +1364,7 @@
 		56A9A9AF1D8FF6A800A133C3 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				CFF95CCA1D9E5929004FD4E8 /* SelectStage */,
 				56A9A9E41D8FF7A900A133C3 /* AddTaskViewController.m */,
 				56A9A9E51D8FF7A900A133C3 /* AddTaskViewModel.m */,
 				56A9A9E31D8FF7A900A133C3 /* AddTaskModel.m */,
@@ -1371,6 +1381,7 @@
 		56A9A9B41D8FF6BE00A133C3 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				CFF95CD41D9E598D004FD4E8 /* SelectStage */,
 				56A9A9E91D8FF7B200A133C3 /* AddTaskModel.h */,
 				56A9A9EA1D8FF7B200A133C3 /* AddTaskViewController.h */,
 				56A9A9EB1D8FF7B200A133C3 /* AddTaskViewModel.h */,
@@ -2220,6 +2231,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CFF95CCA1D9E5929004FD4E8 /* SelectStage */ = {
+			isa = PBXGroup;
+			children = (
+				CFF95CCC1D9E594A004FD4E8 /* SelectStageViewController.m */,
+				CFF95CCF1D9E5963004FD4E8 /* SelectStageViewModel.m */,
+				CFF95CD21D9E5975004FD4E8 /* SelectStageModel.m */,
+			);
+			path = SelectStage;
+			sourceTree = "<group>";
+		};
+		CFF95CD41D9E598D004FD4E8 /* SelectStage */ = {
+			isa = PBXGroup;
+			children = (
+				CFF95CD51D9E59CE004FD4E8 /* SelectStageModel.h */,
+				CFF95CD61D9E59CE004FD4E8 /* SelectStageViewController.h */,
+				CFF95CD71D9E59CE004FD4E8 /* SelectStageViewModel.h */,
+			);
+			path = SelectStage;
+			sourceTree = "<group>";
+		};
 		F781BEE91D7F118700F63962 /* ProfileInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -2535,6 +2566,7 @@
 				566864F41D84B29B002ECB74 /* ProjectTaskMarker+CoreDataProperties.m in Sources */,
 				F7AA03951D9C6882005C28D7 /* OSFlexibleTextTableCell.m in Sources */,
 				56A9A9841D8F703E00A133C3 /* ProjectInviteInfo+CoreDataClass.m in Sources */,
+				CFF95CD01D9E5963004FD4E8 /* SelectStageViewModel.m in Sources */,
 				560B89B61D7C36B500746682 /* BaseMainViewController.m in Sources */,
 				56E1BA0A1D6F7677003E46DA /* DataManager.m in Sources */,
 				56E1BA091D6F7677003E46DA /* DataManager+UserInfo.m in Sources */,
@@ -2744,6 +2776,7 @@
 				560B89E11D7C3C2200746682 /* SystemsInfoViewModel.m in Sources */,
 				564DF0841D7B7B1100067B60 /* ProjectRoles+CoreDataProperties.m in Sources */,
 				F7AA035B1D9C66C9005C28D7 /* AddTaskTermsModel.m in Sources */,
+				CFF95CCD1D9E594A004FD4E8 /* SelectStageViewController.m in Sources */,
 				594FB1B61D82F9F300AD9E9D /* TaskResponsibleModel.m in Sources */,
 				5615334F1D7A70A100BDEC3E /* ProjectInfoModel.m in Sources */,
 				56D8E1071D8ACE8A00BDC6E1 /* AllTaskBaseTableViewCell.m in Sources */,
@@ -2763,6 +2796,7 @@
 				F7AA03991D9C6882005C28D7 /* OSSingleUserInfoCell.m in Sources */,
 				594FB1D41D83042D00AD9E9D /* TaskProjectRoleAssignmentModel.m in Sources */,
 				56EAC25F1D7B51060087B3FF /* ChangePasswordViewModel.m in Sources */,
+				CFF95CD31D9E5975004FD4E8 /* SelectStageModel.m in Sources */,
 				594FB1C51D82FB5700AD9E9D /* TaskRoleAssignmentsModel.m in Sources */,
 				564DF0981D7B912D00067B60 /* SystemsService.m in Sources */,
 				56EAC2481D7B51060087B3FF /* AllProjectsViewModel.m in Sources */,

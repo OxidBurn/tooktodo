@@ -42,6 +42,4 @@
 
 - (void) deselectAll;
 
-- (BOOL) checkIfAllSelected;
-
 @end

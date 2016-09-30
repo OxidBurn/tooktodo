@@ -8,6 +8,12 @@
 
 #import "OSGroupOfUserInfoCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
+// Classes
+#import "FilledTeamInfo.h"
+
 @interface OSGroupOfUserInfoCell()
 
 // properties
@@ -32,6 +38,7 @@
 - (void) fillCellWithTitle: (NSString*) titleText
 {
     self.groupTitleLabel.text = titleText;
+    
 }
 
 

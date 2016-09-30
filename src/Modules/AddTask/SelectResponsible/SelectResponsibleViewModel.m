@@ -127,8 +127,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             else
                 [cell changeCheckmarkState: NO];
             
-            
-            
         }
             break;
             
