@@ -8,24 +8,19 @@
 
 #import "OSAlertViewController.h"
 
-@protocol OSDefaultAlertControllerDelegate;
+// Classes
+#import "OSAlertControllerProtocol.h"
 
 @interface OSDefaultAlertController : OSAlertViewController
 
 //properties
 
-@property (nonatomic, weak) id <OSDefaultAlertControllerDelegate> delegate;
+@property (nonatomic, weak) id <OSAlertControllerProtocol> delegate;
 
 // methods
 
 - (void) setTitle: (NSString*) title
       withMessage: (NSString*) message
       withBtnText: (NSString*) btnText;
-
-@end
-
-@protocol OSDefaultAlertControllerDelegate <NSObject>
-
-- (void) performAction;
 
 @end

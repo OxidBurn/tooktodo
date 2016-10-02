@@ -19,6 +19,8 @@
 #import "DataManager+Team.h"
 #import "DataManager+ProjectInfo.h"
 
+
+
 @implementation TeamService
 
 static dispatch_once_t onceToken;
@@ -144,6 +146,72 @@ static bool isFirstAccess = YES;
     return [RACSignal empty];
 }
 
+- (RACSignal*) updateSelectedUserPermission: (NSUInteger) permission
+                              withProjectID: (NSNumber*)  projectID
+                                 withUserID: (NSNumber*)  userID
+{
+    RACSignal* updateSelectedUserPermissionSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [DataManagerShared updateTeamMemberPermission: permission
+                                       withCompletion: ^(BOOL isSuccess) {
+                                           
+                                           [subscriber sendNext: nil];
+                                           
+                                       }];
+        
+        NSString* requestURL = [[projectRolePermissionURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                                   withString: projectID.stringValue]
+                                stringByReplacingOccurrencesOfString: @"{userId}"
+                                withString: userID.stringValue];
+        
+        switch (permission)
+        {
+            case 2:
+            {
+                [[[TeamAPIService sharedInstance] setUserAsAdmin: requestURL]
+                 subscribeNext: ^(id x) {
+                     
+                     [subscriber sendNext: x];
+                     [subscriber sendCompleted];
+                     
+                 }
+                 error: ^(NSError *error) {
+                     
+                     [subscriber sendNext: error];
+                     
+                 }];
+            }
+                break;
+                
+            case 0:
+            {
+                [[[TeamAPIService sharedInstance] removeAdminRightFromUser: requestURL]
+                 subscribeNext: ^(id x) {
+                     
+                     [subscriber sendNext: x];
+                     [subscriber sendCompleted];
+                     
+                 }
+                 error: ^(NSError *error) {
+                     
+                     [subscriber sendNext: error];
+                     
+                 }];
+            }
+                break;
+        }
+        
+        
+        return nil;
+    }];
+    
+    return updateSelectedUserPermissionSignal;
+}
+
+- (RACSignal*) updateSelectedUserRole: (ProjectRoles*) role
+{
+    return [RACSignal empty];
+}
 
 #pragma mark - Internal methods -
 

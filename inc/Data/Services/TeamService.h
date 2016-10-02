@@ -12,6 +12,7 @@
 
 // Classes
 #import "InviteInfo.h"
+#import "ProjectRoles.h"
 
 @interface TeamService : NSObject
 
@@ -26,5 +27,11 @@
 - (RACSignal*) inviteUserWithInfo: (InviteInfo*) info;
 
 - (RACSignal*) getProjectUserPermission;
+
+- (RACSignal*) updateSelectedUserPermission: (NSUInteger) permission
+                              withProjectID: (NSNumber*)  projectID
+                                 withUserID: (NSNumber*)  userID;
+
+- (RACSignal*) updateSelectedUserRole: (ProjectRoles*) role;
 
 @end

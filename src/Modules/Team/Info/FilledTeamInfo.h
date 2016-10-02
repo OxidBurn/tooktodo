@@ -29,6 +29,9 @@
 @property (nonatomic, strong) NSString* fullname;
 @property (nonatomic, assign) NSNumber* projectPermission;
 @property (assign, nonatomic) BOOL isResponsible;
+@property (strong, nonatomic) NSNumber* roleID;
+@property (strong, nonatomic) NSNumber* memberID;
+@property (strong, nonatomic) NSNumber* projectID;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 

@@ -64,22 +64,6 @@
     [super viewWillAppear: animated];
     
     [self updateUserInfo];
-    
- 
-    
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.reloadTableView = ^(){
-        
-        [blockSelf.profileInfoTableView reloadData];
-        
-    };
 }
 
 #pragma mark - Memory managment -
@@ -151,6 +135,14 @@
         [self.profileInfoTableView reloadData];
         
     }];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.profileInfoTableView reloadData];
+        
+    };
 }
 
 
@@ -163,14 +155,15 @@
 }
 
 - (void) showDesignationAlert: (NSString*) userName
-                   withAvatar: (UIImage*)  avatar
+                   withAvatar: (NSString*)  avatar
                   withMessage: (NSString*) message
 {
     
     [OSAlertController showAlertWithImage: avatar
                                  withName: userName
                               withMessage: message
-                             onController: self];
+                             onController: self
+                             withDelegate: self.viewModel];
     
 }
 

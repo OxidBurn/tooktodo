@@ -18,6 +18,7 @@
 
 
 - (IBAction) onButton: (UIButton *)sender;
+
 @end
 
 @implementation OSDefaultAlertController
@@ -43,9 +44,9 @@
 
 - (IBAction) onButton: (UIButton*) sender
 {
-    if ([self.delegate respondsToSelector: @selector(performAction)])
+    if ([self.delegate respondsToSelector: @selector(didDismissAlertAction)])
     {
-         [self.delegate performAction];
+         [self.delegate didDismissAlertAction];
     }
    
 }

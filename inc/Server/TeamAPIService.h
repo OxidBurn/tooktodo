@@ -20,4 +20,10 @@
 
 - (RACSignal*) sendInviteToTeam: (NSDictionary*) parameter;
 
+- (RACSignal*) setUserAsAdmin: (NSString*) url;
+
+- (RACSignal*) removeAdminRightFromUser: (NSString*) url;
+
+- (RACSignal*) updateUserRoleType: (NSDictionary*) parameter;
+
 @end

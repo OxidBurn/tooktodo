@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="khY-CR-kSM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="khY-CR-kSM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -57,8 +57,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-5h-RcJ">
-                                <frame key="frameInset" minX="165" minY="201" width="270" height="198"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-5h-RcJ">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVR-WM-vV6">
                                         <constraints>
@@ -89,7 +88,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt4-gx-Uhi">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="157" id="DV3-ZK-h5D"/>
                                             <constraint firstAttribute="height" constant="17" id="epx-Ew-Yg2"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
@@ -139,9 +137,10 @@
                                     <constraint firstItem="PdR-lb-aaF" firstAttribute="centerX" secondItem="Tfq-5h-RcJ" secondAttribute="centerX" id="5be-cH-kDi"/>
                                     <constraint firstItem="X3H-bg-kvk" firstAttribute="leading" secondItem="Tfq-5h-RcJ" secondAttribute="leading" constant="16" id="6Ez-6K-bDv"/>
                                     <constraint firstAttribute="height" constant="198" id="DMb-vw-kO2"/>
+                                    <constraint firstItem="Tt4-gx-Uhi" firstAttribute="leading" secondItem="7bK-tc-C9S" secondAttribute="trailing" constant="10" id="Dif-f2-AEL"/>
                                     <constraint firstAttribute="trailing" secondItem="kdk-Ct-l4V" secondAttribute="trailing" id="LRP-1Y-27f"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tt4-gx-Uhi" secondAttribute="trailing" constant="25" id="N5b-9V-ixj"/>
-                                    <constraint firstItem="7bK-tc-C9S" firstAttribute="leading" secondItem="Tfq-5h-RcJ" secondAttribute="leading" constant="52" id="QiP-Au-9Ve"/>
+                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Tt4-gx-Uhi" secondAttribute="trailing" priority="999" constant="40" id="N5b-9V-ixj"/>
+                                    <constraint firstItem="7bK-tc-C9S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Tfq-5h-RcJ" secondAttribute="leading" constant="37" id="QiP-Au-9Ve"/>
                                     <constraint firstItem="PdR-lb-aaF" firstAttribute="top" secondItem="Tfq-5h-RcJ" secondAttribute="top" constant="24" id="Ri0-aL-ygE"/>
                                     <constraint firstItem="n1l-WW-i4R" firstAttribute="top" secondItem="Tfq-5h-RcJ" secondAttribute="top" constant="158" id="VNS-aF-MDU"/>
                                     <constraint firstItem="KVR-WM-vV6" firstAttribute="leading" secondItem="Tfq-5h-RcJ" secondAttribute="leading" id="Y9s-wo-reH"/>
@@ -200,8 +199,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cg3-62-X4K" customClass="AlertView">
-                                <frame key="frameInset" minX="165" minY="226" width="270" height="148"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cg3-62-X4K" customClass="AlertView">
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hlx-Gd-jbh">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -275,18 +273,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v54-Hp-uLR" customClass="AlertView">
-                                <frame key="frameInset" minX="165" minY="204" width="270" height="192"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v54-Hp-uLR" customClass="AlertView">
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a4B-F7-aZj">
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="sectionIndexBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellID" rowHeight="43" id="rLQ-eu-wTU">
-                                                <rect key="frame" x="0.0" y="28" width="270" height="43"/>
+                                                <rect key="frame" x="0.0" y="28" width="1000" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rLQ-eu-wTU" id="Nd1-zg-Cec">
-                                                    <frame key="frameInset" width="270" height="42"/>
+                                                    <frame key="frameInset" width="1000" height="42"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0O-AY-xJo">
@@ -355,8 +352,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-T8-Azu">
-                                <frame key="frameInset" minX="174" minY="502" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnP-T8-Azu">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="c6f-gT-afC"/>
@@ -367,8 +363,7 @@
                                     <action selector="onAddComment:" destination="xrm-M9-K8c" eventType="touchUpInside" id="Ww1-8y-U6a"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-z7-Hpe">
-                                <frame key="frameInset" minX="214" minY="462" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IX3-z7-Hpe">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Alv-U5-6dh"/>
@@ -379,8 +374,7 @@
                                     <action selector="onAddMark:" destination="xrm-M9-K8c" eventType="touchUpInside" id="7Ae-iH-yeW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xh-Zs-WNm">
-                                <frame key="frameInset" minX="270" minY="439" width="60" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xh-Zs-WNm">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="8CV-3U-fZt"/>
@@ -391,8 +385,7 @@
                                     <action selector="onAddNewTask:" destination="xrm-M9-K8c" eventType="touchUpInside" id="sOd-ZE-Y9U"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvz-Gy-ymd">
-                                <frame key="frameInset" minX="386" minY="502" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvz-Gy-ymd">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="FCQ-BV-HTS"/>
@@ -403,8 +396,7 @@
                                     <action selector="onAddUser:" destination="xrm-M9-K8c" eventType="touchUpInside" id="ziX-pb-kPi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oN-ce-48H">
-                                <frame key="frameInset" minX="346" minY="462" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oN-ce-48H">
                                 <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="xWH-QY-WxJ"/>
@@ -415,8 +407,7 @@
                                     <action selector="onAddDocument:" destination="xrm-M9-K8c" eventType="touchUpInside" id="GaC-KK-wdM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twT-S6-p6g">
-                                <frame key="frameInset" minX="280" minY="552" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twT-S6-p6g">
                                 <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="YyY-4T-Jhp"/>
@@ -470,8 +461,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pD0-Tt-DgV">
-                                <frame key="frameInset" minX="165" minY="217" width="270" height="166"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pD0-Tt-DgV">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACo-3L-ZoY">
                                         <constraints>

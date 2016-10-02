@@ -7,8 +7,11 @@
 //
 
 #import "FilledTeamInfo.h"
+
+// Classes
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @implementation FilledTeamInfo
 
@@ -29,7 +32,7 @@
         self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
-        
+        self.memberID               = assignee.assigneeID;
     }
     
     else if (assignment.invite != nil)
@@ -49,6 +52,7 @@
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
+        self.memberID               = invite.inviteID;
     }
     
     else
@@ -65,7 +69,8 @@
         self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
     }
     
-    self.roleID = assignment.roleID;
+    self.roleID    = assignment.roleID;
+    self.projectID = assignment.project.projectID;
 }
 
 - (void) convertUserToTeamInfo: (UserInfo*) user

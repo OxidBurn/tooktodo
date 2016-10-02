@@ -8,23 +8,16 @@
 
 #import "OSAlertViewController.h"
 
-@protocol OSAlertDesignateAdminControllerDelegate;
+// Classes
+#import "OSAlertControllerProtocol.h"
 
 @interface OSAlertDesignateAdminController : OSAlertViewController
 
-@property (nonatomic, weak) id <OSAlertDesignateAdminControllerDelegate> delegate;
+@property (nonatomic, weak) id <OSAlertControllerProtocol> delegate;
 
-- (void) setImage: (UIImage*)  image
+- (void) setImage: (NSString*) imagePath
          withName: (NSString*) name
       withMessage: (NSString*) message;
-
-@end
-
-@protocol OSAlertDesignateAdminControllerDelegate <NSObject>
-
-- (void) performCancelAction;
-
-- (void) performReadyAction;
 
 @end
 

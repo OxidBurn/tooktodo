@@ -34,7 +34,7 @@
 
 - (NSInteger) countOfContactsContent;
 
-- (UIImage*) getAvatar;
+- (NSString*) getAvatar;
 
 - (NSNumber*) getPermissions;
 

@@ -14,6 +14,7 @@
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "FilledTeamInfo.h"
 #import "Utils.h"
+#import "TeamService.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -164,9 +165,9 @@ typedef NS_ENUM(NSInteger, Permission)
     return [NSString stringWithFormat: @"%@ %@", self.memberInfo.firstName, self.memberInfo.lastName];
 }
 
-- (UIImage*) getAvatar
+- (NSString*) getAvatar
 {
-    return [UIImage imageWithContentsOfFile: [[Utils getAvatarsDirectoryPath] stringByAppendingString: self.memberInfo.avatarSrc]];
+    return self.memberInfo.avatarSrc;
 }
 
 - (NSString*) getRole
@@ -220,19 +221,34 @@ typedef NS_ENUM(NSInteger, Permission)
 
 - (void) updateMemberPermission: (NSInteger) permission
 {
-    [DataManagerShared updateTeamMemberPermission: permission
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       
-                                       self.assignment.projectPermission = @(permission);
-                                   }];
+    [[[TeamService sharedInstance] updateSelectedUserPermission: permission
+                                                  withProjectID: self.memberInfo.projectID
+                                                     withUserID: self.memberInfo.memberID]
+     subscribeNext: ^(id x) {
+         
+         
+         
+     }
+     error: ^(NSError *error) {
+         
+         NSLog(@"Server error with updating user permission: %@", error.localizedDescription);
+         
+     }
+     completed: ^{
+         
+         
+     }];
+    
+    self.memberInfo.projectPermission = @(permission);
 }
 
 - (void) updateMemberRole: (ProjectRoles*) role
 {
     [DataManagerShared updateTeamMemberRole: role
-                             withCompletion:^(BOOL isSuccess) {
+                             withCompletion: ^(BOOL isSuccess) {
                                  
                                  FilledTeamInfo* teamMember = [FilledTeamInfo new];
+                                 
                                  [teamMember fillTeamInfo: self.assignment];
                                  
                                  teamMember.role = role.title;
@@ -302,7 +318,7 @@ typedef NS_ENUM(NSInteger, Permission)
     return self.detailLabelsContent[indexPath.row];
 }
 
-- (NSString*) setPermission: (NSUInteger) permission
+- (NSString*) setPermission: (Permission) permission
 {
     switch (permission)
     {

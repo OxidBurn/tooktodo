@@ -46,24 +46,12 @@
                       }];
 }
 
-
-
 - (NSArray*) getAllTeamInfo
 {
     ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
     
     return selectedProject.projectRoleAssignments.allObjects;
 }
-
-//- (void) changeItemSelectedState: (BOOL)        isSelected
-//                         forItem: (TeamMember*) member
-//{
-//    member.isSelected = @(isSelected);
-//    
-//    [[NSManagedObjectContext MR_defaultContext] MR_saveOnlySelfAndWait];
-//}
-
-
 
 - (void) updateTeamMemberPermission: (NSInteger)             permission
                      withCompletion: (CompletionWithSuccess) completion

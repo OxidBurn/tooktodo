@@ -9,7 +9,6 @@
 #import "OSAlertController.h"
 
 // Classes
-#import "OSAlertDesignateAdminController.h"
 #import "OSAlertPlanNotLoadedController.h"
 #import "OSAlertDeleteTaskController.h"
 #import "OSDefaultAlertController.h"
@@ -28,21 +27,23 @@
                            completion: nil];
 }
 
-+ (void) showAlertWithImage: (UIImage*)  image
-                   withName: (NSString*) name
-                withMessage: (NSString*) message
-               onController: (UIViewController*) controller
++ (void) showAlertWithImage: (NSString*)                     imagePath
+                   withName: (NSString*)                     name
+                withMessage: (NSString*)                     message
+               onController: (UIViewController*)             controller
+               withDelegate: (id<OSAlertControllerProtocol>) delegate
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
     OSAlertDesignateAdminController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DesignateAdminControllerID"];
 
+    alertController.delegate = delegate;
     
     [controller presentViewController: alertController
                              animated: YES
                            completion: nil];
     
-    [alertController setImage: image
+    [alertController setImage: imagePath
                      withName: name
                   withMessage: message];
 
@@ -60,11 +61,11 @@
                            completion: nil];
 }
 
-+ (void) showDefaultAlertWithTitle: (NSString*)                            title
-                           message: (NSString*)                            message
-                        andBtnText: (NSString*)                            btnText
-                      onController: (UIViewController*)                    controller
-                      withDelegate: (id<OSDefaultAlertControllerDelegate>) delegate
++ (void) showDefaultAlertWithTitle: (NSString*)                     title
+                           message: (NSString*)                     message
+                        andBtnText: (NSString*)                     btnText
+                      onController: (UIViewController*)             controller
+                      withDelegate: (id<OSAlertControllerProtocol>) delegate
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];

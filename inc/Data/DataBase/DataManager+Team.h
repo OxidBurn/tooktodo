@@ -21,9 +21,6 @@
 
 - (NSArray*) getAllTeamInfo;
 
-//- (void) changeItemSelectedState: (BOOL)        isSelected
-//                         forItem: (TeamMember*) member;
-
 - (TeamMember*) getSelectedItem;
 
 - (void) updateTeamMemberPermission: (NSInteger)             permission
@@ -31,7 +28,4 @@
 
 - (void) updateTeamMemberRole: (ProjectRoles*)      role
                withCompletion: (CompletionWithSuccess) completion;
-
-//- (void) updateTeamMemberRole: (NSString*)      role
-//               withCompletion: (CompletionWithSuccess) completion;
 @end
