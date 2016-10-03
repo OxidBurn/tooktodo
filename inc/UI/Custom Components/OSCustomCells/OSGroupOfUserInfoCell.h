@@ -12,6 +12,7 @@
 
 // metthods
 
-- (void) fillCellWithTitle: (NSString*) titleText;
+- (void) fillCellWithTitle: (NSString*) titleText
+                 withUsers: (NSArray*)  usersArray;
 
 @end

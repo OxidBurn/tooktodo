@@ -12,5 +12,6 @@
 
 // methods
 - (UITableViewCell*) returnGroupOfUsersCellWithTitle: (NSString*)    titleText
+                                      withUsersArray: (NSArray*)     usersArray
                                         forTableView: (UITableView*) tableView;
 @end

@@ -11,10 +11,12 @@
 //Classes
 #import "NewTask.h"
 
+@protocol AddTaskModelDelegate;
+
 @interface AddTaskModel : NSObject
 
 // properties
-
+@property (weak, nonatomic) id <AddTaskModelDelegate> delegate;
 // methods
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
@@ -31,5 +33,17 @@
 - (NewTask*) returnNewTask;
 
 - (NSArray*) returnAllSeguesArray;
+
+- (NSArray*) returnSelectedResponsibleArray;
+
+- (NSArray*) returnSelectedClaimingArray;
+
+- (NSArray*) returnSelectedObserversArray;
+
+@end
+
+@protocol AddTaskModelDelegate <NSObject>
+
+- (void) reloadData;
 
 @end

@@ -312,7 +312,28 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 
 - (void) updateDuration
 {
-    
+    if ( self.startDate && self.finishDate )
+    {
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+        NSDateComponents* components = [calendar components: NSCalendarUnitDay
+                                                   fromDate: self.startDate
+                                                     toDate: self.finishDate
+                                                    options: 0];
+        self.duration = [components day];
+        
+        RowContent* newRow = [RowContent new];
+        
+        newRow.detail = [NSString stringWithFormat: @"%ld", self.duration];
+        newRow.title  = @"Длительность";
+        newRow.cellId = self.termsCellsInfo[RightDetailCell];
+        
+        [self updateContentWithNewRow: newRow
+                             forIndex: 4];
+        
+        if ([self.delegate respondsToSelector: @selector(reloadTermsTableView)] )
+            [self.delegate reloadTermsTableView];
+    }
 }
 
 @end

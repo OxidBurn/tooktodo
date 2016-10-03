@@ -21,6 +21,8 @@
 
 // properties
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
 @property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
 @property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
@@ -33,6 +35,12 @@
 - (NSArray*) returnAllSeguesArray;
 
 - (id) returnModel;
+
+- (NSArray*) returnSelectedResponsibleArray;
+
+- (NSArray*) returnSelectedClaimingArray;
+
+- (NSArray*) returnSelectedObserversArray;
 
 @end
 

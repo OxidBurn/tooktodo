@@ -49,4 +49,9 @@
     return self.placeholderColor;
 }
 
+- (NSString*) getDescriptionText
+{
+    return self.textViewContent;
+}
+
 @end

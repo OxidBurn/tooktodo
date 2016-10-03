@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self checkIfDescriptionExists];
 }
 
 #pragma mark - Memory managment -
@@ -78,7 +80,7 @@
 - (void) updateDescription: (NSString*) descriptionText
           andReturnToModel: (id)        model
 {
-    self.textView.text = descriptionText;
+    [self.model fillText: descriptionText];
     
     self.delegate = model;
 }
@@ -125,5 +127,14 @@ shouldChangeTextInRange: (NSRange)     range
 
 #pragma mark - Helpers -
 
+- (void) checkIfDescriptionExists
+{
+    if ( [self.model getDescriptionText] )
+    {
+        self.textView.text = [self.model getDescriptionText];
+        
+        self.textView.textColor = [UIColor blackColor];
+    }
+}
 
 @end

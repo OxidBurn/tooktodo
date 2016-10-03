@@ -112,6 +112,11 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         _task = [NewTask new];
         
         _task.defaultResponsible = [self getCurrentUserInfoArray];
+        
+        if ( _task.responsible == nil )
+        {
+            _task.responsible = _task.defaultResponsible;
+        }
     }
     
     return _task;
@@ -186,7 +191,6 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
-           // UserInfo* user = content.membersArray[0];
             FilledTeamInfo* user = content.membersArray[0];
             
             NSString* userFullName  = user.fullname;
@@ -205,6 +209,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
             OSGroupOfUsersInfoCellFactory* factory = [OSGroupOfUsersInfoCellFactory new];
             
             cell = [factory returnGroupOfUsersCellWithTitle: content.title
+                                             withUsersArray: content.membersArray
                                                forTableView: tableView];
 
         }
@@ -263,11 +268,32 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     return self.allSeguesInfoArray;
 }
 
+- (NSArray*) returnSelectedResponsibleArray
+{
+    return self.task.responsible;
+}
+
+- (NSArray*) returnSelectedClaimingArray
+{
+    return self.task.claiming;
+}
+
+- (NSArray*) returnSelectedObserversArray
+{
+    return self.task.observers;
+}
+
 #pragma mark - OSSwitchTableCellDelegate methods -
 
 - (void) updateTaskState: (BOOL) isHidden
 {
     self.task.isHiddenTask = isHidden;
+    
+    RowContent* newRow = self.addTaskTableViewContent[0][2];
+    
+    newRow.isHidden = isHidden;
+    
+    [self updateContentWithRow: newRow inSection: 0 inRow: 2];
 }
 
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
@@ -280,10 +306,51 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     row.membersArray = selectedUsersArray;
     
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 3];
+    [self updateContentWithRow: row inSection: 0 inRow: 3];
 }
+
+- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
+{
+    self.task.claiming = selectedClaiming;
+    
+    RowContent* row = self.addTaskTableViewContent[0][4];
+    
+    if ( selectedClaiming )
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    }
+    
+    row.membersArray = selectedClaiming;
+    
+    [self updateContentWithRow: row inSection: 0 inRow: 4];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
+- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
+{
+    self.task.observers = selectedObservers;
+    
+    RowContent* row = self.addTaskTableViewContent[0][5];
+    
+    if ( selectedObservers )
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    }
+    
+    row.membersArray = selectedObservers;
+    
+    [self updateContentWithRow: row inSection: 0 inRow: 5];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
 
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
@@ -505,6 +572,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     FilledTeamInfo* teamInfo = [FilledTeamInfo new];
     
     [teamInfo convertUserToTeamInfo: userInfo];
+    
+    teamInfo.isResponsible = YES;
     
 //    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
     
