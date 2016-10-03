@@ -52,7 +52,8 @@ static bool isFirstAccess = YES;
         
         [subscriber sendNext: [DataManagerShared getAllProjects]];
         
-        [[[ProjectsAPIService sharedInstance] getProjectsList: requestParameter] subscribeNext: ^(RACTuple* tuple) {
+        [[[ProjectsAPIService sharedInstance] getProjectsList: requestParameter]
+         subscribeNext: ^(RACTuple* tuple) {
             
             @strongify(self)
             

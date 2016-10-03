@@ -34,7 +34,6 @@
         self.isObserver             = self.isObserver ? self.isObserver : NO;
         
     }
-    
     else if (assignment.invite != nil)
     {
         
