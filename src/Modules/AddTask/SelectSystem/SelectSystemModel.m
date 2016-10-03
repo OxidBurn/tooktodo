@@ -51,37 +51,20 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    
-    if ([indexPath isEqual: self.lastIndexPath])
+    if ( indexPath.row == 0 && self.selectedSystem )
+        self.selectedSystem.isSelected = @(NO);
+    else
     {
-        self.lastIndexPath = nil;
-    }
-    
-    if (self.systemsArray.count > 0)
-    {
-        if ( [indexPath isEqual: self.lastIndexPath] == NO )
+        self.selectedSystem = self.systemsArray[indexPath.row - 1];
+        
+        if ([indexPath compare: self.lastIndexPath] != NSOrderedSame)
         {
-            
-            [self.systemsArray enumerateObjectsUsingBlock: ^(ProjectSystem* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                obj.isSelected = @(0);
-                
-                if ( idx == indexPath.row )
-                {
-                    obj.isSelected = @(1);
-                }
-            }];
-            
-            if (indexPath.row != 0)
-            {
-                //self.selectedSystem = nil;
-                
-                self.selectedSystem = self.systemsArray[indexPath.row - 1];
-
-            }
-            
+           self.selectedSystem.isSelected = @(YES);
         }
-    
+        else
+        {
+            self.selectedSystem.isSelected = @(NO);
+        }
     }
 }
 
@@ -109,10 +92,10 @@
 
 - (void) fillSelectedSystem: (ProjectSystem*) system
 {
-   //self.selectedSystem = system;
+   self.selectedSystem = system;
     
     [self.systemsArray enumerateObjectsUsingBlock:^(ProjectSystem* newSystem, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([system.systemID isEqual: self.selectedSystem.systemID])
+        if ([self.selectedSystem.systemID isEqual: newSystem.systemID])
         {
             newSystem.isSelected = system.isSelected;
             

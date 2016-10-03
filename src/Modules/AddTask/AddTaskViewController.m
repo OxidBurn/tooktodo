@@ -151,7 +151,9 @@
         {
             SelectSystemViewController* controller = [segue destinationViewController];
             
-            [controller fillSelectedSystem: [self.viewModel returnSelectedSystem]
+            ProjectSystem* system = [self.viewModel returnSelectedSystem];
+            
+            [controller fillSelectedSystem: system
                               withDelegate: [self.viewModel returnModel]];
         }
             break;
