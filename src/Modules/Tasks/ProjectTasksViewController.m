@@ -46,10 +46,6 @@
     // Setup main navigation delegate
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
-    // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
-                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
-    
     // Binding UI components with model
     [self bindingUI];
 }
@@ -58,17 +54,11 @@
 {
     [super viewWillAppear: animated];
     
-    @weakify(self)
-    
-    [[self.viewModel updateContent]
-     subscribeCompleted: ^{
-         
-         @strongify(self)
-         
-         [self.tasksByProjectTableView reloadData];
-         
-     }];
+    [self updateContent];
 }
+
+
+#pragma mark - Properties -
 
 - (ProjectTasksViewModel*) viewModel
 {
@@ -79,6 +69,9 @@
     
     return _viewModel;
 }
+
+
+#pragma mark - Internal methods -
 
 - (void) bindingUI
 {
@@ -93,4 +86,28 @@
         [self.delegate showMainMenu];
     }
 }
+
+- (void) updateContent
+{
+    @weakify(self)
+    
+    [[self.viewModel updateContent]
+     subscribeCompleted: ^{
+         
+         @strongify(self)
+         
+         [self.tasksByProjectTableView reloadData];
+         
+     }];
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+}
+
+- (void) needToUpdateContent
+{
+    [self updateContent];
+}
+
 @end
