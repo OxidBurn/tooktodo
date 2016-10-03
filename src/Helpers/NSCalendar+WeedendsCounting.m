@@ -121,7 +121,7 @@
 
 - (NSInteger) countOfWorkdaysFollowingDate: (NSDate*) date
 {
-    switch ( [self weekdayOfDate:date] )
+    switch ( [self weekdayOfDate: date] )
     {
         case 1: return 5; break;
         case 2: return 4; break;

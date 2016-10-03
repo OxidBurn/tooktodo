@@ -209,7 +209,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     
     rowTwo.cellId      = self.termsCellsInfo[DatePickerCell];
     rowTwo.pickerTag   = StartDatePicker;
-    rowTwo.dateToShow  = self.terms.startDate;
+    rowTwo.dateToShow  = self.terms.startDate ? self.terms.startDate : [NSDate date];
     rowTwo.minimumDate = [NSDate date];
     rowTwo.maximumDate = self.terms.endDate;
     
@@ -233,6 +233,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     rowFive.title  = @"Длительность";
     
     RowContent* rowSix = [RowContent new];
+    
     rowSix.cellId      = self.termsCellsInfo[TermsSwitchCell];
     rowSix.switchIsOn  = self.terms.includingWeekends? self.terms.includingWeekends : NO;
     rowSix.switchTag   = AddTermsIncludingWeekendsSwitchTag;
@@ -260,11 +261,25 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Начало"];
                 
-                [self updateContentWithNewRow: newRow forIndex: 0];
+                [self updateContentWithNewRow: newRow
+                                     forIndex: 0];
+                
+                RowContent* updatedEndRowMinimumDate = self.tableViewContent[3];
+                
+                updatedEndRowMinimumDate.minimumDate = date;
+                
+                [self updateContentWithNewRow: updatedEndRowMinimumDate
+                                     forIndex: 3];
+                
+                NSLog(@"Selected start date: %@", date);
+                
+                NSLog(@"Minimum date: %@", updatedEndRowMinimumDate.minimumDate);
                 
                 self.terms.startDate = date;
                 
                 [self updateDuration];
+                
+                
             }
                 break;
                 
@@ -275,9 +290,13 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 
                 newRow.dateToShow = date;
                 
-                [self updateContentWithNewRow: newRow forIndex: 2];
+                [self updateContentWithNewRow: newRow
+                                     forIndex: 2];
                 
-                self.terms.endDate = date;
+//                self.terms.startDate =
+                self.terms.endDate   = date;
+                
+                NSLog(@"Selected start date: %@", date);
 
                 [self updateDuration];
             }
@@ -305,7 +324,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             
             newRow.switchIsOn = isOn;
             
-            [self updateContentWithNewRow: newRow forIndex: 5];
+            [self updateContentWithNewRow: newRow
+                                 forIndex: 5];
             
             [self updateDuration];
         }
@@ -319,7 +339,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             
             newRow.switchIsOn = isOn;
             
-            [self updateContentWithNewRow: newRow forIndex: 6];
+            [self updateContentWithNewRow: newRow
+                                 forIndex: 6];
         }
             break;
             
@@ -352,7 +373,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.tableViewContent];
 
-    [contentCopy replaceObjectAtIndex: index withObject: newRow];
+    [contentCopy replaceObjectAtIndex: index
+                           withObject: newRow];
     
     self.tableViewContent = [contentCopy copy];
 }
@@ -373,7 +395,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     if ( self.terms.startDate && self.terms.endDate )
     {
-        NSCalendar* calendar = [NSCalendar currentCalendar];
+        NSCalendar* calendar = [NSCalendar autoupdatingCurrentCalendar];
 
         if ( self.terms.includingWeekends )
         {

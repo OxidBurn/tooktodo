@@ -76,7 +76,8 @@
     return [self.model returnCellForTableView: (UITableView*) tableView
                                 withIndexPath: (NSIndexPath*) indexPath];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)    tableView: (UITableView*) tableView
+ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     CGFloat height;
     

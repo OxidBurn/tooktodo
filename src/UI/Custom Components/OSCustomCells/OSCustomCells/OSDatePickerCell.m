@@ -8,6 +8,9 @@
 
 #import "OSDatePickerCell.h"
 
+// Categories
+#import "NSDate-Utilities.h"
+
 @interface OSDatePickerCell()
 
 // properties
@@ -37,11 +40,21 @@
         if ( dateToShow )
         {
             self.currentDateFlag = YES;
+            
             [self.datePicker setDate: dateToShow];
         }
     
     if ( minimumDate )
-        [self.datePicker setMinimumDate: minimumDate];
+    {
+        if ( tag == 1 )
+        {
+            minimumDate = [minimumDate dateByAddingDays: 1];
+        }
+        
+        if ( [self.datePicker.date isEarlierThanDate: minimumDate] )
+            self.datePicker.date = minimumDate;
+    }
+    
     
     if ( maximumDate )
         [self.datePicker setMaximumDate: maximumDate];
