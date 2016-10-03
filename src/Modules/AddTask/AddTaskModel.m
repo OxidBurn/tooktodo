@@ -184,7 +184,6 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
-           // UserInfo* user = content.membersArray[0];
             FilledTeamInfo* user = content.membersArray[0];
             
             NSString* userFullName  = user.fullname;
@@ -203,6 +202,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
             OSGroupOfUsersInfoCellFactory* factory = [OSGroupOfUsersInfoCellFactory new];
             
             cell = [factory returnGroupOfUsersCellWithTitle: content.title
+                                             withUsersArray: content.membersArray
                                                forTableView: tableView];
 
         }
@@ -261,6 +261,21 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     return self.allSeguesInfoArray;
 }
 
+- (NSArray*) returnSelectedResponsibleArray
+{
+    return self.task.responsible;
+}
+
+- (NSArray*) returnSelectedClaimingArray
+{
+    return self.task.claiming;
+}
+
+- (NSArray*) returnSelectedObserversArray
+{
+    return self.task.observers;
+}
+
 #pragma mark - OSSwitchTableCellDelegate methods -
 
 - (void) updateTaskState: (BOOL) isHidden
@@ -278,10 +293,51 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     row.membersArray = selectedUsersArray;
     
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 3];
+    [self updateContentWithRow: row inSection: 0 inRow: 3];
 }
+
+- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
+{
+    self.task.claiming = selectedClaiming;
+    
+    RowContent* row = self.addTaskTableViewContent[0][4];
+    
+    if ( selectedClaiming )
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    }
+    
+    row.membersArray = selectedClaiming;
+    
+    [self updateContentWithRow: row inSection: 0 inRow: 4];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
+- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
+{
+    self.task.observers = selectedObservers;
+    
+    RowContent* row = self.addTaskTableViewContent[0][5];
+    
+    if ( selectedObservers )
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    }
+    
+    row.membersArray = selectedObservers;
+    
+    [self updateContentWithRow: row inSection: 0 inRow: 5];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
 
 #pragma mark - AddTaskTermsControllerDelegate methods -
 

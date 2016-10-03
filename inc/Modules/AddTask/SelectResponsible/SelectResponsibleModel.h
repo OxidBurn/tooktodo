@@ -36,7 +36,13 @@
 
 - (NSIndexPath*) returnPreviousMarkedCellIndexPath;
 
-- (NSArray*) returnSelectedUsersInfo;
+- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
+
+- (NSArray*) returnSelectedResponsibleArray;
+
+- (NSArray*) returnSelectedClaimingArray;
+
+- (NSArray*) returnSelectedObserversArray;
 
 - (void) selectAll;
 

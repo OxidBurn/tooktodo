@@ -58,6 +58,8 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
+    [super viewWillAppear: animated];
+    
     [self.addTaskTableView reloadData];
 }
 
@@ -95,6 +97,7 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectResponsibleController
                                 withDelegate: [self.viewModel returnModel]];
+            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
         }
             break;
             
@@ -103,6 +106,7 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectClaimingController
                                 withDelegate: [self.viewModel returnModel]];
+            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedClaimingArray]];
         }
             break;
             
@@ -111,6 +115,7 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
                                 withDelegate: [self.viewModel returnModel]];
+            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedObserversArray]];
         }
             break;
             
@@ -231,6 +236,14 @@
     
     self.addTaskTableView.rowHeight = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.addTaskTableView reloadData];
+        
+    };
 }
 
 - (void) bindUI

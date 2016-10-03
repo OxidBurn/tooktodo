@@ -19,6 +19,7 @@
 
 @interface FilledTeamInfo : NSObject
 
+@property (assign, nonatomic) NSNumber* userId;
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
 @property (nonatomic, strong) NSString* email;
@@ -29,6 +30,8 @@
 @property (nonatomic, strong) NSString* fullname;
 @property (nonatomic, assign) NSNumber* projectPermission;
 @property (assign, nonatomic) BOOL isResponsible;
+@property (assign, nonatomic) BOOL isClaiming;
+@property (assign, nonatomic) BOOL isObserver;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 

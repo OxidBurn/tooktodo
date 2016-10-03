@@ -56,7 +56,37 @@
 {
     OSUserInfoWithCheckmarkCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserInfoWithCheckmarkID"];
     
-    [cell fillCellWithFilledMemberInfo: [self.model returnFilledUserInfoForIndex: indexPath.row]];
+    ControllerTypeSelection selection = [self returnControllerType];
+    
+    FilledTeamInfo* user = [self.model returnFilledUserInfoForIndex: indexPath.row];
+    
+    BOOL isSelected = NO;
+    
+    switch ( selection )
+    {
+        case SelectObserversController:
+            
+            isSelected = user.isObserver;
+            
+            break;
+            
+        case SelectClaimingController:
+            
+            isSelected = user.isClaiming;
+            
+            break;
+            
+        case SelectResponsibleController:
+            
+            isSelected = user.isResponsible;
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    [cell fillCellWithFilledMemberInfo: user withCheckmark: isSelected];
     
     return cell;
 }
@@ -93,25 +123,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             break;
             
         case SelectClaimingController:
-        {
-            [tableView deselectRowAtIndexPath: indexPath
-                                     animated: YES];
-            
-            [self.model handleCheckmarkForIndexPath: indexPath];
-            
-            OSUserInfoWithCheckmarkCell* cell = [tableView cellForRowAtIndexPath: indexPath];
-            
-            if ([cell currentCheckMarkState])
-                [cell changeCheckmarkState: YES];
-            
-            else
-                [cell changeCheckmarkState: NO];
-            
-            
-            
-        }
-            break;
-            
         case SelectObserversController:
         {
             [tableView deselectRowAtIndexPath: indexPath
@@ -126,7 +137,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             
             else
                 [cell changeCheckmarkState: NO];
-            
         }
             break;
             
@@ -153,9 +163,24 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return [self.model returnControllerType];
 }
 
-- (NSArray*) returnSelectedUsersInfo
+- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
 {
-    return [self.model returnSelectedUsersInfo];
+    [self.model fillSelectedUsersInfo: selectedUsers];
+}
+
+- (NSArray*) returnSelectedResponsibleArray
+{
+    return [self.model returnSelectedResponsibleArray];
+}
+
+- (NSArray*) returnSelectedClaimingArray
+{
+    return [self.model returnSelectedClaimingArray];
+}
+
+- (NSArray*) returnSelectedObserversArray
+{
+    return [self.model returnSelectedObserversArray];
 }
 
 - (void) selectAll

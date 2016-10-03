@@ -78,7 +78,7 @@
 - (void) updateDescription: (NSString*) descriptionText
           andReturnToModel: (id)        model
 {
-    self.textView.text = descriptionText;
+    [self.model fillText: descriptionText];
     
     self.delegate = model;
 }

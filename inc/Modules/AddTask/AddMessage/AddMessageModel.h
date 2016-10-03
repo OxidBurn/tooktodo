@@ -15,4 +15,6 @@
 
 - (UIColor*) getPlacelderColor;
 
+- (NSString*) getDescriptionText;
+
 @end

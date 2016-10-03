@@ -16,11 +16,13 @@
 #pragma mark - Public -
 
 - (UITableViewCell*) returnGroupOfUsersCellWithTitle: (NSString*)    titleText
+                                      withUsersArray: (NSArray*)     usersArray
                                         forTableView: (UITableView*) tableView
 {
     OSGroupOfUserInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"GroupOfUsersCellID"];
     
-    [cell fillCellWithTitle: titleText];
+    [cell fillCellWithTitle: titleText
+                  withUsers: usersArray];
     
     return cell;
 }

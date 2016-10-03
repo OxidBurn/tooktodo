@@ -13,7 +13,7 @@
 #import "OSFlexibleTextFieldCell.h"
 #import "ProjectsEnumerations.h"
 
-@interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate>
+@interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
 // properties
 @property (strong, nonatomic) AddTaskModel* model;
@@ -47,6 +47,8 @@
     if ( _model == nil )
     {
         _model = [AddTaskModel new];
+        
+        _model.delegate = self;
     }
     
     return _model;
@@ -68,6 +70,21 @@
 - (id) returnModel
 {
     return self.model;
+}
+
+- (NSArray*) returnSelectedResponsibleArray
+{
+    return [self.model returnSelectedResponsibleArray];
+}
+
+- (NSArray*) returnSelectedClaimingArray
+{
+    return [self.model returnSelectedClaimingArray];
+}
+
+- (NSArray*) returnSelectedObserversArray
+{
+    return [self.model returnSelectedObserversArray];
 }
 
 #pragma mark - UITableView data source -
@@ -191,6 +208,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (AddTaskViewModel*) getViewModel
 {
     return self;
+}
+
+#pragma mark - AddTaskModelDelegate methods -
+
+- (void) reloadData
+{
+    if ( self.reloadTableView )
+        self.reloadTableView();
 }
 
 #pragma mark - Internal -

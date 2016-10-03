@@ -33,6 +33,7 @@
 #pragma mark - Public -
 
 - (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo
+                        withCheckmark: (BOOL)            isSelected
 {
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: memberInfo.avatarSrc]];
     self.userAvatarImageView.clipsToBounds = YES;
@@ -42,7 +43,9 @@
     
     self.userInfoTextLabel.text = userInfo;
     
-    self.checkMarkImageView.hidden = memberInfo.isResponsible ? NO : YES;
+    
+    
+    self.checkMarkImageView.hidden = !isSelected;
     
 }
 

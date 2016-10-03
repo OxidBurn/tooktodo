@@ -21,7 +21,11 @@
 // properties
 @property (strong, nonatomic) NSArray* membersArray;
 
-@property (strong, nonatomic) NSArray* selectedUsersArray;
+@property (strong, nonatomic) NSArray* selectedResponsibleArray;
+
+@property (strong, nonatomic) NSArray* selectedClaimingArray;
+
+@property (strong, nonatomic) NSArray* selectedObserversArray;
 
 @property (assign, nonatomic) BOOL isSelectedResponsible;
 
@@ -85,23 +89,93 @@
                 }
             }];
                 
-                self.selectedUsersArray = @[ self.membersArray[indexPath.row] ];
+                self.selectedResponsibleArray = @[ self.membersArray[indexPath.row] ];
             }
             else
             {                
-                self.selectedUsersArray = nil;
+                self.selectedResponsibleArray = nil;
             }
         }
             
             break;
             
         case SelectClaimingController:
-        case SelectObserversController:
+        {
+            FilledTeamInfo* user = self.membersArray[indexPath.row];
+                        
+            if ( user.isClaiming == NO )
+            {
+                user.isClaiming = YES;
+                
+                if ( self.selectedClaimingArray == nil )
+                {
+                    self.selectedClaimingArray = [NSArray arrayWithObject: user];
+                } else
+                {
+                    NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
+                
+                    [selectedArrayCopy addObject: user];
+                
+                    self.selectedClaimingArray = [selectedArrayCopy copy];
+                }
+                
+            } else
+                if ( user.isClaiming )
+                {
+                    user.isClaiming = NO;
+                    
+                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( [obj.userId isEqual: user.userId] )
+                        {
+                            NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
+                            
+                            [selectedArrayCopy removeObject: obj];
+                            
+                            self.selectedClaimingArray = [selectedArrayCopy copy];
+                        }
+                    }];
+                }
+        }
+            break;
             
+        case SelectObserversController:
         {
             FilledTeamInfo* user = self.membersArray[indexPath.row];
             
-            user.isResponsible = !user.isResponsible;
+            if ( user.isObserver == NO )
+            {
+                user.isObserver = YES;
+                
+                if ( self.selectedObserversArray == nil )
+                {
+                    self.selectedObserversArray = [NSArray arrayWithObject: user];
+                } else
+                {
+                    NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
+                    
+                    [selectedArrayCopy addObject: user];
+                    
+                    self.selectedObserversArray = [selectedArrayCopy copy];
+                }
+                
+            } else
+                if ( user.isObserver )
+                {
+                    user.isObserver = NO;
+                    
+                    [self.selectedObserversArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( [obj.userId isEqual: user.userId] )
+                        {
+                            NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
+                            
+                            [selectedArrayCopy removeObject: obj];
+                            
+                            self.selectedObserversArray = [selectedArrayCopy copy];
+                        }
+                    }];
+                }
         }
             break;
             
@@ -118,6 +192,33 @@
     FilledTeamInfo* memberInfo = self.membersArray[index];
     
     return memberInfo.isResponsible;
+}
+
+- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
+{
+    switch ( self.controllerType )
+    {
+        case SelectResponsibleController:
+            
+            self.selectedResponsibleArray = selectedUsers;
+
+            break;
+            
+        case SelectClaimingController:
+            
+            self.selectedClaimingArray = selectedUsers;
+
+            break;
+            
+        case SelectObserversController:
+            
+            self.selectedObserversArray = selectedUsers;
+
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
@@ -139,6 +240,8 @@
         }];
          
          self.membersArray = tmpTeamList.copy;
+        
+        [self updateSelectedUsers];
          
          tmpTeamList = nil;
          
@@ -178,25 +281,97 @@
     self.previousesSelectedIndexPath = indexPath;
 }
 
-- (NSArray*) returnSelectedUsersInfo
+- (NSArray*) returnSelectedResponsibleArray
 {
-    return self.selectedUsersArray;
+    return self.selectedResponsibleArray;
+}
+
+- (NSArray*) returnSelectedClaimingArray
+{
+    return self.selectedClaimingArray;
+}
+
+- (NSArray*) returnSelectedObserversArray
+{
+    return self.selectedObserversArray;
 }
 
 - (void) selectAll
 {
     [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        obj.isResponsible = YES;
+        obj.isObserver = YES;
     }];
+    
+    self.selectedObserversArray = [NSArray arrayWithArray: self.membersArray];
 }
 
 - (void) deselectAll
 {
     [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        obj.isResponsible = NO;
+        obj.isObserver = NO;
     }];
+    
+    self.selectedObserversArray = nil;
+}
+
+- (void) updateSelectedUsers
+{
+    switch ( self.controllerType )
+    {
+        case SelectResponsibleController:
+        {
+            
+            [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ( [userInList.userId isEqual: selectedUser.userId] )
+                    {
+                        userInList.isResponsible = selectedUser.isResponsible;
+                    }
+                }];
+                
+            }];
+        }
+            break;
+            
+        case SelectClaimingController:
+        {
+            [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ( [userInList.userId isEqual: selectedUser.userId] )
+                    {
+                        userInList.isClaiming = selectedUser.isClaiming;
+                    }
+                }];
+                
+            }];
+        }
+            break;
+            
+        case SelectObserversController:
+        {
+            [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                [self.selectedObserversArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ( [userInList.userId isEqual: selectedUser.userId] )
+                    {
+                        userInList.isObserver = selectedUser.isObserver;
+                    }
+                }];
+                
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

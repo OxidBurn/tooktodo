@@ -14,7 +14,8 @@
 @interface OSUserInfoWithCheckmarkCell : UITableViewCell
 
 // methods
-- (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo;
+- (void) fillCellWithFilledMemberInfo: (FilledTeamInfo*) memberInfo
+                        withCheckmark: (BOOL)            isSelected;
 
 - (void) changeCheckmarkState: (BOOL) state;
 
