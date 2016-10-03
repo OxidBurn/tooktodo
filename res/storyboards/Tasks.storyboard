@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,16 +15,16 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Tasks By Project View Controller-->
+        <!--Project Tasks View Controller-->
         <scene sceneID="SRE-XV-yyu">
             <objects>
-                <viewController storyboardIdentifier="TasksControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="26k-AJ-n7F" customClass="TasksByProjectViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TasksControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="26k-AJ-n7F" customClass="ProjectTasksViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MTZ-qo-o0f"/>
                         <viewControllerLayoutGuide type="bottom" id="98F-CG-rfo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TD9-WB-Wnm">
-                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vwc-62-vXs">
@@ -1300,7 +1301,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4_7.fullscreen"/>
                     <connections>
                         <outlet property="tasksByProjectTableView" destination="Vwc-62-vXs" id="zfl-z3-7q2"/>
                     </connections>

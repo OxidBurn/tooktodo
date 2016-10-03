@@ -1,46 +1,44 @@
 //
-//  AllTasksViewModel.m
+//  ProjectTasksViewModel.m
 //  TookTODO
 //
-//  Created by Nikolay Chaban on 9/13/16.
+//  Created by Lera on 28.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "AllTasksViewModel.h"
+#import "ProjectTasksViewModel.h"
 
 // Classes
-#import "AllTasksModel.h"
-#import "TasksProjectTitleView.h"
+#import "ProjectTasksModel.h"
+#import "StageTitleView.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
 #import "ProjectsEnumerations.h"
 
-@interface AllTasksViewModel()
+@interface ProjectTasksViewModel()
 
 // properties
 
-@property (strong, nonatomic) AllTasksModel* model;
+@property (strong, nonatomic) ProjectTasksModel* model;
 
 // methods
 
 
 @end
 
-@implementation AllTasksViewModel
-
+@implementation ProjectTasksViewModel
 
 #pragma mark - Properties -
 
-- (AllTasksModel*) model
+- (ProjectTasksModel*) model
 {
     if ( _model == nil )
     {
-        _model = [AllTasksModel new];
+        _model = [ProjectTasksModel new];
     }
     
     return _model;
 }
-
 
 #pragma mark - Public methods -
 
@@ -48,7 +46,6 @@
 {
     return [self.model updateContent];
 }
-
 
 #pragma mark - UITable view data source -
 
@@ -78,37 +75,35 @@
 - (nullable UIView*) tableView: (UITableView*) tableView
         viewForHeaderInSection: (NSInteger)    section
 {
-    TasksProjectTitleView* projectInfoView = [[MainBundle loadNibNamed: @"AllTasksProjectTitleView"
+    StageTitleView* stageInfoView = [[MainBundle loadNibNamed: @"StageTitleView"
                                                                  owner: self
                                                                options: nil] firstObject];
-
-    projectInfoView.tag = section;
     
-    ProjectInfo* project = [self.model getProjectInfoForSection: section];
-
-    [projectInfoView fillInfo: project];
+    stageInfoView.tag = section;
+    
+    ProjectTaskStage* stage = [self.model getStageForSection: section];
+    
+    [stageInfoView fillInfo: stage];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
     
-    projectInfoView.didChangeExpandState = ^( NSUInteger section ){
+    stageInfoView.didChangeExpandState = ^( NSUInteger section ){
         
-        [blockSelf.model markProjectAsExpanded: section
-                                withCompletion: ^(BOOL isSuccess) {
-                                   
-                                    [tableView reloadData];
-                                    
-                                }];
+        [blockSelf.model markStageAsExpandedAtIndexPath: section
+                                         withCompletion:^(BOOL isSuccess) {
+                                             [tableView reloadData];
+                                         }];
         
     };
     
-    return projectInfoView;
+    return stageInfoView;
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    AllTaskBaseTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
+    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
     
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
@@ -132,8 +127,8 @@
     {
         case AllTasksStageCellType:
         {
-            [self.model markStageAsExpandedAtIndexPath: indexPath
-                                        withCompletion: ^(BOOL isSuccess) {
+            [self.model markStageAsExpandedAtIndexPath: indexPath.section
+                                withCompletion: ^(BOOL isSuccess) {
                                             
                                             [tableView reloadData];
                                             
@@ -148,5 +143,6 @@
             break;
     }
 }
+
 
 @end
