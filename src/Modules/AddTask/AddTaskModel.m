@@ -478,7 +478,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         
         NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
         
-        labelText = [NSString stringWithFormat: @"%@ - %@, %ld", firstDate, secondDate, duration];
+        labelText = [NSString stringWithFormat: @"%@ - %@, %ld", firstDate, secondDate, (unsigned long)duration];
     } else
     {
         labelText = @"Не выбраны";

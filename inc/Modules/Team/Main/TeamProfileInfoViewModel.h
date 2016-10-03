@@ -32,8 +32,6 @@
 
 - (void) showControllerWithIdentifier: (NSString*) segueID;
 
-//- (void) showDesignationAlert: (NSString*) userName;
-
 - (void) showDesignationAlert: (NSString*) userName
                    withAvatar: (NSString*) avatarPath
                   withMessage: (NSString*) message;

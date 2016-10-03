@@ -158,6 +158,13 @@
     
 }
 
+- (IBAction) onDismiss: (UIBarButtonItem*) sender
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
+
 #pragma mark - AddTaskViewModel delegate methods -
 
 - (void) performSegueWithSegueId: (NSString*) segueId
