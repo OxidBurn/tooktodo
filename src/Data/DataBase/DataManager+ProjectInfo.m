@@ -114,13 +114,13 @@
                       forRoleAssignments: roleAssignment
                                inContext: context];
     }
-    
-    if ( info.invite )
-    {
-        [self persistProjectRoleAssignmentInviteInfo: info.invite
-                                    forRoleAssigment: roleAssignment
-                                           inContext: context];
-    }
+    else
+        if ( info.invite )
+        {
+            [self persistProjectRoleAssignmentInviteInfo: info.invite
+                                        forRoleAssigment: roleAssignment
+                                               inContext: context];
+        }
     
     if ( info.projectRoleType )
     {
@@ -134,9 +134,9 @@
                  forRoleAssignments: (ProjectRoleAssignments*) role
                           inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstOrCreateByAttribute: @"assigneeID"
-                                                                               withValue: @(info.assigneeID)
-                                                                               inContext: context];
+    ProjectTaskAssignee* assignee = [self getAssigneeWithID: @(info.assigneeID)
+                                                    forRole: role
+                                                  inContext: context];
     
     assignee.projectRoleAssignment            = role;
     assignee.assigneeID                       = @(info.assigneeID);
@@ -149,6 +149,23 @@
     assignee.additionalPhoneNumber            = info.additionalPhoneNumber;
     assignee.isSubscribedOnEmailNotifications = info.isSubscribedOnEmailNotifications;
     assignee.isTourViewed                     = info.isTourViewed;
+}
+
+- (ProjectTaskAssignee*) getAssigneeWithID: (NSNumber*)               assigneeID
+                                   forRole: (ProjectRoleAssignments*) role
+                                 inContext: (NSManagedObjectContext*) context
+{
+    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"assigneeID == %@ AND role == %@", assigneeID, role];
+    
+    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstWithPredicate: searchPredicate
+                                                                         inContext: context];
+    
+    if ( assignee == nil )
+    {
+        assignee = [ProjectTaskAssignee MR_createEntityInContext: context];
+    }
+    
+    return assignee;
 }
 
 - (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
@@ -181,7 +198,7 @@
                                forRoleAssigment: (ProjectRoleAssignments*) role
                                       inContext: (NSManagedObjectContext*) context
 {
-    ProjectInviteInfo* inviteInfo = [ProjectInviteInfo MR_findFirstOrCreateByAttribute: @""
+    ProjectInviteInfo* inviteInfo = [ProjectInviteInfo MR_findFirstOrCreateByAttribute: @"inviteID"
                                                                              withValue: info.inviteID
                                                                              inContext: context];
     

@@ -228,9 +228,12 @@
 
 - (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
 {
+    @weakify(self)
+    
     [[[[TeamService sharedInstance] getTeamInfo] subscribeOn: [RACScheduler mainThreadScheduler]]
      subscribeNext: ^(NSArray* teamInfo)
     {
+        @strongify(self)
         
          __block NSMutableArray* tmpTeamList = [NSMutableArray array];
          

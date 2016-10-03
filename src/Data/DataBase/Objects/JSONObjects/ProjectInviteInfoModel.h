@@ -15,15 +15,15 @@
 @interface ProjectInviteInfoModel : JSONModel
 
 @property (strong, nonatomic) NSString* email;
-@property (strong, nonatomic) NSString* firstName;
-@property (strong, nonatomic) NSString* lastName;
+@property (strong, nonatomic) NSString<Optional>* firstName;
+@property (strong, nonatomic) NSString<Optional>* lastName;
 @property (strong, nonatomic) NSNumber* inviteID;
 @property (strong, nonatomic) NSNumber* inviteStatus;
 @property (strong, nonatomic) NSNumber* isCanceled;
 @property (strong, nonatomic) NSNumber* isUsed;
 @property (strong, nonatomic) NSString* message;
 @property (strong, nonatomic) NSNumber* projectId;
-@property (strong, nonatomic) NSString* projectName;
-@property (strong, nonatomic) ProjectRoleTypeModel* projectRoleType;
+@property (strong, nonatomic) NSString<Optional>* projectName;
+@property (strong, nonatomic) ProjectRoleTypeModel<Optional>* projectRoleType;
 
 @end

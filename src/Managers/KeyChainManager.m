@@ -69,7 +69,9 @@ static KeyChainManager* sharedInstance = nil;
 
 - (NSString*) getAccessToken
 {
-    return [UserDefaults valueForKey: accessToken];
+    NSString* token = [UserDefaults valueForKey: accessToken];
+    
+    return token;
 }
 
 - (void) deleteToken
