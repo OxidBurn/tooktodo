@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -14,7 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TasksProjectTitleView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowVertical" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-sZ-a5t">
@@ -183,6 +183,7 @@
                 <constraint firstItem="qNs-2S-dvc" firstAttribute="trailing" secondItem="peU-P5-cTg" secondAttribute="trailing" id="8Gd-gb-a9F"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="CAS-Gk-7ik"/>
                 <constraint firstItem="UxW-sZ-a5t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="Jam-bB-Roo"/>
+                <constraint firstAttribute="bottom" secondItem="e6V-73-8De" secondAttribute="bottom" id="N59-Jx-HG6"/>
                 <constraint firstItem="qNs-2S-dvc" firstAttribute="leading" secondItem="peU-P5-cTg" secondAttribute="leading" id="Qia-HR-XkW"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RIj-3M-Yof"/>
                 <constraint firstAttribute="trailing" secondItem="Aw9-ja-tIX" secondAttribute="trailing" constant="15" id="Rn8-i9-Wlm"/>
@@ -193,11 +194,10 @@
                 <constraint firstAttribute="trailing" secondItem="ZvB-su-qtA" secondAttribute="trailing" constant="8" id="f7y-2b-Ycs"/>
                 <constraint firstAttribute="trailing" secondItem="e6V-73-8De" secondAttribute="trailing" id="iWc-dc-oae"/>
                 <constraint firstItem="6qg-nA-Zm6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="l4K-Eo-5J2"/>
-                <constraint firstItem="6qg-nA-Zm6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="lqt-LB-tRX"/>
+                <constraint firstItem="6qg-nA-Zm6" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" constant="-1" id="lqt-LB-tRX"/>
                 <constraint firstItem="peU-P5-cTg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="mpE-1O-liQ"/>
                 <constraint firstItem="ZvB-su-qtA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="p1T-WL-uBF"/>
                 <constraint firstItem="Aw9-ja-tIX" firstAttribute="leading" secondItem="peU-P5-cTg" secondAttribute="trailing" constant="8" id="t2F-tT-zep"/>
-                <constraint firstItem="e6V-73-8De" firstAttribute="top" secondItem="qNs-2S-dvc" secondAttribute="bottom" constant="11" id="xxG-eu-DRN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -264,7 +264,7 @@
                 <outlet property="projectAddressLabel" destination="qNs-2S-dvc" id="yET-ea-vhG"/>
                 <outlet property="projectNameLabel" destination="peU-P5-cTg" id="96T-nH-CuL"/>
             </connections>
-            <point key="canvasLocation" x="280.5" y="580"/>
+            <point key="canvasLocation" x="280.5" y="310"/>
         </view>
     </objects>
     <resources>
