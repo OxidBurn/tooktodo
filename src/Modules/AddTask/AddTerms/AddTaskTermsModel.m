@@ -260,17 +260,9 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Начало"];
                 
-                newRow.dateToShow = date;
-                
                 [self updateContentWithNewRow: newRow forIndex: 0];
                 
                 self.terms.startDate = date;
-                
-                RowContent* newEndDateRow = self.tableViewContent[3];
-                
-                newEndDateRow.minimumDate = date;
-                
-                [self updateContentWithNewRow: newEndDateRow forIndex: 3];
                 
                 [self updateDuration];
             }
