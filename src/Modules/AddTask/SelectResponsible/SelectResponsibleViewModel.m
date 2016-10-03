@@ -111,7 +111,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             
             [cell changeCheckmarkState: YES];
             
-            if ( [self.model returnPreviousMarkedCellIndexPath] )
+            if ( [self.model returnPreviousMarkedCellIndexPath] &&
+                 [self.model returnPreviousMarkedCellIndexPath] != indexPath )
             {
                 OSUserInfoWithCheckmarkCell* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model returnPreviousMarkedCellIndexPath]];
                 

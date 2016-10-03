@@ -77,6 +77,11 @@
     {
         case SelectResponsibleController:
         {
+            if ( [indexPath isEqual: self.previousesSelectedIndexPath] )
+            {
+                self.previousesSelectedIndexPath = nil;
+            }
+            
             if ( [indexPath isEqual: self.previousesSelectedIndexPath] == NO )
             {
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
