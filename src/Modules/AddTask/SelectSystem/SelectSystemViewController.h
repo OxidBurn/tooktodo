@@ -18,10 +18,14 @@
 // properties
 @property (weak, nonatomic) id <SelectSystemViewControllerDelegate> delegate;
 
+//methods
+- (void) fillSelectedSystem: (ProjectSystem*)                          system
+               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate;
+
 @end
 
 @protocol SelectSystemViewControllerDelegate <NSObject>
 
-- (void) setSelectedSystem: (ProjectSystem*) system;
+- (void) returnSelectedSystem: (ProjectSystem*) system;
 
 @end

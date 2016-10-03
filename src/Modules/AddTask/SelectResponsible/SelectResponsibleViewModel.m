@@ -14,7 +14,7 @@
 #import "SelectResponsibleViewController.h"
 
 
-@interface SelectResponsibleViewModel() <SelectResponsibleViewControllerDelegate>
+@interface SelectResponsibleViewModel()
 
 // properties
 @property (strong, nonatomic) SelectResponsibleModel* model;

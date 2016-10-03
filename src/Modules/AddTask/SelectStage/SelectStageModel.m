@@ -19,8 +19,6 @@
 
 @property (nonatomic, strong) ProjectTaskStage* selectedStage;
 
-@property (nonatomic, assign) BOOL isFirstTime;
-
 @end
 
 @implementation SelectStageModel
@@ -31,7 +29,6 @@
 {
     if (_stagesArray == nil)
     {
-         self.isFirstTime = YES;
         _stagesArray = [DataManagerShared getStagesForCurrentProject];
     }
     
@@ -58,7 +55,7 @@
         self.lastIndexPath = nil;
     }
     
-    if ([indexPath compare: self.lastIndexPath] == NSOrderedSame)
+    if ([indexPath compare: self.lastIndexPath] != NSOrderedSame)
         
         {
             [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -71,14 +68,17 @@
                 }
             }];
             
-            if (indexPath.row == 0)
+            if (indexPath.row != 0)
             {
-                self.selectedStage = nil;
+               self.selectedStage = self.stagesArray[indexPath.row - 1];
             }
-            else
-                self.selectedStage = self.stagesArray[indexPath.row - 1];
             
         }
+    
+    else
+    {
+       self.selectedStage = nil;
+    }
 }
 
 
@@ -104,4 +104,23 @@
     return self.lastIndexPath;
 }
 
+- (void) fillSelectedStage: (ProjectTaskStage*) stage
+{
+    self.selectedStage = stage;
+}
+
+- (void) updateSelectedUsers
+{
+  
+            [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* stageInList, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                stageInList.isSelected = self.selectedStage.isSelected;
+                        
+                        NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
+                        
+                        self.lastIndexPath = temp;
+                    }
+                ];
+    
+        }
 @end

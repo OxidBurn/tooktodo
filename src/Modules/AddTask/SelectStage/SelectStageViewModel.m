@@ -33,6 +33,19 @@
     return _model;
 }
 
+
+#pragma mark - Public -
+
+- (ProjectTaskStage*) getSelectedStage
+{
+    return [self.model getSelectedStage];
+}
+
+- (void) fillSelectedStage: (ProjectTaskStage*) stage
+{
+    [self.model fillSelectedStage: stage];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -55,7 +68,10 @@
         ProjectTaskStage* stage = [self.model getStages][indexPath.row - 1];
     
         [cell fillCellWithContent: stage];
+        
+        [self.model updateSelectedUsers];
     }
+
 
     return cell;
 }
@@ -79,7 +95,7 @@
     
     OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    
+
     [cell changeCheckmarkState: YES];
     
     if ( [self.model getLastIndexPath] && [self.model getLastIndexPath] != indexPath )
@@ -90,7 +106,6 @@
     }
     
     [self.model updateLastIndexPath: indexPath];
-    
     
 }
 

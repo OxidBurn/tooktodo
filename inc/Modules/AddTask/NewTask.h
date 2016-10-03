@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-
+#import "ProjectSystem+CoreDataClass.h"
+#import "ProjectTaskStage+CoreDataClass.h"
 
 @interface NewTask : NSObject
 
@@ -37,5 +38,9 @@
 @property (assign, nonatomic) BOOL includingWeekends;
 
 @property (assign, nonatomic) BOOL isUrgent;
+
+@property (nonatomic, strong) ProjectSystem* system;
+
+@property (nonatomic, strong) ProjectTaskStage* stage;
 
 @end

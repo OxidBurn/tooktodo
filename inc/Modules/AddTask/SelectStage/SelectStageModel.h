@@ -28,4 +28,7 @@
 
 - (ProjectTaskStage*) getSelectedStage;
 
+- (void) fillSelectedStage: (ProjectTaskStage*) stage;
+
+- (void) updateSelectedUsers;
 @end

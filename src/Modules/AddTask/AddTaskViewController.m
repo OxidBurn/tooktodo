@@ -14,7 +14,10 @@
 #import "ProjectsEnumerations.h"
 #import "AddMessageViewController.h"
 #import "AddTermTasksViewController.h"
+#import "SelectStageViewController.h"
+#import "SelectSystemViewController.h"
 #import "NewTask.h"
+#import "TeamInfoViewController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
@@ -24,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
 @property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBtn;
+
 
 // properties
 
@@ -33,6 +38,9 @@
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
 - (IBAction) onAddTaskBtn:         (UIButton*) sender;
+
+- (IBAction) onCancel:        (UIBarButtonItem*)sender;
+
 
 @end
 
@@ -130,6 +138,24 @@
         }
             break;
             
+        case ShowStagesSegue:
+        {
+            SelectStageViewController* controller = [segue destinationViewController];
+            
+            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
+                             withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
+        case ShowSystemSegue:
+        {
+            SelectSystemViewController* controller = [segue destinationViewController];
+            
+            [controller fillSelectedSystem: [self.viewModel returnSelectedSystem]
+                              withDelegate: [self.viewModel returnModel]];
+        }
+            break;
+            
         default:
             break;
     }
@@ -158,8 +184,15 @@
     
 }
 
-- (IBAction) onAddTaskBtn:         (UIButton*) sender
+- (IBAction) onAddTaskBtn: (UIButton*) sender
 {
+    
+}
+
+- (IBAction) onCancel: (UIBarButtonItem*) sender
+{
+#warning  Make pop to previous vc
+    
     
 }
 

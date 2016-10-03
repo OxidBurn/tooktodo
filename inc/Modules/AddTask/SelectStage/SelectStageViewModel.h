@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+//Classes
+#import "ProjectTaskStage+CoreDataClass.h"
+
 @interface SelectStageViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+
+// methods
+
+- (ProjectTaskStage*) getSelectedStage;
+
+- (void) fillSelectedStage: (ProjectTaskStage*) stage;
 
 @end

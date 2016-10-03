@@ -571,6 +571,9 @@
                     <navigationItem key="navigationItem" id="crB-3K-Gbw">
                         <barButtonItem key="leftBarButtonItem" image="Cancel" id="u7v-08-KCI">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="onCancel:" destination="cFm-ip-wdX" id="dD9-AQ-hHz"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="Done" id="ccc-m8-kXi">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -580,6 +583,7 @@
                         <outlet property="addTaskAndCreateNewBtn" destination="fSh-Vs-fLF" id="fNS-pl-gel"/>
                         <outlet property="addTaskBtn" destination="IAe-sr-vWB" id="d1F-tw-c1w"/>
                         <outlet property="addTaskTableView" destination="3f1-TO-rVx" id="BWs-jX-dRA"/>
+                        <outlet property="cancelBtn" destination="u7v-08-KCI" id="wx4-nO-bRb"/>
                         <outlet property="readyBtn" destination="ccc-m8-kXi" id="9aV-MZ-3lV"/>
                         <segue destination="slz-WN-5qc" kind="show" identifier="ShowAddTermTaskController" id="dPw-cx-gi5"/>
                         <segue destination="llT-OI-rLY" kind="show" identifier="ShowAddMassageController" id="upB-24-XxH"/>
@@ -1160,7 +1164,8 @@
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzv-75-k4p">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzv-75-k4p">
+                                                    <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="48g-Xw-MFg"/>
                                                         <constraint firstAttribute="height" constant="21" id="Pv3-uY-PQk"/>
@@ -1169,7 +1174,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
+                                                    <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="9BB-wu-olk"/>
                                                         <constraint firstAttribute="width" constant="16" id="Wht-pY-Ghf"/>
@@ -1246,7 +1252,8 @@
                                             <frame key="frameInset" width="375" height="42"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jW4-CW-tjM">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jW4-CW-tjM">
+                                                    <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="34" id="JOV-a2-vfz"/>
                                                         <constraint firstAttribute="width" constant="288" id="Wwy-Kc-soG"/>
@@ -1255,7 +1262,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="n7Q-Oq-coS">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="n7Q-Oq-coS">
+                                                    <frame key="frameInset" width="1000" height="1000"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="0eR-mG-RrR"/>
                                                         <constraint firstAttribute="width" constant="16" id="BoM-Fd-Mhi"/>

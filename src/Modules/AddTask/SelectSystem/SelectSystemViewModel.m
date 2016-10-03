@@ -41,6 +41,12 @@
     return [self.model getSelectedSystem];
 }
 
+- (void) fillSelectedSystem: (ProjectSystem*) system
+{
+    [self.model fillSelectedSystem: system];
+}
+
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -60,6 +66,17 @@
     else
     {
         ProjectSystem* system = [self.model getSystems][indexPath.row - 1];
+        
+        [[self.model getSystems] enumerateObjectsUsingBlock: ^(ProjectSystem* newSystem, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([system.systemID isEqual: [self.model getSelectedSystem].systemID])
+            {
+                system.isSelected = newSystem.isSelected;
+                
+                NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
+                
+                [self.model updateLastIndexPath: temp];
+            }
+        }];
     
         [cell fillCellWithContent: system];
     }

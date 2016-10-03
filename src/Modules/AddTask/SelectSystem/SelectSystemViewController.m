@@ -51,12 +51,34 @@
 }
 
 
+#pragma mark - Public -
+
+- (void) fillSelectedSystem: (ProjectSystem*)                          system
+               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate
+{
+    [self.viewModel fillSelectedSystem: system];
+    
+    self.delegate = delegate;
+}
+
 #pragma mark - Internal -
 
 - (void) bindUI
 {
     self.systemsTableView.delegate   = self.viewModel;
     self.systemsTableView.dataSource = self.viewModel;
+}
+
+- (void) saveData
+{
+    ProjectSystem* selectedSystem = [self.viewModel getSelectedSystem];
+    
+    if ( selectedSystem && [self.delegate respondsToSelector: @selector(returnSelectedSystem:)] )
+    {
+        [self.delegate returnSelectedSystem: selectedSystem];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 #pragma mark - Actions -
@@ -68,7 +90,7 @@
 
 - (IBAction) onReady: (id) sender
 {
-    
+    [self saveData];
 }
 
 

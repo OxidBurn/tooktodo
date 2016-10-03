@@ -28,4 +28,6 @@
 
 - (ProjectSystem*) getSelectedSystem;
 
+- (void) fillSelectedSystem: (ProjectSystem*) system;
+
 @end

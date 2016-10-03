@@ -87,6 +87,16 @@
     return [self.model returnSelectedObserversArray];
 }
 
+- (ProjectSystem*) returnSelectedSystem
+{
+    return [self.model returnSelectedSystem];
+}
+
+- (ProjectTaskStage*) returnSelectedStage
+{
+    return [self.model returnSelectedStage];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

@@ -10,6 +10,7 @@
 
 //Classes
 #import "SelectStageViewModel.h"
+#import "ProjectTaskStage+CoreDataClass.h"
 
 @interface SelectStageViewController ()
 
@@ -52,12 +53,35 @@
 }
 
 
+#pragma mark - Public -
+
+- (void) fillSelectedStage: (ProjectTaskStage*)                      stage
+              withDelegate: (id <SelectStageViewControllerDelegate>) delegate
+{
+    [self.viewModel fillSelectedStage: stage];
+    
+    self.delegate = delegate;
+}
+
+
 #pragma mark - Internal -
 
 - (void) bindUI
 {
     self.stagesTableView.delegate   = self.viewModel;
     self.stagesTableView.dataSource = self.viewModel;
+}
+
+- (void) saveData
+{
+    ProjectTaskStage* selectedStage = [self.viewModel getSelectedStage];
+    
+    if ( selectedStage && [self.delegate respondsToSelector: @selector(returnSelectedStage:)] )
+    {
+        [self.delegate returnSelectedStage: selectedStage];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 #pragma mark - Actions -
@@ -69,7 +93,7 @@
 
 - (IBAction) onReady: (id) sender
 {
-    
+    [self saveData];
 }
 
 

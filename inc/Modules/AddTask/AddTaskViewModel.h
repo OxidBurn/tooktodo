@@ -42,6 +42,10 @@
 
 - (NSArray*) returnSelectedObserversArray;
 
+- (ProjectSystem*) returnSelectedSystem;
+
+- (ProjectTaskStage*) returnSelectedStage;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

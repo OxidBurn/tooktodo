@@ -72,13 +72,14 @@
                 }
             }];
             
-            if (indexPath.row == 0)
+            if (indexPath.row != 0)
             {
-                self.selectedSystem = nil;
+                //self.selectedSystem = nil;
+                
+                self.selectedSystem = self.systemsArray[indexPath.row - 1];
+
             }
             
-            else self.selectedSystem = self.systemsArray[indexPath.row - 1];
-
         }
     
     }
@@ -104,6 +105,24 @@
 - (NSIndexPath*) getLastIndexPath
 {
     return self.lastIndexPath;
+}
+
+- (void) fillSelectedSystem: (ProjectSystem*) system
+{
+   //self.selectedSystem = system;
+    
+    [self.systemsArray enumerateObjectsUsingBlock:^(ProjectSystem* newSystem, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([system.systemID isEqual: self.selectedSystem.systemID])
+        {
+            newSystem.isSelected = system.isSelected;
+            
+            NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
+            
+            self.lastIndexPath = temp;
+        }
+        
+        
+    }];
 }
 
 @end
