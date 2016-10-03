@@ -13,6 +13,8 @@
 // properties
 @property (weak, nonatomic) IBOutlet UIDatePicker* datePicker;
 
+@property (assign, nonatomic) BOOL currentDateFlag;
+
 // methods
 
 - (IBAction) onDatePicker: (UIDatePicker*) sender;
@@ -24,9 +26,25 @@
 #pragma mark - Public -
 
 - (void) setTagToDatePicker: (NSUInteger) tag
+             withDateToShow: (NSDate*)    dateToShow
+            withMinimumDate: (NSDate*)    minimumDate
+            withMaximumDate: (NSDate*)    maximumDate
                withDelegate: (id)         delegate
 {
-    self.datePicker.tag = tag;
+    self.datePicker.tag  = tag;
+    
+    if ( self.currentDateFlag == NO )
+        if ( dateToShow )
+        {
+            self.currentDateFlag = YES;
+            [self.datePicker setDate: dateToShow];
+        }
+    
+    if ( minimumDate )
+        [self.datePicker setMinimumDate: minimumDate];
+    
+    if ( maximumDate )
+        [self.datePicker setMaximumDate: maximumDate];
     
     self.delegate = delegate;
 }

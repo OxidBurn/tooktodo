@@ -117,6 +117,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         {
             _task.responsible = _task.defaultResponsible;
         }
+
     }
     
     return _task;
@@ -181,6 +182,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
             BOOL stateBoolValue = content.isHidden;
             
             cell = [factory returnSwitchCellWithTitle: content.title
+                                              withTag: AddTaskIsHiddenTaskSwitchTag
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
                                          withDelegate: self];
@@ -283,9 +285,14 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     return self.task.observers;
 }
 
+- (TermsData*) returnTerms
+{
+    return self.task.terms;
+}
+
 #pragma mark - OSSwitchTableCellDelegate methods -
 
-- (void) updateTaskState: (BOOL) isHidden
+- (void) updateTaskHiddenProperty: (BOOL) isHidden
 {
     self.task.isHiddenTask = isHidden;
     
@@ -354,19 +361,17 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
-- (void) updateTermsWithStartDate: (NSDate*)    startDate
-                    andFinishDate: (NSDate*)    finishDate
-                     withDuration: (NSUInteger) duration
+- (void) updateTerms: (TermsData*) terms
 {
-    self.task.startDate  = startDate;
-    self.task.finishDate = finishDate;
-    self.task.duration   = duration;
+    self.task.terms.startDate  = terms.startDate;
+    self.task.terms.endDate    = terms.endDate;
+    self.task.terms.duration   = terms.duration;
     
     RowContent* row = self.addTaskTableViewContent[1][0];
     
-    row.detail = [self createTermsLabelTextForStartDate: startDate
-                                         withFinishDate: finishDate
-                                           withDuration: duration];
+    row.detail = [self createTermsLabelTextForStartDate: terms.startDate
+                                         withFinishDate: terms.endDate
+                                           withDuration: terms.duration];
 }
 
 
@@ -441,9 +446,9 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     RowContent* row = [RowContent new];
     
     row.title   = @"Сроки";
-    row.detail  = [self createTermsLabelTextForStartDate: self.task.startDate
-                                          withFinishDate: self.task.finishDate
-                                            withDuration: self.task.duration];
+    row.detail  = [self createTermsLabelTextForStartDate: self.task.terms.startDate
+                                          withFinishDate: self.task.terms.endDate
+                                            withDuration: self.task.terms.duration];
     
     row.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     row.segueId = self.addTaskTableViewSeguesInfo[ShowTermsSegueID];
@@ -574,10 +579,6 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     [teamInfo convertUserToTeamInfo: userInfo];
     
     teamInfo.isResponsible = YES;
-    
-//    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
-    
-//    NSArray* array = @[ currentUser ];
     
     return teamInfo? @[teamInfo] : nil;
 }

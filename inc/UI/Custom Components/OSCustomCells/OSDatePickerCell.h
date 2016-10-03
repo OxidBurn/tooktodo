@@ -17,6 +17,9 @@
 
 // methods
 - (void) setTagToDatePicker: (NSUInteger)    tag
+             withDateToShow: (NSDate*)       dateToShow
+            withMinimumDate: (NSDate*)       minimumDate
+            withMaximumDate: (NSDate*)       maximumDate
                withDelegate: (id <NSObject>) delegate;
 @end
 

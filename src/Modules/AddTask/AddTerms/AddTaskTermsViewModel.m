@@ -148,26 +148,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark - Public -
 
-- (void) updateStartDate: (NSDate*) startDate
-          withFinishDate: (NSDate*) finishDate
+- (void) updateTerms: (TermsData*) terms
 {
-    [self.model updateStartDate: startDate
-                 withFinishDate: finishDate];
+    [self.model updateTerms: terms];
 }
 
-- (NSDate*) returnStartDate
+- (TermsData*) returnTerms
 {
-    return [self.model returnStartDate];
-}
-
-- (NSDate*) returnFinishDate
-{
-    return [self.model returnFinishDate];
-}
-
-- (NSUInteger) returnDuration
-{
-    return [self.model returnDuration];
+    return [self.model returnTerms];
 }
 
 #pragma mark - AddTaskTermsModelDelegate methods -

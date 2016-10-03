@@ -17,14 +17,20 @@
 
 // methods
 
-- (void) fillCellWithTitle: (NSString*) titleText
-           withSwitchState: (BOOL)      isSelected
-              withDelegate: (id)        delegate;
+- (void) fillCellWithTitle: (NSString*)  titleText
+                   withTag: (NSUInteger) tag
+           withSwitchState: (BOOL)       isSelected
+              withDelegate: (id)         delegate;
 
 @end
 
 @protocol OSSwitchTableCellDelegate <NSObject>
 
-- (void) updateTaskState: (BOOL) isHidden;
+@optional
+
+- (void) updateTaskHiddenProperty: (BOOL) isHidden;
+
+- (void) updateTermsOption: (BOOL)       isOn
+                    forTag: (NSUInteger) tag;
 
 @end

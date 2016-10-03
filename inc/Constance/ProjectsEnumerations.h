@@ -56,6 +56,7 @@ typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
     SingleUserInfoCell,
     GroupOfUsersCell,
     MarkedRightDetailCell,
+
 };
 
 typedef NS_ENUM(NSUInteger, AllSeguesList) {
@@ -73,5 +74,12 @@ typedef NS_ENUM(NSUInteger, SelectResponsibleSelectAllFlag) {
     DeselectAll,
 };
 
+typedef NS_ENUM(NSUInteger, AllSwitchCellsTags) {
+   
+    AddTaskIsHiddenTaskSwitchTag,
+    AddTermsIncludingWeekendsSwitchTag,
+    AddTermsIsUrgentTaskSwitchTag,
+    
+};
 
 #endif /* ProjectsEnumerations_h */

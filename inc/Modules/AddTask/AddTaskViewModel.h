@@ -42,6 +42,8 @@
 
 - (NSArray*) returnSelectedObserversArray;
 
+- (TermsData*) returnTerms;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

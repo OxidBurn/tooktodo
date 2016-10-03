@@ -13,13 +13,18 @@
 #import "OSRightDetailCellFactory.h"
 #import "OSDatePickerCellFactory.h"
 #import "OSDatePickerCell.h"
+#import "OSSwitchTableCell.h"
 #import "RowContent.h"
+#import "ProjectsEnumerations.h"
+
+// Categories
+#import "NSCalendar+WeedendsCounting.h"
 
 
 typedef NS_ENUM(NSUInteger, TermsCellsId) {
     
-    RightDetailCell,
-    SwitchCell,
+    TermsRightDetailCell,
+    TermsSwitchCell,
     DatePickerCell,
     
 };
@@ -30,6 +35,11 @@ typedef NS_ENUM(NSUInteger, DatePickerTag) {
     EndDatePicker,
 };
 
+typedef NS_ENUM(NSUInteger, SwitchTag) {
+    
+    IncludingWeekendsSwitch,
+    UrgentTaskSwitch,
+};
 
 static NSString* CellIdKey        = @"CellId";
 static NSString* DetailTextKey    = @"DetailText";
@@ -38,18 +48,14 @@ static NSString* SwitchStateKey   = @"SwitchState";
 static NSString* DatePickerTagKey = @"DatePickerTag";
 
 
-@interface AddTaskTermsModel() <OSDatePickerCellDelegate>
+@interface AddTaskTermsModel() <OSDatePickerCellDelegate, OSSwitchTableCellDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* tableViewContent;
 
 @property (strong, nonatomic) NSArray* termsCellsInfo;
 
-@property (strong, nonatomic) NSDate* startDate;
-
-@property (strong, nonatomic) NSDate* finishDate;
-
-@property (assign, nonatomic) NSUInteger duration;
+@property (strong, nonatomic) TermsData* terms;
 
 // methods
 
@@ -80,6 +86,16 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     return _termsCellsInfo;
 }
 
+- (TermsData*) terms
+{
+    if ( _terms == nil )
+    {
+        _terms = [TermsData new];
+    }
+    
+    return _terms;
+}
+
 #pragma mark - Public -
 
 - (NSUInteger) getNumberOfRows
@@ -101,7 +117,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     
     switch ( cellTypeIndex )
     {
-        case RightDetailCell:
+        case TermsRightDetailCell:
         {
             OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
             
@@ -111,13 +127,14 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             break;
         }
             
-        case SwitchCell:
+        case TermsSwitchCell:
         {
             OSSwitchTableCellFactory* factory = [OSSwitchTableCellFactory new];
             
             BOOL stateBoolValue = content.switchIsOn;
             
             cell = [factory returnSwitchCellWithTitle: content.title
+                                              withTag: content.switchTag
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
                                          withDelegate: self];
@@ -132,6 +149,9 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             NSUInteger tag = content.pickerTag;
             
             cell = [factory returnDatePickerCellWithTag: tag
+                                         withDateToShow: content.dateToShow
+                                        withMinimumDate: content.minimumDate
+                                        withMaximumDate: content.maximumDate
                                            forTableView: tableView
                                            withDelegate: self];
             
@@ -146,42 +166,33 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     
 }
 
-- (void) updateStartDate: (NSDate*) startDate
-          withFinishDate: (NSDate*) finishDate
+- (void) updateTerms: (TermsData*) terms
 {
-    if ( startDate )
-    {
-    RowContent* newStartRow = [self createRowForDate: startDate withTitle: @"Начало"];
+    self.terms = terms;
     
-    [self updateContentWithNewRow: newStartRow forIndex: 0];
+    if ( terms.startDate )
+    {
+        RowContent* newStartRow = [self createRowForDate: terms.startDate withTitle: @"Начало"];
+    
+        [self updateContentWithNewRow: newStartRow forIndex: 0];
         
-    self.startDate  = startDate;
+        self.terms.startDate  = terms.startDate;
 
     }
     
-    if ( finishDate )
+    if ( terms.endDate )
     {
-    RowContent* newFinishRow = [self createRowForDate: finishDate withTitle: @"Конец"];
+        RowContent* newEndRow = [self createRowForDate: terms.endDate withTitle: @"Конец"];
     
-    [self updateContentWithNewRow: newFinishRow forIndex: 2];
+        [self updateContentWithNewRow: newEndRow forIndex: 2];
     
-    self.finishDate = finishDate;
+        self.terms.endDate = terms.endDate;
     }
 }
 
-- (NSDate*) returnStartDate
+- (TermsData*) returnTerms
 {
-    return self.startDate;
-}
-
-- (NSDate*) returnFinishDate
-{
-    return self.finishDate;
-}
-
-- (NSUInteger) returnDuration
-{
-    return self.duration;
+    return self.terms;
 }
 
 #pragma mark - Internal -
@@ -190,42 +201,49 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     RowContent* rowOne = [RowContent new];
     
-    rowOne.cellId = self.termsCellsInfo[RightDetailCell];
-    rowOne.detail = self.startDate ? [self getStringFromDate: self.startDate] : @"Не выбрано";
+    rowOne.cellId = self.termsCellsInfo[TermsRightDetailCell];
+    rowOne.detail = self.terms.startDate ? [self getStringFromDate: self.terms.startDate] : @"Не выбрано";
     rowOne.title  = @"Начало";
     
     RowContent* rowTwo = [RowContent new];
     
-    rowTwo.cellId    = self.termsCellsInfo[DatePickerCell];
-    rowTwo.pickerTag = StartDatePicker;
+    rowTwo.cellId      = self.termsCellsInfo[DatePickerCell];
+    rowTwo.pickerTag   = StartDatePicker;
+    rowTwo.dateToShow  = self.terms.startDate;
+    rowTwo.minimumDate = [NSDate date];
+    rowTwo.maximumDate = self.terms.endDate;
     
     RowContent* rowThree = [RowContent new];
     
-    rowThree.cellId = self.termsCellsInfo[RightDetailCell];
-    rowThree.detail = self.finishDate ? [self getStringFromDate: self.finishDate] : @"Не выбрано";
+    rowThree.cellId = self.termsCellsInfo[TermsRightDetailCell];
+    rowThree.detail = self.terms.endDate ? [self getStringFromDate: self.terms.endDate] : @"Не выбрано";
     rowThree.title  = @"Конец";
 
     RowContent* rowFour = [RowContent new];
     
-    rowFour.cellId    = self.termsCellsInfo[DatePickerCell];
-    rowFour.pickerTag = EndDatePicker;
+    rowFour.cellId      = self.termsCellsInfo[DatePickerCell];
+    rowFour.pickerTag   = EndDatePicker;
+    rowFour.dateToShow  = self.terms.endDate;
+    rowFour.minimumDate = self.terms.startDate? self.terms.startDate : [NSDate date];
     
     RowContent* rowFive = [RowContent new];
     
-    rowFive.cellId = self.termsCellsInfo[RightDetailCell];
-    rowFive.detail = @"0";
+    rowFive.cellId = self.termsCellsInfo[TermsRightDetailCell];
+    rowFive.detail = self.terms.duration ? [NSString stringWithFormat: @"%ld", self.terms.duration] : 0;
     rowFive.title  = @"Длительность";
     
     RowContent* rowSix = [RowContent new];
-    rowSix.cellId     = self.termsCellsInfo[SwitchCell];
-    rowSix.switchIsOn = NO;
-    rowSix.title      = @"Включая выходные дни";
+    rowSix.cellId      = self.termsCellsInfo[TermsSwitchCell];
+    rowSix.switchIsOn  = self.terms.includingWeekends? self.terms.includingWeekends : NO;
+    rowSix.switchTag   = AddTermsIncludingWeekendsSwitchTag;
+    rowSix.title       = @"Включая выходные дни";
     
     RowContent* rowSeven = [RowContent new];
     
-    rowSeven.cellId     = self.termsCellsInfo[SwitchCell];
-    rowSeven.switchIsOn = YES;
-    rowSeven.title      = @"Включая выходные дни";
+    rowSeven.cellId     = self.termsCellsInfo[TermsSwitchCell];
+    rowSeven.switchIsOn = self.terms.isUrgent ? self.terms.isUrgent : NO;
+    rowSeven.switchTag  = AddTermsIsUrgentTaskSwitchTag;
+    rowSeven.title      = @"Срочная задача";
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven ];
 }
@@ -242,9 +260,17 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Начало"];
                 
+                newRow.dateToShow = date;
+                
                 [self updateContentWithNewRow: newRow forIndex: 0];
                 
-                self.startDate = date;
+                self.terms.startDate = date;
+                
+                RowContent* newEndDateRow = self.tableViewContent[3];
+                
+                newEndDateRow.minimumDate = date;
+                
+                [self updateContentWithNewRow: newEndDateRow forIndex: 3];
                 
                 [self updateDuration];
             }
@@ -255,9 +281,11 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Конец"];
                 
+                newRow.dateToShow = date;
+                
                 [self updateContentWithNewRow: newRow forIndex: 2];
                 
-                self.finishDate = date;
+                self.terms.endDate = date;
 
                 [self updateDuration];
             }
@@ -269,6 +297,45 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
         if ([self.delegate respondsToSelector: @selector(reloadTermsTableView)] )
             [self.delegate reloadTermsTableView];
 }
+
+#pragma mark - OSSwitchTableCellDelegate methds -
+
+- (void) updateTermsOption: (BOOL)       isOn
+                    forTag: (NSUInteger) tag
+{
+    switch ( tag )
+    {
+        case AddTermsIncludingWeekendsSwitchTag:
+        {
+            self.terms.includingWeekends = isOn;
+            
+            RowContent* newRow = self.tableViewContent[5];
+            
+            newRow.switchIsOn = isOn;
+            
+            [self updateContentWithNewRow: newRow forIndex: 5];
+            
+            [self updateDuration];
+        }
+            break;
+            
+        case AddTermsIsUrgentTaskSwitchTag:
+        {
+            self.terms.isUrgent = isOn;
+            
+            RowContent* newRow = self.tableViewContent[6];
+            
+            newRow.switchIsOn = isOn;
+            
+            [self updateContentWithNewRow: newRow forIndex: 6];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - Helpers -
 
@@ -298,35 +365,41 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     self.tableViewContent = [contentCopy copy];
 }
 
-- (RowContent*) createRowForDate: (NSDate*) date
+- (RowContent*) createRowForDate: (NSDate*)   date
                        withTitle: (NSString*) title
 {
     RowContent* newRow = [RowContent new];
     
     newRow.detail = [self getStringFromDate: date];
     newRow.title  = title;
-    newRow.cellId = self.termsCellsInfo[RightDetailCell];
+    newRow.cellId = self.termsCellsInfo[TermsRightDetailCell];
     
     return newRow;
 }
 
 - (void) updateDuration
 {
-    if ( self.startDate && self.finishDate )
+    if ( self.terms.startDate && self.terms.endDate )
     {
-        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendar* calendar = [NSCalendar currentCalendar];
+
+        if ( self.terms.includingWeekends )
+        {
+            NSDateComponents* components = [calendar components: NSCalendarUnitDay
+                                                       fromDate: self.terms.startDate
+                                                         toDate: self.terms.endDate
+                                                        options: 0];
+            self.terms.duration = [components day];
+        }
+        else
+        {
+            self.terms.duration = [calendar countOfWorkdaysFromDate: self.terms.startDate
+                                                 toAndIncludingDate: self.terms.endDate];
+        }
         
-        NSDateComponents* components = [calendar components: NSCalendarUnitDay
-                                                   fromDate: self.startDate
-                                                     toDate: self.finishDate
-                                                    options: 0];
-        self.duration = [components day];
+        RowContent* newRow = self.tableViewContent[4];
         
-        RowContent* newRow = [RowContent new];
-        
-        newRow.detail = [NSString stringWithFormat: @"%ld", self.duration];
-        newRow.title  = @"Длительность";
-        newRow.cellId = self.termsCellsInfo[RightDetailCell];
+        newRow.detail = [NSString stringWithFormat: @"%ld", self.terms.duration];
         
         [self updateContentWithNewRow: newRow
                              forIndex: 4];

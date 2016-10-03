@@ -16,6 +16,7 @@
 #pragma mark - Public -
 
 - (UITableViewCell*) returnSwitchCellWithTitle: (NSString*)    titleText
+                                       withTag: (NSUInteger)   tag
                                withSwitchState: (BOOL)         isEnabled
                                   forTableView: (UITableView*) tableView
                                   withDelegate: (id)           delegate
@@ -23,6 +24,7 @@
     OSSwitchTableCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SwitchCellID"];
     
     [cell fillCellWithTitle: titleText
+                    withTag: (NSUInteger) tag
             withSwitchState: isEnabled
                withDelegate: delegate];
     

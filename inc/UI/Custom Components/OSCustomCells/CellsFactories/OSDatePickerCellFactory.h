@@ -15,6 +15,9 @@
 
 // methods
 - (UITableViewCell*) returnDatePickerCellWithTag: (NSUInteger)   pickerTag
+                                  withDateToShow: (NSDate*)      dateToShow
+                                 withMinimumDate: (NSDate*)      minimumDate
+                                 withMaximumDate: (NSDate*)      maximumDate
                                     forTableView: (UITableView*) tableView
                                     withDelegate: (id)           delegate;
 

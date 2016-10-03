@@ -16,12 +16,18 @@
 #pragma mark - Public -
 
 - (UITableViewCell*) returnDatePickerCellWithTag: (NSUInteger)   pickerTag
+                                  withDateToShow: (NSDate*)      dateToShow
+                                 withMinimumDate: (NSDate*)      minimumDate
+                                 withMaximumDate: (NSDate*)      maximumDate
                                     forTableView: (UITableView*) tableView
                                     withDelegate: (id)           delegate
 {
     OSDatePickerCell* cell = [tableView dequeueReusableCellWithIdentifier: @"DatePickerCellID"];
     
     [cell setTagToDatePicker: pickerTag
+              withDateToShow: dateToShow
+             withMinimumDate: minimumDate
+             withMaximumDate: maximumDate
                 withDelegate: delegate];
     
     return cell;

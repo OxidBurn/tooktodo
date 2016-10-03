@@ -10,4 +10,15 @@
 
 @implementation NewTask
 
+#pragma mark - Properties -
+
+- (TermsData*) terms
+{
+    if ( _terms == nil )
+    {
+        _terms = [TermsData new];
+    }
+    
+    return _terms;
+}
 @end

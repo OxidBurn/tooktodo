@@ -26,6 +26,14 @@
 
 @property (assign, nonatomic) NSUInteger pickerTag;
 
+@property (assign, nonatomic) NSUInteger switchTag;
+
 @property (assign, nonatomic) BOOL       switchIsOn;
+
+@property (strong, nonatomic) NSDate*   dateToShow;
+
+@property (strong, nonatomic) NSDate*   minimumDate;
+
+@property (strong, nonatomic) NSDate*   maximumDate;
 
 @end

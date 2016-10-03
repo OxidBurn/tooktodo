@@ -87,6 +87,11 @@
     return [self.model returnSelectedObserversArray];
 }
 
+- (TermsData*) returnTerms
+{
+    return [self.model returnTerms];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

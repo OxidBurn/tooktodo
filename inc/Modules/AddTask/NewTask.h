@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-
+#import "TermsData.h"
 
 @interface NewTask : NSObject
 
@@ -28,14 +28,6 @@
 
 @property (strong, nonatomic) NSArray*   observers;
 
-@property (strong, nonatomic) NSDate*    startDate;
-
-@property (strong, nonatomic) NSDate*    finishDate;
-
-@property (assign, nonatomic) NSUInteger duration;
-
-@property (assign, nonatomic) BOOL includingWeekends;
-
-@property (assign, nonatomic) BOOL isUrgent;
+@property (strong, nonatomic) TermsData* terms;
 
 @end

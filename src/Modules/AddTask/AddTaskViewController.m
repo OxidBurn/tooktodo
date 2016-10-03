@@ -123,9 +123,8 @@
         {
             AddTermTasksViewController* controller = [segue destinationViewController];
             
-            [controller updateStartDate: task.startDate
-                         withFinishDate: task.finishDate
-                           withDelegate: [self.viewModel returnModel]];
+            [controller updateTerms: [self.viewModel returnTerms]
+                       withDelegate: [self.viewModel returnModel]];
             
         }
             break;

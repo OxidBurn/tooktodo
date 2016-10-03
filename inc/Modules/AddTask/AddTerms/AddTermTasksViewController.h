@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "TermsData.h"
+
 @protocol AddTaskTermsControllerDelegate;
 
 @interface AddTermTasksViewController : UIViewController
@@ -16,16 +19,13 @@
 @property (weak, nonatomic) id <AddTaskTermsControllerDelegate> delegate;
 
 // methods
-- (void) updateStartDate: (NSDate*) startDate
-          withFinishDate: (NSDate*) finishDate
-            withDelegate: (id)      delegate;
+- (void) updateTerms: (TermsData*) terms
+        withDelegate: (id)         delegate;
 
 @end
 
 @protocol AddTaskTermsControllerDelegate <NSObject>
 
-- (void) updateTermsWithStartDate: (NSDate*)    startDate
-                    andFinishDate: (NSDate*)    finishDate
-                     withDuration: (NSUInteger) duration;
+- (void) updateTerms: (TermsData*) terms;
 
 @end

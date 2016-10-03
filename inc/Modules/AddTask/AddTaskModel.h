@@ -40,6 +40,8 @@
 
 - (NSArray*) returnSelectedObserversArray;
 
+- (TermsData*) returnTerms;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>

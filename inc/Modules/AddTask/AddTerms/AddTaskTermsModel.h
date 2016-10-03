@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classed
+#import "TermsData.h"
+
 @protocol AddTaskTermsModelDelegate;
 
 @interface AddTaskTermsModel : NSObject
@@ -21,14 +24,9 @@
 - (UITableViewCell*) returnCellForTableView: (UITableView*) tableView
                               withIndexPath: (NSIndexPath*) indexPath;
 
-- (void) updateStartDate: (NSDate*) startDate
-          withFinishDate: (NSDate*) finishDate;
+- (void) updateTerms: (TermsData*) terms;
 
-- (NSDate*) returnStartDate;
-
-- (NSDate*) returnFinishDate;
-
-- (NSUInteger) returnDuration;
+- (TermsData*) returnTerms;
 
 @end
 

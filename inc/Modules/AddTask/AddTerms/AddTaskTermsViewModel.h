@@ -11,6 +11,9 @@
 // Frameworks
 @import UIKit;
 
+// Classes
+#import "TermsData.h"
+
 @protocol AddTaskTermsViewModelDelegate;
 
 @interface AddTaskTermsViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
@@ -19,14 +22,9 @@
 @property (weak, nonatomic) id <AddTaskTermsViewModelDelegate> delegate;
 
 // methods
-- (void) updateStartDate: (NSDate*) startDate
-          withFinishDate: (NSDate*) finishDate;
+- (void) updateTerms: (TermsData*) terms;
 
-- (NSDate*) returnStartDate;
-
-- (NSDate*) returnFinishDate;
-
-- (NSUInteger) returnDuration;
+- (TermsData*) returnTerms;
 
 @end
 
