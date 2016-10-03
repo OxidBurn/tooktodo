@@ -87,7 +87,7 @@
         {
             AddMessageViewController* AddMessageController = [segue destinationViewController];
             
-            [AddMessageController updateDescription: task.description
+            [AddMessageController updateDescription: task.taskDescription
                                    andReturnToModel: [self.viewModel returnModel]];
         }
             break;

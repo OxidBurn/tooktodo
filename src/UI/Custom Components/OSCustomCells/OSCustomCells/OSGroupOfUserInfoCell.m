@@ -59,8 +59,6 @@
 {
     self.groupTitleLabel.text = titleText;
     
-    [self roundAllImageViews];
-    
     [self fillImagesWithUsers: usersArray];
 }
 
@@ -68,11 +66,7 @@
 
 - (void) fillImagesWithUsers: (NSArray*) approvals
 {
-    [self.imageViewsArray enumerateObjectsUsingBlock:^(UIImageView* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        obj.hidden = YES;
-        
-    }];
+    [self resetCellToDefault];
     
     if ( approvals.count <= 5 )
     {
@@ -92,7 +86,7 @@
     {
         NSUInteger approvalsLeft = approvals.count - 5;
         
-        self.firstAvatarTrailingConstraint.constant = 57;
+        self.firstAvatarTrailingConstraint.constant = 47;
         
         self.numberOfUsersLeftLabel.hidden = NO;
         
@@ -121,6 +115,21 @@
         imageView.layer.cornerRadius = 10;
         imageView.clipsToBounds      = YES;
     }];
+}
+
+- (void) resetCellToDefault
+{
+    [self roundAllImageViews];
+    
+    [self.imageViewsArray enumerateObjectsUsingBlock:^(UIImageView* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.hidden = YES;
+        
+    }];
+    
+    self.firstAvatarTrailingConstraint.constant = 3;
+
+    self.numberOfUsersLeftLabel.hidden = YES;
 }
 
 @end

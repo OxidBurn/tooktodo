@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self checkIfDescriptionExists];
 }
 
 #pragma mark - Memory managment -
@@ -125,5 +127,14 @@ shouldChangeTextInRange: (NSRange)     range
 
 #pragma mark - Helpers -
 
+- (void) checkIfDescriptionExists
+{
+    if ( [self.model getDescriptionText] )
+    {
+        self.textView.text = [self.model getDescriptionText];
+        
+        self.textView.textColor = [UIColor blackColor];
+    }
+}
 
 @end
