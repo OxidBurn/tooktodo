@@ -77,6 +77,11 @@
     {
         case SelectResponsibleController:
         {
+            if ( [indexPath isEqual: self.previousesSelectedIndexPath] )
+            {
+                self.previousesSelectedIndexPath = nil;
+            }
+            
             if ( [indexPath isEqual: self.previousesSelectedIndexPath] == NO )
             {
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -328,11 +333,15 @@
             
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
                     
                     if ( [userInList.userId isEqual: selectedUser.userId] )
                     {
                         userInList.isResponsible = selectedUser.isResponsible;
+                        
+                        NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
+                        
+                        self.previousesSelectedIndexPath = temp;
                     }
                 }];
                 
