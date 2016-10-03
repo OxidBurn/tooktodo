@@ -42,10 +42,20 @@
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
     
-        ProjectTaskStage* stage = [self.model getStages][indexPath.row];
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"Не выбрано";
+        UIFont* customFont  = [UIFont fontWithName: @"SFUIText-Regular"
+                                              size: 15.0f];
+        cell.textLabel.font = customFont;
+    }
+    
+    else
+    {
+        ProjectTaskStage* stage = [self.model getStages][indexPath.row - 1];
     
         [cell fillCellWithContent: stage];
-
+    }
 
     return cell;
 }

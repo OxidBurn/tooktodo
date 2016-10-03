@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) ProjectTaskStage* selectedStage;
 
+@property (nonatomic, assign) BOOL isFirstTime;
+
 @end
 
 @implementation SelectStageModel
@@ -29,6 +31,7 @@
 {
     if (_stagesArray == nil)
     {
+         self.isFirstTime = YES;
         _stagesArray = [DataManagerShared getStagesForCurrentProject];
     }
     
@@ -39,33 +42,41 @@
 
 - (NSInteger) countOfRows
 {
-    return [self stagesArrayWithNoSelected].count;
+    return self.stagesArray.count + 1;
     
-//    return self.stagesArray.count;
 }
 
 - (NSArray*) getStages
 {
-    return [self stagesArrayWithNoSelected];
+    return [self stagesArray];
 }
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ( [indexPath isEqual: self.lastIndexPath] == NO )
-    {
-        [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.isSelected = @(0);
-            
-            if ( idx == indexPath.row )
-            {
-                obj.isSelected = @(1);
-            }
-        }];
+    
+    if ([indexPath compare: self.lastIndexPath] == NSOrderedSame)
         
-        self.selectedStage = self.stagesArray[indexPath.row];
-    }
+        {
+            [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                obj.isSelected = @(0);
+                
+                if ( idx == indexPath.row )
+                {
+                    obj.isSelected = @(1);
+                }
+            }];
+            
+            if (indexPath.row == 0)
+            {
+                self.selectedStage = nil;
+            }
+            else
+                self.selectedStage = self.stagesArray[indexPath.row - 1];
+            
+        }
 }
+
 
 - (BOOL) getStateForStageAtIndex: (NSUInteger) index
 {
@@ -87,15 +98,6 @@
 - (NSIndexPath*) getLastIndexPath
 {
     return self.lastIndexPath;
-}
-
-- (NSArray*) stagesArrayWithNoSelected
-{
-    NSMutableArray* arr = self.stagesArray.mutableCopy;
-    [arr insertObject: @"Not selected"
-              atIndex: 0];
-    
-    return arr.copy;
 }
 
 @end

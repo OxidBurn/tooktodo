@@ -48,14 +48,18 @@
 {
     //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
+
     
     if (indexPath.row == 0)
     {
         cell.textLabel.text = @"Не выбрано";
+        UIFont* customFont  = [UIFont fontWithName: @"SFUIText-Regular"
+                                                        size: 15.0f];
+        cell.textLabel.font = customFont;
     }
     else
     {
-        ProjectSystem* system = [self.model getSystems][indexPath.row];
+        ProjectSystem* system = [self.model getSystems][indexPath.row - 1];
     
         [cell fillCellWithContent: system];
     }

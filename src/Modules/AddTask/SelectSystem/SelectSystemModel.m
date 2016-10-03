@@ -40,7 +40,7 @@
 
 - (NSInteger) countOfRows
 {
-    return self.systemsArray.count;
+    return self.systemsArray.count + 1;
 }
 
 - (NSArray*) getSystems
@@ -51,19 +51,32 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ( [indexPath isEqual: self.lastIndexPath] == NO )
+    
+    if (self.systemsArray.count > 0)
     {
-        [self.systemsArray enumerateObjectsUsingBlock: ^(ProjectSystem* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ( [indexPath isEqual: self.lastIndexPath] == NO )
+        {
             
-            obj.isSelected = @(0);
+            [self.systemsArray enumerateObjectsUsingBlock: ^(ProjectSystem* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                obj.isSelected = @(0);
+                
+                if ( idx == indexPath.row )
+                {
+                    obj.isSelected = @(1);
+                }
+            }];
             
-            if ( idx == indexPath.row )
+            if (indexPath.row == 0)
             {
-                obj.isSelected = @(1);
+                self.selectedSystem = nil;
             }
-        }];
-        
-        self.selectedSystem = self.systemsArray[indexPath.row];
+            else
+                
+                self.selectedSystem = self.systemsArray[indexPath.row - 1];
+
+    }
+    
     }
 }
 
