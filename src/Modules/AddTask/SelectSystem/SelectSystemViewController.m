@@ -1,21 +1,21 @@
 //
-//  SelectStageViewController.m
+//  SelectSystemViewController.m
 //  TookTODO
 //
 //  Created by Lera on 30.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SelectStageViewController.h"
+#import "SelectSystemViewController.h"
 
 //Classes
-#import "SelectStageViewModel.h"
+#import "SelectSystemViewModel.h"
 
-@interface SelectStageViewController ()
+@interface SelectSystemViewController ()
 
 // Outlets
 
-@property (weak, nonatomic) IBOutlet UITableView *stagesTableView;
+@property (weak, nonatomic) IBOutlet UITableView *systemsTableView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBtn;
 
@@ -23,12 +23,11 @@
 
 // Properties
 
-@property (nonatomic, strong) SelectStageViewModel* viewModel;
+@property (nonatomic, strong) SelectSystemViewModel* viewModel;
 
 @end
 
-@implementation SelectStageViewController
-
+@implementation SelectSystemViewController
 
 #pragma mark - Life cycle -
 
@@ -41,11 +40,11 @@
 
 #pragma mark - Properties -
 
-- (SelectStageViewModel*) viewModel
+- (SelectSystemViewModel*) viewModel
 {
     if (_viewModel == nil)
     {
-        _viewModel = [SelectStageViewModel new];
+        _viewModel = [SelectSystemViewModel new];
     }
     
     return _viewModel;
@@ -56,8 +55,8 @@
 
 - (void) bindUI
 {
-    self.stagesTableView.delegate   = self.viewModel;
-    self.stagesTableView.dataSource = self.viewModel;
+    self.systemsTableView.delegate   = self.viewModel;
+    self.systemsTableView.dataSource = self.viewModel;
 }
 
 #pragma mark - Actions -

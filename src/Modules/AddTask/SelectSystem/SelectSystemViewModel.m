@@ -1,36 +1,44 @@
 //
-//  SelectStageViewModel.m
+//  SelectSystemViewModel.m
 //  TookTODO
 //
 //  Created by Lera on 30.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SelectStageViewModel.h"
+#import "SelectSystemViewModel.h"
 
 //Classes
-#import "SelectStageModel.h"
+#import "SelectSystemModel.h"
 #import "OSCellWithCheckmark.h"
 
-@interface SelectStageViewModel()
 
-@property (nonatomic, strong) SelectStageModel* model;
+@interface SelectSystemViewModel()
+
+@property (nonatomic, strong) SelectSystemModel* model;
 
 @end
 
-@implementation SelectStageViewModel 
 
+@implementation SelectSystemViewModel
 
 #pragma mark - Properties -
 
-- (SelectStageModel*) model
+- (SelectSystemModel*) model
 {
     if (_model == nil)
     {
-        _model = [SelectStageModel new];
+        _model = [SelectSystemModel new];
     }
     
     return _model;
+}
+
+#pragma mark - Public -
+
+- (ProjectSystem*) getSelectedSystem
+{
+    return [self.model getSelectedSystem];
 }
 
 #pragma mark - TableView datasource methods -
@@ -41,12 +49,17 @@
     //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
     
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"Не выбрано";
+    }
+    else
+    {
+        ProjectSystem* system = [self.model getSystems][indexPath.row];
     
-        ProjectTaskStage* stage = [self.model getStages][indexPath.row];
+        [cell fillCellWithContent: system];
+    }
     
-        [cell fillCellWithContent: stage];
-
-
     return cell;
 }
 
@@ -69,8 +82,8 @@
     
     OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    
-    [cell changeCheckmarkState: YES];
+   
+        [cell changeCheckmarkState: YES];
     
     if ( [self.model getLastIndexPath] )
     {
@@ -80,7 +93,7 @@
     }
     
     [self.model updateLastIndexPath: indexPath];
-    
+   
     
 }
 

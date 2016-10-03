@@ -10,7 +10,7 @@
 
 // Classes
 #import "SystemsInfoModel.h"
-#import "ProjectSystem.h"
+#import "ProjectSystem+CoreDataClass.h"
 
 @interface SystemsInfoViewModel()
 

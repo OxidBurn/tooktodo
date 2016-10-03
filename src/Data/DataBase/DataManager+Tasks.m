@@ -612,4 +612,16 @@
                           
                       }];
 }
+
+
+- (NSArray*) getStagesForCurrentProject
+{
+    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
+    
+    NSArray* stages = currentProject.stage.allObjects;
+    
+    return stages;
+}
+
+
 @end

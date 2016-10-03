@@ -12,7 +12,7 @@
 #import "ProjectRegion.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectRoles.h"
-#import "ProjectSystem.h"
+#import "ProjectSystem+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "TeamMember.h"

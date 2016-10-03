@@ -9,7 +9,7 @@
 #import "DataManager.h"
 
 // Classes
-#import "ProjectSystem.h"
+#import "ProjectSystem+CoreDataClass.h"
 
 @interface DataManager (Systems)
 

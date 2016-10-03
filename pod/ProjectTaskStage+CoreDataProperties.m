@@ -2,7 +2,7 @@
 //  ProjectTaskStage+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/16/16.
+//  Created by Lera on 30.09.16.
 //
 //
 
@@ -15,9 +15,10 @@
 }
 
 @dynamic isCommon;
+@dynamic isExpanded;
 @dynamic stageID;
 @dynamic title;
-@dynamic isExpanded;
+@dynamic isSelected;
 @dynamic project;
 @dynamic tasks;
 

@@ -1,8 +1,8 @@
 //
-//  ProjectSystem.h
+//  ProjectSystem+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/4/16.
+//  Created by Lera on 30.09.16.
 //
 //
 
@@ -14,8 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectSystem : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 

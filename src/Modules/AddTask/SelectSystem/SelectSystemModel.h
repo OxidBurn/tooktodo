@@ -1,5 +1,5 @@
 //
-//  SelectStageModel.h
+//  SelectSystemModel.h
 //  TookTODO
 //
 //  Created by Lera on 30.09.16.
@@ -9,23 +9,23 @@
 #import <Foundation/Foundation.h>
 
 //Classes
-#import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectSystem+CoreDataClass.h"
 
-@interface SelectStageModel : NSObject
+@interface SelectSystemModel : NSObject
 
 // Methods
 - (NSInteger) countOfRows;
 
-- (NSArray*) getStages;
+- (NSArray*) getSystems;
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
 
-- (BOOL) getStateForStageAtIndex: (NSUInteger) index;
+- (BOOL) getStateForSystemAtIndex: (NSUInteger) index;
 
 - (void) updateLastIndexPath: (NSIndexPath*) indexPath;
 
 - (NSIndexPath*) getLastIndexPath;
 
-- (ProjectTaskStage*) getSelectedStage;
+- (ProjectSystem*) getSelectedSystem;
 
 @end
