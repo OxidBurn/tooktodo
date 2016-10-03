@@ -283,6 +283,12 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 - (void) updateTaskState: (BOOL) isHidden
 {
     self.task.isHiddenTask = isHidden;
+    
+    RowContent* newRow = self.addTaskTableViewContent[0][2];
+    
+    newRow.isHidden = isHidden;
+    
+    [self updateContentWithRow: newRow inSection: 0 inRow: 2];
 }
 
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
