@@ -53,6 +53,10 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
+    if ([indexPath isEqual: self.lastIndexPath])
+    {
+        self.lastIndexPath = nil;
+    }
     
     if ([indexPath compare: self.lastIndexPath] == NSOrderedSame)
         

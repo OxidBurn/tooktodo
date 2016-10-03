@@ -52,6 +52,11 @@
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
     
+    if ([indexPath isEqual: self.lastIndexPath])
+    {
+        self.lastIndexPath = nil;
+    }
+    
     if (self.systemsArray.count > 0)
     {
         if ( [indexPath isEqual: self.lastIndexPath] == NO )
@@ -71,11 +76,10 @@
             {
                 self.selectedSystem = nil;
             }
-            else
-                
-                self.selectedSystem = self.systemsArray[indexPath.row - 1];
+            
+            else self.selectedSystem = self.systemsArray[indexPath.row - 1];
 
-    }
+        }
     
     }
 }

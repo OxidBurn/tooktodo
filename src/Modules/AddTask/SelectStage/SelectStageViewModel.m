@@ -82,7 +82,7 @@
     
     [cell changeCheckmarkState: YES];
     
-    if ( [self.model getLastIndexPath] )
+    if ( [self.model getLastIndexPath] && [self.model getLastIndexPath] != indexPath )
     {
         OSCellWithCheckmark* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model getLastIndexPath]];
         
