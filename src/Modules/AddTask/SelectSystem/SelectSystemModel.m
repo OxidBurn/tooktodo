@@ -45,14 +45,16 @@
 
 - (NSArray*) getSystems
 {
-   
     return self.systemsArray;
 }
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
     if ( indexPath.row == 0 && self.selectedSystem )
+    {
         self.selectedSystem.isSelected = @(NO);
+        self.selectedSystem            = nil;
+    }
     else
     {
         self.selectedSystem = self.systemsArray[indexPath.row - 1];
@@ -66,14 +68,6 @@
             self.selectedSystem.isSelected = @(NO);
         }
     }
-}
-
-
-- (BOOL) getStateForSystemAtIndex: (NSUInteger) index
-{
-    ProjectSystem* system = self.systemsArray[index];
-    
-    return system.isSelected;
 }
 
 - (void) updateLastIndexPath: (NSIndexPath*) indexPath
@@ -95,18 +89,15 @@
 {
    self.selectedSystem = system;
     
-    [self.systemsArray enumerateObjectsUsingBlock:^(ProjectSystem* newSystem, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([self.selectedSystem.systemID isEqual: newSystem.systemID])
-        {
-            newSystem.isSelected = system.isSelected;
-            
-            NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
-            
-            self.lastIndexPath = temp;
-        }
-        
-        
-    }];
+    NSUInteger indexOfSelectedSystem = [self.systemsArray indexOfObject: system];
+    
+    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedSystem + 1
+                                            inSection: 0];
+}
+
+- (BOOL) systemsIsSelected: (ProjectSystem*) system
+{
+    return ([self.selectedSystem isEqual: system]);
 }
 
 @end

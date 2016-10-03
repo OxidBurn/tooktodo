@@ -52,33 +52,23 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
-    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier: @"cellID"];
 
-    
     if (indexPath.row == 0)
     {
         cell.textLabel.text = @"Не выбрано";
+        
         UIFont* customFont  = [UIFont fontWithName: @"SFUIText-Regular"
-                                                        size: 15.0f];
+                                              size: 15.0f];
+        
         cell.textLabel.font = customFont;
     }
     else
     {
         ProjectSystem* system = [self.model getSystems][indexPath.row - 1];
-        
-//        [[self.model getSystems] enumerateObjectsUsingBlock: ^(ProjectSystem* newSystem, NSUInteger idx, BOOL * _Nonnull stop) {
-//            if (system.isSelected == newSystem.isSelected)
-//            {
-//                system.isSelected = newSystem.isSelected;
-//                
-//                NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
-//                
-//                [self.model updateLastIndexPath: temp];
-//            }
-//        }];
     
-        [cell fillCellWithContent: system];
+        [cell fillCellWithContent: system.title
+                withSelectedState: [self.model systemsIsSelected: system]];
     }
     
     return cell;
@@ -103,9 +93,7 @@
     
     OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-   
-        [cell changeCheckmarkState: YES];
-    
+    [cell changeCheckmarkState: YES];
     
     if ( [self.model getLastIndexPath] && [self.model getLastIndexPath] != indexPath )
     {

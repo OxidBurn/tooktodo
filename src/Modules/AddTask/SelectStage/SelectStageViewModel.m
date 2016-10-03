@@ -51,8 +51,7 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
-    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier: @"cellID"];
     
     
     if (indexPath.row == 0)
@@ -67,7 +66,8 @@
     {
         ProjectTaskStage* stage = [self.model getStages][indexPath.row - 1];
     
-        [cell fillCellWithContent: stage];
+        [cell fillCellWithContent: stage.title
+                withSelectedState: stage.isSelected];
         
         [self.model updateSelectedUsers];
     }

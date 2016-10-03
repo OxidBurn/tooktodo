@@ -73,7 +73,7 @@
 {
     ProjectSystem* selectedSystem = [self.viewModel getSelectedSystem];
     
-    if ( selectedSystem && [self.delegate respondsToSelector: @selector(returnSelectedSystem:)] )
+    if ( [self.delegate respondsToSelector: @selector(returnSelectedSystem:)] )
     {
         [self.delegate returnSelectedSystem: selectedSystem];
         

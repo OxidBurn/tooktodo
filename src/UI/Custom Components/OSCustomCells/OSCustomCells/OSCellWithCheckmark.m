@@ -21,33 +21,12 @@
 
 @implementation OSCellWithCheckmark
 
-- (void) fillCellWithContent: (id) object
+- (void) fillCellWithContent: (NSString*) title
+           withSelectedState: (BOOL)      isHide
 {
-    if ([object isKindOfClass: [ProjectTaskStage class]])
-    {
-        ProjectTaskStage* stage =(ProjectTaskStage*)object;
-        
-        self.nameLabel.text = stage.title;
-        
-        self.checkmarkImg.hidden = stage.isSelected ? NO : YES;
-    }
+    self.nameLabel.text = title;
     
-    else if ([object isKindOfClass: [ProjectSystem class]])
-    {
-        ProjectSystem* system = (ProjectSystem*)object;
-        
-    
-        
-        self.nameLabel.text = system.title;
-        
-        
-        self.checkmarkImg.hidden = system.isSelected ? NO : YES;
-    }
-
-    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
-                                                    size: 15.0f];
-    self.nameLabel.font = customFont;
-
+    [self changeCheckmarkState: isHide];
 }
 
 - (void) changeCheckmarkState: (BOOL) state
