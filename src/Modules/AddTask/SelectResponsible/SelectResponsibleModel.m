@@ -325,11 +325,15 @@
             
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
                     
                     if ( [userInList.userId isEqual: selectedUser.userId] )
                     {
                         userInList.isResponsible = selectedUser.isResponsible;
+                        
+                        NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
+                        
+                        self.previousesSelectedIndexPath = temp;
                     }
                 }];
                 

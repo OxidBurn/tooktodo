@@ -87,7 +87,7 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
-
+    [self saveData];
 }
 
 - (IBAction) deselectAll: (UIButton*) sender
@@ -97,52 +97,7 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    switch ( self.controllerTypeSelection )
-    {
-        case SelectResponsibleController:
-        {
-            NSArray* selectedUsers = [self.viewModel returnSelectedResponsibleArray];
-
-            if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
-            {
-                [self.delegate returnSelectedResponsibleInfo: selectedUsers];
-                
-                [self.navigationController popViewControllerAnimated: YES];
-            }
-        }
-            break;
-            
-        case SelectClaimingController:
-        {
-            NSArray* selectedUsers = [self.viewModel returnSelectedClaimingArray];
-
-            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo:)] )
-            {
-                [self.delegate returnSelectedClaimingInfo: selectedUsers];
-            }
-            
-            [self.navigationController popViewControllerAnimated: YES];
-        }
-            break;
-            
-        case SelectObserversController:
-        {
-            NSArray* selectedUsers = [self.viewModel returnSelectedObserversArray];
-
-            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo:)] )
-            {
-                [self.delegate returnSelectedObserversInfo: selectedUsers];
-            }
-            
-            [self.navigationController popViewControllerAnimated: YES];
-        }
-            break;
-    
-        default:
-            break;
-    }
-    
-
+    [self saveData];
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
@@ -250,5 +205,52 @@
     }
 }
 
+- (void) saveData
+{
+    switch ( self.controllerTypeSelection )
+    {
+        case SelectResponsibleController:
+        {
+            NSArray* selectedUsers = [self.viewModel returnSelectedResponsibleArray];
+            
+            if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
+            {
+                [self.delegate returnSelectedResponsibleInfo: selectedUsers];
+                
+                [self.navigationController popViewControllerAnimated: YES];
+            }
+        }
+            break;
+            
+        case SelectClaimingController:
+        {
+            NSArray* selectedUsers = [self.viewModel returnSelectedClaimingArray];
+            
+            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo:)] )
+            {
+                [self.delegate returnSelectedClaimingInfo: selectedUsers];
+            }
+            
+            [self.navigationController popViewControllerAnimated: YES];
+        }
+            break;
+            
+        case SelectObserversController:
+        {
+            NSArray* selectedUsers = [self.viewModel returnSelectedObserversArray];
+            
+            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo:)] )
+            {
+                [self.delegate returnSelectedObserversInfo: selectedUsers];
+            }
+            
+            [self.navigationController popViewControllerAnimated: YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 @end

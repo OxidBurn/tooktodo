@@ -112,6 +112,11 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         _task = [NewTask new];
         
         _task.defaultResponsible = [self getCurrentUserInfoArray];
+        
+        if ( _task.responsible == nil )
+        {
+            _task.responsible = _task.defaultResponsible;
+        }
     }
     
     return _task;
@@ -567,6 +572,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     FilledTeamInfo* teamInfo = [FilledTeamInfo new];
     
     [teamInfo convertUserToTeamInfo: userInfo];
+    
+    teamInfo.isResponsible = YES;
     
 //    UserInfo* currentUser = [[DataManager sharedInstance] getCurrentUserInfo];
     
