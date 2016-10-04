@@ -54,6 +54,7 @@
 {
     OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
 
+    
     if (indexPath.row == 0)
     {
         cell.textLabel.text = @"Не выбрано";
