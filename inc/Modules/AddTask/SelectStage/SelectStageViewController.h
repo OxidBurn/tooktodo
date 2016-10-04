@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+//Classes
+#import "ProjectTaskStage+CoreDataClass.h"
+
+@protocol SelectStageViewControllerDelegate;
+
 @interface SelectStageViewController : UIViewController
+
+// Properties
+@property (nonatomic, weak) id<SelectStageViewControllerDelegate> delegate;
+
+//Methods
+- (void) fillSelectedStage: (ProjectTaskStage*) stage
+              withDelegate: (id <SelectStageViewControllerDelegate>) delegate;
+
+@end
+
+@protocol SelectStageViewControllerDelegate <NSObject>
+
+- (void) returnSelectedStage: (ProjectTaskStage*) stage;
 
 @end

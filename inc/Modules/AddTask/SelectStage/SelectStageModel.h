@@ -28,4 +28,8 @@
 
 - (ProjectTaskStage*) getSelectedStage;
 
+- (void) fillSelectedStage: (ProjectTaskStage*) stage;
+
+- (BOOL) isStageSelected: (ProjectTaskStage*) stage;
+
 @end

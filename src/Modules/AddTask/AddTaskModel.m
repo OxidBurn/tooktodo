@@ -28,6 +28,8 @@
 #import "RowContent.h"
 #import "NSDate+Helper.h"
 #import "FilledTeamInfo.h"
+#import "SelectSystemViewController.h"
+#import "SelectStageViewController.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -42,7 +44,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
 };
 
-@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate>
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -290,6 +292,17 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     return self.task.terms;
 }
 
+- (ProjectSystem*) returnSelectedSystem
+{
+    return self.task.system;
+}
+
+- (ProjectTaskStage*) returnSelectedStage
+{
+    return self.task.stage;
+}
+
+
 #pragma mark - OSSwitchTableCellDelegate methods -
 
 - (void) updateTaskHiddenProperty: (BOOL) isHidden
@@ -358,6 +371,65 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     }
 }
 
+
+#pragma mark - SelectSystemViewControllerDelegate methods -
+
+- (void) returnSelectedSystem: (ProjectSystem*) system
+{
+    self.task.system = system;
+    
+    RowContent* row = self.addTaskTableViewContent[2][3];
+    
+    if (system)
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = system.title;
+    }
+    else
+    {
+        row.detail = @"Не выбрано";
+    }
+    
+    
+    [self updateContentWithRow: row
+                     inSection: 2
+                         inRow: 3];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
+
+#pragma mark - SelectStagesViewControllerDelegate methods -
+
+- (void) returnSelectedStage: (ProjectTaskStage*) stage
+{
+    self.task.stage = stage;
+    
+    RowContent* row = self.addTaskTableViewContent[2][2];
+    
+    if (stage)
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = stage.title;
+    }
+    else
+    {
+        row.detail = @"Не выбрано";
+    }
+    
+    
+    [self updateContentWithRow: row
+                     inSection: 2
+                         inRow: 2];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
 
 #pragma mark - AddTaskTermsControllerDelegate methods -
 

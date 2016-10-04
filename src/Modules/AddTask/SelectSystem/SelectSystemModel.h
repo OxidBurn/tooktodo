@@ -20,12 +20,14 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
 
-- (BOOL) getStateForSystemAtIndex: (NSUInteger) index;
-
 - (void) updateLastIndexPath: (NSIndexPath*) indexPath;
 
 - (NSIndexPath*) getLastIndexPath;
 
 - (ProjectSystem*) getSelectedSystem;
+
+- (void) fillSelectedSystem: (ProjectSystem*) system;
+
+- (BOOL) systemsIsSelected: (ProjectSystem*) system;
 
 @end

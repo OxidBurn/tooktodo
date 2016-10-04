@@ -8,6 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+//Classes
+#import "ProjectSystem+CoreDataClass.h"
+
+@protocol SelectSystemViewControllerDelegate;
+
 @interface SelectSystemViewController : UIViewController
+
+// properties
+@property (weak, nonatomic) id <SelectSystemViewControllerDelegate> delegate;
+
+//methods
+- (void) fillSelectedSystem: (ProjectSystem*)                          system
+               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate;
+
+@end
+
+@protocol SelectSystemViewControllerDelegate <NSObject>
+
+- (void) returnSelectedSystem: (ProjectSystem*) system;
 
 @end

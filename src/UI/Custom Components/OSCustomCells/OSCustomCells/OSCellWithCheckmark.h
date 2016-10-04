@@ -12,7 +12,8 @@
 
 @interface OSCellWithCheckmark : UITableViewCell
 
-- (void) fillCellWithContent: (id) object;
+- (void) fillCellWithContent: (NSString*) title
+           withSelectedState: (BOOL)      isHide;
 
 - (void) changeCheckmarkState: (BOOL) state;
 

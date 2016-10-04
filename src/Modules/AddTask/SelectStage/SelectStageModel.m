@@ -39,33 +39,36 @@
 
 - (NSInteger) countOfRows
 {
-    return [self stagesArrayWithNoSelected].count;
+    return self.stagesArray.count + 1;
     
-//    return self.stagesArray.count;
 }
 
 - (NSArray*) getStages
 {
-    return [self stagesArrayWithNoSelected];
+    return [self stagesArray];
 }
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ( [indexPath isEqual: self.lastIndexPath] == NO )
+    if (indexPath.row == 0)
     {
-        [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            obj.isSelected = @(0);
-            
-            if ( idx == indexPath.row )
-            {
-                obj.isSelected = @(1);
-            }
-        }];
+        self.selectedStage.isSelected = @(NO);
+        self.selectedStage = nil;
+    }
+    
+    else
+    {
+        self.selectedStage = self.stagesArray[indexPath.row - 1];
         
-        self.selectedStage = self.stagesArray[indexPath.row];
+        if ([indexPath compare: self.lastIndexPath] != NSOrderedSame)
+        {
+            self.selectedStage.isSelected = @(YES);
+        }
+        else
+            self.selectedStage.isSelected = @(NO);
     }
 }
+
 
 - (BOOL) getStateForStageAtIndex: (NSUInteger) index
 {
@@ -89,13 +92,19 @@
     return self.lastIndexPath;
 }
 
-- (NSArray*) stagesArrayWithNoSelected
+- (void) fillSelectedStage: (ProjectTaskStage*) stage
 {
-    NSMutableArray* arr = self.stagesArray.mutableCopy;
-    [arr insertObject: @"Not selected"
-              atIndex: 0];
+    self.selectedStage = stage;
     
-    return arr.copy;
+    NSUInteger indexOfSelectedStage = [self.stagesArray indexOfObject: stage];
+    
+    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedStage + 1
+                                            inSection: 0];
+}
+
+- (BOOL) isStageSelected: (ProjectTaskStage*) stage
+{
+    return [self.selectedStage isEqual: stage];
 }
 
 @end

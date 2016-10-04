@@ -10,6 +10,8 @@
 
 // Classes
 #import "TermsData.h"
+#import "ProjectSystem+CoreDataClass.h"
+#import "ProjectTaskStage+CoreDataClass.h"
 
 @interface NewTask : NSObject
 
@@ -29,5 +31,9 @@
 @property (strong, nonatomic) NSArray*   observers;
 
 @property (strong, nonatomic) TermsData* terms;
+
+@property (nonatomic, strong) ProjectSystem* system;
+
+@property (nonatomic, strong) ProjectTaskStage* stage;
 
 @end

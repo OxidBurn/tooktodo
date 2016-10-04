@@ -42,6 +42,10 @@
 
 - (TermsData*) returnTerms;
 
+- (ProjectSystem*) returnSelectedSystem;
+
+- (ProjectTaskStage*) returnSelectedStage;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>

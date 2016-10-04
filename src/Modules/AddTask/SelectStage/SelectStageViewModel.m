@@ -33,18 +33,42 @@
     return _model;
 }
 
+
+#pragma mark - Public -
+
+- (ProjectTaskStage*) getSelectedStage
+{
+    return [self.model getSelectedStage];
+}
+
+- (void) fillSelectedStage: (ProjectTaskStage*) stage
+{
+    [self.model fillSelectedStage: stage];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    //UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"cellID"];
-    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier:@"cellID"];
+    OSCellWithCheckmark* cell = (OSCellWithCheckmark*)[tableView dequeueReusableCellWithIdentifier: @"cellID"];
     
     
-        ProjectTaskStage* stage = [self.model getStages][indexPath.row];
+    if (indexPath.row == 0)
+    {
+        cell.textLabel.text = @"Не выбрано";
+        UIFont* customFont  = [UIFont fontWithName: @"SFUIText-Regular"
+                                              size: 15.0f];
+        cell.textLabel.font = customFont;
+    }
     
-        [cell fillCellWithContent: stage];
+    else
+    {
+        ProjectTaskStage* stage = [self.model getStages][indexPath.row - 1];
+    
+        [cell fillCellWithContent: stage.title
+                withSelectedState: [self.model isStageSelected: stage]];
+    }
 
 
     return cell;
@@ -69,10 +93,10 @@
     
     OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    
+
     [cell changeCheckmarkState: YES];
     
-    if ( [self.model getLastIndexPath] )
+    if ( [self.model getLastIndexPath] && [self.model getLastIndexPath] != indexPath )
     {
         OSCellWithCheckmark* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model getLastIndexPath]];
         
@@ -80,7 +104,6 @@
     }
     
     [self.model updateLastIndexPath: indexPath];
-    
     
 }
 
