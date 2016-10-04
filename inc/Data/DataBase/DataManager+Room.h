@@ -39,4 +39,6 @@
 - (ProjectTaskMapContour*) persistMapContour: (TaskMapContourModel*)    info
                                    inContext: (NSManagedObjectContext*) context;
 
+- (NSArray*) getAllRoomsLevelOfSelectedProject;
+
 @end

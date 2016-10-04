@@ -15,6 +15,9 @@
 // Models
 #import "RoomLevelMapModel.h"
 
+// Classes
+#import "DataManager+ProjectInfo.h"
+
 @implementation DataManager (Room)
 
 - (void) persistTaskRoomLevel: (TaskRoomLevelModel*)     info
@@ -125,6 +128,13 @@
         [map addMapContourObject: mapContour];
         
     }];
+}
+
+- (NSArray*) getAllRoomsLevelOfSelectedProject
+{
+    ProjectInfo* selectedProject = [self getSelectedProjectInfo];
+    
+    return selectedProject.roomLevel.array;
 }
 
 @end
