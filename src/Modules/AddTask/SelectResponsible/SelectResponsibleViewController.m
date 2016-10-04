@@ -230,7 +230,7 @@
         {
             NSArray* selectedUsers = [self.viewModel returnSelectedClaimingArray];
             
-            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo:)] )
+            if ( [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo:)] )
             {
                 [self.delegate returnSelectedClaimingInfo: selectedUsers];
             }
@@ -243,7 +243,7 @@
         {
             NSArray* selectedUsers = [self.viewModel returnSelectedObserversArray];
             
-            if (selectedUsers && [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo:)] )
+            if ( [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo:)] )
             {
                 [self.delegate returnSelectedObserversInfo: selectedUsers];
             }
