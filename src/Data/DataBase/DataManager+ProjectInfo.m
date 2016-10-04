@@ -406,7 +406,7 @@
         
         ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
         
-        selectedProject.projectPermission = @(permission);
+        selectedProject.projectPermissiom = @(permission);
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -421,7 +421,7 @@
 {
     ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
     
-    return selectedProjectInfo.projectPermission.integerValue;
+    return selectedProjectInfo.projectPermissiom.integerValue;
 }
 
 @end

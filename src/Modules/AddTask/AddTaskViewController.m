@@ -192,9 +192,7 @@
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender
 {
-#warning  Make pop to previous vc
-    
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onDismiss: (UIBarButtonItem*) sender
