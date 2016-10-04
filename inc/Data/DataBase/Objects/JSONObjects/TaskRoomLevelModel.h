@@ -8,9 +8,14 @@
 
 #import <JSONModel/JSONModel.h>
 
+// Classes
+#import "RoomLevelMapModel.h"
+
 @interface TaskRoomLevelModel : JSONModel
 
 @property (assign, nonatomic) NSUInteger roomLevelID;
 @property (assign, nonatomic) NSUInteger level;
+@property (strong, nonatomic) NSArray* rooms;
+@property (strong, nonatomic) RoomLevelMapModel<Optional>* map;
 
 @end

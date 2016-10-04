@@ -2,19 +2,23 @@
 //  ProjectTaskRoomLevel+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "ProjectTaskRoomLevel+CoreDataProperties.h"
 
 @implementation ProjectTaskRoomLevel (CoreDataProperties)
 
-@dynamic roomLevel;
++ (NSFetchRequest<ProjectTaskRoomLevel *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskRoomLevel"];
+}
+
 @dynamic level;
+@dynamic roomLevel;
 @dynamic task;
+@dynamic rooms;
+@dynamic map;
+@dynamic project;
 
 @end

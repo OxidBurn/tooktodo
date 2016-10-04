@@ -2,7 +2,7 @@
 //  ProjectTaskRoom+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
 //
 
@@ -22,8 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *tasksWithoutMarkers;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, retain) ProjectTaskMapContour *mapContour;
-@property (nullable, nonatomic, retain) ProjectTask *task;
 @property (nullable, nonatomic, retain) ProjectTask *roomTask;
+@property (nullable, nonatomic, retain) ProjectTask *task;
+@property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
 
 @end
 
