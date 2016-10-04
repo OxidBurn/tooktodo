@@ -69,10 +69,7 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             section
                          withCompletion: (CompletionWithSuccess) completion
-{
-//    ProjectTaskStage* stage = self.projectsInfo[indexPath.section][contentKey][indexPath.row];
-
-    
+{    
     ProjectTaskStage* stage = (ProjectTaskStage*)self.currentProjectInfo.stage.allObjects[section];
     
     __weak typeof(self) blockSelf = self;

@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowPremisesSegueID,
     ShowSelectStageSegueID,
     ShowSelectSystemSegueID,
-    
+    ShowSelectRoomSegueID,
 };
 
 typedef NS_ENUM(NSUInteger, SectionsList) {
@@ -115,7 +115,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -125,7 +125,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
     }
     
     return _allSeguesInfoArray;
@@ -568,9 +568,10 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     RowContent* rowOne = [RowContent new];
     
-    rowOne.title  = @"Помещение";
-    rowOne.detail = @"Не реализовано";
-    rowOne.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowOne.title   = @"Помещение";
+    rowOne.detail  = @"Не реализовано";
+    rowOne.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowOne.segueId = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
     
     RowContent* rowTwo = [RowContent new];
     
