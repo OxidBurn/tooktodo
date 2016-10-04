@@ -30,5 +30,6 @@
 
 - (void) fillSelectedStage: (ProjectTaskStage*) stage;
 
-- (void) updateSelectedUsers;
+- (BOOL) isStageSelected: (ProjectTaskStage*) stage;
+
 @end

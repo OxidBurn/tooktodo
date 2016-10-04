@@ -67,9 +67,7 @@
         ProjectTaskStage* stage = [self.model getStages][indexPath.row - 1];
     
         [cell fillCellWithContent: stage.title
-                withSelectedState: stage.isSelected];
-        
-        [self.model updateSelectedUsers];
+                withSelectedState: [self.model isStageSelected: stage]];
     }
 
 

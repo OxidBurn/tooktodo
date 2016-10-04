@@ -50,34 +50,22 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ([indexPath isEqual: self.lastIndexPath])
+    if (indexPath.row == 0)
     {
-        self.lastIndexPath = nil;
+        self.selectedStage.isSelected = @(NO);
+        self.selectedStage = nil;
     }
-    
-    if ([indexPath compare: self.lastIndexPath] != NSOrderedSame)
-        
-        {
-            [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                obj.isSelected = @(0);
-                
-                if ( idx == indexPath.row )
-                {
-                    obj.isSelected = @(1);
-                }
-            }];
-            
-            if (indexPath.row != 0)
-            {
-               self.selectedStage = self.stagesArray[indexPath.row - 1];
-            }
-            
-        }
     
     else
     {
-       self.selectedStage = nil;
+        self.selectedStage = self.stagesArray[indexPath.row - 1];
+        
+        if ([indexPath compare: self.lastIndexPath] != NSOrderedSame)
+        {
+            self.selectedStage.isSelected = @(YES);
+        }
+        else
+            self.selectedStage.isSelected = @(NO);
     }
 }
 
@@ -107,20 +95,16 @@
 - (void) fillSelectedStage: (ProjectTaskStage*) stage
 {
     self.selectedStage = stage;
+    
+    NSUInteger indexOfSelectedStage = [self.stagesArray indexOfObject: stage];
+    
+    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedStage + 1
+                                            inSection: 0];
 }
 
-- (void) updateSelectedUsers
+- (BOOL) isStageSelected: (ProjectTaskStage*) stage
 {
-  
-            [self.stagesArray enumerateObjectsUsingBlock: ^(ProjectTaskStage* stageInList, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                stageInList.isSelected = self.selectedStage.isSelected;
-                        
-                        NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 2];
-                        
-                        self.lastIndexPath = temp;
-                    }
-                ];
-    
-        }
+    return [self.selectedStage isEqual: stage];
+}
+
 @end

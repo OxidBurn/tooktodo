@@ -76,7 +76,7 @@
 {
     ProjectTaskStage* selectedStage = [self.viewModel getSelectedStage];
     
-    if ( selectedStage && [self.delegate respondsToSelector: @selector(returnSelectedStage:)] )
+    if ( [self.delegate respondsToSelector: @selector(returnSelectedStage:)] )
     {
         [self.delegate returnSelectedStage: selectedStage];
         

@@ -50,7 +50,7 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ( indexPath.row == 0 && self.selectedSystem )
+    if ( indexPath.row == 0 )
     {
         self.selectedSystem.isSelected = @(NO);
         self.selectedSystem            = nil;

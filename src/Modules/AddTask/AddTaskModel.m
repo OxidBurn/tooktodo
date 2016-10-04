@@ -406,9 +406,13 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     if (stage)
     {
         row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = stage.title;
+    }
+    else
+    {
+        row.detail = @"Не выбрано";
     }
     
-    row.detail = stage.title;
     
     [self updateContentWithRow: row
                      inSection: 2
