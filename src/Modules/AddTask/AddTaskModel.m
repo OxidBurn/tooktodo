@@ -44,6 +44,40 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
 };
 
+typedef NS_ENUM(NSUInteger, SectionsList) {
+
+    SectionOne,
+    SectionTwo,
+    SectionThree,
+    
+};
+typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
+    
+    TaskNameRow,
+    TaskDescriptionRow,
+    TaskHiddenStatusRow,
+    TaskResponsibleRow,
+    TaskClaimingRow,
+    TaskObserversRow
+    
+};
+
+typedef NS_ENUM(NSUInteger, RowsTypeSectionTwo) {
+
+    TaskTermsRow,
+};
+
+typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
+
+    TaskPremisesRow,
+    TaskTasksOnPlanRow,
+    TaskStageRow,
+    TaskSystemRow,
+    TaskTypeRow,
+    TaskDocumentsRow,
+    
+};
+
 @interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate>
 
 // properties
@@ -253,13 +287,13 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
         newTaskName = @"Название задачи";
     }
     
-    RowContent* newRow = self.addTaskTableViewContent[0][0];
+    RowContent* newRow = self.addTaskTableViewContent[SectionOne][TaskNameRow];
     
     newRow.title  = newTaskName;
     
     [self updateContentWithRow: newRow
-                     inSection: 0
-                         inRow: 0];
+                     inSection: SectionOne
+                         inRow: TaskNameRow];
 }
 
 - (NewTask*) returnNewTask
@@ -309,11 +343,11 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     self.task.isHiddenTask = isHidden;
     
-    RowContent* newRow = self.addTaskTableViewContent[0][2];
+    RowContent* newRow = self.addTaskTableViewContent[SectionOne][TaskHiddenStatusRow];
     
     newRow.isHidden = isHidden;
     
-    [self updateContentWithRow: newRow inSection: 0 inRow: 2];
+    [self updateContentWithRow: newRow inSection: SectionOne inRow: TaskHiddenStatusRow];
 }
 
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
@@ -322,18 +356,18 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     self.task.responsible = selectedUsersArray;
     
-    RowContent* row = self.addTaskTableViewContent[0][3];
+    RowContent* row = self.addTaskTableViewContent[SectionOne][TaskResponsibleRow];
     
     row.membersArray = selectedUsersArray;
     
-    [self updateContentWithRow: row inSection: 0 inRow: 3];
+    [self updateContentWithRow: row inSection: SectionOne inRow: TaskResponsibleRow];
 }
 
 - (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
 {
     self.task.claiming = selectedClaiming;
     
-    RowContent* row = self.addTaskTableViewContent[0][4];
+    RowContent* row = self.addTaskTableViewContent[SectionOne][TaskClaimingRow];
     
     if ( selectedClaiming )
     {
@@ -347,7 +381,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     if ( selectedClaiming.count == 0 )
         row.detail = @"Не выбраны";
     
-    [self updateContentWithRow: row inSection: 0 inRow: 4];
+    [self updateContentWithRow: row inSection: SectionOne inRow: TaskClaimingRow];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
     {
@@ -359,13 +393,13 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     self.task.observers = selectedObservers;
     
-    RowContent* row = self.addTaskTableViewContent[0][5];
+    RowContent* row = self.addTaskTableViewContent[SectionOne][TaskObserversRow];
     
     row.membersArray = selectedObservers;
     
     row.cellId = [self determineCellIdForContent: selectedObservers];
     
-    [self updateContentWithRow: row inSection: 0 inRow: 5];
+    [self updateContentWithRow: row inSection: SectionOne inRow: TaskObserversRow];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
     {
@@ -380,7 +414,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     self.task.system = system;
     
-    RowContent* row = self.addTaskTableViewContent[2][3];
+    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskSystemRow];
     
     if (system)
     {
@@ -394,8 +428,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     
     [self updateContentWithRow: row
-                     inSection: 2
-                         inRow: 3];
+                     inSection: SectionThree
+                         inRow: TaskSystemRow];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
     {
@@ -410,7 +444,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
 {
     self.task.stage = stage;
     
-    RowContent* row = self.addTaskTableViewContent[2][2];
+    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskStageRow];
     
     if (stage)
     {
@@ -424,8 +458,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     
     [self updateContentWithRow: row
-                     inSection: 2
-                         inRow: 2];
+                     inSection: SectionThree
+                         inRow: TaskStageRow];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
     {
@@ -441,7 +475,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     self.task.terms.endDate    = terms.endDate;
     self.task.terms.duration   = terms.duration;
     
-    RowContent* row = self.addTaskTableViewContent[1][0];
+    RowContent* row = self.addTaskTableViewContent[SectionTwo][TaskTermsRow];
     
     row.detail = [self createTermsLabelTextForStartDate: terms.startDate
                                          withFinishDate: terms.endDate
@@ -591,8 +625,8 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     }
     
     [self updateContentWithRow: newRow
-                     inSection: 0
-                         inRow: 1];
+                     inSection: SectionOne
+                         inRow: TaskDescriptionRow];
 }
 
 #pragma mark - Helpers -
