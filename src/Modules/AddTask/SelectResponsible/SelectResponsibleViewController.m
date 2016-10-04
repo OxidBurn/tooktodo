@@ -191,6 +191,10 @@
             [self.saveBtn setTitleColor: [UIColor blackColor]
                                forState: UIControlStateNormal];
             
+            [self.saveBtn removeTarget: self
+                                action: @selector( onSaveBtn: )
+                      forControlEvents: UIControlEventTouchUpInside];
+            
             [self.saveBtn addTarget: self
                              action: @selector( deselectAll: )
                    forControlEvents: UIControlEventTouchUpInside];
