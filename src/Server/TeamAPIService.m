@@ -45,6 +45,27 @@ static bool isFirstAccess = YES;
     return [[[requestManager rac_POST: inviteURL parameters: parameter] logError] replayLazily];
 }
 
+- (RACSignal*) setUserAsAdmin: (NSString*) url
+{
+    AFHTTPRequestOperationManager* manager = [self getRawManager];
+    
+    return [[[manager rac_POST: url parameters: nil] logError] replayLazily];
+}
+
+- (RACSignal*) removeAdminRightFromUser: (NSString*) url
+{
+    AFHTTPRequestOperationManager* manager = [self getRawManager];
+    
+    return [[[manager rac_DELETE: url parameters: nil] logError] replayLazily];
+}
+
+- (RACSignal*) updateUserRoleType: (NSDictionary*) parameter
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_POST: @"" parameters: parameter] logError] replayLazily];
+}
+
 #pragma mark - Life Cycle -
 
 + (instancetype) allocWithZone: (NSZone*) zone

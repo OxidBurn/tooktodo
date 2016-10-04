@@ -2,18 +2,19 @@
 //  TeamProfileInfoViewModel.h
 //  TookTODO
 //
-//  Created by Глеб on 06.09.16.
+//  Created by Nikolay Chaban on 06.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+// Classes
 #import "RolesViewController.h"
-#import "OSAlertDesignateAdminController.h"
+#import "OSAlertControllerProtocol.h"
 
 @protocol TeamProfileViewModelDelegate;
 
-@interface TeamProfileInfoViewModel : NSObject <RolesViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, OSAlertDesignateAdminControllerDelegate>
+@interface TeamProfileInfoViewModel : NSObject <RolesViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, OSAlertControllerProtocol>
 
 @property (nonatomic, weak) id<TeamProfileViewModelDelegate> delegate;
 
@@ -31,10 +32,8 @@
 
 - (void) showControllerWithIdentifier: (NSString*) segueID;
 
-//- (void) showDesignationAlert: (NSString*) userName;
-
 - (void) showDesignationAlert: (NSString*) userName
-                   withAvatar: (UIImage*)  avatar
+                   withAvatar: (NSString*) avatarPath
                   withMessage: (NSString*) message;
 
 - (void) showEmailComposerForMail: (NSString*) email;

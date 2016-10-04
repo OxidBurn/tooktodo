@@ -2,29 +2,22 @@
 //  OSAlertDesignateAdminController.h
 //  TookTODO
 //
-//  Created by Lera on 08.09.16.
+//  Created by Nikolay Chaban on 08.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import "OSAlertViewController.h"
 
-@protocol OSAlertDesignateAdminControllerDelegate;
+// Classes
+#import "OSAlertControllerProtocol.h"
 
 @interface OSAlertDesignateAdminController : OSAlertViewController
 
-@property (nonatomic, weak) id <OSAlertDesignateAdminControllerDelegate> delegate;
+@property (nonatomic, weak) id <OSAlertControllerProtocol> delegate;
 
-- (void) setImage: (UIImage*)  image
+- (void) setImage: (NSString*) imagePath
          withName: (NSString*) name
       withMessage: (NSString*) message;
-
-@end
-
-@protocol OSAlertDesignateAdminControllerDelegate <NSObject>
-
-- (void) performCancelAction;
-
-- (void) performReadyAction;
 
 @end
 

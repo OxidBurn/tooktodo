@@ -426,13 +426,13 @@ static NSDateFormatter* defaultDateFormatter = nil;
         searchedObjectSufix = @"a";
     }
     else
-        if ( count > 4 )
+        if ( count > 4 || count == 0 )
         {
             foundWordSufix      = @"o";
             searchedObjectSufix = @"ов";
         }
     
-    NSString* fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, count, value, searchedObjectSufix];
+    NSString* fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
     
     return fullSearchingPhrase;
 }

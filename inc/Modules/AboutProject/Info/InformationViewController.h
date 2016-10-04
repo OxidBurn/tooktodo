@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InformationViewController : UIViewController
+// Classes
+#import "BaseMainViewController.h"
+
+@interface InformationViewController : BaseMainViewController
 
 @end

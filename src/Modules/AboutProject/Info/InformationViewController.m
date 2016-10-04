@@ -7,7 +7,12 @@
 //
 
 #import "InformationViewController.h"
+
+// Classes
 #import "InformationViewModel.h"
+
+// Categories
+#import "UIViewController+Focus.h"
 
 @interface InformationViewController ()
 
@@ -55,5 +60,14 @@
     [self.informationTableView reloadData];
 }
 
+
+#pragma mark - Internal methods -
+
+- (void) needToUpdateContent
+{
+    [self.viewModel updateProjectInfo];
+    
+    [self.informationTableView reloadData];
+}
 
 @end

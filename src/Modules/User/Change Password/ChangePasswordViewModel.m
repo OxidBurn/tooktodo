@@ -60,7 +60,7 @@
                                                               {
                                                                   self.isCorrectEnteredInfo = NO;
                                                                   
-                                                                  return @"Введите пожалуйста новые данные.";
+                                                                  return @"Пожалуйста, введите новые данные.";
                                                               }
                                                                   else
                                                                  if ( [self.model isCorrectOldPassword: oldPass] == NO )
@@ -81,7 +81,7 @@
                                                                      {
                                                                          self.isCorrectEnteredInfo = NO;
                                                                          
-                                                                         return @"Новый данные не совпадают.";
+                                                                         return @"Новые данные не совпадают.";
                                                                      }
                                                                       else
                                                                           if ( [newPass isEqualToString: oldPass] )

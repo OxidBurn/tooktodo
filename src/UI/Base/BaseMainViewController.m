@@ -49,7 +49,7 @@ static CGFloat const yPadding                   = 20.0f;
         [self.view addGestureRecognizer: self.slidingViewController.panGesture];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
     
@@ -70,6 +70,13 @@ static CGFloat const yPadding                   = 20.0f;
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Internal methods -
+
+- (void) willGetFocus
+{
+    
+}
 
 
 #pragma mark - ECSlidingViewControllerDelegate -

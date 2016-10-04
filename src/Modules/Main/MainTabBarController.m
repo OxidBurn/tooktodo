@@ -34,11 +34,6 @@
     self.mainTabBar.taskDelegate = self;
 }
 
-- (void) viewWillAppear: (BOOL) animated
-{
-    [super viewWillAppear: animated];
-}
-
 - (void) viewDidAppear: (BOOL) animated
 {
     [super viewDidAppear: animated];
@@ -128,6 +123,23 @@
 {
     [self performSegueWithIdentifier: segueID
                               sender: self];
+}
+
+- (void) willGetFocus
+{
+    UINavigationController* controller = (UINavigationController*)self.containerController;
+    
+    if ( [controller.visibleViewController respondsToSelector: @selector(willGetFocus)] )
+        [controller.visibleViewController willGetFocus];
+}
+
+- (void) needToUpdateContent
+{
+    UINavigationController* controller = (UINavigationController*)self.containerController;
+    
+    if ( [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
+        [controller.visibleViewController needToUpdateContent];
+
 }
 
 #pragma mark - CustomTabBarDelegate methods -

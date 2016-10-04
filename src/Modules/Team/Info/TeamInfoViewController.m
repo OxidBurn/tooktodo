@@ -53,10 +53,6 @@
     // setup delegate
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
-    // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
-                                               withSubTitle: [self.viewModel getProjectName]];
-    
     // Binding controller UI
     [self bindingUI];
 }
@@ -68,16 +64,7 @@
     // Update team info when appeared screen
     // made for immediate update team info after
     // switching between projects or adding new member to the team
-    __weak typeof(self) blockSelf = self;
-    
-    [self.viewModel updateInfoWithCompletion: ^(BOOL isSuccess) {
-       
-        if ( isSuccess )
-        {
-            [blockSelf.teamInfoTableView reloadData];
-        }
-        
-    }];
+    [self updateTeamInfo];
     
     // Hide search bar on show
     [self setupTableView];
@@ -115,6 +102,24 @@
 
 #pragma mark - Internal methods -
 
+- (void) updateTeamInfo
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel updateInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        if ( isSuccess )
+        {
+            [blockSelf.teamInfoTableView reloadData];
+        }
+        
+    }];
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"КОМАНДА"
+                                               withSubTitle: [self.viewModel getProjectName]];
+}
+
 - (void) setupTableView
 {
     [self.teamInfoTableView setContentOffset: CGPointMake(0, self.searchBar.height)];
@@ -148,6 +153,11 @@
 }
 
 #pragma mark - Actions -
+
+- (void) needToUpdateContent
+{
+    [self updateTeamInfo];
+}
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {

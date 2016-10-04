@@ -25,4 +25,10 @@
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
+- (void) willGetFocus
+{
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+}
+
 @end

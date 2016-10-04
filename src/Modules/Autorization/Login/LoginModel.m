@@ -77,6 +77,9 @@
 {
     @weakify(self)
     
+    password = [password stringByReplacingOccurrencesOfString: @"\n"
+                                                   withString: @""];
+    
     RACSignal* sendRequestSignal = [RACSignal createSignal: ^RACDisposable*(id<RACSubscriber> subscriber) {
         
         RACSignal* requestSignal = [[LoginAPIService sharedInstance] sendRequestWithCredentials: email

@@ -20,6 +20,14 @@
 
 #pragma mark - Life cycle -
 
+- (void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    [self.termsText setContentOffset: CGPointZero
+                            animated: NO];
+}
+
 - (void) loadView
 {
     [super loadView];
@@ -29,12 +37,6 @@
     [self setupTermsTextView];
 }
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self.termsText setContentOffset:CGPointZero animated:NO];
-}
 #pragma mark - Memory managment -
 
 - (void) didReceiveMemoryWarning

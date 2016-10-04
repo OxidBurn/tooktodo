@@ -47,6 +47,12 @@
 
 #pragma mark - Actions -
 
+- (void) willGetFocus
+{
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ДОКУМЕНТЫ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+}
+
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )

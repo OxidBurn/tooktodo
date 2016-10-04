@@ -32,6 +32,9 @@
 @property (assign, nonatomic) BOOL isResponsible;
 @property (assign, nonatomic) BOOL isClaiming;
 @property (assign, nonatomic) BOOL isObserver;
+@property (strong, nonatomic) NSNumber* roleID;
+@property (strong, nonatomic) NSNumber* memberID;
+@property (strong, nonatomic) NSNumber* projectID;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 

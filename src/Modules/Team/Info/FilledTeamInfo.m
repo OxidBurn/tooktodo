@@ -2,13 +2,16 @@
 //  FilledTeamInfo.m
 //  TookTODO
 //
-//  Created by Lera on 19.09.16.
+//  Created by Nikolay Chaban on 19.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import "FilledTeamInfo.h"
+
+// Classes
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 @implementation FilledTeamInfo
 
@@ -32,7 +35,7 @@
         self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
-        
+        self.memberID               = assignee.assigneeID;
     }
     else if (assignment.invite != nil)
     {
@@ -53,25 +56,11 @@
         self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
+        self.memberID               = invite.inviteID;
     }
     
-    else
-    {
-#warning <#message#>
-        self.userId                 = @(-1);
-        self.firstName              = @"";
-        self.lastName               = @"";
-        self.fullname               = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
-        self.email                  = @"";
-        self.phoneNumber            = @"";
-        self.additionalPhoneNumber  = @"";
-        self.role                   = @"";
-        self.avatarSrc              = @"";
-        self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
-        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
-        self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
-        self.isObserver             = self.isObserver ? self.isObserver : NO;
-    }
+    self.roleID    = assignment.roleID;
+    self.projectID = assignment.project.projectID;
 }
 
 - (void) convertUserToTeamInfo: (UserInfo*) user

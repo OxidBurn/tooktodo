@@ -16,7 +16,7 @@
 #import "RecoveryViewController.h"
 #import "OSSecureTextField.h"
 
-@interface LoginViewController () <RecoveryViewControllerDeledate>
+@interface LoginViewController () <RecoveryViewControllerDeledate, UITextFieldDelegate>
 
 // properties
 
@@ -149,8 +149,8 @@
     self.emailTextField.text = [self.viewModel getStoredEmailValue];
     
     //hidden alerts by default
-    self.alertView.hidden        = YES;
-    self.contentAlertView.hidden = YES;
+    self.alertView.hidden           = YES;
+    self.contentAlertView.hidden    = YES;
     
     [self handleModelOperations];
 }
@@ -376,6 +376,16 @@
     
     [self animateLoginAlert];
 
+}
+
+
+#pragma mark - Text field delegate -
+
+- (BOOL) textFieldShouldReturn: (UITextField*) textField
+{
+    [textField resignFirstResponder];
+    
+    return NO;
 }
 
 @end

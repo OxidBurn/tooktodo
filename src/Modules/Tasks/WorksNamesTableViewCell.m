@@ -37,8 +37,9 @@
 {
     [super awakeFromNib];
     
-    self.unreadTasksLabel.layer.cornerRadius = 8.0f;
-    self.cellType                            = AllTasksStageCellType;
+    [self setupLabels];
+    
+    self.cellType = AllTasksStageCellType;
 }
 
 
@@ -48,15 +49,16 @@
 {
     ProjectTaskStage* stageInfo = (ProjectTaskStage*) info;
     
-    NSString* countOfTasks         = [NSString stringWithFormat: @"%ld", stageInfo.tasks.count];
+    NSString* countOfTasks         = [NSString stringWithFormat: @"%lu", stageInfo.tasks.count];
     NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: stageInfo.tasks.allObjects];
     
-    self.titleWorkNamesLabel.text = stageInfo.title;
-    self.amountTasksLabel.text    = countOfTasks;
+    self.titleWorkNamesLabel.text           = stageInfo.title;
+    self.amountTasksLabel.text              = countOfTasks;
+    
     
     if ( countOfExpiredTasks > 0 )
     {
-        NSString* expiredCountString  = [NSString stringWithFormat: @"%ld", countOfExpiredTasks];
+        NSString* expiredCountString  = [NSString stringWithFormat: @"%ld", (unsigned long)countOfExpiredTasks];
         self.unreadTasksLabel.text    = expiredCountString;
         self.unreadTasksLabel.hidden  = NO;
     }
@@ -97,13 +99,23 @@
     if ( isExpanded )
     {
         expandedStateImage = [UIImage imageNamed: @"ArrowHorizontaly"];
+        
     }
     else
     {
         expandedStateImage = [UIImage imageNamed: @"ArrowVertical"];
+        
     }
     
     self.arrowImage.image = expandedStateImage;
 }
 
+- (void) setupLabels
+{
+    self.unreadTasksLabel.layer.cornerRadius = 8.0f;
+    self.unreadTasksLabel.clipsToBounds      = YES;
+    self.amountTasksLabel.backgroundColor   = [UIColor clearColor];
+    self.amountTasksLabel.layer.borderColor = [UIColor blackColor].CGColor;
+    self.amountTasksLabel.layer.borderWidth = 1;
+}
 @end

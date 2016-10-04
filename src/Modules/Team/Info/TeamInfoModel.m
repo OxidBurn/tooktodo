@@ -160,8 +160,15 @@
 
 - (void) markItemAsSelectedAtIndex: (NSUInteger) index
 {
+    ProjectRoleAssignments* roleAssignments = nil;
+    FilledTeamInfo* memberInfo              = [self teamMemberByIndex: index];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roleID == %@", memberInfo.roleID];
+    
+    roleAssignments = [[self.rawTeamListData filteredArrayUsingPredicate: predicate] firstObject];
+    
     [DataManagerShared changeItemSelectedState: YES
-                                       forItem: [self.rawTeamListData objectAtIndex: index]];
+                                       forItem: roleAssignments];
     
 }
 
@@ -170,14 +177,14 @@
 
 - (void) stopFiltering
 {
-    self.filteringList   = nil;
-    self.memberListState = TableNormalState;
+    self.filteringList    = nil;
+    self.memberListState  = TableNormalState;
 }
 
 - (void) startFiltering
 {
-    self.memberListState = TableFilteringState;
-    self.filteringList   = self.teamList.copy;
+    self.memberListState  = TableFilteringState;
+    self.filteringList    = self.teamList.copy;
 }
 
 - (BOOL) isEnableFiltering

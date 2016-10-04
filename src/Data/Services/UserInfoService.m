@@ -77,7 +77,9 @@ static bool isFirstAccess = YES;
                withNewInfo: (UpdatedUserInfo*)        newInfo
             withCompletion: (void(^)(BOOL isSuccess)) completion
 {
-    
+    [DataManagerShared updateUserInfo: newInfo
+                              forUser: user
+                       withCompletion: nil];
     
     // Update info on server
     NSDictionary* requestParameters = @{@"firstName"             : newInfo.name,

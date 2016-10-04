@@ -25,8 +25,11 @@
 @property (weak, nonatomic) IBOutlet UILabel                * fullNameLabel;
 @property (nonatomic, weak) IBOutlet UITableView            * phoneInfoTable;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint     * phoneTableHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint     * phonesTableHeightConstraint;
 @property (nonatomic, weak) IBOutlet UIButton               * showUserTerms;
 @property (nonatomic, weak) IBOutlet UIButton               * userLogOut;
+@property (weak, nonatomic) IBOutlet UIButton* onChangePhoto;
+
 @property (nonatomic, weak) id<ProjectsControllersDelegate> delegate;
 
 @property (strong, nonatomic) UserInfoViewModel* viewModel;
@@ -131,6 +134,41 @@
     [self pickPictureFromLibOrCamera];
 }
 
+#pragma mark - Internal methods -
+
+- (void) updateInfo
+{
+    // Added checking if avatar image data is empty and not loaded yet
+    // can happened when user make first autorization
+    
+    @weakify(self)
+    
+    [[self.viewModel updateInfo] subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        UIImage* userAvatar = [self.viewModel userAvatar];
+        
+        if ( userAvatar )
+        {
+            self.avatarImageView.image  = userAvatar;
+        }
+        else
+        {
+            [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
+        }
+        
+        self.fullNameLabel.text                   = [self.viewModel fullUserName];
+        self.phoneInfoTable.dataSource            = self.viewModel;
+        self.phoneTableHeightConstraint.constant  = [self.viewModel contactTableHeight];
+        self.phonesTableHeightConstraint.constant = [self.viewModel contactTableHeight];
+        
+        [self.phoneInfoTable reloadData];
+        
+    }];
+}
+
+
 #pragma mark - RSKImageCropperDataSourse methods-
 
 
@@ -222,8 +260,7 @@
 - (void) imageCropViewController: (RSKImageCropViewController*) controller
                    willCropImage: (UIImage*)                    originalImage
 {
-    // Use when `applyMaskToCroppedImage` set to YES.
-    [SVProgressHUD show];
+    
 }
 
 
@@ -247,39 +284,6 @@
 {
     [picker dismissViewControllerAnimated: YES
                                completion: nil];
-}
-
-#pragma mark - Internal methods -
-
-- (void) updateInfo
-{
-    // Added checking if avatar image data is empty and not loaded yet
-    // can happened when user make first autorization
-    
-    @weakify(self)
-    
-    [[self.viewModel updateInfo] subscribeNext: ^(id x) {
-        
-        @strongify(self)
-        
-        UIImage* userAvatar = [self.viewModel userAvatar];
-        
-        if ( userAvatar )
-        {
-            self.avatarImageView.image  = userAvatar;
-        }
-        else
-        {
-            [self.avatarImageView setImageWithURL: [self.viewModel getUserAvatarURL]];
-        }
-        
-        self.fullNameLabel.text                  = [self.viewModel fullUserName];
-        self.phoneInfoTable.dataSource           = self.viewModel;
-        self.phoneTableHeightConstraint.constant = [self.viewModel contactTableHeight];
-        
-        [self.phoneInfoTable reloadData];
-        
-    }];
 }
 
 //photo editing methods
@@ -309,12 +313,22 @@
                                                style: UIAlertActionStyleCancel
                                              handler: nil]];
     
-    [self presentViewController: alert
-                       animated: YES
-                     completion: ^{
-                         
-                         
-                     }];
+    if ( IS_PHONE )
+    {
+        [self presentViewController: alert
+                           animated: YES
+                         completion: nil];
+    }
+    else
+    {
+        alert.modalPresentationStyle                   = UIModalPresentationPopover;
+        alert.popoverPresentationController.sourceView = self.view;
+        alert.popoverPresentationController.sourceRect = self.onChangePhoto.frame;
+        
+        [self presentViewController: alert
+                           animated: YES
+                         completion: nil];
+    }
     
 }
 

@@ -42,6 +42,11 @@
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+}
+
 
 #pragma mark - Memory managment -
 
@@ -53,6 +58,12 @@
 
 
 #pragma mark - Action -
+
+- (void) needToUpdateContent
+{
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЛЕНТА"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+}
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {

@@ -68,6 +68,11 @@
     [super setSelected: selected
               animated: animated];
     
+    [self updateValues: selected];
+}
+
+- (void) updateValues: (BOOL) selected
+{
     [self updateTitle: selected];
     
     [self updateBorderColor: selected];

@@ -2,7 +2,7 @@
 //  TeamProfileInfoViewModel.m
 //  TookTODO
 //
-//  Created by Глеб on 06.09.16.
+//  Created by Nikolay Chaban on 06.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -292,40 +292,35 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
 }
 
 
-#pragma mark - DesignateAdminControllerDelegate  methods-
+#pragma mark - Alert view protocol methods -
 
-
-- (void) performReadyAction
+- (void) didDoneAlertAction
 {
     NSInteger currentPermission = [self.model getPermissions].integerValue;
     
     switch (currentPermission)
     {
         case Admin:
+        {
             [self.model updateMemberPermission: Participant];
+         
             if (self.reloadTableView)
                 self.reloadTableView();
+        }
             break;
             
         case Participant:
+        {
             [self.model updateMemberPermission: Admin];
+            
             if (self.reloadTableView)
                 self.reloadTableView();
+        }
             break;
             
         default:
             break;
     }
-    
-    
-    
-
 }
-
-- (void) performCancelAction
-{
-    NSLog(@"Action cancel performed");
-}
-
 
 @end

@@ -14,6 +14,9 @@
 // Classes
 #import "SystemsInfoViewModel.h"
 
+// Categories
+#import "UIViewController+Focus.h"
+
 @interface SystemInfoViewController ()
 
 // properties
@@ -79,6 +82,11 @@
 - (void) bindingUI
 {
     self.systemInfoTableView.dataSource = self.viewModel;
+}
+
+- (void) needToUpdateContent
+{
+    [self updateInfo];
 }
 
 - (void) updateInfo

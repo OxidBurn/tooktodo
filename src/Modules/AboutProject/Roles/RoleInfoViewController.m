@@ -14,6 +14,9 @@
 // Classes
 #import "RoleInfoViewModel.h"
 
+// Categories
+#import "UIViewController+Focus.h"
+
 @interface RoleInfoViewController ()
 
 //properties
@@ -77,6 +80,11 @@
 {
     self.roleInfoTableView.dataSource = self.viewModel;
     self.roleInfoTableView.delegate   = self.viewModel;
+}
+
+- (void) needToUpdateContent
+{
+    [self updateInfo];
 }
 
 - (void) updateInfo

@@ -68,7 +68,7 @@
         {
             view = [[UIImageView alloc] initWithFrame: CGRectZero];
             
-            view.contentMode     = UIViewContentModeScaleAspectFill;
+            view.contentMode     = UIViewContentModeScaleAspectFit;
             view.clipsToBounds   = YES;
             view.backgroundColor = [UIColor colorWithRed: 0.22f green: 0.7f blue: 0.72 alpha: 1];
         }

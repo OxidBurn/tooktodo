@@ -1,25 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xN9-5S-dy6">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xN9-5S-dy6">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Lato-Regular.ttf">
+        <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
-        </mutableArray>
-        <mutableArray key="Lato-Semibold.ttf">
+        </array>
+        <array key="Lato-Semibold.ttf">
             <string>Lato-Semibold</string>
-            <string>Lato-Semibold</string>
-            <string>Lato-Semibold</string>
-        </mutableArray>
-        <mutableArray key="SF-UI-Text-Regular.otf">
+        </array>
+        <array key="SF-UI-Text-Regular.otf">
             <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-            <string>SFUIText-Regular</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Login View Controller-->
@@ -31,31 +26,24 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-Bj-zEe">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="j0z-Bj-zEe">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="j9L-CD-oQD" appends="YES" id="J8v-ij-sKJ"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eja-8Z-YSM">
-                                <rect key="frame" x="242" y="476" width="116" height="44"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eja-8Z-YSM">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gNU-sa-WFn"/>
                                     <constraint firstAttribute="width" constant="116" id="lnv-Tb-Qp2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                 <state key="normal" title="Забыли пароль?">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -70,10 +58,8 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggQ-XL-s97">
-                                <rect key="frame" x="20" y="252" width="560" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggQ-XL-s97">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Sz8-cr-rUv"/>
                                 </constraints>
@@ -88,10 +74,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UXM-SZ-wsA">
-                                <rect key="frame" x="20" y="310" width="560" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXM-SZ-wsA">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="rJA-GU-z1n"/>
                                 </constraints>
@@ -106,10 +90,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
-                                <rect key="frame" x="35" y="252" width="530" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Электронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-2C-1SE">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="1Z7-Qu-FrT"/>
                                     <constraint firstAttribute="height" constant="50" id="h65-7e-Uwb"/>
@@ -133,10 +115,8 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-ZE-DM7" customClass="OSSecureTextField">
-                                <rect key="frame" x="35" y="310" width="530" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Пароль" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="T3x-ZE-DM7" customClass="OSSecureTextField">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LL5-S5-Qh1"/>
                                 </constraints>
@@ -152,10 +132,11 @@
                                         <include reference="LL5-S5-Qh1"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Qku-87-mtQ"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSh-QY-v1p">
-                                <rect key="frame" x="521" y="310" width="44" height="50"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSh-QY-v1p">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="1QC-vk-pwZ"/>
                                     <constraint firstAttribute="height" constant="50" id="qDH-Hc-oEF"/>
@@ -177,14 +158,12 @@
                                     <action selector="onToggleShowPass:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HTk-Lc-1je"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZG-8u-Ou2" userLabel="Email Warning Lable">
-                                <rect key="frame" x="20" y="305" width="560" height="12"/>
-                                <animations/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ZG-8u-Ou2" userLabel="Email Warning Lable">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="0nd-xS-ff5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -197,14 +176,12 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcg-AR-M2X" userLabel="Password Warning Label">
-                                <rect key="frame" x="20" y="360" width="560" height="12"/>
-                                <animations/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gcg-AR-M2X" userLabel="Password Warning Label">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="daR-EO-dTV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -217,16 +194,14 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-TQ-dpz">
-                                <rect key="frame" x="20" y="372" width="560" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-TQ-dpz">
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="HXX-fI-5bc"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <state key="normal" title="ВОЙТИ">
-                                    <color key="titleColor" red="0.16078431372549018" green="0.5490196078431373" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.16078431372549018" green="0.5490196078431373" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -239,9 +214,7 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lzf-d1-pin">
-                                <rect key="frame" x="215" y="65" width="171" height="132"/>
-                                <animations/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lzf-d1-pin">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="132" id="Gna-Sy-hbN"/>
@@ -259,16 +232,11 @@
                                         <include reference="a9n-YT-6xO"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="102" y="71" width="171" height="132"/>
-                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="QPs-cJ-EJN" appends="YES" id="pZW-pc-kxJ"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-YY-eEk">
-                                <rect key="frame" x="179" y="544" width="243" height="28"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-YY-eEk">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="hHd-Rc-9eg"/>
                                     <constraint firstAttribute="height" constant="28" id="lu1-PE-7tS"/>
@@ -294,15 +262,12 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db6-ta-18Y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db6-ta-18Y">
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRM-VW-3M4">
-                                        <rect key="frame" x="143" y="0.0" width="282" height="50"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRM-VW-3M4">
+                                        <frame key="frameInset" minX="143" width="282" height="50"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="errorLoginIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Yq5-88-gmN">
-                                                <rect key="frame" x="0.0" y="13" width="24" height="24"/>
-                                                <animations/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="errorLoginIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Yq5-88-gmN">
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="24" id="MrS-Cg-cdG"/>
                                                     <constraint firstAttribute="height" constant="24" id="PFY-yu-N60"/>
@@ -332,9 +297,7 @@
                                                     </mask>
                                                 </variation>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTx-E8-syA">
-                                                <rect key="frame" x="33" y="11" width="249" height="29"/>
-                                                <animations/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTx-E8-syA">
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="249" id="aLf-z2-HXY"/>
                                                     <constraint firstAttribute="height" constant="29" id="l1H-Jv-ZLZ"/>
@@ -342,7 +305,7 @@
                                                     <constraint firstAttribute="height" constant="29" id="pFM-Aa-ro2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -368,8 +331,7 @@
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <animations/>
-                                        <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="DTx-E8-syA" firstAttribute="top" secondItem="rRM-VW-3M4" secondAttribute="top" constant="11" id="A2v-jv-zbH"/>
                                             <constraint firstAttribute="width" constant="521" id="EnJ-xt-2zj"/>
@@ -428,8 +390,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rRM-VW-3M4" firstAttribute="top" secondItem="db6-ta-18Y" secondAttribute="top" id="ZO4-Oe-clV"/>
                                     <constraint firstAttribute="height" constant="50" id="lmb-zh-DvG"/>
@@ -463,8 +424,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="N5L-TQ-dpz" firstAttribute="top" secondItem="Gcg-AR-M2X" secondAttribute="bottom" constant="7" id="0Pi-Gd-Vnl"/>
                             <constraint firstItem="ggQ-XL-s97" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="0gh-Be-9SA"/>
@@ -640,21 +600,17 @@
                         <viewControllerLayoutGuide type="bottom" id="FuH-EQ-APQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M5b-VM-iww">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-QN-PHW">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="CnK-QN-PHW">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="I0h-pW-p4v" appends="YES" id="D4y-29-vea"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-ad-G8u">
-                                <rect key="frame" x="20" y="4" width="56" height="44"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-ad-G8u">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="59" id="I2s-Wj-ryu"/>
                                     <constraint firstAttribute="height" constant="44" id="Qpi-Xa-E67"/>
@@ -676,9 +632,6 @@
                                         <include reference="Qpi-Xa-E67"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="4" width="59" height="44"/>
-                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="I2s-Wj-ryu"/>
@@ -691,13 +644,10 @@
                                     <action selector="onDismiss:" destination="2VD-ty-wfS" eventType="touchUpInside" id="nhV-Io-TF5"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97B-WF-2Zq">
-                                <rect key="frame" x="20" y="261" width="560" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97B-WF-2Zq">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Элктронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-FY-FfY">
-                                        <rect key="frame" x="15" y="0.0" width="530" height="50"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Элктронная почта" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hbt-FY-FfY">
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="idu-tm-slB"/>
                                         </constraints>
@@ -713,13 +663,9 @@
                                                 <include reference="idu-tm-slB"/>
                                             </mask>
                                         </variation>
-                                        <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                            <rect key="frame" x="20" y="261" width="360" height="50"/>
-                                        </variation>
                                     </textField>
                                 </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Hbt-FY-FfY" secondAttribute="trailing" constant="15" id="KxS-Hc-9NL"/>
                                     <constraint firstItem="Hbt-FY-FfY" firstAttribute="leading" secondItem="97B-WF-2Zq" secondAttribute="leading" constant="15" id="OMn-be-SOw"/>
@@ -743,9 +689,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBq-EP-TMP">
-                                <rect key="frame" x="178" y="542" width="245" height="30"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBq-EP-TMP">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="245" id="AJB-6h-R3t"/>
                                     <constraint firstAttribute="height" constant="30" id="LZN-TY-HdQ"/>
@@ -764,14 +708,12 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Op-8z-HHt" userLabel="Warning Label">
-                                <rect key="frame" x="20" y="311" width="560" height="12"/>
-                                <animations/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="warning!!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Op-8z-HHt" userLabel="Warning Label">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="5" id="VDn-KS-Mc2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -784,16 +726,14 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-C9-5cy">
-                                <rect key="frame" x="20" y="326" width="560" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWl-C9-5cy">
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="e0Y-gx-nli"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <state key="normal" title="ВОССТАНОВИТЬ ПАРОЛЬ">
-                                    <color key="titleColor" red="0.18431372549019609" green="0.5490196078431373" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.18431372549019609" green="0.5490196078431373" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -805,13 +745,8 @@
                                         <include reference="e0Y-gx-nli"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="326" width="360" height="50"/>
-                                </variation>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uSP-tP-3hW">
-                                <rect key="frame" x="215" y="71" width="171" height="132"/>
-                                <animations/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uSP-tP-3hW">
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="132" id="RtO-Wm-mai"/>
@@ -834,8 +769,7 @@
                                 </connections>
                             </imageView>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7Op-8z-HHt" firstAttribute="leading" secondItem="M5b-VM-iww" secondAttribute="leading" constant="20" id="1zl-OK-q0z"/>
                             <constraint firstItem="jeo-ad-G8u" firstAttribute="leading" secondItem="M5b-VM-iww" secondAttribute="leading" constant="15" id="2YR-Bf-Ji2"/>
@@ -953,17 +887,13 @@
                         <viewControllerLayoutGuide type="bottom" id="wRD-on-lTb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NbH-vI-G7t">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="Eaz-bl-a5b">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu Bar white 1" translatesAutoresizingMaskIntoConstraints="NO" id="Eaz-bl-a5b">
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="n8k-nf-iCx">
-                                <rect key="frame" x="215" y="71" width="171" height="132"/>
-                                <animations/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="n8k-nf-iCx">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="132" id="265-O7-Sh2"/>
                                     <constraint firstAttribute="width" constant="171" id="h0B-My-arh"/>
@@ -981,16 +911,14 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMV-35-K0b">
-                                <rect key="frame" x="20" y="326" width="560" height="50"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMV-35-K0b">
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jmA-Nf-5qy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="14"/>
                                 <state key="normal" title="ВЕРНУТЬСЯ НАЗАД">
-                                    <color key="titleColor" red="0.1843137255" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.1843137255" green="0.54901960780000003" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1002,19 +930,11 @@
                                         <include reference="jmA-Nf-5qy"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="20" y="326" width="360" height="50"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
-                                    <rect key="frame" x="20" y="326" width="760" height="50"/>
-                                </variation>
                                 <connections>
                                     <segue destination="xN9-5S-dy6" kind="show" id="swX-g4-f7c"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-ow-3Kr">
-                                <rect key="frame" x="178" y="542" width="245" height="30"/>
-                                <animations/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-ow-3Kr">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="R0j-Jq-XuO"/>
                                     <constraint firstAttribute="width" constant="245" id="SMB-FR-Zpo"/>
@@ -1033,15 +953,13 @@
                                     </mask>
                                 </variation>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Инструкция по восстановлению пароля отправлена на prorab@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ame-l4-nJy">
-                                <rect key="frame" x="151" y="265" width="298" height="36"/>
-                                <animations/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Инструкция по восстановлению пароля отправлена на prorab@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ame-l4-nJy">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="298" id="NCp-H1-gSm"/>
                                     <constraint firstAttribute="height" constant="36" id="wrK-cc-4Ej"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1055,16 +973,9 @@
                                         <include reference="wrK-cc-4Ej"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="51" y="265" width="298" height="36"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
-                                    <rect key="frame" x="251" y="265" width="298" height="36"/>
-                                </variation>
                             </label>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="n8k-nf-iCx" firstAttribute="top" secondItem="NbH-vI-G7t" secondAttribute="top" constant="71" id="3SJ-19-V2l"/>
                             <constraint firstItem="ame-l4-nJy" firstAttribute="top" secondItem="n8k-nf-iCx" secondAttribute="bottom" constant="62" id="Bc3-7l-f2y"/>
@@ -1130,10 +1041,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xN9-5S-dy6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bv7-aR-cZK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bv7-aR-cZK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

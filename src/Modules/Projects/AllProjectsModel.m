@@ -35,7 +35,7 @@
         [[[ProjectsService sharedInstance] getAllProjectsList] subscribeNext: ^(NSArray* projectsArray) {
             
             NSArray* sortedArray = [self applyDefaultSorting: projectsArray
-                                                  isAcceding: YES];
+                                                  isAcceding: [self getProjectsSortAccedingType]];
             
             [subscriber sendNext: sortedArray];
             

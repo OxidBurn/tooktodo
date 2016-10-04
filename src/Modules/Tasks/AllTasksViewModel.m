@@ -108,7 +108,7 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
+    AllTaskBaseTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
     
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
