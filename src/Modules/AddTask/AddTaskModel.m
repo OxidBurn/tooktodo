@@ -342,6 +342,11 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     row.membersArray = selectedClaiming;
     
+    row.cellId = [self determineCellIdForContent: selectedClaiming];
+    
+    if ( selectedClaiming.count == 0 )
+        row.detail = @"Не выбраны";
+    
     [self updateContentWithRow: row inSection: 0 inRow: 4];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
@@ -356,12 +361,9 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     RowContent* row = self.addTaskTableViewContent[0][5];
     
-    if ( selectedObservers )
-    {
-        row.cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
-    }
-    
     row.membersArray = selectedObservers;
+    
+    row.cellId = [self determineCellIdForContent: selectedObservers];
     
     [self updateContentWithRow: row inSection: 0 inRow: 5];
     
@@ -490,7 +492,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: self.task.claiming];
     
-    NSString* cellFiveDetailText  = [cellForRowFiveId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
+    NSString* cellFiveDetailText  = [cellForRowFiveId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбраны" : @"";
     
     rowFive.cellId       = cellForRowFiveId;
     rowFive.title        = @"Утверждающие";
@@ -502,7 +504,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
     NSString* cellForRowSixId = [self determineCellIdForGroupOfMembers: self.task.observers];
     
-    NSString* cellSixDetailText  = [cellForRowSixId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбрано" : @"";
+    NSString* cellSixDetailText  = [cellForRowSixId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбраны" : @"";
     
     rowSix.cellId       = cellForRowSixId;
     rowSix.title        = @"Наблюдатели";
@@ -674,4 +676,20 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     self.addTaskTableViewContent = [contentCopy copy];
 }
 
+- (NSString*) determineCellIdForContent: (NSArray*) arrayToCheck
+{
+    NSString* cellId;
+    
+    if ( arrayToCheck == nil || arrayToCheck.count == 0 )
+    {
+        cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    } else
+        if ( arrayToCheck.count == 1 )
+        {
+            cellId = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
+        } else
+            cellId = self.addTaskTableViewCellsInfo[GroupOfUsersCell];
+    
+    return cellId;
+}
 @end
