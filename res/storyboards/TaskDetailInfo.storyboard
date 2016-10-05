@@ -92,6 +92,9 @@
                                                         <constraint firstAttribute="height" constant="44" id="ShX-0K-Ewn"/>
                                                     </constraints>
                                                     <state key="normal" image="Eye"/>
+                                                    <connections>
+                                                        <action selector="onHiddenTaskBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="USl-13-nvE"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-Xh-xmm" customClass="TaskMarkerComponent">
                                                     <constraints>
@@ -270,6 +273,9 @@
                                                     <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onChangeStatusBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="XSJ-kP-Sjg"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YB4-vY-Aah">
                                                     <constraints>
@@ -307,6 +313,9 @@
                                                         <constraint firstAttribute="height" constant="19" id="i0T-5q-OYC"/>
                                                     </constraints>
                                                     <state key="normal" image="Hint"/>
+                                                    <connections>
+                                                        <action selector="onShowSystemDescriptionBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="QYR-GO-T2q"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -349,6 +358,25 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="changeStatusBtn" destination="OpY-k7-Czm" id="QaJ-sz-4sp"/>
+                                            <outlet property="changeStatusMarkImageView" destination="YB4-vY-Aah" id="6qB-zd-sbu"/>
+                                            <outlet property="commentsNumberMark" destination="02V-pN-axT" id="KJu-Dc-QtQ"/>
+                                            <outlet property="documentsNumberMark" destination="mQI-mM-bfc" id="84F-qK-FZu"/>
+                                            <outlet property="hiddenTaskMarkBtn" destination="LRM-qR-F8t" id="Bt0-c7-RbX"/>
+                                            <outlet property="overdueMarkImageView" destination="rr0-qs-DPp" id="vEC-CM-dF3"/>
+                                            <outlet property="roomNumberLabel" destination="3od-cv-Hzp" id="cnM-Mt-B9L"/>
+                                            <outlet property="roomNumberMarkImageView" destination="YfY-TR-eH2" id="6dP-v6-fZ4"/>
+                                            <outlet property="showSystemDescriptionBtn" destination="dyb-kV-Qrp" id="Tri-ks-IDy"/>
+                                            <outlet property="statusExpandedImageView" destination="zqD-MJ-Drv" id="XPQ-dD-JIL"/>
+                                            <outlet property="statusNameLabel" destination="Z0k-sh-YxB" id="fsk-bG-Mvz"/>
+                                            <outlet property="subtaskNumberMark" destination="zN1-Xh-xmm" id="q89-Vn-5A4"/>
+                                            <outlet property="systemDescriptionLabel" destination="cn8-QF-aQ0" id="9is-Eh-1Xo"/>
+                                            <outlet property="taskNameLabel" destination="9K4-bi-W1R" id="gjw-pH-Gv5"/>
+                                            <outlet property="taskStatusMark" destination="LEE-zN-jvW" id="ifs-IW-Ibv"/>
+                                            <outlet property="taskTermsLabel" destination="NYF-o6-7a7" id="g7t-Ak-1dI"/>
+                                            <outlet property="taskTermsLeadingConstraint" destination="YJZ-HG-4Wl" id="hbC-3J-aiU"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="113" id="uHf-Bv-oNV" customClass="TaskDescriptionCell">
                                         <rect key="frame" x="0.0" y="254" width="375" height="113"/>
@@ -385,6 +413,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="taskDescriptionLabel" destination="bgW-Xf-Bze" id="RL7-h8-RoY"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="B1N-Ff-pgD" customClass="CollectionCell">
                                         <rect key="frame" x="0.0" y="367" width="375" height="235"/>
@@ -973,6 +1004,14 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="addTaskBtn" destination="VcY-gM-5vX" id="V4A-9n-7cP"/>
+                                            <outlet property="canceledTasksBtn" destination="neR-xh-YBn" id="Wze-jM-3Yd"/>
+                                            <outlet property="canceledTasksCheckbox" destination="IbK-pt-z3A" id="nwS-7Z-CRD"/>
+                                            <outlet property="doneTasksBtn" destination="9t9-eH-kgV" id="4ME-LB-uFe"/>
+                                            <outlet property="doneTasksCheckbox" destination="e6q-x8-EjW" id="goP-yf-7a1"/>
+                                            <outlet property="filterTasksBtn" destination="Uuq-4u-QZu" id="HiU-95-6jC"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="137" id="oQv-rm-8QS" customClass="SubtaskInfoCell">
                                         <rect key="frame" x="0.0" y="660" width="375" height="137"/>
@@ -1076,6 +1115,9 @@
                                                                     <exclude reference="Zy4-gT-C0W"/>
                                                                 </mask>
                                                             </variation>
+                                                            <connections>
+                                                                <action selector="onHiddenTaskBtn:" destination="oQv-rm-8QS" eventType="touchUpInside" id="eWP-Ow-LrC"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Прокладка теплового кабеля под длинным тунелем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sez-xL-0A3">
                                                             <constraints>
@@ -1499,6 +1541,9 @@
                                                                     <exclude reference="aQZ-lX-BvK"/>
                                                                 </mask>
                                                             </variation>
+                                                            <connections>
+                                                                <action selector="onChangeStatusBtn:" destination="oQv-rm-8QS" eventType="touchUpInside" id="aUb-ZZ-bSW"/>
+                                                            </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-fx-7q8">
                                                             <constraints>
@@ -1663,6 +1708,27 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="changeStatusBtn" destination="TcK-1G-jaO" id="dI6-lN-u7a"/>
+                                            <outlet property="changeStatusMarkImageView" destination="G7L-fx-7q8" id="OTs-pM-1d6"/>
+                                            <outlet property="commentsNumberMark" destination="D15-n1-XnB" id="izt-lC-OGH"/>
+                                            <outlet property="documentsNumberMark" destination="8QY-1t-ToR" id="dnF-al-DZh"/>
+                                            <outlet property="hiddenTaskMarkBtn" destination="v6R-z5-6ZQ" id="DrH-PX-f50"/>
+                                            <outlet property="leftBorderImageView" destination="3kj-9r-8kA" id="E9f-3w-mnl"/>
+                                            <outlet property="overdueMarkImageView" destination="oml-aQ-Mnj" id="xHP-Dr-Kdz"/>
+                                            <outlet property="roomNumberLabel" destination="K7L-gc-82U" id="uaV-HD-59s"/>
+                                            <outlet property="roomNumberMarkImageView" destination="ICy-g9-bjV" id="t68-OQ-77C"/>
+                                            <outlet property="statusExpandedImageView" destination="BHG-B2-HFF" id="Z9z-yq-3AZ"/>
+                                            <outlet property="statusNameLabel" destination="usQ-p8-AzB" id="kVv-Zj-ZoJ"/>
+                                            <outlet property="subtaskNumberMark" destination="gIv-Pt-Ll9" id="zzW-Ye-OSg"/>
+                                            <outlet property="systemDescriptionLabel" destination="mq3-37-lOv" id="KPM-5T-ydi"/>
+                                            <outlet property="taskNameLabel" destination="sez-xL-0A3" id="p1t-f4-Ugo"/>
+                                            <outlet property="taskStatusMark" destination="DUh-0H-Itj" id="OnI-dh-HiZ"/>
+                                            <outlet property="taskTermsLabel" destination="MTk-a3-NWz" id="mCY-9J-b1i"/>
+                                            <outlet property="taskTermsLeadingConstraint" destination="egR-hH-lA0" id="wpx-J6-Hdk"/>
+                                            <outlet property="userAvatarImageView" destination="eZc-Js-Xf2" id="DRp-Un-Cog"/>
+                                            <outlet property="userProfileAvatarImageView" destination="eZc-Js-Xf2" id="t7i-r9-SXU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

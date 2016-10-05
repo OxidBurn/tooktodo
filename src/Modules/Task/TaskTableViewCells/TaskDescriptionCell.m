@@ -8,17 +8,19 @@
 
 #import "TaskDescriptionCell.h"
 
+@interface TaskDescriptionCell()
+
+// outlets
+@property (weak, nonatomic) IBOutlet UILabel* taskDescriptionLabel;
+
+// properties
+
+
+// methods
+
+
+@end
+
 @implementation TaskDescriptionCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

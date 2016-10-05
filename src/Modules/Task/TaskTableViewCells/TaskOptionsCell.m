@@ -8,17 +8,31 @@
 
 #import "TaskOptionsCell.h"
 
+@interface TaskOptionsCell()
+
+// outlets
+@property (weak, nonatomic) IBOutlet UIButton *addTaskBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *filterTasksBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *canceledTasksBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *doneTasksBtn;
+
+@property (weak, nonatomic) IBOutlet UIImageView *doneTasksCheckbox;
+
+@property (weak, nonatomic) IBOutlet UIImageView *canceledTasksCheckbox;
+
+
+// properties
+
+
+// methods
+
+
+@end
+
 @implementation TaskOptionsCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end

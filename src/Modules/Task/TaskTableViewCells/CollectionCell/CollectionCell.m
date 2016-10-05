@@ -11,7 +11,7 @@
 @interface CollectionCell()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UICollectionView *colletionView;
+@property (weak, nonatomic) IBOutlet UICollectionView* colletionView;
 
 // properties
 
@@ -23,15 +23,7 @@
 
 @implementation CollectionCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+#pragma mark - Public -
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 @end
