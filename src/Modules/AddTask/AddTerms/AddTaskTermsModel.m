@@ -41,6 +41,17 @@ typedef NS_ENUM(NSUInteger, SwitchTag) {
     UrgentTaskSwitch,
 };
 
+typedef NS_ENUM(NSUInteger, TermsRowsStyles) {
+    
+    TermsStartDateInfoRow,
+    TermsStartDatePickerRow,
+    TermsEndDateInfoRow,
+    TermEndDatePickerRow,
+    TermsTaskDurationRow,
+    TermsIncludingWeekendsRow,
+    TermsIsUrgentRow,
+};
+
 static NSString* CellIdKey        = @"CellId";
 static NSString* DetailTextKey    = @"DetailText";
 static NSString* TitleTextKey     = @"TitleText";
@@ -174,7 +185,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     {
         RowContent* newStartRow = [self createRowForDate: terms.startDate withTitle: @"Начало"];
     
-        [self updateContentWithNewRow: newStartRow forIndex: 0];
+        [self updateContentWithNewRow: newStartRow forIndex: TermsStartDateInfoRow];
         
         self.terms.startDate  = terms.startDate;
 
@@ -184,7 +195,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     {
         RowContent* newEndRow = [self createRowForDate: terms.endDate withTitle: @"Конец"];
     
-        [self updateContentWithNewRow: newEndRow forIndex: 2];
+        [self updateContentWithNewRow: newEndRow forIndex: TermsEndDateInfoRow];
     
         self.terms.endDate = terms.endDate;
     }
@@ -262,14 +273,14 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                                                   withTitle: @"Начало"];
                 
                 [self updateContentWithNewRow: newRow
-                                     forIndex: 0];
+                                     forIndex: TermsStartDateInfoRow];
                 
                 RowContent* updatedEndRowMinimumDate = self.tableViewContent[3];
                 
                 updatedEndRowMinimumDate.minimumDate = date;
                 
                 [self updateContentWithNewRow: updatedEndRowMinimumDate
-                                     forIndex: 3];
+                                     forIndex: TermEndDatePickerRow];
                 
                 NSLog(@"Selected start date: %@", date);
                 
@@ -291,7 +302,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 newRow.dateToShow = date;
                 
                 [self updateContentWithNewRow: newRow
-                                     forIndex: 2];
+                                     forIndex: TermsEndDateInfoRow];
                 
 //                self.terms.startDate =
                 self.terms.endDate   = date;
@@ -320,12 +331,12 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
         {
             self.terms.includingWeekends = isOn;
             
-            RowContent* newRow = self.tableViewContent[5];
+            RowContent* newRow = self.tableViewContent[TermsIncludingWeekendsRow];
             
             newRow.switchIsOn = isOn;
             
             [self updateContentWithNewRow: newRow
-                                 forIndex: 5];
+                                 forIndex: TermsIncludingWeekendsRow];
             
             [self updateDuration];
         }
@@ -335,12 +346,12 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
         {
             self.terms.isUrgent = isOn;
             
-            RowContent* newRow = self.tableViewContent[6];
+            RowContent* newRow = self.tableViewContent[TermsIsUrgentRow];
             
             newRow.switchIsOn = isOn;
             
             [self updateContentWithNewRow: newRow
-                                 forIndex: 6];
+                                 forIndex: TermsIsUrgentRow];
         }
             break;
             
@@ -411,12 +422,12 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                                                  toAndIncludingDate: self.terms.endDate];
         }
         
-        RowContent* newRow = self.tableViewContent[4];
+        RowContent* newRow = self.tableViewContent[TermsTaskDurationRow];
         
         newRow.detail = [NSString stringWithFormat: @"%ld", self.terms.duration];
         
         [self updateContentWithNewRow: newRow
-                             forIndex: 4];
+                             forIndex: TermsTaskDurationRow];
         
         if ([self.delegate respondsToSelector: @selector(reloadTermsTableView)] )
             [self.delegate reloadTermsTableView];
