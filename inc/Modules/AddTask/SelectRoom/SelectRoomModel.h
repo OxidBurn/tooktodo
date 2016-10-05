@@ -35,6 +35,6 @@
 
 - (void) handleCheckmarkForRow: (NSUInteger) row;
 
-- (BOOL) isSelectedRoom;
+- (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath;
 
 @end
