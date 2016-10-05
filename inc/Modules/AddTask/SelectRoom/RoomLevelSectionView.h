@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 //Classes
-#import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+
 
 @interface RoomLevelSectionView : UIView
 
@@ -17,6 +18,6 @@
 @property (nonatomic, copy) void(^didChangeExpandState)(NSUInteger section);
 
 // Methods
-- (void) fillInfo: (ProjectTaskStage*) level;
+- (void) fillInfo: (ProjectTaskRoomLevel*) level;
 
 @end

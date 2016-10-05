@@ -9,10 +9,9 @@
 #import "SelectRoomModel.h"
 
 #import "ProjectInfo+CoreDataClass.h"
-#import "DataManager+ProjectInfo.h"
-#import "ProjectTaskStage+CoreDataClass.h"
-#import "ProjectTask+CoreDataClass.h"
-#import "DataManager+Tasks.h"
+#import "DataManager+Room.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 static NSString* levelKey = @"LevelKey";
 static NSString* roomKey  = @"RoomKey";
@@ -22,6 +21,8 @@ static NSString* roomKey  = @"RoomKey";
 // properties
 @property (nonatomic, strong) NSArray* levelsArray;
 
+@property (nonatomic, strong) ProjectTaskRoomLevel* level;
+
 // methods
 
 
@@ -29,33 +30,44 @@ static NSString* roomKey  = @"RoomKey";
 
 @implementation SelectRoomModel
 
-
 - (NSArray*) levelsArray
 {
     if (_levelsArray == nil)
     {
-        _levelsArray = @[@"Level 1", @"Level 2", @"Level 3", @"Level 4", @"Level 5", @"Level 6"];
+        _levelsArray = [DataManagerShared getAllRoomsLevelOfSelectedProject];
     }
-    
-    return _levelsArray;
+    return  _levelsArray;
 }
 
 #pragma mark - Public -
 
-- (void) markLevelAsExpandedAtIndexPath: (NSInteger) section
+- (NSUInteger) sectionsCount
 {
-    ProjectInfo* proj = [DataManagerShared getSelectedProjectInfo];
+    return self.levelsArray.count;
+}
+
+- (NSUInteger) countOfRowsInSection: (NSUInteger) section
+{
+    NSArray* roomsArray = self.levelsArray[section][roomKey];
     
-    ProjectTaskStage* stage = (ProjectTaskStage*)proj.stage.allObjects[section];
+    return roomsArray.count;
+}
+
+- (void) markLevelAsExpandedAtIndexPath: (NSInteger) section
+                         withCompletion: (CompletionWithSuccess) completion
+{
+   
+    ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*)self.levelsArray[section];
     
     __weak typeof(self) blockSelf = self;
     
-    [DataManagerShared updateExpandedStateOfStage: stage
+    [DataManagerShared updateExpandedStateOfLevel: level
                                    withCompletion: ^(BOOL isSuccess) {
-                                       
                                        [blockSelf updateData];
-                                       
                                    }];
+    if (completion) {
+        
+    }
 
 }
 
@@ -73,35 +85,45 @@ static NSString* roomKey  = @"RoomKey";
     return updateInfoSignal;
 }
 
-- (ProjectTaskStage*) getStageForSection: (NSUInteger) section
+- (ProjectTaskRoomLevel*) getLevelForSection: (NSUInteger) section
 {
     return self.levelsArray[section][levelKey];
 }
+
+- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
+{
+    NSArray* cellsContentInfo = self.levelsArray[path.section][roomKey];
+    id cellInfo               = cellsContentInfo[path.row];
+    
+    return cellInfo;
+}
+
 
 #pragma mark - Internal -
 
 - (void) updateData
 {
-    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
-    
-    __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
+    __block NSMutableArray* tmpLevelInfo = [NSMutableArray array];
     __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
     
-    [project.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, BOOL * _Nonnull stop) {
+    [self.levelsArray enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        NSMutableDictionary* levelsInfoDic = [NSMutableDictionary dictionaryWithDictionary:@{levelKey : level}];
         
-        NSMutableDictionary* levelsInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{levelKey : obj}];
+        level.isExpanded = @(YES);
+        NSArray* rooms = level.rooms.allObjects;
         
+        NSLog(@"rooms %@", rooms);
         
-        if ( obj.isExpanded.boolValue )
+        if (level.isExpanded.boolValue)
         {
-            [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+            [level.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
                 
                 [tmpRowsInfo addObject: obj];
-                
             }];
         }
         
-        if ( tmpRowsInfo.count > 0 )
+        if (tmpRowsInfo.count > 0)
         {
             [levelsInfoDic setObject: tmpRowsInfo.copy
                               forKey: roomKey];
@@ -109,15 +131,14 @@ static NSString* roomKey  = @"RoomKey";
             [tmpRowsInfo removeAllObjects];
         }
         
-        [tmpStageInfo addObject: levelsInfoDic];
-        
+        [tmpLevelInfo addObject: levelsInfoDic];
     }];
     
     
-    self.levelsArray = tmpStageInfo.copy;
+    self.levelsArray = tmpLevelInfo.copy;
     
     tmpRowsInfo  = nil;
-    tmpStageInfo = nil;
+    tmpLevelInfo = nil;
 }
 
 @end

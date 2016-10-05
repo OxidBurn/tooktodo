@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -228,6 +228,7 @@
         <relationship name="roleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="projectRoleType" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoom" representedClassName="ProjectTaskRoom" syncable="YES">
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="roomID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="roomLevelId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -240,6 +241,7 @@
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="rooms" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoomLevel" representedClassName="ProjectTaskRoomLevel" syncable="YES">
+        <attribute name="isExpanded" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="roomLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="roomLevel" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
@@ -338,14 +340,14 @@
         <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="75"/>
         <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="105"/>
         <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="105"/>
-        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="195"/>
-        <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="135"/>
+        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="210"/>
+        <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="150"/>
         <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="150"/>
         <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="60"/>
         <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="120"/>
+        <element name="RoomLevelMap" positionX="-45" positionY="99" width="128" height="165"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="RoomLevelMap" positionX="-45" positionY="99" width="128" height="165"/>
     </elements>
 </model>

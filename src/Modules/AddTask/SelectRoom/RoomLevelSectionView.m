@@ -22,8 +22,6 @@
 
 // properties
 
-//@property (nonatomic, strong) NSArray* levelsArray;
-
 // actions
 - (IBAction) expandBtn: (UIButton*) sender;
 
@@ -36,10 +34,9 @@
 
 #pragma mark - Public -
 
-- (void) fillInfo: (ProjectTaskStage*) level
+- (void) fillInfo: (ProjectTaskRoomLevel*) level
 {
-    self.levelTitleLabel.text = level.title;
-   // self.expandImgView.image  =
+    self.levelTitleLabel.text = [NSString stringWithFormat: @"Уровень %@", level.roomLevel];
     
     [self updateExpandedState: level.isExpanded.boolValue];
     
@@ -75,9 +72,4 @@
     self.expandImgView.image = expandedStateImage;
 }
 
-
-//- (void) handleSelectedStageForLevel: (ProjectTaskStage*) stage
-//{
-//   
-//}
 @end

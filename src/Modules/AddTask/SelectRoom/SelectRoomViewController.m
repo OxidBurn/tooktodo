@@ -38,6 +38,8 @@
     [super loadView];
     
     [self bindUI];
+    
+    [self updateContent];
 }
 
 - (void) viewDidLoad
@@ -107,6 +109,6 @@
 
 - (IBAction) onCancelBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 @end

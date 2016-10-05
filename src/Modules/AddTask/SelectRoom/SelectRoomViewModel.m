@@ -56,20 +56,21 @@
 
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
-    [cell fillCellWithContent: @"room" withSelectedState: NO];
+    [cell fillCellWithContent: [self.model getInfoForCellAtIndexPath: indexPath]
+            withSelectedState: YES];
     
     return cell;
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
 {
-    return self.levelsArray.count;
+    return [self.model sectionsCount];
 }
 
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return 5;
+    return [self.model countOfRowsInSection: section];
 }
 
 - (CGFloat)     tableView: (UITableView*) tableView
@@ -88,17 +89,19 @@
     sectionView.tag = section;
     
     
-   
-    ProjectTaskStage* stage = [self.model getStageForSection: section];
+    ProjectTaskRoomLevel* level = [self.model getLevelForSection: section];
     
-    [sectionView fillInfo: stage];
+    [sectionView fillInfo: level];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
     
     sectionView.didChangeExpandState = ^( NSUInteger section ){
         
-        [blockSelf.model markLevelAsExpandedAtIndexPath: section];
+        [blockSelf.model markLevelAsExpandedAtIndexPath: section
+         withCompletion:^(BOOL isSuccess) {
+             [tableView reloadData];
+         }];
         
     };
     

@@ -7,10 +7,10 @@
 //
 
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
-#import "ProjectInfo.h"
-#import "ProjectTask.h"
-#import "ProjectTaskMapContour.h"
-#import "ProjectTaskRoom.h"
+#import "ProjectInfo+CoreDataClass.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "ProjectTaskMapContour+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 @implementation ProjectTaskRoomLevel
 
 @end

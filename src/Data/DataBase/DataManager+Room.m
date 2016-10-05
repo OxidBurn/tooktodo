@@ -132,9 +132,24 @@
 
 - (NSArray*) getAllRoomsLevelOfSelectedProject
 {
-    ProjectInfo* selectedProject = [self getSelectedProjectInfo];
+    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfo];
+    
     
     return selectedProject.roomLevel.array;
+}
+
+- (void) updateExpandedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+            level.isExpanded = @(!level.isExpanded.boolValue);
+        }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                        }];
 }
 
 @end
