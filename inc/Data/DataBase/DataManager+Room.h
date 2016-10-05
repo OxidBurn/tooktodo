@@ -46,4 +46,7 @@
 
 - (void) updateSelectedStateOfLevel: (ProjectTaskRoomLevel*) level
                      withCompletion: (CompletionWithSuccess) completion;
+
+- (void) updateSelectedStateOfRoom: (ProjectTaskRoom*)      room
+                    withCompletion: (CompletionWithSuccess) completion;
 @end

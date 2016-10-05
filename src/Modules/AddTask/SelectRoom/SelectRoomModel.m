@@ -188,6 +188,8 @@ static NSString* roomKey  = @"RoomKey";
                 obj.isSelected = @(NO);
                 self.selectedRoom = obj;
             }
+            
+            NSLog(@"  %@", obj.isSelected);
         }];
         
         
@@ -209,6 +211,11 @@ static NSString* roomKey  = @"RoomKey";
                                            completion (YES);
                                        }
                                    }];
+}
+
+- (void) handleCheckmarkForRow: (NSUInteger) row
+{
+    
 }
 
 @end
