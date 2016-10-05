@@ -40,7 +40,7 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="162"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PQs-zN-kZz" id="XeL-9Y-kfO">
-                                            <frame key="frameInset" width="375" height="161.5"/>
+                                            <frame key="frameInset" width="375" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overdue" translatesAutoresizingMaskIntoConstraints="NO" id="rr0-qs-DPp">
@@ -301,11 +301,17 @@
                                                         <constraint firstAttribute="width" constant="30" id="aeO-h8-ice"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyb-kV-Qrp">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19" id="3yZ-KB-JPA"/>
+                                                        <constraint firstAttribute="height" constant="19" id="i0T-5q-OYC"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Hint"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="zN1-Xh-xmm" secondAttribute="bottom" constant="10.5" id="3gP-BV-jyl"/>
                                                 <constraint firstItem="zqD-MJ-Drv" firstAttribute="top" secondItem="OpY-k7-Czm" secondAttribute="bottom" constant="-28" id="8u7-Rd-SRf"/>
-                                                <constraint firstItem="rr0-qs-DPp" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="topMargin" constant="19" id="95a-Pa-R90"/>
                                                 <constraint firstItem="02V-pN-axT" firstAttribute="leading" secondItem="mQI-mM-bfc" secondAttribute="trailing" constant="5" id="9xS-fu-zlV"/>
                                                 <constraint firstAttribute="trailing" secondItem="9K4-bi-W1R" secondAttribute="trailing" constant="16" id="B0c-AC-acm"/>
                                                 <constraint firstItem="LEE-zN-jvW" firstAttribute="leading" secondItem="NYF-o6-7a7" secondAttribute="trailing" priority="250" constant="59" identifier="DateHorizontalToTaskType" id="D8z-vl-3Vd"/>
@@ -314,28 +320,31 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="OpY-k7-Czm" secondAttribute="bottom" constant="2.5" id="LTJ-0j-J4X"/>
                                                 <constraint firstItem="9K4-bi-W1R" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="49" id="OYW-E9-pq0"/>
                                                 <constraint firstItem="9K4-bi-W1R" firstAttribute="leading" secondItem="XeL-9Y-kfO" secondAttribute="leading" constant="14" id="PsL-dU-hck"/>
+                                                <constraint firstItem="dyb-kV-Qrp" firstAttribute="leading" secondItem="cn8-QF-aQ0" secondAttribute="trailing" constant="2.5" id="Py1-4A-Fl0"/>
                                                 <constraint firstItem="cn8-QF-aQ0" firstAttribute="leading" secondItem="LEE-zN-jvW" secondAttribute="trailing" constant="4" id="QOV-C6-bz4"/>
                                                 <constraint firstItem="GbN-j6-Jhc" firstAttribute="leading" secondItem="NYF-o6-7a7" secondAttribute="trailing" constant="15" id="RTV-eS-SQe"/>
+                                                <constraint firstItem="rr0-qs-DPp" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="S9h-yT-Zm2"/>
                                                 <constraint firstItem="Z0k-sh-YxB" firstAttribute="trailing" secondItem="OpY-k7-Czm" secondAttribute="trailing" constant="-21" id="Sam-jT-rvu"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="02V-pN-axT" secondAttribute="bottom" constant="10.5" id="TKm-Au-U0z"/>
+                                                <constraint firstItem="LEE-zN-jvW" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="Vj6-79-CDj"/>
                                                 <constraint firstItem="LEE-zN-jvW" firstAttribute="leading" secondItem="3od-cv-Hzp" secondAttribute="trailing" constant="10" id="WQG-PL-Xnk"/>
+                                                <constraint firstItem="NYF-o6-7a7" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="XSM-Cf-WFm"/>
                                                 <constraint firstItem="NYF-o6-7a7" firstAttribute="leading" secondItem="XeL-9Y-kfO" secondAttribute="leadingMargin" id="YJZ-HG-4Wl"/>
                                                 <constraint firstItem="YB4-vY-Aah" firstAttribute="leading" secondItem="OpY-k7-Czm" secondAttribute="leading" constant="14" id="YPv-sZ-J1h"/>
                                                 <constraint firstItem="LRM-qR-F8t" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="4" id="a9R-Lw-gPe"/>
+                                                <constraint firstItem="GbN-j6-Jhc" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="abl-EU-1yP"/>
                                                 <constraint firstItem="zqD-MJ-Drv" firstAttribute="leading" secondItem="OpY-k7-Czm" secondAttribute="trailing" constant="-30" id="bg9-Yg-cKF"/>
                                                 <constraint firstAttribute="trailing" secondItem="02V-pN-axT" secondAttribute="trailing" constant="17" id="cjx-db-1SD"/>
                                                 <constraint firstItem="mQI-mM-bfc" firstAttribute="leading" secondItem="zN1-Xh-xmm" secondAttribute="trailing" constant="5" id="dTW-Dp-TyC"/>
-                                                <constraint firstItem="LEE-zN-jvW" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="topMargin" constant="19" id="ebK-4X-rtA"/>
                                                 <constraint firstItem="LEE-zN-jvW" firstAttribute="width" secondItem="cn8-QF-aQ0" secondAttribute="width" id="gnV-Xq-HpW"/>
-                                                <constraint firstItem="LRM-qR-F8t" firstAttribute="leading" secondItem="cn8-QF-aQ0" secondAttribute="trailing" id="i4R-xa-scT"/>
-                                                <constraint firstItem="NYF-o6-7a7" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="topMargin" constant="19" id="ipZ-Ke-heO"/>
+                                                <constraint firstItem="LRM-qR-F8t" firstAttribute="leading" secondItem="dyb-kV-Qrp" secondAttribute="trailing" priority="250" id="jdM-hx-slD"/>
                                                 <constraint firstItem="rr0-qs-DPp" firstAttribute="leading" secondItem="XeL-9Y-kfO" secondAttribute="leadingMargin" id="lGg-8i-3a7"/>
-                                                <constraint firstItem="cn8-QF-aQ0" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="topMargin" constant="19" id="ljU-wP-eMM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mQI-mM-bfc" secondAttribute="bottom" constant="10.5" id="ofY-Mj-ckS"/>
                                                 <constraint firstItem="Z0k-sh-YxB" firstAttribute="leading" secondItem="YB4-vY-Aah" secondAttribute="leading" constant="7" id="pB3-AS-8PE"/>
+                                                <constraint firstItem="cn8-QF-aQ0" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="r2T-eC-1Rb"/>
                                                 <constraint firstItem="Z0k-sh-YxB" firstAttribute="top" secondItem="OpY-k7-Czm" secondAttribute="top" constant="7" id="rkX-gQ-sLX"/>
-                                                <constraint firstItem="GbN-j6-Jhc" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="topMargin" constant="19" id="tlZ-Po-WE9"/>
                                                 <constraint firstAttribute="trailing" secondItem="LRM-qR-F8t" secondAttribute="trailing" id="vbF-BR-7dv"/>
+                                                <constraint firstItem="dyb-kV-Qrp" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="15.5" id="voe-hi-UPf"/>
                                                 <constraint firstItem="zN1-Xh-xmm" firstAttribute="leading" secondItem="OpY-k7-Czm" secondAttribute="trailing" constant="30" id="xPI-90-oT9"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -345,7 +354,7 @@
                                         <rect key="frame" x="0.0" y="254" width="375" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uHf-Bv-oNV" id="ywU-kX-zMt">
-                                            <frame key="frameInset" width="375" height="112.5"/>
+                                            <frame key="frameInset" width="375" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul2-dX-Jwk">
@@ -381,7 +390,7 @@
                                         <rect key="frame" x="0.0" y="367" width="375" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B1N-Ff-pgD" id="TJx-s9-X8l">
-                                            <frame key="frameInset" width="375" height="234.5"/>
+                                            <frame key="frameInset" width="375" height="234"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="irm-Tr-O0e">
@@ -849,7 +858,7 @@
                                         <rect key="frame" x="0.0" y="602" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2UE-7g-MuZ" id="psw-87-EnP">
-                                            <frame key="frameInset" width="375" height="57.5"/>
+                                            <frame key="frameInset" width="375" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUs-jQ-NVH">
@@ -969,7 +978,7 @@
                                         <rect key="frame" x="0.0" y="660" width="375" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oQv-rm-8QS" id="Jc8-Ff-bra">
-                                            <frame key="frameInset" width="375" height="136.5"/>
+                                            <frame key="frameInset" width="375" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aR-Sz-h0r">
@@ -1667,12 +1676,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fMM-N8-Wfe">
-                        <barButtonItem key="leftBarButtonItem" title="Назад" id="1BR-F4-TWg">
+                        <barButtonItem key="leftBarButtonItem" image="Back" id="1BR-F4-TWg">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onBackBtn:" destination="E69-tF-D1Q" id="hqh-g9-8ic"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Изменить" id="NM1-x7-M7t">
+                        <barButtonItem key="rightBarButtonItem" image="Change" id="NM1-x7-M7t">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="onChangeBtn:" destination="E69-tF-D1Q" id="0II-aV-dTu"/>
                             </connections>
@@ -1693,7 +1704,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n0Q-uv-t0y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aPb-yj-icS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aPb-yj-icS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1711,10 +1722,13 @@
     <resources>
         <image name="AddPlus1" width="20" height="28"/>
         <image name="ArrowGoTo" width="7" height="11"/>
+        <image name="Back" width="59" height="18"/>
+        <image name="Change" width="65" height="11"/>
         <image name="EmptyCheckbox" width="18" height="18"/>
         <image name="Eye" width="18" height="11"/>
         <image name="FullCheckbox" width="18" height="18"/>
         <image name="GreenChack" width="16" height="16"/>
+        <image name="Hint" width="14" height="14"/>
         <image name="Mark" width="10" height="16"/>
         <image name="MarkOnPlan" width="14" height="19"/>
         <image name="NoPlan" width="70" height="42"/>
