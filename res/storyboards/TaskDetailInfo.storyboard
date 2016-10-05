@@ -434,7 +434,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RMx-pa-gYo">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RMx-pa-gYo" customClass="TermsInfoCollectionCell">
                                                             <rect key="frame" x="0.0" y="0.0" width="187" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -469,8 +469,12 @@
                                                                 <constraint firstItem="j5E-WE-mfL" firstAttribute="leading" secondItem="RMx-pa-gYo" secondAttribute="leading" constant="15" id="vf9-1s-C2y"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="1" left="0.0" bottom="1" right="0.0"/>
+                                                            <connections>
+                                                                <outlet property="termsLabel" destination="9BG-hu-pz5" id="gYf-gV-ZyR"/>
+                                                                <outlet property="termsTypeLabel" destination="j5E-WE-mfL" id="WYR-MC-WfP"/>
+                                                            </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IdN-cd-M2j">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IdN-cd-M2j" customClass="DetailCollectionCell">
                                                             <rect key="frame" x="188" y="0.0" width="187" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -524,23 +528,20 @@
                                                                 <constraint firstItem="u0L-ux-z4b" firstAttribute="leading" secondItem="IdN-cd-M2j" secondAttribute="leading" constant="15" id="zvV-eV-i0s"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="1" right="0.0"/>
+                                                            <connections>
+                                                                <outlet property="disclosureImageView" destination="eG7-mO-QkB" id="oIW-9b-0vc"/>
+                                                                <outlet property="premisesLabel" destination="u0L-ux-z4b" id="OOc-7x-U7g"/>
+                                                                <outlet property="roomNameLabel" destination="U6s-yI-UVF" id="rdR-ku-ViI"/>
+                                                                <outlet property="roomNumberLabel" destination="amv-UV-TIo" id="vF4-x5-IZT"/>
+                                                            </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xxh-ig-SfE">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="xxh-ig-SfE" customClass="OnPlanCollectionCell">
                                                             <rect key="frame" x="0.0" y="59" width="187" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="58"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет плана" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2k-k1-6vV">
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="65" id="1Ds-wn-5H2"/>
-                                                                            <constraint firstAttribute="height" constant="15" id="Ume-Lo-8rl"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                                                        <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoPlan" translatesAutoresizingMaskIntoConstraints="NO" id="LVt-dx-gp4">
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="56" id="Pfj-Yg-oVh"/>
@@ -583,9 +584,8 @@
                                                             <constraints>
                                                                 <constraint firstItem="LVt-dx-gp4" firstAttribute="top" secondItem="xxh-ig-SfE" secondAttribute="top" constant="9" id="06K-at-FyK"/>
                                                                 <constraint firstItem="TsV-U1-a99" firstAttribute="leading" secondItem="t25-k9-A2J" secondAttribute="trailing" constant="3" id="2a1-Aw-uCY"/>
-                                                                <constraint firstAttribute="bottom" secondItem="y2k-k1-6vV" secondAttribute="bottom" constant="12" id="4Vp-Pw-4Gh"/>
                                                                 <constraint firstItem="t25-k9-A2J" firstAttribute="top" secondItem="xxh-ig-SfE" secondAttribute="top" constant="11" id="4yN-7g-HrI"/>
-                                                                <constraint firstItem="y2k-k1-6vV" firstAttribute="leading" secondItem="xxh-ig-SfE" secondAttribute="leading" constant="15" id="Cny-jX-vIh"/>
+                                                                <constraint firstItem="pN2-d1-G6a" firstAttribute="leading" secondItem="xxh-ig-SfE" secondAttribute="leadingMargin" priority="250" constant="32" id="IhY-Kg-Xy2"/>
                                                                 <constraint firstItem="2Ut-pS-UpW" firstAttribute="leading" secondItem="xxh-ig-SfE" secondAttribute="leading" constant="15" id="JOb-i7-ydQ"/>
                                                                 <constraint firstAttribute="bottom" secondItem="pN2-d1-G6a" secondAttribute="bottom" constant="12" id="QC8-XO-zgU"/>
                                                                 <constraint firstItem="TsV-U1-a99" firstAttribute="top" secondItem="xxh-ig-SfE" secondAttribute="top" constant="13" id="Szx-9i-cnE"/>
@@ -595,8 +595,13 @@
                                                                 <constraint firstItem="t25-k9-A2J" firstAttribute="leading" secondItem="xxh-ig-SfE" secondAttribute="leading" constant="15" id="zTp-kv-r6q"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="1" bottom="1" right="0.0"/>
+                                                            <connections>
+                                                                <outlet property="planImageView" destination="LVt-dx-gp4" id="THE-b3-UCk"/>
+                                                                <outlet property="planStatusLabel" destination="pN2-d1-G6a" id="hGz-RM-OXo"/>
+                                                                <outlet property="taskMarkImageView" destination="2Ut-pS-UpW" id="p8R-Km-sE2"/>
+                                                            </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Tll-YI-cHH">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Tll-YI-cHH" customClass="SingleUserCollectionCell">
                                                             <rect key="frame" x="188" y="59" width="187" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -626,7 +631,7 @@
                                                                         <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-WD-yNO">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-WD-yNO" customClass="AvatarImageView">
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="8gJ-yn-MOi"/>
                                                                             <constraint firstAttribute="width" constant="20" id="Boy-Am-bLM"/>
@@ -654,8 +659,14 @@
                                                                 <constraint firstAttribute="bottom" secondItem="42h-Zg-2lS" secondAttribute="bottom" constant="12" id="uzG-ff-QEx"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+                                                            <connections>
+                                                                <outlet property="userAvatarImageView" destination="oMR-WD-yNO" id="XgS-Nf-bnD"/>
+                                                                <outlet property="userMarkImageView" destination="FL8-8O-ltc" id="Qyk-kM-Vxe"/>
+                                                                <outlet property="userNameLabel" destination="42h-Zg-2lS" id="3s0-VY-tiL"/>
+                                                                <outlet property="userRoleLabel" destination="EVf-zy-edh" id="FzO-Hc-GFk"/>
+                                                            </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="A1Q-uu-dPv">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="A1Q-uu-dPv" customClass="GroupOfUsersCollectionCell">
                                                             <rect key="frame" x="0.0" y="118" width="187" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -744,6 +755,16 @@
                                                                 <constraint firstAttribute="bottom" secondItem="Lkd-FR-9cc" secondAttribute="bottom" constant="10" id="u6E-Wd-MYp"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="1" bottom="0.0" right="0.0"/>
+                                                            <connections>
+                                                                <outlet property="disclosureIndicatorImageView" destination="7NR-fc-o09" id="yI4-dD-bE9"/>
+                                                                <outlet property="fifthAvatarImageView" destination="uwg-gH-FPu" id="omA-Oo-0br"/>
+                                                                <outlet property="firstAvatarImageView" destination="FHP-Yz-m8x" id="9hG-Xj-bTy"/>
+                                                                <outlet property="fourthAvatarImageView" destination="HbZ-y3-RU5" id="Xwu-YU-RZU"/>
+                                                                <outlet property="groupNameLabel" destination="RHq-XZ-Lf2" id="YGq-In-UeO"/>
+                                                                <outlet property="numberOfUsersLeftLabel" destination="Lkd-FR-9cc" id="pSP-3z-kAI"/>
+                                                                <outlet property="secondAvatarImageView" destination="Ten-2o-L9H" id="nsu-eI-SJY"/>
+                                                                <outlet property="thirdAvatarImageView" destination="fGG-HE-jeD" id="eIc-IF-haI"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>

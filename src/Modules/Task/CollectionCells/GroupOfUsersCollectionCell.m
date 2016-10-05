@@ -8,6 +8,32 @@
 
 #import "GroupOfUsersCollectionCell.h"
 
+@interface GroupOfUsersCollectionCell()
+
+// outlets
+@property (weak, nonatomic) IBOutlet UILabel* groupNameLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView* disclosureIndicatorImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView* firstAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* secondAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* thirdAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* fourthAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* fifthAvatarImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel* numberOfUsersLeftLabel;
+
+// properties
+@property (strong, nonatomic) NSArray* arrayWithImages;
+
+// methods
+
+
+@end
+
 @implementation GroupOfUsersCollectionCell
+
+#pragma mark - Properties -
+
 
 @end

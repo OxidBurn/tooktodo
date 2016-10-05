@@ -336,6 +336,8 @@
 		F7E4DAAA1DA51A770019F2AC /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E4DAA71DA51A770019F2AC /* CollectionCell.m */; };
 		F7E4DAAB1DA51A770019F2AC /* CollectionCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E4DAA81DA51A770019F2AC /* CollectionCellModel.m */; };
 		F7E4DAAC1DA51A770019F2AC /* CollectionCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E4DAA91DA51A770019F2AC /* CollectionCellViewModel.m */; };
+		F7E4DAB71DA531DA0019F2AC /* TemsInfoCollectionCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E4DAB61DA531DA0019F2AC /* TemsInfoCollectionCellFactory.m */; };
+		F7E4DABA1DA5323F0019F2AC /* TermsInfoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E4DAB91DA5323F0019F2AC /* TermsInfoCollectionCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -979,6 +981,10 @@
 		F7E4DAAE1DA51A830019F2AC /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
 		F7E4DAAF1DA51A830019F2AC /* CollectionCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCellModel.h; sourceTree = "<group>"; };
 		F7E4DAB01DA51A830019F2AC /* CollectionCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCellViewModel.h; sourceTree = "<group>"; };
+		F7E4DAB41DA531720019F2AC /* TermsInfoCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermsInfoCollectionCell.h; sourceTree = "<group>"; };
+		F7E4DAB61DA531DA0019F2AC /* TemsInfoCollectionCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemsInfoCollectionCellFactory.m; sourceTree = "<group>"; };
+		F7E4DAB81DA532300019F2AC /* TemsInfoCollectionCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemsInfoCollectionCellFactory.h; sourceTree = "<group>"; };
+		F7E4DAB91DA5323F0019F2AC /* TermsInfoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsInfoCollectionCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2667,6 +2673,7 @@
 				F7E4DA561DA5194A0019F2AC /* CollectionCellsFactories */,
 				F7E4DA5B1DA5194A0019F2AC /* DetailCollectionCell.h */,
 				F7E4DA5C1DA5194A0019F2AC /* GroupOfUsersCollectionCell.h */,
+				F7E4DAB41DA531720019F2AC /* TermsInfoCollectionCell.h */,
 				F7E4DA5D1DA5194A0019F2AC /* OnPlanCollectionCell.h */,
 				F7E4DA5E1DA5194A0019F2AC /* SingleUserCollectionCell.h */,
 			);
@@ -2676,6 +2683,7 @@
 		F7E4DA561DA5194A0019F2AC /* CollectionCellsFactories */ = {
 			isa = PBXGroup;
 			children = (
+				F7E4DAB81DA532300019F2AC /* TemsInfoCollectionCellFactory.h */,
 				F7E4DA571DA5194A0019F2AC /* DetailCollectionCellFactory.h */,
 				F7E4DA581DA5194A0019F2AC /* GroupOfUsersCollectionFactory.h */,
 				F7E4DA591DA5194A0019F2AC /* OnPlabCollectionCellFactory.h */,
@@ -2729,6 +2737,7 @@
 				F7E4DA761DA519920019F2AC /* GroupOfUsersCollectionCell.m */,
 				F7E4DA771DA519920019F2AC /* OnPlanCollectionCell.m */,
 				F7E4DA781DA519920019F2AC /* SingleUserCollectionCell.m */,
+				F7E4DAB91DA5323F0019F2AC /* TermsInfoCollectionCell.m */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -2740,6 +2749,7 @@
 				F7E4DA721DA519920019F2AC /* GroupOfUsersCollectionFactory.m */,
 				F7E4DA731DA519920019F2AC /* OnPlabCollectionCellFactory.m */,
 				F7E4DA741DA519920019F2AC /* SingleUserCollectionCellFactory.m */,
+				F7E4DAB61DA531DA0019F2AC /* TemsInfoCollectionCellFactory.m */,
 			);
 			path = CollectionCellsFactories;
 			sourceTree = "<group>";
@@ -3069,6 +3079,7 @@
 				5664A39E1DA3C63200344879 /* UserInfoViewModel.m in Sources */,
 				F7E4DA8E1DA519920019F2AC /* OnPlanCollectionCell.m in Sources */,
 				5664A3181DA3C63100344879 /* ProjectSystemsModel.m in Sources */,
+				F7E4DAB71DA531DA0019F2AC /* TemsInfoCollectionCellFactory.m in Sources */,
 				5664A33F1DA3C63100344879 /* KeyChainManager.m in Sources */,
 				5664A3C61DA3C63200344879 /* OSMarkedRightDetailCellFactory.m in Sources */,
 				5664A3431DA3C63100344879 /* AboutProjectViewController.m in Sources */,
@@ -3087,6 +3098,7 @@
 				5664A3CD1DA3C63200344879 /* OSFlexibleTextTableCell.m in Sources */,
 				5664A3731DA3C63100344879 /* OfflineSyncViewModel.m in Sources */,
 				5664A2D81DA3C63100344879 /* DataManager+Tasks.m in Sources */,
+				F7E4DABA1DA5323F0019F2AC /* TermsInfoCollectionCell.m in Sources */,
 				5664A3101DA3C63100344879 /* DefaultRoleModel.m in Sources */,
 				5664A3541DA3C63100344879 /* TermsData.m in Sources */,
 				5664A3A11DA3C63200344879 /* UserNotificationModel.m in Sources */,

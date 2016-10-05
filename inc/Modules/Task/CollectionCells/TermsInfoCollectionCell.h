@@ -1,5 +1,5 @@
 //
-//  DetailCollectionCell.h
+//  TermsInfoCollectionCell.h
 //  TookTODO
 //
 //  Created by Глеб on 05.10.16.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
-@interface DetailCollectionCell : UICollectionViewCell
+@interface TermsInfoCollectionCell : UICollectionViewCell
 
 @end

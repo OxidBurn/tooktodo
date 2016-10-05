@@ -8,6 +8,23 @@
 
 #import "OnPlanCollectionCell.h"
 
+@interface OnPlanCollectionCell()
+
+// outlets
+@property (weak, nonatomic) IBOutlet UIImageView* taskMarkImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView* planImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel* planStatusLabel;
+
+// properties
+
+
+// methods
+
+
+@end
+
 @implementation OnPlanCollectionCell
 
 @end
