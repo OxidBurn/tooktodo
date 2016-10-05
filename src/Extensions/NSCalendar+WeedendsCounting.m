@@ -2,7 +2,7 @@
 //  NSCalendar+WeedendsCounting.m
 //  TestWeekendsBetweenDates
 //
-//  Created by Глеб on 03.10.16.
+//  Created by Nikolay Chaban on 03.10.16.
 //  Copyright © 2016 GlebCherkashyn. All rights reserved.
 //
 

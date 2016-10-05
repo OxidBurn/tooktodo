@@ -18,8 +18,8 @@
 #import "ProjectTaskRoleType.h"
 #import "ProjectTaskSubTasks.h"
 #import "ProjectTaskWorkArea.h"
-#import "ProjectTaskRoomLevel.h"
-#import "ProjectTaskMapContour.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskMapContour+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment.h"
 #import "ProjectTaskRoleAssignments.h"
@@ -45,6 +45,7 @@
 
 // Categories
 #import "DataManager+ProjectInfo.h"
+#import "DataManager+Room.h"
 
 @implementation DataManager (Tasks)
 
@@ -501,60 +502,6 @@
     marker.y           = @(info.y);
     marker.roomLevelId = @(info.roomLevelId);
     marker.mapId       = @(info.mapId);
-}
-
-- (void) persistTaskRoomLevel: (TaskRoomLevelModel*)     info
-                      forTask: (ProjectTask*)            task
-                    inContext: (NSManagedObjectContext*) context
-{
-    ProjectTaskRoomLevel* roomLevel = [ProjectTaskRoomLevel MR_findFirstOrCreateByAttribute: @"roomLevel"
-                                                                                  withValue: @(info.roomLevelID)
-                                                                                  inContext: context];
-    
-    roomLevel.task      = task;
-    roomLevel.roomLevel = @(info.roomLevelID);
-    roomLevel.level     = @(info.level);
-}
-
-- (void) persistTaskRoom: (TaskRoomModel*)          info
-                 forTask: (ProjectTask*)            task
-            isSingleRoom: (BOOL)                    isSingle
-               inContext: (NSManagedObjectContext*) context
-{
-    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstOrCreateByAttribute: @"roomID"
-                                                                   withValue: @(info.roomID)
-                                                                   inContext: context];
-    
-    room.task   = task;
-    room.roomID = @(info.roomID);
-    room.number = info.number;
-    room.title  = info.title;
-    
-    if ( isSingle == NO )
-    {
-        room.roomLevelId         = info.roomLevelId;
-        room.tasksCount          = info.tasksCount;
-        room.tasksWithoutMarkers = info.tasksWithoutMarkers;
-    }
-    
-    [self persistMapContour: info.mapContour
-                    forRoom: room
-                  inContext: context];
-}
-
-- (void) persistMapContour: (TaskMapContourModel*)    info
-                   forRoom: (ProjectTaskRoom*)        room
-                 inContext: (NSManagedObjectContext*) context
-{
-    ProjectTaskMapContour* mapContour = [ProjectTaskMapContour MR_findFirstOrCreateByAttribute: @"mapContourID"
-                                                                                     withValue: @(info.mapContourID)
-                                                                                     inContext: context];
-    
-    mapContour.room         = room;
-    mapContour.geoJson      = info.geoJson;
-    mapContour.mapContourID = @(info.mapContourID);
-    mapContour.previewImage = info.previewImage;
-    mapContour.roomId       = @(info.roomId);
 }
 
 - (void) persistTaskRoleAssignments: (TaskRoleAssignmentsModel*) info

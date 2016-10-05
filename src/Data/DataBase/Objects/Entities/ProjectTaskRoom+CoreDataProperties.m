@@ -2,7 +2,7 @@
 //  ProjectTaskRoom+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
 //
 
@@ -21,7 +21,8 @@
 @dynamic tasksWithoutMarkers;
 @dynamic title;
 @dynamic mapContour;
-@dynamic task;
 @dynamic roomTask;
+@dynamic task;
+@dynamic roomLevel;
 
 @end

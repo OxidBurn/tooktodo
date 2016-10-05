@@ -2,24 +2,26 @@
 //  ProjectTaskMapContour+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskMapContour.h"
+#import "ProjectTaskMapContour+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskMapContour (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *geoJson;
-@property (nullable, nonatomic, retain) NSNumber *mapContourID;
-@property (nullable, nonatomic, retain) NSString *previewImage;
-@property (nullable, nonatomic, retain) NSNumber *roomId;
++ (NSFetchRequest<ProjectTaskMapContour *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *geoJson;
+@property (nullable, nonatomic, copy) NSNumber *mapContourID;
+@property (nullable, nonatomic, copy) NSString *previewImage;
+@property (nullable, nonatomic, copy) NSNumber *roomId;
 @property (nullable, nonatomic, retain) ProjectTaskRoom *room;
+@property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
+@property (nullable, nonatomic, retain) RoomLevelMap *map;
 
 @end
 

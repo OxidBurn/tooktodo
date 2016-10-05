@@ -23,6 +23,9 @@
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ProjectInviteInfoModel.h"
 
+// Categories
+#import "DataManager+Room.h"
+
 @implementation DataManager (ProjectInfo)
 
 
@@ -246,6 +249,30 @@
                       }];
 }
 
+- (void) persistSelectedProjectRoomLevels: (NSArray*)              roomLevels
+                           withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
+        
+        [roomLevels enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistTaskRoomLevel: obj
+                            forProject: selectedProject
+                             inContext: localContext];
+            
+        }];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+        
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 #pragma mark - Get methods -
 
 - (ProjectInfo*) getIfExistProjectWithID: (NSUInteger) projectID
@@ -269,10 +296,7 @@
     // Show only 4 projects in menu
     if ( allProjects.count > 4 )
     {
-        menuProjectsList = @[allProjects[0],
-                             allProjects[1],
-                             allProjects[2],
-                             allProjects[3]];
+        menuProjectsList = [allProjects subarrayWithRange: NSMakeRange(0, 4)];
     }
     else
     {
@@ -406,7 +430,7 @@
         
         ProjectInfo* selectedProject = [self getSelectedProjectInfoInContext: localContext];
         
-        selectedProject.projectPermissiom = @(permission);
+        selectedProject.projectPermission = @(permission);
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -421,7 +445,7 @@
 {
     ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
     
-    return selectedProjectInfo.projectPermissiom.integerValue;
+    return selectedProjectInfo.projectPermission.integerValue;
 }
 
 @end

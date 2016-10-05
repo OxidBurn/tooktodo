@@ -13,7 +13,7 @@
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignments.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
-#import "ProjectTaskRoomLevel.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskSubTasks.h"
 #import "ProjectTaskWorkArea.h"

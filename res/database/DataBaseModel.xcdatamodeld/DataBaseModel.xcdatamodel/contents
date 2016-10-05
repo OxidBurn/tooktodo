@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,6 +43,7 @@
         <relationship name="projectRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="project" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
         <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="project" inverseEntity="ProjectRoles" syncable="YES"/>
+        <relationship name="roomLevel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoomLevel" inverseName="project" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
         <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="project" inverseEntity="ProjectSystem" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
@@ -168,7 +169,9 @@
         <attribute name="mapContourID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="previewImage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RoomLevelMap" inverseName="mapContour" inverseEntity="RoomLevelMap" syncable="YES"/>
         <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="mapContour" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+        <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="map" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskMarker" representedClassName="ProjectTaskMarker" syncable="YES">
         <attribute name="mapId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -232,12 +235,16 @@
         <attribute name="tasksWithoutMarkers" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mapContour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="room" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
+        <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="rooms" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="roomTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="room" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="rooms" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoomLevel" representedClassName="ProjectTaskRoomLevel" syncable="YES">
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="roomLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="map" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="roomLevel" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="roomLevel" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="roomLevel" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="roomLevel" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskStage" representedClassName="ProjectTaskStage" syncable="YES">
@@ -258,6 +265,16 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="workAreaID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="workArea" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="RoomLevelMap" representedClassName="RoomLevelMap" syncable="YES">
+        <attribute name="hasMarkers" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="mapId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="marker" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="originalImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originalImageHeight" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="originalImageWidth" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="previewImage" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mapContour" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="map" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
     </entity>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
         <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -304,7 +321,7 @@
     <elements>
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="555"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="570"/>
         <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="165"/>
@@ -314,20 +331,21 @@
         <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="630"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="285"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
-        <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="120"/>
+        <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="150"/>
         <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
         <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="255"/>
         <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="225"/>
         <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="75"/>
         <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="105"/>
         <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="105"/>
-        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="180"/>
-        <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="90"/>
+        <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="195"/>
+        <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="135"/>
         <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="150"/>
         <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="60"/>
         <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="120"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="RoomLevelMap" positionX="-45" positionY="99" width="128" height="165"/>
     </elements>
 </model>

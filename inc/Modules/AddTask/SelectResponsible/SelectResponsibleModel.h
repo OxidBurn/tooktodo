@@ -2,7 +2,7 @@
 //  SelectResponsibleModel.h
 //  TookTODO
 //
-//  Created by Глеб on 22.09.16.
+//  Created by Nikolay Chaban on 22.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
