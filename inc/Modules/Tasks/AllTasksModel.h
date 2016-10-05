@@ -40,4 +40,6 @@
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
+- (void) markTaskAsSelected: (NSIndexPath*) index;
+
 @end

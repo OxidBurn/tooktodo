@@ -10,4 +10,11 @@
 
 @interface TasksListTableViewCell : AllTaskBaseTableViewCell
 
+// properties
+
+
+// methods
+
+
+
 @end

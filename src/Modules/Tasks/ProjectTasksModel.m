@@ -70,9 +70,6 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             section
                          withCompletion: (CompletionWithSuccess) completion
 {
-//    ProjectTaskStage* stage = self.projectsInfo[indexPath.section][contentKey][indexPath.row];
-
-    
     ProjectTaskStage* stage = (ProjectTaskStage*)self.currentProjectInfo.stage.allObjects[section];
     
     __weak typeof(self) blockSelf = self;
@@ -123,7 +120,13 @@ static NSString* contentKey = @"contentInfoKey";
         return 139.0f;
 }
 
-
+- (void) markTaskAsSelected: (NSIndexPath*) index
+{
+    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+    
+    [DataManagerShared updateSelectedStateForTask: selectedTask
+                                withSelectedState: YES];
+}
 
 
 #pragma mark - Internal methods -
@@ -131,8 +134,6 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) updateAllTasksData
 {
     self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
-    
-   // self.stages = self.currentProjectInfo.stage.allObjects;
     
     __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
     __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];

@@ -44,6 +44,7 @@
 // methods
 
 - (IBAction) onChangeTaskStatus: (UIButton*) sender;
+- (IBAction) onShowTaskDetail: (UIButton*) sender;
 
 @end
 
@@ -201,6 +202,12 @@
 - (IBAction) onChangeTaskStatus: (UIButton*) sender
 {
     
+}
+
+- (IBAction) onShowTaskDetail: (UIButton*) sender
+{
+    if ( self.didSelectedTaskAtIndex )
+        self.didSelectedTaskAtIndex(self.cellIndexPath);
 }
 
 @end

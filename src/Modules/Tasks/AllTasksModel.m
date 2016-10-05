@@ -137,6 +137,13 @@ static NSString* contentKey = @"contentInfoKey";
         return 139.0f;
 }
 
+- (void) markTaskAsSelected: (NSIndexPath*) index
+{
+    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+    
+    [DataManagerShared updateSelectedStateForTask: selectedTask
+                                withSelectedState: YES];
+}
 
 #pragma mark - Internal methods -
 

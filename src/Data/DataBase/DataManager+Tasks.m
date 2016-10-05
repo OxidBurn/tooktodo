@@ -118,6 +118,8 @@
                                                            withValue: info.taskID
                                                            inContext: context];
     
+    task.isSelected = @NO;
+    
     if ( info.taskID )
         task.taskID = info.taskID;
     
@@ -568,6 +570,22 @@
     NSArray* stages = currentProject.stage.allObjects;
     
     return stages;
+}
+
+- (void) updateSelectedStateForTask: (ProjectTask*) task
+                  withSelectedState: (BOOL)         isSelected
+{
+    task.isSelected = @(isSelected);
+    
+    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
+}
+
+- (ProjectTask*) getSelectedTask
+{
+    ProjectTask* task = [ProjectTask MR_findFirstByAttribute: @"isSelected"
+                                                   withValue: @(YES)];
+    
+    return task;
 }
 
 

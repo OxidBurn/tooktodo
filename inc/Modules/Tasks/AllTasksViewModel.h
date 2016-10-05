@@ -14,6 +14,7 @@
 
 // properties
 
+@property (copy, nonatomic) void(^didShowTaskInfo)();
 
 // methods
 

@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 10/5/16.
 //
 //
 
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<ProjectTask *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSNumber *access;
+@property (nullable, nonatomic, copy) NSNumber *attachments;
 @property (nullable, nonatomic, copy) NSDate *closedDate;
 @property (nullable, nonatomic, copy) NSString *descriptionValue;
 @property (nullable, nonatomic, copy) NSNumber *duration;
@@ -42,18 +43,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nullable, nonatomic, copy) NSNumber *attachments;
+@property (nullable, nonatomic, copy) NSNumber *isSelected;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) ProjectTaskResponsible *responsible;
+@property (nullable, nonatomic, retain) ProjectTaskRoom *room;
 @property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
 @property (nullable, nonatomic, retain) ProjectTaskStage *stage;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskSubTasks *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
-@property (nullable, nonatomic, retain) ProjectTaskRoom *room;
 
 @end
 

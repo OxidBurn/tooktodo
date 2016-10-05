@@ -12,6 +12,10 @@
 
 @interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+// properties
+
+@property (copy, nonatomic) void(^didShowTaskInfo)();
+
 // methods
 
 - (RACSignal*) updateContent;

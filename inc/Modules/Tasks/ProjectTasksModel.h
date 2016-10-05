@@ -30,4 +30,6 @@
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section;
 
+- (void) markTaskAsSelected: (NSIndexPath*) index;
+
 @end

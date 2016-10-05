@@ -77,6 +77,14 @@
 {
     self.tasksByProjectTableView.dataSource = self.viewModel;
     self.tasksByProjectTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.didShowTaskInfo = ^(){
+        
+        // call segueue for showing task detail
+        
+    };
 }
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender

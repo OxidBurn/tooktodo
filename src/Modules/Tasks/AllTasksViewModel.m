@@ -110,7 +110,20 @@
 {
     AllTaskBaseTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
     
+    cell.cellIndexPath  = indexPath;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    cell.didSelectedTaskAtIndex = ^( NSIndexPath* index ){
+        
+        [blockSelf.model markTaskAsSelected: index];
+        
+        if ( blockSelf.didShowTaskInfo )
+            blockSelf.didShowTaskInfo();
+    };
     
     return cell;
 }

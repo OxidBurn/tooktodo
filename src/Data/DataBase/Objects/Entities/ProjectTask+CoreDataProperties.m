@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 10/5/16.
 //
 //
 
@@ -15,6 +15,7 @@
 }
 
 @dynamic access;
+@dynamic attachments;
 @dynamic closedDate;
 @dynamic descriptionValue;
 @dynamic duration;
@@ -41,17 +42,17 @@
 @dynamic taskType;
 @dynamic taskTypeDescription;
 @dynamic title;
-@dynamic attachments;
+@dynamic isSelected;
 @dynamic marker;
 @dynamic ownerUser;
 @dynamic project;
 @dynamic responsible;
+@dynamic room;
 @dynamic roomLevel;
 @dynamic rooms;
 @dynamic stage;
 @dynamic subTasks;
 @dynamic taskRoleAssignments;
 @dynamic workArea;
-@dynamic room;
 
 @end

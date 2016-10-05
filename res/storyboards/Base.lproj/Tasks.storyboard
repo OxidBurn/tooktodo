@@ -346,7 +346,7 @@
                                             <outlet property="unreadTasksLabel" destination="MGH-EA-Q5D" id="NBR-L0-Wxj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskInfoCellID" rowHeight="139" id="xwk-29-o4A" customClass="TasksListTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TaskInfoCellID" rowHeight="139" id="xwk-29-o4A" customClass="TasksListTableViewCell">
                                         <rect key="frame" x="0.0" y="76" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xwk-29-o4A" id="fce-iN-dAV">
@@ -442,6 +442,9 @@
                                                                     <exclude reference="iKn-tI-2oO"/>
                                                                 </mask>
                                                             </variation>
+                                                            <connections>
+                                                                <action selector="onShowTaskDetail:" destination="xwk-29-o4A" eventType="touchUpInside" id="hmq-j1-4GA"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Прокладка теплового кабеля под длинным тунелем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGe-fj-WsE">
                                                             <constraints>

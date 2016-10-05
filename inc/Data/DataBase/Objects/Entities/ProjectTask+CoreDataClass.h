@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/18/16.
+//  Created by Nikolay Chaban on 10/5/16.
 //
 //
 

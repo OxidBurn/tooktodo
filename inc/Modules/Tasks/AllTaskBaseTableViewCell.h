@@ -15,6 +15,10 @@
 
 @property (assign, nonatomic) AllTasksCellType cellType;
 
+@property (strong, nonatomic) NSIndexPath* cellIndexPath;
+
+@property (copy, nonatomic) void(^didSelectedTaskAtIndex)(NSIndexPath* index);
+
 // methods
 
 - (void) fillInfoForCell: (id) info;

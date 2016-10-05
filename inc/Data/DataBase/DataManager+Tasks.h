@@ -33,4 +33,9 @@
 
 - (NSArray*) getStagesForCurrentProject;
 
+- (void) updateSelectedStateForTask: (ProjectTask*) task
+                  withSelectedState: (BOOL)         isSelected;
+
+- (ProjectTask*) getSelectedTask;
+
 @end

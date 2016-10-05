@@ -91,8 +91,10 @@
     stageInfoView.didChangeExpandState = ^( NSUInteger section ){
         
         [blockSelf.model markStageAsExpandedAtIndexPath: section
-                                         withCompletion:^(BOOL isSuccess) {
+                                         withCompletion: ^(BOOL isSuccess) {
+                                             
                                              [tableView reloadData];
+                                             
                                          }];
         
     };
@@ -105,7 +107,22 @@
 {
     AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
     
+    cell.cellIndexPath = indexPath;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    cell.didSelectedTaskAtIndex = ^( NSIndexPath* index){
+        
+        [blockSelf.model markTaskAsSelected: index];
+        
+        if ( blockSelf.didShowTaskInfo )
+            blockSelf.didShowTaskInfo();
+        
+    };
     
     return cell;
 }
@@ -128,7 +145,7 @@
         case AllTasksStageCellType:
         {
             [self.model markStageAsExpandedAtIndexPath: indexPath.section
-                                withCompletion: ^(BOOL isSuccess) {
+                                        withCompletion: ^(BOOL isSuccess) {
                                             
                                             [tableView reloadData];
                                             
