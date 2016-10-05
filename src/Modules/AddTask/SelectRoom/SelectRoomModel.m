@@ -24,7 +24,6 @@ static NSString* roomKey  = @"RoomKey";
 @property (nonatomic, strong) NSArray*              levelsArray;
 @property (nonatomic, strong) NSIndexPath*          lastIndexPath;
 @property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
-@property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
 
 // methods
 
@@ -106,9 +105,12 @@ static NSString* roomKey  = @"RoomKey";
     return cellInfo.title;
 }
 
-- (BOOL) isSelectedRoom
+- (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath
 {
-    return self.selectedRoom.isSelected;
+    ProjectTaskRoomLevel* level = [self getLevelForSection: indexPath.section];
+    ProjectTaskRoom* room       = level.rooms.allObjects[indexPath.row];
+    
+    return room.isSelected;
 }
 
 
@@ -163,15 +165,20 @@ static NSString* roomKey  = @"RoomKey";
 }
 
 - (void) updateSelectedStateForSection: (NSUInteger) section
-{    
-    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+{
+    self.selectedLevel = [self getLevelForSection: section];
     
-    [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (idx != section)
+    [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ([self.selectedLevel.isSelected isEqual: @(YES)])
         {
-            level.isSelected = @(NO);
+            obj.isSelected = @(YES);
         }
+        else
+        {
+            obj.isSelected = @(NO);
+        }
+<<<<<<< HEAD
         else level.isSelected = @(YES);
         
         self.selectedLevel = level;
@@ -193,6 +200,8 @@ static NSString* roomKey  = @"RoomKey";
         }];
         
         
+=======
+>>>>>>> bec05c7a7e8d45e182dd07b0e638f7fd8ddcd66a
         
     }];
 }
@@ -204,7 +213,8 @@ static NSString* roomKey  = @"RoomKey";
     
     [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
                                    withCompletion: ^(BOOL isSuccess) {
-                                       [blockSelf updateSelectedStateForSection:section];
+                                       
+                                       [blockSelf updateSelectedStateForSection: section];
                                        
                                        if (completion)
                                        {

@@ -74,9 +74,15 @@
         forRoomLevel: (ProjectTaskRoomLevel*)   roomLevel
            inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstOrCreateByAttribute: @"roomID"
-                                                                   withValue: @(info.roomID)
-                                                                   inContext: context];
+    NSPredicate* existPredicate = [NSPredicate predicateWithFormat: @"roomID == %@ AND roomLevel == %@", @(info.roomID), roomLevel];
+    
+    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: existPredicate
+                                                             inContext: context];
+    
+    if ( room == nil )
+    {
+        room = [ProjectTaskRoom MR_createEntityInContext: context];
+    }
     
     room.roomLevel = roomLevel;
     room.roomID    = @(info.roomID);
@@ -187,7 +193,9 @@
                      withCompletion: (CompletionWithSuccess) completion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
         level.isSelected = @(!level.isSelected.boolValue);
+        
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           

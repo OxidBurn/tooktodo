@@ -57,7 +57,7 @@
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
     [cell fillCellWithContent: [self.model getInfoForCellAtIndexPath: indexPath]
-            withSelectedState: [self.model isSelectedRoom]];
+            withSelectedState: [self.model isSelectedRoomAtIndexPath: indexPath]];
     
     return cell;
 }
