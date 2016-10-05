@@ -8,6 +8,9 @@
 
 #import "SingleUserCollectionCellFactory.h"
 
+// Classes
+#import "SingleUserCollectionCell.h"
+
 @implementation SingleUserCollectionCellFactory
 
 @end

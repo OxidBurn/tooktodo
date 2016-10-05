@@ -8,6 +8,9 @@
 
 #import "TaskOptionsFactory.h"
 
+// Classes
+#import "TaskOptionsCell.h"
+
 @implementation TaskOptionsFactory
 
 @end

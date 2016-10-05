@@ -8,6 +8,9 @@
 
 #import "TemsInfoCollectionCellFactory.h"
 
+// Classes
+#import "TermsInfoCollectionCell.h"
+
 @implementation TemsInfoCollectionCellFactory
 
 @end

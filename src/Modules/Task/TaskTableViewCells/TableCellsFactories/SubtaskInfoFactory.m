@@ -8,6 +8,9 @@
 
 #import "SubtaskInfoFactory.h"
 
+// Classes
+#import "SubtaskInfoCell.h"
+
 @implementation SubtaskInfoFactory
 
 @end

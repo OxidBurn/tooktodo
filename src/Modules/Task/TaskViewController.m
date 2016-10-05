@@ -8,36 +8,71 @@
 
 #import "TaskViewController.h"
 
+// Classes
+#import "TaskViewModel.h"
+
 @interface TaskViewController ()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UITableView *taskTableView;
+@property (weak, nonatomic) IBOutlet UITableView* taskTableView;
 
 // properties
-
+@property (strong, nonatomic) TaskViewModel* viewModel;
 
 // methods
-- (IBAction)onBackBtn:(UIBarButtonItem *)sender;
+- (IBAction) onBackBtn:   (UIBarButtonItem*) sender;
 
-- (IBAction)onChangeBtn:(UIBarButtonItem *)sender;
+- (IBAction) onChangeBtn: (UIBarButtonItem*) sender;
 
 @end
 
 @implementation TaskViewController
 
-- (void)viewDidLoad {
+#pragma mark - Lyfe cycle -
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setupDefaults];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void) didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onBackBtn:(UIBarButtonItem *)sender {
+#pragma mark - Properties -
+
+- (TaskViewModel*) viewModel
+{
+    if ( _viewModel == nil )
+    {
+        _viewModel = [TaskViewModel new];
+    }
+    
+    return _viewModel;
 }
 
-- (IBAction)onChangeBtn:(UIBarButtonItem *)sender {
+#pragma mark - Actions -
+
+- (IBAction) onBackBtn: (UIBarButtonItem*) sender
+{
+    
 }
+
+- (IBAction) onChangeBtn: (UIBarButtonItem*) sender
+{
+    
+}
+
+#pragma mark - Helpers -
+
+- (void) setupDefaults
+{
+    self.taskTableView.dataSource = self.viewModel;
+    self.taskTableView.delegate   = self.viewModel;
+}
+
+
 @end

@@ -681,7 +681,6 @@
                                                         <constraint firstItem="3Av-cP-52A" firstAttribute="top" secondItem="MBL-Yw-xFl" secondAttribute="bottom" constant="-20" id="lE0-MO-bVT"/>
                                                         <constraint firstItem="MBL-Yw-xFl" firstAttribute="leading" secondItem="3Av-cP-52A" secondAttribute="trailing" constant="-22" id="mFg-3c-EWs"/>
                                                         <constraint firstItem="b8Q-Rn-yJR" firstAttribute="top" secondItem="Cg3-69-h3h" secondAttribute="top" constant="25" id="oXe-gi-HwP"/>
-                                                        <constraint firstAttribute="width" constant="367" id="otb-MV-HJu"/>
                                                         <constraint firstItem="FD8-Cu-CDE" firstAttribute="top" secondItem="Cg3-69-h3h" secondAttribute="top" id="r94-Z5-SgY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Iwy-tc-WwU" secondAttribute="bottom" constant="14" id="tba-ig-6Ge"/>
                                                         <constraint firstAttribute="bottom" secondItem="FD8-Cu-CDE" secondAttribute="bottom" id="w6P-o1-QyR"/>
@@ -692,6 +691,7 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Cg3-69-h3h" secondAttribute="trailing" constant="4" id="3Jg-i3-fVL"/>
                                                 <constraint firstItem="Cg3-69-h3h" firstAttribute="top" secondItem="2sM-Oy-oGv" secondAttribute="top" id="isQ-79-5F3"/>
                                                 <constraint firstItem="Cg3-69-h3h" firstAttribute="leading" secondItem="2sM-Oy-oGv" secondAttribute="leading" constant="4" id="ylE-7W-kox"/>
                                             </constraints>
@@ -769,11 +769,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tasksByProjectTableView" destination="NKI-8r-Wzg" id="hhw-rB-zA3"/>
+                        <segue destination="QL3-Fa-Ytf" kind="show" identifier="ShowTaskDetailSegueId" id="v9a-XK-bLV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvH-ng-SI2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1607.2" y="118.29085457271366"/>
+        </scene>
+        <!--TaskDetailInfo-->
+        <scene sceneID="AZ0-jZ-dSd">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TaskDetailInfo" storyboardName="TaskDetailInfo" id="QL3-Fa-Ytf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eob-OS-tDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1724" y="547"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BCj-N4-oTL">

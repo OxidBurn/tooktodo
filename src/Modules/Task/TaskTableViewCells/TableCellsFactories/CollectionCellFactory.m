@@ -8,6 +8,9 @@
 
 #import "CollectionCellFactory.h"
 
+// Classes
+#import "CollectionCell.h"
+
 @implementation CollectionCellFactory
 
 @end

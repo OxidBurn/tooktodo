@@ -8,6 +8,9 @@
 
 #import "GroupOfUsersCollectionFactory.h"
 
+// Classes
+#import "GroupOfUsersCollectionCell.h"
+
 @implementation GroupOfUsersCollectionFactory
 
 @end

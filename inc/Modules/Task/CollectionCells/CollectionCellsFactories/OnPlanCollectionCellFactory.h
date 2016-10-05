@@ -1,5 +1,5 @@
 //
-//  TaskViewModel.h
+//  OnPlabCollectionCellFactory.h
 //  TookTODO
 //
 //  Created by Глеб on 05.10.16.
@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-// Frameworks
-@import UIKit;
-
-@interface TaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface OnPlanCollectionCellFactory : NSObject
 
 @end

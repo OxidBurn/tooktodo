@@ -6,8 +6,11 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "OnPlabCollectionCellFactory.h"
+#import "OnPlanCollectionCellFactory.h"
 
-@implementation OnPlabCollectionCellFactory
+// Classes
+#import "OnPlanCollectionCell.h"
+
+@implementation OnPlanCollectionCellFactory
 
 @end

@@ -101,7 +101,8 @@
     
     self.viewModel.didShowTaskInfo = ^(){
         
-        // call segueue for showing task detail info
+        [blockSelf performSegueWithIdentifier: @"ShowTaskDetailSegueId"
+                                       sender: blockSelf];
         
     };
 }

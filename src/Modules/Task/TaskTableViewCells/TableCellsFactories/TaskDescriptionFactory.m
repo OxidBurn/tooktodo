@@ -8,6 +8,9 @@
 
 #import "TaskDescriptionFactory.h"
 
+// Classes
+#import "TaskDescriptionCell.h"
+
 @implementation TaskDescriptionFactory
 
 @end
