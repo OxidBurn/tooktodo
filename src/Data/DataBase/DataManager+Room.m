@@ -60,6 +60,15 @@
                inContext: context];
     }
     
+    [info.rooms enumerateObjectsUsingBlock: ^(TaskRoomModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [self persistTaskRoom: obj
+                      forTask: nil
+                 isSingleRoom: NO
+                    inContext: context];
+        
+    }];
+    
 }
 
 - (void) persistTaskRoom: (TaskRoomModel*)          info
