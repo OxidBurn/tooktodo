@@ -632,6 +632,18 @@
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-Cu-CDE">
+                                                            <color key="backgroundColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="2" id="NKb-3S-q7U"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overdue" translatesAutoresizingMaskIntoConstraints="NO" id="TAL-IV-Pxh">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="14" id="31t-Lp-EUa"/>
+                                                                <constraint firstAttribute="height" constant="14" id="chb-xo-gsM"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -644,9 +656,11 @@
                                                         <constraint firstItem="SE5-h1-MVH" firstAttribute="leading" secondItem="aRg-vI-AIv" secondAttribute="trailing" id="CW1-TS-rYp"/>
                                                         <constraint firstItem="bTv-jS-JEk" firstAttribute="leading" secondItem="MBL-Yw-xFl" secondAttribute="trailing" constant="-21" id="H2f-l1-ghj"/>
                                                         <constraint firstAttribute="bottom" secondItem="asX-2v-UnY" secondAttribute="bottom" constant="14" id="KDd-oV-6Yt"/>
+                                                        <constraint firstItem="FD8-Cu-CDE" firstAttribute="leading" secondItem="Cg3-69-h3h" secondAttribute="leading" id="MMk-LJ-755"/>
                                                         <constraint firstItem="iqE-69-YHe" firstAttribute="leading" secondItem="2kl-kf-Yiy" secondAttribute="trailing" constant="1" id="ND5-8x-qGj"/>
                                                         <constraint firstItem="MBL-Yw-xFl" firstAttribute="leading" secondItem="Cg3-69-h3h" secondAttribute="leading" constant="9" id="SKv-Qv-yI2"/>
                                                         <constraint firstItem="458-Ov-LTB" firstAttribute="centerX" secondItem="MBL-Yw-xFl" secondAttribute="centerX" id="TrG-Za-vsZ"/>
+                                                        <constraint firstItem="TAL-IV-Pxh" firstAttribute="top" secondItem="Cg3-69-h3h" secondAttribute="top" constant="23" id="UIr-2X-kCx"/>
                                                         <constraint firstItem="JhP-gH-mCq" firstAttribute="leading" secondItem="Cg3-69-h3h" secondAttribute="leading" constant="9" id="Vo4-xO-1X3"/>
                                                         <constraint firstAttribute="trailing" secondItem="LOz-U6-DuH" secondAttribute="trailing" constant="15" id="VqC-HO-at1"/>
                                                         <constraint firstAttribute="height" constant="138" id="Wz2-ng-2fe"/>
@@ -665,7 +679,10 @@
                                                         <constraint firstItem="MBL-Yw-xFl" firstAttribute="leading" secondItem="3Av-cP-52A" secondAttribute="trailing" constant="-22" id="mFg-3c-EWs"/>
                                                         <constraint firstItem="b8Q-Rn-yJR" firstAttribute="top" secondItem="Cg3-69-h3h" secondAttribute="top" constant="25" id="oXe-gi-HwP"/>
                                                         <constraint firstAttribute="width" constant="367" id="otb-MV-HJu"/>
+                                                        <constraint firstItem="FD8-Cu-CDE" firstAttribute="top" secondItem="Cg3-69-h3h" secondAttribute="top" id="r94-Z5-SgY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Iwy-tc-WwU" secondAttribute="bottom" constant="14" id="tba-ig-6Ge"/>
+                                                        <constraint firstAttribute="bottom" secondItem="FD8-Cu-CDE" secondAttribute="bottom" id="w6P-o1-QyR"/>
+                                                        <constraint firstItem="TAL-IV-Pxh" firstAttribute="leading" secondItem="Cg3-69-h3h" secondAttribute="leading" constant="2" id="wGy-vQ-gNa"/>
                                                         <constraint firstItem="JhP-gH-mCq" firstAttribute="top" secondItem="b8Q-Rn-yJR" secondAttribute="bottom" constant="9" id="zlw-Jw-gq0"/>
                                                     </constraints>
                                                 </view>
@@ -979,6 +996,7 @@
         <image name="Filter" width="20" height="20"/>
         <image name="Mark" width="10" height="16"/>
         <image name="Menu1" width="24" height="17"/>
+        <image name="Overdue" width="14" height="14"/>
         <image name="TaskStatusExpandWhiteIcon" width="21" height="28"/>
         <image name="sort1" width="22" height="20"/>
     </resources>

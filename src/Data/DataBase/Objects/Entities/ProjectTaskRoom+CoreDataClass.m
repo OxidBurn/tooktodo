@@ -8,7 +8,7 @@
 
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
-#import "ProjectTaskMapContour.h"
+#import "ProjectTaskMapContour+CoreDataClass.h"
 @implementation ProjectTaskRoom
 
 @end

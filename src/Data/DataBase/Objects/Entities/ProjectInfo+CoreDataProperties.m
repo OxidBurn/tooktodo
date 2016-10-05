@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Lera on 20.09.16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
 //
 
@@ -31,6 +31,7 @@
 @dynamic ownerUserId;
 @dynamic phoneNumber;
 @dynamic projectID;
+@dynamic projectPermission;
 @dynamic realtyClass;
 @dynamic realtyClassDescription;
 @dynamic regionName;
@@ -38,7 +39,6 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
-@dynamic projectPermissiom;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic projectRoleAssignments;
@@ -48,5 +48,6 @@
 @dynamic systems;
 @dynamic tasks;
 @dynamic team;
+@dynamic roomLevel;
 
 @end

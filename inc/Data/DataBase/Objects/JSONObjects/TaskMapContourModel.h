@@ -8,6 +8,8 @@
 
 #import <JSONModel/JSONModel.h>
 
+@protocol TaskMapContourModel;
+
 @interface TaskMapContourModel : JSONModel
 
 @property (strong, nonatomic) NSString   * geoJson;

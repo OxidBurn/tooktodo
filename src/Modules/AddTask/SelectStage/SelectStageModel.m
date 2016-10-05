@@ -2,7 +2,7 @@
 //  SelectStageModel.m
 //  TookTODO
 //
-//  Created by Lera on 30.09.16.
+// Created by Nikolay Chaban on 30.09.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 

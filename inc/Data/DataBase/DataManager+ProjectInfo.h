@@ -20,6 +20,9 @@
 - (void) persistSelectedProjectRoleAssignments: (NSArray*)              roleAssignemnts
                                 withCompletion: (CompletionWithSuccess) completion;
 
+- (void) persistSelectedProjectRoomLevels: (NSArray*)              roomLevels
+                           withCompletion: (CompletionWithSuccess) completion;
+
 - (NSArray*) getAllProjects;
 
 - (NSArray*) getProjectsForMenu;

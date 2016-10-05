@@ -1,21 +1,19 @@
 //
-//  ProjectTaskMapContour.h
+//  ProjectTaskMapContour+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 10/4/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectTaskRoom;
+@class ProjectTaskRoom, ProjectTaskRoomLevel, RoomLevelMap;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskMapContour : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 
