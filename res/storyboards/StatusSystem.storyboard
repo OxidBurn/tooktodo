@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="7rH-bU-AtS">
+            <objects>
+                <viewController id="Uco-LO-RJE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l0X-MX-pea"/>
+                        <viewControllerLayoutGuide type="bottom" id="BSN-uy-9IP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tG1-Le-QQK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uJu-DO-OSI">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="176" id="B7v-4r-bDJ"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Wlp-nu-c2J">
+                                        <rect key="frame" x="0.0" y="92" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wlp-nu-c2J" id="VOs-Lg-Ako">
+                                            <frame key="frameInset" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskStatusOnApproveIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-XB-Lge">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="38k-QN-f0Y"/>
+                                                        <constraint firstAttribute="width" constant="12" id="5fi-tH-sR7"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOC-Zn-uz0">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="nMd-xI-rxa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskStatusExpandWhiteIconTurn" translatesAutoresizingMaskIntoConstraints="NO" id="KbI-x6-gfj">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="fHB-7s-05f"/>
+                                                        <constraint firstAttribute="height" constant="44" id="hMz-6P-dgI"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KbI-x6-gfj" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" id="01b-wo-fFO"/>
+                                                <constraint firstItem="ywZ-XB-Lge" firstAttribute="leading" secondItem="VOs-Lg-Ako" secondAttribute="leading" constant="13" id="2An-WO-DJu"/>
+                                                <constraint firstItem="FOC-Zn-uz0" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="15" id="4eY-6e-NUZ"/>
+                                                <constraint firstItem="ywZ-XB-Lge" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="14" id="FNh-Bv-gZA"/>
+                                                <constraint firstItem="FOC-Zn-uz0" firstAttribute="leading" secondItem="ywZ-XB-Lge" secondAttribute="trailing" constant="7" id="Vdm-lF-0kQ"/>
+                                                <constraint firstItem="KbI-x6-gfj" firstAttribute="leading" secondItem="FOC-Zn-uz0" secondAttribute="trailing" constant="25" id="XMx-o6-hYF"/>
+                                                <constraint firstAttribute="trailing" secondItem="KbI-x6-gfj" secondAttribute="trailing" id="bbF-d2-4UF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uJu-DO-OSI" firstAttribute="top" secondItem="l0X-MX-pea" secondAttribute="bottom" constant="102" id="8ev-xn-F5F"/>
+                            <constraint firstAttribute="trailing" secondItem="uJu-DO-OSI" secondAttribute="trailing" constant="15" id="Cq0-QI-Mk9"/>
+                            <constraint firstItem="uJu-DO-OSI" firstAttribute="leading" secondItem="tG1-Le-QQK" secondAttribute="leading" constant="15" id="W1P-Cj-NhU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gWX-99-yK6">
+                        <barButtonItem key="leftBarButtonItem" image="Back" id="rj1-B2-fcl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ihj-Bq-4TP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7084" y="147.97601199400302"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UDO-so-Ja5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nSa-t1-0eA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sFJ-cT-jGW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uco-LO-RJE" kind="relationship" relationship="rootViewController" id="bnW-Ac-P42"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o24-TM-BDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6144.8000000000002" y="147.97601199400302"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Back" width="59" height="18"/>
+        <image name="TaskStatusExpandWhiteIconTurn" width="30" height="44"/>
+        <image name="TaskStatusOnApproveIcon" width="9" height="12"/>
+    </resources>
+</document>
