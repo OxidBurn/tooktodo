@@ -62,13 +62,35 @@
     
     [info.rooms enumerateObjectsUsingBlock: ^(TaskRoomModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [self persistTaskRoom: obj
-                      forTask: nil
-                 isSingleRoom: NO
-                    inContext: context];
+        [self persistRoom: obj
+             forRoomLevel: roomLevel
+                inContext: context];
         
     }];
     
+}
+
+- (void) persistRoom: (TaskRoomModel*)          info
+        forRoomLevel: (ProjectTaskRoomLevel*)   roomLevel
+           inContext: (NSManagedObjectContext*) context
+{
+    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstOrCreateByAttribute: @"roomID"
+                                                                   withValue: @(info.roomID)
+                                                                   inContext: context];
+    
+    room.roomLevel = roomLevel;
+    room.roomID    = @(info.roomID);
+    room.number    = info.number;
+    room.title     = info.title;
+    
+    room.roomLevelId         = info.roomLevelId;
+    room.tasksCount          = info.tasksCount;
+    room.tasksWithoutMarkers = info.tasksWithoutMarkers;
+    
+    ProjectTaskMapContour* mapContour = [self persistMapContour: info.mapContour
+                                                      inContext: context];
+    
+    room.mapContour = mapContour;
 }
 
 - (void) persistTaskRoom: (TaskRoomModel*)          info

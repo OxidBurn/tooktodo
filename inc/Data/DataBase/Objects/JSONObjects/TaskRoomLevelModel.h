@@ -10,12 +10,13 @@
 
 // Classes
 #import "RoomLevelMapModel.h"
+#import "TaskRoomModel.h"
 
 @interface TaskRoomLevelModel : JSONModel
 
 @property (assign, nonatomic) NSUInteger roomLevelID;
 @property (assign, nonatomic) NSUInteger level;
-@property (strong, nonatomic) NSArray* rooms;
+@property (strong, nonatomic) NSArray<TaskRoomModel>* rooms;
 @property (strong, nonatomic) RoomLevelMapModel<Optional>* map;
 
 @end
