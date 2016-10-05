@@ -12,6 +12,8 @@
 #import "DataManager+Room.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "DataManager+ProjectInfo.h"
+
 
 static NSString* levelKey = @"LevelKey";
 static NSString* roomKey  = @"RoomKey";
@@ -19,25 +21,16 @@ static NSString* roomKey  = @"RoomKey";
 @interface SelectRoomModel()
 
 // properties
-@property (nonatomic, strong) NSArray* levelsArray;
-
-@property (nonatomic, strong) ProjectTaskRoomLevel* level;
+@property (nonatomic, strong) NSArray*              levelsArray;
+@property (nonatomic, strong) NSIndexPath*          lastIndexPath;
+@property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
+@property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
 
 // methods
-
 
 @end
 
 @implementation SelectRoomModel
-
-- (NSArray*) levelsArray
-{
-    if (_levelsArray == nil)
-    {
-        _levelsArray = [DataManagerShared getAllRoomsLevelOfSelectedProject];
-    }
-    return  _levelsArray;
-}
 
 #pragma mark - Public -
 
@@ -53,21 +46,36 @@ static NSString* roomKey  = @"RoomKey";
     return roomsArray.count;
 }
 
+- (NSIndexPath*) getLastIndexPath
+{
+    return self.lastIndexPath;
+}
+
+- (void) updateLastIndexPath: (NSIndexPath*) indexPath
+{
+    self.lastIndexPath = indexPath;
+}
+
 - (void) markLevelAsExpandedAtIndexPath: (NSInteger) section
                          withCompletion: (CompletionWithSuccess) completion
 {
-   
-    ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*)self.levelsArray[section];
+    
+    ProjectInfo* currProj = [DataManagerShared getSelectedProjectInfo];
+    NSArray* arr =  currProj.roomLevel.array;
+    
+    ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*)arr[section];
     
     __weak typeof(self) blockSelf = self;
     
     [DataManagerShared updateExpandedStateOfLevel: level
                                    withCompletion: ^(BOOL isSuccess) {
                                        [blockSelf updateData];
+                                       
+                                       if (completion)
+                                       {
+                                           completion (YES);
+                                       }
                                    }];
-    if (completion) {
-        
-    }
 
 }
 
@@ -92,10 +100,15 @@ static NSString* roomKey  = @"RoomKey";
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-    NSArray* cellsContentInfo = self.levelsArray[path.section][roomKey];
-    id cellInfo               = cellsContentInfo[path.row];
+    NSArray* cellsContentInfo  = self.levelsArray[path.section][roomKey];
+    ProjectTaskRoom* cellInfo  = cellsContentInfo[path.row];
     
-    return cellInfo;
+    return cellInfo.title;
+}
+
+- (BOOL) isSelectedRoom
+{
+    return self.selectedRoom.isSelected;
 }
 
 
@@ -106,11 +119,12 @@ static NSString* roomKey  = @"RoomKey";
     __block NSMutableArray* tmpLevelInfo = [NSMutableArray array];
     __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
     
-    [self.levelsArray enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    
+    [levels enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
        
         NSMutableDictionary* levelsInfoDic = [NSMutableDictionary dictionaryWithDictionary:@{levelKey : level}];
         
-        level.isExpanded = @(YES);
         NSArray* rooms = level.rooms.allObjects;
         
         NSLog(@"rooms %@", rooms);
@@ -120,9 +134,11 @@ static NSString* roomKey  = @"RoomKey";
             [level.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
                 
                 [tmpRowsInfo addObject: obj];
+                
             }];
         }
         
+     
         if (tmpRowsInfo.count > 0)
         {
             [levelsInfoDic setObject: tmpRowsInfo.copy
@@ -131,14 +147,68 @@ static NSString* roomKey  = @"RoomKey";
             [tmpRowsInfo removeAllObjects];
         }
         
+        if (levels.count == 1)
+        {
+            level.isExpanded = @(YES);
+        }
+        
         [tmpLevelInfo addObject: levelsInfoDic];
+        
     }];
-    
     
     self.levelsArray = tmpLevelInfo.copy;
     
     tmpRowsInfo  = nil;
     tmpLevelInfo = nil;
+}
+
+- (void) updateSelectedStateForSection: (NSUInteger) section
+{    
+    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    
+    [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (idx != section)
+        {
+            level.isSelected = @(NO);
+        }
+        else level.isSelected = @(YES);
+        
+        self.selectedLevel = level;
+        
+        [self.selectedLevel.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            if ([self.selectedLevel.isSelected isEqual: @(YES)])
+            {
+                obj.isSelected = @(YES);
+                self.selectedRoom = obj;
+            }
+            else
+            {
+                obj.isSelected = @(NO);
+                self.selectedRoom = obj;
+            }
+        }];
+        
+        
+        
+    }];
+}
+
+- (void) handleCheckmarkForSection: (NSUInteger) section
+                    withCompletion: (CompletionWithSuccess) completion
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       [blockSelf updateSelectedStateForSection:section];
+                                       
+                                       if (completion)
+                                       {
+                                           completion (YES);
+                                       }
+                                   }];
 }
 
 @end

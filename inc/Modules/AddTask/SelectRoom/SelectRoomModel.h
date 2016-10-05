@@ -30,4 +30,11 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
 
+- (void) handleCheckmarkForSection: (NSUInteger) section
+                    withCompletion: (CompletionWithSuccess) completion;
+
+- (void) handleCheckmarkForRow: (NSUInteger) row;
+
+- (BOOL) isSelectedRoom;
+
 @end

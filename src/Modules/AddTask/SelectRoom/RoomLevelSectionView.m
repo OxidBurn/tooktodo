@@ -40,6 +40,8 @@
     
     [self updateExpandedState: level.isExpanded.boolValue];
     
+    [self updateSelectedState: level.isSelected.boolValue];
+    
 }
 
 
@@ -47,13 +49,15 @@
 
 - (IBAction) expandBtn: (UIButton*) sender
 {
+
     if ( self.didChangeExpandState )
         self.didChangeExpandState(self.tag);
 }
 
 - (IBAction) selectBtn: (UIButton*) sender
 {
-    
+    if (self.didChangeSelectedState)
+        self.didChangeSelectedState(self.tag);
 }
 
 - (void) updateExpandedState: (BOOL) isExpanded
@@ -71,5 +75,23 @@
     
     self.expandImgView.image = expandedStateImage;
 }
+
+- (void) updateSelectedState: (BOOL) isSelected
+{
+    if (isSelected)
+    {
+        self.chekmarkImgView.hidden = NO;
+        [self.selctBtn setTitle: @""
+                       forState: UIControlStateNormal];
+    }
+    else
+    {
+        self.chekmarkImgView.hidden = YES;
+        [self.selctBtn setTitle: @"Выбрать"
+                       forState: UIControlStateNormal];
+    }
+}
+
+
 
 @end

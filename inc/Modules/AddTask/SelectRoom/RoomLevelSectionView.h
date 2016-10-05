@@ -17,6 +17,8 @@
 //Properties
 @property (nonatomic, copy) void(^didChangeExpandState)(NSUInteger section);
 
+@property (nonatomic, copy) void(^didChangeSelectedState)(NSUInteger section);
+
 // Methods
 - (void) fillInfo: (ProjectTaskRoomLevel*) level;
 

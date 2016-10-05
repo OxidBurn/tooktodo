@@ -11,6 +11,7 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskMapContour+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+
 @implementation ProjectTaskRoomLevel
 
 @end

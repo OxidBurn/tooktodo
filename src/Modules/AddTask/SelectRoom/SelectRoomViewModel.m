@@ -57,7 +57,7 @@
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
     [cell fillCellWithContent: [self.model getInfoForCellAtIndexPath: indexPath]
-            withSelectedState: YES];
+            withSelectedState: [self.model isSelectedRoom]];
     
     return cell;
 }
@@ -100,9 +100,19 @@
         
         [blockSelf.model markLevelAsExpandedAtIndexPath: section
          withCompletion:^(BOOL isSuccess) {
+             
              [tableView reloadData];
          }];
         
+    };
+    
+    sectionView.didChangeSelectedState = ^(NSUInteger section){
+        
+        [blockSelf.model handleCheckmarkForSection:
+         section withCompletion:^(BOOL isSuccess) {
+             
+             [tableView reloadData];
+         }];
     };
     
     return sectionView;

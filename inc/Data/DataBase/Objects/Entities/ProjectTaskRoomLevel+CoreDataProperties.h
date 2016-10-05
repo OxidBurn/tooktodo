@@ -15,9 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<ProjectTaskRoomLevel *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSNumber *isExpanded;
 @property (nullable, nonatomic, copy) NSNumber *level;
 @property (nullable, nonatomic, copy) NSNumber *roomLevel;
-@property (nullable, nonatomic, copy) NSNumber *isExpanded;
+@property (nullable, nonatomic, copy) NSNumber *isSelected;
 @property (nullable, nonatomic, retain) ProjectTaskMapContour *map;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;

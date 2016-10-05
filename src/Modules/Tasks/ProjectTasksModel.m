@@ -129,8 +129,6 @@ static NSString* contentKey = @"contentInfoKey";
 {
     self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
     
-   // self.stages = self.currentProjectInfo.stage.allObjects;
-    
     __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
     __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
     

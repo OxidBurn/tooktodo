@@ -14,9 +14,10 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskRoomLevel"];
 }
 
+@dynamic isExpanded;
 @dynamic level;
 @dynamic roomLevel;
-@dynamic isExpanded;
+@dynamic isSelected;
 @dynamic map;
 @dynamic project;
 @dynamic rooms;

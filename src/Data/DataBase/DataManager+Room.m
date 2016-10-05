@@ -165,7 +165,6 @@
 {
     ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfo];
     
-    
     return selectedProject.roomLevel.array;
 }
 
@@ -181,6 +180,21 @@
                               completion(contextDidSave);
                           
                         }];
+}
+
+
+- (void) updateSelectedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        level.isSelected = @(!level.isSelected.boolValue);
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 @end
