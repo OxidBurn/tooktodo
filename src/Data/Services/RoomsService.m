@@ -38,10 +38,14 @@
 
 - (RACSignal*) getRoomLevelsForSelectedProjectWithID: (NSNumber*) projectID
 {
+    @weakify(self)
+    
     RACSignal* fetchRoomsLevelSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
        
         [[[RoomsAPIService sharedInstance] fetchRoomsLevelInfoForProject: [self buildGetRoomsLevelURLForProjectWithID: projectID]]
          subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
              
              [self parseRoomsLevelInfo: response[0]
                         withCompletion: ^(BOOL isSuccess) {
