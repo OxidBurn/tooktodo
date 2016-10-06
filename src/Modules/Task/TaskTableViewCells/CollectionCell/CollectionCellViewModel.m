@@ -56,6 +56,13 @@
                                       forIndexPath: indexPath];
 }
 
+- (CGSize) collectionView: (UICollectionView*)       collectionView
+                   layout: (UICollectionViewLayout*) collectionViewLayout
+   sizeForItemAtIndexPath: (NSIndexPath*)            indexPath
+{    
+    return CGSizeMake((collectionView.width - 1) / 2, 58);
+}
+
 #pragma mark - UICollectionViewDelegate methods -
 
 

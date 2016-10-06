@@ -11,6 +11,6 @@
 // Frameworks
 @import UIKit;
 
-@interface CollectionCellViewModel : NSObject <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CollectionCellViewModel : NSObject <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @end

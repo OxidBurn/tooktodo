@@ -118,6 +118,8 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSString* cellID = content.cellId;
     
     NSUInteger cellTypeIndex = [self.tableViewCellsIdArray indexOfObject: cellID];
