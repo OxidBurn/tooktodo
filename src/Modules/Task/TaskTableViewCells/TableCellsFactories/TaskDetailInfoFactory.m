@@ -20,6 +20,8 @@
 {
     TaskDetailInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: content.cellId];
     
+    [cell fillCellWithContent: content];
+    
     return cell;
 }
 

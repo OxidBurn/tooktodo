@@ -12,6 +12,8 @@
 
 // Classes
 #import "DataManager+Tasks.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskWorkArea.h"
 #import "TaskRowContent.h"
 
 // Factories
@@ -132,6 +134,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
             
             cell = [factory returnTaskDetailCellWithContent: content
                                                forTableView: tableView];
+            
         }
             break;
             
@@ -174,6 +177,12 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     rowOne.title         = self.task.title;
     rowOne.taskStartDate = self.task.startDay;
     rowOne.taskEndDate   = self.task.endDate;
+    rowOne.isOverdue     = self.task.isExpired;
+    rowOne.roomNumber    = self.task.roomLevel.roomLevel.integerValue;
+    rowOne.isHiddenTask  = self.task.taskAccess.integerValue;
+    rowOne.subtasksNumber = self.task.subTasks.count;
+    rowOne.taskStatusDescription = self.task.statusDescription;
+    rowOne.workArea      = self.task.workArea.shortTitle;
     
     TaskRowContent* rowTwo = [TaskRowContent new];
     
@@ -182,7 +191,6 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     rowTwo.taskDescription = self.task.taskDescription;
     
     TaskRowContent* rowThree = [TaskRowContent new];
-    
     rowThree.cellId    = self.tableViewCellsIdArray[CollectionCell];
     rowThree.rowHeight = [self returnFloatFromNumber: self.rowsHeighsArray[CollectionCell]];
         
@@ -196,5 +204,9 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     return number.floatValue;
 }
 
+//- (NSUInteger) returnRoomLevenIntValue: (ProjectTaskRoomLevel*) projectTaskRoomLvl
+//{
+//    
+//}
 
 @end

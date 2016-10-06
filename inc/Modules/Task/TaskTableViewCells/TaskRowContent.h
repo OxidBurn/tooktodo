@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "TaskMarkerComponent.h"
+
 @interface TaskRowContent : NSObject
 
 @property (strong, nonatomic) NSString* cellId;
@@ -27,6 +30,8 @@
 @property (strong, nonatomic) NSString* taskSystemDescription;
 
 @property (assign, nonatomic) NSUInteger roomNumber;
+
+@property (strong, nonatomic) NSString* workArea;
 
 @property (assign, nonatomic) BOOL isHiddenTask;
 

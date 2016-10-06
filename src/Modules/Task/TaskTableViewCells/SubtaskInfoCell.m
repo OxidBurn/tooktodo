@@ -68,4 +68,34 @@
     
 }
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskRowContent*) content
+{
+    self.taskNameLabel.text   = content.title;
+    self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
+    [self.hiddenTaskMarkBtn setBackgroundImage: [self getBackgroundImageForTaskAccess: content.isHiddenTask]
+                                      forState: UIControlStateNormal];
+}
+
+#pragma mark - Helpers -
+
+- (UIImage*) getBackgroundImageForTaskAccess: (BOOL) isHiddenTask
+{
+    UIImage* image;
+    
+    if ( isHiddenTask )
+    {
+        image = [UIImage imageNamed: @"closedEyes"];
+    }
+    else
+    {
+        image = [UIImage imageNamed: @"Eye"];
+    }
+    
+    return image;
+}
+
+
+
 @end
