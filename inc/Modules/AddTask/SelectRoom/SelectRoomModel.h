@@ -46,4 +46,6 @@
 
 - (ProjectTaskRoomLevel*) getSelectedLevel;
 
+- (id) getSelectedInfo;
+
 @end

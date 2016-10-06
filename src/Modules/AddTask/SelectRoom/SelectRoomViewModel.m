@@ -74,6 +74,11 @@
     return [self.model getSelectedLevel];
 }
 
+- (id) getSelectedInfo
+{
+    return [self.model getSelectedInfo];
+}
+
 #pragma mark - Table view datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView

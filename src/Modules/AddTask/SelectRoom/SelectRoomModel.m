@@ -240,6 +240,25 @@ static NSString* roomKey  = @"RoomKey";
     return self.selectedLevel;
 }
 
+- (id) getSelectedInfo
+{
+    if (self.selectedLevel.isSelected.boolValue)
+    {
+        self.selectedRoom = nil;
+        return self.selectedLevel;
+        
+    }
+    
+    else if (self.selectedRoom.isSelected.boolValue)
+    {
+        self.selectedLevel = nil;
+        return self.selectedRoom;
+    }
+    
+    else
+        return nil;
+}
+
 #pragma mark - Internal -
 
 - (void) updateData

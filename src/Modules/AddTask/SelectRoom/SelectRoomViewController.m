@@ -125,25 +125,31 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
+    id selectedInfo = [self.viewModel getSelectedInfo];
+//    ProjectTaskRoomLevel* level = [self.viewModel getSelectedLevel];
+//    ProjectTaskRoom* room       = [self.viewModel getSelectedRoom];
     
-    ProjectTaskRoomLevel* level = [self.viewModel getSelectedLevel];
-    ProjectTaskRoom* room       = [self.viewModel getSelectedRoom];
+//    if ([self.delegate respondsToSelector: @selector(returnSelectedLevel:)])
+//    {
+//        [self.delegate returnSelectedLevel: level];
+//        
+//        [self.navigationController popViewControllerAnimated: YES];
+//    }
+//
+//
+//    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
+//    {
+//        [self.delegate returnSelectedRoom: room];
+//        
+//        [self.navigationController popViewControllerAnimated: YES];
+//    }
     
-    if ([self.delegate respondsToSelector: @selector(returnSelectedLevel:)])
-    {
-        [self.delegate returnSelectedLevel: level];
+    if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
+            {
+                [self.delegate returnSelectedInfo: selectedInfo];
         
-        [self.navigationController popViewControllerAnimated: YES];
-    }
-
-
-    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
-    {
-        [self.delegate returnSelectedRoom: room];
-        
-        [self.navigationController popViewControllerAnimated: YES];
-    }
-    
+                [self.navigationController popViewControllerAnimated: YES];
+            }
 }
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender

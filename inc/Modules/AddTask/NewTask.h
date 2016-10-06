@@ -38,6 +38,8 @@
 
 @property (nonatomic, strong) ProjectTaskStage* stage;
 
-@property (nonatomic, strong) id room;
+@property (nonatomic, strong) ProjectTaskRoomLevel* level;
+
+@property (nonatomic, strong) ProjectTaskRoom* room;
 
 @end
