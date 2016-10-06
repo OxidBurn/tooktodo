@@ -196,6 +196,13 @@
         
         level.isSelected = @(!level.isSelected.boolValue);
         
+        [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            [self updateSelectedStateOfRoom: obj
+                             withCompletion: nil];
+            
+        }];
+        
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
