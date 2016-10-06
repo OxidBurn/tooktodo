@@ -13,4 +13,6 @@
 
 - (RACSignal*) updateContent;
 
+- (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
+
 @end

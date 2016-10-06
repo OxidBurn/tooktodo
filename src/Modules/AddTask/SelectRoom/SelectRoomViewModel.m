@@ -12,6 +12,7 @@
 #import "RoomLevelSectionView.h"
 #import "SelectRoomModel.h"
 #import "OSCellWithCheckmark.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 @interface SelectRoomViewModel()
 
@@ -48,6 +49,16 @@
    return [self.model updateContent];
 }
 
+- (void) resetAllWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model resetAllWithCompletion: ^(BOOL isSuccess) {
+        
+        if (completion)
+            completion(YES);
+        
+            }];
+}
+
 #pragma mark - Table view datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -56,7 +67,10 @@
 
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
-    [cell fillCellWithContent: [self.model getInfoForCellAtIndexPath: indexPath]
+    ProjectTaskRoom* room = [self.model getInfoForCellAtIndexPath: indexPath];
+    NSString* title       = room.title;
+    
+    [cell fillCellWithContent: title
             withSelectedState: [self.model isSelectedRoomAtIndexPath: indexPath]];
     
     return cell;
@@ -96,6 +110,7 @@
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
     
+    //обновление таблицы, когда секция раскрывается
     sectionView.didChangeExpandState = ^( NSUInteger section ){
         
         [blockSelf.model markLevelAsExpandedAtIndexPath: section
@@ -106,10 +121,12 @@
         
     };
     
+    
+    //таблица обновляется, когда выбрана какая-то из секций
     sectionView.didChangeSelectedState = ^(NSUInteger section){
         
-        [blockSelf.model handleCheckmarkForSection:
-         section withCompletion:^(BOOL isSuccess) {
+        [blockSelf.model handleCheckmarkForSection: section
+                                    withCompletion: ^(BOOL isSuccess) {
              
              [tableView reloadData];
          }];
@@ -119,5 +136,20 @@
 }
 #pragma mark - Table view delegate methods -
 
+- (void)        tableView: (UITableView*) tableView
+  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    // обработать нажатие на ячейку
+    [self.model handleCheckmarkForIndexPath: indexPath
+                             withCompletion: ^(BOOL isSuccess) {
+        
+                           [tableView reloadData];
+    }];
+    
+
+}
 
 @end

@@ -90,10 +90,17 @@
      }];
 }
 
-#pragma mark - Action -
+#pragma mark - Actions -
 
 - (IBAction) onResetBtn: (UIButton*) sender
 {
+    [self.viewModel resetAllWithCompletion: ^(BOOL isSuccess) {
+        
+        [self.roomLevelTableView reloadData];
+        
+    }];
+    
+//[self.navigationController popViewControllerAnimated: YES];
     
 }
 

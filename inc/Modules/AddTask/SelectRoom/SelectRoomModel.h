@@ -24,7 +24,7 @@
 
 - (ProjectTaskRoomLevel*) getLevelForSection: (NSUInteger) section;
 
-- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
+- (ProjectTaskRoom*) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
 - (NSUInteger) sectionsCount;
 
@@ -33,8 +33,11 @@
 - (void) handleCheckmarkForSection: (NSUInteger) section
                     withCompletion: (CompletionWithSuccess) completion;
 
-- (void) handleCheckmarkForRow: (NSUInteger) row;
+- (void) handleCheckmarkForIndexPath: (NSIndexPath*) path
+                      withCompletion: (CompletionWithSuccess) completion;
 
 - (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath;
+
+- (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
 
 @end

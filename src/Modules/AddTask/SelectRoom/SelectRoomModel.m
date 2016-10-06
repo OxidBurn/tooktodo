@@ -24,6 +24,8 @@ static NSString* roomKey  = @"RoomKey";
 @property (nonatomic, strong) NSArray*              levelsArray;
 @property (nonatomic, strong) NSIndexPath*          lastIndexPath;
 @property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
+@property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
+@property (nonatomic, strong) NSArray*              expandedLevels;
 
 // methods
 
@@ -66,6 +68,8 @@ static NSString* roomKey  = @"RoomKey";
     
     __weak typeof(self) blockSelf = self;
     
+    //обновление состояния expanded в БД
+    
     [DataManagerShared updateExpandedStateOfLevel: level
                                    withCompletion: ^(BOOL isSuccess) {
                                        [blockSelf updateData];
@@ -76,6 +80,41 @@ static NSString* roomKey  = @"RoomKey";
                                        }
                                    }];
 
+}
+
+- (void) handleCheckmarkForSection: (NSUInteger) section
+                    withCompletion: (CompletionWithSuccess) completion
+{
+    __weak typeof(self) blockSelf = self;
+    
+    //обновление состояния selected в БД
+    
+    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       [blockSelf updateSelectedStateForSection: section];
+                                      
+                                       if (completion)
+                                           completion (YES);
+                                       
+                                   }];
+}
+
+- (void) handleCheckmarkForIndexPath: (NSIndexPath*) path
+                      withCompletion: (CompletionWithSuccess) completion
+
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
+                                  withCompletion: ^(BOOL isSuccess) {
+                                      
+                                      [blockSelf updateSelectedRoomStateForIndexPath: path];
+                                      
+                                      if (completion)
+                                          completion (YES);
+                                      
+                                  }];
 }
 
 - (RACSignal*) updateContent
@@ -97,22 +136,43 @@ static NSString* roomKey  = @"RoomKey";
     return self.levelsArray[section][levelKey];
 }
 
-- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
+- (ProjectTaskRoom*) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
     NSArray* cellsContentInfo  = self.levelsArray[path.section][roomKey];
     ProjectTaskRoom* cellInfo  = cellsContentInfo[path.row];
     
-    return cellInfo.title;
+    return cellInfo;
 }
 
 - (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath
 {
     ProjectTaskRoomLevel* level = [self getLevelForSection: indexPath.section];
-    ProjectTaskRoom* room       = level.rooms.allObjects[indexPath.row];
+    self.selectedRoom           = level.rooms.allObjects[indexPath.row];
     
-    return room.isSelected;
+    return self.selectedRoom.isSelected;
 }
 
+- (NSArray*) returnExpandedLevelsArray
+{
+    return self.expandedLevels;
+}
+
+- (void) resetAllWithCompletion: (CompletionWithSuccess) completion
+{
+    self.selectedLevel.isSelected = @(NO);
+    
+    [self.selectedLevel.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        if (self.selectedLevel.isSelected.boolValue == NO)
+        {
+            obj.isSelected = @(NO);
+        }
+        
+    }];
+    
+    if (completion)
+        completion(YES);
+}
 
 #pragma mark - Internal -
 
@@ -133,10 +193,10 @@ static NSString* roomKey  = @"RoomKey";
         
         if (level.isExpanded.boolValue)
         {
-            [level.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
-                
+            [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+               
                 [tmpRowsInfo addObject: obj];
-                
+            
             }];
         }
         
@@ -164,68 +224,62 @@ static NSString* roomKey  = @"RoomKey";
     tmpLevelInfo = nil;
 }
 
+//- (void) updateSelectedStateForSection: (NSUInteger) section
+//{
+//    self.selectedLevel = [self getLevelForSection: section];
+//
+//    [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+//        
+//        obj.isSelected = @(self.selectedLevel.isSelected.boolValue);
+//        
+//        NSLog(@"  %@", obj.isSelected);
+//    }];
+//}
+
 - (void) updateSelectedStateForSection: (NSUInteger) section
 {
-    self.selectedLevel = [self getLevelForSection: section];
+    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
     
-    [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
-       
-        if ([self.selectedLevel.isSelected isEqual: @(YES)])
+    [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (idx != section)
         {
-            obj.isSelected = @(YES);
+            level.isSelected = @(NO);
         }
         else
         {
-            obj.isSelected = @(NO);
+            level.isSelected = @(YES);
         }
-<<<<<<< HEAD
-        else level.isSelected = @(YES);
         
-        self.selectedLevel = level;
+        self.selectedLevel = levels[section];
         
-        [self.selectedLevel.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+        [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
             
-            if ([self.selectedLevel.isSelected isEqual: @(YES)])
-            {
-                obj.isSelected = @(YES);
-                self.selectedRoom = obj;
-            }
-            else
-            {
-                obj.isSelected = @(NO);
-                self.selectedRoom = obj;
-            }
-            
-            NSLog(@"  %@", obj.isSelected);
+            obj.isSelected = @(self.selectedLevel.isSelected.boolValue);
         }];
         
-        
-=======
->>>>>>> bec05c7a7e8d45e182dd07b0e638f7fd8ddcd66a
-        
     }];
+
 }
 
-- (void) handleCheckmarkForSection: (NSUInteger) section
-                    withCompletion: (CompletionWithSuccess) completion
+- (void) updateSelectedRoomStateForIndexPath: (NSIndexPath*) path
 {
-    __weak typeof(self) blockSelf = self;
+    ProjectTaskRoom* room = [self getInfoForCellAtIndexPath: path];
     
-    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       
-                                       [blockSelf updateSelectedStateForSection: section];
-                                       
-                                       if (completion)
-                                       {
-                                           completion (YES);
-                                       }
-                                   }];
-}
+    if (self.lastIndexPath == path)
+    {
+        room.isSelected = @(NO);
+        self.selectedRoom = room;
+        [self updateLastIndexPath: path];
+    }
+    
+    else
+    {
+        room.isSelected = @(YES);
+        self.selectedRoom = room;
+        [self updateLastIndexPath: path];
+    }
 
-- (void) handleCheckmarkForRow: (NSUInteger) row
-{
-    
 }
 
 @end

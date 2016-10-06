@@ -209,9 +209,11 @@
                     withCompletion: (CompletionWithSuccess) completion
 {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        
         room.isSelected = @(!room.isSelected.boolValue);
     }
-     completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+         
          if ( completion )
              completion(contextDidSave);
      }];
