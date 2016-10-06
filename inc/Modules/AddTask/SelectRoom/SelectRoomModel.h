@@ -41,4 +41,11 @@
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) fillSelectedRoom: (id) selectedRoom;
+
+- (ProjectTaskRoom*) getSelectedRoom;
+
+- (ProjectTaskRoomLevel*) getSelectedLevel;
+
+- (id) getSelectedItem: (id) item;
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
 
 @protocol SelectRoomViewController;
 
@@ -17,13 +19,14 @@
 
 // methods
 - (void) fillSelectedRoom: (id) room
-              atIndexPath: (NSIndexPath*) indexPath
              withDelegate: (id <SelectRoomViewController>) delegate;
 
 @end
 
 @protocol SelectRoomViewController <NSObject>
 
-- (void) returnSelectedItem: (id) item;
+- (void) returnSelectedLevel: (ProjectTaskRoomLevel*) level;
+
+- (void) returnSelectedRoom: (ProjectTaskRoom*) room;
 
 @end

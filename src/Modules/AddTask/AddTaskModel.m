@@ -339,10 +339,12 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.stage;
 }
 
+
 - (id) returnSelectedRoom
 {
     return self.task.room;
 }
+
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -476,45 +478,87 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
-- (void) returnSelectedItem: (id) item
+- (void) returnSelectedLevel: (ProjectTaskRoomLevel*) level
 {
-    ProjectTaskRoomLevel* levelItem = (ProjectTaskRoomLevel*)item;
-    ProjectTaskRoom*      roomItem = (ProjectTaskRoom*)item;
-    
-    if ([item isKindOfClass:[ProjectTaskRoom class]])
-    {
-        self.task.room = roomItem;
-    }
-    else
-        if ([item isKindOfClass:[ProjectTaskRoomLevel class]])
-        {
-            self.task.room = levelItem;
-        }
+    self.task.room = (ProjectTaskRoomLevel*)level;
     
     RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
     
-    if (roomItem)
-    {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = roomItem.title;
-    }
+    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    row.detail = [NSString stringWithFormat: @"Уровень %@", level.roomLevel];
     
-    else if (levelItem)
-    {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
-    }
     
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskPremisesRow];
     
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+
+}
+
+- (void) returnSelectedRoom: (ProjectTaskRoom*) room
+{
+    self.task.room = (ProjectTaskRoom*)room;
+    
+    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
+    
+    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    row.detail = room.title;
+    
+    
+    [self updateContentWithRow: row
+                     inSection: SectionThree
+                         inRow: TaskPremisesRow];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
     {
         [self.delegate reloadData];
     }
+
 }
+
+//- (void) returnSelectedItem: (id) item
+//{
+//    ProjectTaskRoomLevel* levelItem = (ProjectTaskRoomLevel*)item;
+//    ProjectTaskRoom*      roomItem = (ProjectTaskRoom*)item;
+//    
+//    if ([item isKindOfClass:[ProjectTaskRoom class]])
+//    {
+//        self.task.room = roomItem;
+//    }
+//    else
+//        if ([item isKindOfClass:[ProjectTaskRoomLevel class]])
+//        {
+//            self.task.room = levelItem;
+//        }
+//    
+//    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
+//    
+//    if (roomItem)
+//    {
+//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//        row.detail = roomItem.title;
+//    }
+//    
+//    else if (levelItem)
+//    {
+//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
+//    }
+//    
+//    [self updateContentWithRow: row
+//                     inSection: SectionThree
+//                         inRow: TaskPremisesRow];
+//    
+//    
+//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+//    {
+//        [self.delegate reloadData];
+//    }
+//}
 
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
@@ -618,7 +662,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     RowContent* rowOne = [RowContent new];
     
     rowOne.title   = @"Помещение";
-    rowOne.detail  = @"Не реализовано";
+    rowOne.detail  = @"Не выбрано";
     rowOne.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowOne.segueId = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
     

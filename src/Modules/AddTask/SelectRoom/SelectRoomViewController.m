@@ -13,6 +13,8 @@
 
 //Classes
 #import "SelectRoomViewModel.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
 
 @interface SelectRoomViewController ()
 
@@ -78,11 +80,11 @@
 //}
 
 - (void) fillSelectedRoom: (id) room
-              atIndexPath: (NSIndexPath*) indexPath
              withDelegate: (id<SelectRoomViewController>) delegate
 {
-    [self.viewModel fillSelectedRoom: room
-                         atIndexPath: indexPath];
+    [self.viewModel fillSelectedRoom: room];
+    
+    self.delegate = delegate;
 }
 #pragma mark - Interal -
 
@@ -123,6 +125,24 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
+    
+    ProjectTaskRoomLevel* level = [self.viewModel getSelectedLevel];
+    ProjectTaskRoom* room       = [self.viewModel getSelectedRoom];
+    
+    if ([self.delegate respondsToSelector: @selector(returnSelectedLevel:)])
+    {
+        [self.delegate returnSelectedLevel: level];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+
+//
+//    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
+//    {
+//        [self.delegate returnSelectedRoom: room];
+//        
+//        [self.navigationController popViewControllerAnimated: YES];
+//    }
     
 }
 

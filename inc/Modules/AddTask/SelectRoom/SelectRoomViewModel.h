@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 @interface SelectRoomViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +19,10 @@
 
 - (void) fillSelectedRoom: (id) selectedRoom;
 
-- (void) fillSelectedRoom: (id)           selectedRoom;
+- (ProjectTaskRoom*) getSelectedRoom;
+
+- (ProjectTaskRoomLevel*) getSelectedLevel;
+
+//- (id) getSelectedItem: (id) item;
 
 @end

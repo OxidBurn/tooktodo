@@ -64,6 +64,21 @@
     [self.model fillSelectedRoom: selectedRoom];
 }
 
+- (ProjectTaskRoom*) getSelectedRoom
+{
+    return [self.model getSelectedRoom];
+}
+
+- (ProjectTaskRoomLevel*) getSelectedLevel
+{
+    return [self.model getSelectedLevel];
+}
+
+//- (id) getSelectedItem: (id) item
+//{
+//    return [self.model getSelectedItem: item];
+//}
+
 #pragma mark - Table view datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -77,7 +92,7 @@
     
     [cell fillCellWithContent: title
             withSelectedState: [self.model isSelectedRoomAtIndexPath: indexPath]];
-    
+     
     return cell;
 }
 
@@ -139,6 +154,7 @@
     
     return sectionView;
 }
+
 #pragma mark - Table view delegate methods -
 
 - (void)        tableView: (UITableView*) tableView

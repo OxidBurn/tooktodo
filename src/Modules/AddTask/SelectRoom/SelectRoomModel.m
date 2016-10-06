@@ -185,30 +185,49 @@ static NSString* roomKey  = @"RoomKey";
         completion(YES);
 }
 
-- (void) fillSelectedRoom: (id)           selectedRoom
+- (void) fillSelectedRoom: (id) selectedItem
 {
-    if ([selectedRoom isKindOfClass:[ProjectTaskRoom class]])
+    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    
+    if ([selectedItem isKindOfClass:[ProjectTaskRoom class]])
     {
-//        self.selectedRoom = (ProjectTaskRoom*)selectedRoom;
-//        
-//        NSUInteger indexOfSelectedRoom = [self.levelsArray indexOfObject: selectedRoom];
-//        
-//        self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
-//                                                inSection: 0];
+        ProjectTaskRoom* selectedRoom = (ProjectTaskRoom*) selectedItem;
+        self.selectedRoom = selectedRoom;
+        
+        [levels enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [level.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+                
+                NSUInteger indexOfSelectedRoom  = [level.rooms.allObjects indexOfObject: selectedRoom];
+                
+                self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
+                                                        inSection: 0];
+            }];
+            
+        }];
+    
     }
     
-    if ([selectedRoom isKindOfClass:[ProjectTaskRoomLevel class]])
+    if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
     {
-        ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedRoom;
+        ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
         self.selectedLevel = selectedLevel;
-        
-        NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
         
         NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
         
         self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
                                                 inSection: 0];
     }
+}
+
+- (ProjectTaskRoom *) getSelectedRoom
+{
+    return self.selectedRoom;
+}
+
+- (ProjectTaskRoomLevel*) getSelectedLevel
+{
+    return self.selectedLevel;
 }
 
 #pragma mark - Internal -

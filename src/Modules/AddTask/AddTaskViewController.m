@@ -165,7 +165,6 @@
             id room = [self.viewModel returnSelectedRoom];
             
             [controller fillSelectedRoom: room
-                             atIndexPath: [3][2]
                             withDelegate: [self.viewModel returnModel]];
         }
             

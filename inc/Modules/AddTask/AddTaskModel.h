@@ -46,6 +46,10 @@
 
 - (ProjectTaskStage*) returnSelectedStage;
 
+//- (ProjectTaskRoom*) returnSelectedRoom;
+//
+//- (ProjectTaskRoomLevel*) returnSelectedLevel;
+
 - (id) returnSelectedRoom;
 
 @end
