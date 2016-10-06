@@ -47,6 +47,14 @@ typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
     
 };
 
+typedef NS_ENUM(NSUInteger, TaskType)
+{
+    TaskWorkType        = 0,
+    TaskAgreementType   = 1,
+    TaskObservationType = 2,
+    TaskRemarkType      = 3,
+};
+
 typedef NS_ENUM( NSUInteger, AddTaskTableViewCellType) {
     
     FlexibleTextFieldCell,
