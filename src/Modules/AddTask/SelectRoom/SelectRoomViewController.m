@@ -67,6 +67,23 @@
 }
 
 
+#pragma mark - Public -
+
+//- (void) fillSelectedSystem: (ProjectSystem*)                          system
+//               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate
+//{
+//    [self.viewModel fillSelectedSystem: system];
+//    
+//    self.delegate = delegate;
+//}
+
+- (void) fillSelectedRoom: (id) room
+              atIndexPath: (NSIndexPath*) indexPath
+             withDelegate: (id<SelectRoomViewController>) delegate
+{
+    [self.viewModel fillSelectedRoom: room
+                         atIndexPath: indexPath];
+}
 #pragma mark - Interal -
 
 - (void) bindUI

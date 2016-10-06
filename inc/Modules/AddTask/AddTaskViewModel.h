@@ -48,6 +48,8 @@
 
 - (ProjectTaskStage*) returnSelectedStage;
 
+- (id) returnSelectedRoom;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

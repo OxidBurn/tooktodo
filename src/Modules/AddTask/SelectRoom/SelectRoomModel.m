@@ -25,7 +25,6 @@ static NSString* roomKey  = @"RoomKey";
 @property (nonatomic, strong) NSIndexPath*          lastIndexPath;
 @property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
 @property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
-@property (nonatomic, strong) NSArray*              expandedLevels;
 
 // methods
 
@@ -152,10 +151,7 @@ static NSString* roomKey  = @"RoomKey";
     return self.selectedRoom.isSelected;
 }
 
-- (NSArray*) returnExpandedLevelsArray
-{
-    return self.expandedLevels;
-}
+
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
@@ -172,6 +168,32 @@ static NSString* roomKey  = @"RoomKey";
     
     if (completion)
         completion(YES);
+}
+
+- (void) fillSelectedRoom: (id)           selectedRoom
+{
+    if ([selectedRoom isKindOfClass:[ProjectTaskRoom class]])
+    {
+//        self.selectedRoom = (ProjectTaskRoom*)selectedRoom;
+//        
+//        NSUInteger indexOfSelectedRoom = [self.levelsArray indexOfObject: selectedRoom];
+//        
+//        self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
+//                                                inSection: 0];
+    }
+    
+    if ([selectedRoom isKindOfClass:[ProjectTaskRoomLevel class]])
+    {
+        ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedRoom;
+        self.selectedLevel = selectedLevel;
+        
+        NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+        
+        NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+        
+        self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
+                                                inSection: 0];
+    }
 }
 
 #pragma mark - Internal -

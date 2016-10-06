@@ -15,4 +15,8 @@
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
 
+- (void) fillSelectedRoom: (id) selectedRoom;
+
+- (void) fillSelectedRoom: (id)           selectedRoom;
+
 @end

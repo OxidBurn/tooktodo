@@ -59,6 +59,11 @@
             }];
 }
 
+- (void) fillSelectedRoom: (id) selectedRoom
+{
+    [self.model fillSelectedRoom: selectedRoom];
+}
+
 #pragma mark - Table view datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
