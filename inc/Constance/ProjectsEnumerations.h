@@ -68,6 +68,7 @@ typedef NS_ENUM(NSUInteger, AllSeguesList) {
     ShowTermsSegue,
     ShowStagesSegue,
     ShowSystemSegue,
+    ShowRoomsSegue,
     
 };
 

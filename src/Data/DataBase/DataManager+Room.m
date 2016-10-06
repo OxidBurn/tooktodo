@@ -74,9 +74,15 @@
         forRoomLevel: (ProjectTaskRoomLevel*)   roomLevel
            inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstOrCreateByAttribute: @"roomID"
-                                                                   withValue: @(info.roomID)
-                                                                   inContext: context];
+    NSPredicate* existPredicate = [NSPredicate predicateWithFormat: @"roomID == %@ AND roomLevel == %@", @(info.roomID), roomLevel];
+    
+    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: existPredicate
+                                                             inContext: context];
+    
+    if ( room == nil )
+    {
+        room = [ProjectTaskRoom MR_createEntityInContext: context];
+    }
     
     room.roomLevel = roomLevel;
     room.roomID    = @(info.roomID);
@@ -163,9 +169,61 @@
 
 - (NSArray*) getAllRoomsLevelOfSelectedProject
 {
-    ProjectInfo* selectedProject = [self getSelectedProjectInfo];
+    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfo];
     
     return selectedProject.roomLevel.array;
+}
+
+- (void) updateExpandedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+            level.isExpanded = @(!level.isExpanded.boolValue);
+        }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                        }];
+}
+
+
+- (void) updateSelectedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        level.isSelected = @(!level.isSelected.boolValue);
+        
+        [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            [self updateSelectedStateOfRoom: obj
+                             withCompletion: nil];
+            
+        }];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+- (void) updateSelectedStateOfRoom: (ProjectTaskRoom*)      room
+                    withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        room.isSelected = @(!room.isSelected.boolValue);
+    }
+                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+         
+         if ( completion )
+             completion(contextDidSave);
+     }];
 }
 
 @end

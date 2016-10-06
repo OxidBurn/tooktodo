@@ -102,6 +102,11 @@
     return [self.model returnSelectedStage];
 }
 
+- (id) returnSelectedRoom
+{
+    return [self.model returnSelectedRoom];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

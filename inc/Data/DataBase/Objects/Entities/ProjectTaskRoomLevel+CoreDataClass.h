@@ -2,7 +2,7 @@
 //  ProjectTaskRoomLevel+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 10/4/16.
+//  Created by Lera on 05.10.16.
 //
 //
 

@@ -28,8 +28,11 @@
 #import "RowContent.h"
 #import "NSDate+Helper.h"
 #import "FilledTeamInfo.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 #import "SelectSystemViewController.h"
 #import "SelectStageViewController.h"
+#import "SelectRoomViewController.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -41,7 +44,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowPremisesSegueID,
     ShowSelectStageSegueID,
     ShowSelectSystemSegueID,
-    
+    ShowSelectRoomSegueID,
 };
 
 typedef NS_ENUM(NSUInteger, SectionsList) {
@@ -78,7 +81,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     
 };
 
-@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate>
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate, SelectRoomViewController>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -115,7 +118,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -125,7 +128,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
     }
     
     return _allSeguesInfoArray;
@@ -337,6 +340,12 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 }
 
 
+- (id) returnSelectedRoom
+{
+    return self.task.room;
+}
+
+
 #pragma mark - OSSwitchTableCellDelegate methods -
 
 - (void) updateTaskHiddenProperty: (BOOL) isHidden
@@ -467,6 +476,93 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     }
 }
 
+#pragma mark - SelectRoomViewControllerDelegate methods -
+
+//- (void) returnSelectedLevel: (ProjectTaskRoomLevel*) level
+//{
+//    self.task.room = (ProjectTaskRoomLevel*)level;
+//    
+//    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
+//    
+//    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//    row.detail = [NSString stringWithFormat: @"Уровень %@", level.roomLevel];
+//    
+//    
+//    [self updateContentWithRow: row
+//                     inSection: SectionThree
+//                         inRow: TaskPremisesRow];
+//    
+//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+//    {
+//        [self.delegate reloadData];
+//    }
+//
+//}
+//
+//- (void) returnSelectedRoom: (ProjectTaskRoom*) room
+//{
+//    self.task.room = (ProjectTaskRoom*)room;
+//    
+//    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
+//    
+//    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//    row.detail = room.title;
+//    
+//    
+//    [self updateContentWithRow: row
+//                     inSection: SectionThree
+//                         inRow: TaskPremisesRow];
+//    
+//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+//    {
+//        [self.delegate reloadData];
+//    }
+//
+//}
+
+- (void) returnSelectedInfo: (id) info
+{
+    ProjectTaskRoomLevel* levelItem = nil;
+    ProjectTaskRoom*      roomItem = nil;
+    
+    //Check which info comes
+    if ([info isKindOfClass:[ProjectTaskRoom class]])
+    {
+        roomItem       = info;
+        self.task.room = (ProjectTaskRoom*)roomItem;
+    }
+    else
+        if ([info isKindOfClass:[ProjectTaskRoomLevel class]])
+        {
+            levelItem = info;
+            self.task.level = (ProjectTaskRoomLevel*)levelItem;
+        }
+    
+    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
+    
+    if (roomItem)
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = roomItem.title;
+    }
+    
+    else if (levelItem)
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.roomLevel];
+    }
+    
+    [self updateContentWithRow: row
+                     inSection: SectionThree
+                         inRow: TaskPremisesRow];
+    
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
 - (void) updateTerms: (TermsData*) terms
@@ -568,9 +664,10 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     RowContent* rowOne = [RowContent new];
     
-    rowOne.title  = @"Помещение";
-    rowOne.detail = @"Не реализовано";
-    rowOne.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowOne.title   = @"Помещение";
+    rowOne.detail  = @"Не выбрано";
+    rowOne.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowOne.segueId = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
     
     RowContent* rowTwo = [RowContent new];
     

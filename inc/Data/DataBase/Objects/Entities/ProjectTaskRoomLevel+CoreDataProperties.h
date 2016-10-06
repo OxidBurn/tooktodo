@@ -2,7 +2,7 @@
 //  ProjectTaskRoomLevel+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/4/16.
+//  Created by Lera on 05.10.16.
 //
 //
 
@@ -15,12 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<ProjectTaskRoomLevel *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSNumber *isExpanded;
 @property (nullable, nonatomic, copy) NSNumber *level;
 @property (nullable, nonatomic, copy) NSNumber *roomLevel;
-@property (nullable, nonatomic, retain) ProjectTask *task;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
+@property (nullable, nonatomic, copy) NSNumber *isSelected;
 @property (nullable, nonatomic, retain) ProjectTaskMapContour *map;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
+@property (nullable, nonatomic, retain) ProjectTask *task;
 
 @end
 

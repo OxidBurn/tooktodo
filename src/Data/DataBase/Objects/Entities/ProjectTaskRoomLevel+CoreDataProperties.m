@@ -2,7 +2,7 @@
 //  ProjectTaskRoomLevel+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/4/16.
+//  Created by Lera on 05.10.16.
 //
 //
 
@@ -14,11 +14,13 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskRoomLevel"];
 }
 
+@dynamic isExpanded;
 @dynamic level;
 @dynamic roomLevel;
-@dynamic task;
-@dynamic rooms;
+@dynamic isSelected;
 @dynamic map;
 @dynamic project;
+@dynamic rooms;
+@dynamic task;
 
 @end

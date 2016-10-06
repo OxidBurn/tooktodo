@@ -41,4 +41,12 @@
 
 - (NSArray*) getAllRoomsLevelOfSelectedProject;
 
+- (void) updateExpandedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion;
+
+- (void) updateSelectedStateOfLevel: (ProjectTaskRoomLevel*) level
+                     withCompletion: (CompletionWithSuccess) completion;
+
+- (void) updateSelectedStateOfRoom: (ProjectTaskRoom*)      room
+                    withCompletion: (CompletionWithSuccess) completion;
 @end

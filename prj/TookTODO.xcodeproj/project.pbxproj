@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
 		5636E8FF1D80A80700CF06FA /* service_agreements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5636E8FE1D80A80700CF06FA /* service_agreements.txt */; };
+		5659C8811DA7047700FF639A /* RoomLevelSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659C87D1DA7047700FF639A /* RoomLevelSectionView.m */; };
+		5659C8821DA7047700FF639A /* SelectRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659C87E1DA7047700FF639A /* SelectRoomModel.m */; };
+		5659C8831DA7047700FF639A /* SelectRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659C87F1DA7047700FF639A /* SelectRoomViewController.m */; };
+		5659C8841DA7047700FF639A /* SelectRoomViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5659C8801DA7047700FF639A /* SelectRoomViewModel.m */; };
 		5664A02C1DA3C4C600344879 /* AboutProject.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5664A0061DA3C4C600344879 /* AboutProject.storyboard */; };
 		5664A02D1DA3C4C600344879 /* AllProjects.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5664A0081DA3C4C600344879 /* AllProjects.storyboard */; };
 		5664A02F1DA3C4C600344879 /* AllTasksProjectTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5664A00C1DA3C4C600344879 /* AllTasksProjectTitleView.xib */; };
@@ -344,6 +348,14 @@
 /* Begin PBXFileReference section */
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
 		5636E8FE1D80A80700CF06FA /* service_agreements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = service_agreements.txt; sourceTree = "<group>"; };
+		5659C87D1DA7047700FF639A /* RoomLevelSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomLevelSectionView.m; sourceTree = "<group>"; };
+		5659C87E1DA7047700FF639A /* SelectRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRoomModel.m; sourceTree = "<group>"; };
+		5659C87F1DA7047700FF639A /* SelectRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRoomViewController.m; sourceTree = "<group>"; };
+		5659C8801DA7047700FF639A /* SelectRoomViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRoomViewModel.m; sourceTree = "<group>"; };
+		5659C8861DA704F500FF639A /* RoomLevelSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomLevelSectionView.h; sourceTree = "<group>"; };
+		5659C8871DA704F500FF639A /* SelectRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRoomModel.h; sourceTree = "<group>"; };
+		5659C8881DA704F500FF639A /* SelectRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRoomViewController.h; sourceTree = "<group>"; };
+		5659C8891DA704F500FF639A /* SelectRoomViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRoomViewModel.h; sourceTree = "<group>"; };
 		5664A0071DA3C4C600344879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AboutProject.storyboard; sourceTree = "<group>"; };
 		5664A0091DA3C4C600344879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AllProjects.storyboard; sourceTree = "<group>"; };
 		5664A00D1DA3C4C600344879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AllTasksProjectTitleView.xib; sourceTree = "<group>"; };
@@ -1010,6 +1022,28 @@
 			path = ../res/text;
 			sourceTree = "<group>";
 		};
+		5659C87C1DA7047700FF639A /* SelectRoom */ = {
+			isa = PBXGroup;
+			children = (
+				5659C87D1DA7047700FF639A /* RoomLevelSectionView.m */,
+				5659C87E1DA7047700FF639A /* SelectRoomModel.m */,
+				5659C87F1DA7047700FF639A /* SelectRoomViewController.m */,
+				5659C8801DA7047700FF639A /* SelectRoomViewModel.m */,
+			);
+			path = SelectRoom;
+			sourceTree = "<group>";
+		};
+		5659C8851DA704F500FF639A /* SelectRoom */ = {
+			isa = PBXGroup;
+			children = (
+				5659C8861DA704F500FF639A /* RoomLevelSectionView.h */,
+				5659C8871DA704F500FF639A /* SelectRoomModel.h */,
+				5659C8881DA704F500FF639A /* SelectRoomViewController.h */,
+				5659C8891DA704F500FF639A /* SelectRoomViewModel.h */,
+			);
+			path = SelectRoom;
+			sourceTree = "<group>";
+		};
 		5664A03F1DA3C63100344879 /* inc */ = {
 			isa = PBXGroup;
 			children = (
@@ -1294,17 +1328,18 @@
 		5664A0CD1DA3C63100344879 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				5659C8851DA704F500FF639A /* SelectRoom */,
 				5664A0CE1DA3C63100344879 /* AddMessage */,
-				5664A0D11DA3C63100344879 /* AddTaskModel.h */,
-				5664A0D21DA3C63100344879 /* AddTaskViewController.h */,
-				5664A0D31DA3C63100344879 /* AddTaskViewModel.h */,
 				5664A0D41DA3C63100344879 /* AddTerms */,
-				5664A0D91DA3C63100344879 /* NewTask.h */,
-				5664A0DA1DA3C63100344879 /* RowContent.h */,
 				5664A0DB1DA3C63100344879 /* SelectPremises */,
 				5664A0DD1DA3C63100344879 /* SelectResponsible */,
 				5664A0E11DA3C63100344879 /* SelectStage */,
 				5664A0E51DA3C63100344879 /* SelectSystem */,
+				5664A0D11DA3C63100344879 /* AddTaskModel.h */,
+				5664A0D21DA3C63100344879 /* AddTaskViewController.h */,
+				5664A0D31DA3C63100344879 /* AddTaskViewModel.h */,
+				5664A0D91DA3C63100344879 /* NewTask.h */,
+				5664A0DA1DA3C63100344879 /* RowContent.h */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -2044,17 +2079,18 @@
 		5664A2171DA3C63100344879 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				5659C87C1DA7047700FF639A /* SelectRoom */,
 				5664A2181DA3C63100344879 /* AddMessage */,
-				5664A21B1DA3C63100344879 /* AddTaskModel.m */,
-				5664A21C1DA3C63100344879 /* AddTaskViewController.m */,
-				5664A21D1DA3C63100344879 /* AddTaskViewModel.m */,
 				5664A21E1DA3C63100344879 /* AddTerms */,
-				5664A2231DA3C63100344879 /* NewTask.m */,
-				5664A2241DA3C63100344879 /* RowContent.m */,
 				5664A2251DA3C63100344879 /* SelectPremises */,
 				5664A2271DA3C63100344879 /* SelectResponsible */,
 				5664A22B1DA3C63100344879 /* SelectStage */,
 				5664A22F1DA3C63100344879 /* SelectSystem */,
+				5664A21B1DA3C63100344879 /* AddTaskModel.m */,
+				5664A21C1DA3C63100344879 /* AddTaskViewController.m */,
+				5664A21D1DA3C63100344879 /* AddTaskViewModel.m */,
+				5664A2231DA3C63100344879 /* NewTask.m */,
+				5664A2241DA3C63100344879 /* RowContent.m */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -3006,6 +3042,7 @@
 				F7E4DA951DA519920019F2AC /* TaskDescriptionFactory.m in Sources */,
 				5664A32C1DA3C63100344879 /* ProjectsService.m in Sources */,
 				5664A3241DA3C63100344879 /* TaskRoomLevelModel.m in Sources */,
+				5659C8811DA7047700FF639A /* RoomLevelSectionView.m in Sources */,
 				5664A3801DA3C63100344879 /* StageTitleView.m in Sources */,
 				5664A3D31DA3C63200344879 /* OSTaskOptionsController.m in Sources */,
 				5664A36D1DA3C63100344879 /* MainMenuViewController.m in Sources */,
@@ -3075,6 +3112,7 @@
 				5664A2E21DA3C63100344879 /* ProjectInviteInfo+CoreDataClass.m in Sources */,
 				5664A3F81DA424D100344879 /* RoomLevelMap+CoreDataClass.m in Sources */,
 				5664A3CA1DA3C63200344879 /* OSCellWithCheckmark.m in Sources */,
+				5659C8841DA7047700FF639A /* SelectRoomViewModel.m in Sources */,
 				5664A2F71DA3C63100344879 /* ProjectTaskOwner.m in Sources */,
 				5664A3361DA3C63100344879 /* NSString+APUtils.m in Sources */,
 				5664A3B31DA3C63200344879 /* BaseMainViewController+Popover.m in Sources */,
@@ -3165,8 +3203,10 @@
 				5664A3B51DA3C63200344879 /* BaseNavigationBar.m in Sources */,
 				5664A3881DA3C63100344879 /* ContactInfoCell.m in Sources */,
 				5664A3BF1DA3C63200344879 /* OSDefaultAlertController.m in Sources */,
+				5659C8821DA7047700FF639A /* SelectRoomModel.m in Sources */,
 				F7E4DA931DA519920019F2AC /* CollectionCellFactory.m in Sources */,
 				5664A3D41DA3C63200344879 /* OSUserInfoWithCheckmarkCell.m in Sources */,
+				5659C8831DA7047700FF639A /* SelectRoomViewController.m in Sources */,
 				5664A3BA1DA3C63200344879 /* OSAlertDeleteTaskViewModel.m in Sources */,
 				5664A3921DA3C63100344879 /* InviteInfo.m in Sources */,
 				5664A3AF1DA3C63200344879 /* TasksAPIService.m in Sources */,

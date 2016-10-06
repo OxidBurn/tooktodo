@@ -18,6 +18,7 @@
 #import "SelectSystemViewController.h"
 #import "NewTask.h"
 #import "TeamInfoViewController.h"
+#import "SelectRoomViewController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
@@ -27,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
 @property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* cancelBtn;
 
 
 // properties
@@ -39,7 +40,7 @@
 
 - (IBAction) onAddTaskBtn:         (UIButton*) sender;
 
-- (IBAction) onCancel:        (UIBarButtonItem*)sender;
+- (IBAction) onCancel:      (UIBarButtonItem*) sender;
 
 
 @end
@@ -156,6 +157,16 @@
                               withDelegate: [self.viewModel returnModel]];
         }
             break;
+            
+        case ShowRoomsSegue:
+        {
+            SelectRoomViewController* controller = [segue destinationViewController];
+            
+            id room = [self.viewModel returnSelectedRoom];
+            
+            [controller fillSelectedRoom: room
+                            withDelegate: [self.viewModel returnModel]];
+        }
             
         default:
             break;

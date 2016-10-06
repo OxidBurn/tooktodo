@@ -12,6 +12,8 @@
 #import "TermsData.h"
 #import "ProjectSystem+CoreDataClass.h"
 #import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 @interface NewTask : NSObject
 
@@ -35,5 +37,9 @@
 @property (nonatomic, strong) ProjectSystem* system;
 
 @property (nonatomic, strong) ProjectTaskStage* stage;
+
+@property (nonatomic, strong) ProjectTaskRoomLevel* level;
+
+@property (nonatomic, strong) ProjectTaskRoom* room;
 
 @end

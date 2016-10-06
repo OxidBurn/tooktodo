@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -13,16 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RoomLevelSectionView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9z5-Ca-TSJ">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="GOI-cS-Vdc"/>
-                    </constraints>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLk-ca-bpX">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLk-ca-bpX">
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="Ori-ZK-Yy4"/>
                         <constraint firstAttribute="height" constant="48" id="z4E-TV-gL4"/>
@@ -31,8 +26,25 @@
                     <state key="normal" title="Выбрать">
                         <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="selectBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="iSc-ag-Rqu"/>
+                    </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="eWT-3w-4Za">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9z5-Ca-TSJ">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="GOI-cS-Vdc"/>
+                    </constraints>
+                    <connections>
+                        <action selector="expandBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="KWo-ti-mQS"/>
+                    </connections>
+                </button>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="eKt-Gc-pkX">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="rD0-Cg-VeI"/>
+                        <constraint firstAttribute="width" constant="16" id="uCE-NE-9bM"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="eWT-3w-4Za">
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="PRV-GN-mrL"/>
                         <constraint firstAttribute="width" constant="11" id="ewH-ES-fAy"/>
@@ -46,12 +58,11 @@
                     <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="eKt-Gc-pkX">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="rD0-Cg-VeI"/>
-                        <constraint firstAttribute="width" constant="16" id="uCE-NE-9bM"/>
-                    </constraints>
-                </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIs-Jy-WkP">
+                    <frame key="frameInset" minY="47" width="375" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -70,6 +81,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="chekmarkImgView" destination="eKt-Gc-pkX" id="0uE-sm-Y0o"/>
+                <outlet property="expandImgView" destination="eWT-3w-4Za" id="4yp-O3-O3Z"/>
+                <outlet property="levelTitleLabel" destination="gVo-HL-YRU" id="QQf-lp-z7T"/>
+                <outlet property="selctBtn" destination="KLk-ca-bpX" id="kds-2F-Tct"/>
+            </connections>
             <point key="canvasLocation" x="36.5" y="-546"/>
         </view>
     </objects>
