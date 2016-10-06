@@ -119,7 +119,7 @@
         
     }];
     
-//[self.navigationController popViewControllerAnimated: YES];
+[self.navigationController popViewControllerAnimated: YES];
     
 }
 
@@ -136,13 +136,13 @@
         [self.navigationController popViewControllerAnimated: YES];
     }
 
-//
-//    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
-//    {
-//        [self.delegate returnSelectedRoom: room];
-//        
-//        [self.navigationController popViewControllerAnimated: YES];
-//    }
+
+    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
+    {
+        [self.delegate returnSelectedRoom: room];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
     
 }
 

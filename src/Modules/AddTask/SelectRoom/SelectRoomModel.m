@@ -88,6 +88,12 @@ static NSString* roomKey  = @"RoomKey";
     
     ProjectTaskRoomLevel* roomLevel = [self getLevelForSection: section];
     
+    if ( self.selectedLevel != roomLevel && self.selectedLevel.isSelected.boolValue )
+    {
+        [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                       withCompletion: nil];
+    }
+    
     self.selectedLevel = roomLevel;
     
     //обновление состояния selected в БД
@@ -170,13 +176,17 @@ static NSString* roomKey  = @"RoomKey";
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
-    self.selectedLevel.isSelected = @(NO);
+//    self.selectedLevel.isSelected = @(NO);
+    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                   withCompletion: nil];
     
     [self.selectedLevel.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
         
         if (self.selectedLevel.isSelected.boolValue == NO)
         {
-            obj.isSelected = @(NO);
+//            self.selectedRoom.isSelected = @(NO);
+            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
+                                          withCompletion: nil];
         }
         
     }];

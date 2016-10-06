@@ -74,11 +74,6 @@
     return [self.model getSelectedLevel];
 }
 
-//- (id) getSelectedItem: (id) item
-//{
-//    return [self.model getSelectedItem: item];
-//}
-
 #pragma mark - Table view datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
