@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CollectionCellViewModel : NSObject
+// Frameworks
+@import UIKit;
+
+@interface CollectionCellViewModel : NSObject <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end

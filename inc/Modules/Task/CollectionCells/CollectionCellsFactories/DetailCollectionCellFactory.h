@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
+@import UIKit;
+
+// Classes
+#import "TaskCollectionCellsContent.h"
+
 @interface DetailCollectionCellFactory : NSObject
+
+// methods
+- (UICollectionViewCell*) returnDetailCellWithContent: (TaskCollectionCellsContent*) content
+                                    forCollectionView: (UICollectionView*)           collection
+                                        withIndexPath: (NSIndexPath*)                indexPath;
 
 @end

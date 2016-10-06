@@ -25,4 +25,10 @@
 
 @implementation TermsInfoCollectionCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content
+{
+    self.termsTypeLabel.text = content.cellTitle;
+}
 @end

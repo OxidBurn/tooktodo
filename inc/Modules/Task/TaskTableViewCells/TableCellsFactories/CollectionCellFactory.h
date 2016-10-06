@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+// Frameworks
+@import UIKit;
+
+// Classes
+#import "TaskRowContent.h"
+
 @interface CollectionCellFactory : NSObject
+
+// methods
+- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView;
 
 @end

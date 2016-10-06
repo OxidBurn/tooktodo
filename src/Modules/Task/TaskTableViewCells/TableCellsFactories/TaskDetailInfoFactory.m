@@ -13,4 +13,15 @@
 
 @implementation TaskDetailInfoFactory
 
+#pragma mark - Public -
+
+- (UITableViewCell*) returnTaskDetailCellWithContent: (TaskRowContent*) content
+                                        forTableView: (UITableView*)    tableView
+{
+    TaskDetailInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: content.cellId];
+    
+    return cell;
+}
+
+
 @end

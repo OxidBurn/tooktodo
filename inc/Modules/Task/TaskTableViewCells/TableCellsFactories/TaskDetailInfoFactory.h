@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
+@import UIKit;
+
+// Classes
+#import "TaskRowContent.h"
+
 @interface TaskDetailInfoFactory : NSObject
+
+// methods
+
+- (UITableViewCell*) returnTaskDetailCellWithContent: (TaskRowContent*) content
+                                        forTableView: (UITableView*)    tableView;
 
 @end

@@ -27,4 +27,10 @@
 
 @implementation OnPlanCollectionCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content
+{
+    
+}
 @end

@@ -32,4 +32,10 @@
 
 @implementation SingleUserCollectionCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content
+{
+    self.userRoleLabel.text = content.cellTitle;
+}
 @end

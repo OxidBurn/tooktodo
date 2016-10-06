@@ -13,4 +13,14 @@
 
 @implementation CollectionCellFactory
 
+#pragma mark - Public -
+
+- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView
+{
+    CollectionCell* cell = [tableView dequeueReusableCellWithIdentifier: @"CollectionCellId"];
+    
+    return cell;
+}
+
+
 @end

@@ -29,4 +29,12 @@
 
 @implementation DetailCollectionCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content
+{
+    
+}
+
+
 @end

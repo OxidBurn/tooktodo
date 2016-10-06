@@ -36,4 +36,10 @@
 #pragma mark - Properties -
 
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content
+{
+    self.groupNameLabel.text = content.cellTitle;
+}
 @end

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "TaskCollectionCellsContent.h"
+
 @interface TermsInfoCollectionCell : UICollectionViewCell
+
+// methods
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content;
 
 @end

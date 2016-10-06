@@ -13,4 +13,18 @@
 
 @implementation SingleUserCollectionCellFactory
 
+#pragma mark - Public -
+
+- (UICollectionViewCell*) returnSingleUserCellWithContent: (TaskCollectionCellsContent*) content
+                                        forCollectionView: (UICollectionView*)           collection
+                                            withIndexPath: (NSIndexPath*)                indexPath
+{
+    SingleUserCollectionCell* cell = [collection dequeueReusableCellWithReuseIdentifier: content.cellId
+                                                                       forIndexPath: indexPath];
+    
+    [cell fillCellWithContent: content];
+    
+    return cell;
+}
+
 @end

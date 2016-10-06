@@ -41,8 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *taskDescription;
 @property (nullable, nonatomic, copy) NSNumber *taskID;
 @property (nullable, nonatomic, copy) NSNumber *taskType;
-@property (nullable, nonatomic, copy) NSString *taskTypeDescription;
-@property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSString *taskTypeDescription; // описание
+@property (nullable, nonatomic, copy) NSString *title; // название задачи
 @property (nullable, nonatomic, copy) NSNumber *isSelected;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;

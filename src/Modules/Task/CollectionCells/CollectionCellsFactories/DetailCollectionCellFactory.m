@@ -13,4 +13,18 @@
 
 @implementation DetailCollectionCellFactory
 
+#pragma mark - Public -
+
+- (UICollectionViewCell*) returnDetailCellWithContent: (TaskCollectionCellsContent*) content
+                                    forCollectionView: (UICollectionView*)           collection
+                                        withIndexPath: (NSIndexPath*)                indexPath
+{
+    DetailCollectionCell* cell = [collection dequeueReusableCellWithReuseIdentifier: content.cellId
+                                                                       forIndexPath: indexPath];
+    
+    [cell fillCellWithContent: content];
+    
+    return cell;
+}
+
 @end

@@ -10,11 +10,17 @@
 
 @interface TaskRowContent : NSObject
 
-@property (strong, nonatomic) NSString* taskName;
+@property (strong, nonatomic) NSString* cellId;
+
+@property (assign, nonatomic) CGFloat rowHeight;
+
+@property (strong, nonatomic) NSString* title;
 
 @property (strong, nonatomic) NSDate* taskStartDate;
 
 @property (strong, nonatomic) NSDate* taskEndDate;
+
+@property (strong, nonatomic) NSString* taskDescription;
 
 @property (strong, nonatomic) NSString* taskStatusDescription;
 

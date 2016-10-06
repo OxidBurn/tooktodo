@@ -1,5 +1,5 @@
 //
-//  TaskModel.h
+//  TaskViewModel.h
 //  TookTODO
 //
 //  Created by Глеб on 05.10.16.
@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TaskModel : NSObject
+// Frameworks
+@import UIKit;
+
+@interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @end

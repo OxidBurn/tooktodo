@@ -6,18 +6,18 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "TaskViewController.h"
+#import "TaskDetailViewController.h"
 
 // Classes
-#import "TaskViewModel.h"
+#import "TaskDetailViewModel.h"
 
-@interface TaskViewController ()
+@interface TaskDetailViewController ()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
 
 // properties
-@property (strong, nonatomic) TaskViewModel* viewModel;
+@property (strong, nonatomic) TaskDetailViewModel* viewModel;
 
 // methods
 - (IBAction) onBackBtn:   (UIBarButtonItem*) sender;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation TaskViewController
+@implementation TaskDetailViewController
 
 #pragma mark - Lyfe cycle -
 
@@ -44,11 +44,11 @@
 
 #pragma mark - Properties -
 
-- (TaskViewModel*) viewModel
+- (TaskDetailViewModel*) viewModel
 {
     if ( _viewModel == nil )
     {
-        _viewModel = [TaskViewModel new];
+        _viewModel = [TaskDetailViewModel new];
     }
     
     return _viewModel;
@@ -58,7 +58,7 @@
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender
@@ -72,6 +72,9 @@
 {
     self.taskTableView.dataSource = self.viewModel;
     self.taskTableView.delegate   = self.viewModel;
+    
+    self.taskTableView.rowHeight = UITableViewAutomaticDimension;
+    self.taskTableView.estimatedRowHeight = 58;
 }
 
 

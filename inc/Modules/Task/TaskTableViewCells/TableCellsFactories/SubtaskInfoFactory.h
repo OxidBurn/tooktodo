@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
+@import UIKit;
+
+// Classes
+#import "TaskRowContent.h"
+
 @interface SubtaskInfoFactory : NSObject
 
 @end

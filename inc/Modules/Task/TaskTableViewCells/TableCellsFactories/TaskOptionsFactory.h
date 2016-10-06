@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+// Frameworks
+@import UIKit;
+
+// Classes
+#import "TaskRowContent.h"
+
 @interface TaskOptionsFactory : NSObject
 
 @end

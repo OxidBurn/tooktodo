@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+// Frameworks
+@import UIKit;
+
 @interface CollectionCellModel : NSObject
+
+// methods
+- (UICollectionViewCell*) createCellForCollectionView: (UICollectionView*) collection
+                                         forIndexPath: (NSIndexPath*)      indexPath;
 
 @end

@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "TaskCollectionCellsContent.h"
+
 @interface GroupOfUsersCollectionCell : UICollectionViewCell
+
+// methods
+- (void) fillCellWithContent: (TaskCollectionCellsContent*) content;
 
 @end
