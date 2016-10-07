@@ -478,47 +478,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
-//- (void) returnSelectedLevel: (ProjectTaskRoomLevel*) level
-//{
-//    self.task.room = (ProjectTaskRoomLevel*)level;
-//    
-//    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
-//    
-//    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-//    row.detail = [NSString stringWithFormat: @"Уровень %@", level.roomLevel];
-//    
-//    
-//    [self updateContentWithRow: row
-//                     inSection: SectionThree
-//                         inRow: TaskPremisesRow];
-//    
-//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
-//    {
-//        [self.delegate reloadData];
-//    }
-//
-//}
-//
-//- (void) returnSelectedRoom: (ProjectTaskRoom*) room
-//{
-//    self.task.room = (ProjectTaskRoom*)room;
-//    
-//    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskPremisesRow];
-//    
-//    row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-//    row.detail = room.title;
-//    
-//    
-//    [self updateContentWithRow: row
-//                     inSection: SectionThree
-//                         inRow: TaskPremisesRow];
-//    
-//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
-//    {
-//        [self.delegate reloadData];
-//    }
-//
-//}
 
 - (void) returnSelectedInfo: (id) info
 {
