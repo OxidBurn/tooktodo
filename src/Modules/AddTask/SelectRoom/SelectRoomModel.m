@@ -235,12 +235,11 @@ static NSString* roomKey  = @"RoomKey";
     if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
     {
         ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
+        self.selectedLevel = selectedLevel;
         
-        
-        if ([selectedLevel.roomLevel isEqual: self.selectedLevel.roomLevel])
+        if ([selectedLevel.roomLevelID isEqual: self.selectedLevel.roomLevelID])
         {
-            self.selectedLevel = selectedLevel;
-            
+        
             NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
             
             self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
