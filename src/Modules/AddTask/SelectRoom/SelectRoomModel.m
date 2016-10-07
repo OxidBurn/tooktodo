@@ -176,20 +176,19 @@ static NSString* roomKey  = @"RoomKey";
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
-//    self.selectedLevel.isSelected = @(NO);
-    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                   withCompletion: nil];
     
-    [self.selectedLevel.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
-        
-        if (self.selectedLevel.isSelected.boolValue == NO)
-        {
-//            self.selectedRoom.isSelected = @(NO);
-            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
-                                          withCompletion: nil];
-        }
-        
-    }];
+    self.selectedRoom.isSelected  = @(!self.selectedRoom.isSelected);
+    self.selectedLevel.isSelected = @(!self.selectedLevel.isSelected);
+    
+    if (self.selectedLevel.isSelected.boolValue == NO)
+    {
+        [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                           withCompletion: nil];
+        }];
+    }
+   
     
     if (completion)
         completion(YES);
@@ -204,9 +203,9 @@ static NSString* roomKey  = @"RoomKey";
         ProjectTaskRoom* selectedRoom = (ProjectTaskRoom*) selectedItem;
         self.selectedRoom = selectedRoom;
         
-        [levels enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+        [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [level.rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+            [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
                 
                 NSUInteger indexOfSelectedRoom  = [level.rooms.allObjects indexOfObject: selectedRoom];
                 

@@ -101,6 +101,18 @@
      }];
 }
 
+- (void) saveData
+{
+    id selectedInfo = [self.viewModel getSelectedInfo];
+    
+    if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
+    {
+        [self.delegate returnSelectedInfo: selectedInfo];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+}
+
 #pragma mark - Actions -
 
 - (IBAction) onResetBtn: (UIButton*) sender
@@ -117,36 +129,12 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
-    id selectedInfo = [self.viewModel getSelectedInfo];
-//    ProjectTaskRoomLevel* level = [self.viewModel getSelectedLevel];
-//    ProjectTaskRoom* room       = [self.viewModel getSelectedRoom];
-    
-//    if ([self.delegate respondsToSelector: @selector(returnSelectedLevel:)])
-//    {
-//        [self.delegate returnSelectedLevel: level];
-//        
-//        [self.navigationController popViewControllerAnimated: YES];
-//    }
-//
-//
-//    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
-//    {
-//        [self.delegate returnSelectedRoom: room];
-//        
-//        [self.navigationController popViewControllerAnimated: YES];
-//    }
-    
-    if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
-            {
-                [self.delegate returnSelectedInfo: selectedInfo];
-        
-                [self.navigationController popViewControllerAnimated: YES];
-            }
+    [self saveData];
 }
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    
+    [self saveData];
 }
 
 - (IBAction) onCancelBtn: (UIBarButtonItem*) sender

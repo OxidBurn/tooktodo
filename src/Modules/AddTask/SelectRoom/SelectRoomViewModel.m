@@ -57,6 +57,8 @@
             completion(YES);
         
             }];
+    
+    
 }
 
 - (void) fillSelectedRoom: (id) selectedRoom
@@ -163,13 +165,12 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    // обработать нажатие на ячейку
-    [self.model handleCheckmarkForIndexPath: indexPath
-                             withCompletion: ^(BOOL isSuccess) {
-        
-                           [tableView reloadData];
-    }];
     
+    [self.model handleCheckmarkForIndexPath: indexPath
+                             withCompletion:^(BOOL isSuccess) {
+                                 
+                                 [tableView reloadData];
+                             }];
 
 }
 
