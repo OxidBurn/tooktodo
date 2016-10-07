@@ -198,8 +198,7 @@
         
         [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
             
-            [self updateSelectedStateOfRoom: obj
-                             withCompletion: nil];
+            obj.isSelected = level.isSelected;
             
         }];
         

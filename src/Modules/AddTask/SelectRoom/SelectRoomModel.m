@@ -180,13 +180,13 @@ static NSString* roomKey  = @"RoomKey";
 {
     if ( self.selectedLevel.isSelected.boolValue )
     {
-    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                   withCompletion:^(BOOL isSuccess) {
-                                       
-                                       if (completion)
-                                           completion(YES);
-                                       
-                                   }];
+        [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                       withCompletion:^(BOOL isSuccess) {
+                                           
+                                           if (completion)
+                                               completion(YES);
+                                           
+                                       }];
     }
     else
         if ( self.selectedRoom.isSelected.boolValue )
@@ -210,9 +210,10 @@ static NSString* roomKey  = @"RoomKey";
 {
     NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
     
-    if ([selectedItem isKindOfClass:[ProjectTaskRoom class]])
+    if ([selectedItem isKindOfClass: [ProjectTaskRoom class]])
     {
         ProjectTaskRoom* selectedRoom = (ProjectTaskRoom*) selectedItem;
+        
         self.selectedRoom = selectedRoom;
         
         [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -231,27 +232,25 @@ static NSString* roomKey  = @"RoomKey";
             
         }];
     }
-    
-    if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
-    {
-        ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
-        self.selectedLevel = selectedLevel;
-        
-        [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+    else
+        if ([selectedItem isKindOfClass: [ProjectTaskRoomLevel class]])
+        {
+            ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
             
-        
-            if ([level.roomLevelID isEqual: selectedLevel.roomLevelID])
-            {
-        
-                NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+            self.selectedLevel = selectedLevel;
             
-                self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
-                                                    inSection: 0];
-            }
-            
-        }];
-    }
-    
+            [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([level.roomLevelID isEqual: selectedLevel.roomLevelID])
+                {
+                    NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+                
+                    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
+                                                        inSection: 0];
+                }
+                
+            }];
+        }
 }
 
 - (ProjectTaskRoom *) getSelectedRoom

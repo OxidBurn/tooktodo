@@ -344,7 +344,10 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 - (id) returnSelectedRoom
 {
-    return self.task.room;
+    if ( self.task.level )
+        return self.task.level;
+    else
+        return self.task.room;
 }
 
 - (TaskType) returnSelectedTaskType
