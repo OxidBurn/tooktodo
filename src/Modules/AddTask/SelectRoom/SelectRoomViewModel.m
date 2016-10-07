@@ -136,9 +136,10 @@
     sectionView.didChangeExpandState = ^( NSUInteger section ){
         
         [blockSelf.model markLevelAsExpandedAtIndexPath: section
-         withCompletion:^(BOOL isSuccess) {
+                                         withCompletion: ^(BOOL isSuccess) {
              
              [tableView reloadData];
+                                             
          }];
         
     };

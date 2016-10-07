@@ -2,7 +2,7 @@
 //  ProjectTaskRoomLevel+CoreDataProperties.m
 //  
 //
-//  Created by Lera on 05.10.16.
+//  Created by Nikolay Chaban on 10/7/16.
 //
 //
 
@@ -15,9 +15,9 @@
 }
 
 @dynamic isExpanded;
-@dynamic level;
-@dynamic roomLevel;
 @dynamic isSelected;
+@dynamic level;
+@dynamic roomLevelID;
 @dynamic map;
 @dynamic project;
 @dynamic rooms;

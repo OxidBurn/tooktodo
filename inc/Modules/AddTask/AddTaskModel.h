@@ -52,6 +52,8 @@
 
 - (NSString*) returnSelectedTaskTypeDesc;
 
+- (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>

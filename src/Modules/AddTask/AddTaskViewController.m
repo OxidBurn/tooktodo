@@ -205,7 +205,12 @@
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
 {
-    
+    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+       
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+        
+    }];
 }
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender

@@ -357,7 +357,10 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.taskDescription;
 }
 
-
+- (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
+{
+    NSLog(@"New task: %@", self.task);
+}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -521,7 +524,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     else if (levelItem)
     {
         row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.roomLevel];
+        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
     }
     
     [self updateContentWithRow: row

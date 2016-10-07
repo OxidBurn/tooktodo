@@ -28,10 +28,10 @@
                                                                                   withValue: @(info.roomLevelID)
                                                                                   inContext: context];
     
-    roomLevel.task      = task;
-    roomLevel.project   = task.project;
-    roomLevel.roomLevel = @(info.roomLevelID);
-    roomLevel.level     = @(info.level);
+    roomLevel.task        = task;
+    roomLevel.project     = task.project;
+    roomLevel.roomLevelID = @(info.roomLevelID);
+    roomLevel.level       = @(info.level);
     
     if ( info.map )
     {
@@ -49,9 +49,9 @@
                                                                                   withValue: @(info.roomLevelID)
                                                                                   inContext: context];
     
-    roomLevel.project   = project;
-    roomLevel.roomLevel = @(info.roomLevelID);
-    roomLevel.level     = @(info.level);
+    roomLevel.project     = project;
+    roomLevel.roomLevelID = @(info.roomLevelID);
+    roomLevel.level       = @(info.level);
     
     if ( info.map )
     {
