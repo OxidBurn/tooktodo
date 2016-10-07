@@ -59,9 +59,6 @@
     if ( _viewModel == nil )
     {
         _viewModel = [AddTaskTypeViewModel new];
-        
-#warning 'Только для тестирование, удалить после реализации метода fillSelectedTaskType'
-      //  [_viewModel fillSavedTaskType: 0];
     }
     
     return _viewModel;

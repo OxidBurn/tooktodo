@@ -547,7 +547,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     RowContent* row = self.addTaskTableViewContent[SectionThree][TaskTypeRow];
     
     row.cellId = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
-//    row.markImageName =
     row.markImage = typeColor;
     row.detail = typeDescription;
     

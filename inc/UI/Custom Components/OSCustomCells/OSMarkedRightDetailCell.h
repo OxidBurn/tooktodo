@@ -13,7 +13,7 @@
 // methods
 
 - (void) fillCellWithTitle: (NSString*) titleText
-             withMarkImage: (UIImage*)  markImage
+             withMarkImage: (UIColor*)  markImage
                 withDetail: (NSString*) detailText;
 
 @end

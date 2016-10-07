@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -15,9 +15,6 @@
         </array>
         <array key="SF-UI-Text-Regular.otf">
             <string>SFUIText-Regular</string>
-        </array>
-        <array key="SF-UI-Text-Semibold.otf">
-            <string>SFUIText-Semibold</string>
         </array>
     </customFonts>
     <scenes>
@@ -593,7 +590,7 @@
                         <segue destination="slz-WN-5qc" kind="show" identifier="ShowAddTermTaskController" id="dPw-cx-gi5"/>
                         <segue destination="llT-OI-rLY" kind="show" identifier="ShowAddMassageController" id="upB-24-XxH"/>
                         <segue destination="Lr3-oG-7Wp" kind="show" identifier="ShowSelectResponsibleController" id="Le1-ta-0Lh"/>
-                        <segue destination="qwA-lN-if4" kind="show" identifier="ShowSelectionPremisesController" id="67e-q0-hwe"/>
+                        <segue destination="qwA-lN-if4" kind="show" identifier="ShowRooms" id="67e-q0-hwe"/>
                         <segue destination="Lr3-oG-7Wp" kind="show" identifier="ShowSelectClaimingController" id="VPP-Bn-A6f"/>
                         <segue destination="Lr3-oG-7Wp" kind="show" identifier="ShowSelectObserversController" id="2Uh-IL-5GK"/>
                         <segue destination="p8e-9a-aAf" kind="show" identifier="ShowStages" id="cIq-ti-8sk"/>
@@ -1077,37 +1074,41 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="47" id="VOn-B0-kyn">
-                                        <rect key="frame" x="0.0" y="75" width="375" height="47"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="checkMarkCellID" id="Urz-pm-hpM" customClass="OSCellWithCheckmark">
+                                        <rect key="frame" x="0.0" y="75" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VOn-B0-kyn" id="92p-mk-ZYs">
-                                            <frame key="frameInset" width="375" height="46"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Urz-pm-hpM" id="HA4-HU-IgP">
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoI-16-GTJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyf-HN-4Vx">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="gbs-Gk-tgA"/>
+                                                        <constraint firstAttribute="height" constant="21" id="IR9-uv-lBw"/>
+                                                        <constraint firstAttribute="width" constant="300" id="d05-fl-RWu"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="15"/>
-                                                    <color key="textColor" red="0.14901960784313725" green="0.1764705882352941" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="M7f-37-DfM">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="fAk-TN-rAJ">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="ALu-x2-aXl"/>
-                                                        <constraint firstAttribute="height" constant="13" id="C2O-oU-Uuo"/>
+                                                        <constraint firstAttribute="width" constant="16" id="CyX-J8-Kyd"/>
+                                                        <constraint firstAttribute="height" constant="13" id="wGS-Fd-MoU"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="M7f-37-DfM" firstAttribute="leading" secondItem="uoI-16-GTJ" secondAttribute="trailing" constant="20" id="BAR-vD-nL4"/>
-                                                <constraint firstItem="M7f-37-DfM" firstAttribute="centerY" secondItem="92p-mk-ZYs" secondAttribute="centerY" id="F42-Ep-OYb"/>
-                                                <constraint firstItem="uoI-16-GTJ" firstAttribute="leading" secondItem="92p-mk-ZYs" secondAttribute="leading" constant="30" id="Foz-12-y72"/>
-                                                <constraint firstAttribute="trailing" secondItem="M7f-37-DfM" secondAttribute="trailing" constant="15" id="ICE-ul-VEg"/>
-                                                <constraint firstItem="uoI-16-GTJ" firstAttribute="top" secondItem="92p-mk-ZYs" secondAttribute="top" constant="13" id="exP-eQ-lgz"/>
+                                                <constraint firstItem="fAk-TN-rAJ" firstAttribute="top" secondItem="HA4-HU-IgP" secondAttribute="topMargin" constant="7" id="Bih-tN-95g"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fAk-TN-rAJ" secondAttribute="trailing" constant="17" id="FYB-aM-tMY"/>
+                                                <constraint firstItem="fyf-HN-4Vx" firstAttribute="leading" secondItem="HA4-HU-IgP" secondAttribute="leadingMargin" constant="6" id="FkS-s3-8hF"/>
+                                                <constraint firstItem="fAk-TN-rAJ" firstAttribute="leading" secondItem="fyf-HN-4Vx" secondAttribute="trailing" constant="20" id="Tuu-9W-zf0"/>
+                                                <constraint firstItem="fyf-HN-4Vx" firstAttribute="top" secondItem="HA4-HU-IgP" secondAttribute="topMargin" constant="3" id="U1s-07-RX7"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="checkmarkImg" destination="fAk-TN-rAJ" id="zZj-3p-TRd"/>
+                                            <outlet property="nameLabel" destination="fyf-HN-4Vx" id="Dbh-qb-yZf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1141,7 +1142,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="selectionPremisesTableView" destination="Ry9-4k-7Fe" id="EEI-9r-ZVJ"/>
+                        <outlet property="roomLevelTableView" destination="Ry9-4k-7Fe" id="e5C-cx-vUN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vot-EP-8ik" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1170,8 +1171,7 @@
                                             <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzv-75-k4p">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzv-75-k4p">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="300" id="48g-Xw-MFg"/>
                                                         <constraint firstAttribute="height" constant="21" id="Pv3-uY-PQk"/>
@@ -1180,8 +1180,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckMarkGreen" translatesAutoresizingMaskIntoConstraints="NO" id="7m0-A9-lLL">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="13" id="9BB-wu-olk"/>
                                                         <constraint firstAttribute="width" constant="16" id="Wht-pY-Ghf"/>

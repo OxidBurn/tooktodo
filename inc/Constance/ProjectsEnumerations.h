@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, AllSeguesList) {
     ShowSystemSegue,
     ShowRoomsSegue,
     ShowTaskTypeSegue,
-    
+
 };
 
 typedef NS_ENUM(NSUInteger, SelectResponsibleSelectAllFlag) {

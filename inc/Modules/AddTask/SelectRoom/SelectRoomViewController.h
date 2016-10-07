@@ -25,10 +25,6 @@
 
 @protocol SelectRoomViewController <NSObject>
 
-//- (void) returnSelectedLevel: (ProjectTaskRoomLevel*) level;
-//
-//- (void) returnSelectedRoom: (ProjectTaskRoom*) room;
-
 - (void) returnSelectedInfo: (id) info;
 
 @end

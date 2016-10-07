@@ -17,7 +17,7 @@
 
 - (UITableViewCell*) returnMarkedRightDetailCellWithTitle: (NSString*)    titleText
                                            withDetailText: (NSString*)    detailText
-                                            withMarkImage: (UIImage*)     markImage
+                                            withMarkImage: (UIColor*)     markImage
                                              forTableView: (UITableView*) tableView
 {
     OSMarkedRightDetailCell* cell = [tableView dequeueReusableCellWithIdentifier: @"MarkedRightDetailsCellID"];

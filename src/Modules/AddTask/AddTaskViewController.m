@@ -157,12 +157,13 @@
         case ShowRoomsSegue:
         {
             SelectRoomViewController* controller = [segue destinationViewController];
-            
+           
             id room = [self.viewModel returnSelectedRoom];
             
             [controller fillSelectedRoom: room
                             withDelegate: [self.viewModel returnModel]];
         }
+            break;
             
         case ShowTaskTypeSegue:
         {

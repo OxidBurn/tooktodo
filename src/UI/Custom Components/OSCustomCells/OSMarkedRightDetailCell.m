@@ -29,9 +29,9 @@
              withMarkImage: (UIColor*)  markImage
                 withDetail: (NSString*) detailText
 {
-    self.titleLabel.text     = titleText;
-    self.markImageView.backgroundColor = markImage;
-    self.detailLabel.text    = detailText;
+    self.titleLabel.text                = titleText;
+    self.markImageView.backgroundColor  = markImage;
+    self.detailLabel.text               = detailText;
 }
 
 @end

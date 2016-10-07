@@ -13,7 +13,7 @@
 // methods
 - (UITableViewCell*) returnMarkedRightDetailCellWithTitle: (NSString*)    titleText
                                            withDetailText: (NSString*)    detailText
-                                            withMarkImage: (UIImage*)     markImage
+                                            withMarkImage: (UIColor*)     markImage
                                              forTableView: (UITableView*) tableView;
 
 @end
