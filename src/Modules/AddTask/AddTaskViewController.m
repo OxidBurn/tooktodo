@@ -19,6 +19,7 @@
 #import "NewTask.h"
 #import "TeamInfoViewController.h"
 #import "SelectRoomViewController.h"
+#import "AddTaskTypeViewController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 
@@ -161,6 +162,16 @@
             
             [controller fillSelectedRoom: room
                             withDelegate: [self.viewModel returnModel]];
+        }
+            
+        case ShowTaskTypeSegue:
+        {
+            AddTaskTypeViewController* controller = [segue destinationViewController];
+            
+            TaskType type = [self.viewModel returnSelectedTaskType];
+            
+            [controller fillSelectedTaskType: type
+                                withDelegate: [self.viewModel returnModel]];
         }
             
         default:

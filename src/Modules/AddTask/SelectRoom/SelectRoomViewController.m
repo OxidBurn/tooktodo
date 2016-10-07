@@ -78,6 +78,8 @@
     
     self.delegate = delegate;
 }
+
+
 #pragma mark - Interal -
 
 - (void) bindUI

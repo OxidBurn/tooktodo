@@ -33,6 +33,7 @@
 #import "SelectSystemViewController.h"
 #import "SelectStageViewController.h"
 #import "SelectRoomViewController.h"
+#import "AddTaskTypeViewController.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -45,6 +46,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowSelectStageSegueID,
     ShowSelectSystemSegueID,
     ShowSelectRoomSegueID,
+    ShowAddTaskTypeSegueID,
 };
 
 typedef NS_ENUM(NSUInteger, SectionsList) {
@@ -81,7 +83,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     
 };
 
-@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate, SelectRoomViewController>
+@interface AddTaskModel() <AddMessageViewControllerDelegate, OSSwitchTableCellDelegate, SelectResponsibleViewControllerDelegate, AddTaskTermsControllerDelegate, SelectSystemViewControllerDelegate, SelectStageViewControllerDelegate, SelectRoomViewController, AddTaskTypeDelegate>
 
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
@@ -108,7 +110,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewCellsInfo == nil )
     {
-        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
+        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID"];
     }
     
     return _addTaskTableViewCellsInfo;
@@ -118,7 +120,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms", @"ShowSelectingTaskInfoScreenID"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -128,7 +130,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms", @"ShowSelectingTaskInfoScreenID"];
     }
     
     return _allSeguesInfoArray;
@@ -262,7 +264,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
             cell = [factory returnMarkedRightDetailCellWithTitle: content.title
                                                   withDetailText: content.detail
-                                                   withMarkImage: [UIImage imageNamed: content.markImageName]
+                                                   withMarkImage: content.markImage
                                                     forTableView: tableView];
         }
             break;
@@ -344,6 +346,17 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     return self.task.room;
 }
+
+- (TaskType) returnSelectedTaskType
+{
+    return self.task.taskType;
+}
+
+- (NSString*) returnSelectedTaskTypeDesc
+{
+    return self.task.taskDescription;
+}
+
 
 
 #pragma mark - OSSwitchTableCellDelegate methods -
@@ -522,6 +535,32 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     }
 }
 
+#pragma mark - AddTaskTypeControllerDelegate methods-
+
+- (void) didSelectedTaskType: (TaskType)  type
+             withDescription: (NSString*) typeDescription
+                   withColor: (UIColor*)  typeColor
+{
+    self.task.taskType = type;
+    self.task.taskDescription = typeDescription;
+    
+    RowContent* row = self.addTaskTableViewContent[SectionThree][TaskTypeRow];
+    
+    row.cellId = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
+//    row.markImageName =
+    row.markImage = typeColor;
+    row.detail = typeDescription;
+    
+    [self updateContentWithRow: row
+                     inSection: SectionThree
+                         inRow: TaskTypeRow];
+    
+    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+    {
+        [self.delegate reloadData];
+    }
+}
+
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
 - (void) updateTerms: (TermsData*) terms
@@ -652,8 +691,9 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     
     rowFive.title         = @"Тип задачи";
     rowFive.detail        = @"Не реализовано";
-    rowFive.markImageName = @"GreenMark";
+    rowFive.markImage     = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
     rowFive.cellId        = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
+    rowFive.segueId       = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
     
     RowContent* rowSix = [RowContent new];
     

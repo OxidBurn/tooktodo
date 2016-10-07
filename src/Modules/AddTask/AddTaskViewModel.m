@@ -107,6 +107,16 @@
     return [self.model returnSelectedRoom];
 }
 
+- (TaskType) returnSelectedTaskType
+{
+    return [self.model returnSelectedTaskType];
+}
+
+- (NSString*) returnSelectedTaskTypeDesc
+{
+    return [self.model returnSelectedTaskTypeDesc];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

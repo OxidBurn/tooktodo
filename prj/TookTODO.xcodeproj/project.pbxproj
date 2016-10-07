@@ -300,6 +300,10 @@
 		5664A3F11DA40CAC00344879 /* RoomLevelMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5664A3F01DA40CAC00344879 /* RoomLevelMapModel.m */; };
 		5664A3F81DA424D100344879 /* RoomLevelMap+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5664A3F61DA424D100344879 /* RoomLevelMap+CoreDataClass.m */; };
 		5664A3F91DA424D100344879 /* RoomLevelMap+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5664A3F71DA424D100344879 /* RoomLevelMap+CoreDataProperties.m */; };
+		56826B531DA70CE700C88BF6 /* AddTaskTypeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56826B501DA70CE700C88BF6 /* AddTaskTypeViewModel.m */; };
+		56826B541DA70CE700C88BF6 /* AddTaskTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56826B521DA70CE700C88BF6 /* AddTaskTypeViewController.m */; };
+		56826B571DA70D0900C88BF6 /* AddTaskTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56826B561DA70D0900C88BF6 /* AddTaskTypeModel.m */; };
+		56826B5A1DA70E4C00C88BF6 /* AddTaskTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56826B591DA70E4C00C88BF6 /* AddTaskTypeTableViewCell.m */; };
 		56A19EEE1D6AF437004AC3D3 /* OfflineSyncSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */; };
 		56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */; };
 		56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */; };
@@ -924,6 +928,14 @@
 		5664A3F51DA410FA00344879 /* RoomLevelMapModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomLevelMapModel.h; sourceTree = "<group>"; };
 		5664A3F61DA424D100344879 /* RoomLevelMap+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RoomLevelMap+CoreDataClass.m"; sourceTree = "<group>"; };
 		5664A3F71DA424D100344879 /* RoomLevelMap+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RoomLevelMap+CoreDataProperties.m"; sourceTree = "<group>"; };
+		56826B501DA70CE700C88BF6 /* AddTaskTypeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskTypeViewModel.m; sourceTree = "<group>"; };
+		56826B521DA70CE700C88BF6 /* AddTaskTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskTypeViewController.m; sourceTree = "<group>"; };
+		56826B561DA70D0900C88BF6 /* AddTaskTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskTypeModel.m; sourceTree = "<group>"; };
+		56826B591DA70E4C00C88BF6 /* AddTaskTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskTypeTableViewCell.m; sourceTree = "<group>"; };
+		56826B5C1DA7104200C88BF6 /* AddTaskTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskTypeModel.h; sourceTree = "<group>"; };
+		56826B5D1DA7104200C88BF6 /* AddTaskTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskTypeTableViewCell.h; sourceTree = "<group>"; };
+		56826B5E1DA7104200C88BF6 /* AddTaskTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskTypeViewController.h; sourceTree = "<group>"; };
+		56826B5F1DA7104200C88BF6 /* AddTaskTypeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskTypeViewModel.h; sourceTree = "<group>"; };
 		56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = OfflineSyncSettings.plist; path = ../res/settings/OfflineSyncSettings.plist; sourceTree = "<group>"; };
 		56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
@@ -1326,6 +1338,7 @@
 		5664A0CD1DA3C63100344879 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				56826B5B1DA7104200C88BF6 /* AddTaskType */,
 				5659C8851DA704F500FF639A /* SelectRoom */,
 				5664A0CE1DA3C63100344879 /* AddMessage */,
 				5664A0D41DA3C63100344879 /* AddTerms */,
@@ -2077,6 +2090,7 @@
 		5664A2171DA3C63100344879 /* AddTask */ = {
 			isa = PBXGroup;
 			children = (
+				56826B4E1DA70CE700C88BF6 /* AddTaskType */,
 				5659C87C1DA7047700FF639A /* SelectRoom */,
 				5664A2181DA3C63100344879 /* AddMessage */,
 				5664A21E1DA3C63100344879 /* AddTerms */,
@@ -2541,6 +2555,28 @@
 				5664A2D31DA3C63100344879 /* UITextView+PlaceHolder.m */,
 			);
 			path = "UITextView+Placeholder";
+			sourceTree = "<group>";
+		};
+		56826B4E1DA70CE700C88BF6 /* AddTaskType */ = {
+			isa = PBXGroup;
+			children = (
+				56826B521DA70CE700C88BF6 /* AddTaskTypeViewController.m */,
+				56826B501DA70CE700C88BF6 /* AddTaskTypeViewModel.m */,
+				56826B561DA70D0900C88BF6 /* AddTaskTypeModel.m */,
+				56826B591DA70E4C00C88BF6 /* AddTaskTypeTableViewCell.m */,
+			);
+			path = AddTaskType;
+			sourceTree = "<group>";
+		};
+		56826B5B1DA7104200C88BF6 /* AddTaskType */ = {
+			isa = PBXGroup;
+			children = (
+				56826B5C1DA7104200C88BF6 /* AddTaskTypeModel.h */,
+				56826B5D1DA7104200C88BF6 /* AddTaskTypeTableViewCell.h */,
+				56826B5E1DA7104200C88BF6 /* AddTaskTypeViewController.h */,
+				56826B5F1DA7104200C88BF6 /* AddTaskTypeViewModel.h */,
+			);
+			path = AddTaskType;
 			sourceTree = "<group>";
 		};
 		591344091D5EFDA00027889F /* database */ = {
@@ -3097,8 +3133,10 @@
 				5664A33B1DA3C63100344879 /* UIViewController+Focus.m in Sources */,
 				5664A2DA1DA3C63100344879 /* DataManager+UserInfo.m in Sources */,
 				5664A3E31DA3D81D00344879 /* RoomsAPIService.m in Sources */,
+				56826B5A1DA70E4C00C88BF6 /* AddTaskTypeTableViewCell.m in Sources */,
 				5664A2EA1DA3C63100344879 /* ProjectRoleType+CoreDataClass.m in Sources */,
 				5664A2E21DA3C63100344879 /* ProjectInviteInfo+CoreDataClass.m in Sources */,
+				56826B571DA70D0900C88BF6 /* AddTaskTypeModel.m in Sources */,
 				5664A3F81DA424D100344879 /* RoomLevelMap+CoreDataClass.m in Sources */,
 				5664A3CA1DA3C63200344879 /* OSCellWithCheckmark.m in Sources */,
 				5659C8841DA7047700FF639A /* SelectRoomViewModel.m in Sources */,
@@ -3177,6 +3215,7 @@
 				5664A3151DA3C63100344879 /* ProjectRoleAssignmentsModel.m in Sources */,
 				F7E4DA8D1DA519920019F2AC /* GroupOfUsersCollectionCell.m in Sources */,
 				5664A3271DA3C63100344879 /* TaskStageModel.m in Sources */,
+				56826B531DA70CE700C88BF6 /* AddTaskTypeViewModel.m in Sources */,
 				5664A3C41DA3C63200344879 /* OSFlexibleTextFieldCellFactory.m in Sources */,
 				5664A3281DA3C63100344879 /* TaskSubTasksModel.m in Sources */,
 				5664A2FE1DA3C63100344879 /* ProjectTaskRoleType+CoreDataProperties.m in Sources */,
@@ -3197,6 +3236,7 @@
 				5664A3D41DA3C63200344879 /* OSUserInfoWithCheckmarkCell.m in Sources */,
 				5659C8831DA7047700FF639A /* SelectRoomViewController.m in Sources */,
 				5664A3BA1DA3C63200344879 /* OSAlertDeleteTaskViewModel.m in Sources */,
+				56826B541DA70CE700C88BF6 /* AddTaskTypeViewController.m in Sources */,
 				5664A3921DA3C63100344879 /* InviteInfo.m in Sources */,
 				5664A3AF1DA3C63200344879 /* TasksAPIService.m in Sources */,
 				5664A3C71DA3C63200344879 /* OSRightDetailCellFactory.m in Sources */,

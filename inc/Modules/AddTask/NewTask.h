@@ -14,6 +14,7 @@
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectsEnumerations.h"
 
 @interface NewTask : NSObject
 
@@ -41,5 +42,9 @@
 @property (nonatomic, strong) ProjectTaskRoomLevel* level;
 
 @property (nonatomic, strong) ProjectTaskRoom* room;
+
+@property (nonatomic, assign) TaskType taskType;
+
+@property (nonatomic, strong) NSString* typeDescription;
 
 @end

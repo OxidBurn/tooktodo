@@ -22,7 +22,8 @@
 
 @property (assign, nonatomic) BOOL      isHidden;
 
-@property (strong, nonatomic) NSString* markImageName;
+//@property (strong, nonatomic) NSString* markImageName;
+@property (nonatomic, strong) UIColor* markImage;
 
 @property (assign, nonatomic) NSUInteger pickerTag;
 
