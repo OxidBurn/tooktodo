@@ -43,21 +43,12 @@
                                             <frame key="frameInset" width="375" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overdue" translatesAutoresizingMaskIntoConstraints="NO" id="rr0-qs-DPp">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Overdue" translatesAutoresizingMaskIntoConstraints="NO" id="rr0-qs-DPp" userLabel="Is Expired Image View">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="14" id="EHe-hE-Zu0"/>
                                                         <constraint firstAttribute="height" constant="14" id="uaP-47-t8U"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04.07.15 – 07.07.15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYF-o6-7a7">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="96" id="89s-4R-Pod"/>
-                                                        <constraint firstAttribute="height" constant="13" id="mga-b8-GxO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
-                                                    <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GbN-j6-Jhc">
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mark" translatesAutoresizingMaskIntoConstraints="NO" id="YfY-TR-eH2">
@@ -86,15 +77,12 @@
                                                         <constraint firstItem="YfY-TR-eH2" firstAttribute="leading" secondItem="GbN-j6-Jhc" secondAttribute="leading" id="kuk-12-MWl"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRM-qR-F8t">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRM-qR-F8t" userLabel="Access Button">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="43" id="6c5-1K-K3x"/>
                                                         <constraint firstAttribute="height" constant="44" id="ShX-0K-Ewn"/>
                                                     </constraints>
                                                     <state key="normal" image="Eye"/>
-                                                    <connections>
-                                                        <action selector="onHiddenTaskBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="USl-13-nvE"/>
-                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-Xh-xmm" customClass="TaskMarkerComponent">
                                                     <constraints>
@@ -273,9 +261,6 @@
                                                     <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="onChangeStatusBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="XSJ-kP-Sjg"/>
-                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YB4-vY-Aah">
                                                     <constraints>
@@ -313,10 +298,16 @@
                                                         <constraint firstAttribute="height" constant="19" id="i0T-5q-OYC"/>
                                                     </constraints>
                                                     <state key="normal" image="Hint"/>
-                                                    <connections>
-                                                        <action selector="onShowSystemDescriptionBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="QYR-GO-T2q"/>
-                                                    </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04.07.15 – 07.07.15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYF-o6-7a7">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="96" id="89s-4R-Pod"/>
+                                                        <constraint firstAttribute="height" constant="13" id="mga-b8-GxO"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="11"/>
+                                                    <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="zN1-Xh-xmm" secondAttribute="bottom" constant="10.5" id="3gP-BV-jyl"/>
@@ -359,23 +350,23 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="changeStatusBtn" destination="OpY-k7-Czm" id="QaJ-sz-4sp"/>
-                                            <outlet property="changeStatusMarkImageView" destination="YB4-vY-Aah" id="6qB-zd-sbu"/>
-                                            <outlet property="commentsNumberMark" destination="02V-pN-axT" id="KJu-Dc-QtQ"/>
-                                            <outlet property="documentsNumberMark" destination="mQI-mM-bfc" id="84F-qK-FZu"/>
-                                            <outlet property="hiddenTaskMarkBtn" destination="LRM-qR-F8t" id="Bt0-c7-RbX"/>
-                                            <outlet property="overdueMarkImageView" destination="rr0-qs-DPp" id="vEC-CM-dF3"/>
-                                            <outlet property="roomNumberLabel" destination="3od-cv-Hzp" id="cnM-Mt-B9L"/>
-                                            <outlet property="roomNumberMarkImageView" destination="YfY-TR-eH2" id="6dP-v6-fZ4"/>
-                                            <outlet property="showSystemDescriptionBtn" destination="dyb-kV-Qrp" id="Tri-ks-IDy"/>
-                                            <outlet property="statusExpandedImageView" destination="zqD-MJ-Drv" id="XPQ-dD-JIL"/>
-                                            <outlet property="statusNameLabel" destination="Z0k-sh-YxB" id="fsk-bG-Mvz"/>
-                                            <outlet property="subtaskNumberMark" destination="zN1-Xh-xmm" id="q89-Vn-5A4"/>
-                                            <outlet property="systemDescriptionLabel" destination="cn8-QF-aQ0" id="9is-Eh-1Xo"/>
-                                            <outlet property="taskNameLabel" destination="9K4-bi-W1R" id="gjw-pH-Gv5"/>
-                                            <outlet property="taskStatusMark" destination="LEE-zN-jvW" id="ifs-IW-Ibv"/>
-                                            <outlet property="taskTermsLabel" destination="NYF-o6-7a7" id="g7t-Ak-1dI"/>
-                                            <outlet property="taskTermsLeadingConstraint" destination="YJZ-HG-4Wl" id="hbC-3J-aiU"/>
+                                            <outlet property="accessBtn" destination="LRM-qR-F8t" id="lHf-7y-EB0"/>
+                                            <outlet property="attachmentsMark" destination="mQI-mM-bfc" id="Rig-L4-Vap"/>
+                                            <outlet property="changeStatusMarkImageView" destination="YB4-vY-Aah" id="Iml-9x-hEJ"/>
+                                            <outlet property="commentsMark" destination="02V-pN-axT" id="uyb-k7-AW4"/>
+                                            <outlet property="isExpiredImageView" destination="rr0-qs-DPp" id="W0g-yu-PYv"/>
+                                            <outlet property="roomInfoView" destination="GbN-j6-Jhc" id="a81-4E-IYp"/>
+                                            <outlet property="roomNumberLabel" destination="3od-cv-Hzp" id="dde-Nc-ZNp"/>
+                                            <outlet property="roomNumberMarkImageView" destination="YfY-TR-eH2" id="QCv-N2-9Sg"/>
+                                            <outlet property="showWorkAreaDecription" destination="dyb-kV-Qrp" id="anB-EY-5lP"/>
+                                            <outlet property="statusBtn" destination="OpY-k7-Czm" id="bvQ-uP-3Nv"/>
+                                            <outlet property="statusDescriptionLabel" destination="Z0k-sh-YxB" id="HEe-kr-ggg"/>
+                                            <outlet property="statusExpandedImageView" destination="zqD-MJ-Drv" id="hY4-Gh-TLN"/>
+                                            <outlet property="subtaskMark" destination="zN1-Xh-xmm" id="SxN-Jf-KpO"/>
+                                            <outlet property="taskStatusMark" destination="LEE-zN-jvW" id="A9q-BA-AwL"/>
+                                            <outlet property="taskTermsLabel" destination="NYF-o6-7a7" id="PHP-AV-lm8"/>
+                                            <outlet property="taskTitleLabel" destination="9K4-bi-W1R" id="dEO-3m-tI0"/>
+                                            <outlet property="workAreaShortTitle" destination="cn8-QF-aQ0" id="2Sc-bV-xGy"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskDescriptionCellId" rowHeight="113" id="uHf-Bv-oNV" customClass="TaskDescriptionCell">

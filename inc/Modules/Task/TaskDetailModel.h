@@ -18,4 +18,6 @@
 
 - (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath;
 
+- (void) deselectTask;
+
 @end

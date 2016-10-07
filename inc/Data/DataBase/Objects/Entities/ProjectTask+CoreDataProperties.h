@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms; // номер комнаты сетится в лейбу
 @property (nullable, nonatomic, retain) ProjectTaskStage *stage; // этап
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskSubTasks *> *subTasks; // подзадачи
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments; // все, кто учавствует в задачи
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments; // все, кто учавствует в задаче
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea; // пример "отопление" "ОВКСМ"
 
 @end

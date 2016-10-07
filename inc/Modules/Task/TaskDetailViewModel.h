@@ -13,4 +13,7 @@
 
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+// methods
+- (void) deselectTask;
+
 @end

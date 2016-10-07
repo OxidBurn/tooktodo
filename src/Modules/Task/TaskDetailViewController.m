@@ -58,6 +58,8 @@
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
+    [self.viewModel deselectTask];
+    
     [self.navigationController popViewControllerAnimated: YES];
 }
 

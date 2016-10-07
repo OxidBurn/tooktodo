@@ -72,7 +72,7 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
-    self.taskNameLabel.text   = content.title;
+    self.taskNameLabel.text   = content.taskTitle;
     self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
     [self.hiddenTaskMarkBtn setBackgroundImage: [self getBackgroundImageForTaskAccess: content.isHiddenTask]
                                       forState: UIControlStateNormal];

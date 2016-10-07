@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
 @property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* cancelBtn;
 
 
 // properties
@@ -37,9 +37,9 @@
 // methods
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
-- (IBAction) onAddTaskBtn:         (UIButton*) sender;
+- (IBAction) onAddTaskBtn: (UIButton*) sender;
 
-- (IBAction) onCancel:        (UIBarButtonItem*)sender;
+- (IBAction) onCancel: (UIBarButtonItem*) sender;
 
 
 @end

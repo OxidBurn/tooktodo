@@ -72,5 +72,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                              animated: YES];
 }
 
+#pragma mark - Public -
+
+- (void) deselectTask
+{
+    [self.model deselectTask];
+}
+
 
 @end

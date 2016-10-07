@@ -15,6 +15,7 @@
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskWorkArea.h"
 #import "TaskRowContent.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 // Factories
 #import "TaskDetailInfoFactory.h"
@@ -159,6 +160,14 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     return cell;
 }
 
+#pragma mark - Public -
+
+- (void) deselectTask
+{
+    [DataManagerShared updateSelectedStateForTask: self.task
+                                withSelectedState: NO];
+}
+
 #pragma mark - Internal -
 
 - (NSArray*) returnTableViewContent
@@ -174,15 +183,17 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
     rowOne.cellId        = self.tableViewCellsIdArray[TaskDetailCell];
     rowOne.rowHeight     = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDetailCell]];
-    rowOne.title         = self.task.title;
     rowOne.taskStartDate = self.task.startDay;
     rowOne.taskEndDate   = self.task.endDate;
-    rowOne.isOverdue     = self.task.isExpired;
-    rowOne.roomNumber    = self.task.roomLevel.roomLevel.integerValue;
-    rowOne.isHiddenTask  = self.task.taskAccess.integerValue;
+    rowOne.isExpired     = self.task.isExpired;
+    rowOne.taskType      = self.task.taskType.integerValue;
+    rowOne.taskTypeDescription = self.task.taskTypeDescription;
+    rowOne.workAreaShortTitle  = self.task.workArea.shortTitle;
+    rowOne.taskTitle     = self.task.title;
+    rowOne.statusDescription = self.task.statusDescription;
     rowOne.subtasksNumber = self.task.subTasks.count;
-    rowOne.taskStatusDescription = self.task.statusDescription;
-    rowOne.workArea      = self.task.workArea.shortTitle;
+    rowOne.attachmentsNumber = self.task.attachments.integerValue;
+    rowOne.roomNumber       = self.task.room.number.integerValue;
     
     TaskRowContent* rowTwo = [TaskRowContent new];
     
