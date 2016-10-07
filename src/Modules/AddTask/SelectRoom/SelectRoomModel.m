@@ -176,22 +176,28 @@ static NSString* roomKey  = @"RoomKey";
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
-    
-    self.selectedRoom.isSelected  = @(!self.selectedRoom.isSelected);
-    self.selectedLevel.isSelected = @(!self.selectedLevel.isSelected);
-    
-    if (self.selectedLevel.isSelected.boolValue == NO)
+    if ( self.selectedLevel.isSelected.boolValue )
     {
-        [self.selectedLevel.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
-            
-            [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                           withCompletion: nil];
-        }];
+    [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                   withCompletion:^(BOOL isSuccess) {
+                                       
+                                       if (completion)
+                                           completion(YES);
+                                       
+                                   }];
     }
-   
-    
-    if (completion)
-        completion(YES);
+    else
+        if ( self.selectedRoom.isSelected.boolValue )
+        {
+            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
+                                          withCompletion: ^(BOOL isSuccess) {
+                                             
+                                              if (completion)
+                                                  completion(YES);
+
+                                              
+                                          }];
+        }
 }
 
 - (void) fillSelectedRoom: (id) selectedItem

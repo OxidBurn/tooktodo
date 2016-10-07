@@ -36,12 +36,12 @@
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 
 // methods
+
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
-- (IBAction) onAddTaskBtn:         (UIButton*) sender;
+- (IBAction) onAddTaskBtn: (UIButton*) sender;
 
-- (IBAction) onCancel:      (UIBarButtonItem*) sender;
-
+- (IBAction) onCancel: (UIBarButtonItem*) sender;
 
 @end
 
@@ -58,11 +58,6 @@
     [self setUpDefaults];
     
     [self bindUI];
-}
-
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
 }
 
 - (void) viewWillAppear: (BOOL) animated
