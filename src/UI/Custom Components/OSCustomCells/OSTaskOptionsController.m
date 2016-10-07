@@ -11,6 +11,9 @@
 //classes
 #import "AddTaskViewController.h"
 
+// Categories
+#import "UIViewController+Utils.h"
+
 @interface OSTaskOptionsController ()
 
 // Outlets
@@ -67,16 +70,22 @@
 
 - (IBAction) onAddNewTask: (UIButton*) sender
 {
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
-                                                         bundle: nil];
-    
-    UINavigationController* addTaskNavController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
-    
-    
-    [self presentViewController: addTaskNavController
-                       animated: YES
-                     completion: nil];
-
+    [self dismissViewControllerAnimated: YES
+                             completion: ^{
+                                 
+                                 UIViewController* topContorller = [UIViewController topMostController];
+                                 
+                                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                                                      bundle: nil];
+                                 
+                                 UINavigationController* addTaskNavController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
+                                 
+                                 
+                                 [topContorller presentViewController: addTaskNavController
+                                                             animated: YES
+                                                           completion: nil];
+                                 
+                             }];
 }
 
 - (IBAction) onAddDocument: (UIButton*) sender
