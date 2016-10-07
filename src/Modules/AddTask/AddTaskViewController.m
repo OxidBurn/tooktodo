@@ -162,6 +162,7 @@
             
             [controller fillSelectedRoom: room
                             withDelegate: [self.viewModel returnModel]];
+            
         }
             break;
             
@@ -173,6 +174,8 @@
             
             [controller fillSelectedTaskType: type
                                 withDelegate: [self.viewModel returnModel]];
+            
+        
         }
             
         default:

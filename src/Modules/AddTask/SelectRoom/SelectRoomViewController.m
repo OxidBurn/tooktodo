@@ -107,25 +107,34 @@
 {
     id selectedInfo = [self.viewModel getSelectedInfo];
     
-    if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
-    {
-        [self.delegate returnSelectedInfo: selectedInfo];
-        
-        [self.navigationController popViewControllerAnimated: YES];
-    }
+    
+        if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
+        {
+            [self.delegate returnSelectedInfo: selectedInfo];
+            
+        }
+    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 #pragma mark - Actions -
 
 - (IBAction) onResetBtn: (UIButton*) sender
 {
+    
     [self.viewModel resetAllWithCompletion: ^(BOOL isSuccess) {
-        
+    
         [self.roomLevelTableView reloadData];
         
     }];
     
-[self.navigationController popViewControllerAnimated: YES];
+    
+    if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
+    {
+        [self.delegate returnSelectedInfo: @"Не выбрано"];
+    }
+    
+   // [self.navigationController popViewControllerAnimated: YES];
     
 }
 

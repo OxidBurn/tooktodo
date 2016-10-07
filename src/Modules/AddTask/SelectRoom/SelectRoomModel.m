@@ -26,6 +26,7 @@ static NSString* roomKey  = @"RoomKey";
 @property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
 @property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
 
+
 // methods
 
 @end
@@ -107,6 +108,7 @@ static NSString* roomKey  = @"RoomKey";
                                            completion (YES);
                                        
                                    }];
+    
 }
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) path
@@ -198,7 +200,11 @@ static NSString* roomKey  = @"RoomKey";
                                               
                                           }];
         }
+    
+
 }
+
+
 
 - (void) fillSelectedRoom: (id) selectedItem
 {
@@ -210,17 +216,20 @@ static NSString* roomKey  = @"RoomKey";
         self.selectedRoom = selectedRoom;
         
         [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
-            
+        
             [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
                 
-                NSUInteger indexOfSelectedRoom  = [level.rooms.allObjects indexOfObject: selectedRoom];
-                
-                self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
-                                                        inSection: 0];
+                if ([obj.roomID isEqual: selectedRoom.roomID])
+                {
+                    NSUInteger indexOfSelectedRoom  = [level.rooms.allObjects indexOfObject: selectedRoom];
+                    
+                    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
+                                                            inSection: 0];
+                }
+            
             }];
             
         }];
-    
     }
     
     if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
@@ -228,11 +237,21 @@ static NSString* roomKey  = @"RoomKey";
         ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
         self.selectedLevel = selectedLevel;
         
-        NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+        [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
+            
         
-        self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
-                                                inSection: 0];
+            if ([level.roomLevelID isEqual: selectedLevel.roomLevelID])
+            {
+        
+                NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+            
+                self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
+                                                    inSection: 0];
+            }
+            
+        }];
     }
+    
 }
 
 - (ProjectTaskRoom *) getSelectedRoom
@@ -261,8 +280,11 @@ static NSString* roomKey  = @"RoomKey";
     }
     
     else
-        return nil;
+        return @"Не выбрано";
+        
 }
+
+
 
 #pragma mark - Internal -
 

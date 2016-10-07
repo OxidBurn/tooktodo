@@ -527,6 +527,12 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
         row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
     }
     
+    else
+    {
+        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.detail = info;
+    }
+    
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskPremisesRow];
