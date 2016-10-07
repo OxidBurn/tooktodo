@@ -240,14 +240,15 @@ static NSString* roomKey  = @"RoomKey";
         [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
             
         
-        if ([level.roomLevelID isEqual: self.selectedLevel.roomLevelID])
-        {
+            if ([level.roomLevelID isEqual: selectedLevel.roomLevelID])
+            {
         
-            NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
+                NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
             
-            self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
+                self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
                                                     inSection: 0];
-        }
+            }
+            
         }];
     }
     
@@ -279,7 +280,8 @@ static NSString* roomKey  = @"RoomKey";
     }
     
     else
-        return nil;
+        return @"Не выбрано";
+        
 }
 
 
