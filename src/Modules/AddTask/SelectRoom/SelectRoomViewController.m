@@ -71,14 +71,6 @@
 
 #pragma mark - Public -
 
-//- (void) fillSelectedSystem: (ProjectSystem*)                          system
-//               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate
-//{
-//    [self.viewModel fillSelectedSystem: system];
-//    
-//    self.delegate = delegate;
-//}
-
 - (void) fillSelectedRoom: (id) room
              withDelegate: (id<SelectRoomViewController>) delegate
 {
