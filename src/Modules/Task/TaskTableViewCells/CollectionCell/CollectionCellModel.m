@@ -13,6 +13,7 @@
 #import "TaskCollectionCellsContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskOwner.h"
+#import "FilledTeamInfo.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -194,17 +195,20 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     
     itemFour.cellId    = self.collectionViewCellsIdArray[OnPlanCell];
     itemFour.cellTitle = @"На плане";
+    itemFour.roomNumber = self.task.room.number.integerValue;
     
     TaskCollectionCellsContent* itemFive = [TaskCollectionCellsContent new];
     
     itemFive.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
     itemFive.cellTitle = @"Создатель";
+    itemFive.taskOwner = [self createOwnerTaskArray];
     
     
     TaskCollectionCellsContent* itemSix = [TaskCollectionCellsContent new];
     
     itemSix.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
     itemSix.cellTitle = @"Ответственный";
+    itemSix.responsible = [self createResponsibleArray];
     
     TaskCollectionCellsContent* itemSeven = [TaskCollectionCellsContent new];
     
@@ -237,7 +241,20 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
 
 - (NSArray*) createOwnerTaskArray
 {
-    return nil;
+    FilledTeamInfo* owner = [FilledTeamInfo new];
+    
+    [owner convertTaskOwnerToTeamInfo: self.task.ownerUser];
+    
+    return @[ owner ];
+}
+
+- (NSArray*) createResponsibleArray
+{
+    FilledTeamInfo* responsible = [FilledTeamInfo new];
+    
+    [responsible convertTaskResponsibleToTeamInfo: self.task.responsible];
+    
+    return @[ responsible ];
 }
 
 @end

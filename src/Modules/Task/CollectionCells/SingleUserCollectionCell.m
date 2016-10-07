@@ -10,6 +10,8 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "FilledTeamInfo.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface SingleUserCollectionCell()
 
@@ -37,5 +39,11 @@
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content
 {
     self.userRoleLabel.text = content.cellTitle;
+    
+    FilledTeamInfo* owner = content.taskOwner.firstObject;
+    
+    self.userNameLabel.text = owner.fullname;
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: owner.avatarSrc]];
 }
 @end

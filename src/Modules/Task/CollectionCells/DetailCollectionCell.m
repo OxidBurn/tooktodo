@@ -33,7 +33,7 @@
 
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content
 {
-    
+    self.roomNameLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
 }
 
 

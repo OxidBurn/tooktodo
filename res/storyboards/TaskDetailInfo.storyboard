@@ -428,7 +428,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TermsInfoCollectionCellId" id="RMx-pa-gYo" customClass="TermsInfoCollectionCell">
-                                                            <rect key="frame" x="94" y="0.0" width="188" height="58"/>
+                                                            <rect key="frame" x="93.5" y="0.0" width="188" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="58"/>
@@ -469,7 +469,7 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DetailCollectionCellId" id="IdN-cd-M2j" customClass="DetailCollectionCell">
-                                                            <rect key="frame" x="94" y="59" width="188" height="58"/>
+                                                            <rect key="frame" x="93.5" y="59" width="188" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="58"/>
@@ -531,7 +531,7 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OnPlanCollectionCellId" id="xxh-ig-SfE" customClass="OnPlanCollectionCell">
-                                                            <rect key="frame" x="94" y="118" width="188" height="58"/>
+                                                            <rect key="frame" x="93.5" y="118" width="188" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="58"/>
@@ -598,7 +598,7 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SingleUserCollectionCellId" id="Tll-YI-cHH" customClass="SingleUserCollectionCell">
-                                                            <rect key="frame" x="94" y="177" width="188" height="58"/>
+                                                            <rect key="frame" x="93.5" y="177" width="188" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="58"/>
@@ -620,39 +620,42 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А.Нестеров" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42h-Zg-2lS">
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="15" id="fdt-Gr-LZw"/>
-                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                                         <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-WD-yNO" customClass="AvatarImageView">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oMR-WD-yNO" customClass="AvatarImageView">
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="8gJ-yn-MOi"/>
-                                                                            <constraint firstAttribute="width" constant="20" id="Boy-Am-bLM"/>
+                                                                            <constraint firstAttribute="height" constant="20" id="CKp-x9-bZg"/>
+                                                                            <constraint firstAttribute="width" constant="20" id="Hjo-uz-K3F"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="10"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreenChack" translatesAutoresizingMaskIntoConstraints="NO" id="FL8-8O-ltc">
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" constant="14" id="633-mH-xwf"/>
-                                                                            <constraint firstAttribute="height" constant="14" id="fpN-Gz-dlr"/>
+                                                                            <constraint firstAttribute="height" constant="14" id="DKL-md-Hbx"/>
+                                                                            <constraint firstAttribute="width" constant="14" id="Kev-c3-XXW"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
-                                                                <constraint firstItem="oMR-WD-yNO" firstAttribute="leading" secondItem="42h-Zg-2lS" secondAttribute="trailing" constant="5" id="21x-pE-cmI"/>
+                                                                <constraint firstItem="oMR-WD-yNO" firstAttribute="leading" secondItem="42h-Zg-2lS" secondAttribute="trailing" constant="5" id="1az-Hc-l33"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oMR-WD-yNO" secondAttribute="trailing" constant="15" id="4Tb-7x-UFe"/>
                                                                 <constraint firstItem="btV-lM-Joc" firstAttribute="leading" secondItem="EVf-zy-edh" secondAttribute="trailing" constant="2" id="5OK-Mt-j3u"/>
-                                                                <constraint firstAttribute="bottom" secondItem="FL8-8O-ltc" secondAttribute="bottom" constant="9" id="7LS-dJ-R1d"/>
                                                                 <constraint firstItem="btV-lM-Joc" firstAttribute="top" secondItem="Tll-YI-cHH" secondAttribute="top" constant="12" id="Fmy-QV-kZb"/>
-                                                                <constraint firstAttribute="bottom" secondItem="oMR-WD-yNO" secondAttribute="bottom" constant="10" id="Rkr-q9-4Rw"/>
+                                                                <constraint firstAttribute="bottom" secondItem="oMR-WD-yNO" secondAttribute="bottom" constant="10" id="Qbc-M2-kfq"/>
                                                                 <constraint firstItem="EVf-zy-edh" firstAttribute="top" secondItem="Tll-YI-cHH" secondAttribute="top" constant="11" id="hOd-DO-LEV"/>
-                                                                <constraint firstItem="FL8-8O-ltc" firstAttribute="leading" secondItem="42h-Zg-2lS" secondAttribute="trailing" constant="15" id="mW4-lu-hMu"/>
+                                                                <constraint firstItem="42h-Zg-2lS" firstAttribute="leading" secondItem="Tll-YI-cHH" secondAttribute="leading" constant="15" id="jD2-ee-zbK"/>
                                                                 <constraint firstItem="EVf-zy-edh" firstAttribute="leading" secondItem="Tll-YI-cHH" secondAttribute="leading" constant="15" id="ncY-xm-1Ou"/>
-                                                                <constraint firstItem="42h-Zg-2lS" firstAttribute="leading" secondItem="Tll-YI-cHH" secondAttribute="leading" constant="15" id="uwr-nT-Jjw"/>
-                                                                <constraint firstAttribute="bottom" secondItem="42h-Zg-2lS" secondAttribute="bottom" constant="12" id="uzG-ff-QEx"/>
+                                                                <constraint firstItem="FL8-8O-ltc" firstAttribute="leading" secondItem="oMR-WD-yNO" secondAttribute="trailing" constant="-10.5" id="pkG-01-3wN"/>
+                                                                <constraint firstItem="FL8-8O-ltc" firstAttribute="top" secondItem="oMR-WD-yNO" secondAttribute="bottom" constant="-13" id="q5e-wh-KI0"/>
+                                                                <constraint firstAttribute="bottom" secondItem="42h-Zg-2lS" secondAttribute="bottom" constant="12" id="zn0-or-Rwz"/>
                                                             </constraints>
                                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                             <size key="customSize" width="188" height="58"/>
@@ -664,7 +667,7 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GroupOfUsersCollectionCellId" id="A1Q-uu-dPv" customClass="GroupOfUsersCollectionCell">
-                                                            <rect key="frame" x="94" y="236" width="188" height="58"/>
+                                                            <rect key="frame" x="93.5" y="236" width="188" height="58"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="58"/>

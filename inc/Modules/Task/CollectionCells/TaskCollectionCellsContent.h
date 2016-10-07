@@ -16,6 +16,10 @@
 
 @property (strong, nonatomic) NSString* cellDetail;
 
+@property (strong, nonatomic) NSArray* taskOwner;
+
+@property (assign, nonatomic) NSUInteger roomNumber;
+
 @property (strong, nonatomic) NSArray* responsible;
 
 @property (strong, nonatomic) NSArray* claiming;
