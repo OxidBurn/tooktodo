@@ -14,7 +14,7 @@
 
 
 
-typedef void(^GetTaskTypeInfoBlock)(NSString* taskTypeDescription, TaskType type);
+typedef void(^GetTaskTypeInfoBlock)(NSString* taskTypeDescription, TaskType type, UIColor* typeColor);
 
 @interface AddTaskTypeViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 

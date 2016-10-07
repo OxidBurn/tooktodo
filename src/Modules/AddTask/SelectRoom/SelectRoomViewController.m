@@ -71,14 +71,6 @@
 
 #pragma mark - Public -
 
-//- (void) fillSelectedSystem: (ProjectSystem*)                          system
-//               withDelegate: (id <SelectSystemViewControllerDelegate>) delegate
-//{
-//    [self.viewModel fillSelectedSystem: system];
-//    
-//    self.delegate = delegate;
-//}
-
 - (void) fillSelectedRoom: (id) room
              withDelegate: (id<SelectRoomViewController>) delegate
 {
@@ -86,6 +78,8 @@
     
     self.delegate = delegate;
 }
+
+
 #pragma mark - Interal -
 
 - (void) bindUI
@@ -126,24 +120,7 @@
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
     id selectedInfo = [self.viewModel getSelectedInfo];
-//    ProjectTaskRoomLevel* level = [self.viewModel getSelectedLevel];
-//    ProjectTaskRoom* room       = [self.viewModel getSelectedRoom];
-    
-//    if ([self.delegate respondsToSelector: @selector(returnSelectedLevel:)])
-//    {
-//        [self.delegate returnSelectedLevel: level];
-//        
-//        [self.navigationController popViewControllerAnimated: YES];
-//    }
-//
-//
-//    if ([self.delegate respondsToSelector: @selector(returnSelectedRoom:)])
-//    {
-//        [self.delegate returnSelectedRoom: room];
-//        
-//        [self.navigationController popViewControllerAnimated: YES];
-//    }
-    
+
     if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
             {
                 [self.delegate returnSelectedInfo: selectedInfo];

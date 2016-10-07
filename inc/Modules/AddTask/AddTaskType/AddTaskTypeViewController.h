@@ -19,7 +19,8 @@
 
 // methods
 
-- (void) fillSelectedTaskType: (TaskType) type;
+- (void) fillSelectedTaskType: (TaskType)                type
+                 withDelegate: (id<AddTaskTypeDelegate>) delegate;
 
 @end
 
@@ -27,8 +28,8 @@
 
 // methods
 
-
 - (void) didSelectedTaskType: (TaskType)  type
-             withDescription: (NSString*) typeDescription;
+             withDescription: (NSString*) typeDescription
+                   withColor: (UIColor*)  typeColor;
 
 @end

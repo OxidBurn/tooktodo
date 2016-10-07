@@ -45,14 +45,17 @@
 {
     self.selectedTaskTypeCell = [NSIndexPath indexPathForRow: type
                                                    inSection: 0];
+    
 }
 
 - (void) getSelectedInfo: (GetTaskTypeInfoBlock) completion
 {
     NSString* taskTypeDescription = [self.model getTaskTypeDescription: self.selectedTaskTypeCell.row];
     
+    UIColor* typeColor = [self.model getTaskTypeColor: self.selectedTaskTypeCell.row];
+    
     if ( completion )
-        completion(taskTypeDescription, self.selectedTaskTypeCell.row);
+        completion(taskTypeDescription, self.selectedTaskTypeCell.row, typeColor);
 }
 
 

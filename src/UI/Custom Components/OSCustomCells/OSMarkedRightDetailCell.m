@@ -26,11 +26,11 @@
 #pragma mark - Public -
 
 - (void) fillCellWithTitle: (NSString*) titleText
-             withMarkImage: (UIImage*)  markImage
+             withMarkImage: (UIColor*)  markImage
                 withDetail: (NSString*) detailText
 {
     self.titleLabel.text     = titleText;
-    self.markImageView.image = markImage;
+    self.markImageView.backgroundColor = markImage;
     self.detailLabel.text    = detailText;
 }
 

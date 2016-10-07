@@ -50,6 +50,10 @@
 
 - (id) returnSelectedRoom;
 
+- (TaskType) returnSelectedTaskType;
+
+- (NSString*) returnSelectedTaskTypeDesc;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

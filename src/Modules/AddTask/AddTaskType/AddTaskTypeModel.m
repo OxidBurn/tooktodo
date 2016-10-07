@@ -11,6 +11,16 @@
 // Classes
 #import "ProjectsEnumerations.h"
 
+@interface AddTaskTypeModel()
+
+// properties
+@property (nonatomic, assign) TaskType selectedType;
+
+// methods
+
+
+@end
+
 @implementation AddTaskTypeModel
 
 
@@ -67,5 +77,6 @@
     
     return typeDescription;
 }
+
 
 @end

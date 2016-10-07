@@ -61,7 +61,7 @@
         _viewModel = [AddTaskTypeViewModel new];
         
 #warning 'Только для тестирование, удалить после реализации метода fillSelectedTaskType'
-        [_viewModel fillSavedTaskType: 0];
+      //  [_viewModel fillSavedTaskType: 0];
     }
     
     return _viewModel;
@@ -71,8 +71,12 @@
 #pragma mark - Public methods -
 
 - (void) fillSelectedTaskType: (TaskType) type
+                 withDelegate: (id<AddTaskTypeDelegate>) delegate
+
 {
     [self.viewModel fillSavedTaskType: type];
+    
+    self.delegate = delegate;
 }
 
 
@@ -88,12 +92,13 @@
 {
     __weak typeof(self) blockSelf = self;
     
-    [self.viewModel getSelectedInfo: ^(NSString *taskTypeDescription, TaskType type) {
+    [self.viewModel getSelectedInfo: ^(NSString *taskTypeDescription, TaskType type, UIColor* typeColor) {
         
-        if ( [blockSelf.delegate respondsToSelector: @selector(didSelectedTaskType:withDescription:)] )
+        if ( [blockSelf.delegate respondsToSelector: @selector(didSelectedTaskType:withDescription:withColor:)] )
         {
             [blockSelf.delegate didSelectedTaskType: type
-                                    withDescription: taskTypeDescription];
+                                    withDescription: taskTypeDescription
+                                          withColor: typeColor];
         }
         
         [blockSelf.navigationController popViewControllerAnimated: YES];

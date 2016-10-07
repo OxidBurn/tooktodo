@@ -46,11 +46,11 @@
 
 - (ProjectTaskStage*) returnSelectedStage;
 
-//- (ProjectTaskRoom*) returnSelectedRoom;
-//
-//- (ProjectTaskRoomLevel*) returnSelectedLevel;
-
 - (id) returnSelectedRoom;
+
+- (TaskType) returnSelectedTaskType;
+
+- (NSString*) returnSelectedTaskTypeDesc;
 
 @end
 

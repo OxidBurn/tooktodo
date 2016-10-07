@@ -169,6 +169,16 @@
                             withDelegate: [self.viewModel returnModel]];
         }
             
+        case ShowTaskTypeSegue:
+        {
+            AddTaskTypeViewController* controller = [segue destinationViewController];
+            
+            TaskType type = [self.viewModel returnSelectedTaskType];
+            
+            [controller fillSelectedTaskType: type
+                                withDelegate: [self.viewModel returnModel]];
+        }
+            
         default:
             break;
     }
