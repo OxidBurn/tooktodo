@@ -209,11 +209,6 @@
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender
 {
-    [self.navigationController popViewControllerAnimated: YES];
-}
-
-- (IBAction) onDismiss: (UIBarButtonItem*) sender
-{
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
