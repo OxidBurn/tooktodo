@@ -10,4 +10,6 @@
 
 @interface CollectionCell : UITableViewCell
 
+// methods
+
 @end

@@ -16,7 +16,8 @@
 - (UITableViewCell*) createCellForTableView: (UITableView*) tableView
                                forIndexPath: (NSIndexPath*) indexPath;
 
-- (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath;
+- (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
+                            forTableView: (UITableView*) tableView;
 
 - (void) deselectTask;
 

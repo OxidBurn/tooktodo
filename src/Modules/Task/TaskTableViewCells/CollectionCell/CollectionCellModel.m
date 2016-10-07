@@ -11,6 +11,8 @@
 // Classes
 #import "DataManager+Tasks.h"
 #import "TaskCollectionCellsContent.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectTaskOwner.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -18,6 +20,9 @@
 #import "OnPlanCollectionCellFactory.h"
 #import "SingleUserCollectionCellFactory.h"
 #import "GroupOfUsersCollectionFactory.h"
+
+// Helpers
+#import "NSDate+Helper.h"
 
 typedef NS_ENUM(NSUInteger, CollectionItemsList) {
 
@@ -167,18 +172,23 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
 {
     TaskCollectionCellsContent* itemOne = [TaskCollectionCellsContent new];
     
-    itemOne.cellId    = self.collectionViewCellsIdArray[TermsCell];
-    itemOne.cellTitle = @"Сроки";
+    itemOne.cellId     = self.collectionViewCellsIdArray[TermsCell];
+    itemOne.cellTitle  = @"Сроки";
+    itemOne.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
+                                                 withFinishDate: self.task.endDate];
 
     TaskCollectionCellsContent* itemTwo = [TaskCollectionCellsContent new];
     
-    itemTwo.cellId    = self.collectionViewCellsIdArray[TermsCell];
-    itemTwo.cellTitle = @"Фактическая дата";
+    itemTwo.cellId     = self.collectionViewCellsIdArray[TermsCell];
+    itemTwo.cellTitle  = @"Фактическая дата";
+    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
+                                                 withFinishDate: self.task.closedDate];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
-    itemThree.cellId    = self.collectionViewCellsIdArray[DetailCell];
-    itemThree.cellTitle = @"Помещение";
+    itemThree.cellId     = self.collectionViewCellsIdArray[DetailCell];
+    itemThree.cellTitle  = @"Помещение";
+    itemThree.cellDetail = self.task.room.title;
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     
@@ -189,6 +199,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     
     itemFive.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
     itemFive.cellTitle = @"Создатель";
+    
     
     TaskCollectionCellsContent* itemSix = [TaskCollectionCellsContent new];
     
@@ -206,6 +217,27 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     itemEight.cellTitle = @"Наблюдатели";
     
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
+}
+
+#pragma mark - Helpers -
+
+- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
+                                withFinishDate: (NSDate*) finishDate
+{
+    NSString* labelText;
+    
+    NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    
+    NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+    
+    labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
+    
+    return labelText;
+}
+
+- (NSArray*) createOwnerTaskArray
+{
+    return nil;
 }
 
 @end

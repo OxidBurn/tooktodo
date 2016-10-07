@@ -60,7 +60,8 @@
 - (CGFloat)   tableView: (UITableView*) tableView
 heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model returnHeigtForRowAtIndexPath: indexPath];
+    return [self.model returnHeigtForRowAtIndexPath: indexPath
+                                       forTableView: tableView];
 }
 
 #pragma mark - UITableViewDelegate methods -

@@ -23,4 +23,11 @@
 
 @implementation TaskDescriptionCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskRowContent*) content
+{
+    self.taskDescriptionLabel.text = content.taskDescription? content.taskDescription : @"Описание отсутствует";
+}
+
 @end

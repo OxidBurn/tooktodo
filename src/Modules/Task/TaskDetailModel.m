@@ -17,6 +17,9 @@
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 
+// Helpers
+#import "Utils.h"
+
 // Factories
 #import "TaskDetailInfoFactory.h"
 #import "TaskDescriptionFactory.h"
@@ -90,7 +93,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     if ( _rowsHeighsArray == nil )
     {
-        _rowsHeighsArray = @[ @(162), @(117), @(232) ,@(50),  @(50) ];
+        _rowsHeighsArray = @[ @(162), @(58), @(232) ,@(50),  @(50) ];
     }
     
     return _rowsHeighsArray;
@@ -106,10 +109,32 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 }
 
 - (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
+                            forTableView: (UITableView*) tableView
 {
+    CGFloat height;
+    
     TaskRowContent* row = self.taskTableViewContent[indexPath.section][indexPath.row];
     
-    return row.rowHeight;
+    height = row.rowHeight;
+    
+    if ( indexPath.section == 0 && indexPath.row == 1 )
+    {
+        // height without label is row height value if description value == nil
+        CGFloat heightWithoutLabel = 35;
+        
+        CGSize labelSize = [Utils findHeightForText: self.task.taskDescription
+                                        havingWidth: tableView.frame.size.width - 30
+                                            andFont: [UIFont fontWithName: @"SF UI Text Regular"
+                                                                     size: 13.f]];
+        height = labelSize.height + heightWithoutLabel;
+        
+        if ( self.task.taskDescription == nil )
+        {
+            height = height + 23;
+        }
+    }
+    
+    return height;
 }
 
 - (UITableViewCell*) createCellForTableView: (UITableView*) tableView
@@ -181,19 +206,19 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     TaskRowContent* rowOne = [TaskRowContent new];
     
-    rowOne.cellId        = self.tableViewCellsIdArray[TaskDetailCell];
-    rowOne.rowHeight     = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDetailCell]];
-    rowOne.taskStartDate = self.task.startDay;
-    rowOne.taskEndDate   = self.task.endDate;
-    rowOne.isExpired     = self.task.isExpired;
-    rowOne.status        = self.task.status.integerValue;
+    rowOne.cellId              = self.tableViewCellsIdArray[TaskDetailCell];
+    rowOne.rowHeight           = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDetailCell]];
+    rowOne.taskStartDate       = self.task.startDay;
+    rowOne.taskEndDate         = self.task.endDate;
+    rowOne.isExpired           = self.task.isExpired;
+    rowOne.status              = self.task.status.integerValue;
     rowOne.taskTypeDescription = self.task.taskTypeDescription;
     rowOne.workAreaShortTitle  = self.task.workArea.shortTitle;
-    rowOne.taskTitle     = self.task.title;
-    rowOne.statusDescription = self.task.statusDescription;
-    rowOne.subtasksNumber = self.task.subTasks.count;
-    rowOne.attachmentsNumber = self.task.attachments.integerValue;
-    rowOne.roomNumber       = self.task.room.number.integerValue;
+    rowOne.taskTitle           = self.task.title;
+    rowOne.statusDescription   = self.task.statusDescription;
+    rowOne.subtasksNumber      = self.task.subTasks.count;
+    rowOne.attachmentsNumber   = self.task.attachments.integerValue;
+    rowOne.roomNumber          = self.task.room.number.integerValue;
     
     TaskRowContent* rowTwo = [TaskRowContent new];
     
@@ -202,6 +227,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     rowTwo.taskDescription = self.task.taskDescription;
     
     TaskRowContent* rowThree = [TaskRowContent new];
+    
     rowThree.cellId    = self.tableViewCellsIdArray[CollectionCell];
     rowThree.rowHeight = [self returnFloatFromNumber: self.rowsHeighsArray[CollectionCell]];
         
@@ -214,10 +240,5 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     return number.floatValue;
 }
-
-//- (NSUInteger) returnRoomLevenIntValue: (ProjectTaskRoomLevel*) projectTaskRoomLvl
-//{
-//    
-//}
 
 @end

@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) NSString* cellTitle;
 
+@property (strong, nonatomic) NSString* cellDetail;
+
 @property (strong, nonatomic) NSArray* responsible;
 
 @property (strong, nonatomic) NSArray* claiming;
