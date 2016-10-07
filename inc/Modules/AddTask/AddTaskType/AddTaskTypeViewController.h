@@ -19,6 +19,8 @@
 
 // methods
 
+- (void) fillSelectedTaskType: (TaskType) type;
+
 @end
 
 @protocol AddTaskTypeDelegate <NSObject>

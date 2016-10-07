@@ -6,8 +6,14 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Classes
+#import "ProjectsEnumerations.h"
 
 @interface AddTaskTypeModel : NSObject
+
+// methods
+- (UIColor*) getTaskTypeColor: (TaskType) type;
+
+- (NSString*) getTaskTypeDescription: (TaskType) type;
 
 @end

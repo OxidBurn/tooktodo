@@ -24,29 +24,18 @@
 @implementation AddTaskTypeTableViewCell
 
 
-#pragma mark - Initialization -
-
-- (void) awakeFromNib
-{
-    [super awakeFromNib];
-    // Initialization code
-}
-
-
 #pragma mark - Public methods -
 
-
-
-
-#pragma mark - Delegate methods -
-
-- (void) setSelected: (BOOL) selected
-            animated: (BOOL) animated
+- (void) setTypeTitle: (NSString*) title
+        withTypeColor: (UIColor*)  color
 {
-    [super setSelected: selected
-              animated: animated];
+    self.taskTypeDescriptionTitle.text          = title;
+    self.taskTypeColorIndicator.backgroundColor = color;
+}
 
-    // Configure the view for the selected state
+- (void) markCellAsSelected: (BOOL) isSelected
+{
+    self.taskTypeSelectedCheckmark.hidden = !isSelected;
 }
 
 @end

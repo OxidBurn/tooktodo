@@ -10,4 +10,11 @@
 
 @interface AddTaskTypeTableViewCell : UITableViewCell
 
+// methods
+
+- (void) setTypeTitle: (NSString*) title
+        withTypeColor: (UIColor*)  color;
+
+- (void) markCellAsSelected: (BOOL) isSelected;
+
 @end

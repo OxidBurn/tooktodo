@@ -19,6 +19,7 @@
 #import "NewTask.h"
 #import "TeamInfoViewController.h"
 #import "SelectRoomViewController.h"
+#import "AddTaskTypeViewController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate>
 

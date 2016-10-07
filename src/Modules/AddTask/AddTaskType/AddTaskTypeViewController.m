@@ -21,7 +21,6 @@
 
 // methods
 
-
 - (IBAction) onDone: (UIBarButtonItem*) sender;
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender;
@@ -35,10 +34,12 @@
 
 #pragma mark - Life cycle -
 
-- (void) viewDidLoad
+- (void) loadView
 {
-    [super viewDidLoad];
+    [super loadView];
     // Do any additional setup after loading the view.
+    
+    [self bindingUI];
 }
 
 
@@ -58,9 +59,20 @@
     if ( _viewModel == nil )
     {
         _viewModel = [AddTaskTypeViewModel new];
+        
+#warning 'Только для тестирование, удалить после реализации метода fillSelectedTaskType'
+        [_viewModel fillSavedTaskType: 0];
     }
     
     return _viewModel;
+}
+
+
+#pragma mark - Public methods -
+
+- (void) fillSelectedTaskType: (TaskType) type
+{
+    [self.viewModel fillSavedTaskType: type];
 }
 
 
@@ -68,15 +80,44 @@
 
 - (void) bindingUI
 {
+    self.taskTypesTableView.dataSource = self.viewModel;
+    self.taskTypesTableView.delegate   = self.viewModel;
+}
+
+- (void) returnNewTaskTypeInfo
+{
+    __weak typeof(self) blockSelf = self;
     
+    [self.viewModel getSelectedInfo: ^(NSString *taskTypeDescription, TaskType type) {
+        
+        if ( [blockSelf.delegate respondsToSelector: @selector(didSelectedTaskType:withDescription:)] )
+        {
+            [blockSelf.delegate didSelectedTaskType: type
+                                    withDescription: taskTypeDescription];
+        }
+        
+        [blockSelf.navigationController popViewControllerAnimated: YES];
+        
+    }];
 }
 
-- (IBAction)onDone:(UIBarButtonItem *)sender {
+#pragma mark - Actions -
+
+- (IBAction) onDone: (UIBarButtonItem*) sender
+{
+    [self returnNewTaskTypeInfo];
 }
 
-- (IBAction)onCancel:(UIBarButtonItem *)sender {
+- (IBAction) onCancel: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
-- (IBAction)onSave:(UIButton *)sender {
+- (IBAction) onSave: (UIButton*) sender
+{
+    [self returnNewTaskTypeInfo];
 }
+
+
+
 @end

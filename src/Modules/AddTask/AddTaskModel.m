@@ -45,6 +45,7 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowSelectStageSegueID,
     ShowSelectSystemSegueID,
     ShowSelectRoomSegueID,
+    ShowAddTaskTypeSegueID,
 };
 
 typedef NS_ENUM(NSUInteger, SectionsList) {
@@ -108,7 +109,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewCellsInfo == nil )
     {
-        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID" ];
+        _addTaskTableViewCellsInfo = @[@"FlexibleTextFieldCellID", @"FlexibleTextCellID", @"RightDetailCellID", @"SwitchCellID", @"SingleUserInfoCellID", @"GroupOfUsersCellID", @"MarkedRightDetailsCellID"];
     }
     
     return _addTaskTableViewCellsInfo;
@@ -118,7 +119,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _addTaskTableViewSeguesInfo == nil )
     {
-        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
+        _addTaskTableViewSeguesInfo = @[@"ShowAddMassageController", @"ShowAddTermTaskController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowSelectionPremisesController", @"ShowStages", @"ShowSystems", @"ShowRooms", @"ShowSelectingTaskInfoScreenID"];
     }
     
     return _addTaskTableViewSeguesInfo;
@@ -128,7 +129,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 {
     if ( _allSeguesInfoArray == nil )
     {
-        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms"];
+        _allSeguesInfoArray = @[@"ShowAddMassageController", @"ShowSelectResponsibleController", @"ShowSelectClaimingController", @"ShowSelectObserversController", @"ShowAddTermTaskController", @"ShowStages", @"ShowSystems", @"ShowRooms", @"ShowSelectingTaskInfoScreenID"];
     }
     
     return _allSeguesInfoArray;
@@ -695,6 +696,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     rowFive.detail        = @"Не реализовано";
     rowFive.markImageName = @"GreenMark";
     rowFive.cellId        = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
+    rowFive.segueId       = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
     
     RowContent* rowSix = [RowContent new];
     
