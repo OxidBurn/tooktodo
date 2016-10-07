@@ -206,6 +206,15 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     return self.terms;
 }
 
+- (void) setDefaultStartDayIfNotSetByPicker
+{
+    if ( self.terms.startDate == nil )
+    {
+        [self updateDateLabelWithDate: [NSDate date]
+                     forPickerWithTag: 0];
+    }
+}
+
 #pragma mark - Internal -
 
 - (NSArray*) createTableViewContent
@@ -282,10 +291,6 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 [self updateContentWithNewRow: updatedEndRowMinimumDate
                                      forIndex: TermEndDatePickerRow];
                 
-                NSLog(@"Selected start date: %@", date);
-                
-                NSLog(@"Minimum date: %@", updatedEndRowMinimumDate.minimumDate);
-                
                 self.terms.startDate = date;
                 
                 [self updateDuration];
@@ -296,6 +301,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 
             case EndDatePicker:
             {
+                date = [date dateByAddingTimeInterval: 2];
+                
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Конец"];
                 
@@ -304,9 +311,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 [self updateContentWithNewRow: newRow
                                      forIndex: TermsEndDateInfoRow];
                 
-                self.terms.endDate   = date;
-                
-                NSLog(@"Selected start date: %@", date);
+                self.terms.endDate = date;
 
                 [self updateDuration];
             }
@@ -413,7 +418,9 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                                                        fromDate: self.terms.startDate
                                                          toDate: self.terms.endDate
                                                         options: 0];
-            self.terms.duration = [components day];
+            
+            // Added one day, for correct counting value betweet two days with including end day to duration
+            self.terms.duration = [components day] + 1;
         }
         else
         {

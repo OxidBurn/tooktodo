@@ -28,6 +28,8 @@
 
 - (TermsData*) returnTerms;
 
+- (void) setDefaultStartDayIfNotSetByPicker;
+
 @end
 
 @protocol AddTaskTermsModelDelegate <NSObject>

@@ -186,6 +186,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     {
         self.startDatePickerShowed = NO;
         
+        [self.model setDefaultStartDayIfNotSetByPicker];
+        
         [self reloadDatePickerCellsForTableView: tableView];
     }
 }
