@@ -304,7 +304,6 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 [self updateContentWithNewRow: newRow
                                      forIndex: TermsEndDateInfoRow];
                 
-//                self.terms.startDate =
                 self.terms.endDate   = date;
                 
                 NSLog(@"Selected start date: %@", date);
