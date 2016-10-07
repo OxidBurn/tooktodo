@@ -62,6 +62,11 @@
     return [self.model returnNewTask];
 }
 
+- (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model storeNewTaskWithCompletion: completion];
+}
+
 - (NSArray*) returnAllSeguesArray
 {
     return [self.model returnAllSeguesArray];

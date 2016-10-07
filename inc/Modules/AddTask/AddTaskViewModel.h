@@ -32,6 +32,8 @@
 
 - (NewTask*) getNewTask;
 
+- (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
+
 - (NSArray*) returnAllSeguesArray;
 
 - (id) returnModel;

@@ -36,7 +36,7 @@
 
 - (void) fillInfo: (ProjectTaskRoomLevel*) level
 {
-    self.levelTitleLabel.text = [NSString stringWithFormat: @"Уровень %@", level.roomLevel];
+    self.levelTitleLabel.text = [NSString stringWithFormat: @"Уровень %@", level.level];
     
     [self updateExpandedState: level.isExpanded.boolValue];
     
