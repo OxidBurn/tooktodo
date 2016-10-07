@@ -12,9 +12,11 @@
 #import "AvatarImageView.h"
 #import "TaskMarkerComponent.h"
 #import "StatusMarkerComponent.h"
+#import "ProjectsEnumerations.h"
 
 // Helpers
 #import "NSDate+Helper.h"
+
 
 @interface TaskDetailInfoCell()
 
@@ -38,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *temsHorizontalToStatusConstraint;
 
 // properties
 
@@ -74,13 +77,19 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
+    [self handleExpiredMark: content.isExpired];
+    
+    [self handleRoomInfoView: content.roomNumber];
+    
+    [self handleWorkAreaDescriptionBtn: content.workAreaShortTitle];
+    
+    [self handleTaskTypeBtn: content.status];
+    
     self.taskTermsLabel.text = [self createTermsLabelTextForStartDate: content.taskStartDate
                                                        withFinishDate: content.taskEndDate];
     
     [self.taskStatusMark setStatusString: content.taskTypeDescription
                                 withType: content.taskType];
-    
-    self.workAreaShortTitle.text = content.workAreaShortTitle;
     
     self.taskTitleLabel.text = content.taskTitle;
     
@@ -92,7 +101,48 @@
     [self.attachmentsMark setValue: content.attachmentsNumber
                           withType: TaskMarkerAttachmentsType];
     
-    self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
+}
+
+#pragma mark - Internal -
+
+- (void) handleExpiredMark: (BOOL) isExpired
+{
+    self.isExpiredImageView.hidden = isExpired? NO : YES;
+    
+    self.taskTermsLeadingConstraint.constant = isExpired? 32 : 15;
+}
+
+- (void) handleRoomInfoView: (NSUInteger) roomNumber
+{
+    if ( roomNumber == 0 )
+    {
+        self.roomInfoView.hidden = YES;
+        
+        self.temsHorizontalToStatusConstraint.constant = 15;
+        self.temsHorizontalToStatusConstraint.priority = 1000;
+    } else
+    {
+        self.roomInfoView.hidden = NO;
+        
+        self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", roomNumber];
+        
+        self.temsHorizontalToStatusConstraint.priority = 250;
+    }
+
+}
+
+- (void) handleWorkAreaDescriptionBtn: (NSString*) workAreaShortTitle
+{
+    if ( workAreaShortTitle == nil )
+    {
+        self.showWorkAreaDecription.hidden = YES;
+    }
+    else
+    {
+        self.showWorkAreaDecription.hidden = NO;
+        
+        self.workAreaShortTitle.text = workAreaShortTitle;
+    }
 }
 
 #pragma mark - Helpers -
@@ -125,6 +175,75 @@
     labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
 
     return labelText;
+}
+
+- (void) handleTaskTypeBtn: (NSUInteger) taskType
+{
+    switch ( taskType )
+    {
+        case TaskWaitingStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor colorWithRed: 255.0/256
+                                                             green: 228.0/256
+                                                              blue: 69.0/256
+                                                             alpha: 1.f];
+            
+            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusWaitingIcon"]];
+        }
+            break;
+            
+        case TaskInProgressStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor colorWithRed: 79.0/256
+                                                             green: 197.0/256
+                                                              blue: 45.0/256
+                                                             alpha: 1.f];
+            
+            self.statusDescriptionLabel.textColor = [UIColor whiteColor];
+            
+            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusInProgressIcon"]];
+        }
+            break;
+            
+        case TaskCompletedStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor cyanColor];
+        }
+            break;
+            
+        case TaskCanceledStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor colorWithRed: 255.0/256
+                                                             green: 70.0/256
+                                                              blue: 70.0/256
+                                                             alpha: 1.f];
+            
+            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
+        }
+            break;
+            
+        case TaskOnApprovingStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor colorWithRed: 250.0/256
+                                                             green: 216.0/256
+                                                              blue: 64.0/256
+                                                             alpha: 1.f];
+            
+            [self.statusBtn setImage: [UIImage imageNamed: @"TaskStatusOnApproveIcon"]
+                            forState: UIControlStateNormal];
+        }
+            break;
+            
+        case TaskOnCompletionStatusType:
+        {
+            self.statusBtn.backgroundColor = [UIColor brownColor];
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 @end

@@ -186,7 +186,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     rowOne.taskStartDate = self.task.startDay;
     rowOne.taskEndDate   = self.task.endDate;
     rowOne.isExpired     = self.task.isExpired;
-    rowOne.taskType      = self.task.taskType.integerValue;
+    rowOne.status        = self.task.status.integerValue;
     rowOne.taskTypeDescription = self.task.taskTypeDescription;
     rowOne.workAreaShortTitle  = self.task.workArea.shortTitle;
     rowOne.taskTitle     = self.task.title;
