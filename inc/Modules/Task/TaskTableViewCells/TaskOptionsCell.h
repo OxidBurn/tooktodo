@@ -14,6 +14,6 @@
 @interface TaskOptionsCell : UITableViewCell
 
 // methods
-//- (void) fillCellWithContent: (TaskRowContent*) content;
+- (void) fillCellWithContent: (TaskRowContent*) content;
 
 @end

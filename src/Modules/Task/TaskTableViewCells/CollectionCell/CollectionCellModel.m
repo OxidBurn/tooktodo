@@ -257,4 +257,21 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     return @[ responsible ];
 }
 
+
+- (NSString*) determineCollectionCellIdForContent: (NSArray*) arrayToCheck
+{
+    NSString* cellId;
+    
+    if ( arrayToCheck == nil || arrayToCheck.count == 0 )
+    {
+        cellId = self.collectionViewCellsIdArray[DetailCell];
+    } else
+        if ( arrayToCheck.count == 1 )
+        {
+            cellId = self.collectionViewCellsIdArray[SingleUserCell];
+        } else
+            cellId = self.collectionViewCellsIdArray[GroupOfUsersCell];
+    
+    return cellId;
+}
 @end

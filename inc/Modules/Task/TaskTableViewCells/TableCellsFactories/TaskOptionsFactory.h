@@ -17,4 +17,8 @@
 
 @interface TaskOptionsFactory : NSObject
 
+// mehtods
+- (UITableViewCell*) returnTaskOptionsCellForContent: (TaskRowContent*) content
+                                        forTableView: (UITableView*)    tableView;
+
 @end

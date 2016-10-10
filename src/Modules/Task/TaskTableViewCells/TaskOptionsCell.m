@@ -34,5 +34,12 @@
 
 @implementation TaskOptionsCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskRowContent*) content
+{
+    
+}
+
 
 @end

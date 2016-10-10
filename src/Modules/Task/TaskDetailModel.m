@@ -24,6 +24,7 @@
 #import "TaskDetailInfoFactory.h"
 #import "TaskDescriptionFactory.h"
 #import "CollectionCellFactory.h"
+#import "TaskOptionsFactory.h"
 
 typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
@@ -35,7 +36,14 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
 };
 
+typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 
+    SubtasksContentType,
+    AttachmentsContentType,
+    CommentsContentType,
+    LogsContentType,
+    
+};
 
 
 @interface TaskDetailModel()
@@ -48,6 +56,8 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 @property (strong, nonatomic) NSArray* tableViewCellsIdArray;
 
 @property (strong, nonatomic) NSArray* rowsHeighsArray;
+
+@property (assign, nonatomic) SecondSectionContentType secondSectionContentType;
 
 
 // methods
@@ -93,7 +103,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     if ( _rowsHeighsArray == nil )
     {
-        _rowsHeighsArray = @[ @(162), @(58), @(232) ,@(50),  @(50) ];
+        _rowsHeighsArray = @[ @(162), @(58), @(232) ,@(58),  @(58) ];
     }
     
     return _rowsHeighsArray;
@@ -180,17 +190,34 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
             cell = [factory returnCellectionCellForTableView: tableView];
         }
             break;
+            
+        case TaskOptionsCell:
+        {
+            TaskOptionsFactory* factory = [TaskOptionsFactory new];
+            
+            cell = [factory returnTaskOptionsCellForContent: content
+                                               forTableView: tableView];
+        }
+            break;
     }
     
     return cell;
 }
 
-#pragma mark - Public -
-
 - (void) deselectTask
 {
     [DataManagerShared updateSelectedStateForTask: self.task
                                 withSelectedState: NO];
+}
+
+- (NSArray*) returnHeaderInfo
+{
+    NSArray* headerInfo = @[ @(self.task.subTasks.count),
+                             self.task.attachments,
+                             @(0),
+                             @(0) ];
+    
+    return headerInfo;
 }
 
 #pragma mark - Internal -
@@ -199,7 +226,9 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     NSArray* sectionOne = [self createSectionOne];
     
-    return @[ sectionOne] ;
+    NSArray* sectionTwo = [self createSectionTwo];
+    
+    return @[ sectionOne, sectionTwo ] ;
 }
 
 - (NSArray*) createSectionOne
@@ -224,7 +253,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
     rowTwo.cellId          = self.tableViewCellsIdArray[TaskDescriptionCell];
     rowTwo.rowHeight       = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDescriptionCell]];
-    rowTwo.taskDescription = self.task.taskDescription;
+    rowTwo.taskDescription = self.task.descriptionValue;
     
     TaskRowContent* rowThree = [TaskRowContent new];
     
@@ -234,6 +263,85 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     return @[ rowOne, rowTwo, rowThree ];
 }
 
+- (NSArray*) createSectionTwo
+{
+    NSArray* content = [self createSectionTwoContentAccordingToType];
+    
+    return content.copy;
+}
+
+- (NSArray*) createSectionTwoContentAccordingToType
+{
+    NSArray* content = [NSArray new];
+    
+    switch ( self.secondSectionContentType )
+    {
+        case SubtasksContentType:
+        {
+            content = [self createSubtasksContent];
+        }
+            break;
+            
+        case AttachmentsContentType:
+        {
+            content = [self createAttachmentsContent];
+        }
+            break;
+            
+        case CommentsContentType:
+        {
+            content = [self createCommentsContent];
+        }
+            break;
+            
+        case LogsContentType:
+        {
+            content = [self createSLogsContent];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return content;
+}
+
+- (NSArray*) createSubtasksContent
+{
+    TaskRowContent* rowOne = [TaskRowContent new];
+    
+    rowOne.cellId = self.tableViewCellsIdArray[TaskOptionsCell];
+    rowOne.rowHeight = [self returnFloatFromNumber: self.rowsHeighsArray[TaskOptionsCell]];
+    
+    return @[ rowOne ];
+}
+
+- (NSArray*) createAttachmentsContent
+{
+    NSArray* content = [NSArray new];
+    
+    // here will be created content with attachments
+    
+    return content;
+}
+
+- (NSArray*) createCommentsContent
+{
+    NSArray* content = [NSArray new];
+    
+    // here will be created content with comments
+    
+    return content;
+}
+- (NSArray*) createSLogsContent
+{
+    NSArray* content = [NSArray new];
+    
+    // here will be created content with logs
+
+    return content;
+}
 #pragma mark - Helpers -
 
 - (CGFloat) returnFloatFromNumber: (NSNumber*) number

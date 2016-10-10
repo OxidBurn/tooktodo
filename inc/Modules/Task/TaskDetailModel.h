@@ -19,6 +19,8 @@
 - (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
                             forTableView: (UITableView*) tableView;
 
+- (NSArray*) returnHeaderInfo;
+
 - (void) deselectTask;
 
 @end

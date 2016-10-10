@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *access; // скрытая
 @property (nullable, nonatomic, copy) NSNumber *attachments; // прикрепленные файлы
 @property (nullable, nonatomic, copy) NSDate *closedDate; // фактическая дата последняя
-@property (nullable, nonatomic, copy) NSString *descriptionValue; // описание ячейка 2
+@property (nullable, nonatomic, copy) NSString *descriptionValue; // описание задачи ячейка 2
 @property (nullable, nonatomic, copy) NSNumber *duration; //
 @property (nullable, nonatomic, copy) NSDate *endDate; // заявленый конец задания
 @property (nullable, nonatomic, copy) NSNumber *extraId; // 

@@ -13,4 +13,15 @@
 
 @implementation TaskOptionsFactory
 
+#pragma mark - Public -
+
+- (UITableViewCell*) returnTaskOptionsCellForContent: (TaskRowContent*) content
+                                        forTableView: (UITableView*)    tableView
+{
+    TaskOptionsCell* cell = [tableView dequeueReusableCellWithIdentifier: content.cellId];
+    
+    return cell;
+}
+
+
 @end

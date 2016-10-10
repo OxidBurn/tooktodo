@@ -11,6 +11,7 @@
 // Classes
 #import "TaskDetailModel.h"
 #import "TaskDescriptionCell.h"
+#import "SubTaskInfoView.h"
 
 @interface TaskDetailViewModel()
 
@@ -40,11 +41,11 @@
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger) tableView: (UITableView*) tableView
-  numberOfRowsInSection: (NSInteger) section
+  numberOfRowsInSection: (NSInteger)    section
 {
     return [self.model returnNumberOfRowsForIndexPath: section];
 }
@@ -62,6 +63,36 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     return [self.model returnHeigtForRowAtIndexPath: indexPath
                                        forTableView: tableView];
+}
+
+- (UIView*)  tableView: (UITableView*) tableView
+viewForHeaderInSection: (NSInteger)    section
+{
+    SubTaskInfoView* header = [SubTaskInfoView new];
+    
+    if ( section == 1)
+    {
+    header = [[MainBundle loadNibNamed: @"SubTaskInfoView"
+                                 owner: self
+                               options: nil] firstObject];
+    }
+    
+    [header fillHeaderWithInfo: [self.model returnHeaderInfo]];
+    
+    return header;
+}
+
+- (CGFloat)    tableView: (UITableView*) tableView
+heightForHeaderInSection: (NSInteger)    section
+{
+    CGFloat height = 0;
+    
+    if ( section == 1)
+    {
+        height = 43.0f;
+    }
+    
+    return height;
 }
 
 #pragma mark - UITableViewDelegate methods -
