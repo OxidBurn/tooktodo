@@ -75,4 +75,12 @@
     self.switchControl.tag = tag;
 }
 
+- (void) resetValue
+{
+    if (self.switchControl.tag == 0)
+    {
+        [self.switchControl setOn: NO];
+    }
+}
+
 @end

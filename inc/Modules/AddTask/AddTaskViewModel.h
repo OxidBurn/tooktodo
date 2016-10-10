@@ -26,6 +26,7 @@
 @property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
 @property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
 @property (nonatomic, strong) RACCommand* enableCreteOnBaseBtnCommand;
+@property (nonatomic, strong) RACCommand* deleteTaskCommand;
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
 @property (nonatomic, strong) NSString* taskNameText;
 
@@ -58,6 +59,8 @@
 - (NSString*) returnSelectedTaskTypeDesc;
 
 - (NSString*) returnTaskName;
+
+- (RACSignal*) getNewTaskSignal;
 
 @end
 

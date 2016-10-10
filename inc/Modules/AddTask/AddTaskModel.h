@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 //Classes
 #import "NewTask.h"
@@ -30,7 +31,7 @@
 
 - (BOOL) isValidTaskName: (NSString*) taskName;
 
-- (NewTask*) returnNewTask;
+//- (NewTask*) returnNewTask;
 
 - (NSArray*) returnAllSeguesArray;
 
@@ -55,6 +56,8 @@
 - (NSString*) returnTaskName;
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
+
+- (RACSignal*) returnNewTaskSignal;
 
 @end
 

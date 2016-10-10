@@ -22,6 +22,8 @@
            withSwitchState: (BOOL)       isSelected
               withDelegate: (id)         delegate;
 
+- (void) resetValue;
+
 @end
 
 @protocol OSSwitchTableCellDelegate <NSObject>
@@ -32,5 +34,6 @@
 
 - (void) updateTermsOption: (BOOL)       isOn
                     forTag: (NSUInteger) tag;
+
 
 @end
