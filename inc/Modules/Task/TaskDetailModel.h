@@ -19,7 +19,11 @@
 - (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
                             forTableView: (UITableView*) tableView;
 
-- (NSArray*) returnHeaderInfo;
+- (NSArray*) returnFooterInfo;
+
+- (UIView*) returnHeaderForSection;
+
+- (CGFloat) returnHeaderHeight;
 
 - (void) deselectTask;
 

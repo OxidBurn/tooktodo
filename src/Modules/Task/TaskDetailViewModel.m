@@ -68,18 +68,30 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 - (UIView*)  tableView: (UITableView*) tableView
 viewForHeaderInSection: (NSInteger)    section
 {
-    SubTaskInfoView* header = [SubTaskInfoView new];
+    UIView* header = [UIView new];
     
-    if ( section == 1)
-    {
-    header = [[MainBundle loadNibNamed: @"SubTaskInfoView"
-                                 owner: self
-                               options: nil] firstObject];
-    }
-    
-    [header fillHeaderWithInfo: [self.model returnHeaderInfo]];
+    if ( section == 1 )
+        header = [self.model returnHeaderForSection];
     
     return header;
+}
+
+- (UIView*)  tableView: (UITableView*) tableView
+viewForFooterInSection: (NSInteger)    section
+{
+    SubTaskInfoView* footer = [SubTaskInfoView new];
+    
+    
+    if ( section == 0)
+    {
+        footer = [[MainBundle loadNibNamed: @"SubTaskInfoView"
+                                     owner: self
+                                   options: nil] firstObject];
+    }
+    
+    [footer fillViewWithInfo: [self.model returnFooterInfo]];
+    
+    return footer;
 }
 
 - (CGFloat)    tableView: (UITableView*) tableView
@@ -87,7 +99,20 @@ heightForHeaderInSection: (NSInteger)    section
 {
     CGFloat height = 0;
     
-    if ( section == 1)
+    if ( section == 1 )
+    {
+        height = [self.model returnHeaderHeight];
+    }
+    
+    return height;
+}
+
+- (CGFloat)    tableView: (UITableView*) tableView
+heightForFooterInSection: (NSInteger)    section
+{
+    CGFloat height = 0;
+    
+    if ( section == 0 )
     {
         height = 43.0f;
     }

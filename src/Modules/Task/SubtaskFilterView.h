@@ -1,5 +1,5 @@
 //
-//  SubTaskInfoView.h
+//  SubtaskFilterView.h
 //  TookTODO
 //
 //  Created by Глеб on 10.10.16.
@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubTaskInfoView : UIView
+// Classes
+#import "TaskRowContent.h"
+
+@interface SubtaskFilterView : UIView
 
 // methods
-- (void) fillViewWithInfo: (NSArray*) infoArray;
+- (void) fillCellWithContent: (TaskRowContent*) content;
 
 @end

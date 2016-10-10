@@ -1,5 +1,5 @@
 //
-//  SubTaskInfoView.h
+//  AttachmentsFilterView.h
 //  TookTODO
 //
 //  Created by Глеб on 10.10.16.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubTaskInfoView : UIView
-
-// methods
-- (void) fillViewWithInfo: (NSArray*) infoArray;
+@interface AttachmentsFilterView : UIView
 
 @end

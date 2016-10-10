@@ -210,7 +210,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
                                 withSelectedState: NO];
 }
 
-- (NSArray*) returnHeaderInfo
+- (NSArray*) returnFooterInfo
 {
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
                              self.task.attachments,
@@ -218,6 +218,65 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
                              @(0) ];
     
     return headerInfo;
+}
+
+- (UIView*) returnHeaderForSection
+{
+    UIView* header = [UIView new];
+    
+    switch ( self.secondSectionContentType )
+    {
+        case SubtasksContentType:
+        {
+                header = [[MainBundle loadNibNamed: @"SubTaskFilter"
+                                             owner: self
+                                           options: nil] firstObject];
+        }
+            break;
+            
+        case AttachmentsContentType:
+        {
+                header = [[MainBundle loadNibNamed: @"AttachmentsFilter"
+                                             owner: self
+                                           options: nil] firstObject];
+        }
+            break;
+            
+        case CommentsContentType:
+        {
+                header = [[MainBundle loadNibNamed: @"AddCommentView"
+                                             owner: self
+                                           options: nil] firstObject];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return header;
+}
+
+- (CGFloat) returnHeaderHeight
+{
+    CGFloat height = 0;
+    
+    switch ( self.secondSectionContentType )
+    {
+        case SubtasksContentType:
+        case AttachmentsContentType:
+            height = 58;
+            break;
+            
+        case CommentsContentType:
+            height = 60;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return height;
 }
 
 #pragma mark - Internal -

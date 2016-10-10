@@ -16,13 +16,13 @@
 @interface SingleUserCollectionCell()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UILabel* userRoleLabel;
+@property (weak, nonatomic) IBOutlet UILabel*         userRoleLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel* userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*         userNameLabel;
 
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView* userMarkImageView;
+@property (weak, nonatomic) IBOutlet UIImageView*     userMarkImageView;
 
 // properties
 

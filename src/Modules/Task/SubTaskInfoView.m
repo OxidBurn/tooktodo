@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 #pragma mark - Public -
 
-- (void) fillHeaderWithInfo: (NSArray*) infoArray
+- (void) fillViewWithInfo: (NSArray*) infoArray
 {
     self.subTasksNumberLabel.text    = [self returnStringFromNumber: infoArray[SubTaskBtnTag]];
     self.attachmentsNumberLabel.text = [self returnStringFromNumber: infoArray[AttachmentsBtnTag]];

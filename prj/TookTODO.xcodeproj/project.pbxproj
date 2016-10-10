@@ -311,8 +311,8 @@
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
 		59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793461D59D3480062007E /* Lato-Semibold.ttf */; };
-		59D61AFB1DAC01FB001D98B2 /* CommentsFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AF81DAC01FB001D98B2 /* CommentsFilter.xib */; };
-		59D61AFC1DAC01FB001D98B2 /* DocumentsFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AF91DAC01FB001D98B2 /* DocumentsFilter.xib */; };
+		59D61AFB1DAC01FB001D98B2 /* AddCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AF81DAC01FB001D98B2 /* AddCommentView.xib */; };
+		59D61AFC1DAC01FB001D98B2 /* AttachmentsFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AF91DAC01FB001D98B2 /* AttachmentsFilter.xib */; };
 		59D61AFD1DAC01FB001D98B2 /* SubTaskFilter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AFA1DAC01FB001D98B2 /* SubTaskFilter.xib */; };
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
@@ -345,6 +345,9 @@
 		F74EAAF81DA68E920096DA30 /* TaskOptionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F74EAADD1DA68E920096DA30 /* TaskOptionsCell.m */; };
 		F74EAAF91DA68E920096DA30 /* TaskRowContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F74EAADE1DA68E920096DA30 /* TaskRowContent.m */; };
 		F7C1C17E1DABB2DC00788C35 /* SubTaskInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C1C17D1DABB2DC00788C35 /* SubTaskInfoView.m */; };
+		F7C1C1811DAC03C300788C35 /* SubtaskFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C1C1801DAC03C300788C35 /* SubtaskFilterView.m */; };
+		F7C1C1841DAC040700788C35 /* AddCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C1C1831DAC040700788C35 /* AddCommentView.m */; };
+		F7C1C1871DAC044300788C35 /* AttachmentsFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C1C1861DAC044300788C35 /* AttachmentsFilterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -934,8 +937,8 @@
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		59A793461D59D3480062007E /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
-		59D61AF81DAC01FB001D98B2 /* CommentsFilter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsFilter.xib; sourceTree = "<group>"; };
-		59D61AF91DAC01FB001D98B2 /* DocumentsFilter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentsFilter.xib; sourceTree = "<group>"; };
+		59D61AF81DAC01FB001D98B2 /* AddCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentView.xib; sourceTree = "<group>"; };
+		59D61AF91DAC01FB001D98B2 /* AttachmentsFilter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentsFilter.xib; sourceTree = "<group>"; };
 		59D61AFA1DAC01FB001D98B2 /* SubTaskFilter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubTaskFilter.xib; sourceTree = "<group>"; };
 		59D9BCEE1D5868B7009DFBA8 /* TookTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TookTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9BD0B1D586960009DFBA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1002,6 +1005,12 @@
 		F74EAAFA1DA68EF40096DA30 /* TermsInfoCollectionCellFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermsInfoCollectionCellFactory.h; sourceTree = "<group>"; };
 		F7C1C17C1DABB2DC00788C35 /* SubTaskInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTaskInfoView.h; sourceTree = "<group>"; };
 		F7C1C17D1DABB2DC00788C35 /* SubTaskInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTaskInfoView.m; sourceTree = "<group>"; };
+		F7C1C17F1DAC03C300788C35 /* SubtaskFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubtaskFilterView.h; sourceTree = "<group>"; };
+		F7C1C1801DAC03C300788C35 /* SubtaskFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubtaskFilterView.m; sourceTree = "<group>"; };
+		F7C1C1821DAC040700788C35 /* AddCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCommentView.h; sourceTree = "<group>"; };
+		F7C1C1831DAC040700788C35 /* AddCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCommentView.m; sourceTree = "<group>"; };
+		F7C1C1851DAC044300788C35 /* AttachmentsFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentsFilterView.h; sourceTree = "<group>"; };
+		F7C1C1861DAC044300788C35 /* AttachmentsFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentsFilterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2649,8 +2658,8 @@
 				596DBA421DA3D49A0080A376 /* RoomLevelSectionView.xib */,
 				5947BFA51DA3FD40001CB5D8 /* TaskDetailInfo.storyboard */,
 				5947BFA71DA40A05001CB5D8 /* SubTaskInfoView.xib */,
-				59D61AF81DAC01FB001D98B2 /* CommentsFilter.xib */,
-				59D61AF91DAC01FB001D98B2 /* DocumentsFilter.xib */,
+				59D61AF81DAC01FB001D98B2 /* AddCommentView.xib */,
+				59D61AF91DAC01FB001D98B2 /* AttachmentsFilter.xib */,
 				59D61AFA1DAC01FB001D98B2 /* SubTaskFilter.xib */,
 				5917AE791DA5415700C1FEDF /* StatusSystem.storyboard */,
 			);
@@ -2760,6 +2769,12 @@
 				F74EAABF1DA68E920096DA30 /* CollectionCells */,
 				F7C1C17C1DABB2DC00788C35 /* SubTaskInfoView.h */,
 				F7C1C17D1DABB2DC00788C35 /* SubTaskInfoView.m */,
+				F7C1C17F1DAC03C300788C35 /* SubtaskFilterView.h */,
+				F7C1C1801DAC03C300788C35 /* SubtaskFilterView.m */,
+				F7C1C1851DAC044300788C35 /* AttachmentsFilterView.h */,
+				F7C1C1861DAC044300788C35 /* AttachmentsFilterView.m */,
+				F7C1C1821DAC040700788C35 /* AddCommentView.h */,
+				F7C1C1831DAC040700788C35 /* AddCommentView.m */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -2888,7 +2903,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59D61AFC1DAC01FB001D98B2 /* DocumentsFilter.xib in Resources */,
+				59D61AFC1DAC01FB001D98B2 /* AttachmentsFilter.xib in Resources */,
 				5664A0341DA3C4C600344879 /* Main.storyboard in Resources */,
 				5664A02F1DA3C4C600344879 /* AllTasksProjectTitleView.xib in Resources */,
 				59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */,
@@ -2922,7 +2937,7 @@
 				5664A03C1DA3C4C600344879 /* UserInfo.storyboard in Resources */,
 				59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */,
 				5664A03E1DA3C4C600344879 /* WelcomeTour.storyboard in Resources */,
-				59D61AFB1DAC01FB001D98B2 /* CommentsFilter.xib in Resources */,
+				59D61AFB1DAC01FB001D98B2 /* AddCommentView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3060,6 +3075,7 @@
 				5664A3A21DA3C63200344879 /* ProfileViewController.m in Sources */,
 				F74EAAEB1DA68E920096DA30 /* TaskDetailViewController.m in Sources */,
 				5664A3B41DA3C63200344879 /* BaseMainViewController.m in Sources */,
+				F7C1C1841DAC040700788C35 /* AddCommentView.m in Sources */,
 				5664A37B1DA3C63100344879 /* AllTasksModel.m in Sources */,
 				5664A3BB1DA3C63200344879 /* OSAlertDesignateAdminController.m in Sources */,
 				5664A3CC1DA3C63200344879 /* OSFlexibleTextFieldCell.m in Sources */,
@@ -3087,6 +3103,7 @@
 				5664A38C1DA3C63100344879 /* TeamInfoViewController.m in Sources */,
 				5664A3931DA3C63100344879 /* TeamProfileInfoModel.m in Sources */,
 				5664A3991DA3C63100344879 /* ChangePasswordViewModel.m in Sources */,
+				F7C1C1871DAC044300788C35 /* AttachmentsFilterView.m in Sources */,
 				F74EAAEE1DA68E920096DA30 /* CollectionCellModel.m in Sources */,
 				5664A36C1DA3C63100344879 /* MainMenuModel.m in Sources */,
 				5664A3AA1DA3C63200344879 /* BaseAPIService.m in Sources */,
@@ -3251,6 +3268,7 @@
 				5664A3B71DA3C63200344879 /* AlertView.m in Sources */,
 				5664A39D1DA3C63100344879 /* UserInfoViewController.m in Sources */,
 				F74EAAF41DA68E920096DA30 /* TaskDetailInfoFactory.m in Sources */,
+				F7C1C1811DAC03C300788C35 /* SubtaskFilterView.m in Sources */,
 				5664A39C1DA3C63100344879 /* UserInfoTableViewCell.m in Sources */,
 				5664A2F21DA3C63100344879 /* ProjectTaskMapContour+CoreDataProperties.m in Sources */,
 				5664A3891DA3C63100344879 /* FilledTeamInfo.m in Sources */,

@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsY-h5-z8G">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsY-h5-z8G" customClass="SubtaskFilterView">
                     <subviews>
                         <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUD-Vv-SHN">
                             <color key="backgroundColor" red="0.30980392159999998" green="0.7725490196" blue="0.1764705882" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,17 +52,25 @@
                             </constraints>
                             <state key="normal" image="Sort"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiH-2N-A6g">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiH-2N-A6g">
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="4pt-XJ-Jbx"/>
                                 <constraint firstAttribute="width" constant="92" id="aHs-Lw-vRR"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                            <state key="normal" title="Отменены">
+                                <color key="titleColor" red="0.34901960784313724" green="0.39215686274509803" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMX-oU-jRc">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMX-oU-jRc">
                             <constraints>
                                 <constraint firstAttribute="width" constant="92" id="9sz-pB-Mkp"/>
                                 <constraint firstAttribute="height" constant="30" id="YQF-js-lKV"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                            <state key="normal" title="Выполнены">
+                                <color key="titleColor" red="0.14901960784313725" green="0.1764705882352941" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FullCheckbox" translatesAutoresizingMaskIntoConstraints="NO" id="c0U-hK-Yny">
                             <constraints>
@@ -70,40 +78,17 @@
                                 <constraint firstAttribute="width" constant="18" id="jmX-gF-L5Q"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отменены" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUc-Su-N4A">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="14" id="rwW-Rd-4mI"/>
-                                <constraint firstAttribute="width" constant="62" id="zu4-HL-dDT"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
-                            <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmptyCheckbox" translatesAutoresizingMaskIntoConstraints="NO" id="woy-Wg-XSf">
                             <constraints>
                                 <constraint firstAttribute="height" constant="18" id="1HR-WZ-HdP"/>
                                 <constraint firstAttribute="width" constant="18" id="iHM-Gj-AEX"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выполнены" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5L-7b-Oa4">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="14" id="GdI-sH-ioq"/>
-                                <constraint firstAttribute="width" constant="68" id="dsT-ac-jS0"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
-                            <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="CUc-Su-N4A" firstAttribute="leading" secondItem="woy-Wg-XSf" secondAttribute="trailing" constant="6" id="7yl-Yk-KEw"/>
-                        <constraint firstItem="CUc-Su-N4A" firstAttribute="top" secondItem="QiH-2N-A6g" secondAttribute="bottom" constant="-22" id="9kt-Rv-YK1"/>
-                        <constraint firstItem="X5L-7b-Oa4" firstAttribute="leading" secondItem="c0U-hK-Yny" secondAttribute="trailing" constant="6" id="BM8-2c-3zM"/>
                         <constraint firstItem="QiH-2N-A6g" firstAttribute="top" secondItem="wsY-h5-z8G" secondAttribute="top" constant="14" id="Blb-A8-zlJ"/>
-                        <constraint firstItem="CUc-Su-N4A" firstAttribute="trailing" secondItem="QiH-2N-A6g" secondAttribute="trailing" id="D7P-qm-yap"/>
-                        <constraint firstItem="X5L-7b-Oa4" firstAttribute="leading" secondItem="mMX-oU-jRc" secondAttribute="trailing" constant="-68" id="Fpn-8P-QwW"/>
-                        <constraint firstItem="X5L-7b-Oa4" firstAttribute="top" secondItem="mMX-oU-jRc" secondAttribute="bottom" constant="-22" id="H26-J6-Chn"/>
+                        <constraint firstItem="QiH-2N-A6g" firstAttribute="leading" secondItem="woy-Wg-XSf" secondAttribute="trailing" constant="-24" id="CtT-zx-W1p"/>
                         <constraint firstItem="MPg-zP-vDY" firstAttribute="leading" secondItem="KjL-Qv-Q7h" secondAttribute="trailing" constant="9" id="Jc1-09-a5X"/>
                         <constraint firstAttribute="trailing" secondItem="MPg-zP-vDY" secondAttribute="trailing" constant="11" id="KUV-Hu-9W1"/>
                         <constraint firstItem="TUD-Vv-SHN" firstAttribute="top" secondItem="wsY-h5-z8G" secondAttribute="top" constant="15" id="Lsm-Vg-Mh1"/>
@@ -111,6 +96,7 @@
                         <constraint firstItem="mMX-oU-jRc" firstAttribute="top" secondItem="wsY-h5-z8G" secondAttribute="top" constant="14" id="gsP-RP-O08"/>
                         <constraint firstItem="MPg-zP-vDY" firstAttribute="top" secondItem="wsY-h5-z8G" secondAttribute="top" constant="15" id="hjz-kB-wz9"/>
                         <constraint firstItem="TUD-Vv-SHN" firstAttribute="leading" secondItem="Mgb-AS-r3Q" secondAttribute="trailing" constant="9" id="lpH-Ml-uUA"/>
+                        <constraint firstItem="mMX-oU-jRc" firstAttribute="leading" secondItem="c0U-hK-Yny" secondAttribute="trailing" constant="-18" id="sOv-dw-mcr"/>
                         <constraint firstItem="KjL-Qv-Q7h" firstAttribute="top" secondItem="wsY-h5-z8G" secondAttribute="top" constant="22" id="v3X-y5-Ypw"/>
                         <constraint firstAttribute="trailing" secondItem="TUD-Vv-SHN" secondAttribute="trailing" constant="11" id="vYd-st-saz"/>
                         <constraint firstItem="c0U-hK-Yny" firstAttribute="top" secondItem="mMX-oU-jRc" secondAttribute="bottom" constant="-24" id="wDb-dI-JXH"/>
@@ -118,6 +104,14 @@
                         <constraint firstItem="woy-Wg-XSf" firstAttribute="top" secondItem="QiH-2N-A6g" secondAttribute="bottom" constant="-24" id="xrD-D1-Ifh"/>
                         <constraint firstItem="Mgb-AS-r3Q" firstAttribute="leading" secondItem="QiH-2N-A6g" secondAttribute="trailing" constant="18" id="zgG-4i-f1N"/>
                     </constraints>
+                    <connections>
+                        <outlet property="addTaskBtn" destination="TUD-Vv-SHN" id="ent-kw-xJy"/>
+                        <outlet property="canceledTasksBtn" destination="QiH-2N-A6g" id="TgQ-J7-o67"/>
+                        <outlet property="canceledTasksCheckbox" destination="woy-Wg-XSf" id="Cyr-Nv-gBe"/>
+                        <outlet property="doneTasksBtn" destination="mMX-oU-jRc" id="d4V-3R-2em"/>
+                        <outlet property="doneTasksCheckbox" destination="c0U-hK-Yny" id="XkJ-E8-6wV"/>
+                        <outlet property="filterTasksBtn" destination="Mgb-AS-r3Q" id="xHO-d9-WoI"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
