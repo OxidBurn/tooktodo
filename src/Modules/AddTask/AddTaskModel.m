@@ -360,6 +360,11 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.taskDescription;
 }
 
+- (NSString*) returnTaskName
+{
+    return self.task.taskName;
+}
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
     NSLog(@"New task: %@", self.task);

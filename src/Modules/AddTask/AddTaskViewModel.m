@@ -122,6 +122,11 @@
     return [self.model returnSelectedTaskTypeDesc];
 }
 
+- (NSString*) returnTaskName
+{
+    return [self.model returnTaskName];
+}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -269,11 +274,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               //return self.enableConfirmButtons;
+                                                               //Передать заполненную задачу
                                                                
                                                                return [RACSignal empty];
 }];
     
+    self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
+                                                               signalBlock:^RACSignal *(id input) {
+                                                                   
+                                                                   //Передать заполненную задачу
+                                                                   return [RACSignal empty];
+                                                               }];
     
 };
 

@@ -52,6 +52,8 @@
 
 - (NSString*) returnSelectedTaskTypeDesc;
 
+- (NSString*) returnTaskName;
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
 @end
