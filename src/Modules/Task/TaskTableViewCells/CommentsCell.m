@@ -1,0 +1,32 @@
+//
+//  CommentsCell.m
+//  TookTODO
+//
+//  Created by Глеб on 11.10.16.
+//  Copyright © 2016 Nikolay Chaban. All rights reserved.
+//
+
+#import "CommentsCell.h"
+
+@interface CommentsCell()
+
+// outlets
+@property (weak, nonatomic) IBOutlet UIImageView* userAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton*    editCommentBtn;
+@property (weak, nonatomic) IBOutlet UILabel*     userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*     commentDateLabel;
+@property (weak, nonatomic) IBOutlet UITextView*  commentContentTextView;
+
+
+// properties
+
+
+// methods
+
+
+@end
+
+@implementation CommentsCell
+
+
+@end

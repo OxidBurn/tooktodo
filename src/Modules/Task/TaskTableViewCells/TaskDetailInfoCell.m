@@ -39,8 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel*               roomNumberLabel;
 @property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsLeadingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *temsHorizontalToStatusConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint*    taskTermsLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint*    temsHorizontalToStatusConstraint;
 
 // properties
 
