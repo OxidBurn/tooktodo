@@ -8,14 +8,17 @@
 
 #import "CommentsCell.h"
 
+// Classes
+#import "AvatarImageView.h"
+
 @interface CommentsCell()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UIImageView* userAvatarImageView;
-@property (weak, nonatomic) IBOutlet UIButton*    editCommentBtn;
-@property (weak, nonatomic) IBOutlet UILabel*     userNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel*     commentDateLabel;
-@property (weak, nonatomic) IBOutlet UITextView*  commentContentTextView;
+@property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton*        editCommentBtn;
+@property (weak, nonatomic) IBOutlet UILabel*         userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*         commentDateLabel;
+@property (weak, nonatomic) IBOutlet UITextView*      commentContentTextView;
 
 
 // properties
