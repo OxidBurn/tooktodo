@@ -31,6 +31,11 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     TaskDescriptionCell,
     CollectionCell,
     SubtaskInfoCell,
+    AttachmentsCell,
+    CommentsCell,
+    LogWithActionCell,
+    LogWithDetailCell,
+    LogCell
     
 };
 
@@ -71,7 +76,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 {
     if ( _tableViewCellsIdArray == nil )
     {
-        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId", @"TaskDescriptionCellId", @"CollectionCellId", @"SubtaskInfoCellId" ];
+        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId", @"TaskDescriptionCellId", @"CollectionCellId", @"SubtaskInfoCellId", @"AttachmentsCellId", @"CommentsCellId", @"LogWithActionCellId", @"LogWithDetailCellId", @"LogCellId" ];
     }
     
     return _tableViewCellsIdArray;

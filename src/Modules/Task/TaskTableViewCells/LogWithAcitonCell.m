@@ -19,9 +19,16 @@
 @property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView* firstActionMarkImageView;
+@property (weak, nonatomic) IBOutlet UILabel*     firstActionTextLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView* secondActionMarkImageView;
+@property (weak, nonatomic) IBOutlet UILabel*     secondActionTextLabel;
+
+// properties
 
 
-
+// methods
 
 @end
 
