@@ -156,8 +156,6 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
     
     UITableViewCell* cell = [[UITableViewCell alloc] init];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     NSString* cellID = content.cellId;
     
     NSUInteger cellTypeIndex = [self.tableViewCellsIdArray indexOfObject: cellID];
@@ -201,6 +199,8 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
             break;
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return cell;
 }
 
@@ -277,6 +277,11 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
     }
     
     return height;
+}
+
+- (void) updateSecondSectionContentType: (NSUInteger) typeIndex
+{
+    self.secondSectionContentType = typeIndex;
 }
 
 #pragma mark - Internal -
@@ -368,12 +373,11 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 
 - (NSArray*) createSubtasksContent
 {
-    TaskRowContent* rowOne = [TaskRowContent new];
+    NSArray* content = [NSArray new];
     
-    rowOne.cellId = self.tableViewCellsIdArray[TaskOptionsCell];
-    rowOne.rowHeight = [self returnFloatFromNumber: self.rowsHeighsArray[TaskOptionsCell]];
+    // here will be created content with subtasks
     
-    return @[ rowOne ];
+    return content;
 }
 
 - (NSArray*) createAttachmentsContent

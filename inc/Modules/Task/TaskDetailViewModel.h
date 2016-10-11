@@ -13,6 +13,9 @@
 
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+// properties
+@property (nonatomic, copy) void(^reloadTableView)();
+
 // methods
 - (void) deselectTask;
 

@@ -11,12 +11,14 @@
 // Classes
 #import "TaskDetailModel.h"
 #import "TaskDescriptionCell.h"
-#import "SubTaskInfoView.h"
+#import "TaskInfoFooterView.h"
 
-@interface TaskDetailViewModel()
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
+
+@property (strong, nonatomic) UITableView* tableView;
 
 // methods
 
@@ -53,7 +55,8 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-
+    self.tableView = tableView;
+    
     return [self.model createCellForTableView: tableView
                                  forIndexPath: indexPath];
 }
@@ -79,7 +82,7 @@ viewForHeaderInSection: (NSInteger)    section
 - (UIView*)  tableView: (UITableView*) tableView
 viewForFooterInSection: (NSInteger)    section
 {
-    SubTaskInfoView* footer = [SubTaskInfoView new];
+    TaskInfoFooterView* footer = [TaskInfoFooterView new];
     
     
     if ( section == 0)
@@ -89,7 +92,8 @@ viewForFooterInSection: (NSInteger)    section
                                    options: nil] firstObject];
     }
     
-    [footer fillViewWithInfo: [self.model returnFooterInfo]];
+    [footer fillViewWithInfo: [self.model returnFooterInfo]
+                withDelegate: self];
     
     return footer;
 }
@@ -128,6 +132,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
 }
+
+#pragma mark - TaskInfoFooterDelegate -
+
+- (void) updateSecondSectionContentType: (NSUInteger) typeIndex
+{
+    [self.model updateSecondSectionContentType: typeIndex];
+    
+    [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
+                  withRowAnimation: UITableViewRowAnimationAutomatic];
+}
+
 
 #pragma mark - Public -
 

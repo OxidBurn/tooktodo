@@ -6,7 +6,7 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SubTaskInfoView.h"
+#import "TaskInfoFooterView.h"
 
 typedef NS_ENUM(NSUInteger, ButtonTag) {
 
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
 };
 
-@interface SubTaskInfoView()
+@interface TaskInfoFooterView()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIButton* subTasksBtn;
@@ -35,6 +35,10 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 @property (strong, nonatomic) NSArray* allLabels;
 
+@property (strong, nonatomic) UIColor* blackColor;
+
+@property (strong, nonatomic) UIColor* grayColor;
+
 // methods
 - (IBAction) onSubTasksBtn: (UIButton*) sender;
 
@@ -46,7 +50,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 @end
 
-@implementation SubTaskInfoView
+@implementation TaskInfoFooterView
 
 #pragma mark - Properties -
 
@@ -76,14 +80,43 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     return _allLabels;
 }
 
+- (UIColor*) blackColor
+{
+    if ( _blackColor == nil )
+    {
+        _blackColor = [UIColor colorWithRed: 38.0/256
+                                      green: 45.0/256
+                                       blue: 55.0/256
+                                      alpha: 1.f];
+    }
+    
+    return _blackColor;
+}
+
+- (UIColor*) grayColor
+{
+    if ( _grayColor == nil )
+    {
+        _grayColor = [UIColor colorWithRed: 38.0/256
+                                     green: 45.0/256
+                                      blue: 55.0/256
+                                     alpha: 0.3f];
+    }
+    
+    return _grayColor;
+}
+
 #pragma mark - Public -
 
 - (void) fillViewWithInfo: (NSArray*) infoArray
+             withDelegate: (id)       delegate
 {
     self.subTasksNumberLabel.text    = [self returnStringFromNumber: infoArray[SubTaskBtnTag]];
     self.attachmentsNumberLabel.text = [self returnStringFromNumber: infoArray[AttachmentsBtnTag]];
     self.commentsNumberLabel.text    = [self returnStringFromNumber: infoArray[CommentsBtnTag]];
     self.logsNumberLabel.text        = [self returnStringFromNumber: infoArray[LogsBtnTag]];
+    
+    self.delegate = delegate;
 }
 
 
@@ -91,22 +124,22 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (IBAction) onSubTasksBtn: (UIButton*) sender
 {
-    
+    [self handleSectionSelectionForButtonWithTag: sender.tag];
 }
 
 - (IBAction) onAttachmentsBtn: (UIButton*) sender
 {
-    
+    [self handleSectionSelectionForButtonWithTag: sender.tag];
 }
 
 - (IBAction) onCommentsBtn: (UIButton*) sender
 {
-    
+    [self handleSectionSelectionForButtonWithTag: sender.tag];
 }
 
 - (IBAction) onLogsBtn: (UIButton*) sender
 {
-    
+    [self handleSectionSelectionForButtonWithTag: sender.tag];
 }
 
 #pragma mark - Helpers -
@@ -116,5 +149,27 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     return [NSString stringWithFormat: @"%@", number];
 }
 
+- (void) handleSectionSelectionForButtonWithTag: (NSUInteger) tag
+{
+    [self.allButtons enumerateObjectsUsingBlock: ^(UIButton* button, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [button setTitleColor: self.grayColor forState: UIControlStateNormal];
+        
+        if ( idx == tag )
+            [button setTitleColor: self.blackColor forState: UIControlStateNormal];
+        
+    }];
+    
+    [self.allLabels enumerateObjectsUsingBlock: ^(UILabel* label, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        [label setTextColor: self.grayColor];
+        
+        if ( idx == tag )
+            [label setTextColor: self.blackColor];
+    }];
+    
+    if ( [self.delegate respondsToSelector: @selector(updateSecondSectionContentType:)] )
+         [self.delegate updateSecondSectionContentType: tag];
+}
 
 @end
