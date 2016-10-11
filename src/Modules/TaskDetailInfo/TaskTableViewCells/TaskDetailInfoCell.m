@@ -70,7 +70,12 @@
 
 - (IBAction) onChangeStatusBtn: (UIButton*) sender
 {
+    if ([self.delegate respondsToSelector:@selector(performSegueWithID:)])
+    {
+        [self.delegate performSegueWithID: @"ShowStatusList"];
+    }
     
+    NSLog(@"loooooooooool");
 }
 
 #pragma mark - Public -

@@ -172,6 +172,8 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
             cell = [factory returnTaskDetailCellWithContent: content
                                                forTableView: tableView];
             
+            
+            
         }
             break;
             

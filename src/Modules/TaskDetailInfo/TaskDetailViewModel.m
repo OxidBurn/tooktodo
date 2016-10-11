@@ -12,8 +12,9 @@
 #import "TaskDetailModel.h"
 #import "TaskDescriptionCell.h"
 #import "TaskInfoFooterView.h"
+#import "TaskDetailInfoCell.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate,TaskDetailCellDataSouce>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -57,8 +58,18 @@
 {
     self.tableView = tableView;
     
-    return [self.model createCellForTableView: tableView
-                                 forIndexPath: indexPath];
+    UITableViewCell* cell = [self.model createCellForTableView: tableView
+                                                 forIndexPath: indexPath];
+    
+    if ([cell isKindOfClass: [TaskDetailInfoCell class]])
+    {
+       TaskDetailInfoCell* detailCell = (TaskDetailInfoCell*)cell;
+        
+        detailCell.delegate   = self;
+        detailCell.dataSource = self;
+    }
+    
+    return cell;
 }
 
 - (CGFloat)   tableView: (UITableView*) tableView
@@ -150,6 +161,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [self.model deselectTask];
 }
+
+#pragma mark - TaskDetailCellDelegate methods -
+
+- (void) performSegueWithID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
+}
+
+#pragma mark - TaskDetailCellDataSource methods -
 
 
 @end

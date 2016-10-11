@@ -317,6 +317,10 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		CFF780F61DAD45D1009AFCFE /* CellWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F21DAD45D1009AFCFE /* CellWithBackground.m */; };
+		CFF780F71DAD45D1009AFCFE /* ChangeStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F31DAD45D1009AFCFE /* ChangeStatusModel.m */; };
+		CFF780F81DAD45D1009AFCFE /* ChangeStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F41DAD45D1009AFCFE /* ChangeStatusViewController.m */; };
+		CFF780F91DAD45D1009AFCFE /* ChangeStatusViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F51DAD45D1009AFCFE /* ChangeStatusViewModel.m */; };
 		F7ED83DA1DAD289600CF76D7 /* DetailCollectionCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED83B41DAD289600CF76D7 /* DetailCollectionCellFactory.m */; };
 		F7ED83DB1DAD289600CF76D7 /* GroupOfUsersCollectionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED83B51DAD289600CF76D7 /* GroupOfUsersCollectionFactory.m */; };
 		F7ED83DC1DAD289600CF76D7 /* OnPlanCollectionCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED83B61DAD289600CF76D7 /* OnPlanCollectionCellFactory.m */; };
@@ -952,6 +956,14 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CFF780F21DAD45D1009AFCFE /* CellWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellWithBackground.m; sourceTree = "<group>"; };
+		CFF780F31DAD45D1009AFCFE /* ChangeStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeStatusModel.m; sourceTree = "<group>"; };
+		CFF780F41DAD45D1009AFCFE /* ChangeStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeStatusViewController.m; sourceTree = "<group>"; };
+		CFF780F51DAD45D1009AFCFE /* ChangeStatusViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeStatusViewModel.m; sourceTree = "<group>"; };
+		CFF780FB1DAD45F1009AFCFE /* CellWithBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellWithBackground.h; sourceTree = "<group>"; };
+		CFF780FC1DAD45F1009AFCFE /* ChangeStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeStatusModel.h; sourceTree = "<group>"; };
+		CFF780FD1DAD45F1009AFCFE /* ChangeStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeStatusViewController.h; sourceTree = "<group>"; };
+		CFF780FE1DAD45F1009AFCFE /* ChangeStatusViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeStatusViewModel.h; sourceTree = "<group>"; };
 		F7ED83B41DAD289600CF76D7 /* DetailCollectionCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCollectionCellFactory.m; sourceTree = "<group>"; };
 		F7ED83B51DAD289600CF76D7 /* GroupOfUsersCollectionFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupOfUsersCollectionFactory.m; sourceTree = "<group>"; };
 		F7ED83B61DAD289600CF76D7 /* OnPlanCollectionCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnPlanCollectionCellFactory.m; sourceTree = "<group>"; };
@@ -2694,9 +2706,32 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CFF780F11DAD45D1009AFCFE /* TaskStatus */ = {
+			isa = PBXGroup;
+			children = (
+				CFF780F21DAD45D1009AFCFE /* CellWithBackground.m */,
+				CFF780F31DAD45D1009AFCFE /* ChangeStatusModel.m */,
+				CFF780F41DAD45D1009AFCFE /* ChangeStatusViewController.m */,
+				CFF780F51DAD45D1009AFCFE /* ChangeStatusViewModel.m */,
+			);
+			path = TaskStatus;
+			sourceTree = "<group>";
+		};
+		CFF780FA1DAD45F1009AFCFE /* TaskStatus */ = {
+			isa = PBXGroup;
+			children = (
+				CFF780FB1DAD45F1009AFCFE /* CellWithBackground.h */,
+				CFF780FC1DAD45F1009AFCFE /* ChangeStatusModel.h */,
+				CFF780FD1DAD45F1009AFCFE /* ChangeStatusViewController.h */,
+				CFF780FE1DAD45F1009AFCFE /* ChangeStatusViewModel.h */,
+			);
+			path = TaskStatus;
+			sourceTree = "<group>";
+		};
 		F7ED83B11DAD289600CF76D7 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFF780F11DAD45D1009AFCFE /* TaskStatus */,
 				F7ED83C51DAD289600CF76D7 /* TaskDetailViewController.m */,
 				F7ED83C61DAD289600CF76D7 /* TaskDetailViewModel.m */,
 				F7ED83C41DAD289600CF76D7 /* TaskDetailModel.m */,
@@ -2786,6 +2821,7 @@
 		F7ED83FC1DAD28A000CF76D7 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFF780FA1DAD45F1009AFCFE /* TaskStatus */,
 				F7ED84101DAD28A000CF76D7 /* TaskDetailViewController.h */,
 				F7ED84111DAD28A000CF76D7 /* TaskDetailViewModel.h */,
 				F7ED840F1DAD28A000CF76D7 /* TaskDetailModel.h */,
@@ -3059,6 +3095,7 @@
 				5664A3861DA3C63100344879 /* TasksViewController.m in Sources */,
 				5664A3711DA3C63100344879 /* OfflineSynchronizeViewController.m in Sources */,
 				5664A3581DA3C63100344879 /* SelectResponsibleModel.m in Sources */,
+				CFF780F71DAD45D1009AFCFE /* ChangeStatusModel.m in Sources */,
 				5664A36F1DA3C63100344879 /* MenuProjectCell.m in Sources */,
 				5664A3141DA3C63100344879 /* ProjectRegionModel.m in Sources */,
 				5664A3D51DA3C63200344879 /* OSLabelWithBorder.m in Sources */,
@@ -3106,6 +3143,7 @@
 				F7ED83F41DAD289600CF76D7 /* SubtaskInfoCell.m in Sources */,
 				5664A37B1DA3C63100344879 /* AllTasksModel.m in Sources */,
 				5664A3BB1DA3C63200344879 /* OSAlertDesignateAdminController.m in Sources */,
+				CFF780F61DAD45D1009AFCFE /* CellWithBackground.m in Sources */,
 				5664A3CC1DA3C63200344879 /* OSFlexibleTextFieldCell.m in Sources */,
 				5664A3C51DA3C63200344879 /* OSGroupOfUsersInfoCellFactory.m in Sources */,
 				5664A3331DA3C63100344879 /* NSCalendar+WeedendsCounting.m in Sources */,
@@ -3118,6 +3156,7 @@
 				5664A3EB1DA4064B00344879 /* ProjectTaskRoomLevel+CoreDataClass.m in Sources */,
 				5664A3B11DA3C63200344879 /* UserAPIService.m in Sources */,
 				5664A3601DA3C63100344879 /* SelectSystemViewModel.m in Sources */,
+				CFF780F81DAD45D1009AFCFE /* ChangeStatusViewController.m in Sources */,
 				F7ED83DB1DAD289600CF76D7 /* GroupOfUsersCollectionFactory.m in Sources */,
 				5664A3AC1DA3C63200344879 /* ProjectsAPIService.m in Sources */,
 				5664A30A1DA3C63100344879 /* TeamMember+CoreDataProperties.m in Sources */,
@@ -3253,6 +3292,7 @@
 				5664A2F81DA3C63100344879 /* ProjectTaskResponsible+CoreDataClass.m in Sources */,
 				5664A3BE1DA3C63200344879 /* OSAlertViewController.m in Sources */,
 				5664A3251DA3C63100344879 /* TaskRoomModel.m in Sources */,
+				CFF780F91DAD45D1009AFCFE /* ChangeStatusViewModel.m in Sources */,
 				5664A3D61DA3C63200344879 /* LabelWithRoundCorners.m in Sources */,
 				5664A3BD1DA3C63200344879 /* OSAlertPlanNotLoadedViewModel.m in Sources */,
 				5664A2EF1DA3C63100344879 /* ProjectTask+CoreDataProperties.m in Sources */,

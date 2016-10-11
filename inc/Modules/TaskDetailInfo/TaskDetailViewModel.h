@@ -15,6 +15,7 @@
 
 // properties
 @property (nonatomic, copy) void(^reloadTableView)();
+@property (nonatomic, copy) void(^performSegue)(NSString* segueID);
 
 // methods
 - (void) deselectTask;

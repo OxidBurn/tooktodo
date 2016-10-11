@@ -10,10 +10,30 @@
 
 // Classes
 #import "TaskRowContent.h"
+#import "ProjectsEnumerations.h"
+
+@protocol TaskDetailCellDelegate;
+@protocol TaskDetailCellDataSouce;
 
 @interface TaskDetailInfoCell : UITableViewCell
 
+//properties
+@property (nonatomic, weak) id<TaskDetailCellDelegate> delegate;
+@property (nonatomic, weak) id<TaskDetailCellDataSouce> dataSource;
+
 // methods
 - (void) fillCellWithContent: (TaskRowContent*) content;
+
+@end
+
+@protocol TaskDetailCellDelegate <NSObject>
+
+- (void) performSegueWithID: (NSString*) segueID;
+
+@end
+
+@protocol TaskDetailCellDataSouce <NSObject>
+
+- (TaskStatusType) changeStatusType;
 
 @end

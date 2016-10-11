@@ -85,6 +85,12 @@
         [blockSelf.taskTableView reloadData];
         
     };
+    
+    self.viewModel.performSegue = ^(NSString* segueID){
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
 }
 
 @end
