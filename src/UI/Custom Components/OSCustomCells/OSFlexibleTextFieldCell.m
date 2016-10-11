@@ -76,6 +76,7 @@
 - (void) resetCellContent
 {
     self.isEditedByUser = NO;
+    
     [self editTextLabel];
 }
 #pragma mark - UITextFieldDelegate methods -

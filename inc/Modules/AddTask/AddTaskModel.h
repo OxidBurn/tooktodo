@@ -31,7 +31,7 @@
 
 - (BOOL) isValidTaskName: (NSString*) taskName;
 
-//- (NewTask*) returnNewTask;
+- (NewTask*) returnNewTask;
 
 - (NSArray*) returnAllSeguesArray;
 
@@ -57,7 +57,7 @@
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
-- (RACSignal*) returnNewTaskSignal;
+//- (RACSignal*) returnNewTaskSignal;
 
 @end
 

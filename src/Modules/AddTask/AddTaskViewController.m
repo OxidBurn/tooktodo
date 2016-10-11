@@ -35,8 +35,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 @property (weak, nonatomic) IBOutlet UIView *messageView;
 
-@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-@property (weak, nonatomic) IBOutlet UIButton *closeBtn;
+@property (weak, nonatomic) IBOutlet UILabel*  messageLabel;
+@property (weak, nonatomic) IBOutlet UIButton* closeBtn;
+@property (nonatomic, weak) IBOutlet UIButton* createOnBaseBtn;
 
 // properties
 
@@ -54,6 +55,8 @@
 - (IBAction) onClose:(UIButton*) sender;
 
 - (IBAction) onDeleteTask: (UIButton*) sender;
+
+- (IBAction) onCreteOnBase: (UIButton*) sender;
 
 @end
 
@@ -252,6 +255,11 @@
     
 }
 
+- (IBAction) onCreteOnBase: (UIButton*) sender
+{
+    
+}
+
 #pragma mark - AddTaskViewModel delegate methods -
 
 - (void) performSegueWithSegueId: (NSString*) segueId
@@ -344,31 +352,31 @@
     
         [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
          {
-            [signal subscribeNext:^(NSString* taskName) {
+            [signal subscribeNext: ^(NSString* taskName) {
                 
+            
                 self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
+            
                 
             }];
              
             [signal subscribeCompleted: ^{
                 
-                [self.viewModel getNewTask];
-                
+    
                 [self showTaskCreatedMessage];
             
-                
                 NewTask* t = [self.viewModel getNewTask];
                 NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
                 
-            }];
+          
             
-        }];
-    
+            }];
+         }];
 
     
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [[self.viewModel getNewTaskSignal] subscribeNext: ^(NewTask* task) {
+        [signal subscribeNext: ^(NewTask* task) {
             
             NewTask* t = task;
             NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
@@ -410,12 +418,15 @@
 
 - (void) changeUI
 {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor             = [UIColor whiteColor];
     self.tableViewTopConstraint.constant  = 75;
     self.messageView.hidden               = NO;
     
     self.addTaskAndCreateNewBtn.hidden    = YES;
     self.deleteTask.hidden                = NO;
+    
+    self.addTaskBtn.hidden                = NO;
+    self.createOnBaseBtn.hidden           = NO;
     
 }
 

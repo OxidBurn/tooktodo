@@ -301,10 +301,10 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
                          inRow: TaskNameRow];
 }
 
-//- (NewTask*) returnNewTask
-//{
-//    return self.task;
-//}
+- (NewTask*) returnNewTask
+{
+    return self.task;
+}
 
 - (NSArray*) returnAllSeguesArray
 {
@@ -370,18 +370,18 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     NSLog(@"New task: %@", self.task);
 }
 
-- (RACSignal*) returnNewTaskSignal
-{
-    RACSignal* taskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [subscriber sendNext: self.task];
-        [subscriber sendCompleted];
-        
-        return nil;
-    }];
-    
-    return taskInfo;
-}
+//- (RACSignal*) returnNewTaskSignal
+//{
+//    RACSignal* taskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//        [subscriber sendNext: self.task];
+//        [subscriber sendCompleted];
+//        
+//        return nil;
+//    }];
+//    
+//    return taskInfo;
+//}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 

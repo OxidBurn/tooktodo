@@ -60,7 +60,7 @@
 
 - (NSString*) returnTaskName;
 
-- (RACSignal*) getNewTaskSignal;
+//- (RACSignal*) getNewTaskSignal;
 
 @end
 

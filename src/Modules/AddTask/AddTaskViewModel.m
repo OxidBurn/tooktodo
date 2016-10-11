@@ -60,10 +60,10 @@
 
 #pragma mark - Public -
 
-//- (NewTask*) getNewTask
-//{
-//    return [self.model returnNewTask];
-//}
+- (NewTask*) getNewTask
+{
+    return [self.model returnNewTask];
+}
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
@@ -130,10 +130,10 @@
     return [self.model returnTaskName];
 }
 
-- (RACSignal*) getNewTaskSignal
-{
-    return [self.model returnNewTaskSignal];
-}
+//- (RACSignal*) getNewTaskSignal
+//{
+//    return [self.model returnNewTaskSignal];
+//}
 
 #pragma mark - UITableView data source -
 
@@ -302,6 +302,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                        
                                                                        [subscriber sendNext: taskName];
                                                                        [subscriber sendCompleted];
+                                                                       
+                                                                    
                                                                        return nil;
                                                                    }];
                                                                    
