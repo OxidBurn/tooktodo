@@ -24,14 +24,12 @@
 #import "TaskDetailInfoFactory.h"
 #import "TaskDescriptionFactory.h"
 #import "CollectionCellFactory.h"
-#import "TaskOptionsFactory.h"
 
 typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
     TaskDetailCell,
     TaskDescriptionCell,
     CollectionCell,
-    TaskOptionsCell,
     SubtaskInfoCell,
     
 };
@@ -73,7 +71,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 {
     if ( _tableViewCellsIdArray == nil )
     {
-        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId", @"TaskDescriptionCellId", @"CollectionCellId", @"TaskOptionsCellId", @"SubtaskInfoCellId" ];
+        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId", @"TaskDescriptionCellId", @"CollectionCellId", @"SubtaskInfoCellId" ];
     }
     
     return _tableViewCellsIdArray;
@@ -188,15 +186,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
             cell = [factory returnCellectionCellForTableView: tableView];
         }
             break;
-            
-        case TaskOptionsCell:
-        {
-            TaskOptionsFactory* factory = [TaskOptionsFactory new];
-            
-            cell = [factory returnTaskOptionsCellForContent: content
-                                               forTableView: tableView];
-        }
-            break;
+        
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
