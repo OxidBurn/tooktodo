@@ -124,4 +124,6 @@
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
                     withSearchedObjectName: (NSString*)  value;
 
++ (NSString*) generateStringOfDaysCount: (NSUInteger) count;
+
 @end

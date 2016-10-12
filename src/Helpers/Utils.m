@@ -437,4 +437,30 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return fullSearchingPhrase;
 }
 
++ (NSString*) generateStringOfDaysCount: (NSUInteger) count
+{
+    NSString* daysCountString = [NSString stringWithFormat: @"%ld ", count];
+    NSString* sufixString     = @"";
+    
+    switch (count)
+    {
+        case 1:
+            sufixString = @"день";
+            break;
+        case 2 ... 4 :
+            sufixString = @"дня";
+            break;
+        case 5 ... NSIntegerMax:
+            sufixString = @"дней";
+            break;
+        default:
+            sufixString = @"дней";
+            break;
+    }
+    
+    daysCountString = [daysCountString stringByAppendingString: sufixString];
+    
+    return daysCountString;
+}
+
 @end

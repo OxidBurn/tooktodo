@@ -34,6 +34,7 @@
 #import "SelectStageViewController.h"
 #import "SelectRoomViewController.h"
 #import "AddTaskTypeViewController.h"
+#import "Utils.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -769,7 +770,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
         
         NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
         
-        labelText = [NSString stringWithFormat: @"%@ - %@, %ld", firstDate, secondDate, (unsigned long)duration];
+        labelText = [NSString stringWithFormat: @"%@ - %@, %@", firstDate, secondDate, [Utils generateStringOfDaysCount: duration]];
     } else
     {
         labelText = @"Не выбраны";

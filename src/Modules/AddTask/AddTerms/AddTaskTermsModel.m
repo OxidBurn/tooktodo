@@ -16,6 +16,7 @@
 #import "OSSwitchTableCell.h"
 #import "RowContent.h"
 #import "ProjectsEnumerations.h"
+#import "Utils.h"
 
 // Categories
 #import "NSCalendar+WeedendsCounting.h"
@@ -249,7 +250,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     RowContent* rowFive = [RowContent new];
     
     rowFive.cellId = self.termsCellsInfo[TermsRightDetailCell];
-    rowFive.detail = self.terms.duration ? [NSString stringWithFormat: @"%ld", self.terms.duration] : 0;
+    rowFive.detail = self.terms.duration ? [Utils generateStringOfDaysCount: self.terms.duration] : [Utils generateStringOfDaysCount: 0];
     rowFive.title  = @"Длительность";
     
     RowContent* rowSix = [RowContent new];
@@ -430,7 +431,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
         
         RowContent* newRow = self.tableViewContent[TermsTaskDurationRow];
         
-        newRow.detail = [NSString stringWithFormat: @"%ld", self.terms.duration];
+        newRow.detail = [Utils generateStringOfDaysCount: self.terms.duration];
         
         [self updateContentWithNewRow: newRow
                              forIndex: TermsTaskDurationRow];
