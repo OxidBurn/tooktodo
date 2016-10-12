@@ -85,7 +85,7 @@
                                     withType: TaskMarkerSubtaskType];
     [self.attachmantsMarkerComponent setValue: taskInfo.attachments.integerValue
                                      withType: TaskMarkerAttachmentsType];
-    [self.commentsMarkerComponent setValue: 0
+    [self.commentsMarkerComponent setValue: taskInfo.commentsCount.integerValue
                                   withType: TaskMarkerCommentsType];
     
     // Setting avatar url

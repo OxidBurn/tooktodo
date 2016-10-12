@@ -54,7 +54,7 @@
 @property (strong, nonatomic) NSNumber<Optional> * taskType;
 @property (strong, nonatomic) NSString<Optional> * taskTypeDescription;
 @property (strong, nonatomic) NSString * title;
-@property (strong, nonatomic) NSNumber* commentsCount;
+@property (strong, nonatomic) NSNumber<Optional>* commentsCount;
 @property (strong, nonatomic) TaskWorkAreaModel<Optional> * workArea;
 
 @property (strong, nonatomic) NSNumber* isIncludedRestDays;

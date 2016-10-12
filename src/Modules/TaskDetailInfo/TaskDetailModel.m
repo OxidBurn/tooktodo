@@ -330,6 +330,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
     rowOne.subtasksNumber      = self.task.subTasks.count;
     rowOne.attachmentsNumber   = self.task.attachments.integerValue;
     rowOne.roomNumber          = self.task.room.number.integerValue;
+    rowOne.commentsNumber      = self.task.commentsCount.integerValue;
     
     TaskRowContent* rowTwo = [TaskRowContent new];
     
