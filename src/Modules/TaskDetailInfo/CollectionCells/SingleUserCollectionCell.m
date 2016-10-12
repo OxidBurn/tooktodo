@@ -40,10 +40,15 @@
 {
     self.userRoleLabel.text = content.cellTitle;
     
-    FilledTeamInfo* owner = content.taskOwner.firstObject;
+    FilledTeamInfo* userInfo = nil;
     
-    self.userNameLabel.text = owner.fullname;
+    if ( content.taskOwner )
+        userInfo = content.taskOwner.firstObject;
+    else
+        userInfo = content.responsible.firstObject;
     
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: owner.avatarSrc]];
+    self.userNameLabel.text = userInfo.fullname;
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
 }
 @end

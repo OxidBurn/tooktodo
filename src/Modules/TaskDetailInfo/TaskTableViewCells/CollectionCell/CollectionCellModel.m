@@ -203,7 +203,6 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     itemFive.cellTitle = @"Создатель";
     itemFive.taskOwner = [self createOwnerTaskArray];
     
-    
     TaskCollectionCellsContent* itemSix = [TaskCollectionCellsContent new];
     
     itemSix.cellId    = self.collectionViewCellsIdArray[SingleUserCell];

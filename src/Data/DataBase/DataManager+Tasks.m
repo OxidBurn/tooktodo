@@ -309,7 +309,8 @@
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat: @"responsibleID == %@ AND task == %@", info.responsibleID, task];
     
-    ProjectTaskResponsible* responsible = [ProjectTaskResponsible MR_findFirstWithPredicate: predicate];
+    ProjectTaskResponsible* responsible = [ProjectTaskResponsible MR_findFirstWithPredicate: predicate
+                                                                                  inContext: context];
     
     if ( responsible == nil )
     {
@@ -408,7 +409,7 @@
             forTaskResponsible: (ProjectTaskResponsible*) responsbile
                      inContext: (NSManagedObjectContext*) context
 {
-    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"inviteID == %@ AND responsible == %@", info.inviteID, responsbile];
+    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"inviteID == %@ AND projectTaskResponsible == %@", info.inviteID, responsbile];
     
     ProjectInviteInfo* invite = [ProjectInviteInfo MR_findFirstWithPredicate: searchPredicate
                                                                    inContext: context];
@@ -492,7 +493,8 @@
 {
     NSPredicate* predicate = [NSPredicate predicateWithFormat: @"ownerID == %@ AND task == %@", @(info.ownerID), task];
     
-    ProjectTaskOwner* ownerUser = [ProjectTaskOwner MR_findFirstWithPredicate: predicate];
+    ProjectTaskOwner* ownerUser = [ProjectTaskOwner MR_findFirstWithPredicate: predicate
+                                                                    inContext: context];
     
     if ( ownerUser == nil )
     {
@@ -536,7 +538,8 @@
 {    
     NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roleAssignmentsID == %@ AND task == %@", @(info.roleAssignmentsID), task];
     
-    ProjectTaskRoleAssignments* roleAssignments = [ProjectTaskRoleAssignments MR_findFirstWithPredicate: predicate];
+    ProjectTaskRoleAssignments* roleAssignments = [ProjectTaskRoleAssignments MR_findFirstWithPredicate: predicate
+                                                                                              inContext: context];
     
     if ( roleAssignments == nil )
     {

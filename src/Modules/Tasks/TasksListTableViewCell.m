@@ -17,6 +17,7 @@
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectTaskOwner.h"
 
 // Categories
 #import "UIImageView+WebCache.h"
@@ -73,10 +74,8 @@
 
 #pragma mark - Public methods -
 
-- (void) fillInfoForCell: (id) info
+- (void) fillInfoForCell: (ProjectTask*) taskInfo
 {
-    ProjectTask* taskInfo = (ProjectTask*)info;
-    
     self.titleTaskLabel.text     = taskInfo.title;
     self.executionDateLabel.text = [self executionDateString: taskInfo];
     self.systemLabel.text        = taskInfo.workArea.shortTitle;
@@ -90,7 +89,7 @@
     
     // Setting avatar url
     // first time it will be loaded from web and then grab from cache
-    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
+    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.ownerUser.avatarSrc]];
     
     // Room info
     ProjectTaskRoom* room = (ProjectTaskRoom*)taskInfo.room;
