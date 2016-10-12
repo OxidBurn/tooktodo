@@ -10,12 +10,16 @@
 
 //Classes
 #import "ChangeStatusViewModel.h"
+#import "TaskDetailViewController.h"
 
 @interface ChangeStatusViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *statusesTableView;
 @property (nonatomic, strong) ChangeStatusViewModel* viewModel;
 
+//Actions
+
+- (IBAction) onBack: (UIBarButtonItem*) sender;
 
 @end
 
@@ -43,5 +47,9 @@
     }
     
     return _viewModel;
+}
+- (IBAction) onBack: (UIBarButtonItem*) sender
+{
+    
 }
 @end

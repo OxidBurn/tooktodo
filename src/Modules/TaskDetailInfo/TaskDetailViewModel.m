@@ -67,6 +67,7 @@
         
         detailCell.delegate   = self;
         detailCell.dataSource = self;
+        
     }
     
     return cell;
