@@ -188,9 +188,14 @@
                forProjectInvite: (ProjectInviteInfo*)      invite
                       inContext: (NSManagedObjectContext*) context
 {
-    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstOrCreateByAttribute: @"roleTypeID"
-                                                                       withValue: info.roleTypeID
-                                                                       inContext: context];
+    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"roleTypeID == %@ AND projectInvite == %@", info.roleTypeID, invite];
+    
+    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstWithPredicate: searchPredicate];
+    
+    if ( roleType == nil )
+    {
+        roleType = [ProjectRoleType MR_createEntityInContext: context];
+    }
     
     roleType.projectInvite  = invite;
     roleType.roleTypeID     = info.roleTypeID;

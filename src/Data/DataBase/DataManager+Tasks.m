@@ -305,9 +305,14 @@
                         forTask: (ProjectTask*)            task
                       inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskResponsible* responsible = [ProjectTaskResponsible MR_findFirstOrCreateByAttribute: @"responsibleID"
-                                                                                        withValue: info.responsibleID
-                                                                                        inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"responsibleID == %@ AND task == %@", info.responsibleID, task];
+    
+    ProjectTaskResponsible* responsible = [ProjectTaskResponsible MR_findFirstWithPredicate: predicate];
+    
+    if ( responsible == nil )
+    {
+        responsible = [ProjectTaskResponsible MR_createEntityInContext: context];
+    }
     
     if ( info.responsibleID )
     {
@@ -372,9 +377,15 @@
           forResponsible: (ProjectTaskResponsible*) responsbile
                inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstOrCreateByAttribute: @"assigneeID"
-                                                                               withValue: @(info.assigneeID)
-                                                                               inContext: context];
+    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"assigneeID == %@ AND responsible == %@", @(info.assigneeID), responsbile];
+    
+    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstWithPredicate: searchPredicate
+                                                                         inContext: context];
+    
+    if ( assignee == nil )
+    {
+        assignee = [ProjectTaskAssignee MR_createEntityInContext: context];
+    }
     
     assignee.responsible                      = responsbile;
     assignee.additionalPhoneNumber            = info.additionalPhoneNumber;
@@ -395,9 +406,15 @@
             forTaskResponsible: (ProjectTaskResponsible*) responsbile
                      inContext: (NSManagedObjectContext*) context
 {
-    ProjectInviteInfo* invite = [ProjectInviteInfo MR_findFirstOrCreateByAttribute: @"inviteID"
-                                                                         withValue: info.inviteID
-                                                                         inContext: context];
+    NSPredicate* searchPredicate = [NSPredicate predicateWithFormat: @"inviteID == %@ AND responsible == %@", info.inviteID, responsbile];
+    
+    ProjectInviteInfo* invite = [ProjectInviteInfo MR_findFirstWithPredicate: searchPredicate
+                                                                   inContext: context];
+    
+    if ( invite == nil )
+    {
+        invite = [ProjectInviteInfo MR_createEntityInContext: context];
+    }
     
     invite.inviteID               = info.inviteID;
     invite.email                  = info.email;
@@ -471,9 +488,14 @@
                       forTask: (ProjectTask*)            task
                     inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskOwner* ownerUser = [ProjectTaskOwner MR_findFirstOrCreateByAttribute: @"ownerID"
-                                                                          withValue: @(info.ownerID
-                                   ) inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"ownerID == %@ AND task == %@", @(info.ownerID), task];
+    
+    ProjectTaskOwner* ownerUser = [ProjectTaskOwner MR_findFirstWithPredicate: predicate];
+    
+    if ( ownerUser == nil )
+    {
+        ownerUser = [ProjectTaskOwner MR_createEntityInContext: context];
+    }
     
     ownerUser.task                             = task;
     ownerUser.ownerID                          = @(info.ownerID);
@@ -509,10 +531,15 @@
 - (void) persistTaskRoleAssignments: (TaskRoleAssignmentsModel*) info
                             forTask: (ProjectTask*)              task
                           inContext: (NSManagedObjectContext*)   context
-{
-    ProjectTaskRoleAssignments* roleAssignments = [ProjectTaskRoleAssignments MR_findFirstOrCreateByAttribute: @"roleAssignmentsID"
-                                                                                                    withValue: @(info.roleAssignmentsID)
-                                                                                                    inContext: context];
+{    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roleAssignmentsID == %@ AND task == %@", @(info.roleAssignmentsID), task];
+    
+    ProjectTaskRoleAssignments* roleAssignments = [ProjectTaskRoleAssignments MR_findFirstWithPredicate: predicate];
+    
+    if ( roleAssignments == nil )
+    {
+        roleAssignments = [ProjectTaskRoleAssignments MR_createEntityInContext: context];
+    }
     
     roleAssignments.task                    = task;
     roleAssignments.roleAssignmentsID       = @(info.roleAssignmentsID);
