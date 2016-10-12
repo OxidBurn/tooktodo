@@ -1,15 +1,14 @@
 //
-//  SubtaskFilterView.m
+//  FilterSubtasksCell.m
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 12.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SubtaskFilterView.h"
+#import "FilterSubtasksCell.h"
 
-@interface SubtaskFilterView()
-
+@interface FilterSubtasksCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIButton*    addTaskBtn;
@@ -24,7 +23,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* canceledTasksCheckbox;
 
-
 // properties
 
 
@@ -33,7 +31,7 @@
 
 @end
 
-@implementation SubtaskFilterView
+@implementation FilterSubtasksCell
 
 #pragma mark - Public -
 

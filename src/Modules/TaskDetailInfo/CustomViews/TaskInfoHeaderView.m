@@ -2,11 +2,11 @@
 //  SubTaskInfoView.m
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 10.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "TaskInfoFooterView.h"
+#import "TaskInfoHeaderView.h"
 
 typedef NS_ENUM(NSUInteger, ButtonTag) {
 
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
 };
 
-@interface TaskInfoFooterView()
+@interface TaskInfoHeaderView()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UIButton* subTasksBtn;
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 @end
 
-@implementation TaskInfoFooterView
+@implementation TaskInfoHeaderView
 
 #pragma mark - Properties -
 

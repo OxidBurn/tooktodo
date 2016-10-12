@@ -1,13 +1,13 @@
 //
-//  AddCommentView.h
+//  AddCommentCell.h
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 12.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface AddCommentView : UIView
+@interface AddCommentCell : UITableViewCell
 
 @end

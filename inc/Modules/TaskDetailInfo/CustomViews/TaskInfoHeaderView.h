@@ -2,7 +2,7 @@
 //  SubTaskInfoView.h
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 10.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @protocol TaskInfoFooterDelegate;
 
-@interface TaskInfoFooterView : UIView
+@interface TaskInfoHeaderView : UIView
 
 // properties
 @property (weak, nonatomic) id <TaskInfoFooterDelegate> delegate;

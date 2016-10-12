@@ -2,7 +2,7 @@
 //  TaskViewModel.m
 //  TookTODO
 //
-//  Created by Глеб on 05.10.16.
+//  Created by Chaban Nikolay on 05.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 // Classes
 #import "TaskDetailModel.h"
 #import "TaskDescriptionCell.h"
-#import "TaskInfoFooterView.h"
+#import "TaskInfoHeaderView.h"
 
 @interface TaskDetailViewModel() <TaskInfoFooterDelegate>
 
@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) UITableView* tableView;
 
+@property (strong, nonatomic) TaskInfoHeaderView* headerView;
 // methods
 
 
@@ -37,6 +38,21 @@
     }
     
     return _model;
+}
+
+- (TaskInfoHeaderView*) headerView
+{
+    if ( _headerView == nil )
+    {
+        _headerView = [[MainBundle loadNibNamed: @"SubTaskInfoView"
+                                          owner: self
+                                        options: nil] firstObject];
+       
+        [_headerView fillViewWithInfo: [self.model returnHeaderInfo]
+                         withDelegate: self];
+    }
+    
+    return _headerView;
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -71,31 +87,12 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
 - (UIView*)  tableView: (UITableView*) tableView
 viewForHeaderInSection: (NSInteger)    section
 {
-    UIView* header = [UIView new];
-    
     if ( section == 1 )
-        header = [self.model returnHeaderForSection];
-    
-    return header;
-}
-
-- (UIView*)  tableView: (UITableView*) tableView
-viewForFooterInSection: (NSInteger)    section
-{
-    TaskInfoFooterView* footer = [TaskInfoFooterView new];
-    
-    
-    if ( section == 0)
     {
-        footer = [[MainBundle loadNibNamed: @"SubTaskInfoView"
-                                     owner: self
-                                   options: nil] firstObject];
+        return self.headerView;
     }
     
-    [footer fillViewWithInfo: [self.model returnFooterInfo]
-                withDelegate: self];
-    
-    return footer;
+    return nil;
 }
 
 - (CGFloat)    tableView: (UITableView*) tableView
@@ -106,19 +103,6 @@ heightForHeaderInSection: (NSInteger)    section
     if ( section == 1 )
     {
         height = [self.model returnHeaderHeight];
-    }
-    
-    return height;
-}
-
-- (CGFloat)    tableView: (UITableView*) tableView
-heightForFooterInSection: (NSInteger)    section
-{
-    CGFloat height = 0;
-    
-    if ( section == 0 )
-    {
-        height = 43.0f;
     }
     
     return height;
@@ -140,7 +124,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateSecondSectionContentType: typeIndex];
     
     [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
-                  withRowAnimation: UITableViewRowAnimationAutomatic];
+                  withRowAnimation: UITableViewRowAnimationFade];
 }
 
 

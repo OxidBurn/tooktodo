@@ -1,20 +1,19 @@
 //
-//  AddCommentView.m
+//  AddCommentCell.m
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 12.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "AddCommentView.h"
+#import "AddCommentCell.h"
 
-@interface AddCommentView()
+@interface AddCommentCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UILabel*     addCommentLabel;
 
 @property (weak, nonatomic) IBOutlet UITextField* addCommentTextField;
-
 
 // properties
 
@@ -22,10 +21,9 @@
 // methods
 - (IBAction) onAddAttachmentsBtn: (UIButton*) sender;
 
-
 @end
 
-@implementation AddCommentView
+@implementation AddCommentCell
 
 #pragma mark - Actions -
 

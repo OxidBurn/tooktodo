@@ -1,14 +1,14 @@
 //
-//  AttachmentsFilterView.m
+//  FilterAttachmentsCell.m
 //  TookTODO
 //
-//  Created by Глеб on 10.10.16.
+//  Created by Chaban Nikolay on 12.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "AttachmentsFilterView.h"
+#import "FilterAttachmentsCell.h"
 
-@interface AttachmentsFilterView()
+@interface FilterAttachmentsCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
@@ -17,12 +17,15 @@
 
 // properties
 
+
 // methods
-- (IBAction)onAddBtn:(UIButton *)sender;
+- (IBAction) onAddBtn: (UIButton* )sender;
+
 
 @end
 
-@implementation AttachmentsFilterView
+
+@implementation FilterAttachmentsCell
 
 #pragma mark - Actions -
 
@@ -30,5 +33,6 @@
 {
     
 }
+
 
 @end

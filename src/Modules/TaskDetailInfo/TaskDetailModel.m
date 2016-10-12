@@ -2,7 +2,7 @@
 //  TaskModel.m
 //  TookTODO
 //
-//  Created by Глеб on 05.10.16.
+//  Created by Chaban Nikolay on 05.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -24,6 +24,9 @@
 #import "TaskDetailInfoFactory.h"
 #import "TaskDescriptionFactory.h"
 #import "CollectionCellFactory.h"
+#import "FilterSubtaskCellFactory.h"
+#import "FilterAttachmentsCellFactory.h"
+#import "AddCommentCellFactory.h"
 
 typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
@@ -35,7 +38,10 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     CommentsCell,
     LogWithActionCell,
     LogWithDetailCell,
-    LogCell
+    LogCell,
+    FilterSubtasksCell,
+    FilterAttachmentsCell,
+    AddCommentCell,
     
 };
 
@@ -76,7 +82,18 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 {
     if ( _tableViewCellsIdArray == nil )
     {
-        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId", @"TaskDescriptionCellId", @"CollectionCellId", @"SubtaskInfoCellId", @"AttachmentsCellId", @"CommentsCellId", @"LogWithActionCellId", @"LogWithDetailCellId", @"LogCellId" ];
+        _tableViewCellsIdArray = @[ @"TaskDetailInfoCellId",
+                                    @"TaskDescriptionCellId",
+                                    @"CollectionCellId",
+                                    @"SubtaskInfoCellId",
+                                    @"AttachmentsCellId",
+                                    @"CommentsCellId",
+                                    @"LogWithActionCellId",
+                                    @"LogWithDetailCellId",
+                                    @"LogCellId",
+                                    @"FilterSubtasksCellId",
+                                    @"FilterAttachmentsCellId",
+                                    @"AddCommentCellId" ];
     }
     
     return _tableViewCellsIdArray;
@@ -214,7 +231,31 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
             cell = [factory returnCellectionCellForTableView: tableView];
         }
             break;
-        
+            
+        case FilterSubtasksCell:
+        {
+            FilterSubtaskCellFactory* factory = [FilterSubtaskCellFactory new];
+            
+            cell = [factory returnFilterSubtasksCellForTableView: tableView];
+            
+        }
+            break;
+            
+        case FilterAttachmentsCell:
+        {
+            FilterAttachmentsCellFactory* factory = [FilterAttachmentsCellFactory new];
+            
+            cell = [factory returnFilterAttachmentsCellForTableView: tableView];
+        }
+            break;
+            
+        case AddCommentCell:
+        {
+            AddCommentCellFactory* factory = [AddCommentCellFactory new];
+            
+            cell = [factory returnAddCommentCellForTableView: tableView];
+        }
+            break;
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -228,7 +269,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
                                 withSelectedState: NO];
 }
 
-- (NSArray*) returnFooterInfo
+- (NSArray*) returnHeaderInfo
 {
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
                              self.task.attachments,
@@ -277,29 +318,21 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 
 - (CGFloat) returnHeaderHeight
 {
-    CGFloat height = 0;
-    
-    switch ( self.secondSectionContentType )
-    {
-        case SubtasksContentType:
-        case AttachmentsContentType:
-            height = 58;
-            break;
-            
-        case CommentsContentType:
-            height = 60;
-            break;
-            
-        default:
-            break;
-    }
-    
-    return height;
+    return 43.f;
 }
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex
 {
     self.secondSectionContentType = typeIndex;
+    
+    NSArray* newSectionTwo = [self createSectionTwoContentAccordingToType];
+    
+    NSMutableArray* contentCopy = self.taskTableViewContent.mutableCopy;
+    
+    [contentCopy replaceObjectAtIndex: 1
+                           withObject: newSectionTwo];
+    
+    self.taskTableViewContent = contentCopy.copy;
 }
 
 #pragma mark - Internal -
@@ -392,29 +425,32 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 
 - (NSArray*) createSubtasksContent
 {
-    NSArray* content = [NSArray new];
+    TaskRowContent* rowOne = [TaskRowContent new];
     
-    // here will be created content with subtasks
+    rowOne.cellId = self.tableViewCellsIdArray[FilterSubtasksCell];
+    rowOne.rowHeight = 58;
     
-    return content;
+    return @[ rowOne ];
 }
 
 - (NSArray*) createAttachmentsContent
 {
-    NSArray* content = [NSArray new];
+    TaskRowContent* rowOne = [TaskRowContent new];
     
-    // here will be created content with attachments
+    rowOne.cellId = self.tableViewCellsIdArray[FilterAttachmentsCell];
+    rowOne.rowHeight = 58;
     
-    return content;
+    return @[ rowOne ];
 }
 
 - (NSArray*) createCommentsContent
 {
-    NSArray* content = [NSArray new];
+    TaskRowContent* rowOne = [TaskRowContent new];
     
-    // here will be created content with comments
+    rowOne.cellId = self.tableViewCellsIdArray[AddCommentCell];
+    rowOne.rowHeight = 61;
     
-    return content;
+    return @[ rowOne ];
 }
 - (NSArray*) createSLogsContent
 {

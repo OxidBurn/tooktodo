@@ -1,13 +1,12 @@
 //
-//  CollectionCellFactory.h
+//  AddCommentCellFactory.h
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 05.10.16.
+//  Created by Chaban Nikolay on 12.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-
 
 // Frameworks
 @import UIKit;
@@ -15,9 +14,9 @@
 // Classes
 #import "TaskRowContent.h"
 
-@interface CollectionCellFactory : NSObject
+@interface AddCommentCellFactory : NSObject
 
 // methods
-- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView;
+- (UITableViewCell*) returnAddCommentCellForTableView: (UITableView*) tableView;
 
 @end
