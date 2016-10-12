@@ -57,13 +57,6 @@
         }
             break;
             
-        case TaskCanceledStatusType:
-        {
-            statusName = @"Отменена";
-            
-        }
-            break;
-            
         case TaskOnApprovingStatusType:
         {
             statusName = @"На утверждении";
@@ -72,7 +65,14 @@
             
         case TaskOnCompletionStatusType:
         {
-            statusName = @"В завершении";
+            statusName = @"На доработке";
+        }
+            break;
+            
+        case TaskCanceledStatusType:
+        {
+            statusName = @"Отменена";
+            
         }
             break;
             
@@ -101,15 +101,7 @@
         }
             break;
             
-        case TaskCanceledStatusType:
-        {
-          backgroundColor =  [UIColor colorWithRed: 255.0/256
-                                             green: 70.0/256
-                                              blue: 70.0/256
-                                             alpha: 1.f];
-        }
-            break;
-            
+         
         case TaskCompletedStatusType:
         {
             backgroundColor = [UIColor cyanColor];
@@ -140,6 +132,15 @@
             backgroundColor = [UIColor brownColor];
         }
             break;
+            
+        case TaskCanceledStatusType:
+        {
+            backgroundColor =  [UIColor colorWithRed: 255.0/256
+                                               green: 70.0/256
+                                                blue: 70.0/256
+                                               alpha: 1.f];
+        }
+            break;
     }
     
     return backgroundColor;
@@ -159,12 +160,7 @@
         }
             break;
             
-        case TaskCanceledStatusType:
-        {
-            statusImage = [UIImage imageNamed: @"TaskStatusCanceledIcon"];
-        }
-            break;
-            
+        
         case TaskCompletedStatusType:
         {
             statusImage = nil;
@@ -187,6 +183,12 @@
         case TaskOnCompletionStatusType:
         {
             
+        }
+            break;
+            
+        case TaskCanceledStatusType:
+        {
+            statusImage = [UIImage imageNamed: @"TaskStatusCanceledIcon"];
         }
             break;
     }

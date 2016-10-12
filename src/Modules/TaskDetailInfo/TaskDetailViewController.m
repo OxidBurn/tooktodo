@@ -11,7 +11,7 @@
 // Classes
 #import "TaskDetailViewModel.h"
 
-@interface TaskDetailViewController ()
+@interface TaskDetailViewController () 
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
@@ -30,7 +30,7 @@
 
 #pragma mark - Lyfe cycle -
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     

@@ -14,7 +14,8 @@
 #import "TaskInfoFooterView.h"
 #import "TaskDetailInfoCell.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate,TaskDetailCellDataSouce>
+
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -61,12 +62,12 @@
     UITableViewCell* cell = [self.model createCellForTableView: tableView
                                                  forIndexPath: indexPath];
     
+    //Cheking if cell is TaskDetail info, then set viewmodel its delegate
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
     {
        TaskDetailInfoCell* detailCell = (TaskDetailInfoCell*)cell;
         
         detailCell.delegate   = self;
-        detailCell.dataSource = self;
         
     }
     
@@ -170,8 +171,5 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.performSegue)
         self.performSegue(segueID);
 }
-
-#pragma mark - TaskDetailCellDataSource methods -
-
 
 @end

@@ -52,8 +52,11 @@
 #pragma mark - Public -
 
 - (void) fillSelectedStatus: (TaskStatusType) status
+               withDelegate: (id<ChangeStatusControllerDelegate>) delegate
 {
     [self.viewModel fillSelectedStatusType: status];
+    
+    self.delegate = delegate;
 }
 
 - (void) getChangedTaskStatusInfo

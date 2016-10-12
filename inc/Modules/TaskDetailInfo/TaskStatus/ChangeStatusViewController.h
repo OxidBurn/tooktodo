@@ -19,7 +19,8 @@
 
 //Methods
 
-- (void) fillSelectedStatus: (TaskStatusType) status;
+- (void) fillSelectedStatus: (TaskStatusType) status
+               withDelegate: (id<ChangeStatusControllerDelegate>) delegate;
 
 - (void) getChangedTaskStatusInfo;
 

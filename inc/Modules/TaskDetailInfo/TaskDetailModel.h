@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol TaskDetailModelDelegate;
+
 @interface TaskDetailModel : NSObject
+
+//Properties
+
+@property (nonatomic, weak) id<TaskDetailModelDelegate> delegate;
 
 // methods
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;
@@ -28,5 +34,11 @@
 - (void) deselectTask;
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
+
+@end
+
+@protocol TaskDetailModelDelegate <NSObject>
+
+- (void) reloadData;
 
 @end
