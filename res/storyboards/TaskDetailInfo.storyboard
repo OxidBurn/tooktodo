@@ -391,17 +391,10 @@
                                                     <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-Xf-Bze">
-                                                    <attributedString key="attributedText">
-                                                        <fragment>
-                                                            <mutableString key="content">Загрузите Обмерный план объекта. Если в дизайн проекте нет плана, вы можете пригласить в проект дизайнера, который доработает проект до полного комплекта планов.Загрузите Обмерный план объекта. Если в дизайн проекте нет плана, вы можете пригласить в проект дизайнера, который доработает проект до полного комплекта планов.</mutableString>
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="13" name="SFUIText-Regular"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgW-Xf-Bze">
+                                                    <string key="text">Загрузите Обмерный план объекта. Если в дизайн проекте нет плана, вы можете пригласить в проект дизайнера, который доработает проект до полного комплекта планов.Загрузите Обмерный план объекта. Если в дизайн проекте нет плана, вы можете пригласить в проект дизайнера, который доработает проект до полного комплекта планов.</string>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -932,7 +925,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-Js-Xf2" customClass="AvatarImageView">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-Js-Xf2" customClass="AvatarImageView">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="1kd-Rh-9zH"/>
@@ -980,7 +974,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gIv-Pt-Ll9" customClass="TaskMarkerComponent">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gIv-Pt-Ll9" customClass="TaskMarkerComponent">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="38" id="1fQ-Fj-fYn"/>
                                                                 <constraint firstAttribute="width" constant="38" id="Rgp-A4-hYd"/>
@@ -1022,7 +1017,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8QY-1t-ToR" customClass="TaskMarkerComponent">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8QY-1t-ToR" customClass="TaskMarkerComponent">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="33" id="OpZ-mD-FBf"/>
                                                                 <constraint firstAttribute="height" constant="17" id="YLV-zz-pEk"/>
@@ -1064,7 +1060,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D15-n1-XnB" customClass="TaskMarkerComponent">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D15-n1-XnB" customClass="TaskMarkerComponent">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="17" id="AkQ-Cz-HGY"/>
                                                                 <constraint firstAttribute="height" constant="17" id="LBo-A6-D8L"/>
@@ -1106,7 +1103,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUh-0H-Itj" customClass="StatusMarkerComponent">
+                                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUh-0H-Itj" customClass="StatusMarkerComponent">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="14" id="3gN-9E-A95"/>
                                                                 <constraint firstAttribute="height" constant="13" id="N4k-6R-Vfg"/>
@@ -1187,7 +1185,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="103" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7L-gc-82U">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="103" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7L-gc-82U">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="13" id="CQm-dH-531"/>
                                                                 <constraint firstAttribute="width" constant="19" id="SUe-px-l02"/>
@@ -1232,7 +1231,8 @@
                                                                 </mask>
                                                             </variation>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mark" translatesAutoresizingMaskIntoConstraints="NO" id="ICy-g9-bjV">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Mark" translatesAutoresizingMaskIntoConstraints="NO" id="ICy-g9-bjV">
+                                                            <frame key="frameInset" width="1000" height="1000"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="IT0-Fi-l1f"/>
                                                                 <constraint firstAttribute="height" constant="15" id="cyG-fO-FT1"/>

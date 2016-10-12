@@ -130,20 +130,43 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
     
     height = row.rowHeight;
     
+    if ( indexPath.section == 0 && indexPath.row == 0)
+    {
+        // height without label in first cell is 119
+        height = 119;
+        
+        NSString* taskTitle = [self.task title];
+        
+        CGSize labelSize = [Utils findHeightForText: taskTitle
+                                        havingWidth: tableView.frame.size.width - 30
+                                            andFont: [UIFont fontWithName: @"SFUIDisplay-Regular"
+                                                                     size: 22.f]];
+        
+        height = height + labelSize.height;
+    }
+    
     if ( indexPath.section == 0 && indexPath.row == 1 )
     {
-        // height without label is row height value if description value == nil
-        CGFloat heightWithoutLabel = 35;
+        // 54 - height without label is row height value if description value == nil
+        CGFloat heightWithoutLabel = 54;
         
-        CGSize labelSize = [Utils findHeightForText: self.task.taskDescription
+        NSString* desriptionValue = [self.task descriptionValue];
+        
+        CGSize labelSize = [Utils findHeightForText: desriptionValue
                                         havingWidth: tableView.frame.size.width - 30
-                                            andFont: [UIFont fontWithName: @"SF UI Text Regular"
+                                            andFont: [UIFont fontWithName: @"SFUIText-Regular"
                                                                      size: 13.f]];
+        // 79pt - heihgt for 5 rows label with current font
+        // if desciption is larger than 5 row we limit label height manually
+        if ( labelSize.height > 79 )
+            labelSize.height = 79;
+        
         height = labelSize.height + heightWithoutLabel;
         
-        if ( self.task.taskDescription == nil )
+        if ( desriptionValue == nil )
         {
-            height = height + 23;
+            // 16 - height for one row
+            height = height + 16;
         }
     }
     
