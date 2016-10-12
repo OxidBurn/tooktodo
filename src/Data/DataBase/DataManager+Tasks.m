@@ -204,6 +204,8 @@
     if ( info.attachments.count )
         task.attachments = info.attachments.count;
     
+    task.commentsCount = info.commentsCount;
+    
     // Store task responsible
     if ( info.responsible )
     {
