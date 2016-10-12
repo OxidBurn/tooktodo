@@ -71,14 +71,19 @@
     return 6;
 }
 
-//#pragma mark - TableViewDelegate methods -
-//
-//- (void)        tableView: (UITableView*) tableView
-//  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
-//{
-//    
-//}
-//
+#pragma mark - TableViewDelegate methods -
+
+- (void)        tableView: (UITableView*) tableView
+  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    CellWithBackground* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+    
+}
+
 //#pragma mark - TaskDetailCellDataSource methods -
 //- (TaskStatusType) changeStatusType
 //{
