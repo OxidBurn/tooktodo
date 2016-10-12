@@ -7,7 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectsEnumerations.h"
+
+@protocol ChangeStatusControllerDelegate;
 
 @interface ChangeStatusViewController : UIViewController
+
+//Properties
+
+@property (nonatomic, weak) id<ChangeStatusControllerDelegate> delegate;
+
+//Methods
+
+- (void) fillSelectedStatus: (TaskStatusType) status;
+
+- (void) getChangedTaskStatusInfo;
+
+@end
+
+@protocol ChangeStatusControllerDelegate <NSObject>
+
+- (void) didChangedTaskStatus: (TaskStatusType) statustType
+                     withName: (NSString*)      statusName
+                    withImage: (UIImage*)       statusImage
+          withBackGroundColor: (UIColor*)       background;
 
 @end

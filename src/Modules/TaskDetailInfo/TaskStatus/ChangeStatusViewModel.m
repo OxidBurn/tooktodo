@@ -17,6 +17,7 @@
 
 // properties
 @property (nonatomic, strong) ChangeStatusModel* model;
+@property (strong, nonatomic) NSIndexPath* selectedCell;
 
 // methods
 
@@ -35,6 +36,26 @@
     }
     
     return _model;
+}
+
+
+#pragma mark - Public -
+
+- (void) fillSelectedStatusType: (TaskStatusType) status
+{
+    self.selectedCell = [NSIndexPath indexPathForRow: status
+                                           inSection: 0];
+}
+
+- (void) getChangedInfo: (GetChangedStatusBlock) completion
+{
+    NSString* statusName  = [self.model getStatusName: self.selectedCell.row];
+    UIColor*  background   = [self.model getBackgroundColor: self.selectedCell.row];
+    UIImage*  statusImage = [self.model getStatusImage: self.selectedCell.row];
+    
+    if (completion) {
+        completion(statusName, self.selectedCell.row, background, statusImage);
+    }
 }
 
 #pragma mark - TableViewDatasource methods -
@@ -79,15 +100,10 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    CellWithBackground* cell = [tableView cellForRowAtIndexPath: indexPath];
+   // CellWithBackground* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    
+    self.selectedCell = indexPath;
 }
 
-//#pragma mark - TaskDetailCellDataSource methods -
-//- (TaskStatusType) changeStatusType
-//{
-////  TaskStatusType selectedStatus = 
-//}
 
 @end

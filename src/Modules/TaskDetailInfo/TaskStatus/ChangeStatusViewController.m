@@ -48,6 +48,35 @@
     
     return _viewModel;
 }
+
+#pragma mark - Public -
+
+- (void) fillSelectedStatus: (TaskStatusType) status
+{
+    [self.viewModel fillSelectedStatusType: status];
+}
+
+- (void) getChangedTaskStatusInfo
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel getChangedInfo:^(NSString *statusName, TaskStatusType statusType, UIColor *background, UIImage *statusImage) {
+        
+        if ([blockSelf.delegate respondsToSelector: @selector(didChangedTaskStatus:withName:withImage:withBackGroundColor:)])
+        {
+            [blockSelf.delegate didChangedTaskStatus: statusType
+                                            withName: statusName
+                                           withImage: statusImage
+                                 withBackGroundColor: background];
+        }
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+    }];
+}
+
+#pragma mark - Actions -
+
 - (IBAction) onBack: (UIBarButtonItem*) sender
 {
     [self dismissViewControllerAnimated: YES

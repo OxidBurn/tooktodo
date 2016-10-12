@@ -75,7 +75,6 @@
         [self.delegate performSegueWithID: @"ShowStatusList"];
     }
     
-    NSLog(@"loooooooooool");
 }
 
 #pragma mark - Public -
