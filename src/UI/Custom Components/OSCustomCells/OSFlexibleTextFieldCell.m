@@ -73,6 +73,12 @@
     [self.taskNamtTextField becomeFirstResponder];
 }
 
+- (void) resetCellContent
+{
+    self.isEditedByUser = NO;
+    
+    [self editTextLabel];
+}
 #pragma mark - UITextFieldDelegate methods -
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField

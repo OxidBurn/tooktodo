@@ -21,6 +21,8 @@
 
 - (void) editTextLabel;
 
+- (void) resetCellContent;
+
 @end
 
 @protocol OSFlexibleTextFieldCellDelegate <NSObject>

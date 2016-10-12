@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 //Classes
 #import "NewTask.h"
@@ -52,7 +53,11 @@
 
 - (NSString*) returnSelectedTaskTypeDesc;
 
+- (NSString*) returnTaskName;
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
+
+//- (RACSignal*) returnNewTaskSignal;
 
 @end
 

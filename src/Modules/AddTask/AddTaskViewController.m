@@ -28,13 +28,21 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* readyBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskAndCreateNewBtn;
 @property (weak, nonatomic) IBOutlet UIButton*        addTaskBtn;
+@property (nonatomic, weak) IBOutlet UIButton*        deleteTask;
 @property (weak, nonatomic) IBOutlet UITableView*     addTaskTableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* cancelBtn;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (weak, nonatomic) IBOutlet UIView *messageView;
+
+@property (weak, nonatomic) IBOutlet UILabel*  messageLabel;
+@property (weak, nonatomic) IBOutlet UIButton* closeBtn;
+@property (nonatomic, weak) IBOutlet UIButton* createOnBaseBtn;
 
 // properties
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
+@property (nonatomic, assign) BOOL isChangedUI;
 
 // methods
 
@@ -43,6 +51,12 @@
 - (IBAction) onAddTaskBtn: (UIButton*) sender;
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender;
+
+- (IBAction) onClose:(UIButton*) sender;
+
+- (IBAction) onDeleteTask: (UIButton*) sender;
+
+- (IBAction) onCreteOnBase: (UIButton*) sender;
 
 @end
 
@@ -59,6 +73,8 @@
     [self setUpDefaults];
     
     [self bindUI];
+    
+    self.isChangedUI = NO;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -203,7 +219,13 @@
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
 {
-    
+    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+        
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+        
+    }];
+
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -222,6 +244,21 @@
                              completion: nil];
 }
 
+- (IBAction) onClose: (UIButton*) sender
+{
+    self.messageView.hidden              = YES;
+    self.tableViewTopConstraint.constant = 0;
+}
+
+- (IBAction) onDeleteTask: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onCreteOnBase: (UIButton*) sender
+{
+    
+}
 
 #pragma mark - AddTaskViewModel delegate methods -
 
@@ -310,23 +347,88 @@
 {
     self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
     self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
-    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableAllButtonsCommand;
+    self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableCreteOnBaseBtnCommand;
     
+    
+        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
+         {
+            [signal subscribeNext: ^(NSString* taskName) {
+                
+            
+                self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
+            
+                
+            }];
+             
+            [signal subscribeCompleted: ^{
+                
+    
+                [self showTaskCreatedMessage];
+            
+                NewTask* t = [self.viewModel getNewTask];
+                NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
+                
+          
+            
+            }];
+         }];
+
     
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeCompleted: ^{
+        [signal subscribeNext: ^(NewTask* task) {
             
-                        NSLog(@"task saved somewhere");
-            [self.viewModel getNewTask];
-            
-            NewTask* t = [self.viewModel getNewTask];
+            NewTask* t = task;
             NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
-           // [self.navigationController popViewControllerAnimated: YES];
-            
         }];
         
     }];
+   
 }
+
+- (void) showTaskCreatedMessage
+{
+    [UIView animateWithDuration: 2
+                          delay: 0
+                        options: UIViewAnimationOptionCurveEaseIn
+                     animations: ^{
+                         
+                         [self changeUI];
+                     }
+                     completion: ^(BOOL finished) {
+                         
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                             
+                             [UIView animateWithDuration: 2
+                                                   delay: 0
+                                                 options: UIViewAnimationOptionCurveEaseIn
+                                              animations: ^{
+                                                  
+                                                  self.tableViewTopConstraint.constant = 0;
+                                                  self.messageView.hidden = YES;
+                                                
+                                              }
+                                              completion: nil];
+                             
+                     });
+    
+                         
+                     }];
+}
+
+- (void) changeUI
+{
+    self.view.backgroundColor             = [UIColor whiteColor];
+    self.tableViewTopConstraint.constant  = 75;
+    self.messageView.hidden               = NO;
+    
+    self.addTaskAndCreateNewBtn.hidden    = YES;
+    self.deleteTask.hidden                = NO;
+    
+    self.addTaskBtn.hidden                = NO;
+    self.createOnBaseBtn.hidden           = NO;
+    
+}
+
 
 @end

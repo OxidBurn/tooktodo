@@ -12,11 +12,14 @@
 #import "AddTaskModel.h"
 #import "OSFlexibleTextFieldCell.h"
 #import "ProjectsEnumerations.h"
+#import "OSSwitchTableCell.h"
 
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
 // properties
 @property (strong, nonatomic) AddTaskModel* model;
+
+@property (nonatomic, strong) UITableView* tableView;
 
 // methods
 
@@ -122,6 +125,16 @@
     return [self.model returnSelectedTaskTypeDesc];
 }
 
+- (NSString*) returnTaskName
+{
+    return [self.model returnTaskName];
+}
+
+//- (RACSignal*) getNewTaskSignal
+//{
+//    return [self.model returnNewTaskSignal];
+//}
+
 #pragma mark - UITableView data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -138,6 +151,11 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
+    if (self.tableView == nil)
+    {
+        self.tableView = tableView;
+    }
+    
     UITableViewCell* cell = [self.model createCellForTableView: (UITableView*) tableView
                                                   forIndexPath: (NSIndexPath*) indexPath];
 
@@ -265,18 +283,47 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         
                                  }] ;
     
-    
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               //return self.enableConfirmButtons;
+                                                               //Передать заполненную задачу
                                                                
                                                                return [RACSignal empty];
-}];
+                                                           }];
+    
+    self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
+                                                               signalBlock: ^RACSignal *(id input) {
+                                                                   
+                                                                   NSString* taskName = [self.model returnTaskName];
+                                                                   
+                                                                   [self resetCellsContent];
+                                                                   
+                                                                   return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                                                                       
+                                                                       [subscriber sendNext: taskName];
+                                                                       [subscriber sendCompleted];
+                                                                       
+                                                                    
+                                                                       return nil;
+                                                                   }];
+                                                                   
+                                                               }];
     
     
 };
 
 
+- (void) resetCellsContent
+{
+    OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
+                                                                                              inSection: 0]];
+    
+    [cell resetCellContent];
+    
+    OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
+                                                                                              inSection: 0]];
+    
+    [switchCell resetValue];
+}
 
 @end

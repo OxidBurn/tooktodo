@@ -290,7 +290,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     
     if ( [newTaskName isEqualToString: @""] )
     {
-        newTaskName = @"Название задачи";
+        newTaskName = @"Название задачи ";
     }
     
     RowContent* newRow = self.addTaskTableViewContent[SectionOne][TaskNameRow];
@@ -361,10 +361,28 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.taskDescription;
 }
 
+- (NSString*) returnTaskName
+{
+    return self.task.taskName;
+}
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
     NSLog(@"New task: %@", self.task);
 }
+
+//- (RACSignal*) returnNewTaskSignal
+//{
+//    RACSignal* taskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//        [subscriber sendNext: self.task];
+//        [subscriber sendCompleted];
+//        
+//        return nil;
+//    }];
+//    
+//    return taskInfo;
+//}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -555,7 +573,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
                    withColor: (UIColor*)  typeColor
 {
     self.task.taskType = type;
-    self.task.taskDescription = typeDescription;
+    self.task.typeDescription = typeDescription;
     
     RowContent* row = self.addTaskTableViewContent[SectionThree][TaskTypeRow];
     

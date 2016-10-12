@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -409,10 +409,10 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="CGc-e3-ngj"/>
                                     <constraint firstAttribute="width" constant="280" id="Ru5-1s-FBM"/>
-                                    <constraint firstAttribute="width" constant="280" id="UkY-tI-APE"/>
+                                    <constraint firstAttribute="width" constant="375" id="UkY-tI-APE"/>
                                     <constraint firstAttribute="height" constant="44" id="nTE-Np-Gtz"/>
                                     <constraint firstAttribute="height" constant="44" id="pIk-ES-UTd"/>
-                                    <constraint firstAttribute="height" constant="44" id="tAu-jE-hRs"/>
+                                    <constraint firstAttribute="height" constant="80" id="tAu-jE-hRs"/>
                                 </constraints>
                                 <state key="normal" title="Добавить и создать на основе новую">
                                     <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -453,7 +453,7 @@
                                     <action selector="onAddAndCreateNewBtn:" destination="cFm-ip-wdX" eventType="touchUpInside" id="2bG-h9-iUd"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c76-vL-P9W">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c76-vL-P9W">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DoneChakBox" translatesAutoresizingMaskIntoConstraints="NO" id="5hb-7M-wxd">
                                         <constraints>
@@ -467,6 +467,9 @@
                                             <constraint firstAttribute="width" constant="41" id="YGe-h0-Ie3"/>
                                         </constraints>
                                         <state key="normal" image="ExitBtn"/>
+                                        <connections>
+                                            <action selector="onClose:" destination="cFm-ip-wdX" eventType="touchUpInside" id="8ZR-L9-2MC"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Задача «Обмерный план оборудования за ноябрь в Excel» создана" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tj-47-huI">
                                         <constraints>
@@ -489,6 +492,34 @@
                                     <constraint firstAttribute="trailing" secondItem="c8Z-pr-pXt" secondAttribute="trailing" id="upe-Vd-4rg"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkx-BS-UzY">
+                                <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="GDA-s6-jDl"/>
+                                    <constraint firstAttribute="height" constant="79" id="sSC-tS-NhX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                <state key="normal" title="Удалить задачу">
+                                    <color key="titleColor" red="1" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDeleteTask:" destination="cFm-ip-wdX" eventType="touchUpInside" id="z53-2W-c38"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T7-Dc-UBE">
+                                <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="3mx-Uz-ryt"/>
+                                    <constraint firstAttribute="height" constant="50" id="B9v-mN-L0g"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                <state key="normal" title="Новая задача на основе этой">
+                                    <color key="titleColor" red="0.99987326679999999" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onCreteOnBase:" destination="cFm-ip-wdX" eventType="touchUpInside" id="v3k-zo-E6z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -505,17 +536,21 @@
                             <constraint firstItem="fSh-Vs-fLF" firstAttribute="centerX" secondItem="v4H-BN-w7N" secondAttribute="centerX" id="Jje-uG-ZZz"/>
                             <constraint firstAttribute="trailing" secondItem="3f1-TO-rVx" secondAttribute="trailing" id="N5M-An-w1S"/>
                             <constraint firstItem="YXh-EX-tUh" firstAttribute="top" secondItem="IAe-sr-vWB" secondAttribute="bottom" id="OYN-8d-87x"/>
+                            <constraint firstItem="3T7-Dc-UBE" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" id="RZs-vQ-7up"/>
                             <constraint firstItem="IAe-sr-vWB" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" id="U7X-JP-5H3"/>
-                            <constraint firstItem="fSh-Vs-fLF" firstAttribute="top" secondItem="3f1-TO-rVx" secondAttribute="bottom" constant="22" id="UUq-VF-ZOM"/>
+                            <constraint firstItem="fSh-Vs-fLF" firstAttribute="top" secondItem="3f1-TO-rVx" secondAttribute="bottom" id="UUq-VF-ZOM"/>
+                            <constraint firstItem="YXh-EX-tUh" firstAttribute="top" secondItem="3T7-Dc-UBE" secondAttribute="bottom" id="X0X-v3-xo3"/>
                             <constraint firstAttribute="trailing" secondItem="IAe-sr-vWB" secondAttribute="trailing" id="XpL-DT-zcm"/>
                             <constraint firstItem="fSh-Vs-fLF" firstAttribute="top" secondItem="3f1-TO-rVx" secondAttribute="bottom" constant="22" id="YJ8-hA-JfO"/>
                             <constraint firstItem="c76-vL-P9W" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" constant="5" id="beY-4g-LWG"/>
+                            <constraint firstItem="dkx-BS-UzY" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" id="c7H-wz-OOg"/>
                             <constraint firstItem="YXh-EX-tUh" firstAttribute="top" secondItem="IAe-sr-vWB" secondAttribute="bottom" id="dV3-hO-YwI"/>
+                            <constraint firstItem="3T7-Dc-UBE" firstAttribute="top" secondItem="dkx-BS-UzY" secondAttribute="bottom" id="doO-5m-5aQ"/>
                             <constraint firstItem="IAe-sr-vWB" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" id="eTx-PQ-FMW"/>
                             <constraint firstItem="3f1-TO-rVx" firstAttribute="leading" secondItem="v4H-BN-w7N" secondAttribute="leading" id="i5c-E6-1OH"/>
                             <constraint firstItem="fSh-Vs-fLF" firstAttribute="centerX" secondItem="v4H-BN-w7N" secondAttribute="centerX" id="ix0-Uu-r0B"/>
                             <constraint firstAttribute="trailing" secondItem="c76-vL-P9W" secondAttribute="trailing" constant="4" id="j0a-Ei-2iA"/>
-                            <constraint firstItem="IAe-sr-vWB" firstAttribute="top" secondItem="fSh-Vs-fLF" secondAttribute="bottom" constant="13" id="mQx-zj-WiE"/>
+                            <constraint firstItem="IAe-sr-vWB" firstAttribute="top" secondItem="fSh-Vs-fLF" secondAttribute="bottom" constant="-1" id="mQx-zj-WiE"/>
                             <constraint firstItem="YXh-EX-tUh" firstAttribute="top" secondItem="IAe-sr-vWB" secondAttribute="bottom" id="ntT-el-MJO"/>
                             <constraint firstItem="fSh-Vs-fLF" firstAttribute="top" secondItem="3f1-TO-rVx" secondAttribute="bottom" constant="22" id="rDi-HS-7fR"/>
                             <constraint firstAttribute="trailing" secondItem="IAe-sr-vWB" secondAttribute="trailing" id="teq-PC-mIO"/>
@@ -627,7 +662,13 @@
                         <outlet property="addTaskAndCreateNewBtn" destination="fSh-Vs-fLF" id="fNS-pl-gel"/>
                         <outlet property="addTaskBtn" destination="IAe-sr-vWB" id="d1F-tw-c1w"/>
                         <outlet property="addTaskTableView" destination="3f1-TO-rVx" id="BWs-jX-dRA"/>
+                        <outlet property="closeBtn" destination="c8Z-pr-pXt" id="KnM-Tr-XkE"/>
+                        <outlet property="createOnBaseBtn" destination="3T7-Dc-UBE" id="cDX-T9-tV6"/>
+                        <outlet property="deleteTask" destination="dkx-BS-UzY" id="A1b-G1-ftq"/>
+                        <outlet property="messageLabel" destination="0Tj-47-huI" id="dPG-Vg-GHR"/>
+                        <outlet property="messageView" destination="c76-vL-P9W" id="qQD-su-p8G"/>
                         <outlet property="readyBtn" destination="ccc-m8-kXi" id="9aV-MZ-3lV"/>
+                        <outlet property="tableViewTopConstraint" destination="6OO-BK-z8h" id="dr3-Mo-bRI"/>
                         <segue destination="slz-WN-5qc" kind="show" identifier="ShowAddTermTaskController" id="dPw-cx-gi5"/>
                         <segue destination="llT-OI-rLY" kind="show" identifier="ShowAddMassageController" id="upB-24-XxH"/>
                         <segue destination="Lr3-oG-7Wp" kind="show" identifier="ShowSelectResponsibleController" id="Le1-ta-0Lh"/>
