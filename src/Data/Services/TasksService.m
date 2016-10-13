@@ -49,7 +49,8 @@
     
     RACSignal* loadTasksForProjectSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        [[[TasksAPIService sharedInstance] loadTasksForProjectWithURL: requestURL]
+        [[[[TasksAPIService sharedInstance] loadTasksForProjectWithURL: requestURL]
+          deliverOn: [RACScheduler mainThreadScheduler]]
          subscribeNext: ^(RACTuple* response) {
              
              @strongify(self)

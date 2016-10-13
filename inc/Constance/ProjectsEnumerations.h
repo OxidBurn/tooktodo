@@ -94,4 +94,13 @@ typedef NS_ENUM(NSUInteger, AllSwitchCellsTags) {
     
 };
 
+typedef NS_ENUM(NSUInteger, TaskInfoSecondSectionContentType) {
+    
+    SubtasksContentType,
+    AttachmentsContentType,
+    CommentsContentType,
+    LogsContentType,
+    
+};
+
 #endif /* ProjectsEnumerations_h */

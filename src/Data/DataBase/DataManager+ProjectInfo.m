@@ -25,6 +25,7 @@
 
 // Categories
 #import "DataManager+Room.h"
+#import "DataManager+Tasks.h"
 
 @implementation DataManager (ProjectInfo)
 
@@ -180,19 +181,6 @@
                                                                        inContext: context];
     
     roleType.roleAssignment = role;
-    roleType.roleTypeID     = info.roleTypeID;
-    roleType.title          = info.title;
-}
-
-- (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
-               forProjectInvite: (ProjectInviteInfo*)      invite
-                      inContext: (NSManagedObjectContext*) context
-{
-    ProjectRoleType* roleType = [ProjectRoleType MR_findFirstOrCreateByAttribute: @"roleTypeID"
-                                                                       withValue: info.roleTypeID
-                                                                       inContext: context];
-    
-    roleType.projectInvite  = invite;
     roleType.roleTypeID     = info.roleTypeID;
     roleType.title          = info.title;
 }

@@ -23,6 +23,10 @@
 - (void) persistTasksForProjects: (TasksGroupedByProjects*) info
                   withCompletion: (CompletionWithSuccess)   completion;
 
+- (void) persistProjectRoleType: (ProjectRoleTypeModel*)   info
+               forProjectInvite: (ProjectInviteInfo*)      invite
+                      inContext: (NSManagedObjectContext*) context;
+
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;
 

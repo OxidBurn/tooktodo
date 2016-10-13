@@ -12,6 +12,7 @@
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "ProjectTaskResponsible+CoreDataProperties.h"
 
 @implementation FilledTeamInfo
 
@@ -78,6 +79,36 @@
     self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
     self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
     self.isObserver             = self.isObserver ? self.isObserver : NO;
+}
+
+- (void) convertTaskOwnerToTeamInfo: (ProjectTaskOwner*) projectOwner
+{
+    self.userId                = projectOwner.ownerID ? projectOwner.ownerID : @(-1);
+    self.firstName             = projectOwner.firstName     ? projectOwner.firstName   : @"";
+    self.lastName              = projectOwner.lastName      ? projectOwner.lastName    : @"";
+    self.fullname              = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+    self.email                 = projectOwner.email         ? projectOwner.email       : @"";
+    self.phoneNumber           = projectOwner.phoneNumber   ? projectOwner.phoneNumber : @"";
+    self.additionalPhoneNumber = @"";
+    self.role                  = @"";
+    self.avatarSrc             = projectOwner.avatarSrc     ? projectOwner.avatarSrc   : @"";
+    self.projectPermission     = @(-2);
+    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
+    self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
+    self.isObserver             = self.isObserver ? self.isObserver : NO;
+}
+
+- (void) convertTaskResponsibleToTeamInfo: (ProjectTaskResponsible*) taskResponsible
+{
+    self.userId                = taskResponsible.responsibleID ? taskResponsible.responsibleID : @(-1);
+    self.firstName             = taskResponsible.firstName     ? taskResponsible.firstName   : @"";
+    self.lastName              = taskResponsible.lastName      ? taskResponsible.lastName    : @"";
+    self.fullname              = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
+    self.avatarSrc             = taskResponsible.avatarSrc     ? taskResponsible.avatarSrc   : @"";
+    self.projectPermission     = @(-2);
+    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
+    self.isClaiming            = self.isClaiming ? self.isClaiming : NO;
+    self.isObserver            = self.isObserver ? self.isObserver : NO;
 }
 
 @end

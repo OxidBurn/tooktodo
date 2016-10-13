@@ -15,6 +15,7 @@
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectRoles+CoreDataProperties.h"
 #import "ProjectRoleType+CoreDataProperties.h"
+#import "ProjectTaskOwner.h"
 #import "UserInfo.h"
 
 @interface FilledTeamInfo : NSObject
@@ -39,5 +40,10 @@
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 
 - (void) convertUserToTeamInfo: (UserInfo*) user;
+
+- (void) convertTaskOwnerToTeamInfo: (ProjectTaskOwner*) projectOwner;
+
+- (void) convertTaskResponsibleToTeamInfo: (ProjectTaskResponsible*) taskResponsible;
+
 
 @end

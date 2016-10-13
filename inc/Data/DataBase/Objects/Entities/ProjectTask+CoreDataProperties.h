@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/5/16.
+//  Created by Nikolay Chaban on 10/12/16.
 //
 //
 
@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *isAllRooms;
 @property (nullable, nonatomic, copy) NSNumber *isExpired;
 @property (nullable, nonatomic, copy) NSNumber *isIncludedRestDays;
+@property (nullable, nonatomic, copy) NSNumber *isSelected;
 @property (nullable, nonatomic, copy) NSNumber *isTaskStatusChanged;
 @property (nullable, nonatomic, copy) NSNumber *isUrgent;
 @property (nullable, nonatomic, copy) NSString *mapPreviewImage;
@@ -43,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nullable, nonatomic, copy) NSNumber *isSelected;
+@property (nullable, nonatomic, copy) NSNumber *commentsCount;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;

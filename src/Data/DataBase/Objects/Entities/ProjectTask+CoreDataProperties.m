@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/5/16.
+//  Created by Nikolay Chaban on 10/12/16.
 //
 //
 
@@ -24,6 +24,7 @@
 @dynamic isAllRooms;
 @dynamic isExpired;
 @dynamic isIncludedRestDays;
+@dynamic isSelected;
 @dynamic isTaskStatusChanged;
 @dynamic isUrgent;
 @dynamic mapPreviewImage;
@@ -42,7 +43,7 @@
 @dynamic taskType;
 @dynamic taskTypeDescription;
 @dynamic title;
-@dynamic isSelected;
+@dynamic commentsCount;
 @dynamic marker;
 @dynamic ownerUser;
 @dynamic project;
