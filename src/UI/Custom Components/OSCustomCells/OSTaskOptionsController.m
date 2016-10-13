@@ -73,17 +73,10 @@
     [self dismissViewControllerAnimated: YES
                              completion: ^{
                                  
-                                 UIViewController* topContorller = [UIViewController topMostController];
-                                 
-                                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
-                                                                                      bundle: nil];
-                                 
-                                 UINavigationController* addTaskNavController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
-                                 
-                                 
-                                 [topContorller presentViewController: addTaskNavController
-                                                             animated: YES
-                                                           completion: nil];
+                                 if ( [self.delegate respondsToSelector: @selector(onShowAddNewTaskScreen)] )
+                                 {
+                                     [self.delegate onShowAddNewTaskScreen];
+                                 }
                                  
                              }];
 }

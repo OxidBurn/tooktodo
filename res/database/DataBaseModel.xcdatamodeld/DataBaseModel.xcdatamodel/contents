@@ -141,7 +141,7 @@
         <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="task" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="tasks" inverseEntity="ProjectTaskStage" syncable="YES"/>
-        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskSubTasks" inverseName="task" inverseEntity="ProjectTaskSubTasks" syncable="YES"/>
+        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="taskRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignments" inverseName="task" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
         <relationship name="workArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="task" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
     </entity>
@@ -261,9 +261,6 @@
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="stage" inverseEntity="ProjectInfo" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="stage" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
-    <entity name="ProjectTaskSubTasks" representedClassName="ProjectTaskSubTasks" syncable="YES">
-        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
-    </entity>
     <entity name="ProjectTaskWorkArea" representedClassName="ProjectTaskWorkArea" syncable="YES">
         <attribute name="hasTasks" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="shortTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -346,7 +343,6 @@
         <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="210"/>
         <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="165"/>
         <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="150"/>
-        <element name="ProjectTaskSubTasks" positionX="-18" positionY="126" width="128" height="60"/>
         <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="120"/>
         <element name="RoomLevelMap" positionX="-45" positionY="99" width="128" height="165"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>

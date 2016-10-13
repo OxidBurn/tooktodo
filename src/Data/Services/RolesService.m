@@ -146,6 +146,11 @@ static bool isFirstAccess = YES;
     return fetchDefaultRolesSignal;
 }
 
+- (RACSignal*) addNewRoleForCurrentProjectWithTitle: (NSString*) roleTitle
+{
+    return [RACSignal empty];
+}
+
 
 #pragma mark - Internal methods -
 

@@ -18,6 +18,6 @@
 
 @protocol OSTaskOptionsControllerDelegate <NSObject>
 
-- (void) showAnotherScreen;
+- (void) onShowAddNewTaskScreen;
 
 @end

@@ -23,12 +23,13 @@
 
 @property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *addNewRoleBtn;
 @property (strong, nonatomic) AboutProjectViewModel* viewModel;
 
 // methods
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender;
-
 
 @end
 
@@ -36,7 +37,7 @@
 
 #pragma mark - Life cycle -
 
-- (void)loadView
+- (void) loadView
 {
     [super loadView];
     
@@ -53,7 +54,6 @@
 
 
 #pragma mark - Memory managment -
-
 
 - (void) didReceiveMemoryWarning
 {
@@ -97,16 +97,22 @@
     if ( sender.selectedSegmentIndex == 1 )
     {
         [self showInfoScreenWithID: @"GoToRoles"];
+        
+        self.addNewRoleBtn.hidden = NO;
     }
     
     else if ( sender.selectedSegmentIndex == 0 )
     {
         [self showInfoScreenWithID: @"GoToProjInformation"];
+        
+        self.addNewRoleBtn.hidden = YES;
     }
     
     else
     {
         [self showInfoScreenWithID: @"GoToSystemInfo"];
+        
+        self.addNewRoleBtn.hidden = YES;
     }
     
 }

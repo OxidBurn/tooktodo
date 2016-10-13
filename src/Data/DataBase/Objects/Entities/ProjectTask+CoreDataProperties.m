@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/12/16.
+//  Created by Nikolay Chaban on 10/13/16.
 //
 //
 
@@ -17,6 +17,7 @@
 @dynamic access;
 @dynamic attachments;
 @dynamic closedDate;
+@dynamic commentsCount;
 @dynamic descriptionValue;
 @dynamic duration;
 @dynamic endDate;
@@ -43,7 +44,6 @@
 @dynamic taskType;
 @dynamic taskTypeDescription;
 @dynamic title;
-@dynamic commentsCount;
 @dynamic marker;
 @dynamic ownerUser;
 @dynamic project;

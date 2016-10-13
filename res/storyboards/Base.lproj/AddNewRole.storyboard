@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Y0o-Ww-aPC">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--ДОБАВИТЬ РОЛЬ-->
+        <scene sceneID="9V8-83-n0q">
+            <objects>
+                <viewController id="W1w-bh-GFm" customClass="AddNewRoleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rBh-6S-exy"/>
+                        <viewControllerLayoutGuide type="bottom" id="TsK-H1-SRB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3mj-dl-oHf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkF-Ge-vOC">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamGreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VFQ-C7-GNa">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="5MM-tx-e7x"/>
+                                            <constraint firstAttribute="width" constant="29" id="gOu-4d-9qs"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Роль" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fWy-gd-Lai">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="K6L-Xz-x6L"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fWy-gd-Lai" secondAttribute="trailing" constant="8" id="4hh-gv-K2s"/>
+                                    <constraint firstAttribute="height" constant="62" id="CEw-vB-yGs"/>
+                                    <constraint firstItem="fWy-gd-Lai" firstAttribute="leading" secondItem="VFQ-C7-GNa" secondAttribute="trailing" constant="8" id="Cax-lL-aWM"/>
+                                    <constraint firstItem="VFQ-C7-GNa" firstAttribute="leading" secondItem="gkF-Ge-vOC" secondAttribute="leading" constant="15" id="HdB-JQ-N6h"/>
+                                    <constraint firstItem="VFQ-C7-GNa" firstAttribute="top" secondItem="gkF-Ge-vOC" secondAttribute="top" constant="19" id="gKl-V2-SXF"/>
+                                    <constraint firstItem="fWy-gd-Lai" firstAttribute="centerY" secondItem="gkF-Ge-vOC" secondAttribute="centerY" id="gRC-5n-q0P"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gkF-Ge-vOC" secondAttribute="trailing" id="4f2-T4-JDV"/>
+                            <constraint firstItem="gkF-Ge-vOC" firstAttribute="leading" secondItem="3mj-dl-oHf" secondAttribute="leading" id="kpt-1C-LTQ"/>
+                            <constraint firstItem="gkF-Ge-vOC" firstAttribute="top" secondItem="rBh-6S-exy" secondAttribute="bottom" id="vHy-oe-Pg4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="ДОБАВИТЬ РОЛЬ" id="lq2-SO-ayt">
+                        <barButtonItem key="leftBarButtonItem" title="Отменить" id="YP8-fh-9xJ">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onDismiss:" destination="W1w-bh-GFm" id="2T5-g8-8mX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Создать" id="KRK-af-qUg">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onCreateNewRole:" destination="W1w-bh-GFm" id="Y2u-UD-4dA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="createNewRoleBtn" destination="KRK-af-qUg" id="9d5-vl-cj5"/>
+                        <outlet property="newRoleTextField" destination="fWy-gd-Lai" id="QU2-Pu-tcX"/>
+                        <outlet property="roleTitleTextField" destination="fWy-gd-Lai" id="kAO-31-gCU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rsS-1h-ukv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063.2" y="49.925037481259373"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ENh-Oc-YOZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y0o-Ww-aPC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ddS-iV-NTk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="W1w-bh-GFm" kind="relationship" relationship="rootViewController" id="P89-Ra-rvI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0WT-TL-cbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="49.925037481259373"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TeamGreenIcon" width="29" height="22"/>
+    </resources>
+</document>

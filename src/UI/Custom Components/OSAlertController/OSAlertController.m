@@ -89,6 +89,8 @@
                                                               bundle: [NSBundle mainBundle]];
     OSTaskOptionsController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsControllerID"];
     
+    alertController.delegate = controller;
+    
     [controller presentViewController: alertController
                              animated: YES
                            completion: nil];
