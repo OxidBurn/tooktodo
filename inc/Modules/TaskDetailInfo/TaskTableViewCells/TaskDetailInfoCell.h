@@ -19,7 +19,6 @@
 
 //properties
 @property (nonatomic, weak) id<TaskDetailCellDelegate> delegate;
-@property (nonatomic, weak) id<TaskDetailCellDataSouce> dataSource;
 
 // methods
 - (void) fillCellWithContent: (TaskRowContent*) content;
@@ -32,8 +31,3 @@
 
 @end
 
-@protocol TaskDetailCellDataSouce <NSObject>
-
-- (TaskStatusType) changeStatusType;
-
-@end

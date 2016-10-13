@@ -12,13 +12,18 @@
 #import "DataManager+Tasks.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
+#import "TaskDetailModel.h"
 
-@interface ChangeStatusModel()
+@interface ChangeStatusModel() <TaskDetailModelDelegate>
 
 // properties
 @property (nonatomic, strong) NSArray* statusesArray;
 
 @property (nonatomic, assign) TaskStatusType statusType;
+
+@property (nonatomic, strong) ProjectTask* task;
+
+@property (nonatomic, assign) TaskStatusType currentStatus;
 
 // methods
 
@@ -65,7 +70,7 @@
             
         case TaskOnCompletionStatusType:
         {
-            statusName = @"На доработке";
+            statusName = @"Доработка";
         }
             break;
             
@@ -201,4 +206,14 @@
     return self.statusesArray.count;
 }
 
+- (TaskStatusType) getCurrentStatus
+{
+    self.task = [DataManagerShared getSelectedTask];
+    
+    self.currentStatus = self.task.status.integerValue;
+    
+    return self.currentStatus;
+}
+
 @end
+

@@ -47,10 +47,15 @@
                                            inSection: 0];
 }
 
+- (TaskStatusType) getCurrentStatusType
+{
+    return [self.model getCurrentStatus];
+}
+
 - (void) getChangedInfo: (GetChangedStatusBlock) completion
 {
     NSString* statusName  = [self.model getStatusName: self.selectedCell.row];
-    UIColor*  background   = [self.model getBackgroundColor: self.selectedCell.row];
+    UIColor*  background  = [self.model getBackgroundColor: self.selectedCell.row];
     UIImage*  statusImage = [self.model getStatusImage: self.selectedCell.row];
     
     if (completion) {
@@ -100,9 +105,22 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-   // CellWithBackground* cell = [tableView cellForRowAtIndexPath: indexPath];
+     self.selectedCell = indexPath;
     
-    self.selectedCell = indexPath;
+    
+    if ([self.model getCurrentStatus] == TaskOnApprovingStatusType)
+    {
+        if (self.selectedCell.row == TaskOnCompletionStatusType)
+        {
+            NSLog(@"lol");
+            if (self.dismissController)
+                self.dismissController();
+        }
+    }
+    
+    
+   
+
 }
 
 

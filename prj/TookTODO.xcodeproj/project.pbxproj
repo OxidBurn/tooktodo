@@ -317,6 +317,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		CFEBC5CC1DAF9B0B0007493A /* OnRevisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEBC5CB1DAF9B0B0007493A /* OnRevisionViewController.m */; };
+		CFEBC5CF1DAF9B260007493A /* OnRevisionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEBC5CE1DAF9B260007493A /* OnRevisionViewModel.m */; };
+		CFEBC5D21DAF9B360007493A /* OnRevisionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEBC5D11DAF9B360007493A /* OnRevisionModel.m */; };
 		CFF780F61DAD45D1009AFCFE /* CellWithBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F21DAD45D1009AFCFE /* CellWithBackground.m */; };
 		CFF780F71DAD45D1009AFCFE /* ChangeStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F31DAD45D1009AFCFE /* ChangeStatusModel.m */; };
 		CFF780F81DAD45D1009AFCFE /* ChangeStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF780F41DAD45D1009AFCFE /* ChangeStatusViewController.m */; };
@@ -956,6 +959,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CFEBC5CB1DAF9B0B0007493A /* OnRevisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnRevisionViewController.m; sourceTree = "<group>"; };
+		CFEBC5CE1DAF9B260007493A /* OnRevisionViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnRevisionViewModel.m; sourceTree = "<group>"; };
+		CFEBC5D11DAF9B360007493A /* OnRevisionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnRevisionModel.m; sourceTree = "<group>"; };
+		CFEBC5D31DAF9B710007493A /* OnRevisionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnRevisionModel.h; sourceTree = "<group>"; };
+		CFEBC5D41DAF9B710007493A /* OnRevisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnRevisionViewController.h; sourceTree = "<group>"; };
+		CFEBC5D51DAF9B710007493A /* OnRevisionViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnRevisionViewModel.h; sourceTree = "<group>"; };
 		CFF780F21DAD45D1009AFCFE /* CellWithBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellWithBackground.m; sourceTree = "<group>"; };
 		CFF780F31DAD45D1009AFCFE /* ChangeStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeStatusModel.m; sourceTree = "<group>"; };
 		CFF780F41DAD45D1009AFCFE /* ChangeStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeStatusViewController.m; sourceTree = "<group>"; };
@@ -2706,6 +2715,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CFEBC5C81DAF9AC90007493A /* ForRevision */ = {
+			isa = PBXGroup;
+			children = (
+				CFEBC5CB1DAF9B0B0007493A /* OnRevisionViewController.m */,
+				CFEBC5CE1DAF9B260007493A /* OnRevisionViewModel.m */,
+				CFEBC5D11DAF9B360007493A /* OnRevisionModel.m */,
+			);
+			path = ForRevision;
+			sourceTree = "<group>";
+		};
+		CFEBC5C91DAF9AE00007493A /* ForRevision */ = {
+			isa = PBXGroup;
+			children = (
+				CFEBC5D31DAF9B710007493A /* OnRevisionModel.h */,
+				CFEBC5D41DAF9B710007493A /* OnRevisionViewController.h */,
+				CFEBC5D51DAF9B710007493A /* OnRevisionViewModel.h */,
+			);
+			path = ForRevision;
+			sourceTree = "<group>";
+		};
 		CFF780F11DAD45D1009AFCFE /* TaskStatus */ = {
 			isa = PBXGroup;
 			children = (
@@ -2731,6 +2760,7 @@
 		F7ED83B11DAD289600CF76D7 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFEBC5C81DAF9AC90007493A /* ForRevision */,
 				CFF780F11DAD45D1009AFCFE /* TaskStatus */,
 				F7ED83C51DAD289600CF76D7 /* TaskDetailViewController.m */,
 				F7ED83C61DAD289600CF76D7 /* TaskDetailViewModel.m */,
@@ -2821,6 +2851,7 @@
 		F7ED83FC1DAD28A000CF76D7 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFEBC5C91DAF9AE00007493A /* ForRevision */,
 				CFF780FA1DAD45F1009AFCFE /* TaskStatus */,
 				F7ED84101DAD28A000CF76D7 /* TaskDetailViewController.h */,
 				F7ED84111DAD28A000CF76D7 /* TaskDetailViewModel.h */,
@@ -3221,6 +3252,7 @@
 				5664A2F01DA3C63100344879 /* ProjectTaskAssignee+CoreDataClass.m in Sources */,
 				5664A3701DA3C63100344879 /* OfflineSettingsItem.m in Sources */,
 				5664A31F1DA3C63100344879 /* TaskOwnerModel.m in Sources */,
+				CFEBC5CC1DAF9B0B0007493A /* OnRevisionViewController.m in Sources */,
 				5664A30C1DA3C63100344879 /* UserInfo+CoreDataProperties.m in Sources */,
 				5664A3311DA3C63100344879 /* UserInfoService.m in Sources */,
 				5664A3411DA3C63100344879 /* InformationViewModel.m in Sources */,
@@ -3239,6 +3271,7 @@
 				5664A3081DA3C63100344879 /* ProjectTaskWorkArea+CoreDataProperties.m in Sources */,
 				F7ED83EE1DAD289600CF76D7 /* CollectionCellModel.m in Sources */,
 				5664A3011DA3C63100344879 /* ProjectTaskRoom+CoreDataProperties.m in Sources */,
+				CFEBC5CF1DAF9B260007493A /* OnRevisionViewModel.m in Sources */,
 				5664A39F1DA3C63200344879 /* UserNotificationCell.m in Sources */,
 				5664A2E81DA3C63100344879 /* ProjectRoles+CoreDataProperties.m in Sources */,
 				5664A2F91DA3C63100344879 /* ProjectTaskResponsible+CoreDataProperties.m in Sources */,
@@ -3293,6 +3326,7 @@
 				5664A3BE1DA3C63200344879 /* OSAlertViewController.m in Sources */,
 				5664A3251DA3C63100344879 /* TaskRoomModel.m in Sources */,
 				CFF780F91DAD45D1009AFCFE /* ChangeStatusViewModel.m in Sources */,
+				CFEBC5D21DAF9B360007493A /* OnRevisionModel.m in Sources */,
 				5664A3D61DA3C63200344879 /* LabelWithRoundCorners.m in Sources */,
 				5664A3BD1DA3C63200344879 /* OSAlertPlanNotLoadedViewModel.m in Sources */,
 				5664A2EF1DA3C63100344879 /* ProjectTask+CoreDataProperties.m in Sources */,

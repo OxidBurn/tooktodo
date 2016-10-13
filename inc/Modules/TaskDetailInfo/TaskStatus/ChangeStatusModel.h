@@ -19,4 +19,8 @@
 
 - (UIImage*) getStatusImage: (TaskStatusType) statusType;
 
+//- (void) fillCurrentStatus: (TaskStatusType) status;
+
+- (TaskStatusType) getCurrentStatus;
+
 @end

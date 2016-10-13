@@ -11,6 +11,9 @@
 // Frameworks
 @import UIKit;
 
+//Classes
+#import "ProjectsEnumerations.h"
+
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 // properties
@@ -19,5 +22,7 @@
 
 // methods
 - (void) deselectTask;
+
+- (TaskStatusType) getTaskStatus;
 
 @end

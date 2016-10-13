@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProjectsEnumerations.h"
 
 @protocol TaskDetailModelDelegate;
 
@@ -31,6 +32,8 @@
 
 - (CGFloat) returnHeaderHeight;
 
+- (TaskStatusType) getTaskStatus;
+
 - (void) deselectTask;
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
@@ -39,6 +42,10 @@
 
 @protocol TaskDetailModelDelegate <NSObject>
 
+@optional
+
 - (void) reloadData;
+
+- (void) fillCurrentTaskStatus: (TaskStatusType) currentStatus;
 
 @end

@@ -13,8 +13,12 @@
 
 typedef void (^GetChangedStatusBlock)(NSString* statusName, TaskStatusType statusType, UIColor* background, UIImage* statusImage);
 
+@property (nonatomic, copy) void(^dismissController)();
+
 - (void) getChangedInfo: (GetChangedStatusBlock) completion;
 
 - (void) fillSelectedStatusType: (TaskStatusType) status;
+
+- (TaskStatusType) getCurrentStatusType;
 
 @end

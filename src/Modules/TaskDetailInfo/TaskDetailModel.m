@@ -120,6 +120,7 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     return _task;
 }
 
+
 - (NSArray*) rowsHeighsArray
 {
     if ( _rowsHeighsArray == nil )
@@ -131,6 +132,12 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
 }
 
 #pragma mark - Public -
+
+- (TaskStatusType) getTaskStatus
+{
+    return self.task.status.integerValue;
+}
+
 
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section
 {
@@ -189,8 +196,6 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
             
             cell = [factory returnTaskDetailCellWithContent: content
                                                forTableView: tableView];
-            
-            
             
         }
             break;
@@ -427,32 +432,32 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     return number.floatValue;
 }
 
-#pragma mark - ChangeStatusControllerDelegate methods -
-
-- (void) didChangedTaskStatus: (TaskStatusType) statustType
-                     withName: (NSString*)      statusName
-                    withImage: (UIImage*)       statusImage
-          withBackGroundColor: (UIColor*)       background
-{
-    self.task.statusDescription = statusName;
-    self.task.status = @(statustType);
-    
-    TaskRowContent* row = self.taskTableViewContent[SectionOne][TaskNameRow];
-    
-    row.status = statustType;
-    row.statusDescription = statusName;
-    
-    [self updateContentWithRow: row
-                     inSection: SectionThree
-                         inRow: TaskNameRow];
-
-    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
-    {
-        [self.delegate reloadData];
-    }
-
-    
-}
+//#pragma mark - ChangeStatusControllerDelegate methods -
+//
+//- (void) didChangedTaskStatus: (TaskStatusType) statustType
+//                     withName: (NSString*)      statusName
+//                    withImage: (UIImage*)       statusImage
+//          withBackGroundColor: (UIColor*)       background
+//{
+//    self.task.statusDescription = statusName;
+//    self.task.status = @(statustType);
+//    
+//    TaskRowContent* row = self.taskTableViewContent[SectionOne][TaskNameRow];
+//    
+//    row.status = statustType;
+//    row.statusDescription = statusName;
+//    
+//    [self updateContentWithRow: row
+//                     inSection: SectionThree
+//                         inRow: TaskNameRow];
+//
+//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+//    {
+//        [self.delegate reloadData];
+//    }
+//
+//    
+//}
 
 #pragma mark - Helpers -
 

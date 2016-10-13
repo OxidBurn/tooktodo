@@ -10,8 +10,9 @@
 
 // Classes
 #import "TaskDetailViewModel.h"
+#import "ChangeStatusViewController.h"
 
-@interface TaskDetailViewController () 
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
@@ -54,6 +55,27 @@
     return _viewModel;
 }
 
+#pragma mark - Public -
+
+- (TaskStatusType) getStatusType
+{
+    return [self.viewModel getTaskStatus];
+}
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id) sender
+{
+    if ([segue.identifier isEqualToString: @"ShowStatusList"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
+        
+        vc.delegate = self;
+    }
+}
+
 #pragma mark - Actions -
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
@@ -66,6 +88,14 @@
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender
 {
     
+}
+
+#pragma mark - ChangeStatusControllerDelegate methods -
+
+- (void) performSegueWithID: (NSString*) segueID
+{
+    [self performSegueWithIdentifier: segueID
+                              sender: self];
 }
 
 #pragma mark - Helpers -
@@ -92,5 +122,6 @@
                                        sender: blockSelf];
     };
 }
+
 
 @end

@@ -41,6 +41,13 @@
     return _model;
 }
 
+#pragma mark - Public -
+
+- (TaskStatusType) getTaskStatus
+{
+    return [self.model getTaskStatus];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

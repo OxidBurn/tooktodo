@@ -34,6 +34,24 @@
     
     self.statusesTableView.dataSource = self.viewModel;
     self.statusesTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.dismissController = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: NO
+                                      completion: ^{
+                                          
+                                          if ([blockSelf.delegate respondsToSelector:@selector(performSegueWithID:)])
+                                          {
+                                              [blockSelf.delegate performSegueWithID: @"ShowOnRevisionController"];
+                                          }
+                                          
+                                          
+                                      }];
+        
+    };
+
 }
 
 
@@ -63,7 +81,7 @@
 {
     __weak typeof(self) blockSelf = self;
     
-    [self.viewModel getChangedInfo:^(NSString *statusName, TaskStatusType statusType, UIColor *background, UIImage *statusImage) {
+    [self.viewModel getChangedInfo: ^(NSString *statusName, TaskStatusType statusType, UIColor *background, UIImage *statusImage) {
         
         if ([blockSelf.delegate respondsToSelector: @selector(didChangedTaskStatus:withName:withImage:withBackGroundColor:)])
         {

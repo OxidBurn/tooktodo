@@ -28,9 +28,14 @@
 
 @protocol ChangeStatusControllerDelegate <NSObject>
 
+@optional
+
+- (void) performSegueWithID: (NSString*) segueID;
+
 - (void) didChangedTaskStatus: (TaskStatusType) statustType
                      withName: (NSString*)      statusName
                     withImage: (UIImage*)       statusImage
           withBackGroundColor: (UIColor*)       background;
+
 
 @end

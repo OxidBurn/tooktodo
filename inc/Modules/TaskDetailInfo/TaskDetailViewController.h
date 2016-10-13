@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProjectsEnumerations.h"
 
 @interface TaskDetailViewController : UIViewController
+
+- (TaskStatusType) getStatusType;
 
 @end
