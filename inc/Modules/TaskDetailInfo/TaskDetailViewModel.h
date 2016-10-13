@@ -11,14 +11,21 @@
 // Frameworks
 @import UIKit;
 
+//Classes
+#import "ProjectsEnumerations.h"
+
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 // properties
 @property (nonatomic, copy) void(^reloadTableView)();
+@property (nonatomic, copy) void(^performSegue)(NSString* segueID);
 
 // methods
 - (void) deselectTask;
 
 - (void) updateSecondSectionContentForType: (NSUInteger) typeIndex;
+
+- (TaskStatusType) getTaskStatus;
+
 
 @end

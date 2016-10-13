@@ -11,8 +11,9 @@
 // Classes
 #import "TaskDetailViewModel.h"
 #import "ProjectsEnumerations.h"
+#import "ChangeStatusViewController.h"
 
-@interface TaskDetailViewController ()
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
@@ -38,7 +39,7 @@
 
 #pragma mark - Lyfe cycle -
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
@@ -60,6 +61,27 @@
     }
     
     return _viewModel;
+}
+
+#pragma mark - Public -
+
+- (TaskStatusType) getStatusType
+{
+    return [self.viewModel getTaskStatus];
+}
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id) sender
+{
+    if ([segue.identifier isEqualToString: @"ShowStatusList"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
+        
+        vc.delegate = self;
+    }
 }
 
 #pragma mark - Actions -
@@ -91,6 +113,15 @@
     [self.viewModel updateSecondSectionContentForType: SubtasksContentType];
 }
 
+
+#pragma mark - ChangeStatusControllerDelegate methods -
+
+- (void) performSegueWithID: (NSString*) segueID
+{
+    [self performSegueWithIdentifier: segueID
+                              sender: self];
+}
+
 #pragma mark - Helpers -
 
 - (void) setupDefaults
@@ -108,6 +139,13 @@
         [blockSelf.taskTableView reloadData];
         
     };
+    
+    self.viewModel.performSegue = ^(NSString* segueID){
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
 }
+
 
 @end

@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProjectsEnumerations.h"
+
+@protocol TaskDetailModelDelegate;
 
 @interface TaskDetailModel : NSObject
+
+//Properties
+
+@property (nonatomic, weak) id<TaskDetailModelDelegate> delegate;
 
 // methods
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;
@@ -25,8 +32,20 @@
 
 - (CGFloat) returnHeaderHeight;
 
+- (TaskStatusType) getTaskStatus;
+
 - (void) deselectTask;
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
+
+@end
+
+@protocol TaskDetailModelDelegate <NSObject>
+
+@optional
+
+- (void) reloadData;
+
+- (void) fillCurrentTaskStatus: (TaskStatusType) currentStatus;
 
 @end

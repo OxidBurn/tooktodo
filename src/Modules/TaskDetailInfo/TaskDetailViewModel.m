@@ -13,8 +13,10 @@
 #import "TaskDescriptionCell.h"
 #import "TaskInfoHeaderView.h"
 #import "ProjectsEnumerations.h"
+#import "TaskInfoFooterView.h"
+#import "TaskDetailInfoCell.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -56,6 +58,13 @@
     return _headerView;
 }
 
+#pragma mark - Public -
+
+- (TaskStatusType) getTaskStatus
+{
+    return [self.model getTaskStatus];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -74,8 +83,19 @@
 {
     self.tableView = tableView;
     
-    return [self.model createCellForTableView: tableView
-                                 forIndexPath: indexPath];
+    UITableViewCell* cell = [self.model createCellForTableView: tableView
+                                                 forIndexPath: indexPath];
+    
+    //Cheking if cell is TaskDetail info, then set viewmodel its delegate
+    if ([cell isKindOfClass: [TaskDetailInfoCell class]])
+    {
+       TaskDetailInfoCell* detailCell = (TaskDetailInfoCell*)cell;
+        
+        detailCell.delegate   = self;
+        
+    }
+    
+    return cell;
 }
 
 - (CGFloat)   tableView: (UITableView*) tableView
@@ -139,6 +159,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
                   withRowAnimation: UITableViewRowAnimationFade];
+}
+
+#pragma mark - TaskDetailCellDelegate methods -
+
+- (void) performSegueWithID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
 }
 
 @end

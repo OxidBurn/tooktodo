@@ -17,6 +17,7 @@
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
+#import "ChangeStatusViewController.h"
 
 // Helpers
 #import "Utils.h"
@@ -46,7 +47,25 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
 };
 
-@interface TaskDetailModel()
+typedef NS_ENUM(NSUInteger, SectionsList) {
+    
+    SectionOne,
+    SectionTwo,
+    SectionThree,
+    
+};
+
+typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
+    
+    TaskNameRow,
+    TaskDescriptionRow,
+    TaskHiddenStatusRow,
+    CollectionRow,
+    
+};
+
+
+@interface TaskDetailModel() <ChangeStatusControllerDelegate>
 
 // properties
 @property (strong, nonatomic) ProjectTask* task;
@@ -110,6 +129,7 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     return _task;
 }
 
+
 - (NSArray*) rowsHeighsArray
 {
     if ( _rowsHeighsArray == nil )
@@ -121,6 +141,12 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 }
 
 #pragma mark - Public -
+
+- (TaskStatusType) getTaskStatus
+{
+    return self.task.status.integerValue;
+}
+
 
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section
 {
@@ -457,5 +483,54 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
 {
     return number.floatValue;
 }
+
+//#pragma mark - ChangeStatusControllerDelegate methods -
+//
+//- (void) didChangedTaskStatus: (TaskStatusType) statustType
+//                     withName: (NSString*)      statusName
+//                    withImage: (UIImage*)       statusImage
+//          withBackGroundColor: (UIColor*)       background
+//{
+//    self.task.statusDescription = statusName;
+//    self.task.status = @(statustType);
+//    
+//    TaskRowContent* row = self.taskTableViewContent[SectionOne][TaskNameRow];
+//    
+//    row.status = statustType;
+//    row.statusDescription = statusName;
+//    
+//    [self updateContentWithRow: row
+//                     inSection: SectionThree
+//                         inRow: TaskNameRow];
+//
+//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
+//    {
+//        [self.delegate reloadData];
+//    }
+//
+//    
+//}
+
+#pragma mark - Helpers -
+
+- (void) updateContentWithRow: (TaskRowContent*) newRow
+                    inSection: (NSUInteger) section
+                        inRow: (NSUInteger) row
+{
+    NSArray* sectionContent = self.taskTableViewContent[section];
+    
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.taskTableViewContent];
+    
+    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    
+    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    
+    sectionContent = [sectionCopy copy];
+    
+    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    
+    self.taskTableViewContent = [contentCopy copy];
+}
+
 
 @end
