@@ -47,7 +47,6 @@
                                               [blockSelf.delegate performSegueWithID: @"ShowOnRevisionController"];
                                           }
                                           
-                                          
                                       }];
         
     };
