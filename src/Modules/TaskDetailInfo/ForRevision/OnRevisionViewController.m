@@ -10,12 +10,23 @@
 
 @interface OnRevisionViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *onRevisionTableView;
+- (IBAction)onBack:(UIBarButtonItem *)sender;
 
+
+- (IBAction)onReady:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UITextView *commentTextView;
+@property (weak, nonatomic) IBOutlet UIView *documentView;
+@property (weak, nonatomic) IBOutlet UIButton *onDocumentAttach;
+@property (weak, nonatomic) IBOutlet UILabel *documentNameLablel;
 
 @end
 
 @implementation OnRevisionViewController
 
 
+- (IBAction)onBack:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)onReady:(UIBarButtonItem *)sender {
+}
 @end

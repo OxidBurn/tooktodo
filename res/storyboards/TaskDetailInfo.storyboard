@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E69-tF-D1Q">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E69-tF-D1Q">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -269,7 +269,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpY-k7-Czm">
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpY-k7-Czm">
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="Pty-IF-Y3I"/>
@@ -278,6 +278,9 @@
                                                     <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onChangeStatusBtn:" destination="PQs-zN-kZz" eventType="touchUpInside" id="g4F-G6-4dJ"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YB4-vY-Aah">
                                                     <constraints>
@@ -299,7 +302,7 @@
                                                         <constraint firstAttribute="width" constant="100" id="cta-hd-Z6g"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Прокладка теплового кабеля под длинным тунелем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9K4-bi-W1R">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Прокладка теплового кабеля под длинным тунелем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9K4-bi-W1R">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="53" id="Tsw-he-i9r"/>
                                                     </constraints>
@@ -344,7 +347,7 @@
                                                 <constraint firstItem="cn8-QF-aQ0" firstAttribute="leading" secondItem="LEE-zN-jvW" secondAttribute="trailing" constant="4" id="QOV-C6-bz4"/>
                                                 <constraint firstItem="GbN-j6-Jhc" firstAttribute="leading" secondItem="NYF-o6-7a7" secondAttribute="trailing" constant="15" id="RTV-eS-SQe"/>
                                                 <constraint firstItem="rr0-qs-DPp" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="S9h-yT-Zm2"/>
-                                                <constraint firstItem="Z0k-sh-YxB" firstAttribute="trailing" secondItem="OpY-k7-Czm" secondAttribute="trailing" constant="-21" id="Sam-jT-rvu"/>
+                                                <constraint firstItem="Z0k-sh-YxB" firstAttribute="trailing" secondItem="OpY-k7-Czm" secondAttribute="trailing" constant="-38" id="Sam-jT-rvu"/>
                                                 <constraint firstItem="LEE-zN-jvW" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="Vj6-79-CDj"/>
                                                 <constraint firstItem="LEE-zN-jvW" firstAttribute="leading" secondItem="3od-cv-Hzp" secondAttribute="trailing" constant="10" id="WQG-PL-Xnk"/>
                                                 <constraint firstItem="NYF-o6-7a7" firstAttribute="top" secondItem="XeL-9Y-kfO" secondAttribute="top" constant="19" id="XSM-Cf-WFm"/>
@@ -2229,7 +2232,9 @@
                     <size key="freeformSize" width="375" height="1700"/>
                     <connections>
                         <outlet property="taskTableView" destination="XoG-HG-uD3" id="ux8-AC-2p3"/>
-                        <segue destination="911-V3-2Tc" kind="show" identifier="ShowStatusList" id="fGK-8y-VT2"/>
+                        <segue destination="911-V3-2Tc" kind="presentation" identifier="ShowStatusList" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="fGK-8y-VT2"/>
+                        <segue destination="ebY-tn-E3Y" kind="show" identifier="ShowOnRevisionController" id="Q2X-wQ-gEw"/>
+                        <segue destination="p29-rA-7NC" kind="show" id="Bwi-vQ-87x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cot-IS-PRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2249,7 +2254,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2074" y="1"/>
+            <point key="canvasLocation" x="2072.8000000000002" y="0.89955022488755632"/>
         </scene>
         <!--TaskStatusNav-->
         <scene sceneID="rZJ-xY-qyW">
@@ -2350,17 +2355,29 @@
                     <navigationItem key="navigationItem" id="3fy-8X-Vah">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="6q0-WN-DfB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBack:" destination="ebY-tn-E3Y" id="Bvz-ej-Z8E"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="5WT-wI-q3J">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onReady:" destination="ebY-tn-E3Y" id="adm-Wb-bVf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="commentTextView" destination="6uD-bs-4ef" id="jkt-xg-tY4"/>
+                        <outlet property="documentNameLablel" destination="0az-tE-sDm" id="3lJ-f2-ye2"/>
+                        <outlet property="documentView" destination="P9m-xa-UPO" id="IC2-e7-hZu"/>
+                        <outlet property="onDocumentAttach" destination="SKX-My-fv3" id="heX-w4-hWd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOm-a2-1Qn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3484" y="-258.62068965517244"/>
+            <point key="canvasLocation" x="3228" y="-278.41079460269867"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="AUY-33-Fc5">
@@ -2409,29 +2426,12 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssg-vI-TDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5407" y="-259"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3xJ-GJ-XUd">
-            <objects>
-                <navigationController id="R0o-lh-vMm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XPM-ET-0YH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="p29-rA-7NC" kind="relationship" relationship="rootViewController" id="KMO-nX-tmz"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GVK-c3-zUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4530" y="-259"/>
+            <point key="canvasLocation" x="3020" y="430"/>
         </scene>
     </scenes>
     <resources>
