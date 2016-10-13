@@ -236,8 +236,8 @@
                                                               blue: 64.0/256
                                                              alpha: 1.f];
             
-            [self.statusBtn setImage: [UIImage imageNamed: @"TaskStatusOnApproveIcon"]
-                            forState: UIControlStateNormal];
+             [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusOnApproveIcon"]];
+            
         }
             break;
             
