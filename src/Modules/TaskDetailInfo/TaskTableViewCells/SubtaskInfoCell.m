@@ -63,11 +63,27 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
-    self.taskTitleLabel.text   = content.taskTitle;
-    self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
-    [self.accessBtn setBackgroundImage: [self getBackgroundImageForTaskAccess: content.isHiddenTask]
-                                      forState: UIControlStateNormal];
+    [self.taskStatusMark setStatusString: content.taskTypeDescription
+                                withType: content.taskType];
+    
+    self.taskTitleLabel.text = content.taskTitle;
+    
+    self.statusDescriptionLabel.text = content.statusDescription;
+    
+    [self.subtaskMark setValue: content.subtasksNumber
+                      withType: TaskMarkerSubtaskType];
+    
+    [self.attachmentsMark setValue: content.attachmentsNumber
+                          withType: TaskMarkerAttachmentsType];
+    
+    [self.commentsMark setValue: content.commentsNumber
+                       withType: TaskMarkerCommentsType];
+    
 }
+
+#pragma mark - Internal -
+
+
 
 #pragma mark - Helpers -
 
@@ -86,6 +102,25 @@
     
     return image;
 }
+
+//
+//#pragma mark - Helpers -
+//
+//- (UIImage*) getBackgroundImageForTaskAccess: (BOOL) isHiddenTask
+//{
+//    UIImage* image;
+//    
+//    if ( isHiddenTask )
+//    {
+//        image = [UIImage imageNamed: @"closedEyes"];
+//    }
+//    else
+//    {
+//        image = [UIImage imageNamed: @"Eye"];
+//    }
+//    
+//    return image;
+//}
 
 
 

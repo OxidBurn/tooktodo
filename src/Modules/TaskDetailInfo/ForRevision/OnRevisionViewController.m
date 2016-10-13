@@ -10,12 +10,29 @@
 
 @interface OnRevisionViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *onRevisionTableView;
+//Outlets
+@property (weak, nonatomic) IBOutlet UITextView *commentTextView;
+@property (weak, nonatomic) IBOutlet UIView *documentView;
+@property (weak, nonatomic) IBOutlet UIButton *onDocumentAttach;
+@property (weak, nonatomic) IBOutlet UILabel *documentNameLablel;
 
+//Actions
+- (IBAction)onBack:(UIBarButtonItem *)sender;
+
+- (IBAction)onReady:(UIBarButtonItem *)sender;
 
 @end
 
 @implementation OnRevisionViewController
 
 
+- (IBAction) onBack: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+- (IBAction) onReady: (UIBarButtonItem*) sender
+{
+    
+}
 @end

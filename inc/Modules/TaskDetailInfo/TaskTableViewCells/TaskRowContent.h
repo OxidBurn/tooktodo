@@ -73,12 +73,28 @@
 
 @property (assign, nonatomic) NSUInteger commentsNumber;
 
-
-
 @property (strong, nonatomic) NSString* roomNumberMarkImageName;
 
 @property (strong, nonatomic) NSString* changeStatusMarkImageName;
 
 @property (assign, nonatomic) NSString* taskStatusMarkImageName;
+
+
+
+
+// properties for test methods
+@property (strong, nonatomic) NSString* attachmentTitle;
+
+@property (strong, nonatomic) UIImage* attachmentImage;
+
+@property (strong, nonatomic) NSString* commentAuthorName;
+
+@property (strong, nonatomic) UIImage* commentAuthorAvatar;
+
+@property (strong, nonatomic) NSString* commentText;
+
+@property (strong, nonatomic) NSDate* commentDate;
+
+
 
 @end
