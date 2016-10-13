@@ -8,6 +8,9 @@
 
 #import "AttachmentsCell.h"
 
+// Helpers
+#import "NSDate+Helper.h"
+
 @interface AttachmentsCell()
 
 // outlets
@@ -25,15 +28,15 @@
 
 @implementation AttachmentsCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+#pragma mark - Public -
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void) fillCellWithContent: (TaskRowContent*) content
+{
+    self.attachmentImageView.image = content.attachmentImage;
+    
+    self.attachmentNameLabel.text  = content.attachmentTitle;
+    
+    self.attachmentDetailLabel.text = [NSDate stringFromDate: [NSDate date]];
 }
 
 @end

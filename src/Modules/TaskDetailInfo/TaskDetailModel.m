@@ -29,6 +29,9 @@
 #import "FilterSubtaskCellFactory.h"
 #import "FilterAttachmentsCellFactory.h"
 #import "AddCommentCellFactory.h"
+#import "SubtaskInfoFactory.h"
+#import "AttachmentsCellFactory.h"
+#import "CommentsCellFactory.h"
 
 typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
@@ -176,6 +179,12 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
                                             andFont: [UIFont fontWithName: @"SFUIDisplay-Regular"
                                                                      size: 22.f]];
         
+        // limiting label height for 2 rows only
+        if ( labelSize.height > 54 )
+        {
+            labelSize.height = 54;
+        }
+        
         height = height + labelSize.height;
     }
     
@@ -273,6 +282,34 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
             cell = [factory returnAddCommentCellForTableView: tableView];
         }
             break;
+            
+        case SubtaskInfoCell:
+        {
+            SubtaskInfoFactory* factory = [SubtaskInfoFactory new];
+            
+            cell = [factory returnSubtaskInfoCellForTableView: tableView
+                                                  withContent: content];
+            
+        }
+            break;
+            
+        case AttachmentsCell:
+        {
+            AttachmentsCellFactory* factory = [AttachmentsCellFactory new];
+            
+            cell = [factory returnAttachmentsCellForTableView: tableView
+                                                  withContent: content];
+        }
+            break;
+            
+        case CommentsCell:
+        {
+            CommentsCellFactory* factory = [CommentsCellFactory new];
+            
+            cell = [factory returnCommentsCellForTableView: tableView
+                                               withContent: content];
+        }
+            break;
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -290,7 +327,7 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
 {
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
                              self.task.attachments,
-                             @(0),
+                             self.task.commentsCount,
                              @(0) ];
     
     return headerInfo;
@@ -447,7 +484,14 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     rowOne.cellId = self.tableViewCellsIdArray[FilterSubtasksCell];
     rowOne.rowHeight = 58;
     
-    return @[ rowOne ];
+    NSArray* testContent = [self createTestSubtask];
+    
+    NSMutableArray* subtasksTmp = testContent.mutableCopy;
+    
+    [subtasksTmp insertObject: rowOne
+                      atIndex: 0];
+    
+    return subtasksTmp.copy;
 }
 
 - (NSArray*) createAttachmentsContent
@@ -457,7 +501,30 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     rowOne.cellId = self.tableViewCellsIdArray[FilterAttachmentsCell];
     rowOne.rowHeight = 58;
     
-    return @[ rowOne ];
+    NSArray* testContent = [self createTestAttachment];
+    
+    NSMutableArray* attachmentsTmp = testContent.mutableCopy;
+
+    // this code will be used with real data
+//    if ( self.task.attachments )
+//    {
+//        for (int i = 0; i < self.task.attachments.intValue; i++)
+//        {
+//            TaskRowContent* newRow = [TaskRowContent new];
+//            
+//            newRow.cellId    = self.tableViewCellsIdArray[AttachmentsCell];
+//            newRow.rowHeight = 54;
+//            
+//            [attachmentsTmp addObject: newRow];
+//            
+//            // here content will be filled
+//        }
+//    }
+    
+    [attachmentsTmp insertObject:
+                  rowOne atIndex: 0];
+    
+    return attachmentsTmp.copy;
 }
 
 - (NSArray*) createCommentsContent
@@ -467,8 +534,32 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     rowOne.cellId = self.tableViewCellsIdArray[AddCommentCell];
     rowOne.rowHeight = 61;
     
-    return @[ rowOne ];
+    NSArray* testContent = [self createTestComment];
+    
+    NSMutableArray* commentsTmp = testContent.mutableCopy;
+    
+    // this code will be used with real data
+//    if ( self.task.commentsCount )
+//    {
+//        for (int i = 0; i < self.task.commentsCount.intValue; i++)
+//        {
+//            TaskRowContent* newRow = [TaskRowContent new];
+//            
+//            newRow.cellId    = self.tableViewCellsIdArray[CommentsCell];
+//            newRow.rowHeight = 129;
+//            
+//            [commentsTmp addObject: newRow];
+//            
+//            // here content will be filled
+//        }
+//    }
+    
+    [commentsTmp insertObject:
+     rowOne atIndex: 0];
+    
+    return commentsTmp.copy;
 }
+
 - (NSArray*) createSLogsContent
 {
     NSArray* content = [NSArray new];
@@ -483,33 +574,6 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
 {
     return number.floatValue;
 }
-
-//#pragma mark - ChangeStatusControllerDelegate methods -
-//
-//- (void) didChangedTaskStatus: (TaskStatusType) statustType
-//                     withName: (NSString*)      statusName
-//                    withImage: (UIImage*)       statusImage
-//          withBackGroundColor: (UIColor*)       background
-//{
-//    self.task.statusDescription = statusName;
-//    self.task.status = @(statustType);
-//    
-//    TaskRowContent* row = self.taskTableViewContent[SectionOne][TaskNameRow];
-//    
-//    row.status = statustType;
-//    row.statusDescription = statusName;
-//    
-//    [self updateContentWithRow: row
-//                     inSection: SectionThree
-//                         inRow: TaskNameRow];
-//
-//    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
-//    {
-//        [self.delegate reloadData];
-//    }
-//
-//    
-//}
 
 #pragma mark - Helpers -
 
@@ -532,5 +596,60 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     self.taskTableViewContent = [contentCopy copy];
 }
 
+#pragma mark - Test methods -
+
+- (NSArray*) createTestSubtask
+{
+    TaskRowContent* subtask = [TaskRowContent new];
+    
+    subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCell];
+    subtask.rowHeight = 137;
+
+    subtask.taskStartDate       = self.task.startDay;
+    subtask.taskEndDate         = self.task.endDate;
+    subtask.isExpired           = self.task.isExpired;
+    subtask.status              = self.task.status.integerValue;
+    subtask.taskTypeDescription = self.task.taskTypeDescription;
+    subtask.workAreaShortTitle  = self.task.workArea.shortTitle;
+    subtask.taskTitle           = self.task.title;
+    subtask.statusDescription   = self.task.statusDescription;
+    subtask.subtasksNumber      = self.task.subTasks.count;
+    subtask.attachmentsNumber   = self.task.attachments.integerValue;
+    subtask.roomNumber          = self.task.room.number.integerValue;
+    subtask.commentsNumber      = self.task.commentsCount.integerValue;
+    
+    return @[subtask];
+}
+
+- (NSArray*) createTestAttachment
+{
+    TaskRowContent* attachment = [TaskRowContent new];
+    
+    attachment.cellId = self.tableViewCellsIdArray[AttachmentsCell];
+    attachment.rowHeight = 54;
+    
+    attachment.attachmentTitle = @"Тестовый прикрепленный документ.пэдээф";
+    attachment.attachmentImage = [UIImage imageNamed: @"NoteMark"];
+    attachment.taskStartDate   = [NSDate date];
+    attachment.taskEndDate     = [NSDate dateWithTimeIntervalSinceNow: 90000];
+    
+    return @[attachment];
+}
+
+- (NSArray*) createTestComment
+{
+    TaskRowContent* comment = [TaskRowContent new];
+    
+    comment.cellId = self.tableViewCellsIdArray[CommentsCell];
+    comment.rowHeight = 129;
+    
+    comment.commentAuthorName = @"Тестовый Пользователь";
+    comment.commentAuthorAvatar = [UIImage imageNamed: @"UserMark"];
+    comment.commentDate         = [NSDate date];
+    
+    comment.commentText = @"Обычно тут что-то совершенно непонятное, вот и я не стал нарушать традиции";
+    
+    return @[comment];
+}
 
 @end

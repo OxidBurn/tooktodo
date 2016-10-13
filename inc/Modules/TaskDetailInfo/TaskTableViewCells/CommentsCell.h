@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "TaskRowContent.h"
+
 @interface CommentsCell : UITableViewCell
+
+// methods
+- (void) fillCellWithContent: (TaskRowContent*) content;
 
 @end

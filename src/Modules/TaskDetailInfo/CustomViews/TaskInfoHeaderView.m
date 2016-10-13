@@ -39,6 +39,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 @property (strong, nonatomic) UIColor* grayColor;
 
+@property (strong, nonatomic) NSArray* headerInfo;
+
 // methods
 - (IBAction) onSubTasksBtn: (UIButton*) sender;
 
@@ -116,7 +118,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     self.commentsNumberLabel.text    = [self returnStringFromNumber: infoArray[CommentsBtnTag]];
     self.logsNumberLabel.text        = [self returnStringFromNumber: infoArray[LogsBtnTag]];
     
-    self.delegate = delegate;
+    self.headerInfo = infoArray;
+    self.delegate   = delegate;
 }
 
 
