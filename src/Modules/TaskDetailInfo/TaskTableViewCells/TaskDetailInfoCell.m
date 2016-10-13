@@ -101,6 +101,9 @@
     [self.attachmentsMark setValue: content.attachmentsNumber
                           withType: TaskMarkerAttachmentsType];
     
+    [self.commentsMark setValue: content.commentsNumber
+                       withType: TaskMarkerCommentsType];
+    
 }
 
 #pragma mark - Internal -

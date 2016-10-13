@@ -10,6 +10,7 @@
 
 // Classes
 #import "TaskDetailViewModel.h"
+#import "ProjectsEnumerations.h"
 
 @interface TaskDetailViewController ()
 
@@ -23,6 +24,13 @@
 - (IBAction) onBackBtn:   (UIBarButtonItem*) sender;
 
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender;
+
+- (IBAction) onSelectAttachmentsGesture: (UITapGestureRecognizer*) sender;
+
+- (IBAction) onSelectLogsGesture: (UITapGestureRecognizer*) sender;
+
+- (IBAction) onSelectSubtasksGesture: (UITapGestureRecognizer*) sender;
+
 
 @end
 
@@ -66,6 +74,21 @@
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender
 {
     
+}
+
+- (IBAction) onSelectAttachmentsGesture: (UITapGestureRecognizer*) sender
+{
+    [self.viewModel updateSecondSectionContentForType: AttachmentsContentType];
+}
+
+- (IBAction) onSelectLogsGesture: (UITapGestureRecognizer*) sender
+{
+    [self.viewModel updateSecondSectionContentForType: CommentsContentType];
+}
+
+- (IBAction) onSelectSubtasksGesture: (UITapGestureRecognizer*) sender
+{
+    [self.viewModel updateSecondSectionContentForType: SubtasksContentType];
 }
 
 #pragma mark - Helpers -

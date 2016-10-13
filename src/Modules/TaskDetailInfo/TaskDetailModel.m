@@ -16,6 +16,7 @@
 #import "ProjectTaskWorkArea.h"
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectsEnumerations.h"
 
 // Helpers
 #import "Utils.h"
@@ -45,16 +46,6 @@ typedef NS_ENUM(NSUInteger, TaskTableViewCells) {
     
 };
 
-typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
-
-    SubtasksContentType,
-    AttachmentsContentType,
-    CommentsContentType,
-    LogsContentType,
-    
-};
-
-
 @interface TaskDetailModel()
 
 // properties
@@ -66,7 +57,7 @@ typedef NS_ENUM(NSUInteger, SecondSectionContentType) {
 
 @property (strong, nonatomic) NSArray* rowsHeighsArray;
 
-@property (assign, nonatomic) SecondSectionContentType secondSectionContentType;
+@property (assign, nonatomic) TaskInfoSecondSectionContentType secondSectionContentType;
 
 
 // methods

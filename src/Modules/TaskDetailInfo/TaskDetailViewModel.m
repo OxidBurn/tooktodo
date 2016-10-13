@@ -12,6 +12,7 @@
 #import "TaskDetailModel.h"
 #import "TaskDescriptionCell.h"
 #import "TaskInfoHeaderView.h"
+#import "ProjectsEnumerations.h"
 
 @interface TaskDetailViewModel() <TaskInfoFooterDelegate>
 
@@ -121,10 +122,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex
 {
-    [self.model updateSecondSectionContentType: typeIndex];
-    
-    [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
-                  withRowAnimation: UITableViewRowAnimationFade];
+    [self updateSecondSectionContentForType: typeIndex];
 }
 
 
@@ -135,5 +133,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model deselectTask];
 }
 
+- (void) updateSecondSectionContentForType: (NSUInteger) typeIndex
+{
+    [self.model updateSecondSectionContentType: typeIndex];
+    
+    [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
+                  withRowAnimation: UITableViewRowAnimationFade];
+}
 
 @end

@@ -19,4 +19,6 @@
 // methods
 - (void) deselectTask;
 
+- (void) updateSecondSectionContentForType: (NSUInteger) typeIndex;
+
 @end

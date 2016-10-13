@@ -90,6 +90,7 @@
                                                     <state key="normal" image="Eye"/>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-Xh-xmm" customClass="TaskMarkerComponent">
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="Cwj-Be-gE0"/>
                                                         <constraint firstAttribute="width" constant="38" id="XIL-S5-mpE"/>
@@ -130,8 +131,12 @@
                                                             <include reference="orG-Ol-QTK"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="xUV-tD-pAf" appends="YES" id="xqw-Sb-4ue"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mQI-mM-bfc" customClass="TaskMarkerComponent">
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="AkP-a7-8Fw"/>
                                                         <constraint firstAttribute="height" constant="17" id="I0z-UX-PPZ"/>
@@ -172,8 +177,12 @@
                                                             <exclude reference="l5A-o4-QbL"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="kjq-bC-j0i" appends="YES" id="BOr-aB-7Ff"/>
+                                                    </connections>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02V-pN-axT" customClass="TaskMarkerComponent">
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="34" id="9uL-5K-Ah7"/>
                                                         <constraint firstAttribute="height" constant="17" id="DHi-3t-g5G"/>
@@ -214,6 +223,9 @@
                                                             <exclude reference="qVE-1a-Me1"/>
                                                         </mask>
                                                     </variation>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="Lsl-A3-NKE" appends="YES" id="72J-eA-Bwa"/>
+                                                    </connections>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cn8-QF-aQ0">
                                                     <constraints>
@@ -2221,6 +2233,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cot-IS-PRa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kjq-bC-j0i" userLabel="Attachments Gesture">
+                    <connections>
+                        <action selector="onSelectAttachmentsGesture:" destination="E69-tF-D1Q" id="BG0-dc-LiE"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="Lsl-A3-NKE" userLabel="Logs Gesture">
+                    <connections>
+                        <action selector="onSelectLogsGesture:" destination="E69-tF-D1Q" id="Mtc-qg-XIz"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="xUV-tD-pAf" userLabel="Subtasks Gesture">
+                    <connections>
+                        <action selector="onSelectSubtasksGesture:" destination="E69-tF-D1Q" id="H5j-dI-1BD"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2074" y="1"/>
         </scene>
