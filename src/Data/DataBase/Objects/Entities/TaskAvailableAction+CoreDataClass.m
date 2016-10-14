@@ -7,7 +7,8 @@
 //
 
 #import "TaskAvailableAction+CoreDataClass.h"
-#import "TaskAvailableActionsList.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
+
 @implementation TaskAvailableAction
 
 @end

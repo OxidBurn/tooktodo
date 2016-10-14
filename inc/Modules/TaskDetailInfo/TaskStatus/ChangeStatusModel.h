@@ -23,4 +23,6 @@
 
 - (NSUInteger) returnOnComletionStatusIndex;
 
+- (NSArray*) getAvailableStatusActions;
+
 @end

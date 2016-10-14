@@ -14,6 +14,8 @@
 #import "ProjectsEnumerations.h"
 #import "TaskDetailModel.h"
 #import "TaskStatusDefaultValues.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
+#import "TaskAvailableStatusAction+CoreDataClass.h"
 
 @interface ChangeStatusModel() <TaskDetailModelDelegate>
 
@@ -25,7 +27,6 @@
 @property (nonatomic, assign) TaskStatusType statusType;
 @property (nonatomic, strong) ProjectTask* task;
 @property (nonatomic, assign) TaskStatusType currentStatus;
-
 
 // methods
 
@@ -41,6 +42,8 @@
     if (_statusesArray == nil)
     {
         _statusesArray = [self orderStatusesArray];
+        
+        NSLog(@"statusActionsArray: %@", [self getAvailableStatusActions]);
     }
     
     return _statusesArray;
@@ -82,6 +85,19 @@
     return self.task.status.integerValue;
 }
 
+//Method for getting available status actions for current user
+- (NSArray*) getAvailableStatusActions
+{
+    self.task = [DataManagerShared getSelectedTask];
+    
+    TaskAvailableActionsList* availableActions = self.task.availableActions;
+    
+    NSArray* availableStatusActions = availableActions.statusActions.allObjects;
+    
+    return availableStatusActions;
+}
+
+
 - (NSUInteger) returnOnComletionStatusIndex
 {
     NSUInteger index = [self.statusesArray indexOfObject: @(5)];
@@ -107,14 +123,12 @@
     [tmp exchangeObjectAtIndex: TaskCanceledStatusType
              withObjectAtIndex: TaskOnCompletionStatusType];
     
-    [defaultArr enumerateObjectsUsingBlock:^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tmp enumerateObjectsUsingBlock: ^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ([obj isEqual: currStatus])
         {
             [tmp exchangeObjectAtIndex: idx
                      withObjectAtIndex: 0];
-            
-            
         }
     }];
     

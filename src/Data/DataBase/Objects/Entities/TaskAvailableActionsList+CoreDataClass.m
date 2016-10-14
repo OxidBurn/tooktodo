@@ -7,10 +7,11 @@
 //
 
 #import "TaskAvailableActionsList+CoreDataClass.h"
-#import "ProjectTask.h"
-#import "TaskAvailableAction.h"
-#import "TaskAvailableStagesAction.h"
-#import "TaskAvailableStatusAction.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "TaskAvailableAction+CoreDataClass.h"
+#import "TaskAvailableStagesAction+CoreDataClass.h"
+#import "TaskAvailableStatusAction+CoreDataClass.h"
+
 @implementation TaskAvailableActionsList
 
 @end
