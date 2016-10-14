@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectTaskStage+CoreDataClass.h"
+#import "TasksService.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -124,8 +125,8 @@ static NSString* contentKey = @"contentInfoKey";
 {
     ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
     
-    [DataManagerShared updateSelectedStateForTask: selectedTask
-                                withSelectedState: YES];
+    [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
+                                            withSelectedState: YES];
 }
 
 

@@ -19,4 +19,6 @@
 
 - (RACSignal*) loadAllUserTasks;
 
+- (RACSignal*) loadTaskAvailableActionsWithURL: (NSString*) url;
+
 @end

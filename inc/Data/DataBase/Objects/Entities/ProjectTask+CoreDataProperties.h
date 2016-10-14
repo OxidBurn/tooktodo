@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/13/16.
+//  Created by Nikolay Chaban on 10/14/16.
 //
 //
 
@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
+@property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActions;
 
 @end
 

@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/13/16.
+//  Created by Nikolay Chaban on 10/14/16.
 //
 //
 
@@ -55,5 +55,6 @@
 @dynamic subTasks;
 @dynamic taskRoleAssignments;
 @dynamic workArea;
+@dynamic availableActions;
 
 @end

@@ -18,6 +18,7 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 #import "ChangeStatusViewController.h"
+#import "TasksService.h"
 
 // Helpers
 #import "Utils.h"
@@ -319,8 +320,8 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
 
 - (void) deselectTask
 {
-    [DataManagerShared updateSelectedStateForTask: self.task
-                                withSelectedState: NO];
+    [[TasksService sharedInstance] changeSelectedStageForTask: self.task
+                                            withSelectedState: NO];
 }
 
 - (NSArray*) returnHeaderInfo
