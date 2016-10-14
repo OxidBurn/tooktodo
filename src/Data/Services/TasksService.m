@@ -150,18 +150,21 @@
                   withSelectedState: (BOOL)         isSelected
 {
     [DataManagerShared updateSelectedStateForTask: task
-                                withSelectedState: isSelected];
-    
-    if ( isSelected )
-    {
-        [[self loadSelectedTaskAvailableActionsForTask: task]
-         subscribeNext: ^(id x) {
-            
-        }
-         error:^(NSError *error) {
-             
-         }];
-    }
+                                withSelectedState: isSelected
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       if ( isSelected )
+                                       {
+                                           [[self loadSelectedTaskAvailableActionsForTask: task]
+                                            subscribeNext: ^(id x) {
+                                                
+                                            }
+                                            error:^(NSError *error) {
+                                                
+                                            }];
+                                       }
+                                       
+                                   }];
 }
 
 #pragma mark - Data base methods -

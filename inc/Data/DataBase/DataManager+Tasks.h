@@ -36,8 +36,9 @@
 - (void) changeItemSelectedState: (BOOL)                    isSelected
                          forItem: (ProjectRoleAssignments*) assignment;
 
-- (void) updateSelectedStateForTask: (ProjectTask*) task
-                  withSelectedState: (BOOL)         isSelected;
+- (void) updateSelectedStateForTask: (ProjectTask*)          task
+                  withSelectedState: (BOOL)                  isSelected
+                     withCompletion: (CompletionWithSuccess) completion;
 
 // Get methods
 - (ProjectRoleAssignments*) getSelectedProjectRoleAssignment;

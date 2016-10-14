@@ -612,12 +612,25 @@
     return stages;
 }
 
-- (void) updateSelectedStateForTask: (ProjectTask*) task
-                  withSelectedState: (BOOL)         isSelected
+- (void) updateSelectedStateForTask: (ProjectTask*)          task
+                  withSelectedState: (BOOL)                  isSelected
+                     withCompletion: (CompletionWithSuccess) completion
 {
-    task.isSelected = @(isSelected);
-    
-    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectTask* selectedTask = [ProjectTask MR_findFirstByAttribute: @"taskID"
+                                                               withValue: task.taskID
+                                                               inContext: localContext];
+        
+        selectedTask.isSelected = @(isSelected);
+        
+    }
+                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 - (ProjectTask*) getSelectedTask
