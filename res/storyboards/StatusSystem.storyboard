@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nSa-t1-0eA">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nSa-t1-0eA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -37,7 +37,7 @@
                                             <frame key="frameInset" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6DDE1396-7E15-43D6-B6A5-67995D9E230A" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-XB-Lge">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="7F178F94-4A6B-4C18-8C99-8F3C257B3B6B" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-XB-Lge">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="16" id="38k-QN-f0Y"/>
                                                         <constraint firstAttribute="width" constant="12" id="5fi-tH-sR7"/>
@@ -51,38 +51,36 @@
                                                     <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskStatusExpandWhiteIconTurn" translatesAutoresizingMaskIntoConstraints="NO" id="KbI-x6-gfj">
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="fHB-7s-05f"/>
-                                                        <constraint firstAttribute="height" constant="44" id="hMz-6P-dgI"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KbI-x6-gfj" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" id="01b-wo-fFO"/>
                                                 <constraint firstItem="ywZ-XB-Lge" firstAttribute="leading" secondItem="VOs-Lg-Ako" secondAttribute="leading" constant="13" id="2An-WO-DJu"/>
                                                 <constraint firstItem="FOC-Zn-uz0" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="15" id="4eY-6e-NUZ"/>
                                                 <constraint firstItem="ywZ-XB-Lge" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="14" id="FNh-Bv-gZA"/>
                                                 <constraint firstItem="FOC-Zn-uz0" firstAttribute="leading" secondItem="ywZ-XB-Lge" secondAttribute="trailing" constant="7" id="Vdm-lF-0kQ"/>
-                                                <constraint firstItem="KbI-x6-gfj" firstAttribute="leading" secondItem="FOC-Zn-uz0" secondAttribute="trailing" constant="25" id="XMx-o6-hYF"/>
-                                                <constraint firstAttribute="trailing" secondItem="KbI-x6-gfj" secondAttribute="trailing" id="bbF-d2-4UF"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="arrowImage" destination="KbI-x6-gfj" id="2gh-Fs-xax"/>
                                             <outlet property="statusImageView" destination="ywZ-XB-Lge" id="94J-25-No6"/>
                                             <outlet property="statusNameLabel" destination="FOC-Zn-uz0" id="PzJ-4e-gd7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskStatusExpandWhiteIconTurn" translatesAutoresizingMaskIntoConstraints="NO" id="KbI-x6-gfj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="fHB-7s-05f"/>
+                                    <constraint firstAttribute="height" constant="44" id="hMz-6P-dgI"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uJu-DO-OSI" firstAttribute="top" secondItem="l0X-MX-pea" secondAttribute="bottom" constant="102" id="8ev-xn-F5F"/>
                             <constraint firstAttribute="trailing" secondItem="uJu-DO-OSI" secondAttribute="trailing" constant="15" id="Cq0-QI-Mk9"/>
+                            <constraint firstItem="KbI-x6-gfj" firstAttribute="trailing" secondItem="uJu-DO-OSI" secondAttribute="trailing" id="VDa-n7-vOF"/>
                             <constraint firstItem="uJu-DO-OSI" firstAttribute="leading" secondItem="tG1-Le-QQK" secondAttribute="leading" constant="15" id="W1P-Cj-NhU"/>
+                            <constraint firstItem="KbI-x6-gfj" firstAttribute="top" secondItem="uJu-DO-OSI" secondAttribute="top" id="bAt-cL-bQB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gWX-99-yK6">
@@ -96,6 +94,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="backBtn" destination="rj1-B2-fcl" id="D6E-Km-WX3"/>
+                        <outlet property="expandedArrowMarkImageView" destination="KbI-x6-gfj" id="DLE-LG-ghW"/>
                         <outlet property="statusesTableView" destination="uJu-DO-OSI" id="Z6d-r8-C5a"/>
                     </connections>
                 </viewController>
@@ -124,7 +123,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6DDE1396-7E15-43D6-B6A5-67995D9E230A" width="9" height="12">
+        <image name="7F178F94-4A6B-4C18-8C99-8F3C257B3B6B" width="9" height="12">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

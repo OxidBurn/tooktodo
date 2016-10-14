@@ -14,12 +14,15 @@
 
 @interface ChangeStatusViewController ()
 
-@property (weak, nonatomic) IBOutlet UITableView *statusesTableView;
+// outlets
+@property (weak, nonatomic) IBOutlet UITableView*     statusesTableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* backBtn;
+@property (weak, nonatomic) IBOutlet UIImageView*     expandedArrowMarkImageView;
+
+// properties
 @property (nonatomic, strong) ChangeStatusViewModel* viewModel;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *backBtn;
 
-//Actions
-
+// methods
 - (IBAction) onBack: (UIBarButtonItem*) sender;
 
 @end
@@ -39,8 +42,6 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
-      [self.backBtn.customView bringSubviewToFront: self.view];
 }
 
 
@@ -54,35 +55,6 @@
     }
     
     return _viewModel;
-}
-
-#pragma mark - Public -
-
-- (void) fillSelectedStatus: (TaskStatusType) status
-               withDelegate: (id<ChangeStatusControllerDelegate>) delegate
-{
-    [self.viewModel fillSelectedStatusType: status];
-    
-    self.delegate = delegate;
-}
-
-- (void) getChangedTaskStatusInfo
-{
-    __weak typeof(self) blockSelf = self;
-    
-    [self.viewModel getChangedInfo: ^(NSString *statusName, TaskStatusType statusType, UIColor *background, UIImage *statusImage) {
-        
-        if ([blockSelf.delegate respondsToSelector: @selector(didChangedTaskStatus:withName:withImage:withBackGroundColor:)])
-        {
-            [blockSelf.delegate didChangedTaskStatus: statusType
-                                            withName: statusName
-                                           withImage: statusImage
-                                 withBackGroundColor: background];
-        }
-        
-        [blockSelf dismissViewControllerAnimated: YES
-                                      completion: nil];
-    }];
 }
 
 #pragma mark - Actions -
@@ -102,6 +74,8 @@
     
     self.navigationController.navigationBar.backItem.title = @"Назад";
     
+    [self updateArrowMarkImage];
+    
     __weak typeof(self) blockSelf = self;
     
     self.viewModel.showOnRevisionController = ^(){
@@ -113,18 +87,22 @@
                                           {
                                               [blockSelf.delegate performSegueWithID: @"ShowOnRevisionController"];
                                           }
-                                          
-                                          
                                       }];
-        
     };
     
     self.viewModel.returnToTaskDetailController = ^(){
         
+        if ( [blockSelf.delegate respondsToSelector: @selector(updataTaskDetailInfoTaskStatus)] )
+            [blockSelf.delegate updataTaskDetailInfoTaskStatus];
+        
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];
-        
     };
+}
+
+- (void) updateArrowMarkImage
+{
+    self.expandedArrowMarkImageView.image = [self.viewModel getExpandedArrowMarkImage];
 }
 
 @end

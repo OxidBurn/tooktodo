@@ -22,8 +22,10 @@
 
 - (UIImage*) returnIconImageForTaskStatus: (TaskStatusType) statusType;
 
-- (UIColor*) returnFontForTaskStatus: (TaskStatusType) statusType;
+- (UIColor*) returnFontColorForTaskStatus: (TaskStatusType) statusType;
 
 - (UIImage*) returnArrowImageForTaskStatus: (TaskStatusType) statusType;
+
+- (UIImage*) returnExpandedArrowImageForTaskStatus: (TaskStatusType) statusType;
 
 @end

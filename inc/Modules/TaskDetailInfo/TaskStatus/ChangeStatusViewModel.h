@@ -7,20 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// Classes
 #import "ProjectsEnumerations.h"
 
 @interface ChangeStatusViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
-
-typedef void (^GetChangedStatusBlock)(NSString* statusName, TaskStatusType statusType, UIColor* background, UIImage* statusImage);
 
 @property (nonatomic, copy) void(^showOnRevisionController)();
 
 @property (nonatomic, copy) void(^returnToTaskDetailController)();
 
-- (void) getChangedInfo: (GetChangedStatusBlock) completion;
-
-- (void) fillSelectedStatusType: (TaskStatusType) status;
-
 - (TaskStatusType) getCurrentStatusType;
+
+- (UIImage*) getExpandedArrowMarkImage;
 
 @end

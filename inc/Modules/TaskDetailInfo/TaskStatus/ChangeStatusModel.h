@@ -15,6 +15,8 @@
 
 - (TaskStatusType) getCurrentStatus;
 
+- (TaskStatusType) getStatusTypeForRow: (NSUInteger) row;
+
 - (NSString*) getStatusNameForIndex: (NSUInteger) index;
 
 - (UIColor*) getBackgroundColorForIndex: (NSUInteger) index;
@@ -25,6 +27,9 @@
 
 - (NSArray*) getAvailableStatusActions;
 
-- (void) updateTaskStatusWithNewStatus: (TaskStatusType) status;
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
+                        withCompletion: (CompletionWithSuccess) completion;
+
+- (UIImage*) getExpandedArrowMarkImage;
 
 @end

@@ -122,15 +122,20 @@
 
 - (void) setupStatusTypeButton: (ProjectTask*) task
 {  
-    self.taskStatusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: task.status.integerValue];
+    self.taskStatusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance]
+                                          returnColorForTaskStatus: task.status.integerValue];
     
-    self.taskStatusTitleLabel.text      = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: task.status.integerValue];
+    self.taskStatusTitleLabel.text      = [[TaskStatusDefaultValues sharedInstance]
+                                           returnTitleForTaskStatus: task.status.integerValue];
     
-    self.taskStatusImageIcon.image      = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: task.status.integerValue];
+    self.taskStatusImageIcon.image      = [[TaskStatusDefaultValues sharedInstance]
+                                           returnIconImageForTaskStatus: task.status.integerValue];
     
-    self.taskStatusChangeIcon.image     = [[TaskStatusDefaultValues sharedInstance] returnArrowImageForTaskStatus: task.status.integerValue];
+    self.taskStatusChangeIcon.image     = [[TaskStatusDefaultValues sharedInstance]
+                                           returnArrowImageForTaskStatus: task.status.integerValue];
     
-    self.taskStatusTitleLabel.textColor = [[TaskStatusDefaultValues sharedInstance] returnFontForTaskStatus: task.status.integerValue];
+    self.taskStatusTitleLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
+                                           returnFontColorForTaskStatus: task.status.integerValue];
 }
 
 

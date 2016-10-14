@@ -86,7 +86,6 @@
     UITableViewCell* cell = [self.model createCellForTableView: tableView
                                                  forIndexPath: indexPath];
     
-    //Cheking if cell is TaskDetail info, then set viewmodel its delegate
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
     {
        TaskDetailInfoCell* detailCell = (TaskDetailInfoCell*)cell;
@@ -159,6 +158,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
                   withRowAnimation: UITableViewRowAnimationFade];
+}
+
+- (void) updateTaskStatus
+{
+    [self.model updateTaskStatus];
 }
 
 #pragma mark - TaskDetailCellDelegate methods -

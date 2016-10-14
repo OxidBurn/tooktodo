@@ -27,5 +27,6 @@
 
 - (TaskStatusType) getTaskStatus;
 
+- (void) updateTaskStatus;
 
 @end

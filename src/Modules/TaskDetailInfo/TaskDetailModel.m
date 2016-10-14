@@ -390,6 +390,22 @@ typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     self.taskTableViewContent = contentCopy.copy;
 }
 
+- (void) updateTaskStatus
+{
+    self.task = [DataManagerShared getSelectedTask];
+    
+    // row that contains info about first cell in table view
+    TaskRowContent* row = self.taskTableViewContent[0][0];
+    
+    row.status            = self.task.status.integerValue;
+    row.statusDescription = self.task.statusDescription;
+    
+    // updating content with new status value
+    [self updateContentWithRow: row
+                     inSection: 0
+                         inRow: 0];
+}
+
 #pragma mark - Internal -
 
 - (NSArray*) returnTableViewContent

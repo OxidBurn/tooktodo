@@ -38,6 +38,8 @@
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 
+- (void) updateTaskStatus;
+
 @end
 
 @protocol TaskDetailModelDelegate <NSObject>

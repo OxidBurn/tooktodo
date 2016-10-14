@@ -13,16 +13,9 @@
 
 @interface ChangeStatusViewController : UIViewController
 
-//Properties
+// properties
 
-@property (nonatomic, weak) id<ChangeStatusControllerDelegate> delegate;
-
-//Methods
-
-- (void) fillSelectedStatus: (TaskStatusType) status
-               withDelegate: (id<ChangeStatusControllerDelegate>) delegate;
-
-- (void) getChangedTaskStatusInfo;
+@property (nonatomic, weak) id <ChangeStatusControllerDelegate> delegate;
 
 @end
 
@@ -32,10 +25,6 @@
 
 - (void) performSegueWithID: (NSString*) segueID;
 
-- (void) didChangedTaskStatus: (TaskStatusType) statustType
-                     withName: (NSString*)      statusName
-                    withImage: (UIImage*)       statusImage
-          withBackGroundColor: (UIColor*)       background;
-
+- (void) updataTaskDetailInfoTaskStatus;
 
 @end

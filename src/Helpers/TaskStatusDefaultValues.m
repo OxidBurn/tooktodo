@@ -48,9 +48,9 @@
 {
     if ( _colorsInfoArray == nil )
     {
-        _colorsInfoArray = @[ [UIColor colorWithRed: 255.0/256
-                                              green: 228.0/256
-                                               blue: 69.0/256
+        _colorsInfoArray = @[ [UIColor colorWithRed: 248.0/256
+                                              green: 216.0/256
+                                               blue: 24.0/256
                                               alpha: 1.f],
                               
                               [UIColor colorWithRed: 79.0/256
@@ -68,14 +68,14 @@
                                                blue: 70.0/256
                                               alpha: 1.f],
                               
-                              [UIColor colorWithRed: 250.0/256
+                              [UIColor colorWithRed: 248.0/256
                                               green: 216.0/256
-                                               blue: 64.0/256
+                                               blue: 24.0/256
                                               alpha: 1.f],
                               
-                              [UIColor colorWithRed: 255.0/256
-                                              green: 228.0/256
-                                               blue: 69.0/256
+                              [UIColor colorWithRed: 248.0/256
+                                              green: 216.0/256
+                                               blue: 24.0/256
                                               alpha: 1.f] ];
     }
     
@@ -127,7 +127,7 @@
     return self.imagesInfoArray[statusType];
 }
 
-- (UIColor*) returnFontForTaskStatus: (TaskStatusType) statusType
+- (UIColor*) returnFontColorForTaskStatus: (TaskStatusType) statusType
 {
     switch ( statusType )
     {
@@ -169,6 +169,31 @@
         case TaskInProgressStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
+            
+        default:
+            break;
+    }
+    
+    return nil;
+}
+
+- (UIImage*) returnExpandedArrowImageForTaskStatus: (TaskStatusType) statusType
+{
+    switch ( statusType )
+    {
+        case TaskWaitingStatusType:
+        case TaskOnApprovingStatusType:
+        case TaskOnCompletionStatusType:
+            
+            return [UIImage imageNamed: @"TaskStatusExpandDarkIconTurn"];
+            
+            break;
+            
+        case TaskCanceledStatusType:
+        case TaskCompletedStatusType:
+        case TaskInProgressStatusType:
+            
+            return [UIImage imageNamed: @"TaskStatusExpandWhiteIconTurn"];
             
         default:
             break;

@@ -124,6 +124,14 @@
                               sender: self];
 }
 
+- (void) updataTaskDetailInfoTaskStatus
+{
+    [self.viewModel updateTaskStatus];
+    
+    [self.taskTableView reloadData];
+}
+
+
 #pragma mark - Helpers -
 
 - (void) setupDefaults

@@ -20,12 +20,12 @@
 @interface ChangeStatusModel() <TaskDetailModelDelegate>
 
 // properties
-@property (nonatomic, strong) NSArray* statusesArray;
-@property (nonatomic, strong) NSArray* statusNames;
-@property (nonatomic, strong) NSArray* statusImages;
-@property (nonatomic, strong) NSArray* backgrounds;
+@property (nonatomic, strong) NSArray*       statusesArray;
+@property (nonatomic, strong) NSArray*       statusNames;
+@property (nonatomic, strong) NSArray*       statusImages;
+@property (nonatomic, strong) NSArray*       backgrounds;
 @property (nonatomic, assign) TaskStatusType statusType;
-@property (nonatomic, strong) ProjectTask* task;
+@property (nonatomic, strong) ProjectTask*   task;
 @property (nonatomic, assign) TaskStatusType currentStatus;
 
 // methods
@@ -49,6 +49,15 @@
     return _statusesArray;
 }
 
+- (ProjectTask*) task
+{
+    if ( _task == nil )
+    {
+        _task = [DataManagerShared getSelectedTask];
+    }
+    
+    return _task;
+}
 
 #pragma mark - Public -
 
@@ -80,9 +89,14 @@
 
 - (TaskStatusType) getCurrentStatus
 {
-    self.task = [DataManagerShared getSelectedTask];
-    
     return self.task.status.integerValue;
+}
+
+- (TaskStatusType) getStatusTypeForRow: (NSUInteger) row
+{
+    NSNumber* statusValue = self.statusesArray[row];
+    
+    return statusValue.integerValue;
 }
 
 //Method for getting available status actions for current user
@@ -105,13 +119,20 @@
     return index;
 }
 
-- (void) updateTaskStatusWithNewStatus: (TaskStatusType) status
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
+                        withCompletion: (CompletionWithSuccess) completion
 {
     NSNumber* statusValue = self.statusesArray[status];
     
     [DataManagerShared updateStatusType: statusValue
                   withStatusDescription: [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status]
-                         withCompletion: nil];
+                         withCompletion: completion];
+}
+
+- (UIImage*) getExpandedArrowMarkImage
+{
+    return [[TaskStatusDefaultValues sharedInstance]
+            returnExpandedArrowImageForTaskStatus: self.task.status.integerValue];
 }
 
 #pragma mark - Internal -
@@ -125,7 +146,7 @@
                             @(TaskOnApprovingStatusType),
                             @(TaskOnCompletionStatusType)];
     
-    NSNumber* currStatus = @([self getCurrentStatus]);
+    NSNumber* currStatus = self.task.status;
     
     NSMutableArray* tmp = defaultArr.mutableCopy;
     
