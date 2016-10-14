@@ -37,6 +37,6 @@ static NSString* projectRoleAssignmentsURL      = @"/api/project/{id}/projectRol
 static NSString* projectRolePermissionURL       = @"/api/project/{projectId}/participant/{userId}/permission/admin";
 static NSString* projectGetRoomsLevelURL        = @"/api/roomLevel/list?projectId=";
 static NSString* projectTaskAvailableActionsURL = @"/api/v2/project/{projectId}/tasks/{taskId}/availableActions";
-
+static NSString* createNewProjectRoleTypeURL    = @"/api/v2/project/{projectId}/roleTypes";
 
 #endif /* APIConstance_h */

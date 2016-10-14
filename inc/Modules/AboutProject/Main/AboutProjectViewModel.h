@@ -15,5 +15,6 @@
 
 - (NSString*) getProjectName;
 
+- (BOOL) isAvailableAddingNewRoleToSelectedProject;
 
 @end

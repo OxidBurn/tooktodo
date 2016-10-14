@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectInfo+CoreDataClass.h"
+
 // Categories
 #import "DataManager+ProjectInfo.h"
 
@@ -22,6 +23,13 @@
 - (NSString*) getProjectName
 {
     return [DataManagerShared getSelectedProjectName];;
+}
+
+- (BOOL) isAvailableAddingNewRoleToSelectedProject
+{
+    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfo];
+    
+    return selectedProject.projectPermission.integerValue;
 }
 
 @end

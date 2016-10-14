@@ -96,9 +96,10 @@
 {
     if ( sender.selectedSegmentIndex == 1 )
     {
-        [self showInfoScreenWithID: @"GoToRoles"];
+        if ( [self.viewModel isAvailableAddingNewRoleToSelectedProject] )
+            self.addNewRoleBtn.hidden = NO;
         
-        self.addNewRoleBtn.hidden = NO;
+        [self showInfoScreenWithID: @"GoToRoles"];
     }
     
     else if ( sender.selectedSegmentIndex == 0 )

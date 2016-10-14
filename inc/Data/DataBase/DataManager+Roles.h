@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectRoles.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "NewProjectRoleTypeModel.h"
 
 @interface DataManager (Roles)
 
@@ -21,6 +22,9 @@
 
 - (void) persistNewRoles: (NSArray*)              roles
           withCompletion: (CompletionWithSuccess) completion;
+
+- (void) persistNewRole: (NewProjectRoleTypeModel*) role
+         withCompletion: (CompletionWithSuccess)    completion;
 
 - (NSArray*) getAllRolesInCurrentProject;
 

@@ -13,6 +13,7 @@
 #import "RolesAPIService.h"
 #import "ProjectRoleModel.h"
 #import "DefaultRoleModel.h"
+#import "NewProjectRoleTypeModel.h"
 
 // Categories
 #import "DataManager+Roles.h"
@@ -148,18 +149,52 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) addNewRoleForCurrentProjectWithTitle: (NSString*) roleTitle
 {
-    return [RACSignal empty];
+    NSString* requestURL = [self buildCreateRoleTypeForProject];
+    
+    NSDictionary* parameters = @{@"title" : roleTitle};
+    
+    @weakify(self)
+    
+    RACSignal* createNewRoleTypeSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[[RolesAPIService sharedInstance] createNewRoleTypeForProject: requestURL
+                                                        withParameter: parameters]
+         deliverOn: [RACScheduler mainThreadScheduler]]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseCreationRoleTypeResponse: response[0]
+                                  withCompletion: ^(BOOL isSuccess) {
+                                      
+                                      [subscriber sendNext: nil];
+                                      [subscriber sendCompleted];
+                                      
+                                  }];
+             
+             
+         }
+         error:^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return createNewRoleTypeSignal;
 }
 
 
-#pragma mark - Internal methods -
+#pragma mark - Parsing and store to DataBase -
 
 - (void) parseRolesRequestResponse: (NSArray*)              response
                     withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parseError = nil;
     NSArray* rolesInfo  = [ProjectRoleModel arrayOfModelsFromDictionaries: response
-                                                                     error: &parseError];
+                                                                    error: &parseError];
     
     if ( parseError )
     {
@@ -188,6 +223,37 @@ static bool isFirstAccess = YES;
         [DataManagerShared persistNewDefaultRoles: rolesInfo
                                    withCompletion: completion];
     }
+}
+
+- (void) parseCreationRoleTypeResponse: (NSDictionary*)         response
+                        withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError                = nil;
+    NewProjectRoleTypeModel* roleModel = [[NewProjectRoleTypeModel alloc] initWithDictionary: response
+                                                                                       error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> Error with parsing role type response: %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewRole: roleModel
+                           withCompletion: completion];
+    }
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSString*) buildCreateRoleTypeForProject
+{
+    ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfo];
+    
+    NSString* requestURL = [createNewProjectRoleTypeURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                                  withString: selectedProject.projectID.stringValue];
+    
+    return requestURL;
 }
 
 #pragma mark - Life Cycle -

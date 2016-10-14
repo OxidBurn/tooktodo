@@ -87,6 +87,13 @@
     return [UserInfo MR_findFirst];
 }
 
+- (NSNumber*) getCurrentUserID
+{
+    UserInfo* userInfo = [self getCurrentUserInfo];
+    
+    return userInfo.userID;
+}
+
 - (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
                 forUser: (UserInfo*)               user
          withCompletion: (void(^)(BOOL isSuccess)) completion

@@ -72,6 +72,31 @@
 {
     RAC(self.viewModel, roleTitle)    = self.roleTitleTextField.rac_textSignal;
     self.createNewRoleBtn.rac_command = [self.viewModel createNewRoleCommand];
+    
+    @weakify(self)
+    
+    [self.createNewRoleBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
+        
+        [signal subscribeCompleted: ^{
+           
+            @strongify(self)
+            
+            [SVProgressHUD showSuccessWithStatus: @"Новая роль успешно создана."];
+            
+            [self dismissViewControllerAnimated: YES
+                                     completion: nil];
+            
+        }];
+        
+    }
+                                                                error: ^(NSError *error) {
+        
+                                                                    [SVProgressHUD showErrorWithStatus: @"Возникла проблема с созданием новой роли в проекте."];
+                                                                    
+    }
+                                                            completed: ^{
+                                                                
+                                                            }];
 }
 
 

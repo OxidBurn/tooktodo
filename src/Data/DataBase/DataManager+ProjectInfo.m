@@ -64,6 +64,7 @@
     {
         projectInfo.lastVisit = data.lastVisit;
     }
+    
     projectInfo.isTaskAddAppealClosed            = @(data.isTaskAddAppealClosed);
     projectInfo.realtyClassDescription           = data.realtyClassDescription;
     projectInfo.title                            = data.title;
