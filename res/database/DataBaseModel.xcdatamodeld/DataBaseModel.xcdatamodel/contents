@@ -133,6 +133,7 @@
         <attribute name="taskType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="availableActions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="task" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
         <relationship name="marker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMarker" inverseName="task" inverseEntity="ProjectTaskMarker" syncable="YES"/>
         <relationship name="ownerUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="task" inverseEntity="ProjectTaskOwner" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="tasks" inverseEntity="ProjectInfo" syncable="YES"/>
@@ -278,6 +279,28 @@
         <attribute name="previewImage" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mapContour" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskMapContour" inverseName="map" inverseEntity="ProjectTaskMapContour" syncable="YES"/>
     </entity>
+    <entity name="TaskAvailableAction" representedClassName="TaskAvailableAction" syncable="YES">
+        <attribute name="actionDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="actionID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="availableActionsList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="actions" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
+    </entity>
+    <entity name="TaskAvailableActionsList" representedClassName="TaskAvailableActionsList" syncable="YES">
+        <relationship name="actions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskAvailableAction" inverseName="availableActionsList" inverseEntity="TaskAvailableAction" syncable="YES"/>
+        <relationship name="stages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskAvailableStagesAction" inverseName="availableActionsList" inverseEntity="TaskAvailableStagesAction" syncable="YES"/>
+        <relationship name="statusActions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskAvailableStatusAction" inverseName="availableActionsList" inverseEntity="TaskAvailableStatusAction" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="availableActions" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="TaskAvailableStagesAction" representedClassName="TaskAvailableStagesAction" syncable="YES">
+        <attribute name="isCommon" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="stageActionID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="availableActionsList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="stages" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
+    </entity>
+    <entity name="TaskAvailableStatusAction" representedClassName="TaskAvailableStatusAction" syncable="YES">
+        <attribute name="statusActionID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="stautsActionDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="availableActionsList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="statusActions" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
+    </entity>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
         <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
@@ -330,7 +353,7 @@
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectRoleType" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="135"/>
-        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="660"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="675"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="285"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
         <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="150"/>
@@ -348,5 +371,9 @@
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="TaskAvailableActionsList" positionX="-45" positionY="99" width="128" height="103"/>
+        <element name="TaskAvailableAction" positionX="-36" positionY="108" width="128" height="88"/>
+        <element name="TaskAvailableStatusAction" positionX="-27" positionY="117" width="128" height="88"/>
+        <element name="TaskAvailableStagesAction" positionX="-18" positionY="126" width="128" height="103"/>
     </elements>
 </model>

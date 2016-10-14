@@ -9,6 +9,9 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 
+// Classes
+#import "ProjectTask+CoreDataClass.h"
+
 @interface TasksService : NSObject
 
 // properties
@@ -21,5 +24,10 @@
 - (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID;
 
 - (RACSignal*) loadAllTasksForCurrentUser;
+
+- (RACSignal*) loadSelectedTaskAvailableActionsForTask: (ProjectTask*) task;
+
+- (void) changeSelectedStageForTask: (ProjectTask*) task
+                  withSelectedState: (BOOL)         isSelected;
 
 @end

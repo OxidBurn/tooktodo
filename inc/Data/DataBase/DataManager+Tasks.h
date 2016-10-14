@@ -13,10 +13,12 @@
 #import "TasksGroupedByProjects.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "FilledTeamInfo.h"
+#import "TaskAvailableActionsModel.h"
 
 
 @interface DataManager (Tasks)
 
+// persist methods
 - (void) persistTasks: (NSArray*)              tasks
        withCompletion: (CompletionWithSuccess) completion;
 
@@ -27,18 +29,20 @@
                forProjectInvite: (ProjectInviteInfo*)      invite
                       inContext: (NSManagedObjectContext*) context;
 
+// update
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;
-
-- (ProjectRoleAssignments*) getSelectedProjectRoleAssignment;
 
 - (void) changeItemSelectedState: (BOOL)                    isSelected
                          forItem: (ProjectRoleAssignments*) assignment;
 
-- (NSArray*) getStagesForCurrentProject;
-
 - (void) updateSelectedStateForTask: (ProjectTask*) task
                   withSelectedState: (BOOL)         isSelected;
+
+// Get methods
+- (ProjectRoleAssignments*) getSelectedProjectRoleAssignment;
+
+- (NSArray*) getStagesForCurrentProject;
 
 - (ProjectTask*) getSelectedTask;
 
