@@ -20,10 +20,6 @@
 
 @property (strong, nonatomic) NSArray* imagesInfoArray;
 
-@property (strong, nonatomic) NSArray* fontColorsArray;
-
-@property (strong, nonatomic) NSArray* arrowsImages;
-
 // methods
 
 
@@ -37,12 +33,12 @@
 {
     if ( _titlesInfoArray == nil )
     {
-        _titlesInfoArray = @[ @"В ожидании",
+        _titlesInfoArray = @[ @"Ожидание",
                               @"В работе",
-                              @"Завершена",
+                              @"Выполнена",
                               @"Отменена",
                               @"На утверждении",
-                              @"Доработка" ];
+                              @"На доработке" ];
     }
     
     return _titlesInfoArray;
@@ -62,7 +58,10 @@
                                                blue: 45.0/256
                                               alpha: 1.f],
                               
-                              [UIColor cyanColor],
+                              [UIColor colorWithRed: 79.0/256
+                                              green: 197.0/256
+                                               blue: 45.0/256
+                                              alpha: 1.f],
                               
                               [UIColor colorWithRed: 255.0/256
                                               green: 70.0/256
@@ -74,7 +73,10 @@
                                                blue: 64.0/256
                                               alpha: 1.f],
                               
-                              [UIColor brownColor] ];
+                              [UIColor colorWithRed: 255.0/256
+                                              green: 228.0/256
+                                               blue: 69.0/256
+                                              alpha: 1.f] ];
     }
     
     return _colorsInfoArray;
@@ -86,33 +88,13 @@
     {
         _imagesInfoArray = @[ [UIImage imageNamed: @"TaskStatusWaitingIcon"],
                               [UIImage imageNamed: @"TaskStatusInProgressIcon"],
-                              [UIImage imageNamed: @"CheckMarkGreen"],
+                              [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
-                              [UIImage imageNamed: @"ArrowSend"]];
+                              [UIImage imageNamed: @"TaskStatusOnCompletion"]];
     }
     
     return _imagesInfoArray;
-}
-
-- (NSArray*) arrowsImages
-{
-    if ( _arrowsImages == nil )
-    {
-        _arrowsImages = [NSArray new];
-    }
-    
-    return _arrowsImages;
-}
-
-- (NSArray*) fontColorsArray
-{
-    if ( _fontColorsArray == nil )
-    {
-        _fontColorsArray = [NSArray new];
-    }
-    
-    return _fontColorsArray;
 }
 
 #pragma mark - Public -
@@ -147,11 +129,51 @@
 
 - (UIColor*) returnFontForTaskStatus: (TaskStatusType) statusType
 {
+    switch ( statusType )
+    {
+        case TaskWaitingStatusType:
+        case TaskOnApprovingStatusType:
+        case TaskOnCompletionStatusType:
+            
+            return [UIColor blackColor];
+            
+            break;
+            
+        case TaskCanceledStatusType:
+        case TaskCompletedStatusType:
+        case TaskInProgressStatusType:
+            
+            return [UIColor whiteColor];
+            
+        default:
+            break;
+    }
+    
     return nil;
 }
 
 - (UIImage*) returnArrowImageForTaskStatus: (TaskStatusType) statusType
 {
+    switch ( statusType )
+    {
+        case TaskWaitingStatusType:
+        case TaskOnApprovingStatusType:
+        case TaskOnCompletionStatusType:
+            
+            return [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
+            
+            break;
+            
+        case TaskCanceledStatusType:
+        case TaskCompletedStatusType:
+        case TaskInProgressStatusType:
+            
+            return [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
+            
+        default:
+            break;
+    }
+    
     return nil;
 }
 

@@ -128,8 +128,9 @@
     
     self.taskStatusImageIcon.image      = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: task.status.integerValue];
     
-//    self.taskStatusChangeIcon.image     = statusChangeIconImage;
-//    self.taskStatusTitleLabel.textColor = statusTitleFontColor;
+    self.taskStatusChangeIcon.image     = [[TaskStatusDefaultValues sharedInstance] returnArrowImageForTaskStatus: task.status.integerValue];
+    
+    self.taskStatusTitleLabel.textColor = [[TaskStatusDefaultValues sharedInstance] returnFontForTaskStatus: task.status.integerValue];
 }
 
 
