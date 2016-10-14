@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectRoleModel.h"
+#import "ProjectRoleTypeModel.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -63,6 +64,27 @@
                       }];
 }
 
+- (void) persistNewRole: (NewProjectRoleTypeModel*) info
+         withCompletion: (CompletionWithSuccess)    completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: localContext];
+        
+        [self persistCreatedRoleType: info
+                          forProject: selectedProject
+                           inContext: localContext];
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if (completion)
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+
+#pragma mark - Internal methods -
 
 - (NSArray*) getAllRolesInCurrentProject
 {
@@ -117,6 +139,28 @@
         role.hasProjectRoleAssignments = @(NO);
     }
 }
+
+- (void) persistCreatedRoleType: (NewProjectRoleTypeModel*) info
+                     forProject: (ProjectInfo*)             project
+                      inContext: (NSManagedObjectContext*)  context
+{
+    ProjectRoleTypeModel* roleTypeModel = info.data;
+    
+    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"roleID == %@ AND project == %@", roleTypeModel.roleTypeID, project];
+    
+    ProjectRoles* role = [ProjectRoles MR_findFirstWithPredicate: findPredicate
+                                                       inContext: context];
+    
+    if ( role == nil )
+    {
+        role = [ProjectRoles MR_createEntityInContext: context];
+    }
+    
+    role.roleID  = roleTypeModel.roleTypeID;
+    role.title   = roleTypeModel.title;
+    role.project = project;
+}
+
 
 - (ProjectRoles*) getRolesWithID: (NSNumber*)               roleID
                        inContext: (NSManagedObjectContext*) context

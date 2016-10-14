@@ -20,4 +20,7 @@
 
 - (RACSignal*) loadDefaultRoles;
 
+- (RACSignal*) createNewRoleTypeForProject: (NSString*)     requestURL
+                             withParameter: (NSDictionary*) parameter;
+
 @end

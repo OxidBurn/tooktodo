@@ -44,6 +44,14 @@ static bool isFirstAccess = YES;
     return [[[requestManager rac_GET: defaultRolesURL parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) createNewRoleTypeForProject: (NSString*)     requestURL
+                             withParameter: (NSDictionary*) parameter
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_POST: requestURL parameters: parameter] logError] replayLazily];
+}
+
 
 #pragma mark - Life Cycle -
 

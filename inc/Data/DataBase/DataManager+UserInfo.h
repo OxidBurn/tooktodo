@@ -19,6 +19,8 @@
 
 - (UserInfo*) getCurrentUserInfo;
 
+- (NSNumber*) getCurrentUserID;
+
 - (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
                 forUser: (UserInfo*)               user
          withCompletion: (void(^)(BOOL isSuccess)) completion;
