@@ -105,6 +105,15 @@
     return index;
 }
 
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType) status
+{
+    NSNumber* statusValue = self.statusesArray[status];
+    
+    [DataManagerShared updateStatusType: statusValue
+                  withStatusDescription: [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status]
+                         withCompletion: nil];
+}
+
 #pragma mark - Internal -
 
 - (NSArray*) orderStatusesArray

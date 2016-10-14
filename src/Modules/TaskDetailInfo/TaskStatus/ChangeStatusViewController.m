@@ -33,28 +33,7 @@
 {
     [super loadView];
     
-    
-    self.statusesTableView.dataSource = self.viewModel;
-    self.statusesTableView.delegate   = self.viewModel;
-    
-    self.navigationController.navigationBar.backItem.title = @"Назад";
-    
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.dismissController = ^(){
-        
-        [blockSelf dismissViewControllerAnimated: NO
-                                      completion: ^{
-                                          
-                                          if ([blockSelf.delegate respondsToSelector:@selector(performSegueWithID:)])
-                                          {
-                                              [blockSelf.delegate performSegueWithID: @"ShowOnRevisionController"];
-                                          }
-                                          
-                                      }];
-        
-    };
-
+    [self setupDefaults];
 }
 
 - (void) viewDidLoad
@@ -113,4 +92,39 @@
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
+
+#pragma mark - Helpers -
+
+- (void) setupDefaults
+{
+    self.statusesTableView.dataSource = self.viewModel;
+    self.statusesTableView.delegate   = self.viewModel;
+    
+    self.navigationController.navigationBar.backItem.title = @"Назад";
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.showOnRevisionController = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: NO
+                                      completion: ^{
+                                          
+                                          if ([blockSelf.delegate respondsToSelector:@selector(performSegueWithID:)])
+                                          {
+                                              [blockSelf.delegate performSegueWithID: @"ShowOnRevisionController"];
+                                          }
+                                          
+                                          
+                                      }];
+        
+    };
+    
+    self.viewModel.returnToTaskDetailController = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+        
+    };
+}
+
 @end

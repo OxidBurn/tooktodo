@@ -40,6 +40,10 @@
                   withSelectedState: (BOOL)                  isSelected
                      withCompletion: (CompletionWithSuccess) completion;
 
+- (void) updateStatusType: (NSNumber*)             newStatus
+    withStatusDescription: (NSString*)             statusDescription
+           withCompletion: (CompletionWithSuccess) completion;
+
 // Get methods
 - (ProjectRoleAssignments*) getSelectedProjectRoleAssignment;
 

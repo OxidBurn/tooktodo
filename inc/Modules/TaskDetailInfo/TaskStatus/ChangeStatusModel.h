@@ -25,4 +25,6 @@
 
 - (NSArray*) getAvailableStatusActions;
 
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType) status;
+
 @end

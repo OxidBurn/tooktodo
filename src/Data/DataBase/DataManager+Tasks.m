@@ -106,6 +106,26 @@
                       }];
 }
 
+- (void) updateStatusType: (NSNumber*)             newStatus
+    withStatusDescription: (NSString*)             statusDescription
+           withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectTask* selectedTask = [self getSelectedTask];
+        
+        ProjectTask* task = [ProjectTask MR_findFirstByAttribute: @"taskID"
+                                                       withValue: selectedTask.taskID
+                                                       inContext: localContext];
+        task.status            = newStatus;
+        task.statusDescription = statusDescription;
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                      }];
+}
 
 #pragma mark - Internal methods -
 

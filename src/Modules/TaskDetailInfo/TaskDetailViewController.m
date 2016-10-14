@@ -12,6 +12,7 @@
 #import "TaskDetailViewModel.h"
 #import "ProjectsEnumerations.h"
 #import "ChangeStatusViewController.h"
+#import "DataManager+Tasks.h"
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate>
 

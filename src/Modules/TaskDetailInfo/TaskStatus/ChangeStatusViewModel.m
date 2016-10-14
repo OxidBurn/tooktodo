@@ -113,11 +113,15 @@
     {
         if (self.selectedCellPath.row == [self.model returnOnComletionStatusIndex])
         {
-            if (self.dismissController)
-                self.dismissController();
+            if (self.showOnRevisionController)
+                self.showOnRevisionController();
         }
     }
     
+    [self.model updateTaskStatusWithNewStatus: indexPath.row];
+    
+    if ( self.returnToTaskDetailController )
+        self.returnToTaskDetailController();
 }
 
 @end
