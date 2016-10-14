@@ -18,16 +18,16 @@
 #import "TaskStatusActionModel.h"
 #import "TaskStagesActionModel.h"
 
+#import "DataManager+Tasks.h"
+
 @implementation DataManager (TaskAvailableActions)
 
-- (void) persistTaskAvailableActions: (TaskAvailableActionsModel*) info
-                             forTask: (ProjectTask*)               task
-                      withCompletion: (CompletionWithSuccess)      compltion
+- (void) persistTaskAvailableActionsForSelectedTask: (TaskAvailableActionsModel*) info
+                                     withCompletion: (CompletionWithSuccess)      compltion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
         [self persistAvailableActions: info
-                             withTask: task
                             inContext: localContext];
         
     }
@@ -43,9 +43,10 @@
 #pragma mark - Storing methods -
 
 - (void) persistAvailableActions: (TaskAvailableActionsModel*) info
-                        withTask: (ProjectTask*)               task
                        inContext: (NSManagedObjectContext*)    context
 {
+    ProjectTask* task = [self getSelectedTaskInContext: context];
+    
     NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"task == %@", task];
     
     TaskAvailableActionsList* availableActionsList = [TaskAvailableActionsList MR_findFirstWithPredicate: findPredicate

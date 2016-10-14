@@ -154,7 +154,13 @@
     
     if ( isSelected )
     {
-        [self loadSelectedTaskAvailableActionsForTask: task];
+        [[self loadSelectedTaskAvailableActionsForTask: task]
+         subscribeNext: ^(id x) {
+            
+        }
+         error:^(NSError *error) {
+             
+         }];
     }
 }
 
@@ -212,9 +218,8 @@
     }
     else
     {
-        [DataManagerShared persistTaskAvailableActions: taskAvailableActions
-                                               forTask: task
-                                        withCompletion: completion];
+        [DataManagerShared persistTaskAvailableActionsForSelectedTask: taskAvailableActions
+                                                       withCompletion: completion];
     }
 }
 
