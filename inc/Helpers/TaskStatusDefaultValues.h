@@ -14,12 +14,16 @@
 @interface TaskStatusDefaultValues : NSObject
 
 // methods
++ (instancetype) sharedInstance;
+
 - (UIColor*) returnColorForTaskStatus: (TaskStatusType) statusType;
 
 - (NSString*) returnTitleForTaskStatus: (TaskStatusType) statusType;
 
 - (UIImage*) returnIconImageForTaskStatus: (TaskStatusType) statusType;
 
-+ (instancetype) sharedInstance;
+- (UIColor*) returnFontForTaskStatus: (TaskStatusType) statusType;
+
+- (UIImage*) returnArrowImageForTaskStatus: (TaskStatusType) statusType;
 
 @end

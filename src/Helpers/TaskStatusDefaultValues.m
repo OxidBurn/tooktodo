@@ -20,6 +20,10 @@
 
 @property (strong, nonatomic) NSArray* imagesInfoArray;
 
+@property (strong, nonatomic) NSArray* fontColorsArray;
+
+@property (strong, nonatomic) NSArray* arrowsImages;
+
 // methods
 
 
@@ -90,6 +94,27 @@
     
     return _imagesInfoArray;
 }
+
+- (NSArray*) arrowsImages
+{
+    if ( _arrowsImages == nil )
+    {
+        _arrowsImages = [NSArray new];
+    }
+    
+    return _arrowsImages;
+}
+
+- (NSArray*) fontColorsArray
+{
+    if ( _fontColorsArray == nil )
+    {
+        _fontColorsArray = [NSArray new];
+    }
+    
+    return _fontColorsArray;
+}
+
 #pragma mark - Public -
 
 + (instancetype) sharedInstance
@@ -118,6 +143,16 @@
 - (UIImage*) returnIconImageForTaskStatus: (TaskStatusType) statusType
 {
     return self.imagesInfoArray[statusType];
+}
+
+- (UIColor*) returnFontForTaskStatus: (TaskStatusType) statusType
+{
+    return nil;
+}
+
+- (UIImage*) returnArrowImageForTaskStatus: (TaskStatusType) statusType
+{
+    return nil;
 }
 
 @end
