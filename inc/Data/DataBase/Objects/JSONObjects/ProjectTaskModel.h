@@ -48,7 +48,7 @@
 @property (strong, nonatomic) NSString* statusDescription;
 @property (strong, nonatomic) NSString<Optional> * storageDirectoryId;
 @property (strong, nonatomic) NSNumber<Optional> * storageFilesCount;
-@property (strong, nonatomic) TaskSubTasksModel<Optional> * subTasks;
+@property (strong, nonatomic) NSArray<ProjectTaskModel, Optional> * subTasks;
 @property (strong, nonatomic) NSNumber<Optional> * taskAccess;
 @property (strong, nonatomic) NSArray<TaskRoleAssignmentsModel, Optional> * taskRoleAssignments;
 @property (strong, nonatomic) NSNumber<Optional> * taskType;

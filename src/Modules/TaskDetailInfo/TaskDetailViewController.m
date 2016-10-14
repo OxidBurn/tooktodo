@@ -137,7 +137,6 @@
     self.viewModel.reloadTableView = ^(){
         
         [blockSelf.taskTableView reloadData];
-        
     };
     
     self.viewModel.performSegue = ^(NSString* segueID){

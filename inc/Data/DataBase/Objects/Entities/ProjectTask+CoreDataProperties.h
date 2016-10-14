@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/12/16.
+//  Created by Nikolay Chaban on 10/13/16.
 //
 //
 
@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *access;
 @property (nullable, nonatomic, copy) NSNumber *attachments;
 @property (nullable, nonatomic, copy) NSDate *closedDate;
+@property (nullable, nonatomic, copy) NSNumber *commentsCount;
 @property (nullable, nonatomic, copy) NSString *descriptionValue;
 @property (nullable, nonatomic, copy) NSNumber *duration;
 @property (nullable, nonatomic, copy) NSDate *endDate;
@@ -44,7 +45,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nullable, nonatomic, copy) NSNumber *commentsCount;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
@@ -53,7 +53,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
 @property (nullable, nonatomic, retain) ProjectTaskStage *stage;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskSubTasks *> *subTasks;
+@property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
 
@@ -66,10 +66,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addRooms:(NSSet<ProjectTaskRoom *> *)values;
 - (void)removeRooms:(NSSet<ProjectTaskRoom *> *)values;
 
-- (void)addSubTasksObject:(ProjectTaskSubTasks *)value;
-- (void)removeSubTasksObject:(ProjectTaskSubTasks *)value;
-- (void)addSubTasks:(NSSet<ProjectTaskSubTasks *> *)values;
-- (void)removeSubTasks:(NSSet<ProjectTaskSubTasks *> *)values;
+- (void)addSubTasksObject:(ProjectTask *)value;
+- (void)removeSubTasksObject:(ProjectTask *)value;
+- (void)addSubTasks:(NSSet<ProjectTask *> *)values;
+- (void)removeSubTasks:(NSSet<ProjectTask *> *)values;
 
 - (void)addTaskRoleAssignmentsObject:(ProjectTaskRoleAssignments *)value;
 - (void)removeTaskRoleAssignmentsObject:(ProjectTaskRoleAssignments *)value;

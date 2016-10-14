@@ -162,14 +162,15 @@
 
 #pragma mark - TaskOptionsControllerDelegate -
 
-- (void) showAnotherScreen
+- (void) onShowAddNewTaskScreen
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
                                                               bundle: [NSBundle mainBundle]];
     
-    AddTaskViewController* addTaskController = [alertStoryboard instantiateViewControllerWithIdentifier: @"TaskOptionsScreenID"];
+    AddTaskViewController* addTaskController = [alertStoryboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
     
-    [self.navigationController pushViewController: addTaskController
-                                         animated: YES];
+    [self presentViewController: addTaskController
+                       animated: YES
+                     completion: nil];
 }
 @end

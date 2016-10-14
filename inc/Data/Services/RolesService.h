@@ -28,4 +28,6 @@
 
 - (RACSignal*) getDefaultRoles;
 
+- (RACSignal*) addNewRoleForCurrentProjectWithTitle: (NSString*) roleTitle;
+
 @end

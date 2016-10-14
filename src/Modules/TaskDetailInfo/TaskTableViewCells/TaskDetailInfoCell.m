@@ -16,6 +16,7 @@
 
 // Helpers
 #import "NSDate+Helper.h"
+#import "TaskStatusDefaultValues.h"
 
 
 @interface TaskDetailInfoCell()
@@ -87,7 +88,7 @@
     
     [self handleWorkAreaDescriptionBtn: content.workAreaShortTitle];
     
-    [self handleTaskTypeBtn: content.status];
+    [self handleTaskStatusTypeBtn: content.status];
     
     self.taskTermsLabel.text = [self createTermsLabelTextForStartDate: content.taskStartDate
                                                        withFinishDate: content.taskEndDate];
@@ -131,7 +132,7 @@
     {
         self.roomInfoView.hidden = NO;
         
-        self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", roomNumber];
+        self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)roomNumber];
         
         self.temsHorizontalToStatusConstraint.priority = 250;
     }
@@ -184,73 +185,14 @@
     return labelText;
 }
 
-- (void) handleTaskTypeBtn: (NSUInteger) taskType
+- (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
 {
-    switch ( taskType )
-    {
-        case TaskWaitingStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor colorWithRed: 255.0/256
-                                                             green: 228.0/256
-                                                              blue: 69.0/256
-                                                             alpha: 1.f];
-            
-            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusWaitingIcon"]];
-        }
-            break;
-            
-        case TaskInProgressStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor colorWithRed: 79.0/256
-                                                             green: 197.0/256
-                                                              blue: 45.0/256
-                                                             alpha: 1.f];
-            
-            self.statusDescriptionLabel.textColor = [UIColor whiteColor];
-            
-            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusInProgressIcon"]];
-        }
-            break;
-            
-        case TaskCompletedStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor cyanColor];
-        }
-            break;
-            
-        case TaskCanceledStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor colorWithRed: 255.0/256
-                                                             green: 70.0/256
-                                                              blue: 70.0/256
-                                                             alpha: 1.f];
-            
-            [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
-        }
-            break;
-            
-        case TaskOnApprovingStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor colorWithRed: 250.0/256
-                                                             green: 216.0/256
-                                                              blue: 64.0/256
-                                                             alpha: 1.f];
-            
-             [self.changeStatusMarkImageView setImage: [UIImage imageNamed: @"TaskStatusOnApproveIcon"]];
-            
-        }
-            break;
-            
-        case TaskOnCompletionStatusType:
-        {
-            self.statusBtn.backgroundColor = [UIColor brownColor];
-        }
-            break;
-            
-        default:
-            break;
-    }
-
+    UIImage* statusTypeIcon = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: taskStatusType];
+    
+    if ( statusTypeIcon )
+        [self.changeStatusMarkImageView setImage: statusTypeIcon];
+    
+    self.statusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: taskStatusType];
 }
 
 @end

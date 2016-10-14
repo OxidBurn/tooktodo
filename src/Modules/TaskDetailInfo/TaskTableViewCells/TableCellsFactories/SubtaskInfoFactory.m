@@ -13,4 +13,16 @@
 
 @implementation SubtaskInfoFactory
 
+#pragma mark - Public -
+
+- (UITableViewCell*) returnSubtaskInfoCellForTableView: (UITableView*)    tableView
+                                           withContent: (TaskRowContent*) content
+{
+    SubtaskInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SubtaskInfoCellId"];
+    
+    [cell fillCellWithContent: content];
+    
+    return cell;
+}
+
 @end

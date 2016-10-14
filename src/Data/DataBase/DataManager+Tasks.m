@@ -16,7 +16,6 @@
 #import "ProjectTaskMarker.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectTaskRoleType.h"
-#import "ProjectTaskSubTasks.h"
 #import "ProjectTaskWorkArea.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskMapContour+CoreDataClass.h"
@@ -110,9 +109,9 @@
 
 #pragma mark - Internal methods -
 
-- (void) persistTaskWithInfo: (ProjectTaskModel*)       info
-                  forProject: (ProjectInfo*)            project
-                   inContext: (NSManagedObjectContext*) context
+- (ProjectTask*) persistTaskWithInfo: (ProjectTaskModel*)       info
+                          forProject: (ProjectInfo*)            project
+                           inContext: (NSManagedObjectContext*) context
 {
     ProjectTask* task = [ProjectTask MR_findFirstOrCreateByAttribute: @"taskID"
                                                            withValue: info.taskID
@@ -280,11 +279,13 @@
     // Store subtasks
     if ( info.subTasks )
     {
-        [info.subTasks.list enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [info.subTasks enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [self persistTaskWithInfo: obj
-                           forProject: project
-                            inContext: context];
+            ProjectTask* subTask = [self persistTaskWithInfo: obj
+                                                  forProject: project
+                                                   inContext: context];
+            
+            [task addSubTasksObject: subTask];
             
         }];
     }
@@ -301,6 +302,7 @@
         }];
     }
     
+    return task;
 }
 
 - (void) persistTaskResponsible: (TaskResponsibleModel*)   info

@@ -11,6 +11,9 @@
 // Classes
 #import "AvatarImageView.h"
 
+// Helpers
+#import "NSDate+Helper.h"
+
 @interface CommentsCell()
 
 // outlets
@@ -23,7 +26,6 @@
 
 // properties
 
-
 // methods
 
 
@@ -31,5 +33,18 @@
 
 @implementation CommentsCell
 
+#pragma mark - Public -
+
+- (void) fillCellWithContent: (TaskRowContent*) content
+{
+    [self.userAvatarImageView setImage: content.commentAuthorAvatar];
+    
+    self.userNameLabel.text = content.commentAuthorName;
+    
+    self.commentDateLabel.text = [NSDate stringFromDate: content.commentDate];
+    
+    self.commentContentTextView.text = content.commentText;
+    
+}
 
 @end

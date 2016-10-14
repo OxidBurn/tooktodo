@@ -27,10 +27,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemsCellID" id="DWZ-fT-MML">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWZ-fT-MML" id="0L8-lI-gUo">
-                                            <frame key="frameInset" width="1000" height="41"/>
+                                            <frame key="frameInset" width="375" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -363,8 +363,19 @@
                                 <action selector="onShowMenu:" destination="oO5-JK-2NW" id="6tJ-8v-eem"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="GUt-pL-ezG">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cWi-Vy-IIZ">
+                                <rect key="frame" x="315" y="7" width="44" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="addNewRoleBtnIcon"/>
+                            </button>
+                            <connections>
+                                <segue destination="4XG-gA-Vp2" kind="show" identifier="ShowAddNewRoleScreenID" id="3kH-Kb-qHI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewRoleBtn" destination="cWi-Vy-IIZ" id="Knb-03-hPW"/>
                         <outlet property="containerView" destination="Cdb-G8-9xV" id="3Vd-3B-MBM"/>
                         <segue destination="pBu-cs-eVD" kind="custom" identifier="GoToRoles" customClass="AboutProjectSegue" id="Xiy-za-iYL"/>
                         <segue destination="TC7-hc-GAr" kind="custom" identifier="GoToProjInformation" customClass="AboutProjectSegue" id="pUp-m9-lqi"/>
@@ -374,6 +385,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXk-tZ-9Ji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1394" y="2881"/>
+        </scene>
+        <!--AddNewRole-->
+        <scene sceneID="Nkv-jM-L7O">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddNewRole" id="4XG-gA-Vp2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sMY-4t-TKn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2050" y="2622"/>
         </scene>
         <!--Information View Controller-->
         <scene sceneID="TdW-2U-yfr">
@@ -392,14 +411,14 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InformationCellID" textLabel="Jdy-Qo-flC" detailTextLabel="Jih-Rd-ZfD" style="IBUITableViewCellStyleValue1" id="ZR9-1U-pgV">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZR9-1U-pgV" id="VFx-Og-uhr">
-                                            <frame key="frameInset" width="1000" height="41"/>
+                                            <frame key="frameInset" width="375" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdy-Qo-flC">
-                                                    <frame key="frameInset" minX="164" minY="12" width="31" height="18"/>
+                                                    <frame key="frameInset" minX="15" minY="12" width="31" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -409,7 +428,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jih-Rd-ZfD">
-                                                    <frame key="frameInset" minX="800" minY="14" width="36" height="16"/>
+                                                    <frame key="frameInset" minX="324" minY="14" width="36" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -521,5 +540,6 @@
     <resources>
         <image name="Add" width="18" height="19"/>
         <image name="Menu1" width="24" height="17"/>
+        <image name="addNewRoleBtnIcon" width="18" height="18"/>
     </resources>
 </document>

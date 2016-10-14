@@ -16,4 +16,8 @@
 
 @interface SubtaskInfoFactory : NSObject
 
+// methods
+- (UITableViewCell*) returnSubtaskInfoCellForTableView: (UITableView*)    tableView
+                                           withContent: (TaskRowContent*) content;
+
 @end

@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) NSArray<ShortProjectInfoModel> * projects;
 
-@property (strong, nonatomic) NSNumber* tasksCount;
+@property (strong, nonatomic) NSNumber* count;
 
 @end
 
