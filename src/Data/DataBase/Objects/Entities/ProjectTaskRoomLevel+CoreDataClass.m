@@ -2,7 +2,7 @@
 //  ProjectTaskRoomLevel+CoreDataClass.m
 //  
 //
-//  Created by Lera on 05.10.16.
+//  Created by Nikolay Chaban on 05.10.16.
 //
 //
 
