@@ -14,8 +14,7 @@
 
 @interface DataManager (TaskAvailableActions)
 
-- (void) persistTaskAvailableActions: (TaskAvailableActionsModel*) info
-                             forTask: (ProjectTask*)               task
-                      withCompletion: (CompletionWithSuccess)      compltion;
+- (void) persistTaskAvailableActionsForSelectedTask: (TaskAvailableActionsModel*) info
+                                     withCompletion: (CompletionWithSuccess)      compltion;
 
 @end

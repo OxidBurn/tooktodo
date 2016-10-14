@@ -628,5 +628,14 @@
     return task;
 }
 
+- (ProjectTask*) getSelectedTaskInContext: (NSManagedObjectContext*) context
+{
+    ProjectTask* task = [ProjectTask MR_findFirstByAttribute: @"isSelected"
+                                                   withValue: @(YES)
+                                                   inContext: context];
+    
+    return task;
+}
+
 
 @end

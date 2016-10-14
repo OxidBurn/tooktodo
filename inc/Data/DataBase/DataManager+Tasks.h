@@ -46,4 +46,6 @@
 
 - (ProjectTask*) getSelectedTask;
 
+- (ProjectTask*) getSelectedTaskInContext: (NSManagedObjectContext*) context;
+
 @end
