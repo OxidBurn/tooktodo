@@ -82,10 +82,10 @@
     {
         _imagesInfoArray = @[ [UIImage imageNamed: @"TaskStatusWaitingIcon"],
                               [UIImage imageNamed: @"TaskStatusInProgressIcon"],
-                              @0,
+                              [UIImage imageNamed: @"CheckMarkGreen"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
-                              @0 ];
+                              [UIImage imageNamed: @"ArrowSend"]];
     }
     
     return _imagesInfoArray;

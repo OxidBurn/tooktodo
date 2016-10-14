@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *statusesTableView;
 @property (nonatomic, strong) ChangeStatusViewModel* viewModel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *backBtn;
 
 //Actions
 
@@ -32,8 +33,11 @@
 {
     [super loadView];
     
+    
     self.statusesTableView.dataSource = self.viewModel;
     self.statusesTableView.delegate   = self.viewModel;
+    
+    self.navigationController.navigationBar.backItem.title = @"Назад";
     
     __weak typeof(self) blockSelf = self;
     
@@ -51,6 +55,13 @@
         
     };
 
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    
+      [self.backBtn.customView bringSubviewToFront: self.view];
 }
 
 

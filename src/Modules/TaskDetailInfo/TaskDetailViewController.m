@@ -77,6 +77,7 @@
 {
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
+        
         UINavigationController* destinationNavController = segue.destinationViewController;
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         

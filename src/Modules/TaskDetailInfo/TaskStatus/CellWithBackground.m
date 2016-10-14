@@ -32,7 +32,8 @@
                      arrowState: (BOOL)      isHiddenArrow
 {
     self.statusNameLabel.text   = name;
-    self.statusImageView.image  = image;
+    if (image)
+         self.statusImageView.image  = image;
     self.backgroundColor        = background;
     self.arrowImage.hidden      = isHiddenArrow;
 }
