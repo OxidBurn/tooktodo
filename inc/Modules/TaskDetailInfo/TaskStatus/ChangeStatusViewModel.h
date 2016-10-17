@@ -17,6 +17,8 @@
 
 @property (nonatomic, copy) void(^returnToTaskDetailController)();
 
+@property (nonatomic, copy) void(^showCancelRequestController)();
+
 - (TaskStatusType) getCurrentStatusType;
 
 - (UIImage*) getExpandedArrowMarkImage;

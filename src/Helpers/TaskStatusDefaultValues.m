@@ -38,7 +38,8 @@
                               @"Выполнена",
                               @"Отменена",
                               @"На утверждении",
-                              @"На доработке" ];
+                              @"На доработке",
+                              @"Запрос на отмену"];
     }
     
     return _titlesInfoArray;
@@ -76,7 +77,12 @@
                               [UIColor colorWithRed: 248.0/256
                                               green: 216.0/256
                                                blue: 24.0/256
-                                              alpha: 1.f] ];
+                                              alpha: 1.f],
+        
+                              [UIColor colorWithRed: 255.0/256
+                                              green: 70.0/256
+                                               blue: 70.0/256
+                                              alpha: 1.f]];
     }
     
     return _colorsInfoArray;
@@ -91,7 +97,8 @@
                               [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
-                              [UIImage imageNamed: @"TaskStatusOnCompletion"]];
+                              [UIImage imageNamed: @"TaskStatusOnCompletion"],
+                              [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
     }
     
     return _imagesInfoArray;
@@ -118,6 +125,7 @@
 }
 
 - (NSString*) returnTitleForTaskStatus: (TaskStatusType) statusType
+
 {
     return self.titlesInfoArray[statusType];
 }
@@ -142,6 +150,7 @@
         case TaskCanceledStatusType:
         case TaskCompletedStatusType:
         case TaskInProgressStatusType:
+        case TaskCancelRequestType:
             
             return [UIColor whiteColor];
             
@@ -167,6 +176,7 @@
         case TaskCanceledStatusType:
         case TaskCompletedStatusType:
         case TaskInProgressStatusType:
+        case TaskCancelRequestType:
             
             return [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
             
@@ -192,6 +202,7 @@
         case TaskCanceledStatusType:
         case TaskCompletedStatusType:
         case TaskInProgressStatusType:
+        case TaskCancelRequestType:
             
             return [UIImage imageNamed: @"TaskStatusExpandWhiteIconTurn"];
             

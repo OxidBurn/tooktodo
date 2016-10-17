@@ -87,6 +87,12 @@
         }
     }
     
+    if (indexPath.row == [self.model returnCancelRequestStatusIndex])
+    {
+        if (self.showCancelRequestController)
+            self.showCancelRequestController();
+    }
+    
     [self.model updateTaskStatusWithNewStatus: indexPath.row
                                withCompletion: ^(BOOL isSuccess) {
         

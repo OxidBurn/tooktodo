@@ -98,6 +98,18 @@
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];
     };
+    
+    self.viewModel.showCancelRequestController = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: NO
+                                      completion: ^{
+                                          
+                                          if ([blockSelf.delegate respondsToSelector: @selector(performSegueWithID:)])
+                                          {
+                                              [blockSelf.delegate performSegueWithID: @"ShowCancelReguestController"];
+                                          }
+                                      }];
+    };
 }
 
 - (void) updateArrowMarkImage

@@ -18,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* statusImageView;
 
+@property (nonatomic, assign) BOOL canCancel;
+
 @end
 
 @implementation CellWithBackground
@@ -31,6 +33,7 @@
     
     self.backgroundColor                 = [[TaskStatusDefaultValues sharedInstance]
                                             returnColorForTaskStatus: statusType];
+
     
     self.statusNameLabel.text            = [[TaskStatusDefaultValues sharedInstance]
                                             returnTitleForTaskStatus: statusType];
@@ -38,5 +41,6 @@
     self.statusImageView.image           = [[TaskStatusDefaultValues sharedInstance]
                                             returnIconImageForTaskStatus: statusType];
 }
+
 
 @end

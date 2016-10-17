@@ -385,6 +385,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		CF3471F01DB4DE1600A6EB3E /* CancelReguestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3471EF1DB4DE1600A6EB3E /* CancelReguestModel.m */; };
+		CF3471F31DB4DE3D00A6EB3E /* CancelRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3471F21DB4DE3D00A6EB3E /* CancelRequestViewModel.m */; };
+		CF3471F61DB4DE6B00A6EB3E /* CancelRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3471F51DB4DE6B00A6EB3E /* CancelRequestViewController.m */; };
 		F7ED843F1DAFCE9100CF76D7 /* AttachmentsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED843E1DAFCE9100CF76D7 /* AttachmentsCellFactory.m */; };
 		F7ED84421DAFCEA400CF76D7 /* CommentsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED84411DAFCEA400CF76D7 /* CommentsCellFactory.m */; };
 		F7ED84451DB0036500CF76D7 /* TaskStatusDefaultValues.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED84441DB0036500CF76D7 /* TaskStatusDefaultValues.m */; };
@@ -1125,6 +1128,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF3471EF1DB4DE1600A6EB3E /* CancelReguestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelReguestModel.m; sourceTree = "<group>"; };
+		CF3471F21DB4DE3D00A6EB3E /* CancelRequestViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewModel.m; sourceTree = "<group>"; };
+		CF3471F51DB4DE6B00A6EB3E /* CancelRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewController.m; sourceTree = "<group>"; };
+		CF3471F71DB4DEA000A6EB3E /* CancelReguestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelReguestModel.h; sourceTree = "<group>"; };
+		CF3471F81DB4DEA000A6EB3E /* CancelRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewController.h; sourceTree = "<group>"; };
+		CF3471F91DB4DEA000A6EB3E /* CancelRequestViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewModel.h; sourceTree = "<group>"; };
 		F7ED843D1DAFCE9100CF76D7 /* AttachmentsCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachmentsCellFactory.h; sourceTree = "<group>"; };
 		F7ED843E1DAFCE9100CF76D7 /* AttachmentsCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentsCellFactory.m; sourceTree = "<group>"; };
 		F7ED84401DAFCEA400CF76D7 /* CommentsCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsCellFactory.h; sourceTree = "<group>"; };
@@ -1643,6 +1652,7 @@
 		56D06C401DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CF3471ED1DB4DD6000A6EB3E /* CancelRequest */,
 				56D06C411DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06C4E1DAFBDBF008E9AC0 /* CustomViews */,
 				56D06C501DAFBDBF008E9AC0 /* ForRevision */,
@@ -2541,6 +2551,7 @@
 		56D06DCD1DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CF3471EC1DB4DD3C00A6EB3E /* CancelRequest */,
 				56D06DCE1DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06DDB1DAFBDBF008E9AC0 /* CustomViews */,
 				56D06DDD1DAFBDBF008E9AC0 /* ForRevision */,
@@ -3121,6 +3132,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CF3471EC1DB4DD3C00A6EB3E /* CancelRequest */ = {
+			isa = PBXGroup;
+			children = (
+				CF3471EF1DB4DE1600A6EB3E /* CancelReguestModel.m */,
+				CF3471F21DB4DE3D00A6EB3E /* CancelRequestViewModel.m */,
+				CF3471F51DB4DE6B00A6EB3E /* CancelRequestViewController.m */,
+			);
+			path = CancelRequest;
+			sourceTree = "<group>";
+		};
+		CF3471ED1DB4DD6000A6EB3E /* CancelRequest */ = {
+			isa = PBXGroup;
+			children = (
+				CF3471F71DB4DEA000A6EB3E /* CancelReguestModel.h */,
+				CF3471F81DB4DEA000A6EB3E /* CancelRequestViewController.h */,
+				CF3471F91DB4DEA000A6EB3E /* CancelRequestViewModel.h */,
+			);
+			path = CancelRequest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3411,6 +3442,7 @@
 				564DE38C1DB0F76A00BF9817 /* TaskStatusActionModel.m in Sources */,
 				56D06FB71DAFBDC0008E9AC0 /* OSMarkedRightDetailCell.m in Sources */,
 				56D06F071DAFBDC0008E9AC0 /* AddTaskViewController.m in Sources */,
+				CF3471F61DB4DE6B00A6EB3E /* CancelRequestViewController.m in Sources */,
 				56D06E981DAFBDC0008E9AC0 /* ProjectRoles.m in Sources */,
 				56D06E821DAFBDC0008E9AC0 /* AppDelegate.m in Sources */,
 				56D06ED01DAFBDC0008E9AC0 /* TaskMarkerModel.m in Sources */,
@@ -3520,6 +3552,7 @@
 				56D06E891DAFBDC0008E9AC0 /* DataManager+UserInfo.m in Sources */,
 				56D06FAB1DAFBDC0008E9AC0 /* OSFlexibleTextCellFactory.m in Sources */,
 				56D06F661DAFBDC0008E9AC0 /* ProjectTasksViewModel.m in Sources */,
+				CF3471F01DB4DE1600A6EB3E /* CancelReguestModel.m in Sources */,
 				56D06EEE1DAFBDC0008E9AC0 /* UIViewController+Focus.m in Sources */,
 				56D06EC01DAFBDC0008E9AC0 /* UserNotifications.m in Sources */,
 				56D06F4A1DAFBDC0008E9AC0 /* ChangeStatusViewModel.m in Sources */,
@@ -3609,6 +3642,7 @@
 				56D06F0A1DAFBDC0008E9AC0 /* AddTaskTermsViewModel.m in Sources */,
 				56D06F781DAFBDC0008E9AC0 /* AddContactViewModel.m in Sources */,
 				56D06FB81DAFBDC0008E9AC0 /* OSRightDetailCell.m in Sources */,
+				CF3471F31DB4DE3D00A6EB3E /* CancelRequestViewModel.m in Sources */,
 				56D06ED21DAFBDC0008E9AC0 /* TaskProjectRoleAssignmentModel.m in Sources */,
 				56D06EB11DAFBDC0008E9AC0 /* ProjectTaskRoomLevel+CoreDataClass.m in Sources */,
 				56D06EC21DAFBDC0008E9AC0 /* ProjectCountryModel.m in Sources */,

@@ -1,0 +1,43 @@
+//
+//  CancelRequestViewController.m
+//  TookTODO
+//
+//  Created by Lera on 17.10.16.
+//  Copyright © 2016 Nikolay Chaban. All rights reserved.
+//
+
+#import "CancelRequestViewController.h"
+
+@interface CancelRequestViewController ()
+
+@property (nonatomic, weak) IBOutlet UIBarButtonItem* backBtn;
+
+- (IBAction) onBack: (UIBarButtonItem*) sender;
+
+@end
+
+@implementation CancelRequestViewController
+
+#pragma mark - Life cycle -
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+}
+
+- (void) didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Actions -
+
+- (IBAction) onBack: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+@end

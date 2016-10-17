@@ -27,6 +27,7 @@
 @property (nonatomic, assign) TaskStatusType statusType;
 @property (nonatomic, strong) ProjectTask*   task;
 @property (nonatomic, assign) TaskStatusType currentStatus;
+@property (nonatomic, strong) NSArray*       availableStatusActions;
 
 // methods
 
@@ -42,8 +43,6 @@
     if (_statusesArray == nil)
     {
         _statusesArray = [self orderStatusesArray];
-        
-        NSLog(@"statusActionsArray: %@", [self getAvailableStatusActions]);
     }
     
     return _statusesArray;
@@ -94,9 +93,18 @@
 
 - (TaskStatusType) getStatusTypeForRow: (NSUInteger) row
 {
-    NSNumber* statusValue = self.statusesArray[row];
+    NSNumber* statusNumberValue = self.statusesArray[row];
     
-    return statusValue.integerValue;
+    TaskStatusType statusType = statusNumberValue.integerValue;
+    
+    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCanceledStatusType)];
+    
+    if (row == currentCancelType)
+    {
+        statusType =  [self checkIfUserCanCancelTask];
+    }
+    
+    return statusType;
 }
 
 //Method for getting available status actions for current user
@@ -106,11 +114,39 @@
     
     TaskAvailableActionsList* availableActions = self.task.availableActions;
     
-    NSArray* availableStatusActions = availableActions.statusActions.allObjects;
+    self.availableStatusActions = availableActions.statusActions.allObjects;
     
-    return availableStatusActions;
+    return  self.availableStatusActions;
+    
 }
 
+
+- (TaskStatusType) checkIfUserCanCancelTask
+{
+    [self getAvailableStatusActions];
+    
+    __block BOOL canCancelTask = nil;
+    
+    if (self.availableStatusActions != nil)
+    {
+        [self.availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj.stautsActionDescription isEqualToString: @"Отменить"])
+            {
+                 canCancelTask = YES;
+                
+                *stop = YES;
+            }
+            
+            else canCancelTask = NO;
+            
+        }];
+        
+        return canCancelTask ? TaskCanceledStatusType : TaskCancelRequestType;
+    }
+    
+    return TaskCanceledStatusType;
+}
 
 - (NSUInteger) returnOnComletionStatusIndex
 {
@@ -119,13 +155,26 @@
     return index;
 }
 
+- (NSUInteger) returnCancelRequestStatusIndex
+{
+    if ([self checkIfUserCanCancelTask] == TaskCancelRequestType)
+    {
+        NSUInteger index = [self.statusesArray indexOfObject: @(3)];
+        
+        return index;
+    }
+    
+    return -1;
+}
+
 - (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
                         withCompletion: (CompletionWithSuccess) completion
 {
     NSNumber* statusValue = self.statusesArray[status];
     
     [DataManagerShared updateStatusType: statusValue
-                  withStatusDescription: [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status]
+                  withStatusDescription: [[TaskStatusDefaultValues sharedInstance]
+                                          returnTitleForTaskStatus: status]
                          withCompletion: completion];
 }
 

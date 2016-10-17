@@ -25,6 +25,8 @@
 
 - (NSUInteger) returnOnComletionStatusIndex;
 
+- (NSUInteger) returnCancelRequestStatusIndex;
+
 - (NSArray*) getAvailableStatusActions;
 
 - (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status

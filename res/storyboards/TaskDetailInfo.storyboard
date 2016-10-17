@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E69-tF-D1Q">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E69-tF-D1Q">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -2269,7 +2269,7 @@
             <objects>
                 <navigationController storyboardIdentifier="TaskDetailInfoID" id="n0Q-uv-t0y" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="aPb-yj-icS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aPb-yj-icS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2379,10 +2379,10 @@
             </objects>
             <point key="canvasLocation" x="3228" y="-278.41079460269867"/>
         </scene>
-        <!--View Controller-->
+        <!--Cancel Request View Controller-->
         <scene sceneID="AUY-33-Fc5">
             <objects>
-                <viewController id="p29-rA-7NC" sceneMemberID="viewController">
+                <viewController id="p29-rA-7NC" customClass="CancelRequestViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7HB-zN-Jb5"/>
                         <viewControllerLayoutGuide type="bottom" id="hzo-OI-mCa"/>
@@ -2421,6 +2421,9 @@
                     <navigationItem key="navigationItem" id="nbi-hw-xl2">
                         <barButtonItem key="leftBarButtonItem" image="Back" id="5Ek-7r-p8b">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBack:" destination="p29-rA-7NC" id="ysV-Iu-AXZ"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Done" id="lOR-Jc-fmg">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2428,6 +2431,9 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="backBtn" destination="5Ek-7r-p8b" id="SjQ-pc-BRX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssg-vI-TDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

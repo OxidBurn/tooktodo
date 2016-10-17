@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskCanceledStatusType     = 3,
     TaskOnApprovingStatusType  = 4,
     TaskOnCompletionStatusType = 5,
+    TaskCancelRequestType      = 6,
 };
 
 typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
