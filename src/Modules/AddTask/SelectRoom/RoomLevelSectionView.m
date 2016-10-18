@@ -66,11 +66,13 @@
     
     if ( isExpanded )
     {
-        expandedStateImage = [UIImage imageNamed: @"ArrowHorizontaly"];
+        expandedStateImage   = [UIImage imageNamed: @"ArrowHorizontaly"];
+        self.backgroundColor = [UIColor colorWithRed:0.902 green:0.9098 blue:0.9176 alpha:1.0];
     }
     else
     {
-        expandedStateImage = [UIImage imageNamed: @"ArrowVertical"];
+        expandedStateImage   = [UIImage imageNamed: @"ArrowVertical"];
+        self.backgroundColor = [UIColor whiteColor];
     }
     
     self.expandImgView.image = expandedStateImage;
@@ -91,7 +93,5 @@
                        forState: UIControlStateNormal];
     }
 }
-
-
 
 @end

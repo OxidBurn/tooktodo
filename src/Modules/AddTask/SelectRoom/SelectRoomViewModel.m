@@ -116,14 +116,13 @@
 }
 
 - (nullable UIView*)     tableView: (UITableView*) tableView
-            viewForHeaderInSection: (NSInteger) section
+            viewForHeaderInSection: (NSInteger)    section
 {
     RoomLevelSectionView* sectionView = [[MainBundle loadNibNamed: @"RoomLevelSectionView"
                                                             owner: self
                                                           options: nil] firstObject];
     
     sectionView.tag = section;
-    
     
     ProjectTaskRoomLevel* level = [self.model getLevelForSection: section];
     
@@ -154,6 +153,8 @@
              [tableView reloadData];
          }];
     };
+    
+
     
     return sectionView;
 }
