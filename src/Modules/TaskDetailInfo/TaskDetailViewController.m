@@ -12,6 +12,7 @@
 #import "TaskDetailViewModel.h"
 #import "ProjectsEnumerations.h"
 #import "ChangeStatusViewController.h"
+#import "DataManager+Tasks.h"
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate>
 
@@ -77,11 +78,13 @@
 {
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
+        
         UINavigationController* destinationNavController = segue.destinationViewController;
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         
         vc.delegate = self;
     }
+    
 }
 
 #pragma mark - Actions -
@@ -121,6 +124,14 @@
     [self performSegueWithIdentifier: segueID
                               sender: self];
 }
+
+- (void) updataTaskDetailInfoTaskStatus
+{
+    [self.viewModel updateTaskStatus];
+    
+    [self.taskTableView reloadData];
+}
+
 
 #pragma mark - Helpers -
 

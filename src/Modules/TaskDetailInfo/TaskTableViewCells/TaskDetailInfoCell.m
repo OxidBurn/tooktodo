@@ -97,9 +97,7 @@
                                 withType: content.taskType];
     
     self.taskTitleLabel.text = content.taskTitle;
-    
-    self.statusDescriptionLabel.text = content.statusDescription;
-    
+        
     [self.subtaskMark setValue: content.subtasksNumber
                       withType: TaskMarkerSubtaskType];
     
@@ -187,12 +185,20 @@
 
 - (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
 {
-    UIImage* statusTypeIcon = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: taskStatusType];
+    self.changeStatusMarkImageView.image  = [[TaskStatusDefaultValues sharedInstance]
+                                             returnIconImageForTaskStatus: taskStatusType];
     
-    if ( statusTypeIcon )
-        [self.changeStatusMarkImageView setImage: statusTypeIcon];
+    self.statusBtn.backgroundColor        = [[TaskStatusDefaultValues sharedInstance]
+                                             returnColorForTaskStatus: taskStatusType];
     
-    self.statusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: taskStatusType];
+    self.statusDescriptionLabel.text      = [[TaskStatusDefaultValues sharedInstance]
+                                             returnTitleForTaskStatus: taskStatusType];
+    
+    self.statusExpandedImageView.image    = [[TaskStatusDefaultValues sharedInstance]
+                                             returnArrowImageForTaskStatus: taskStatusType];
+    
+    self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
+                                             returnFontColorForTaskStatus: taskStatusType];
 }
 
 @end

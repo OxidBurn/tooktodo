@@ -23,6 +23,9 @@
 #import "UIImageView+WebCache.h"
 #import "NSDate+Helper.h"
 
+// Helpers
+#import "TaskStatusDefaultValues.h"
+
 @interface TasksListTableViewCell()
 
 // properties
@@ -118,81 +121,21 @@
 }
 
 - (void) setupStatusTypeButton: (ProjectTask*) task
-{
-    UIColor* statusColor           = [UIColor clearColor];
-    UIImage* statusChangeIconImage = nil;
-    NSString* statusTitleString    = @"";
-    UIImage* statusIconImage       = nil;
-    UIColor* statusTitleFontColor  = [UIColor whiteColor];
+{  
+    self.taskStatusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance]
+                                          returnColorForTaskStatus: task.status.integerValue];
     
-    switch (task.status.integerValue)
-    {
-        case TaskWaitingStatusType:
-        {
-            statusColor           = [UIColor colorWithRed:1.00 green:0.89 blue:0.27 alpha:1.00];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @"TaskStatusWaitingIcon"];
-            statusTitleFontColor  = [UIColor blackColor];
-        }
-            break;
-        case TaskInProgressStatusType:
-        {
-            statusColor           = [UIColor colorWithRed:0.31 green:0.77 blue:0.18 alpha:1.00];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @"TaskStatusInProgressIcon"];
-            statusTitleFontColor  = [UIColor whiteColor];
-        }
-            break;
-            
-        case TaskCompletedStatusType:
-        {
-            statusColor           = [UIColor cyanColor];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @""];
-            statusTitleFontColor  = [UIColor blackColor];
-        }
-            break;
-            
-        case TaskOnApprovingStatusType:
-        {
-            statusColor           = [UIColor colorWithRed:0.98 green:0.85 blue:0.25 alpha:1.00];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @"TaskStatusOnApproveIcon"];
-            statusTitleFontColor  = [UIColor colorWithRed:0.15 green:0.18 blue:0.22 alpha:1.00];
-        }
-            break;
-            
-        case TaskOnCompletionStatusType:
-        {
-            statusColor           = [UIColor brownColor];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @""];
-            statusTitleFontColor  = [UIColor blackColor];
-        }
-            break;
-            
-        case TaskCanceledStatusType:
-        {
-            statusColor           = [UIColor colorWithRed:1.00 green:0.27 blue:0.27 alpha:1.00];
-            statusChangeIconImage = [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
-            statusTitleString     = task.statusDescription;
-            statusIconImage       = [UIImage imageNamed: @"TaskStatusCanceledIcon"];
-            statusTitleFontColor  = [UIColor whiteColor];
-        }
-            break;
-    }
+    self.taskStatusTitleLabel.text      = [[TaskStatusDefaultValues sharedInstance]
+                                           returnTitleForTaskStatus: task.status.integerValue];
     
-    [self.taskStatusBtn setBackgroundColor: statusColor];
+    self.taskStatusImageIcon.image      = [[TaskStatusDefaultValues sharedInstance]
+                                           returnIconImageForTaskStatus: task.status.integerValue];
     
-    self.taskStatusTitleLabel.text      = statusTitleString;
-    self.taskStatusImageIcon.image      = statusIconImage;
-    self.taskStatusChangeIcon.image     = statusChangeIconImage;
-    self.taskStatusTitleLabel.textColor = statusTitleFontColor;
+    self.taskStatusChangeIcon.image     = [[TaskStatusDefaultValues sharedInstance]
+                                           returnArrowImageForTaskStatus: task.status.integerValue];
+    
+    self.taskStatusTitleLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
+                                           returnFontColorForTaskStatus: task.status.integerValue];
 }
 
 

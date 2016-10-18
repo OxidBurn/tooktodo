@@ -13,17 +13,21 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 #import "TaskDetailModel.h"
+#import "TaskStatusDefaultValues.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
+#import "TaskAvailableStatusAction+CoreDataClass.h"
 
 @interface ChangeStatusModel() <TaskDetailModelDelegate>
 
 // properties
-@property (nonatomic, strong) NSArray* statusesArray;
-
+@property (nonatomic, strong) NSArray*       statusesArray;
+@property (nonatomic, strong) NSArray*       statusNames;
+@property (nonatomic, strong) NSArray*       statusImages;
+@property (nonatomic, strong) NSArray*       backgrounds;
 @property (nonatomic, assign) TaskStatusType statusType;
-
-@property (nonatomic, strong) ProjectTask* task;
-
+@property (nonatomic, strong) ProjectTask*   task;
 @property (nonatomic, assign) TaskStatusType currentStatus;
+@property (nonatomic, strong) NSArray*       availableStatusActions;
 
 // methods
 
@@ -32,173 +36,49 @@
 @implementation ChangeStatusModel
 
 
+#pragma mark - Properties -
+
+- (NSArray*) statusesArray
+{
+    if (_statusesArray == nil)
+    {
+        _statusesArray = [self orderStatusesArray];
+    }
+    
+    return _statusesArray;
+}
+
+- (ProjectTask*) task
+{
+    if ( _task == nil )
+    {
+        _task = [DataManagerShared getSelectedTask];
+    }
+    
+    return _task;
+}
+
 #pragma mark - Public -
 
-- (NSString*) getStatusName: (TaskStatusType) statusType
+- (NSString*) getStatusNameForIndex: (NSUInteger) index
 {
+    NSNumber* idx = self.statusesArray[index];
     
-    NSString* statusName = @"";
-    
-    switch ( statusType )
-    {
-        case TaskWaitingStatusType:
-        {
-            
-            statusName = @"В ожидании";
-            
-        }
-            break;
-            
-        case TaskInProgressStatusType:
-        {
-            statusName = @"В работе";
-            
-        }
-            break;
-            
-        case TaskCompletedStatusType:
-        {
-            statusName = @"Завершена";
-        }
-            break;
-            
-        case TaskOnApprovingStatusType:
-        {
-            statusName = @"На утверждении";
-        }
-            break;
-            
-        case TaskOnCompletionStatusType:
-        {
-            statusName = @"Доработка";
-        }
-            break;
-            
-        case TaskCanceledStatusType:
-        {
-            statusName = @"Отменена";
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    return statusName;
+    return [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: idx.integerValue];
 }
 
-- (UIColor*) getBackgroundColor: (TaskStatusType) statusType
+- (UIColor*) getBackgroundColorForIndex: (NSUInteger) index
 {
+    NSNumber* idx = self.statusesArray[index];
     
-    UIColor* backgroundColor = [UIColor clearColor];
-    
-    switch ( statusType )
-    {
-        case TaskWaitingStatusType:
-        {
-    
-          backgroundColor = [UIColor colorWithRed: 255.0/256
-                                            green: 228.0/256
-                                             blue: 69.0/256
-                                            alpha: 1.f];
-            
-        }
-            break;
-            
-         
-        case TaskCompletedStatusType:
-        {
-            backgroundColor = [UIColor cyanColor];
-        }
-            break;
-            
-        case TaskInProgressStatusType:
-        {
-            backgroundColor = [UIColor colorWithRed: 79.0/256
-                                              green: 197.0/256
-                                               blue: 45.0/256
-                                              alpha: 1.f];
-
-        }
-            break;
-            
-        case TaskOnApprovingStatusType:
-        {
-            backgroundColor = [UIColor colorWithRed: 250.0/256
-                                              green: 216.0/256
-                                               blue: 64.0/256
-                                              alpha: 1.f];
-        }
-            break;
-            
-        case TaskOnCompletionStatusType:
-        {
-            backgroundColor = [UIColor brownColor];
-        }
-            break;
-            
-        case TaskCanceledStatusType:
-        {
-            backgroundColor =  [UIColor colorWithRed: 255.0/256
-                                               green: 70.0/256
-                                                blue: 70.0/256
-                                               alpha: 1.f];
-        }
-            break;
-    }
-    
-    return backgroundColor;
+    return [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: idx.integerValue];
 }
 
-- (UIImage*) getStatusImage: (TaskStatusType) statusType
+- (UIImage*) getStatusImageForIndex: (NSUInteger) index
 {
-    
-    UIImage* statusImage = nil;
-    
-    switch ( statusType )
-    {
-        case TaskWaitingStatusType:
-        {
-            statusImage = [UIImage imageNamed: @"TaskStatusWaitingIcon"];
-            
-        }
-            break;
-            
-        
-        case TaskCompletedStatusType:
-        {
-            statusImage = nil;
-        }
-            break;
-            
-        case TaskInProgressStatusType:
-        {
-            statusImage = [UIImage imageNamed: @"TaskStatusInProgressIcon"];
-            
-        }
-            break;
-            
-        case TaskOnApprovingStatusType:
-        {
-            statusImage = [UIImage imageNamed: @"TaskStatusOnApproveIcon"];
-        }
-            break;
-            
-        case TaskOnCompletionStatusType:
-        {
-            
-        }
-            break;
-            
-        case TaskCanceledStatusType:
-        {
-            statusImage = [UIImage imageNamed: @"TaskStatusCanceledIcon"];
-        }
-            break;
-    }
-    
-    return statusImage;
+    NSNumber* idx = self.statusesArray[index];
+
+    return [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: idx.integerValue];
 }
 
 - (NSInteger) numberOfRows
@@ -208,11 +88,130 @@
 
 - (TaskStatusType) getCurrentStatus
 {
+    return self.task.status.integerValue;
+}
+
+- (TaskStatusType) getStatusTypeForRow: (NSUInteger) row
+{
+    NSNumber* statusNumberValue = self.statusesArray[row];
+    
+    TaskStatusType statusType = statusNumberValue.integerValue;
+    
+    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCanceledStatusType)];
+    
+    if (row == currentCancelType)
+    {
+        statusType =  [self checkIfUserCanCancelTask];
+    }
+    
+    return statusType;
+}
+
+//Method for getting available status actions for current user
+- (NSArray*) getAvailableStatusActions
+{
     self.task = [DataManagerShared getSelectedTask];
     
-    self.currentStatus = self.task.status.integerValue;
+    TaskAvailableActionsList* availableActions = self.task.availableActions;
     
-    return self.currentStatus;
+    self.availableStatusActions = availableActions.statusActions.allObjects;
+    
+    return  self.availableStatusActions;
+    
+}
+
+
+- (TaskStatusType) checkIfUserCanCancelTask
+{
+    [self getAvailableStatusActions];
+    
+    __block BOOL canCancelTask = nil;
+    
+    if (self.availableStatusActions != nil)
+    {
+        [self.availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj.stautsActionDescription isEqualToString: @"Отменить"])
+            {
+                 canCancelTask = YES;
+                
+                *stop = YES;
+            }
+            
+            else canCancelTask = NO;
+            
+        }];
+        
+        return canCancelTask ? TaskCanceledStatusType : TaskCancelRequestType;
+    }
+    
+    return TaskCanceledStatusType;
+}
+
+- (NSUInteger) returnOnComletionStatusIndex
+{
+    NSUInteger index = [self.statusesArray indexOfObject: @(5)];
+    
+    return index;
+}
+
+- (NSUInteger) returnCancelRequestStatusIndex
+{
+    if ([self checkIfUserCanCancelTask] == TaskCancelRequestType)
+    {
+        NSUInteger index = [self.statusesArray indexOfObject: @(3)];
+        
+        return index;
+    }
+    
+    return -1;
+}
+
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
+                        withCompletion: (CompletionWithSuccess) completion
+{
+    NSNumber* statusValue = self.statusesArray[status];
+    
+    [DataManagerShared updateStatusType: statusValue
+                  withStatusDescription: [[TaskStatusDefaultValues sharedInstance]
+                                          returnTitleForTaskStatus: status]
+                         withCompletion: completion];
+}
+
+- (UIImage*) getExpandedArrowMarkImage
+{
+    return [[TaskStatusDefaultValues sharedInstance]
+            returnExpandedArrowImageForTaskStatus: self.task.status.integerValue];
+}
+
+#pragma mark - Internal -
+
+- (NSArray*) orderStatusesArray
+{
+    NSArray* defaultArr = @[@(TaskWaitingStatusType),
+                            @(TaskInProgressStatusType),
+                            @(TaskCompletedStatusType),
+                            @(TaskCanceledStatusType),
+                            @(TaskOnApprovingStatusType),
+                            @(TaskOnCompletionStatusType)];
+    
+    NSNumber* currStatus = self.task.status;
+    
+    NSMutableArray* tmp = defaultArr.mutableCopy;
+    
+    [tmp exchangeObjectAtIndex: TaskCanceledStatusType
+             withObjectAtIndex: TaskOnCompletionStatusType];
+    
+    [tmp enumerateObjectsUsingBlock: ^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([obj isEqual: currStatus])
+        {
+            [tmp exchangeObjectAtIndex: idx
+                     withObjectAtIndex: 0];
+        }
+    }];
+    
+    return tmp.copy;
 }
 
 @end

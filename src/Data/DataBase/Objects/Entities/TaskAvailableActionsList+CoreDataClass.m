@@ -11,6 +11,7 @@
 #import "TaskAvailableAction+CoreDataClass.h"
 #import "TaskAvailableStagesAction+CoreDataClass.h"
 #import "TaskAvailableStatusAction+CoreDataClass.h"
+
 @implementation TaskAvailableActionsList
 
 @end

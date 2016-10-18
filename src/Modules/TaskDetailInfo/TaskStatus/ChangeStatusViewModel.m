@@ -17,10 +17,8 @@
 
 // properties
 @property (nonatomic, strong) ChangeStatusModel* model;
-@property (strong, nonatomic) NSIndexPath* selectedCell;
 
 // methods
-
 
 @end
 
@@ -41,26 +39,14 @@
 
 #pragma mark - Public -
 
-- (void) fillSelectedStatusType: (TaskStatusType) status
-{
-    self.selectedCell = [NSIndexPath indexPathForRow: status
-                                           inSection: 0];
-}
-
 - (TaskStatusType) getCurrentStatusType
 {
     return [self.model getCurrentStatus];
 }
 
-- (void) getChangedInfo: (GetChangedStatusBlock) completion
+- (UIImage*) getExpandedArrowMarkImage
 {
-    NSString* statusName  = [self.model getStatusName: self.selectedCell.row];
-    UIColor*  background  = [self.model getBackgroundColor: self.selectedCell.row];
-    UIImage*  statusImage = [self.model getStatusImage: self.selectedCell.row];
-    
-    if (completion) {
-        completion(statusName, self.selectedCell.row, background, statusImage);
-    }
+    return [self.model getExpandedArrowMarkImage];
 }
 
 #pragma mark - TableViewDatasource methods -
@@ -72,21 +58,8 @@
     
     CellWithBackground* cell = [tableView dequeueReusableCellWithIdentifier: cellID
                                                                forIndexPath: indexPath];
-    
-    if (indexPath.row == 0)
-    {
-        [cell fillCellWithStatusName: [self.model getStatusName: indexPath.row]
-                               image: [self.model getStatusImage: indexPath.row]
-                          background: [self.model getBackgroundColor: indexPath.row]
-                          arrowState: NO];
-    }
-    
-    else
-        [cell fillCellWithStatusName: [self.model getStatusName: indexPath.row]
-                               image: [self.model getStatusImage: indexPath.row]
-                          background: [self.model getBackgroundColor: indexPath.row]
-                          arrowState: YES];
-    
+
+    [cell fillCellForTaskStatus: [self.model getStatusTypeForRow: indexPath.row]];
     
     return cell;
 }
@@ -94,7 +67,7 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return 6;
+    return [self.model numberOfRows];
 }
 
 #pragma mark - TableViewDelegate methods -
@@ -105,23 +78,27 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-     self.selectedCell = indexPath;
-    
-    
     if ([self.model getCurrentStatus] == TaskOnApprovingStatusType)
     {
-        if (self.selectedCell.row == TaskOnCompletionStatusType)
+        if (indexPath.row == [self.model returnOnComletionStatusIndex])
         {
-            NSLog(@"lol");
-            if (self.dismissController)
-                self.dismissController();
+            if (self.showOnRevisionController)
+                self.showOnRevisionController();
         }
     }
     
+    if (indexPath.row == [self.model returnCancelRequestStatusIndex])
+    {
+        if (self.showCancelRequestController)
+            self.showCancelRequestController();
+    }
     
-   
-
+    [self.model updateTaskStatusWithNewStatus: indexPath.row
+                               withCompletion: ^(BOOL isSuccess) {
+        
+                                   if ( self.returnToTaskDetailController )
+                                       self.returnToTaskDetailController();
+    }];
 }
-
 
 @end

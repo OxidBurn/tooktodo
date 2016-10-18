@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
+		560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2C1DB615EB006F361D /* CancelReguestModel.m */; };
+		560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */; };
+		560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */; };
 		5636E8FF1D80A80700CF06FA /* service_agreements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5636E8FE1D80A80700CF06FA /* service_agreements.txt */; };
 		564DE3861DB0F60800BF9817 /* TaskAvailableActionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */; };
 		564DE3891DB0F65700BF9817 /* TaskActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3881DB0F65700BF9817 /* TaskActionModel.m */; };
@@ -392,6 +395,12 @@
 
 /* Begin PBXFileReference section */
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
+		560EDD2C1DB615EB006F361D /* CancelReguestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelReguestModel.m; sourceTree = "<group>"; };
+		560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewController.m; sourceTree = "<group>"; };
+		560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewModel.m; sourceTree = "<group>"; };
+		560EDD331DB615F6006F361D /* CancelReguestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelReguestModel.h; sourceTree = "<group>"; };
+		560EDD341DB615F6006F361D /* CancelRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewController.h; sourceTree = "<group>"; };
+		560EDD351DB615F6006F361D /* CancelRequestViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewModel.h; sourceTree = "<group>"; };
 		5636E8FE1D80A80700CF06FA /* service_agreements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = service_agreements.txt; sourceTree = "<group>"; };
 		564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAvailableActionsModel.m; sourceTree = "<group>"; };
 		564DE3881DB0F65700BF9817 /* TaskActionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskActionModel.m; sourceTree = "<group>"; };
@@ -1145,6 +1154,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		560EDD2B1DB615EB006F361D /* CancelRequest */ = {
+			isa = PBXGroup;
+			children = (
+				560EDD2C1DB615EB006F361D /* CancelReguestModel.m */,
+				560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */,
+				560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */,
+			);
+			path = CancelRequest;
+			sourceTree = "<group>";
+		};
+		560EDD321DB615F6006F361D /* CancelRequest */ = {
+			isa = PBXGroup;
+			children = (
+				560EDD331DB615F6006F361D /* CancelReguestModel.h */,
+				560EDD341DB615F6006F361D /* CancelRequestViewController.h */,
+				560EDD351DB615F6006F361D /* CancelRequestViewModel.h */,
+			);
+			path = CancelRequest;
+			sourceTree = "<group>";
+		};
 		5636E8FD1D80A80700CF06FA /* text */ = {
 			isa = PBXGroup;
 			children = (
@@ -1655,6 +1684,7 @@
 		56D06C401DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				560EDD321DB615F6006F361D /* CancelRequest */,
 				56D06C411DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06C4E1DAFBDBF008E9AC0 /* CustomViews */,
 				56D06C501DAFBDBF008E9AC0 /* ForRevision */,
@@ -2549,6 +2579,7 @@
 		56D06DCD1DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				560EDD2B1DB615EB006F361D /* CancelRequest */,
 				56D06DCE1DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06DDB1DAFBDBF008E9AC0 /* CustomViews */,
 				56D06DDD1DAFBDBF008E9AC0 /* ForRevision */,
@@ -3458,10 +3489,12 @@
 				56D06FC41DAFBDC0008E9AC0 /* TabBarSegue.m in Sources */,
 				56D06ED71DAFBDC0008E9AC0 /* TaskRoomModel.m in Sources */,
 				56D06F591DAFBDC0008E9AC0 /* FilterAttachmentsCellFactory.m in Sources */,
+				560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */,
 				56D06FB31DAFBDC0008E9AC0 /* OSDatePickerCell.m in Sources */,
 				56D06EB31DAFBDC0008E9AC0 /* ProjectTaskStage+CoreDataClass.m in Sources */,
 				56D06F4D1DAFBDC0008E9AC0 /* CollectionCell.m in Sources */,
 				56D06F381DAFBDC0008E9AC0 /* SingleUserCollectionCellFactory.m in Sources */,
+				560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */,
 				56D06FA31DAFBDC0008E9AC0 /* OSAlertDesignateAdminController.m in Sources */,
 				56D06F1C1DAFBDC0008E9AC0 /* LoginModel.m in Sources */,
 				56D06F431DAFBDC0008E9AC0 /* OnRevisionViewModel.m in Sources */,
@@ -3528,6 +3561,7 @@
 				56D06FAB1DAFBDC0008E9AC0 /* OSFlexibleTextCellFactory.m in Sources */,
 				56D06F661DAFBDC0008E9AC0 /* ProjectTasksViewModel.m in Sources */,
 				56D06EEE1DAFBDC0008E9AC0 /* UIViewController+Focus.m in Sources */,
+				560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */,
 				56D06EC01DAFBDC0008E9AC0 /* UserNotifications.m in Sources */,
 				56D06F4A1DAFBDC0008E9AC0 /* ChangeStatusViewModel.m in Sources */,
 				56D06F9B1DAFBDC0008E9AC0 /* BaseMainViewController+Popover.m in Sources */,

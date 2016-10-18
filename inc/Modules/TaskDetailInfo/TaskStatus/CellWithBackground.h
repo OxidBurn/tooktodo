@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @interface CellWithBackground : UITableViewCell
 
-- (void) fillCellWithStatusName: (NSString*) name
-                          image: (UIImage*)  image
-                     background: (UIColor*)  background
-                     arrowState: (BOOL)      isHiddenArrow;
+// mehthds
+
+- (void) fillCellForTaskStatus: (TaskStatusType) statusType;
 
 @end

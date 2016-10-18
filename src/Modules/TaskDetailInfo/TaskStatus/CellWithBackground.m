@@ -8,33 +8,39 @@
 
 #import "CellWithBackground.h"
 
+// Classes
+#import "TaskStatusDefaultValues.h"
+
 @interface CellWithBackground()
 
 // properties
-@property (weak, nonatomic) IBOutlet UILabel *statusNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*     statusNameLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* statusImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
-
-
-// methods
-
+@property (nonatomic, assign) BOOL canCancel;
 
 @end
 
 @implementation CellWithBackground
 
+#pragma mark - Public -
 
-- (void) fillCellWithStatusName: (NSString*) name
-                          image: (UIImage*)  image
-                     background: (UIColor*)  background
-                     arrowState: (BOOL)      isHiddenArrow
+- (void) fillCellForTaskStatus: (TaskStatusType) statusType
 {
-    self.statusNameLabel.text   = name;
-    self.statusImageView.image  = image;
-    self.backgroundColor        = background;
-    self.arrowImage.hidden      = isHiddenArrow;
+    self.statusNameLabel.textColor       = [[TaskStatusDefaultValues sharedInstance]
+                                            returnFontColorForTaskStatus: statusType];
+    
+    self.backgroundColor                 = [[TaskStatusDefaultValues sharedInstance]
+                                            returnColorForTaskStatus: statusType];
+
+    
+    self.statusNameLabel.text            = [[TaskStatusDefaultValues sharedInstance]
+                                            returnTitleForTaskStatus: statusType];
+    
+    self.statusImageView.image           = [[TaskStatusDefaultValues sharedInstance]
+                                            returnIconImageForTaskStatus: statusType];
 }
+
 
 @end

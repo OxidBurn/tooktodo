@@ -8,6 +8,7 @@
 
 #import "TaskAvailableStagesAction+CoreDataClass.h"
 #import "TaskAvailableActionsList+CoreDataClass.h"
+
 @implementation TaskAvailableStagesAction
 
 @end

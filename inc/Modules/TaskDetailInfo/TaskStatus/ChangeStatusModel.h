@@ -13,14 +13,25 @@
 
 - (NSInteger) numberOfRows;
 
-- (NSString*) getStatusName: (TaskStatusType) statusType;
-
-- (UIColor*) getBackgroundColor: (TaskStatusType) statusType;
-
-- (UIImage*) getStatusImage: (TaskStatusType) statusType;
-
-//- (void) fillCurrentStatus: (TaskStatusType) status;
-
 - (TaskStatusType) getCurrentStatus;
+
+- (TaskStatusType) getStatusTypeForRow: (NSUInteger) row;
+
+- (NSString*) getStatusNameForIndex: (NSUInteger) index;
+
+- (UIColor*) getBackgroundColorForIndex: (NSUInteger) index;
+
+- (UIImage*) getStatusImageForIndex: (NSUInteger) index;
+
+- (NSUInteger) returnOnComletionStatusIndex;
+
+- (NSUInteger) returnCancelRequestStatusIndex;
+
+- (NSArray*) getAvailableStatusActions;
+
+- (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
+                        withCompletion: (CompletionWithSuccess) completion;
+
+- (UIImage*) getExpandedArrowMarkImage;
 
 @end
