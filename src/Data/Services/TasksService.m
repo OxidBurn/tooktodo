@@ -14,10 +14,14 @@
 #import "APIConstance.h"
 #import "TasksGroupedByProjects.h"
 #import "TaskAvailableActionsModel.h"
+#import "ProjectInfo+CoreDataClass.h"
+#import "FilledTeamInfo.h"
 
 // Categories
 #import "DataManager+Tasks.h"
 #import "DataManager+TaskAvailableActions.h"
+#import "DataManager+ProjectInfo.h"
+#import "NSDate+Helper.h"
 
 @implementation TasksService
 
@@ -167,6 +171,31 @@
                                    }];
 }
 
+- (RACSignal*) createNewTaskWithInfo: (NewTask*) task
+{
+    NSDictionary* requestParameters = [self buildNewTaskParameter: task];
+    
+    RACSignal* createNewTaskSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[[TasksAPIService sharedInstance] createNewTaskWithParameter: requestParameters]
+         deliverOn: [RACScheduler mainThreadScheduler]]
+         subscribeNext: ^(RACTuple* response) {
+             
+             NSLog(@"Response: %@", response);
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return createNewTaskSignal;
+}
+
 #pragma mark - Data base methods -
 
 - (void) parseTasksForProjectFromResponse: (NSArray*)               response
@@ -240,6 +269,108 @@
                                                        withString: task.taskID.stringValue];
     
     return requestURL;
+}
+
+- (NSDictionary*) buildNewTaskParameter: (NewTask*) taskInfo
+{
+    ProjectInfo* taskProject = [DataManagerShared getSelectedProjectInfo];
+    NSMutableDictionary* newTaskParameter = [NSMutableDictionary new];
+    
+    newTaskParameter[@"title"] = taskInfo.taskName;
+    
+    if ( taskInfo.taskDescription )
+        newTaskParameter[@"description"] = taskInfo.taskDescription;
+
+    newTaskParameter[@"isUrgent"]           = @(taskInfo.terms.isUrgent);
+    newTaskParameter[@"projectId"]          = taskProject.projectID;
+    newTaskParameter[@"isIncludedRestDays"] = @(taskInfo.terms.includingWeekends);
+    newTaskParameter[@"taskAccess"]         = @(taskInfo.isHiddenTask);
+    newTaskParameter[@"files"]              = @[];
+    newTaskParameter[@"markerModel"]        = @{};
+    
+    if ( taskInfo.terms.startDate )
+    {
+    newTaskParameter[@"startDate"] = [NSDate stringFromDate: taskInfo.terms.startDate
+                                                 withFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    }
+    
+    if ( taskInfo.terms.endDate )
+    {
+        newTaskParameter[@"endDate"] = [NSDate stringFromDate: taskInfo.terms.endDate
+                                                   withFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+    }
+    
+    newTaskParameter[@"duration"] = @(taskInfo.terms.duration);
+    newTaskParameter[@"taskType"] = @(taskInfo.taskType);
+    
+    // Room model
+    if ( taskInfo.room )
+    {
+        NSDictionary* roomModelDic     = @{@"id"      : taskInfo.room.roomID,
+                                           @"levelId" : taskInfo.room.roomLevel.roomLevelID};
+        newTaskParameter[@"roomModel"] = roomModelDic;
+    }
+    else
+    {
+        newTaskParameter[@"roomModel"] = @{};
+    }
+    
+    
+    // Stage Model
+    if ( taskInfo.stage )
+    {
+        NSDictionary* stageModelDic     = @{@"id"       : taskInfo.stage.stageID,
+                                            @"title"    : taskInfo.stage.title,
+                                            @"isCommon" : taskInfo.stage.isCommon};
+        newTaskParameter[@"stageModel"] = stageModelDic;
+    }
+    else
+    {
+        newTaskParameter[@"stageModel"] = @{};
+    }
+    
+    // Work Area Model
+    if ( taskInfo.system )
+    {
+        NSDictionary* workAreaModelDic     = @{@"id" : taskInfo.system.systemID,
+                                               @"title" : taskInfo.system.title,
+                                               @"shortTitle" : taskInfo.system.shortTitle};
+        
+        newTaskParameter[@"workAreaModel"] = workAreaModelDic;
+    }
+    else
+    {
+        newTaskParameter[@"workAreaModel"] = @{};
+    }
+    
+    // Task Role Assignment Models
+    NSMutableArray* taskRoleAssignmentModelsArr = [NSMutableArray array];
+    
+    [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @0,
+                                                  @"projectRoleAssignmentId" : obj.userId}];
+        
+    }];
+    
+    [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @1,
+                                                  @"projectRoleAssignmentId" : obj.userId}];
+        
+    }];
+    
+    [taskInfo.observers enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @2,
+                                                  @"projectRoleAssignmentId" : obj.userId}];
+        
+    }];
+    
+    newTaskParameter[@"taskRoleAssignmentModels"] = taskRoleAssignmentModelsArr;
+    
+    
+    return newTaskParameter.copy;
 }
 
 @end

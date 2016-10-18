@@ -130,10 +130,6 @@
     return [self.model returnTaskName];
 }
 
-//- (RACSignal*) getNewTaskSignal
-//{
-//    return [self.model returnNewTaskSignal];
-//}
 
 #pragma mark - UITableView data source -
 
@@ -221,6 +217,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if ( [self.delegate respondsToSelector: @selector(performSegueWithSegueId:)] )
     {
         [self.delegate performSegueWithSegueId: segueID];
+        
+        if ( segueID == nil && indexPath.row != 0 )
+            [SVProgressHUD showSuccessWithStatus: @"Раздел на этапе разработки"];
     }
     
     if ( indexPath.section == 0 )

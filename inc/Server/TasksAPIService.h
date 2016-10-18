@@ -21,4 +21,6 @@
 
 - (RACSignal*) loadTaskAvailableActionsWithURL: (NSString*) url;
 
+- (RACSignal*) createNewTaskWithParameter: (NSDictionary*) parameters;
+
 @end

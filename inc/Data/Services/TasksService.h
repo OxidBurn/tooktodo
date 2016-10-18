@@ -11,6 +11,7 @@
 
 // Classes
 #import "ProjectTask+CoreDataClass.h"
+#import "NewTask.h"
 
 @interface TasksService : NSObject
 
@@ -29,5 +30,7 @@
 
 - (void) changeSelectedStageForTask: (ProjectTask*) task
                   withSelectedState: (BOOL)         isSelected;
+
+- (RACSignal*) createNewTaskWithInfo: (NewTask*) task;
 
 @end

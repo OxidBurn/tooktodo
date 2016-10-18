@@ -35,6 +35,7 @@
 #import "SelectRoomViewController.h"
 #import "AddTaskTypeViewController.h"
 #import "Utils.h"
+#import "TasksService.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     
@@ -368,21 +369,25 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"New task: %@", self.task);
+//    [[[TasksService sharedInstance] createNewTaskWithInfo: self.task]
+//     subscribeNext: ^(id x) {
+//         
+//         if ( completion )
+//             completion(YES);
+//         
+//     }
+//     error: ^(NSError *error) {
+//         
+//         NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
+//         
+//     }];
+    
+    [SVProgressHUD showErrorWithStatus: @"Создание задачи в процессе разработки!"];
+    
+    if ( completion )
+        completion(YES);
 }
 
-//- (RACSignal*) returnNewTaskSignal
-//{
-//    RACSignal* taskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-//        
-//        [subscriber sendNext: self.task];
-//        [subscriber sendCompleted];
-//        
-//        return nil;
-//    }];
-//    
-//    return taskInfo;
-//}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 

@@ -48,4 +48,11 @@
     return [[[requestManager rac_GET: url parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) createNewTaskWithParameter: (NSDictionary*) parameters
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_POST: createNewTaskURL parameters: parameters] logError] replayLazily];
+}
+
 @end
