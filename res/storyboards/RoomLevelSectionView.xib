@@ -21,6 +21,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="GOI-cS-Vdc"/>
                     </constraints>
+                    <connections>
+                        <action selector="expandBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ao5-U1-zgn"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLk-ca-bpX">
                     <constraints>
@@ -31,8 +34,11 @@
                     <state key="normal" title="Выбрать">
                         <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="selectBtn:" destination="iN0-l3-epB" eventType="touchUpInside" id="dVG-cg-0lm"/>
+                    </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="eWT-3w-4Za">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowHorizontaly" translatesAutoresizingMaskIntoConstraints="NO" id="eWT-3w-4Za">
                     <constraints>
                         <constraint firstAttribute="height" constant="5" id="PRV-GN-mrL"/>
                         <constraint firstAttribute="width" constant="11" id="ewH-ES-fAy"/>
@@ -52,10 +58,18 @@
                         <constraint firstAttribute="width" constant="16" id="uCE-NE-9bM"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VRU-If-LzJ">
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="wcM-yj-6PC"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="VRU-If-LzJ" secondAttribute="bottom" id="6gX-nc-MdE"/>
                 <constraint firstItem="eWT-3w-4Za" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="6ld-cY-6jh"/>
+                <constraint firstItem="VRU-If-LzJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7rK-E3-8WQ"/>
                 <constraint firstAttribute="trailing" secondItem="eKt-Gc-pkX" secondAttribute="trailing" constant="15" id="Dbw-qt-ZeM"/>
                 <constraint firstItem="KLk-ca-bpX" firstAttribute="leading" secondItem="gVo-HL-YRU" secondAttribute="trailing" constant="30" id="HcH-tV-HS3"/>
                 <constraint firstItem="gVo-HL-YRU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="HcX-lY-Bba"/>
@@ -66,10 +80,17 @@
                 <constraint firstItem="9z5-Ca-TSJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ewa-6f-Bhe"/>
                 <constraint firstAttribute="trailing" secondItem="KLk-ca-bpX" secondAttribute="trailing" constant="15" id="jaf-TE-81T"/>
                 <constraint firstItem="KLk-ca-bpX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="naP-zd-VdK"/>
+                <constraint firstItem="VRU-If-LzJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="wcN-O3-WQt"/>
                 <constraint firstItem="eWT-3w-4Za" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="y3S-ZG-McM"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="chekmarkImgView" destination="eKt-Gc-pkX" id="had-Cz-7ct"/>
+                <outlet property="expandImgView" destination="eWT-3w-4Za" id="bPe-ki-TMn"/>
+                <outlet property="levelTitleLabel" destination="gVo-HL-YRU" id="rya-ch-fyA"/>
+                <outlet property="selctBtn" destination="KLk-ca-bpX" id="0zX-3F-EEN"/>
+            </connections>
             <point key="canvasLocation" x="36.5" y="-546"/>
         </view>
     </objects>
