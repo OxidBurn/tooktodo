@@ -2,7 +2,7 @@
 //  TaskDetailMainFactory.m
 //  TookTODO
 //
-//  Created by Глеб on 18.10.16.
+//  Created by Chaban Nikolay on 18.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -21,16 +21,6 @@
 #import "SubtaskInfoFactory.h"
 #import "AttachmentsCellFactory.h"
 #import "CommentsCellFactory.h"
-
-@interface TaskDetailMainFactory()
-
-// properties
-
-
-// methods
-
-
-@end
 
 @implementation TaskDetailMainFactory
 

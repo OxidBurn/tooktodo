@@ -23,17 +23,7 @@
 // methods
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;
 
-//- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
-//                               forIndexPath: (NSIndexPath*) indexPath;
-
-//- (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
-//                            forTableView: (UITableView*) tableView;
-
 - (NSArray*) returnHeaderNumbersInfo;
-
-//- (UIView*) returnHeaderForSection;
-
-//- (CGFloat) returnHeaderHeight;
 
 - (TaskStatusType) getTaskStatus;
 
@@ -43,7 +33,6 @@
 
 - (void) updateTaskStatus;
 
-// new methods
 - (TaskRowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
 
 - (TaskInfoSecondSectionContentType) getSecondSectionContentType;

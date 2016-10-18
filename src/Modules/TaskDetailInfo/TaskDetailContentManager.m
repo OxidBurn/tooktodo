@@ -2,7 +2,7 @@
 //  TaskDetailContentManager.m
 //  TookTODO
 //
-//  Created by Глеб on 18.10.16.
+//  Created by Chaban Nikolay on 18.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -55,7 +55,9 @@
     
     NSArray* sectionTwo = [self createSectionTwoForTask: task];
     
-    return @[ sectionOne, sectionTwo ] ;
+    NSArray* content    = @[ sectionOne, sectionTwo ];
+    
+    return content;
 }
 
 - (NSArray*) createSectionTwoContentAccordingToType: (NSUInteger)   typeIndex
@@ -100,38 +102,37 @@
 
 - (NSArray*) createSectionOneForTask: (ProjectTask*) task
 {
-    TaskRowContent* rowOne = [TaskRowContent new];
+    TaskRowContent* taskDetailCellContent = [TaskRowContent new];
     
-    rowOne.cellId              = self.tableViewCellsIdArray[TaskDetailCellType];
-    rowOne.cellTypeIndex       = TaskDetailCellType;
-   // rowOne.rowHeight           = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDetailCellType]];
-    rowOne.taskStartDate       = task.startDay;
-    rowOne.taskEndDate         = task.endDate;
-    rowOne.isExpired           = task.isExpired;
-    rowOne.status              = task.status.integerValue;
-    rowOne.taskTypeDescription = task.taskTypeDescription;
-    rowOne.workAreaShortTitle  = task.workArea.shortTitle;
-    rowOne.taskTitle           = task.title;
-    rowOne.statusDescription   = task.statusDescription;
-    rowOne.subtasksNumber      = task.subTasks.count;
-    rowOne.attachmentsNumber   = task.attachments.integerValue;
-    rowOne.roomNumber          = task.room.number.integerValue;
-    rowOne.commentsNumber      = task.commentsCount.integerValue;
+    taskDetailCellContent.cellId              = self.tableViewCellsIdArray[TaskDetailCellType];
+    taskDetailCellContent.cellTypeIndex       = TaskDetailCellType;
+    taskDetailCellContent.taskStartDate       = task.startDay;
+    taskDetailCellContent.taskEndDate         = task.endDate;
+    taskDetailCellContent.isExpired           = task.isExpired;
+    taskDetailCellContent.status              = task.status.integerValue;
+    taskDetailCellContent.taskTypeDescription = task.taskTypeDescription;
+    taskDetailCellContent.workAreaShortTitle  = task.workArea.shortTitle;
+    taskDetailCellContent.taskTitle           = task.title;
+    taskDetailCellContent.statusDescription   = task.statusDescription;
+    taskDetailCellContent.subtasksNumber      = task.subTasks.count;
+    taskDetailCellContent.attachmentsNumber   = task.attachments.integerValue;
+    taskDetailCellContent.roomNumber          = task.room.number.integerValue;
+    taskDetailCellContent.commentsNumber      = task.commentsCount.integerValue;
     
-    TaskRowContent* rowTwo = [TaskRowContent new];
+    TaskRowContent* taskDescriptionCellContent = [TaskRowContent new];
     
-    rowTwo.cellId          = self.tableViewCellsIdArray[TaskDescriptionCellType];
-    rowTwo.cellTypeIndex   = TaskDescriptionCellType;
-    //rowTwo.rowHeight       = [self returnFloatFromNumber: self.rowsHeighsArray[TaskDescriptionCellType]];
-    rowTwo.taskDescription = task.descriptionValue;
+    taskDescriptionCellContent.cellId          = self.tableViewCellsIdArray[TaskDescriptionCellType];
+    taskDescriptionCellContent.cellTypeIndex   = TaskDescriptionCellType;
+    taskDescriptionCellContent.taskDescription = task.descriptionValue;
     
-    TaskRowContent* rowThree = [TaskRowContent new];
+    TaskRowContent* collectionCellContent = [TaskRowContent new];
     
-    rowThree.cellId    = self.tableViewCellsIdArray[CollectionCellType];
-    rowThree.cellTypeIndex = CollectionCellType;
-    //rowThree.rowHeight = [self returnFloatFromNumber: self.rowsHeighsArray[CollectionCellType]];
+    collectionCellContent.cellId          = self.tableViewCellsIdArray[CollectionCellType];
+    collectionCellContent.cellTypeIndex   = CollectionCellType;
     
-    return @[ rowOne, rowTwo, rowThree ];
+    NSArray* sectionOne = @[ taskDetailCellContent, taskDescriptionCellContent, collectionCellContent ];
+    
+    return sectionOne;
 }
 
 - (NSArray*) createSectionTwoForTask: (ProjectTask*) task
@@ -145,17 +146,16 @@
 
 - (NSArray*) createSubtasksContentForTask: (ProjectTask*) task
 {
-    TaskRowContent* rowOne = [TaskRowContent new];
+    TaskRowContent* filterSubtaskCellContent = [TaskRowContent new];
     
-    rowOne.cellId = self.tableViewCellsIdArray[FilterSubtasksCellType];
-    rowOne.cellTypeIndex = FilterSubtasksCellType;
-    rowOne.rowHeight = 58;
+    filterSubtaskCellContent.cellId        = self.tableViewCellsIdArray[FilterSubtasksCellType];
+    filterSubtaskCellContent.cellTypeIndex = FilterSubtasksCellType;
     
-    NSArray* testContent = [self createTestSubtaskForTask: task];
+    NSArray* testContent        = [self createTestSubtaskForTask: task];
     
     NSMutableArray* subtasksTmp = testContent.mutableCopy;
     
-    [subtasksTmp insertObject: rowOne
+    [subtasksTmp insertObject: filterSubtaskCellContent
                       atIndex: 0];
     
     return subtasksTmp.copy;
@@ -163,13 +163,12 @@
 
 - (NSArray*) createAttachmentsContentForTask: task
 {
-    TaskRowContent* rowOne = [TaskRowContent new];
+    TaskRowContent* filterAttachmentsCellContent = [TaskRowContent new];
     
-    rowOne.cellId = self.tableViewCellsIdArray[FilterAttachmentsCellType];
-    rowOne.cellTypeIndex = FilterAttachmentsCellType;
-    rowOne.rowHeight = 58;
+    filterAttachmentsCellContent.cellId        = self.tableViewCellsIdArray[FilterAttachmentsCellType];
+    filterAttachmentsCellContent.cellTypeIndex = FilterAttachmentsCellType;
     
-    NSArray* testContent = [self createTestAttachmentForTask: task];
+    NSArray* testContent           = [self createTestAttachmentForTask: task];
     
     NSMutableArray* attachmentsTmp = testContent.mutableCopy;
     
@@ -181,7 +180,6 @@
     //            TaskRowContent* newRow = [TaskRowContent new];
     //
     //            newRow.cellId    = self.tableViewCellsIdArray[AttachmentsCell];
-    //            newRow.rowHeight = 54;
     //
     //            [attachmentsTmp addObject: newRow];
     //
@@ -189,21 +187,20 @@
     //        }
     //    }
     
-    [attachmentsTmp insertObject:
-     rowOne atIndex: 0];
+    [attachmentsTmp insertObject: filterAttachmentsCellContent
+                         atIndex: 0];
     
     return attachmentsTmp.copy;
 }
 
 - (NSArray*) createCommentsContentForTask: task
 {
-    TaskRowContent* rowOne = [TaskRowContent new];
+    TaskRowContent* addCommentCellContent = [TaskRowContent new];
     
-    rowOne.cellId = self.tableViewCellsIdArray[AddCommentCellType];
-    rowOne.cellTypeIndex = AddCommentCellType;
-    rowOne.rowHeight = 61;
+    addCommentCellContent.cellId        = self.tableViewCellsIdArray[AddCommentCellType];
+    addCommentCellContent.cellTypeIndex = AddCommentCellType;
     
-    NSArray* testContent = [self createTestComment];
+    NSArray* testContent        = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
     
@@ -215,7 +212,6 @@
     //            TaskRowContent* newRow = [TaskRowContent new];
     //
     //            newRow.cellId    = self.tableViewCellsIdArray[CommentsCell];
-    //            newRow.rowHeight = 129;
     //
     //            [commentsTmp addObject: newRow];
     //
@@ -223,8 +219,8 @@
     //        }
     //    }
     
-    [commentsTmp insertObject:
-     rowOne atIndex: 0];
+    [commentsTmp insertObject: addCommentCellContent
+                      atIndex: 0];
     
     return commentsTmp.copy;
 }
@@ -251,7 +247,6 @@
     TaskRowContent* subtask = [TaskRowContent new];
     
     subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
-    subtask.rowHeight = 137;
     
     subtask.taskStartDate       = task.startDay;
     subtask.taskEndDate         = task.endDate;
@@ -274,7 +269,6 @@
     TaskRowContent* attachment = [TaskRowContent new];
     
     attachment.cellId = self.tableViewCellsIdArray[AttachmentsCellType];
-    attachment.rowHeight = 54;
     
     attachment.attachmentTitle = @"Тестовый прикрепленный документ.пэдээф";
     attachment.attachmentImage = [UIImage imageNamed: @"NoteMark"];
@@ -289,7 +283,6 @@
     TaskRowContent* comment = [TaskRowContent new];
     
     comment.cellId = self.tableViewCellsIdArray[CommentsCellType];
-    comment.rowHeight = 129;
     
     comment.commentAuthorName = @"Тестовый Пользователь";
     comment.commentAuthorAvatar = [UIImage imageNamed: @"UserMark"];

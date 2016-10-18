@@ -11,6 +11,7 @@
 
 @interface TaskDetailViewController : UIViewController
 
+// methods
 - (TaskStatusType) getStatusType;
 
 @end

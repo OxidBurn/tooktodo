@@ -31,8 +31,6 @@
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
 
 @property (strong, nonatomic) NSArray* rowHeightsArray;
-// methods
-
 
 @end
 
@@ -142,51 +140,14 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             {
                 case 0:
                 {
-                    // height without label in first cell is 119
-                    height = 119;
-                    
-                    NSString* taskTitle = [self.model getTaskTitle];
-                    
-                    CGSize labelSize = [Utils findHeightForText: taskTitle
-                                                    havingWidth: tableView.frame.size.width - 30
-                                                        andFont: [UIFont fontWithName: @"SFUIDisplay-Regular"
-                                                                                 size: 22.f]];
-                    
-                    // limiting label height for 2 rows only
-                    if ( labelSize.height > 54 )
-                    {
-                        labelSize.height = 54;
-                    }
-                    
-                    height = height + labelSize.height;
+                    height = [self countHeightForTaskDetailCellForTableView: tableView];
                 }
                 
                     break;
                 
                 case 1:
                 {
-                    // 54 - height without label is row height value if description value == nil
-                    CGFloat heightWithoutLabel = 54;
-                    
-                    NSString* desriptionValue = [self.model getTaskDescriptionValue];
-                    
-                    CGSize labelSize = [Utils findHeightForText: desriptionValue
-                                                    havingWidth: tableView.frame.size.width - 30
-                                                        andFont: [UIFont fontWithName: @"SFUIText-Regular"
-                                                                                 size: 13.f]];
-                    // 79pt - heihgt for 5 rows label with current font
-                    // if desciption is larger than 5 row we limit label height manually
-                    if ( labelSize.height > 79 )
-                        labelSize.height = 79;
-                    
-                    height = labelSize.height + heightWithoutLabel;
-                    
-                    if ( desriptionValue == nil )
-                    {
-                        // 16 - height for one row
-                        height = height + 16;
-                    }
-
+                    height = [self countHeightForTaskDescrioptionCellForTableView: tableView];
                 }
                     break;
                     
@@ -312,6 +273,56 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             }
         }
             break;
+    }
+    
+    return height;
+}
+
+- (CGFloat) countHeightForTaskDetailCellForTableView: (UITableView*) tableView
+{
+    // height without label in first cell is 119
+    CGFloat height = 119;
+    
+    NSString* taskTitle = [self.model getTaskTitle];
+    
+    CGSize labelSize = [Utils findHeightForText: taskTitle
+                                    havingWidth: tableView.frame.size.width - 30
+                                        andFont: [UIFont fontWithName: @"SFUIDisplay-Regular"
+                                                                 size: 22.f]];
+    
+    // limiting label height for 2 rows only
+    if ( labelSize.height > 54 )
+    {
+        labelSize.height = 54;
+    }
+    
+    height = height + labelSize.height;
+    
+    return height;
+}
+
+- (CGFloat) countHeightForTaskDescrioptionCellForTableView: (UITableView*) tableView
+{
+    // 54 - height without label is row height value if description value == nil
+    CGFloat heightWithoutLabel = 54;
+    
+    NSString* desriptionValue = [self.model getTaskDescriptionValue];
+    
+    CGSize labelSize = [Utils findHeightForText: desriptionValue
+                                    havingWidth: tableView.frame.size.width - 30
+                                        andFont: [UIFont fontWithName: @"SFUIText-Regular"
+                                                                 size: 13.f]];
+    // 79pt - heihgt for 5 rows label with current font
+    // if desciption is larger than 5 row we limit label height manually
+    if ( labelSize.height > 79 )
+        labelSize.height = 79;
+    
+    CGFloat height = labelSize.height + heightWithoutLabel;
+    
+    if ( desriptionValue == nil )
+    {
+        // 16 - height for one row
+        height = height + 16;
     }
     
     return height;
