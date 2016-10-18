@@ -58,28 +58,8 @@
     return _task;
 }
 
+
 #pragma mark - Public -
-
-- (NSString*) getStatusNameForIndex: (NSUInteger) index
-{
-    NSNumber* idx = self.statusesArray[index];
-    
-    return [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: idx.integerValue];
-}
-
-- (UIColor*) getBackgroundColorForIndex: (NSUInteger) index
-{
-    NSNumber* idx = self.statusesArray[index];
-    
-    return [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: idx.integerValue];
-}
-
-- (UIImage*) getStatusImageForIndex: (NSUInteger) index
-{
-    NSNumber* idx = self.statusesArray[index];
-
-    return [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: idx.integerValue];
-}
 
 - (NSInteger) numberOfRows
 {

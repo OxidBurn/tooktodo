@@ -34,4 +34,32 @@
     self.detailLabel.text               = detailText;
 }
 
+- (void) setSelected: (BOOL) selected
+            animated: (BOOL) animated
+{
+    UIColor* color = self.markImageView.backgroundColor;
+    
+    [super setSelected: selected
+              animated: animated];
+    
+    if (selected)
+    {
+        self.markImageView.backgroundColor = color;
+    }
+}
+
+- (void) setHighlighted: (BOOL) highlighted
+               animated: (BOOL) animated
+{
+    UIColor* color = self.markImageView.backgroundColor;
+    
+    [super setHighlighted: highlighted
+                 animated: animated];
+    
+    if (highlighted)
+    {
+        self.markImageView.backgroundColor = color;
+    }
+}
+
 @end

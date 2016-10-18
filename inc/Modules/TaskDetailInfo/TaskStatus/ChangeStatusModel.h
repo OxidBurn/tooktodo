@@ -17,12 +17,6 @@
 
 - (TaskStatusType) getStatusTypeForRow: (NSUInteger) row;
 
-- (NSString*) getStatusNameForIndex: (NSUInteger) index;
-
-- (UIColor*) getBackgroundColorForIndex: (NSUInteger) index;
-
-- (UIImage*) getStatusImageForIndex: (NSUInteger) index;
-
 - (NSUInteger) returnOnComletionStatusIndex;
 
 - (NSUInteger) returnCancelRequestStatusIndex;

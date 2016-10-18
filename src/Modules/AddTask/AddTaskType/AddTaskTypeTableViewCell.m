@@ -38,4 +38,32 @@
     self.taskTypeSelectedCheckmark.hidden = !isSelected;
 }
 
+- (void) setSelected: (BOOL) selected
+            animated: (BOOL) animated
+{
+    UIColor* color = self.taskTypeColorIndicator.backgroundColor;
+    
+    [super setSelected: selected
+              animated: animated];
+    
+    if (selected)
+    {
+        self.taskTypeColorIndicator.backgroundColor = color;
+    }
+}
+
+- (void) setHighlighted: (BOOL) highlighted
+               animated: (BOOL) animated
+{
+    UIColor* color = self.taskTypeColorIndicator.backgroundColor;
+    
+    [super setHighlighted: highlighted
+                 animated: animated];
+    
+    if (highlighted)
+    {
+        self.taskTypeColorIndicator.backgroundColor = color;
+    }
+}
+
 @end
