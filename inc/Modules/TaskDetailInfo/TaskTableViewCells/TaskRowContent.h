@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSString* cellId;
 
+@property (assign, nonatomic) NSUInteger cellTypeIndex;
+
 @property (assign, nonatomic) CGFloat rowHeight;
 
 @property (strong, nonatomic) NSString* taskTitle;

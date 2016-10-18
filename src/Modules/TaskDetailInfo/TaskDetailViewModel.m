@@ -10,20 +10,27 @@
 
 // Classes
 #import "TaskDetailModel.h"
+#import "TaskDetailMainFactory.h"
 #import "TaskDescriptionCell.h"
 #import "TaskInfoHeaderView.h"
-#import "ProjectsEnumerations.h"
-#import "TaskInfoHeaderView.h"
 #import "TaskDetailInfoCell.h"
+
+// Helpers
+#import "Utils.h"
+#import "ProjectsEnumerations.h"
 
 @interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
 
+@property (strong, nonatomic) TaskDetailMainFactory* factory;
+
 @property (strong, nonatomic) UITableView* tableView;
 
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
+
+@property (strong, nonatomic) NSArray* rowHeightsArray;
 // methods
 
 
@@ -43,6 +50,16 @@
     return _model;
 }
 
+- (TaskDetailMainFactory*) factory
+{
+    if ( _factory == nil )
+    {
+        _factory = [TaskDetailMainFactory new];
+    }
+    
+    return _factory;
+}
+
 - (TaskInfoHeaderView*) headerView
 {
     if ( _headerView == nil )
@@ -51,11 +68,26 @@
                                           owner: self
                                         options: nil] firstObject];
        
-        [_headerView fillViewWithInfo: [self.model returnHeaderInfo]
+        [_headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
                          withDelegate: self];
     }
     
     return _headerView;
+}
+
+- (NSArray*) rowHeightsArray
+{
+    if ( _rowHeightsArray == nil )
+    {
+        // first number in each subarray is value for the first row in second section in table view
+        // second number is default value for all other cells in section two
+        _rowHeightsArray = @[@[ @(58), @(129) ],
+                             @[ @(58), @(54)  ],
+                             @[ @(61), @(129) ],
+                             @[ @(59)         ]];
+    }
+    
+    return _rowHeightsArray;
 }
 
 #pragma mark - Public -
@@ -81,17 +113,17 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    self.tableView = tableView;
+    if ( self.tableView == nil )
+        self.tableView = tableView;
     
-    UITableViewCell* cell = [self.model createCellForTableView: tableView
-                                                 forIndexPath: indexPath];
+    UITableViewCell* cell = [self.factory createCellForTableView: tableView
+                                                     withContent: [self.model getContentForIndexPath: indexPath]];
     
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
     {
        TaskDetailInfoCell* detailCell = (TaskDetailInfoCell*)cell;
         
         detailCell.delegate   = self;
-        
     }
     
     return cell;
@@ -100,8 +132,84 @@
 - (CGFloat)   tableView: (UITableView*) tableView
 heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model returnHeigtForRowAtIndexPath: indexPath
-                                       forTableView: tableView];
+    CGFloat height = 58;
+    
+    switch ( indexPath.section)
+    {
+        case SectionOne:
+        {
+            switch ( indexPath.row )
+            {
+                case 0:
+                {
+                    // height without label in first cell is 119
+                    height = 119;
+                    
+                    NSString* taskTitle = [self.model getTaskTitle];
+                    
+                    CGSize labelSize = [Utils findHeightForText: taskTitle
+                                                    havingWidth: tableView.frame.size.width - 30
+                                                        andFont: [UIFont fontWithName: @"SFUIDisplay-Regular"
+                                                                                 size: 22.f]];
+                    
+                    // limiting label height for 2 rows only
+                    if ( labelSize.height > 54 )
+                    {
+                        labelSize.height = 54;
+                    }
+                    
+                    height = height + labelSize.height;
+                }
+                
+                    break;
+                
+                case 1:
+                {
+                    // 54 - height without label is row height value if description value == nil
+                    CGFloat heightWithoutLabel = 54;
+                    
+                    NSString* desriptionValue = [self.model getTaskDescriptionValue];
+                    
+                    CGSize labelSize = [Utils findHeightForText: desriptionValue
+                                                    havingWidth: tableView.frame.size.width - 30
+                                                        andFont: [UIFont fontWithName: @"SFUIText-Regular"
+                                                                                 size: 13.f]];
+                    // 79pt - heihgt for 5 rows label with current font
+                    // if desciption is larger than 5 row we limit label height manually
+                    if ( labelSize.height > 79 )
+                        labelSize.height = 79;
+                    
+                    height = labelSize.height + heightWithoutLabel;
+                    
+                    if ( desriptionValue == nil )
+                    {
+                        // 16 - height for one row
+                        height = height + 16;
+                    }
+
+                }
+                    break;
+                    
+                case 2:
+                    height = 235;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        }
+            
+        case SectionTwo:
+        {
+            height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
+        }
+            
+        default:
+            break;
+    }
+
+    return height;
 }
 
 - (UIView*)  tableView: (UITableView*) tableView
@@ -122,7 +230,7 @@ heightForHeaderInSection: (NSInteger)    section
     
     if ( section == 1 )
     {
-        height = [self.model returnHeaderHeight];
+        height = 43;
     }
     
     return height;
@@ -171,6 +279,42 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     if (self.performSegue)
         self.performSegue(segueID);
+}
+
+#pragma mark - Helpers -
+
+- (CGFloat) returnSecondSectionRowHeightForIndexPath: (NSIndexPath*) indexPath
+{
+    CGFloat height;
+    
+    TaskInfoSecondSectionContentType contentType = [self.model getSecondSectionContentType];
+    
+    NSArray* heightsArrayForContentType = self.rowHeightsArray[contentType];
+
+    switch ( indexPath.row )
+    {
+        case 0:
+        {
+                NSNumber* heightNumberValue = heightsArrayForContentType[0];
+                
+                height = heightNumberValue.integerValue;
+        }
+            
+            break;
+            
+        default:
+        {
+            if ( heightsArrayForContentType.count > 1 )
+            {
+                NSNumber* heightNumberValue = heightsArrayForContentType[1];
+                
+                height = heightNumberValue.integerValue;
+            }
+        }
+            break;
+    }
+    
+    return height;
 }
 
 @end

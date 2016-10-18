@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// Classes
+#import "TaskRowContent.h"
 #import "ProjectsEnumerations.h"
 
 @protocol TaskDetailModelDelegate;
@@ -20,17 +23,17 @@
 // methods
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;
 
-- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
-                               forIndexPath: (NSIndexPath*) indexPath;
+//- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
+//                               forIndexPath: (NSIndexPath*) indexPath;
 
-- (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
-                            forTableView: (UITableView*) tableView;
+//- (CGFloat) returnHeigtForRowAtIndexPath: (NSIndexPath*) indexPath
+//                            forTableView: (UITableView*) tableView;
 
-- (NSArray*) returnHeaderInfo;
+- (NSArray*) returnHeaderNumbersInfo;
 
-- (UIView*) returnHeaderForSection;
+//- (UIView*) returnHeaderForSection;
 
-- (CGFloat) returnHeaderHeight;
+//- (CGFloat) returnHeaderHeight;
 
 - (TaskStatusType) getTaskStatus;
 
@@ -39,6 +42,15 @@
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 
 - (void) updateTaskStatus;
+
+// new methods
+- (TaskRowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
+
+- (TaskInfoSecondSectionContentType) getSecondSectionContentType;
+
+- (NSString*) getTaskTitle;
+
+- (NSString*) getTaskDescriptionValue;
 
 @end
 
