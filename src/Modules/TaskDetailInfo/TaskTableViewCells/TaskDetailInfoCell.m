@@ -125,6 +125,8 @@
         self.roomInfoView.hidden = YES;
         
         self.temsHorizontalToStatusConstraint.constant = 15;
+        
+        if ( self.temsHorizontalToStatusConstraint.priority != 1000 )
         self.temsHorizontalToStatusConstraint.priority = 1000;
     } else
     {
@@ -132,6 +134,7 @@
         
         self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)roomNumber];
         
+        if ( self.temsHorizontalToStatusConstraint.priority != 250 )
         self.temsHorizontalToStatusConstraint.priority = 250;
     }
 
