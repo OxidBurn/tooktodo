@@ -230,7 +230,7 @@
 {
     @weakify(self)
     
-    [[[[TeamService sharedInstance] getTeamInfo] subscribeOn: [RACScheduler mainThreadScheduler]]
+    [[[[TeamService sharedInstance] getTeamInfo] deliverOn: [RACScheduler mainThreadScheduler]]
      subscribeNext: ^(NSArray* teamInfo)
     {
         @strongify(self)
