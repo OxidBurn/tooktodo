@@ -33,7 +33,6 @@
 
 - (IBAction) onSelectSubtasksGesture: (UITapGestureRecognizer*) sender;
 
-
 @end
 
 @implementation TaskDetailViewController

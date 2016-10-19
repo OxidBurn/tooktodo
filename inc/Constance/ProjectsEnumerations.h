@@ -104,4 +104,31 @@ typedef NS_ENUM(NSUInteger, TaskInfoSecondSectionContentType) {
     
 };
 
+
+typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells) {
+    
+    TaskDetailCellType,
+    TaskDescriptionCellType,
+    CollectionCellType,
+    SubtaskInfoCellType,
+    AttachmentsCellType,
+    CommentsCellType,
+    LogWithActionCellType,
+    LogWithDetailCellType,
+    LogCellType,
+    FilterSubtasksCellType,
+    FilterAttachmentsCellType,
+    AddCommentCellType,
+    
+};
+
+
+typedef NS_ENUM(NSUInteger, SectionsList) {
+    
+    SectionOne,
+    SectionTwo,
+    SectionThree,
+    
+};
+
 #endif /* ProjectsEnumerations_h */

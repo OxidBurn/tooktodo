@@ -51,13 +51,6 @@ typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId) {
     ShowAddTaskTypeSegueID,
 };
 
-typedef NS_ENUM(NSUInteger, SectionsList) {
-
-    SectionOne,
-    SectionTwo,
-    SectionThree,
-    
-};
 typedef NS_ENUM(NSUInteger, RowsTypeSectionOne) {
     
     TaskNameRow,
