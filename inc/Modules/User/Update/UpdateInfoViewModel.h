@@ -10,7 +10,7 @@
 #import "AKNumericFormatter.h"
 #import "ReactiveCocoa.h"
 
-@interface UpdateInfoViewModel : NSObject
+@interface UpdateInfoViewModel : NSObject <UITextFieldDelegate>
 
 // properties
 

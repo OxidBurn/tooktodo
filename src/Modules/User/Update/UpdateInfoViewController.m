@@ -95,6 +95,10 @@
     self.surnameField.text               = self.viewModel.userSurname;
     self.phoneNumberField.text           = self.viewModel.userPhoneNumber;
     self.additionalPhoneNumberField.text = self.viewModel.userAdditionalPhoneNumber;
+    
+    // Setup delegates
+    self.nameField.delegate    = self.viewModel;
+    self.surnameField.delegate = self.viewModel;
 }
 
 - (void) handleActions
@@ -137,8 +141,8 @@
     return label;
 }
 
-- (IBAction)onCancel:(UIButton *)sender {
-    
+- (IBAction) onCancel: (UIButton*) sender
+{    
     [self.navigationController popViewControllerAnimated: YES];
 }
 

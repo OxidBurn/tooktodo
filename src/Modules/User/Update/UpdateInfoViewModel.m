@@ -113,4 +113,17 @@
     return info;
 }
 
+
+#pragma mark - Text field delegate -
+
+- (BOOL)             textField: (UITextField*) textField
+ shouldChangeCharactersInRange: (NSRange)      range
+             replacementString: (NSString*)    string
+{
+    if ( textField.text.length > 100 )
+        return NO;
+    
+    return YES;
+}
+
 @end
