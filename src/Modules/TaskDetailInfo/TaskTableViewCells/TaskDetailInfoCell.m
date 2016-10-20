@@ -126,6 +126,8 @@
         
         self.temsHorizontalToStatusConstraint.constant = 15;
         
+        // conditional operation is needed in cases when user scrolls table view
+        // cell starts to redraw UI and app crashes when prioraty repeatedly is seted to high
         if ( self.temsHorizontalToStatusConstraint.priority != 1000 )
         self.temsHorizontalToStatusConstraint.priority = 1000;
     } else
