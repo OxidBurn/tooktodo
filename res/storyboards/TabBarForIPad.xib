@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="84" height="748"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lF-Yi-o7v">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXF-Gj-RfQ">
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="iCF-rH-5ii"/>
+                            </constraints>
+                            <state key="normal" image="Menu1"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="iCF-rH-5ii"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="iCF-rH-5ii"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQG-Fv-6pC">
+                            <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="m83-Yl-UpF"/>
+                                <constraint firstAttribute="height" constant="60" id="yUl-P0-gzN"/>
+                            </constraints>
+                            <state key="normal" image="PlusBtn"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="30"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="m83-Yl-UpF"/>
+                                    <exclude reference="yUl-P0-gzN"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="m83-Yl-UpF"/>
+                                    <include reference="yUl-P0-gzN"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWc-ev-96l">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="PgG-jg-wsF"/>
+                            </constraints>
+                            <state key="normal" image="FeediPadGray"/>
+                            <state key="selected" image="FeediPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="PgG-jg-wsF"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="PgG-jg-wsF"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92B-9n-hvV">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="9L8-sC-T91"/>
+                            </constraints>
+                            <state key="normal" image="TasksiPadGray"/>
+                            <state key="selected" image="TasksiPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="9L8-sC-T91"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="9L8-sC-T91"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YK-iw-xMv">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="IF0-yX-DZr"/>
+                            </constraints>
+                            <state key="normal" image="TaskOnPlaniPadGray"/>
+                            <state key="selected" image="TaskOnPlaniPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="IF0-yX-DZr"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="IF0-yX-DZr"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZr-aC-U2c">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="RTK-OE-Sig"/>
+                            </constraints>
+                            <state key="normal" image="DocumentsiPadGray"/>
+                            <state key="selected" image="DocumentsiPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="RTK-OE-Sig"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="RTK-OE-Sig"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOl-9L-Lsr">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="52" id="hRe-4B-PrJ"/>
+                            </constraints>
+                            <state key="normal" image="TeamiPadGray"/>
+                            <state key="selected" image="TeamiPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="hRe-4B-PrJ"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="hRe-4B-PrJ"/>
+                                </mask>
+                            </variation>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmF-af-Pgc">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="gGI-en-GPn"/>
+                            </constraints>
+                            <state key="normal" image="AboutProjectiPadGray"/>
+                            <state key="selected" image="AboutProjectiPadWhite"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="gGI-en-GPn"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="gGI-en-GPn"/>
+                                </mask>
+                            </variation>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="UWc-ev-96l" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="1iq-4P-evk"/>
+                        <constraint firstItem="wZr-aC-U2c" firstAttribute="top" secondItem="0YK-iw-xMv" secondAttribute="bottom" constant="30" id="2zP-aK-eIF"/>
+                        <constraint firstItem="92B-9n-hvV" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="4yi-py-ff3"/>
+                        <constraint firstItem="UWc-ev-96l" firstAttribute="top" secondItem="fXF-Gj-RfQ" secondAttribute="bottom" constant="20" id="DR5-W6-pL6"/>
+                        <constraint firstAttribute="bottom" secondItem="fQG-Fv-6pC" secondAttribute="bottom" constant="15" id="Iuu-A1-VE7"/>
+                        <constraint firstAttribute="trailing" secondItem="fXF-Gj-RfQ" secondAttribute="trailing" id="MOv-Hv-rXN"/>
+                        <constraint firstItem="SOl-9L-Lsr" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="MzD-Ua-rGq"/>
+                        <constraint firstAttribute="width" constant="84" id="Pll-cm-BqH"/>
+                        <constraint firstAttribute="trailing" secondItem="SOl-9L-Lsr" secondAttribute="trailing" id="SDX-CR-HtK"/>
+                        <constraint firstItem="wZr-aC-U2c" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="XRA-hZ-7L5"/>
+                        <constraint firstItem="rmF-af-Pgc" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="aI5-lK-nxT"/>
+                        <constraint firstAttribute="trailing" secondItem="92B-9n-hvV" secondAttribute="trailing" id="fDm-6Y-JIo"/>
+                        <constraint firstItem="SOl-9L-Lsr" firstAttribute="top" secondItem="wZr-aC-U2c" secondAttribute="bottom" constant="30" id="mlM-4Y-Rvb"/>
+                        <constraint firstItem="rmF-af-Pgc" firstAttribute="top" secondItem="SOl-9L-Lsr" secondAttribute="bottom" constant="30" id="osR-Xx-ImM"/>
+                        <constraint firstItem="fXF-Gj-RfQ" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="sYZ-GK-824"/>
+                        <constraint firstAttribute="trailing" secondItem="rmF-af-Pgc" secondAttribute="trailing" id="trq-1O-tAl"/>
+                        <constraint firstItem="fXF-Gj-RfQ" firstAttribute="top" secondItem="1lF-Yi-o7v" secondAttribute="top" id="uQL-lo-KiV"/>
+                        <constraint firstItem="0YK-iw-xMv" firstAttribute="top" secondItem="92B-9n-hvV" secondAttribute="bottom" constant="30" id="uki-jt-sWb"/>
+                        <constraint firstAttribute="trailing" secondItem="wZr-aC-U2c" secondAttribute="trailing" id="x0S-sV-ueA"/>
+                        <constraint firstItem="92B-9n-hvV" firstAttribute="top" secondItem="UWc-ev-96l" secondAttribute="bottom" constant="30" id="x5U-nI-2cF"/>
+                        <constraint firstAttribute="trailing" secondItem="UWc-ev-96l" secondAttribute="trailing" id="xtE-RV-OfQ"/>
+                        <constraint firstItem="fQG-Fv-6pC" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" constant="12" id="yac-1p-qjd"/>
+                        <constraint firstItem="0YK-iw-xMv" firstAttribute="leading" secondItem="1lF-Yi-o7v" secondAttribute="leading" id="zPb-RM-zWD"/>
+                        <constraint firstAttribute="trailing" secondItem="0YK-iw-xMv" secondAttribute="trailing" id="zze-bw-GBk"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="subviews">
+                            <exclude reference="fXF-Gj-RfQ"/>
+                            <exclude reference="fQG-Fv-6pC"/>
+                            <exclude reference="UWc-ev-96l"/>
+                            <exclude reference="92B-9n-hvV"/>
+                            <exclude reference="0YK-iw-xMv"/>
+                            <exclude reference="wZr-aC-U2c"/>
+                            <exclude reference="SOl-9L-Lsr"/>
+                            <exclude reference="rmF-af-Pgc"/>
+                        </mask>
+                        <mask key="constraints">
+                            <exclude reference="Pll-cm-BqH"/>
+                            <exclude reference="zPb-RM-zWD"/>
+                            <exclude reference="uki-jt-sWb"/>
+                            <exclude reference="zze-bw-GBk"/>
+                            <exclude reference="trq-1O-tAl"/>
+                            <exclude reference="aI5-lK-nxT"/>
+                            <exclude reference="osR-Xx-ImM"/>
+                            <exclude reference="MzD-Ua-rGq"/>
+                            <exclude reference="mlM-4Y-Rvb"/>
+                            <exclude reference="SDX-CR-HtK"/>
+                            <exclude reference="yac-1p-qjd"/>
+                            <exclude reference="Iuu-A1-VE7"/>
+                            <exclude reference="4yi-py-ff3"/>
+                            <exclude reference="x5U-nI-2cF"/>
+                            <exclude reference="fDm-6Y-JIo"/>
+                            <exclude reference="MOv-Hv-rXN"/>
+                            <exclude reference="uQL-lo-KiV"/>
+                            <exclude reference="sYZ-GK-824"/>
+                            <exclude reference="1iq-4P-evk"/>
+                            <exclude reference="xtE-RV-OfQ"/>
+                            <exclude reference="DR5-W6-pL6"/>
+                            <exclude reference="XRA-hZ-7L5"/>
+                            <exclude reference="2zP-aK-eIF"/>
+                            <exclude reference="x0S-sV-ueA"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=regular">
+                        <mask key="subviews">
+                            <include reference="fXF-Gj-RfQ"/>
+                            <include reference="fQG-Fv-6pC"/>
+                            <include reference="UWc-ev-96l"/>
+                            <include reference="92B-9n-hvV"/>
+                            <include reference="0YK-iw-xMv"/>
+                            <include reference="wZr-aC-U2c"/>
+                            <include reference="SOl-9L-Lsr"/>
+                            <include reference="rmF-af-Pgc"/>
+                        </mask>
+                        <mask key="constraints">
+                            <include reference="Pll-cm-BqH"/>
+                            <include reference="zPb-RM-zWD"/>
+                            <include reference="uki-jt-sWb"/>
+                            <include reference="zze-bw-GBk"/>
+                            <include reference="trq-1O-tAl"/>
+                            <include reference="aI5-lK-nxT"/>
+                            <include reference="osR-Xx-ImM"/>
+                            <include reference="MzD-Ua-rGq"/>
+                            <include reference="mlM-4Y-Rvb"/>
+                            <include reference="SDX-CR-HtK"/>
+                            <include reference="yac-1p-qjd"/>
+                            <include reference="Iuu-A1-VE7"/>
+                            <include reference="4yi-py-ff3"/>
+                            <include reference="x5U-nI-2cF"/>
+                            <include reference="fDm-6Y-JIo"/>
+                            <include reference="MOv-Hv-rXN"/>
+                            <include reference="uQL-lo-KiV"/>
+                            <include reference="sYZ-GK-824"/>
+                            <include reference="1iq-4P-evk"/>
+                            <include reference="xtE-RV-OfQ"/>
+                            <include reference="DR5-W6-pL6"/>
+                            <include reference="XRA-hZ-7L5"/>
+                            <include reference="2zP-aK-eIF"/>
+                            <include reference="x0S-sV-ueA"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="1lF-Yi-o7v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J2H-oA-yH8"/>
+                <constraint firstAttribute="bottom" secondItem="1lF-Yi-o7v" secondAttribute="bottom" id="pSS-OZ-PWj"/>
+                <constraint firstAttribute="trailing" secondItem="1lF-Yi-o7v" secondAttribute="trailing" id="pX3-yl-E0V"/>
+                <constraint firstItem="1lF-Yi-o7v" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uNP-tA-Dwj"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AboutProjectiPadGray" width="61" height="56"/>
+        <image name="AboutProjectiPadWhite" width="61" height="56"/>
+        <image name="DocumentsiPadGray" width="68" height="56"/>
+        <image name="DocumentsiPadWhite" width="68" height="56"/>
+        <image name="FeediPadGray" width="36" height="51"/>
+        <image name="FeediPadWhite" width="36" height="51"/>
+        <image name="Menu1" width="24" height="17"/>
+        <image name="PlusBtn" width="20" height="20"/>
+        <image name="TaskOnPlaniPadGray" width="52" height="64"/>
+        <image name="TaskOnPlaniPadWhite" width="52" height="64"/>
+        <image name="TasksiPadGray" width="43" height="52"/>
+        <image name="TasksiPadWhite" width="43" height="52"/>
+        <image name="TeamiPadGray" width="52" height="51"/>
+        <image name="TeamiPadWhite" width="52" height="51"/>
+    </resources>
+</document>
