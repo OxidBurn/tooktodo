@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomTabBarIPad">
             <rect key="frame" x="0.0" y="0.0" width="84" height="748"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -55,6 +55,9 @@
                                     <include reference="yUl-P0-gzN"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectedAdd:" destination="iN0-l3-epB" eventType="touchUpInside" id="S8Z-05-N1G"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWc-ev-96l">
                             <constraints>
@@ -89,6 +92,10 @@
                                     <include reference="9L8-sC-T91"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectedFeed:" destination="iN0-l3-epB" eventType="touchUpInside" id="c8C-dk-7s9"/>
+                                <action selector="didSelectedTasks:" destination="iN0-l3-epB" eventType="touchUpInside" id="9cd-N3-aOl"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0YK-iw-xMv">
                             <constraints>
@@ -106,6 +113,9 @@
                                     <include reference="IF0-yX-DZr"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectTasksOnPlan:" destination="iN0-l3-epB" eventType="touchUpInside" id="TgQ-oh-neE"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZr-aC-U2c">
                             <constraints>
@@ -123,6 +133,9 @@
                                     <include reference="RTK-OE-Sig"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectedDocuments:" destination="iN0-l3-epB" eventType="touchUpInside" id="uSh-Ac-Xz7"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOl-9L-Lsr">
                             <constraints>
@@ -140,6 +153,9 @@
                                     <include reference="hRe-4B-PrJ"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectedTeam:" destination="iN0-l3-epB" eventType="touchUpInside" id="yPm-40-pFe"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmF-af-Pgc">
                             <constraints>
@@ -157,6 +173,9 @@
                                     <include reference="gGI-en-GPn"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="didSelectProjectInfo:" destination="iN0-l3-epB" eventType="touchUpInside" id="adn-Yf-g8F"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,28 +218,28 @@
                         </mask>
                         <mask key="constraints">
                             <exclude reference="Pll-cm-BqH"/>
-                            <exclude reference="zPb-RM-zWD"/>
                             <exclude reference="uki-jt-sWb"/>
+                            <exclude reference="zPb-RM-zWD"/>
                             <exclude reference="zze-bw-GBk"/>
-                            <exclude reference="trq-1O-tAl"/>
+                            <exclude reference="4yi-py-ff3"/>
+                            <exclude reference="fDm-6Y-JIo"/>
+                            <exclude reference="x5U-nI-2cF"/>
+                            <exclude reference="MzD-Ua-rGq"/>
+                            <exclude reference="SDX-CR-HtK"/>
+                            <exclude reference="mlM-4Y-Rvb"/>
+                            <exclude reference="1iq-4P-evk"/>
+                            <exclude reference="DR5-W6-pL6"/>
+                            <exclude reference="xtE-RV-OfQ"/>
+                            <exclude reference="Iuu-A1-VE7"/>
+                            <exclude reference="yac-1p-qjd"/>
+                            <exclude reference="MOv-Hv-rXN"/>
+                            <exclude reference="sYZ-GK-824"/>
+                            <exclude reference="uQL-lo-KiV"/>
                             <exclude reference="aI5-lK-nxT"/>
                             <exclude reference="osR-Xx-ImM"/>
-                            <exclude reference="MzD-Ua-rGq"/>
-                            <exclude reference="mlM-4Y-Rvb"/>
-                            <exclude reference="SDX-CR-HtK"/>
-                            <exclude reference="yac-1p-qjd"/>
-                            <exclude reference="Iuu-A1-VE7"/>
-                            <exclude reference="4yi-py-ff3"/>
-                            <exclude reference="x5U-nI-2cF"/>
-                            <exclude reference="fDm-6Y-JIo"/>
-                            <exclude reference="MOv-Hv-rXN"/>
-                            <exclude reference="uQL-lo-KiV"/>
-                            <exclude reference="sYZ-GK-824"/>
-                            <exclude reference="1iq-4P-evk"/>
-                            <exclude reference="xtE-RV-OfQ"/>
-                            <exclude reference="DR5-W6-pL6"/>
-                            <exclude reference="XRA-hZ-7L5"/>
+                            <exclude reference="trq-1O-tAl"/>
                             <exclude reference="2zP-aK-eIF"/>
+                            <exclude reference="XRA-hZ-7L5"/>
                             <exclude reference="x0S-sV-ueA"/>
                         </mask>
                     </variation>
@@ -237,28 +256,28 @@
                         </mask>
                         <mask key="constraints">
                             <include reference="Pll-cm-BqH"/>
-                            <include reference="zPb-RM-zWD"/>
                             <include reference="uki-jt-sWb"/>
+                            <include reference="zPb-RM-zWD"/>
                             <include reference="zze-bw-GBk"/>
-                            <include reference="trq-1O-tAl"/>
+                            <include reference="4yi-py-ff3"/>
+                            <include reference="fDm-6Y-JIo"/>
+                            <include reference="x5U-nI-2cF"/>
+                            <include reference="MzD-Ua-rGq"/>
+                            <include reference="SDX-CR-HtK"/>
+                            <include reference="mlM-4Y-Rvb"/>
+                            <include reference="1iq-4P-evk"/>
+                            <include reference="DR5-W6-pL6"/>
+                            <include reference="xtE-RV-OfQ"/>
+                            <include reference="Iuu-A1-VE7"/>
+                            <include reference="yac-1p-qjd"/>
+                            <include reference="MOv-Hv-rXN"/>
+                            <include reference="sYZ-GK-824"/>
+                            <include reference="uQL-lo-KiV"/>
                             <include reference="aI5-lK-nxT"/>
                             <include reference="osR-Xx-ImM"/>
-                            <include reference="MzD-Ua-rGq"/>
-                            <include reference="mlM-4Y-Rvb"/>
-                            <include reference="SDX-CR-HtK"/>
-                            <include reference="yac-1p-qjd"/>
-                            <include reference="Iuu-A1-VE7"/>
-                            <include reference="4yi-py-ff3"/>
-                            <include reference="x5U-nI-2cF"/>
-                            <include reference="fDm-6Y-JIo"/>
-                            <include reference="MOv-Hv-rXN"/>
-                            <include reference="uQL-lo-KiV"/>
-                            <include reference="sYZ-GK-824"/>
-                            <include reference="1iq-4P-evk"/>
-                            <include reference="xtE-RV-OfQ"/>
-                            <include reference="DR5-W6-pL6"/>
-                            <include reference="XRA-hZ-7L5"/>
+                            <include reference="trq-1O-tAl"/>
                             <include reference="2zP-aK-eIF"/>
+                            <include reference="XRA-hZ-7L5"/>
                             <include reference="x0S-sV-ueA"/>
                         </mask>
                     </variation>
@@ -273,6 +292,15 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="aboutProjectTab" destination="rmF-af-Pgc" id="Pgv-ZF-s0g"/>
+                <outlet property="addTab" destination="fQG-Fv-6pC" id="vzi-Vo-8Fp"/>
+                <outlet property="documentsTab" destination="wZr-aC-U2c" id="bkd-vE-dK0"/>
+                <outlet property="feedTab" destination="UWc-ev-96l" id="ACC-II-jXs"/>
+                <outlet property="tasksOnPlanTab" destination="0YK-iw-xMv" id="iCt-pr-zo7"/>
+                <outlet property="tasksTab" destination="92B-9n-hvV" id="07m-UU-C9f"/>
+                <outlet property="teamTab" destination="SOl-9L-Lsr" id="aHv-n8-r5m"/>
+            </connections>
         </view>
     </objects>
     <resources>
