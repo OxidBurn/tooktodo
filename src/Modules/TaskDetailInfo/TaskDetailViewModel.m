@@ -242,6 +242,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.performSegue(segueID);
 }
 
+- (void) showPopover: (CGRect) senderFrame
+{
+    if (self.presentControllerAsPopover)
+        self.presentControllerAsPopover(senderFrame);
+}
+
 #pragma mark - Helpers -
 
 - (CGFloat) returnSecondSectionRowHeightForIndexPath: (NSIndexPath*) indexPath

@@ -21,6 +21,8 @@
 
 @property (nonatomic, copy) void(^performSegue)(NSString* segueID);
 
+@property (nonatomic, copy) void(^presentControllerAsPopover)(CGRect frame);
+
 // methods
 - (void) deselectTask;
 

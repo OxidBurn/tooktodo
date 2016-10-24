@@ -61,7 +61,10 @@
 
 - (IBAction) onShowSystemDescriptionBtn: (UIButton*) sender
 {
-    
+    if ([self.delegate respondsToSelector:@selector(showPopover:)])
+    {
+        [self.delegate showPopover: sender.frame];
+    }
 }
 
 - (IBAction) onHiddenTaskBtn: (UIButton*) sender

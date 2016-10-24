@@ -388,6 +388,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		CFEF595B1DBE32FB00F91159 /* SystemDetailPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEF595A1DBE32FB00F91159 /* SystemDetailPopoverController.m */; };
+		CFEF59601DBE36D500F91159 /* SystemDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEF595F1DBE36D500F91159 /* SystemDetailViewModel.m */; };
+		CFEF59631DBE370600F91159 /* SystemDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFEF59621DBE370600F91159 /* SystemDetailModel.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
 		F7ED843F1DAFCE9100CF76D7 /* AttachmentsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED843E1DAFCE9100CF76D7 /* AttachmentsCellFactory.m */; };
@@ -1136,6 +1139,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CFEF595A1DBE32FB00F91159 /* SystemDetailPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailPopoverController.m; sourceTree = "<group>"; };
+		CFEF595D1DBE336A00F91159 /* SystemDetailPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailPopoverController.h; sourceTree = "<group>"; };
+		CFEF595F1DBE36D500F91159 /* SystemDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailViewModel.m; sourceTree = "<group>"; };
+		CFEF59621DBE370600F91159 /* SystemDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailModel.m; sourceTree = "<group>"; };
+		CFEF59641DBE375100F91159 /* SystemDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailModel.h; sourceTree = "<group>"; };
+		CFEF59651DBE375100F91159 /* SystemDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailViewModel.h; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
 		F75295B61DB65B8500534482 /* TaskDetailContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailContentManager.m; sourceTree = "<group>"; };
 		F75295B81DB6895A00534482 /* TaskDetailContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailContentManager.h; path = ../TaskDetailContentManager.h; sourceTree = "<group>"; };
@@ -1690,6 +1699,7 @@
 		56D06C401DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFEF595C1DBE336A00F91159 /* DetailPopover */,
 				560EDD321DB615F6006F361D /* CancelRequest */,
 				56D06C411DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06C4E1DAFBDBF008E9AC0 /* CustomViews */,
@@ -2588,6 +2598,7 @@
 		56D06DCD1DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CFEF59581DBE32FB00F91159 /* DetailPopover */,
 				560EDD2B1DB615EB006F361D /* CancelRequest */,
 				56D06DCE1DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06DDB1DAFBDBF008E9AC0 /* CustomViews */,
@@ -3171,6 +3182,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CFEF59581DBE32FB00F91159 /* DetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF595A1DBE32FB00F91159 /* SystemDetailPopoverController.m */,
+				CFEF595F1DBE36D500F91159 /* SystemDetailViewModel.m */,
+				CFEF59621DBE370600F91159 /* SystemDetailModel.m */,
+			);
+			path = DetailPopover;
+			sourceTree = "<group>";
+		};
+		CFEF595C1DBE336A00F91159 /* DetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF59641DBE375100F91159 /* SystemDetailModel.h */,
+				CFEF59651DBE375100F91159 /* SystemDetailViewModel.h */,
+				CFEF595D1DBE336A00F91159 /* SystemDetailPopoverController.h */,
+			);
+			path = DetailPopover;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3361,6 +3392,7 @@
 				56D06EA31DAFBDC0008E9AC0 /* ProjectTaskMarker+CoreDataProperties.m in Sources */,
 				56D06F831DAFBDC0008E9AC0 /* UserInfoTableViewCell.m in Sources */,
 				56D06EC31DAFBDC0008E9AC0 /* ProjectInfoModel.m in Sources */,
+				CFEF59601DBE36D500F91159 /* SystemDetailViewModel.m in Sources */,
 				56D06F0B1DAFBDC0008E9AC0 /* AddTermTasksViewController.m in Sources */,
 				56D06F7D1DAFBDC0008E9AC0 /* RolesViewModel.m in Sources */,
 				56D06F141DAFBDC0008E9AC0 /* SelectRoomViewController.m in Sources */,
@@ -3514,6 +3546,7 @@
 				56D06F2C1DAFBDC0008E9AC0 /* OfflineSynchronizeViewController.m in Sources */,
 				564DE3C91DB15AD200BF9817 /* RowContent.m in Sources */,
 				56D06EE31DAFBDC0008E9AC0 /* TeamService.m in Sources */,
+				CFEF595B1DBE32FB00F91159 /* SystemDetailPopoverController.m in Sources */,
 				56D06F3E1DAFBDC0008E9AC0 /* TaskCollectionCellsContent.m in Sources */,
 				56D06EF31DAFBDC0008E9AC0 /* KeyChainManager.m in Sources */,
 				56D06FBA1DAFBDC0008E9AC0 /* OSSwitchTableCell.m in Sources */,
@@ -3683,6 +3716,7 @@
 				56D06EAE1DAFBDC0008E9AC0 /* ProjectTaskRoleType.m in Sources */,
 				56D06E861DAFBDC0008E9AC0 /* DataManager+Systems.m in Sources */,
 				56D06F871DAFBDC0008E9AC0 /* UserNotificationInfoController.m in Sources */,
+				CFEF59631DBE370600F91159 /* SystemDetailModel.m in Sources */,
 				56D06F4F1DAFBDC0008E9AC0 /* CollectionCellViewModel.m in Sources */,
 				56D06F061DAFBDC0008E9AC0 /* AddTaskTypeViewModel.m in Sources */,
 				56D06F631DAFBDC0008E9AC0 /* AllTasksViewModel.m in Sources */,
