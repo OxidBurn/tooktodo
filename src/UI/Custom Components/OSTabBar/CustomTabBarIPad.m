@@ -12,11 +12,11 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     FeedTabButton         = 0,
     TaskTabButton         = 1,
-    TasksOnPlanTabButton  = 2,
+    AddTabButton          = 2,
     DocumentsTabButton    = 3,
     TeamTabButton         = 4,
-    AboutProjectTabButton = 5,
-    AddTabButton          = 6,
+    TasksOnPlanTabButton  = 5,
+    AboutProjectTabButton = 6,
     
 };
 
@@ -40,7 +40,7 @@ static BOOL isReplaced = NO;
 
 @property (weak, nonatomic) IBOutlet UIButton* aboutProjectTab;
 
-@property (weak, nonatomic) IBOutlet UIButton *menuBtn;
+@property (weak, nonatomic) IBOutlet UIButton* menuBtn;
 
 
 // properties
@@ -148,7 +148,7 @@ static BOOL isReplaced = NO;
 
 #pragma mark - Actions -
 
-- (IBAction)didSelectMenu:(UIButton *)sender
+- (IBAction) didSelectMenu: (UIButton*) sender
 {
     
 }
