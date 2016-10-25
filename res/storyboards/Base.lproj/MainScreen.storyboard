@@ -20,7 +20,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qkg-ZJ-erR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gYJ-eB-RAP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50K-QP-Opd">
@@ -1447,7 +1447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QPi-ej-G34" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-378" y="492"/>
+            <point key="canvasLocation" x="1358" y="333"/>
         </scene>
         <!--TaskByProjectNav-->
         <scene sceneID="14P-dG-Oiw">
@@ -1455,7 +1455,7 @@
                 <viewControllerPlaceholder storyboardName="TaskByProjectScreen" referencedIdentifier="TaskByProjectNav" id="3Id-Fy-RRO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyu-JY-EJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1222" y="873"/>
+            <point key="canvasLocation" x="3840" y="804"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="CAP-Mi-e51">
@@ -1466,7 +1466,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cHR-zo-yYL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sYg-HA-rYI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -1477,7 +1477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mu8-Wb-3Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1218.75" y="492.25352112676052"/>
+            <point key="canvasLocation" x="680" y="333"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="tRU-de-p0j">
@@ -1488,170 +1488,244 @@
                         <viewControllerLayoutGuide type="bottom" id="QNX-oW-Ea3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5HW-sH-Kv4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwG-21-5Mr" customClass="CustomTabBar">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXT-Wi-6yW"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBi-gY-na0" customClass="CustomTabBarIPad">
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMh-aV-N8d" customClass="CustomTabBar">
                                 <subviews>
-                                    <button hidden="YES" opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rEi-UQ-ZEm">
+                                    <button hidden="YES" opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hP-Fb-g8M">
                                         <state key="normal" image="OnPlanGray">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="disabled" image="OnPlanGray"/>
                                         <state key="selected" image="OnPlan"/>
                                         <connections>
-                                            <action selector="didSelectTasksOnPlan:" destination="gwG-21-5Mr" eventType="touchUpInside" id="nyW-R5-BAR"/>
+                                            <action selector="didSelectTasksOnPlan:" destination="cMh-aV-N8d" eventType="touchUpInside" id="APO-lf-b20"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="6" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNr-wt-jVW">
+                                    <button hidden="YES" opaque="NO" tag="6" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHk-0B-qCR">
                                         <state key="normal" image="AboutProjectGray">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="disabled" image="AboutProjectGray"/>
                                         <state key="selected" image="AboutProjectLight"/>
                                         <connections>
-                                            <action selector="didSelectProjectInfo:" destination="gwG-21-5Mr" eventType="touchUpInside" id="ron-do-J06"/>
+                                            <action selector="didSelectProjectInfo:" destination="cMh-aV-N8d" eventType="touchUpInside" id="9QK-nM-2Ya"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZ3-jn-vrh">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fkg-d0-z6I">
                                         <state key="normal" image="Feed">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" image="Feed isolated"/>
                                         <connections>
-                                            <action selector="didSelectedFeed:" destination="gwG-21-5Mr" eventType="touchUpInside" id="Ltr-jf-D6K"/>
+                                            <action selector="didSelectedFeed:" destination="cMh-aV-N8d" eventType="touchUpInside" id="54f-7x-obY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-I2-5P9">
+                                    <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KwL-7b-yub">
                                         <state key="normal" image="TasksGray">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="disabled" image="TasksGray"/>
                                         <state key="selected" image="TasksLight"/>
                                         <connections>
-                                            <action selector="didSelectedTasks:" destination="gwG-21-5Mr" eventType="touchUpInside" id="YqH-gt-0Bw"/>
+                                            <action selector="didSelectedTasks:" destination="cMh-aV-N8d" eventType="touchUpInside" id="7rL-Em-WAU"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8A-rx-1Da">
+                                    <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIs-Ye-3au">
                                         <state key="normal" image="Button add">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="didSelectedAdd:" destination="gwG-21-5Mr" eventType="touchUpInside" id="ien-Ly-idQ"/>
+                                            <action selector="didSelectedAdd:" destination="cMh-aV-N8d" eventType="touchUpInside" id="SOn-y9-Va8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfF-oq-eji">
+                                    <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uc1-qD-MYv">
                                         <state key="normal" image="Documents">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" image="Documents isolated"/>
                                         <connections>
-                                            <action selector="didSelectedDocuments:" destination="gwG-21-5Mr" eventType="touchUpInside" id="bFV-8k-fW7"/>
+                                            <action selector="didSelectedDocuments:" destination="cMh-aV-N8d" eventType="touchUpInside" id="Ipk-Cy-gQ1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3M6-ty-EJO">
+                                    <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-pE-5K5">
                                         <state key="normal" image="Team">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <state key="selected" image="Team icolated"/>
                                         <connections>
-                                            <action selector="didSelectedTeam:" destination="gwG-21-5Mr" eventType="touchUpInside" id="hWM-NC-Kfl"/>
+                                            <action selector="didSelectedTeam:" destination="cMh-aV-N8d" eventType="touchUpInside" id="6qz-aW-uKM"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.14901960784313725" green="0.1764705882352941" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="3M6-ty-EJO" firstAttribute="height" secondItem="vfF-oq-eji" secondAttribute="height" id="126-AT-GQx"/>
-                                    <constraint firstAttribute="trailing" secondItem="3M6-ty-EJO" secondAttribute="trailing" id="1Y6-6q-HOh"/>
-                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="width" secondItem="3M6-ty-EJO" secondAttribute="width" id="4UK-1b-Gl4"/>
-                                    <constraint firstItem="vfF-oq-eji" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="5aL-ZK-vIS"/>
-                                    <constraint firstItem="Nav-I2-5P9" firstAttribute="leading" secondItem="tZ3-jn-vrh" secondAttribute="trailing" id="9lH-Do-9fv"/>
-                                    <constraint firstAttribute="height" constant="56" id="Agp-0R-iBu"/>
-                                    <constraint firstItem="Nav-I2-5P9" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="Aqf-Fn-x38"/>
-                                    <constraint firstItem="3M6-ty-EJO" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="BS2-gP-xh3"/>
-                                    <constraint firstItem="tZ3-jn-vrh" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="CTz-v8-3Nx"/>
-                                    <constraint firstItem="tZ3-jn-vrh" firstAttribute="height" secondItem="gwG-21-5Mr" secondAttribute="height" id="I7k-dh-vNT"/>
-                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="leading" secondItem="3M6-ty-EJO" secondAttribute="leading" id="Pr2-UH-0nG"/>
-                                    <constraint firstItem="vfF-oq-eji" firstAttribute="height" secondItem="w8A-rx-1Da" secondAttribute="height" id="QxG-RT-Anh"/>
-                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="height" secondItem="Nav-I2-5P9" secondAttribute="height" id="V8a-IV-840"/>
-                                    <constraint firstItem="w8A-rx-1Da" firstAttribute="height" secondItem="Nav-I2-5P9" secondAttribute="height" id="WMY-yv-Cd0"/>
-                                    <constraint firstItem="w8A-rx-1Da" firstAttribute="leading" secondItem="Nav-I2-5P9" secondAttribute="trailing" id="aya-J4-X22"/>
-                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="height" secondItem="3M6-ty-EJO" secondAttribute="height" id="bCu-Aa-I5n"/>
-                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="bottom" secondItem="Nav-I2-5P9" secondAttribute="bottom" id="bMF-uX-tFv"/>
-                                    <constraint firstItem="w8A-rx-1Da" firstAttribute="width" secondItem="vfF-oq-eji" secondAttribute="width" id="e8S-aF-hze"/>
-                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="width" secondItem="Nav-I2-5P9" secondAttribute="width" id="eUS-SN-MNY"/>
-                                    <constraint firstItem="tZ3-jn-vrh" firstAttribute="leading" secondItem="gwG-21-5Mr" secondAttribute="leading" id="g7K-du-pkU"/>
-                                    <constraint firstItem="3M6-ty-EJO" firstAttribute="leading" secondItem="vfF-oq-eji" secondAttribute="trailing" id="gGH-ed-d3h"/>
-                                    <constraint firstItem="tZ3-jn-vrh" firstAttribute="width" secondItem="Nav-I2-5P9" secondAttribute="width" id="h2o-je-VfI"/>
-                                    <constraint firstItem="rEi-UQ-ZEm" firstAttribute="leading" secondItem="Nav-I2-5P9" secondAttribute="leading" id="kbB-ZQ-aTr"/>
-                                    <constraint firstItem="w8A-rx-1Da" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="top" id="omx-D3-8Ga"/>
-                                    <constraint firstItem="oNr-wt-jVW" firstAttribute="bottom" secondItem="3M6-ty-EJO" secondAttribute="bottom" id="sPP-fw-dDG"/>
-                                    <constraint firstItem="vfF-oq-eji" firstAttribute="width" secondItem="3M6-ty-EJO" secondAttribute="width" id="ufP-EQ-8ei"/>
-                                    <constraint firstItem="vfF-oq-eji" firstAttribute="leading" secondItem="w8A-rx-1Da" secondAttribute="trailing" id="xOT-pZ-sAd"/>
-                                    <constraint firstItem="Nav-I2-5P9" firstAttribute="width" secondItem="w8A-rx-1Da" secondAttribute="width" id="yvj-aV-AeF"/>
-                                    <constraint firstItem="Nav-I2-5P9" firstAttribute="height" secondItem="tZ3-jn-vrh" secondAttribute="height" id="znB-Rv-125"/>
+                                    <constraint firstItem="7hP-Fb-g8M" firstAttribute="width" secondItem="KwL-7b-yub" secondAttribute="width" id="1Ft-8F-imt"/>
+                                    <constraint firstItem="7hP-Fb-g8M" firstAttribute="height" secondItem="KwL-7b-yub" secondAttribute="height" id="3Js-EV-Wnp"/>
+                                    <constraint firstItem="Ccn-pE-5K5" firstAttribute="top" secondItem="cMh-aV-N8d" secondAttribute="top" id="9Fc-Xm-jtW"/>
+                                    <constraint firstItem="Ccn-pE-5K5" firstAttribute="height" secondItem="uc1-qD-MYv" secondAttribute="height" id="Bhf-bf-jRw"/>
+                                    <constraint firstItem="Fkg-d0-z6I" firstAttribute="height" secondItem="cMh-aV-N8d" secondAttribute="height" id="C0l-Gy-di4"/>
+                                    <constraint firstItem="uc1-qD-MYv" firstAttribute="leading" secondItem="mIs-Ye-3au" secondAttribute="trailing" id="ErM-Hh-cGQ"/>
+                                    <constraint firstItem="fHk-0B-qCR" firstAttribute="height" secondItem="Ccn-pE-5K5" secondAttribute="height" id="G5E-Va-fKl"/>
+                                    <constraint firstItem="mIs-Ye-3au" firstAttribute="height" secondItem="KwL-7b-yub" secondAttribute="height" id="HKf-8d-tkx"/>
+                                    <constraint firstItem="KwL-7b-yub" firstAttribute="width" secondItem="mIs-Ye-3au" secondAttribute="width" id="KpV-bi-ieo"/>
+                                    <constraint firstItem="Ccn-pE-5K5" firstAttribute="leading" secondItem="uc1-qD-MYv" secondAttribute="trailing" id="L1C-VQ-yAY"/>
+                                    <constraint firstItem="7hP-Fb-g8M" firstAttribute="leading" secondItem="KwL-7b-yub" secondAttribute="leading" id="Msa-94-mJS"/>
+                                    <constraint firstItem="uc1-qD-MYv" firstAttribute="height" secondItem="mIs-Ye-3au" secondAttribute="height" id="OVc-6y-FL4"/>
+                                    <constraint firstItem="Fkg-d0-z6I" firstAttribute="leading" secondItem="cMh-aV-N8d" secondAttribute="leading" id="Pj2-HJ-c6y"/>
+                                    <constraint firstItem="KwL-7b-yub" firstAttribute="height" secondItem="Fkg-d0-z6I" secondAttribute="height" id="RMz-1w-NtU"/>
+                                    <constraint firstItem="KwL-7b-yub" firstAttribute="leading" secondItem="Fkg-d0-z6I" secondAttribute="trailing" id="Ta1-nJ-C9U"/>
+                                    <constraint firstItem="uc1-qD-MYv" firstAttribute="top" secondItem="cMh-aV-N8d" secondAttribute="top" id="TrN-gI-6kd"/>
+                                    <constraint firstItem="mIs-Ye-3au" firstAttribute="top" secondItem="cMh-aV-N8d" secondAttribute="top" id="UQ9-qC-iOM"/>
+                                    <constraint firstItem="fHk-0B-qCR" firstAttribute="leading" secondItem="Ccn-pE-5K5" secondAttribute="leading" id="UUI-kq-6f2"/>
+                                    <constraint firstItem="fHk-0B-qCR" firstAttribute="bottom" secondItem="Ccn-pE-5K5" secondAttribute="bottom" id="Wxk-uD-12Y"/>
+                                    <constraint firstItem="KwL-7b-yub" firstAttribute="top" secondItem="cMh-aV-N8d" secondAttribute="top" id="bxk-Sl-xPv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ccn-pE-5K5" secondAttribute="trailing" id="fEK-d7-SNA"/>
+                                    <constraint firstItem="7hP-Fb-g8M" firstAttribute="bottom" secondItem="KwL-7b-yub" secondAttribute="bottom" id="fHg-HC-UYb"/>
+                                    <constraint firstItem="Fkg-d0-z6I" firstAttribute="width" secondItem="KwL-7b-yub" secondAttribute="width" id="i7P-3H-wud"/>
+                                    <constraint firstItem="fHk-0B-qCR" firstAttribute="width" secondItem="Ccn-pE-5K5" secondAttribute="width" id="mqF-yb-Qzv"/>
+                                    <constraint firstItem="mIs-Ye-3au" firstAttribute="leading" secondItem="KwL-7b-yub" secondAttribute="trailing" id="qPk-g2-khJ"/>
+                                    <constraint firstItem="Fkg-d0-z6I" firstAttribute="top" secondItem="cMh-aV-N8d" secondAttribute="top" id="wxf-7p-Qfv"/>
+                                    <constraint firstItem="mIs-Ye-3au" firstAttribute="width" secondItem="uc1-qD-MYv" secondAttribute="width" id="xVV-or-ZI7"/>
+                                    <constraint firstItem="uc1-qD-MYv" firstAttribute="width" secondItem="Ccn-pE-5K5" secondAttribute="width" id="z3A-Kn-cZq"/>
+                                    <constraint firstAttribute="height" constant="56" id="zZZ-we-pL1"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
-                                        <exclude reference="rEi-UQ-ZEm"/>
-                                        <exclude reference="oNr-wt-jVW"/>
+                                        <exclude reference="7hP-Fb-g8M"/>
+                                        <exclude reference="fHk-0B-qCR"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="4UK-1b-Gl4"/>
-                                        <exclude reference="Pr2-UH-0nG"/>
-                                        <exclude reference="bCu-Aa-I5n"/>
-                                        <exclude reference="sPP-fw-dDG"/>
-                                        <exclude reference="V8a-IV-840"/>
-                                        <exclude reference="bMF-uX-tFv"/>
-                                        <exclude reference="eUS-SN-MNY"/>
-                                        <exclude reference="kbB-ZQ-aTr"/>
+                                        <exclude reference="1Ft-8F-imt"/>
+                                        <exclude reference="3Js-EV-Wnp"/>
+                                        <exclude reference="Msa-94-mJS"/>
+                                        <exclude reference="fHg-HC-UYb"/>
+                                        <exclude reference="G5E-Va-fKl"/>
+                                        <exclude reference="UUI-kq-6f2"/>
+                                        <exclude reference="Wxk-uD-12Y"/>
+                                        <exclude reference="mqF-yb-Qzv"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular">
                                     <mask key="subviews">
-                                        <include reference="rEi-UQ-ZEm"/>
-                                        <include reference="oNr-wt-jVW"/>
+                                        <include reference="7hP-Fb-g8M"/>
+                                        <include reference="fHk-0B-qCR"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="4UK-1b-Gl4"/>
-                                        <include reference="Pr2-UH-0nG"/>
-                                        <include reference="bCu-Aa-I5n"/>
-                                        <include reference="sPP-fw-dDG"/>
-                                        <include reference="V8a-IV-840"/>
-                                        <include reference="bMF-uX-tFv"/>
-                                        <include reference="eUS-SN-MNY"/>
-                                        <include reference="kbB-ZQ-aTr"/>
+                                        <include reference="1Ft-8F-imt"/>
+                                        <include reference="3Js-EV-Wnp"/>
+                                        <include reference="Msa-94-mJS"/>
+                                        <include reference="fHg-HC-UYb"/>
+                                        <include reference="G5E-Va-fKl"/>
+                                        <include reference="UUI-kq-6f2"/>
+                                        <include reference="Wxk-uD-12Y"/>
+                                        <include reference="mqF-yb-Qzv"/>
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="aboutProjectTab" destination="oNr-wt-jVW" id="OPS-Em-rOZ"/>
-                                    <outlet property="addTab" destination="w8A-rx-1Da" id="jhR-2F-Fg2"/>
-                                    <outlet property="documentsTab" destination="vfF-oq-eji" id="qqV-tn-Kag"/>
-                                    <outlet property="feedTab" destination="tZ3-jn-vrh" id="YH9-qc-drS"/>
-                                    <outlet property="tasksOnPlanTab" destination="rEi-UQ-ZEm" id="AHo-Lt-Q9S"/>
-                                    <outlet property="tasksTab" destination="Nav-I2-5P9" id="zAB-4G-2TV"/>
-                                    <outlet property="teamTab" destination="3M6-ty-EJO" id="cnb-JF-hD6"/>
+                                    <outlet property="aboutProjectTab" destination="fHk-0B-qCR" id="nFg-YE-mDa"/>
+                                    <outlet property="addTab" destination="mIs-Ye-3au" id="YHq-mM-y5P"/>
+                                    <outlet property="documentsTab" destination="uc1-qD-MYv" id="5PT-cF-IIJ"/>
+                                    <outlet property="feedTab" destination="Fkg-d0-z6I" id="rhD-34-8Ta"/>
+                                    <outlet property="tasksOnPlanTab" destination="7hP-Fb-g8M" id="iEY-nC-944"/>
+                                    <outlet property="tasksTab" destination="KwL-7b-yub" id="Xww-P3-yfD"/>
+                                    <outlet property="teamTab" destination="Ccn-pE-5K5" id="IwY-qd-Cm8"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDJ-9K-o6Q">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.1764705882352941" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gwG-21-5Mr" firstAttribute="width" secondItem="5HW-sH-Kv4" secondAttribute="width" id="5JX-Zx-CKg"/>
-                            <constraint firstItem="QNX-oW-Ea3" firstAttribute="top" secondItem="gwG-21-5Mr" secondAttribute="bottom" id="5g8-WL-vDp"/>
-                            <constraint firstItem="tDJ-9K-o6Q" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" id="EWR-gG-G4Z"/>
-                            <constraint firstItem="gwG-21-5Mr" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" id="TMz-Uc-qlR"/>
-                            <constraint firstItem="tDJ-9K-o6Q" firstAttribute="height" secondItem="5HW-sH-Kv4" secondAttribute="height" constant="-56" id="qhG-dL-Hc7"/>
-                            <constraint firstItem="tDJ-9K-o6Q" firstAttribute="top" secondItem="5HW-sH-Kv4" secondAttribute="top" id="uLk-YI-ogQ"/>
-                            <constraint firstItem="tDJ-9K-o6Q" firstAttribute="width" secondItem="5HW-sH-Kv4" secondAttribute="width" id="yHc-ru-RDT"/>
+                            <constraint firstItem="QNX-oW-Ea3" firstAttribute="top" secondItem="GXT-Wi-6yW" secondAttribute="bottom" constant="56" id="4Yi-Xt-p3V"/>
+                            <constraint firstItem="GXT-Wi-6yW" firstAttribute="leading" secondItem="CBi-gY-na0" secondAttribute="trailing" id="5th-VW-pEy"/>
+                            <constraint firstAttribute="trailing" secondItem="GXT-Wi-6yW" secondAttribute="trailing" id="6Jp-mY-cfK"/>
+                            <constraint firstItem="GXT-Wi-6yW" firstAttribute="top" secondItem="5HW-sH-Kv4" secondAttribute="top" constant="20" id="73z-Ix-OcO"/>
+                            <constraint firstItem="CBi-gY-na0" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" id="AMk-9v-UpC"/>
+                            <constraint firstItem="GXT-Wi-6yW" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" id="WqR-aJ-8IP"/>
+                            <constraint firstItem="cMh-aV-N8d" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" id="Z0F-ie-FxO"/>
+                            <constraint firstItem="CBi-gY-na0" firstAttribute="top" secondItem="o0g-xT-N7H" secondAttribute="bottom" id="cED-lR-OW0"/>
+                            <constraint firstItem="cMh-aV-N8d" firstAttribute="top" secondItem="GXT-Wi-6yW" secondAttribute="bottom" id="cgy-FU-hGy"/>
+                            <constraint firstItem="GXT-Wi-6yW" firstAttribute="top" secondItem="5HW-sH-Kv4" secondAttribute="top" id="eFN-0K-WvW"/>
+                            <constraint firstItem="QNX-oW-Ea3" firstAttribute="top" secondItem="CBi-gY-na0" secondAttribute="bottom" id="fSp-xl-vsn"/>
+                            <constraint firstItem="GXT-Wi-6yW" firstAttribute="leading" secondItem="5HW-sH-Kv4" secondAttribute="leading" constant="84" id="huV-cf-DAO"/>
+                            <constraint firstItem="QNX-oW-Ea3" firstAttribute="top" secondItem="GXT-Wi-6yW" secondAttribute="bottom" id="ipL-WS-3Bx"/>
+                            <constraint firstAttribute="trailing" secondItem="GXT-Wi-6yW" secondAttribute="trailing" id="neU-kD-tmM"/>
+                            <constraint firstAttribute="trailing" secondItem="cMh-aV-N8d" secondAttribute="trailing" id="oL5-7e-A4H"/>
+                            <constraint firstAttribute="bottom" secondItem="cMh-aV-N8d" secondAttribute="bottom" id="uAd-WI-cCs"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="CBi-gY-na0"/>
+                                <exclude reference="cMh-aV-N8d"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="4Yi-Xt-p3V"/>
+                                <exclude reference="fSp-xl-vsn"/>
+                                <exclude reference="ipL-WS-3Bx"/>
+                                <exclude reference="AMk-9v-UpC"/>
+                                <exclude reference="cED-lR-OW0"/>
+                                <exclude reference="Z0F-ie-FxO"/>
+                                <exclude reference="cgy-FU-hGy"/>
+                                <exclude reference="oL5-7e-A4H"/>
+                                <exclude reference="uAd-WI-cCs"/>
+                                <exclude reference="5th-VW-pEy"/>
+                                <exclude reference="6Jp-mY-cfK"/>
+                                <exclude reference="73z-Ix-OcO"/>
+                                <exclude reference="WqR-aJ-8IP"/>
+                                <exclude reference="eFN-0K-WvW"/>
+                                <exclude reference="huV-cf-DAO"/>
+                                <exclude reference="neU-kD-tmM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="4Yi-Xt-p3V"/>
+                                <include reference="Z0F-ie-FxO"/>
+                                <include reference="cgy-FU-hGy"/>
+                                <include reference="oL5-7e-A4H"/>
+                                <include reference="uAd-WI-cCs"/>
+                                <include reference="6Jp-mY-cfK"/>
+                                <include reference="WqR-aJ-8IP"/>
+                                <include reference="eFN-0K-WvW"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="CBi-gY-na0"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="fSp-xl-vsn"/>
+                                <include reference="ipL-WS-3Bx"/>
+                                <include reference="AMk-9v-UpC"/>
+                                <include reference="cED-lR-OW0"/>
+                                <include reference="5th-VW-pEy"/>
+                                <include reference="73z-Ix-OcO"/>
+                                <include reference="huV-cf-DAO"/>
+                                <include reference="neU-kD-tmM"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cMh-aV-N8d"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="4Yi-Xt-p3V"/>
+                                <exclude reference="6Jp-mY-cfK"/>
+                                <exclude reference="WqR-aJ-8IP"/>
+                                <exclude reference="eFN-0K-WvW"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="containerView" destination="tDJ-9K-o6Q" id="zhr-Xe-Qak"/>
-                        <outlet property="mainTabBar" destination="gwG-21-5Mr" id="hMI-6V-FqJ"/>
+                        <outlet property="containerView" destination="GXT-Wi-6yW" id="Rl9-3P-kml"/>
+                        <outlet property="mainTabBar" destination="cMh-aV-N8d" id="BmP-1W-9eh"/>
                         <segue destination="vmQ-zd-b8M" kind="custom" identifier="ShowUserInfoID" customClass="TabBarSegue" id="AfA-m2-fbg"/>
                         <segue destination="SwK-3x-92h" kind="custom" identifier="ShowAllProjects" customClass="TabBarSegue" id="8Hv-2t-bAj"/>
                         <segue destination="Kr7-pm-p4h" kind="custom" identifier="ShowFeeds" customClass="TabBarSegue" id="ddl-Gv-3Cp"/>
@@ -1664,7 +1738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFH-BH-NMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500" y="492"/>
+            <point key="canvasLocation" x="2120" y="333"/>
         </scene>
         <!--UINavigationController-wvg-i5-NJM-->
         <scene sceneID="rMq-vR-gdH">
@@ -1672,7 +1746,7 @@
                 <viewControllerPlaceholder storyboardName="TeamInfo" referencedIdentifier="UINavigationController-wvg-i5-NJM" id="wjb-5h-Dck" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5s-TA-IrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1286" y="569"/>
+            <point key="canvasLocation" x="3816" y="508"/>
         </scene>
         <!--UINavigationController-Nv6-3D-IR2-->
         <scene sceneID="imu-2t-13g">
@@ -1680,7 +1754,7 @@
                 <viewControllerPlaceholder storyboardName="UserInfo" referencedIdentifier="UINavigationController-Nv6-3D-IR2" id="vmQ-zd-b8M" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7KA-3a-2B6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268" y="742"/>
+            <point key="canvasLocation" x="3797" y="682"/>
         </scene>
         <!--ProjectInfoNavigationControllerID-->
         <scene sceneID="7zf-FO-y4O">
@@ -1688,7 +1762,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="ProjectInfoNavigationControllerID" storyboardName="AboutProject" referencedIdentifier="ProjectInfoNavigationControllerID" id="kLl-YQ-SGy" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKa-cW-YYk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1285" y="640"/>
+            <point key="canvasLocation" x="3814" y="580"/>
         </scene>
         <!--UINavigationController-N1C-G2-qK9-->
         <scene sceneID="FXZ-hp-qNm">
@@ -1696,7 +1770,7 @@
                 <viewControllerPlaceholder storyboardName="AllProjects" referencedIdentifier="UINavigationController-N1C-G2-qK9" id="SwK-3x-92h" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibg-7c-1r9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1287" y="240"/>
+            <point key="canvasLocation" x="3816" y="180"/>
         </scene>
         <!--UINavigationController-ET8-cm-vu4-->
         <scene sceneID="HpV-OT-W5M">
@@ -1704,7 +1778,7 @@
                 <viewControllerPlaceholder storyboardName="Documents" referencedIdentifier="UINavigationController-ET8-cm-vu4" id="o9S-gB-p4b" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="scS-tO-gV3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="494"/>
+            <point key="canvasLocation" x="3800" y="433"/>
         </scene>
         <!--UINavigationController-V4e-fh-4Kr-->
         <scene sceneID="9ah-Ce-9SI">
@@ -1712,7 +1786,7 @@
                 <viewControllerPlaceholder storyboardName="Tasks" referencedIdentifier="UINavigationController-V4e-fh-4Kr" id="fmF-3M-xz4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZdO-sB-KoE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="400"/>
+            <point key="canvasLocation" x="3806" y="340"/>
         </scene>
         <!--UINavigationController-jPX-IS-p9p-->
         <scene sceneID="luv-bW-9Ps">
@@ -1720,7 +1794,7 @@
                 <viewControllerPlaceholder storyboardName="Feeds" referencedIdentifier="UINavigationController-jPX-IS-p9p" id="Kr7-pm-p4h" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k8L-S3-Bgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1279" y="315"/>
+            <point key="canvasLocation" x="3808" y="256"/>
         </scene>
     </scenes>
     <resources>

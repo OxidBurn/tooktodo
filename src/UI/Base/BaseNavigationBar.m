@@ -44,6 +44,12 @@ IB_DESIGNABLE
     [self setBackgroundColor: RGB(57, 189, 183)];
     
     [self setShadowImage: [[UIImage alloc] init]];
+    
+//    // Hide menu button on navigation bar if user use iPad
+//    if ( IS_PHONE == NO )
+//    {
+//        self.items.firstObject.leftBarButtonItem = nil;
+//    }
 }
 
 /**

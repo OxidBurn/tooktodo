@@ -71,6 +71,21 @@ static CGFloat const yPadding                   = 20.0f;
 }
 
 
+#pragma mark - Orientations -
+
+- (UIInterfaceOrientationMask) supportedInterfaceOrientations
+{
+    if ( IS_PHONE )
+    {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    else
+    {
+        return (UIInterfaceOrientationMaskLandscapeLeft | UIInterfaceOrientationMaskLandscapeRight);
+    }
+}
+
+
 #pragma mark - Internal methods -
 
 - (void) willGetFocus
