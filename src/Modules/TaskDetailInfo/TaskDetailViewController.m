@@ -14,7 +14,7 @@
 #import "ChangeStatusViewController.h"
 #import "DataManager+Tasks.h"
 
-@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate>
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UISplitViewControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
@@ -44,6 +44,8 @@
     [super viewDidLoad];
     
     [self setupDefaults];
+    
+    self.splitViewController.delegate = self;
 }
 
 - (void) didReceiveMemoryWarning
@@ -154,6 +156,16 @@
         [blockSelf performSegueWithIdentifier: segueID
                                        sender: blockSelf];
     };
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+{
+    return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+{
+    return YES;
 }
 
 

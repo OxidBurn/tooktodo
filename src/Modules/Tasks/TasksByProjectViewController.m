@@ -133,7 +133,12 @@
 collapseSecondaryViewController: (UIViewController*)      secondaryViewController
       ontoPrimaryViewController: (UIViewController*)      primaryViewController
 {
-    return YES;
+    return NO;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+{
+    return NO;
 }
 
 @end
