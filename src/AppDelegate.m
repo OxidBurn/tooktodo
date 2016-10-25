@@ -24,8 +24,6 @@
 {
     [Fabric with: @[[Crashlytics class]]];
     
-    application.statusBarOrientation = UIInterfaceOrientationMaskLandscape;
-    
     return YES;
 }
 

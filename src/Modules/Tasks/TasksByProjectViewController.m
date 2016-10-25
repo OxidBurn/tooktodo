@@ -17,7 +17,7 @@
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 
-@interface TasksByProjectViewController ()
+@interface TasksByProjectViewController () <UISplitViewControllerDelegate>
 
 // Properties
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
@@ -50,6 +50,9 @@
     
     // Binding UI components with model
     [self bindingUI];
+    
+    // Handling SplitVC
+    self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -99,9 +102,9 @@
     
     __weak typeof(self) blockSelf = self;
     
-    self.viewModel.didShowTaskInfo = ^(){
+    self.viewModel.didShowTaskInfo = ^(NSString* segueId){
         
-        [blockSelf performSegueWithIdentifier: @"ShowTaskDetailSegueId"
+        [blockSelf performSegueWithIdentifier: @"ShowTaskDetailSegueID"
                                        sender: blockSelf];
         
     };
@@ -122,6 +125,15 @@
     {
         [self.delegate showMainMenu];
     }
+}
+
+#pragma mark - UISplitViewControllerDelegate methods -
+
+- (BOOL)    splitViewController: (UISplitViewController*) splitViewController
+collapseSecondaryViewController: (UIViewController*)      secondaryViewController
+      ontoPrimaryViewController: (UIViewController*)      primaryViewController
+{
+    return YES;
 }
 
 @end
