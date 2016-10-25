@@ -20,7 +20,7 @@
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 
-@interface ProjectTasksViewController ()
+@interface ProjectTasksViewController () <UISplitViewControllerDelegate>
 
 // Properties
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
@@ -48,6 +48,9 @@
     
     // Binding UI components with model
     [self bindingUI];
+    
+    // handling splitVC
+    self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -116,6 +119,15 @@
 - (void) needToUpdateContent
 {
     [self updateContent];
+}
+
+#pragma mark - UISplitViewControllerDelegate methods -
+
+- (BOOL)    splitViewController: (UISplitViewController*) splitViewController
+collapseSecondaryViewController: (UIViewController*)      secondaryViewController
+      ontoPrimaryViewController: (UIViewController*)      primaryViewController
+{
+    return YES;
 }
 
 @end
