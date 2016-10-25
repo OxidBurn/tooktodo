@@ -9,16 +9,17 @@
 #import "MainTabBarController.h"
 #import "LoginViewController.h"
 #import "WelcomeTourViewController.h"
-#import "CustomTabBar.h"
+#import "MainTabBar.h"
 #import "OSAlertController.h"
 #import "OSTaskOptionsController.h"
 #import "AddTaskViewController.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController()  <CustomTabBarDelegate, OSTaskOptionsControllerDelegate>
+@interface MainTabBarController()  <OSTaskOptionsControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet CustomTabBar *mainTabBar;
+@property (weak, nonatomic) IBOutlet MainTabBar* mainTabBariPhone;
+@property (weak, nonatomic) IBOutlet MainTabBar* mainTabBariPad;
 
 @end
 
@@ -30,8 +31,9 @@
 {
     [super loadView];
     
-    self.mainTabBar.delegate = self;
-    self.mainTabBar.taskDelegate = self;
+    self.mainTabBariPhone.delegate = self;
+    self.mainTabBariPad.delegate   = self;
+//    self.mainTabBar.taskDelegate = self;
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -156,7 +158,8 @@
 
 - (void) setSelectedTabBarItemAtIndex: (NSUInteger) index
 {
-    [self.mainTabBar setSelectedItemAtIndex: index];
+    [self.mainTabBariPhone setSelectedItemAtIndex: index];
+    [self.mainTabBariPad setSelectedItemAtIndex: index];
 }
 
 

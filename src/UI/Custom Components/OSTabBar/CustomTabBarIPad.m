@@ -142,9 +142,12 @@ static BOOL isReplaced = NO;
         obj.selected = (idx == index);
         
     }];
+    
+    [super setSelectedItemAtIndex: index];
 }
 
 #pragma mark - Actions -
+
 - (IBAction)didSelectMenu:(UIButton *)sender
 {
     

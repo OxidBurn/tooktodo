@@ -36,8 +36,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 @property (strong, nonatomic) NSArray* items;
 
-@property (strong, nonatomic) NSArray* selectedControllerID;
-
 @property (assign, nonatomic) NSUInteger tappedButtonTag;
 
 @property (assign, nonatomic) NSUInteger choosenButtonTag;
@@ -104,21 +102,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     return _items;
 }
 
-- (NSArray*) selectedControllerID
-{
-    if ( _selectedControllerID == nil )
-    {
-        _selectedControllerID = @[@"ShowFeeds",
-                                  @"ShowTasks",
-                                  @"",
-                                  @"ShowDocuments",
-                                  @"ShowTeamInfoID",
-                                  @"",
-                                  @"ShowAboutProjectID"];
-    }
-    
-    return _selectedControllerID;
-}
 
 #pragma mark - Public methods -
 
@@ -146,11 +129,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
         
     }];
     
-    NSString* showedControllerID = self.selectedControllerID[index];
-    
-    //TODO: Delete second expression, when add button controller will be done
-    if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] && showedControllerID.length > 0 )
-        [self.delegate showControllerWithSegueID: showedControllerID];
+    [super setSelectedItemAtIndex: index];
 }
 
 #pragma mark - Actions -
@@ -160,8 +139,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self updateSelectedItem: sender.tag];
     
     [self checkGrayView];
-    
-    NSLog(@"didSelectedFeed");
 }
 
 - (IBAction) didSelectedTasks: (UIButton*) sender
@@ -169,8 +146,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self updateSelectedItem: sender.tag];
     
     [self checkGrayView];
-    
-    NSLog(@"didSelectedTasks");
 }
 
 - (IBAction) didSelectedAdd: (UIButton*) sender
@@ -183,8 +158,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     {
         [self.taskDelegate showTaskOptions];
     }
-    
-    NSLog(@"didSelectedAdd");
 }
 
 - (IBAction) didSelectedDocuments: (UIButton*) sender
@@ -192,8 +165,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self updateSelectedItem: sender.tag];
     
     [self checkGrayView];
-
-    NSLog(@"didSelectedDocuments");
 }
 
 - (IBAction) didSelectedTeam: (UIButton*) sender
@@ -201,8 +172,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self updateSelectedItem: sender.tag];
     
     [self checkGrayView];
-    
-    NSLog(@"didSelectedTeam");
 }
 
 //actions for new buttons
@@ -211,8 +180,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self checkGrayView];
     
     [self updateSelectedItem: sender.tag];
-
-    NSLog(@"didSelectTasksOnPlan");
 }
 
 
@@ -221,8 +188,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [self checkGrayView];
     
     [self updateSelectedItem: sender.tag];
-
-    NSLog(@"didSelectProjectInfo");
 }
 
 #pragma mark - Helpers -
@@ -284,8 +249,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                   aboveButton: self.tasksTab
                     withImage: btnBackgroundImage
                   withGesture: self.tasksLongTapGesture];
-    
-    NSLog(@"Tasks long tap gesture called");
 
 }
 
@@ -297,8 +260,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                   aboveButton: self.teamTab
                     withImage: btnBackgroundImage
                   withGesture: self.teamLongTapGesture];
-    
-    NSLog(@"Tema long tap gesture called");
 
 }
 
@@ -310,8 +271,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                   aboveButton: self.tasksOnPlanTab
                     withImage: btnBackgroundImage
                   withGesture: self.tasksOnPlanLongTapGesture];
-    
-    NSLog(@"Tasks on plan long tap gesture called");
 }
 
 - (void) handleLongGestureForAboutProject: (UILongPressGestureRecognizer*) longTap
@@ -322,8 +281,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                   aboveButton: self.aboutProjectTab
                     withImage: btnBackgroundImage
                   withGesture: self.aboutProjectLongTapGesture];
-    
-    NSLog(@"About project long tap gesture called");
 }
 
 
@@ -372,8 +329,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             
             [self.grayView addSubview: buttonOnGrayView];
             
-            NSLog(@"Gesture began");
-            
         }
     }
 }
@@ -389,8 +344,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     self.tappedButtonTag = 10;
     
     self.choosenButtonTag = 11;
-    
-    NSLog(@"Did select button on gray view");
 }
 
 
@@ -419,16 +372,12 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             self.tasksTab.hidden       = YES;
             self.tasksOnPlanTab.hidden = NO;
             
-            NSLog(@"Switched tasks to tasks on plan");
-            
             break;
             
         case TasksOnPlanTabButton:
             
             self.tasksTab.hidden       = NO;
             self.tasksOnPlanTab.hidden = YES;
-            
-            NSLog(@"Switched tasks on plan to tasks");
             
             break;
             
@@ -437,16 +386,12 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             self.teamTab.hidden         = YES;
             self.aboutProjectTab.hidden = NO;
             
-            NSLog(@"Switched team to about projects");
-            
             break;
             
         case AboutProjectTabButton:
             
             self.teamTab.hidden         = NO;
             self.aboutProjectTab.hidden = YES;
-            
-            NSLog(@"Switched about projects to team");
 
             break;
             

@@ -11,6 +11,7 @@
 		560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2C1DB615EB006F361D /* CancelReguestModel.m */; };
 		560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */; };
 		560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */; };
+		5626A68C1DBF95B50015AFEC /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5626A68B1DBF95B50015AFEC /* MainTabBar.m */; };
 		5636E8FF1D80A80700CF06FA /* service_agreements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5636E8FE1D80A80700CF06FA /* service_agreements.txt */; };
 		564DE3861DB0F60800BF9817 /* TaskAvailableActionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */; };
 		564DE3891DB0F65700BF9817 /* TaskActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3881DB0F65700BF9817 /* TaskActionModel.m */; };
@@ -405,6 +406,8 @@
 		560EDD331DB615F6006F361D /* CancelReguestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelReguestModel.h; sourceTree = "<group>"; };
 		560EDD341DB615F6006F361D /* CancelRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewController.h; sourceTree = "<group>"; };
 		560EDD351DB615F6006F361D /* CancelRequestViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewModel.h; sourceTree = "<group>"; };
+		5626A68A1DBF95B50015AFEC /* MainTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBar.h; sourceTree = "<group>"; };
+		5626A68B1DBF95B50015AFEC /* MainTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBar.m; sourceTree = "<group>"; };
 		5636E8FE1D80A80700CF06FA /* service_agreements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = service_agreements.txt; sourceTree = "<group>"; };
 		564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAvailableActionsModel.m; sourceTree = "<group>"; };
 		564DE3881DB0F65700BF9817 /* TaskActionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskActionModel.m; sourceTree = "<group>"; };
@@ -2344,6 +2347,7 @@
 		56D06D751DAFBDBF008E9AC0 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				56D06DBA1DAFBDBF008E9AC0 /* Main */,
 				56D06D761DAFBDBF008E9AC0 /* AboutProject */,
 				56D06D871DAFBDBF008E9AC0 /* AddTask */,
 				56D06DAB1DAFBDBF008E9AC0 /* Autorization */,
@@ -2424,7 +2428,6 @@
 				56D06D9E1DAFBDBF008E9AC0 /* SelectRoom */,
 				56D06DA31DAFBDBF008E9AC0 /* SelectStage */,
 				56D06DA71DAFBDBF008E9AC0 /* SelectSystem */,
-				56D06DBA1DAFBDBF008E9AC0 /* Main */,
 			);
 			path = AddTask;
 			sourceTree = "<group>";
@@ -2553,8 +2556,7 @@
 			children = (
 				56D06DBB1DAFBDBF008E9AC0 /* MainTabBarController.m */,
 			);
-			name = Main;
-			path = ../Main;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		56D06DBC1DAFBDBF008E9AC0 /* Menu */ = {
@@ -3016,6 +3018,8 @@
 				565340D31DBF708900B40187 /* CustomTabBarIPad.m */,
 				56D06E7E1DAFBDBF008E9AC0 /* CustomTabBar.m */,
 				56D06E7F1DAFBDBF008E9AC0 /* TabBarSegue.m */,
+				5626A68A1DBF95B50015AFEC /* MainTabBar.h */,
+				5626A68B1DBF95B50015AFEC /* MainTabBar.m */,
 			);
 			path = OSTabBar;
 			sourceTree = "<group>";
@@ -3135,6 +3139,7 @@
 		59D9BD111D586974009DFBA8 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				5664A01A1DA3C4C600344879 /* MainScreen.storyboard */,
 				56D06FC61DAFC1D0008E9AC0 /* TaskOptionsScreen.storyboard */,
 				5664A0061DA3C4C600344879 /* AboutProject.storyboard */,
 				5664A0081DA3C4C600344879 /* AllProjects.storyboard */,
@@ -3142,7 +3147,6 @@
 				5664A00E1DA3C4C600344879 /* Documents.storyboard */,
 				5664A0121DA3C4C600344879 /* Feeds.storyboard */,
 				5664A0181DA3C4C600344879 /* OSAlertStoryboard.storyboard */,
-				5664A01A1DA3C4C600344879 /* MainScreen.storyboard */,
 				5664A01C1DA3C4C600344879 /* StageTitleView.xib */,
 				5664A01E1DA3C4C600344879 /* TaskByProjectScreen.storyboard */,
 				5664A0221DA3C4C600344879 /* Tasks.storyboard */,
@@ -3511,6 +3515,7 @@
 				56D06EC11DAFBDC0008E9AC0 /* DefaultRoleModel.m in Sources */,
 				56D06FC41DAFBDC0008E9AC0 /* TabBarSegue.m in Sources */,
 				56D06ED71DAFBDC0008E9AC0 /* TaskRoomModel.m in Sources */,
+				5626A68C1DBF95B50015AFEC /* MainTabBar.m in Sources */,
 				56D06F591DAFBDC0008E9AC0 /* FilterAttachmentsCellFactory.m in Sources */,
 				560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */,
 				56D06FB31DAFBDC0008E9AC0 /* OSDatePickerCell.m in Sources */,

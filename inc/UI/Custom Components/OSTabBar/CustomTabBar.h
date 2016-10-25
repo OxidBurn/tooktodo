@@ -7,19 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProjectsControllersDelegate.h"
+#import "MainTabBar.h"
 
 @protocol CustomTabBarDelegate;
 
-@interface CustomTabBar : UIView
-
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+@interface CustomTabBar : MainTabBar
 
 @property (nonatomic, weak) id<CustomTabBarDelegate> taskDelegate;
-
-- (void) didSelectFirstMenuItem;
-
-- (void) setSelectedItemAtIndex: (NSUInteger) index;
 
 @end
 
