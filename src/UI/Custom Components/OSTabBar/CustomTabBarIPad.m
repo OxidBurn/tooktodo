@@ -40,6 +40,8 @@ static BOOL isReplaced = NO;
 
 @property (weak, nonatomic) IBOutlet UIButton* aboutProjectTab;
 
+@property (weak, nonatomic) IBOutlet UIButton *menuBtn;
+
 
 // properties
 
@@ -143,6 +145,10 @@ static BOOL isReplaced = NO;
 }
 
 #pragma mark - Actions -
+- (IBAction)didSelectMenu:(UIButton *)sender
+{
+    
+}
 
 - (IBAction) didSelectedFeed: (UIButton*) sender
 {
