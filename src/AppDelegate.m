@@ -24,6 +24,8 @@
 {
     [Fabric with: @[[Crashlytics class]]];
     
+    application.statusBarOrientation = UIInterfaceOrientationMaskLandscape;
+    
     return YES;
 }
 
@@ -54,6 +56,21 @@
 - (void) applicationWillTerminate: (UIApplication*) application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+// Asks the delegate for the interface orientations to use for the view controllers in the specified window.
+
+- (UIInterfaceOrientationMask) application: (UIApplication*) application
+   supportedInterfaceOrientationsForWindow: (UIWindow*)      window
+{
+    if ( IS_PHONE )
+    {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    else
+    {
+        return UIInterfaceOrientationMaskLandscape;
+    }
 }
 
 @end
