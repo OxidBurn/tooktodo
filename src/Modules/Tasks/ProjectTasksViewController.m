@@ -74,6 +74,14 @@
 }
 
 
+#pragma mark - Segue -
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"Segue %@", segue.identifier);
+    NSLog(@"Destination: %@", segue.destinationViewController);
+}
+
 #pragma mark - Internal methods -
 
 - (void) bindingUI
@@ -128,6 +136,11 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
       ontoPrimaryViewController: (UIViewController*)      primaryViewController
 {
     return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+{
+    return NO;
 }
 
 @end
