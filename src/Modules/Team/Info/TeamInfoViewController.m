@@ -136,6 +136,15 @@
     
     // handling splitVC delegate
     self.splitViewController.delegate = self;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.didShowMemberInfo = ^(){
+        
+        [blockSelf performSegueWithIdentifier: @"ShowTeamMemberInfoID"
+                                       sender: blockSelf];
+        
+    };
 }
 
 - (void) handleViewModelActions
@@ -269,6 +278,11 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
 - (BOOL) splitViewController: (UISplitViewController*) splitViewController
     showDetailViewController: (UIViewController*)      vc
                       sender: (id)                     sender
+{
+    return NO;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(nullable id)sender
 {
     return NO;
 }

@@ -25,7 +25,7 @@
 #import "RolesViewController.h"
 #import "OSAlertController.h"
 
-@interface TeamProfilesInfoViewController () <TeamProfileViewModelDelegate, MFMailComposeViewControllerDelegate>
+@interface TeamProfilesInfoViewController () <TeamProfileViewModelDelegate, MFMailComposeViewControllerDelegate, UISplitViewControllerDelegate>
 
 // Properties
 @property (nonatomic, strong) TeamProfileInfoViewModel* viewModel;
@@ -57,6 +57,8 @@
     
     self.profileInfoTableView.dataSource = self.viewModel;
     self.profileInfoTableView.delegate   = self.viewModel;
+    
+    self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -175,7 +177,7 @@
     [OSAlertController showAlertWithImage: avatar
                                  withName: userName
                               withMessage: message
-                             onController: self
+                             onController: self.splitViewController
                              withDelegate: self.viewModel];
     
 }
@@ -229,6 +231,19 @@
     
     [self dismissViewControllerAnimated: YES
                              completion: NULL];
+}
+
+
+#pragma mark - Split view controller delegate methods -
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+{
+    return YES;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(id)sender
+{
+    return NO;
 }
 
 @end

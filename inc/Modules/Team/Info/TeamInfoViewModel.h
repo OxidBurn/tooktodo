@@ -20,6 +20,8 @@
 
 @property (nonatomic, copy) void(^endFiltering)();
 
+@property (nonatomic, copy) void(^didShowMemberInfo)();
+
 // methods
 
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;

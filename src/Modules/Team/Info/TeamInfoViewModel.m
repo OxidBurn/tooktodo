@@ -121,7 +121,8 @@ static CGFloat sectionHeaderHeight = 30;
 {
     [self.model markItemAsSelectedAtIndex: indexPath.row];
     
-    
+    if ( self.didShowMemberInfo )
+        self.didShowMemberInfo();
 }
 
 
