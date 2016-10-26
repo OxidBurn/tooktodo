@@ -120,6 +120,8 @@ static CGFloat sectionHeaderHeight = 30;
  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [self.model markItemAsSelectedAtIndex: indexPath.row];
+    
+    
 }
 
 

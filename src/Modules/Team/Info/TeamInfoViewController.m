@@ -19,7 +19,7 @@
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 
-@interface TeamInfoViewController () <TeamInfoViewModelDelegate, MFMailComposeViewControllerDelegate>
+@interface TeamInfoViewController () <TeamInfoViewModelDelegate, MFMailComposeViewControllerDelegate, UISplitViewControllerDelegate>
 
 // Properties
 
@@ -69,6 +69,7 @@
     // Hide search bar on show
     [self setupTableView];
 }
+
 
 #pragma mark - Memory managment -
 
@@ -132,6 +133,9 @@
     self.searchBar.delegate           = self.viewModel;
     
     [self handleViewModelActions];
+    
+    // handling splitVC delegate
+    self.splitViewController.delegate = self;
 }
 
 - (void) handleViewModelActions
@@ -251,6 +255,22 @@
     
     [self dismissViewControllerAnimated: YES
                              completion: NULL];
+}
+
+#pragma mark - UISplitViewControllerDelegate methods -
+
+- (BOOL)    splitViewController: (UISplitViewController*) splitViewController
+collapseSecondaryViewController: (UIViewController*)      secondaryViewController
+      ontoPrimaryViewController: (UIViewController*)      primaryViewController
+{
+    return YES;
+}
+
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController
+    showDetailViewController: (UIViewController*)      vc
+                      sender: (id)                     sender
+{
+    return NO;
 }
 
 @end
