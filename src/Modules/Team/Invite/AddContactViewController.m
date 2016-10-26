@@ -119,7 +119,8 @@
             
             @strongify(self)
             
-            [self.navigationController popViewControllerAnimated: YES];
+            [self dismissViewControllerAnimated: YES
+                                     completion: nil];
             
         }];
         
@@ -228,7 +229,8 @@
 
 - (IBAction) onDismiss: (UIBarButtonItem*) sender
 {
-    [self.navigationController popViewControllerAnimated: YES];
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 

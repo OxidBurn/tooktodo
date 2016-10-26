@@ -21,7 +21,7 @@
         <!--Team Info View Controller-->
         <scene sceneID="KSw-YE-rHr">
             <objects>
-                <viewController storyboardIdentifier="TeamsControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZJX-wC-jxj" customClass="TeamInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamsControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZJX-wC-jxj" customClass="TeamInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9DG-6z-8U6"/>
                         <viewControllerLayoutGuide type="bottom" id="YkL-KY-FUb"/>
@@ -33,7 +33,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wH7-Or-ohX">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Поиск" id="jdF-xI-sGi">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -42,7 +42,7 @@
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCellID" id="NN9-wq-jz4" customClass="TeamInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="136" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NN9-wq-jz4" id="PiK-Cw-i5k">
                                             <frame key="frameInset" width="375" height="55.5"/>
@@ -501,7 +501,7 @@
                         <barButtonItem key="rightBarButtonItem" image="Add" id="5eF-H2-g3V">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="mLF-vz-Ve0" kind="presentation" modalPresentationStyle="formSheet" id="a1a-NU-Ot7"/>
+                                <segue destination="mLF-vz-Ve0" kind="show" id="Ztb-l9-Ard"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -537,7 +537,7 @@
         <!--Team Profiles Info View Controller-->
         <scene sceneID="GAj-Pt-g9k">
             <objects>
-                <viewController storyboardIdentifier="TeamProfileControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="voL-eB-vFQ" customClass="TeamProfilesInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamProfileControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="voL-eB-vFQ" customClass="TeamProfilesInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GWe-fZ-GNX"/>
                         <viewControllerLayoutGuide type="bottom" id="0Nf-qq-GVa"/>
@@ -549,13 +549,13 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="41" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fDH-fK-pN2">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="vtX-Wt-yMh">
-                                    <rect key="frame" x="0.0" y="174" width="375" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="110" width="375" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserContactCellID" rowHeight="41" id="m4K-En-VIf" customClass="ContactInfoCell">
-                                        <rect key="frame" x="0.0" y="92" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m4K-En-VIf" id="i8S-5D-RPd">
                                             <frame key="frameInset" width="375" height="40.5"/>
@@ -723,7 +723,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoleInfoCellID" textLabel="bpk-6w-Epg" detailTextLabel="EWU-7h-pdB" style="IBUITableViewCellStyleValue1" id="IhB-XJ-Wlz">
-                                        <rect key="frame" x="0.0" y="133" width="375" height="41"/>
+                                        <rect key="frame" x="0.0" y="69" width="375" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IhB-XJ-Wlz" id="Y8N-hc-A1C">
                                             <frame key="frameInset" width="375" height="40.5"/>
@@ -1475,6 +1475,6 @@
         <image name="Phone" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="m24-6A-Iqb"/>
+        <segue reference="M0Z-jZ-ob8"/>
     </inferredMetricsTieBreakers>
 </document>
