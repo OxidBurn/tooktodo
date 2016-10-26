@@ -74,14 +74,6 @@
 }
 
 
-#pragma mark - Segue -
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"Segue %@", segue.identifier);
-    NSLog(@"Destination: %@", segue.destinationViewController);
-}
-
 #pragma mark - Internal methods -
 
 - (void) bindingUI
