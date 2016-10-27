@@ -19,6 +19,8 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
 
 @property (assign, nonatomic) CGFloat sideMenuYPadding;
 
+@property (assign, nonatomic) CGFloat sideMenuXPadding;
+
 // methods
 - (CGRect) topViewAnchoredRightFrame: (ECSlidingViewController*) slidingViewController;
 
@@ -44,6 +46,7 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
     [super loadView];
     
     self.sideMenuYPadding = (IS_PHONE) ? 20.0f : 0.0f;
+    self.sideMenuXPadding = (IS_PHONE) ? -10.0f : 22;
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];
@@ -144,7 +147,7 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
     
     UIView* topView = topViewController.view;
     
-    topView.frame   = containerView.bounds;
+    topView.frame = containerView.bounds;
     
     underLeftViewController.view.layer.transform = CATransform3DIdentity;
     
@@ -228,7 +231,7 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
 {
     CGRect frame = slidingViewController.view.bounds;
     
-    frame.origin.x    = slidingViewController.anchorRightRevealAmount - 10;
+    frame.origin.x    = slidingViewController.anchorRightRevealAmount + self.sideMenuXPadding;
     frame.size.width  = frame.size.width  * MEZoomAnimationScaleFactor;
     frame.size.height = frame.size.height * MEZoomAnimationScaleFactor;
     frame.origin.y    = (slidingViewController.view.bounds.size.height - frame.size.height) / 2 + self.sideMenuYPadding;
