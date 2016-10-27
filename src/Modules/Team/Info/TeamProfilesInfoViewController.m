@@ -19,11 +19,11 @@
 //Classes
 #import "AvatarImageView.h"
 #import "TeamProfileInfoViewModel.h"
-//#import "TeamMember.h"
 #import "FilledTeamInfo.h"
 #import "Utils.h"
 #import "RolesViewController.h"
 #import "OSAlertController.h"
+#import "UIViewController+Helper.h"
 
 @interface TeamProfilesInfoViewController () <TeamProfileViewModelDelegate, MFMailComposeViewControllerDelegate, UISplitViewControllerDelegate>
 
@@ -131,6 +131,13 @@
     [self.navigationController popViewControllerAnimated: YES];
 }
 
+- (void) leftBarButtonActionForiPad
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+    
+    
+}
 
 #pragma mark - Internal methods -
 
@@ -159,7 +166,6 @@
         
     };
 }
-
 
 #pragma mark - TeamProfileViewModelDelegate Methods -
 

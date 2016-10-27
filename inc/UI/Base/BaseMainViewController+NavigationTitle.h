@@ -13,4 +13,7 @@
 - (void) setupNavigationTitleWithTwoLinesWithMainTitleText: (NSString*) title
                                               withSubTitle: (NSString*) subTitle;
 
+- (UIBarButtonItem*) determineMenuBtnToBackBtnWithSelectorForiPhone: (SEL) iPhoneSelector
+                                                    andSelectoriPad: (SEL) iPadSelector;
+
 @end

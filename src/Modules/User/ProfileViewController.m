@@ -14,6 +14,7 @@
 
 // Categories
 #import "UIViewController+Helper.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface ProfileViewController ()
 
@@ -96,7 +97,6 @@
     [self dismissViewControllerAnimated: YES
                              completion: nil];
     
-    
 }
 
 
@@ -131,25 +131,9 @@
 }
 
 - (void) determineLeftBarButtonItem
-{
-    SEL buttonSelector;
-    NSString* buttonImageName = @"";
-    
-    if ( IS_PHONE )
-    {
-        buttonSelector  = @selector(leftBarButtonActionForiPhone);
-        buttonImageName = @"Menu1";
-    }
-    else
-    {
-        buttonSelector  = @selector(leftBarButtonActionForiPad);
-        buttonImageName = @"Back";
-    }
-    
-    UIBarButtonItem* leftBtn = [self setupBarButtonItemWithImageName: buttonImageName
-                                                        withSelector: buttonSelector];
-    
-    self.navigationItem.leftBarButtonItem = leftBtn;
+{   
+    self.navigationItem.leftBarButtonItem = [self determineMenuBtnToBackBtnWithSelectorForiPhone: @selector(leftBarButtonActionForiPhone)
+                                                                                 andSelectoriPad: @selector(leftBarButtonActionForiPad)];
 }
 
 @end

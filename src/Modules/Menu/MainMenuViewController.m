@@ -142,8 +142,10 @@
 {
     [self.slidingViewController resetTopViewAnimated: YES];
     
+    NSString* segueId = IS_PHONE ? @"ShowAllProjectsiPhone" : @"ShowAllProjectsiPad";
+    
     if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
-        [self.delegate showControllerWithSegueID: @"ShowAllProjects"];
+        [self.delegate showControllerWithSegueID: segueId];
 }
 
 - (IBAction) showAllTasksByProjects: (UIButton*) sender

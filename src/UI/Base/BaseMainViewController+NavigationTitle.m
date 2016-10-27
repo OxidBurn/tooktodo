@@ -8,6 +8,8 @@
 
 #import "BaseMainViewController+NavigationTitle.h"
 
+#import "UIViewController+Helper.h"
+
 @implementation BaseMainViewController (NavigationTitle)
 
 - (void) setupNavigationTitleWithTwoLinesWithMainTitleText: (NSString*) title
@@ -45,6 +47,30 @@
     subTitleLabel.width = twoLineTitleView.width;
     
     self.navigationItem.titleView = twoLineTitleView;
+}
+
+- (UIBarButtonItem*) determineMenuBtnToBackBtnWithSelectorForiPhone: (SEL) iPhoneSelector
+                                                    andSelectoriPad: (SEL) iPadSelector
+{
+    SEL selector = nil;
+    
+    NSString* buttonImageName = @"";
+    
+    if ( IS_PHONE )
+    {
+        buttonImageName = @"Menu1";
+        selector        = iPhoneSelector;
+    }
+    else
+    {
+        buttonImageName = @"Back";
+        selector        = iPadSelector;
+    }
+    
+    UIBarButtonItem* button = [self setupBarButtonItemWithImageName: buttonImageName
+                                                       withSelector: selector];
+    
+    return button;
 }
 
 @end
