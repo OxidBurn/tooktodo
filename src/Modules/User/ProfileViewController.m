@@ -7,14 +7,15 @@
 //
 
 #import "ProfileViewController.h"
+
+// Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 
+// Categories
+#import "UIViewController+Helper.h"
+
 @interface ProfileViewController ()
-
-// outlets
-@property (weak, nonatomic) IBOutlet UIBarButtonItem* backToMenuBarBtnItem;
-
 
 // properties
 
@@ -48,6 +49,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self determineLeftBarButtonItem];
 }
 
 #pragma mark - Memory managment -
@@ -77,12 +80,26 @@
     }
 }
 
-- (IBAction) showMainMenu: (UIBarButtonItem*) sender
+
+#pragma mark - Actions -
+
+- (void) showMainMenu
 {
     if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
     {
         [self.delegate showMainMenu];
     }
+}
+
+- (void) leftBarButtonActionForiPhone
+{
+    [self showMainMenu];
+}
+
+- (void) leftBarButtonActionForiPad
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 
@@ -118,14 +135,24 @@
 
 - (void) determineLeftBarButtonItem
 {
+    SEL buttonSelector;
+    NSString* buttonImageName = @"";
+    
     if ( IS_PHONE )
     {
-        
+        buttonSelector  = @selector(leftBarButtonActionForiPhone);
+        buttonImageName = @"Menu1";
     }
     else
     {
-        
+        buttonSelector  = @selector(leftBarButtonActionForiPad);
+        buttonImageName = @"Back";
     }
+    
+    UIBarButtonItem* leftBtn = [self setupBarButtonItemWithImageName: buttonImageName
+                                                        withSelector: buttonSelector];
+    
+    self.navigationItem.leftBarButtonItem = leftBtn;
 }
 
 @end

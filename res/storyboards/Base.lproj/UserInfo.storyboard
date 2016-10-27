@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -253,11 +253,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Szb-7y-gUf">
-                        <barButtonItem key="leftBarButtonItem" image="Menu1" id="45g-di-riF">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="45g-di-riF">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="showMainMenu:" destination="F5f-P0-tF7" id="hbh-Aa-INX"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="LEn-KD-CQW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vlf-yG-XnJ">
@@ -274,7 +271,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="backToMenuBarBtnItem" destination="45g-di-riF" id="P1g-nC-Qyz"/>
                         <outlet property="containerView" destination="6sX-JI-DSc" id="eEj-wt-yeu"/>
                         <outlet property="editUserInfoBtn" destination="LEn-KD-CQW" id="3ty-Id-ZVo"/>
                         <segue destination="s99-IF-Edf" kind="custom" identifier="UserNotificationsScreen" customClass="UserInfoSegue" id="V4c-tw-X8I"/>
@@ -2776,7 +2772,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ydD-O8-aKk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ofM-p5-MDH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="ofM-p5-MDH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
