@@ -53,7 +53,8 @@ static CGFloat const yPadding                   = 20.0f;
 {
     [super viewWillAppear: animated];
     
-    self.slidingViewController.delegate = self;
+    if ( [self isModal] == NO )
+        self.slidingViewController.delegate = self;
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle
@@ -61,6 +62,12 @@ static CGFloat const yPadding                   = 20.0f;
     return UIStatusBarStyleLightContent;
 }
 
+- (BOOL) isModal
+{
+    return self.presentingViewController.presentedViewController == self
+    || (self.navigationController != nil && self.navigationController.presentingViewController.presentedViewController == self.navigationController)
+    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
+}
 
 #pragma mark - Memory managment -
 
