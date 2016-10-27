@@ -92,6 +92,11 @@
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
+- (void) hideMainMenu
+{
+    [self.slidingViewController resetTopViewAnimated: YES];
+}
+
 - (void) dismissTopController: (UIViewController*) controller
 {
     [controller dismissViewControllerAnimated: YES

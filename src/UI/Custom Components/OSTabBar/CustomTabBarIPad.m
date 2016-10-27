@@ -8,6 +8,9 @@
 
 #import "CustomTabBarIPad.h"
 
+// Classes
+#import "ProjectsControllersDelegate.h"
+
 typedef NS_ENUM(NSUInteger, ButtonTag) {
     
     FeedTabButton         = 0,
@@ -80,7 +83,22 @@ static BOOL isReplaced = NO;
     
     isReplaced = NO;
     
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(updateMainMenuSelectedState:)
+                                name: @"UpdateiPadMainMenuState"
+                              object: nil];
+    
     return self;
+}
+
+
+#pragma mark - Memory managment -
+
+- (void)dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"UpdateiPadMainMenuState"
+                                 object: nil];
 }
 
 #pragma mark - Properties -
@@ -133,6 +151,13 @@ static BOOL isReplaced = NO;
     }];
 }
 
+- (void) updateMainMenuSelectedState: (NSNotification*) notification
+{
+    NSNumber* selectedStateInObject = notification.object;
+    
+    self.menuBtn.selected = selectedStateInObject.boolValue;
+}
+
 #pragma mark - Internal methods -
 
 - (void) updateSelectedItem: (NSUInteger) index
@@ -150,57 +175,57 @@ static BOOL isReplaced = NO;
 
 - (IBAction) didSelectMenu: (UIButton*) sender
 {
+    if ( sender.selected )
+    {
+        if ( [self.delegate respondsToSelector: @selector(hideMainMenu)] )
+        {
+            [self.delegate hideMainMenu];
+        }
+    }
+    else
+    {
+        if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
+        {
+            [self.delegate showMainMenu];
+        }
+    }
     
+//    sender.selected = !sender.selected;
 }
 
 - (IBAction) didSelectedFeed: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectedFeed");
 }
 
 - (IBAction) didSelectedTasks: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectedTasks");
 }
 
 - (IBAction) didSelectedAdd: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectedAdd");
 }
 
 - (IBAction) didSelectedDocuments: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectedDocuments");
 }
 
 - (IBAction) didSelectedTeam: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectedTeam");
 }
 
 - (IBAction) didSelectTasksOnPlan: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectTasksOnPlan");
 }
-
 
 - (IBAction) didSelectProjectInfo: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
-    
-    NSLog(@"didSelectProjectInfo");
 }
 
 @end

@@ -12,6 +12,8 @@
 
 - (void) showMainMenu;
 
+- (void) hideMainMenu;
+
 - (void) showLogin;
 
 - (void) dismissTopController: (UIViewController*) controller;

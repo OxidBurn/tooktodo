@@ -11,12 +11,13 @@
 #import "PopoverViewController.h"
 
 static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
-static CGFloat const yPadding                   = 20.0f;
 
 @interface BaseMainViewController () 
 
 // properties
 @property (nonatomic, assign) ECSlidingViewControllerOperation operation;
+
+@property (assign, nonatomic) CGFloat sideMenuYPadding;
 
 // methods
 - (CGRect) topViewAnchoredRightFrame: (ECSlidingViewController*) slidingViewController;
@@ -42,6 +43,8 @@ static CGFloat const yPadding                   = 20.0f;
 {
     [super loadView];
     
+    self.sideMenuYPadding = (IS_PHONE) ? 20.0f : 0.0f;
+    
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];
     
@@ -66,7 +69,7 @@ static CGFloat const yPadding                   = 20.0f;
 {
     return self.presentingViewController.presentedViewController == self
     || (self.navigationController != nil && self.navigationController.presentingViewController.presentedViewController == self.navigationController)
-    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
+    || [self.tabBarController.presentingViewController isKindOfClass: [UITabBarController class]];
 }
 
 #pragma mark - Memory managment -
@@ -93,6 +96,12 @@ static CGFloat const yPadding                   = 20.0f;
                                                   topViewController: (UIViewController*)                topViewController
 {
     self.operation = operation;
+    
+    // need to update main menu state on iPad if operation reset from right set selected to NO
+    // if anchor from right set selected to YES
+    [DefaultNotifyCenter postNotificationName: @"UpdateiPadMainMenuState"
+                                       object: @(( operation == ECSlidingViewControllerOperationAnchorRight ))];
+    
     
     return self;
 }
@@ -222,7 +231,7 @@ static CGFloat const yPadding                   = 20.0f;
     frame.origin.x    = slidingViewController.anchorRightRevealAmount - 10;
     frame.size.width  = frame.size.width  * MEZoomAnimationScaleFactor;
     frame.size.height = frame.size.height * MEZoomAnimationScaleFactor;
-    frame.origin.y    = (slidingViewController.view.bounds.size.height - frame.size.height) / 2 + yPadding;
+    frame.origin.y    = (slidingViewController.view.bounds.size.height - frame.size.height) / 2 + self.sideMenuYPadding;
     
     return frame;
 }
