@@ -24,6 +24,7 @@
 // Properties
 
 // Outlets
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* menuBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView* teamInfoTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
 
@@ -39,6 +40,8 @@
 - (void) bindingUI;
 
 - (void) handleViewModelActions;
+
+- (IBAction) onAddMemberBarButtonItem: (UIBarButtonItem*) sender;
 
 @end
 
@@ -137,6 +140,10 @@
     // handling splitVC delegate
     self.splitViewController.delegate = self;
     
+    // hiding Menu btn for iPad
+    if ( IS_PHONE == NO )
+        self.navigationItem.leftBarButtonItem = nil;
+        
     __weak typeof(self) blockSelf = self;
     
     self.viewModel.didShowMemberInfo = ^(){
@@ -180,6 +187,22 @@
     }
 }
 
+- (IBAction) onAddMemberBarButtonItem: (UIBarButtonItem*) sender
+{
+    NSString* segueId = @"";
+    
+    if ( IS_PHONE )
+    {
+       segueId = @"ShowAddMemberInviteiPhone";
+    }
+    else
+    {
+        segueId = @"ShowAddMemberInviteiPad";
+    }
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: self];
+}
 
 #pragma mark - ViewModel delegate methods -
 
@@ -282,7 +305,9 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     return NO;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(nullable id)sender
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController
+          showViewController: (UIViewController*)      vc
+                      sender: (nullable id)            sender
 {
     return NO;
 }
