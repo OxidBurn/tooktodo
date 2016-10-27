@@ -12,6 +12,10 @@
 
 @interface ProfileViewController ()
 
+// outlets
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* backToMenuBarBtnItem;
+
+
 // properties
 
 @property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
@@ -110,6 +114,18 @@
     self.navigationItem.titleView = label;
     
     return label;
+}
+
+- (void) determineLeftBarButtonItem
+{
+    if ( IS_PHONE )
+    {
+        
+    }
+    else
+    {
+        
+    }
 }
 
 @end

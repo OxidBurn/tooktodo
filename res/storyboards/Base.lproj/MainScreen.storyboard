@@ -1663,6 +1663,13 @@
                                 <exclude reference="cMh-aV-N8d"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5th-VW-pEy"/>
+                                <exclude reference="6Jp-mY-cfK"/>
+                                <exclude reference="73z-Ix-OcO"/>
+                                <exclude reference="WqR-aJ-8IP"/>
+                                <exclude reference="eFN-0K-WvW"/>
+                                <exclude reference="huV-cf-DAO"/>
+                                <exclude reference="neU-kD-tmM"/>
                                 <exclude reference="4Yi-Xt-p3V"/>
                                 <exclude reference="fSp-xl-vsn"/>
                                 <exclude reference="ipL-WS-3Bx"/>
@@ -1672,25 +1679,18 @@
                                 <exclude reference="cgy-FU-hGy"/>
                                 <exclude reference="oL5-7e-A4H"/>
                                 <exclude reference="uAd-WI-cCs"/>
-                                <exclude reference="5th-VW-pEy"/>
-                                <exclude reference="6Jp-mY-cfK"/>
-                                <exclude reference="73z-Ix-OcO"/>
-                                <exclude reference="WqR-aJ-8IP"/>
-                                <exclude reference="eFN-0K-WvW"/>
-                                <exclude reference="huV-cf-DAO"/>
-                                <exclude reference="neU-kD-tmM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="constraints">
+                                <include reference="6Jp-mY-cfK"/>
+                                <include reference="WqR-aJ-8IP"/>
+                                <include reference="eFN-0K-WvW"/>
                                 <include reference="4Yi-Xt-p3V"/>
                                 <include reference="Z0F-ie-FxO"/>
                                 <include reference="cgy-FU-hGy"/>
                                 <include reference="oL5-7e-A4H"/>
                                 <include reference="uAd-WI-cCs"/>
-                                <include reference="6Jp-mY-cfK"/>
-                                <include reference="WqR-aJ-8IP"/>
-                                <include reference="eFN-0K-WvW"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -1698,14 +1698,14 @@
                                 <include reference="CBi-gY-na0"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="fSp-xl-vsn"/>
-                                <include reference="ipL-WS-3Bx"/>
-                                <include reference="AMk-9v-UpC"/>
-                                <include reference="cED-lR-OW0"/>
                                 <include reference="5th-VW-pEy"/>
                                 <include reference="73z-Ix-OcO"/>
                                 <include reference="huV-cf-DAO"/>
                                 <include reference="neU-kD-tmM"/>
+                                <include reference="fSp-xl-vsn"/>
+                                <include reference="ipL-WS-3Bx"/>
+                                <include reference="AMk-9v-UpC"/>
+                                <include reference="cED-lR-OW0"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1715,10 +1715,10 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
-                                <exclude reference="4Yi-Xt-p3V"/>
                                 <exclude reference="6Jp-mY-cfK"/>
                                 <exclude reference="WqR-aJ-8IP"/>
                                 <exclude reference="eFN-0K-WvW"/>
+                                <exclude reference="4Yi-Xt-p3V"/>
                             </mask>
                         </variation>
                     </view>
@@ -1727,7 +1727,7 @@
                         <outlet property="containerView" destination="GXT-Wi-6yW" id="q4I-Ur-Cmr"/>
                         <outlet property="mainTabBariPad" destination="CBi-gY-na0" id="dom-AS-R1U"/>
                         <outlet property="mainTabBariPhone" destination="cMh-aV-N8d" id="In0-50-Z0e"/>
-                        <segue destination="vmQ-zd-b8M" kind="custom" identifier="ShowUserInfoID" customClass="TabBarSegue" id="AfA-m2-fbg"/>
+                        <segue destination="vmQ-zd-b8M" kind="custom" identifier="ShowUserInfoIDiPhone" customClass="TabBarSegue" id="AfA-m2-fbg"/>
                         <segue destination="SwK-3x-92h" kind="custom" identifier="ShowAllProjects" customClass="TabBarSegue" id="8Hv-2t-bAj"/>
                         <segue destination="Kr7-pm-p4h" kind="custom" identifier="ShowFeeds" customClass="TabBarSegue" id="ddl-Gv-3Cp"/>
                         <segue destination="o9S-gB-p4b" kind="custom" identifier="ShowDocuments" customClass="TabBarSegue" id="GKc-GU-jXX"/>
@@ -1735,6 +1735,7 @@
                         <segue destination="kLl-YQ-SGy" kind="custom" identifier="ShowAboutProjectID" customClass="TabBarSegue" id="aBn-gR-Fvl"/>
                         <segue destination="fmF-3M-xz4" kind="custom" identifier="ShowTasks" customClass="TabBarSegue" id="yLN-0M-pEf"/>
                         <segue destination="3Id-Fy-RRO" kind="custom" identifier="ShowAllTasks" customClass="TabBarSegue" id="DZb-q8-wWx"/>
+                        <segue destination="vmQ-zd-b8M" kind="presentation" identifier="ShowUserInfoIDiPad" modalPresentationStyle="formSheet" id="uma-IR-DJi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFH-BH-NMb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1818,4 +1819,7 @@
         <image name="logo" width="171" height="132"/>
         <image name="Сogwheel" width="19" height="19"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uma-IR-DJi"/>
+    </inferredMetricsTieBreakers>
 </document>
