@@ -79,6 +79,8 @@
     
     // Setup message text view placeholder
     [self setupMessageTextView];
+    
+    self.tableView.delegate = self;
 }
 
 
@@ -214,8 +216,7 @@
     [super prepareForSegue: segue
                     sender: sender];
     
-    
-    if ([segue.identifier isEqualToString: @"ShowRoles"])
+    if ([segue.identifier isEqualToString: @"ShowRolesiPhone"])
     {
         RolesViewController* controller = segue.destinationViewController;
         
@@ -248,6 +249,8 @@
 //    self.addContactViewModel.roleID = value.roleTypeID;
 //}
 
+#pragma mark - UITableViewDelegate methods -
+
 - (void) tableView: (UITableView*)     tableView
    willDisplayCell: (UITableViewCell*) cell
  forRowAtIndexPath: (NSIndexPath*)     indexPath
@@ -270,5 +273,6 @@
         [cell setLayoutMargins: UIEdgeInsetsZero];
     }
 }
+
 
 @end

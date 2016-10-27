@@ -1092,7 +1092,8 @@
                         <outlet property="profileAvatarImageView" destination="3al-AZ-1Dq" id="fjG-gK-oMR"/>
                         <outlet property="profileFullNameLabel" destination="0Wf-EH-tBC" id="hrQ-BY-7wm"/>
                         <outlet property="profileInfoTableView" destination="fDH-fK-pN2" id="5Ju-gw-XjR"/>
-                        <segue destination="wOH-J0-2TP" kind="show" identifier="ShowRolesControllerID" id="m24-6A-Iqb"/>
+                        <segue destination="q3R-EY-pdj" kind="show" identifier="ShowRolesControllerIDiPhone" id="m24-6A-Iqb"/>
+                        <segue destination="q3R-EY-pdj" kind="presentation" identifier="ShowRoleControllerIDiPad" modalPresentationStyle="pageSheet" id="SBO-RK-4r3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saN-5N-jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1297,9 +1298,6 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="9bm-eH-T3y" secondAttribute="trailing" constant="32" id="BdS-gp-5WL"/>
                                         </constraints>
-                                        <connections>
-                                            <segue destination="wOH-J0-2TP" kind="show" identifier="ShowRoles" id="M0Z-jZ-ob8"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="81" id="8LH-bo-0vH">
                                         <rect key="frame" x="0.0" y="240" width="375" height="81"/>
@@ -1351,6 +1349,7 @@
                         <outlet property="nameTextField" destination="gb6-gi-pDS" id="Odu-p4-vfq"/>
                         <outlet property="readyBtn" destination="N54-Qc-3C1" id="7Wg-C8-E2s"/>
                         <outlet property="roleLabel" destination="9bm-eH-T3y" id="0Cl-qT-dGl"/>
+                        <segue destination="q3R-EY-pdj" kind="show" identifier="ShowRolesiPhone" id="nGX-S4-3KE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5x-Mq-gbi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1436,7 +1435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aj0-jA-OYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6183.1999999999998" y="1331.784107946027"/>
+            <point key="canvasLocation" x="7122.3999999999996" y="1331.784107946027"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VKx-01-hYZ">
@@ -1514,6 +1513,25 @@
             </objects>
             <point key="canvasLocation" x="3830" y="1349"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WKQ-uu-Ue3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q3R-EY-pdj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0YC-KJ-3nb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wOH-J0-2TP" kind="relationship" relationship="rootViewController" id="uOH-dk-KIv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oS1-in-2ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6183.1999999999998" y="1331.784107946027"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Add" width="18" height="19"/>
@@ -1525,6 +1543,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iLC-li-Rfu"/>
-        <segue reference="m24-6A-Iqb"/>
+        <segue reference="nGX-S4-3KE"/>
     </inferredMetricsTieBreakers>
 </document>

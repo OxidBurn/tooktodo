@@ -42,8 +42,6 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     Admin       = 2,
 };
 
-static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
-
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
@@ -200,9 +198,11 @@ static NSString* RoleControllerSegueID = @"ShowRolesControllerID";
         
         if (self.cell.tag == RoleType)
         {
+            NSString* segueID = IS_PHONE ? @"ShowRolesControllerIDiPhone" : @"ShowRoleControllerIDiPad";
+            
             if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
             {
-                [self.delegate showControllerWithIdentifier: RoleControllerSegueID];
+                [self.delegate showControllerWithIdentifier: segueID];
             }
         }
         
