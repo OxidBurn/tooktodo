@@ -40,6 +40,8 @@
 
 - (void) handleViewModelActions;
 
+- (IBAction) onAddMemberBarButtonItem: (UIBarButtonItem*) sender;
+
 @end
 
 @implementation TeamInfoViewController
@@ -180,6 +182,22 @@
     }
 }
 
+- (IBAction) onAddMemberBarButtonItem: (UIBarButtonItem*) sender
+{
+    NSString* segueId = @"";
+    
+    if ( IS_PHONE )
+    {
+       segueId = @"ShowAddMemberInviteiPhone";
+    }
+    else
+    {
+        segueId = @"ShowAddMemberInviteiPad";
+    }
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: self];
+}
 
 #pragma mark - ViewModel delegate methods -
 
@@ -282,7 +300,9 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     return NO;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(nullable id)sender
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController
+          showViewController: (UIViewController*)      vc
+                      sender: (nullable id)            sender
 {
     return NO;
 }
