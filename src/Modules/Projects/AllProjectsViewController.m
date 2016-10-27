@@ -16,6 +16,7 @@
 // Extensions
 #import "BaseMainViewController+Popover.h"
 #import "UISearchBar+TextFieldControl.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface AllProjectsViewController ()
 
@@ -53,6 +54,10 @@
     
     // Delegate for sending response to open selected project info
     self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
+    
+    // handling left bar button item according to device
+    self.navigationItem.leftBarButtonItem = [self determineMenuBtnToBackBtnWithSelectorForiPhone: @selector(onShowMenu:)
+                                                                                 andSelectoriPad: @selector(iPadLeftBarButtonItemSelector)];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -105,6 +110,12 @@
                     withSourceFrame: [self getFrameForSortingPopover]];
 }
 
+- (void) iPadLeftBarButtonItemSelector
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
 #pragma mark - Internal Method -
 
 - (UILabel*) titleLabel
@@ -137,6 +148,7 @@
     self.searchBar.delegate       = self.viewModel;
     
     [self handleModelActions];
+
 }
 
 - (void) setupTableView

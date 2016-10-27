@@ -24,6 +24,7 @@
 // Properties
 
 // Outlets
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* menuBarButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView* teamInfoTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
 
@@ -139,6 +140,10 @@
     // handling splitVC delegate
     self.splitViewController.delegate = self;
     
+    // hiding Menu btn for iPad
+    if ( IS_PHONE == NO )
+        self.navigationItem.leftBarButtonItem = nil;
+        
     __weak typeof(self) blockSelf = self;
     
     self.viewModel.didShowMemberInfo = ^(){
