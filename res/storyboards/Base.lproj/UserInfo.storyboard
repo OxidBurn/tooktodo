@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -777,7 +777,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="ydD-O8-aKk" kind="presentation" id="ey2-HH-TtH"/>
+                                    <action selector="onShowServiceTerms:" destination="JcJ-0J-62m" eventType="touchUpInside" id="KSZ-Tl-l66"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-wp-lxS">
@@ -1264,6 +1264,8 @@
                         <outlet property="phonesTableHeightConstraint" destination="stA-oo-Enu" id="7K7-tS-EmY"/>
                         <outlet property="showUserTerms" destination="Y3t-FM-VxG" id="rni-qS-so7"/>
                         <outlet property="userLogOut" destination="vBt-dm-Zy7" id="6PG-kH-DTh"/>
+                        <segue destination="ydD-O8-aKk" kind="presentation" identifier="ShowServiceTermsiPhone" id="Sm5-O5-sYx"/>
+                        <segue destination="ydD-O8-aKk" kind="show" identifier="ShowServiceTermsiPad" id="GUx-x6-hhJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Njh-Dc-Jpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2784,7 +2786,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NMS-1c-3Lw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1159.5" y="2895.75"/>
+            <point key="canvasLocation" x="-1430" y="2996"/>
         </scene>
     </scenes>
     <resources>
@@ -2795,4 +2797,7 @@
         <image name="addPhoto" width="25" height="25"/>
         <image name="showPass" width="24" height="13"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Sm5-O5-sYx"/>
+    </inferredMetricsTieBreakers>
 </document>

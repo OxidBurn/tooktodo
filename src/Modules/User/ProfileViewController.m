@@ -83,7 +83,7 @@
 
 #pragma mark - Actions -
 
-- (void) showMainMenu
+- (void) leftBarButtonActionForiPhone
 {
     if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
     {
@@ -91,15 +91,12 @@
     }
 }
 
-- (void) leftBarButtonActionForiPhone
-{
-    [self showMainMenu];
-}
-
 - (void) leftBarButtonActionForiPad
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
+    
+    
 }
 
 
