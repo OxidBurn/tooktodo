@@ -83,8 +83,18 @@ typedef NS_ENUM(NSInteger, PermissionType)
     [self checkIfPhoneNumberExists: teamInfo];
     [self chechIfEmailExists:       teamInfo];
 
-    [self.teamMemberAvatar sd_setImageWithURL: [NSURL URLWithString: teamInfo.avatarSrc]];
     
+    
+    [self.teamMemberAvatar sd_setImageWithURL: [NSURL URLWithString: teamInfo.avatarSrc]
+                             placeholderImage: [UIImage imageNamed: @"emptyAvatarIcon"]
+                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                        
+                                        if ( image )
+                                        {
+                                            self.teamMemberAvatar.image = image;
+                                        }
+                                    }];
+
     self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
