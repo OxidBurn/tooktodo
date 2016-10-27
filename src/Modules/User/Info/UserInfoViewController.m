@@ -36,6 +36,7 @@
 
 // methods
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender;
+- (IBAction) onShowServiceTerms: (UIButton*) sender;
 
 - (void) pickPictureFromLibOrCamera;
 
@@ -132,6 +133,24 @@
 - (IBAction) onAddNewPhotoBtn: (UIButton*) sender
 {
     [self pickPictureFromLibOrCamera];
+}
+
+- (IBAction) onShowServiceTerms: (UIButton*) sender
+{
+    NSString* segueId = @"";
+    
+    if ( IS_PHONE )
+    {
+        segueId = @"ShowServiceTermsiPhone";
+    }
+    else
+    {
+        segueId = @"ShowServiceTermsiPad";
+    }
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: self];
+
 }
 
 #pragma mark - Internal methods -
