@@ -13,13 +13,15 @@
 #import "OSAlertController.h"
 #import "OSTaskOptionsController.h"
 #import "AddTaskViewController.h"
+#import "CustomTabBar.h"
+#import "CustomTabBarIPad.h"
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController()  <OSTaskOptionsControllerDelegate>
+@interface MainTabBarController()  <OSTaskOptionsControllerDelegate, CustomTabBarDelegate>
 
-@property (weak, nonatomic) IBOutlet MainTabBar* mainTabBariPhone;
-@property (weak, nonatomic) IBOutlet MainTabBar* mainTabBariPad;
+@property (weak, nonatomic) IBOutlet CustomTabBar*     mainTabBariPhone;
+@property (weak, nonatomic) IBOutlet CustomTabBarIPad* mainTabBariPad;
 
 @end
 
@@ -33,7 +35,7 @@
     
     self.mainTabBariPhone.delegate     = self;
     self.mainTabBariPad.delegate       = self;
-//    self.mainTabBariPhone.taskDelegate = self;
+    self.mainTabBariPhone.taskDelegate = self;
 }
 
 - (void) viewDidAppear: (BOOL) animated
