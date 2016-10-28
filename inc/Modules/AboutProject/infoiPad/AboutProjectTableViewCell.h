@@ -10,4 +10,11 @@
 
 @interface AboutProjectTableViewCell : UITableViewCell
 
+// methods
+- (void) fillCellWithTitle: (NSString*) title;
+
+- (void) selectCell;
+
+- (void) deselectCell;
+
 @end

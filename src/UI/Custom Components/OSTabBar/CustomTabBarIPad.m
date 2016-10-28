@@ -129,7 +129,7 @@ static BOOL isReplaced = NO;
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
                                   @"",
-                                  @"ShowAboutProjectID"];
+                                  @"ShowAboutProjectIDiPad"];
     }
     
     return _selectedControllerID;

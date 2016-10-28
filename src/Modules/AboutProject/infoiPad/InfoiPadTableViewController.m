@@ -24,11 +24,14 @@
 
 @implementation InfoiPadTableViewController
 
+
 #pragma mark - Lyfe cycle -
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setupDefaults];
 }
 
 #pragma mark - Properties -
@@ -41,6 +44,22 @@
     }
     
     return _viewModel;
+}
+
+#pragma mark - Internal -
+
+- (void) setupDefaults
+{
+    self.infoiPadTableView.dataSource = self.viewModel;
+    self.infoiPadTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    blockSelf.viewModel.performSegueWithId = ^(NSString* segueID){
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
 }
 
 @end

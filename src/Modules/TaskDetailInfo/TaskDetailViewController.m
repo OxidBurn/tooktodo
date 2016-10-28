@@ -146,12 +146,12 @@
     
     __weak typeof(self) blockSelf = self;
     
-    self.viewModel.reloadTableView = ^(){
+    blockSelf.viewModel.reloadTableView = ^(){
         
         [blockSelf.taskTableView reloadData];
     };
     
-    self.viewModel.performSegue = ^(NSString* segueID){
+    blockSelf.viewModel.performSegue = ^(NSString* segueID){
         
         [blockSelf performSegueWithIdentifier: segueID
                                        sender: blockSelf];

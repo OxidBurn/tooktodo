@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface InfoiPadViewModel : NSObject
+@interface InfoiPadViewModel : NSObject  <UITableViewDelegate, UITableViewDataSource>
+
+// properties
+@property (nonatomic, copy) void(^performSegueWithId)(NSString* segueId);
 
 @end

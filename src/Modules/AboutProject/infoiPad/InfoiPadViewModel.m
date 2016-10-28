@@ -13,13 +13,16 @@
 
 // Classes
 #import "InfoiPadModel.h"
+#import "AboutProjectTableViewCell.h"
 
-static NSString* cellId = @"";
+static NSString* cellId = @"AboutProjectiPadCellId";
 
-@interface InfoiPadViewModel() <UITableViewDelegate, UITableViewDataSource>
+@interface InfoiPadViewModel()
 
 // properties
 @property (strong, nonatomic) InfoiPadModel* model;
+
+@property (strong, nonatomic) NSArray* allCells;
 
 // methods
 
@@ -38,6 +41,18 @@ static NSString* cellId = @"";
     }
     
     return _model;
+}
+
+- (NSArray*) allCells
+{
+    if ( _allCells == nil )
+    {
+        _allCells = @[ [NSIndexPath indexPathForRow: 0 inSection: 0],
+                       [NSIndexPath indexPathForRow: 1 inSection: 0],
+                       [NSIndexPath indexPathForRow: 2 inSection: 0]];
+    }
+    
+    return _allCells;
 }
 
 #pragma mark - Public -
@@ -59,7 +74,11 @@ static NSString* cellId = @"";
  - (UITableViewCell*) tableView: (UITableView*) tableView
           cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
+    AboutProjectTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
+    
+    [cell fillCellWithTitle: [self.model getTitleForIndexPath: indexPath]];
+    
+    [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
  
     return cell;
 }
@@ -69,55 +88,23 @@ static NSString* cellId = @"";
 - (void)      tableView: (UITableView*) tableView
 didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
+    [self.allCells enumerateObjectsUsingBlock: ^(NSIndexPath* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        AboutProjectTableViewCell* cell = [tableView cellForRowAtIndexPath: obj];
+        
+        if ( obj == indexPath)
+        {
+            [cell selectCell];
+        }
+        else
+        {
+            [cell deselectCell];
+        }
+        
+    }];
     
+    if ( self.performSegueWithId )
+        self.performSegueWithId([self.model getSegueIdForIndexPath: indexPath]);
 }
-
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
 
 @end

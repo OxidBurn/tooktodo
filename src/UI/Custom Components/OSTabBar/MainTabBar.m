@@ -34,7 +34,7 @@
                                   @"ShowDocuments",
                                   @"ShowTeamInfoID",
                                   @"",
-                                  @"ShowAboutProjectID"];
+                                  @"ShowAboutProjectIDiPhone"];
     }
     
     return _selectedControllerID;

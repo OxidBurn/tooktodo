@@ -10,4 +10,9 @@
 
 @interface InfoiPadModel : NSObject
 
+// methods
+- (NSString*) getTitleForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
+
 @end

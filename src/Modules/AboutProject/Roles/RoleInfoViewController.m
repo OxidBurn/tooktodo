@@ -16,6 +16,7 @@
 
 // Categories
 #import "UIViewController+Focus.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface RoleInfoViewController ()
 
@@ -41,6 +42,11 @@
     
     // Binding UI with model
     [self bindingUI];
+    
+    // Setup navigation
+    /*if ( self.navigationController )
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"РОЛИ"
+                                               withSubTitle: nil];*/
 }
 
 - (void) viewWillAppear: (BOOL) animated

@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) AddNewRoleViewModel* viewModel;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *createNewRoleBtn;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* createNewRoleBtn;
 
 // methods
 

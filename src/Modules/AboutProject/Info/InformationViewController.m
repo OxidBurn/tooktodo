@@ -13,6 +13,7 @@
 
 // Categories
 #import "UIViewController+Focus.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface InformationViewController ()
 
@@ -49,6 +50,10 @@
     self.informationTableView.dataSource = self.viewModel;
     self.informationTableView.delegate   = self.viewModel;
     
+    // Setup navigation
+    if ( self.navigationController )
+        [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ИНФОРМАЦИЯ"
+                                                   withSubTitle: nil];
 }
 
 - (void) viewWillAppear: (BOOL) animated
