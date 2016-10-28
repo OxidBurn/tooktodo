@@ -16,7 +16,6 @@
 
 // Categories
 #import "UIViewController+Focus.h"
-#import "BaseMainViewController+NavigationTitle.h"
 
 @interface SystemInfoViewController ()
 
@@ -45,11 +44,6 @@
     
     // Binding UI with model
     [self bindingUI];
-    
-    // Setup navigation
-    if ( self.navigationController )
-        [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"СИСТЕМЫ"
-                                                   withSubTitle: nil];
 }
 
 - (void) viewWillAppear: (BOOL) animated

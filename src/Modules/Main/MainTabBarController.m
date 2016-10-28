@@ -31,9 +31,9 @@
 {
     [super loadView];
     
-    self.mainTabBariPhone.delegate = self;
-    self.mainTabBariPad.delegate   = self;
-//    self.mainTabBar.taskDelegate = self;
+    self.mainTabBariPhone.delegate     = self;
+    self.mainTabBariPad.delegate       = self;
+//    self.mainTabBariPhone.taskDelegate = self;
 }
 
 - (void) viewDidAppear: (BOOL) animated

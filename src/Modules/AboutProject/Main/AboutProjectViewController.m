@@ -24,7 +24,7 @@
 @property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
 
 
-@property (weak, nonatomic) IBOutlet UIButton *addNewRoleBtn;
+@property (weak, nonatomic) IBOutlet UIButton* addNewRoleBtn;
 @property (strong, nonatomic) AboutProjectViewModel* viewModel;
 
 // methods
