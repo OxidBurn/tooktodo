@@ -393,6 +393,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
+		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
+		F725FBDC1DC367D800793EA3 /* InfoiPadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBDB1DC367D800793EA3 /* InfoiPadModel.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
 		F7ED843F1DAFCE9100CF76D7 /* AttachmentsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED843E1DAFCE9100CF76D7 /* AttachmentsCellFactory.m */; };
@@ -1151,6 +1154,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
+		F725FBD61DC3663A00793EA3 /* InfoiPadTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoiPadTableViewController.h; sourceTree = "<group>"; };
+		F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadViewModel.m; sourceTree = "<group>"; };
+		F725FBDB1DC367D800793EA3 /* InfoiPadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadModel.m; sourceTree = "<group>"; };
+		F725FBDD1DC3680F00793EA3 /* InfoiPadModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoiPadModel.h; sourceTree = "<group>"; };
+		F725FBDE1DC3680F00793EA3 /* InfoiPadViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoiPadViewModel.h; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
 		F75295B61DB65B8500534482 /* TaskDetailContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailContentManager.m; sourceTree = "<group>"; };
 		F75295B81DB6895A00534482 /* TaskDetailContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailContentManager.h; path = ../TaskDetailContentManager.h; sourceTree = "<group>"; };
@@ -1470,6 +1479,7 @@
 		56D06BE71DAFBDBF008E9AC0 /* AboutProject */ = {
 			isa = PBXGroup;
 			children = (
+				F725FBD11DC365A500793EA3 /* infoiPad */,
 				56D06BE81DAFBDBF008E9AC0 /* Info */,
 				56D06BEB1DAFBDBF008E9AC0 /* Main */,
 				56D06BEF1DAFBDBF008E9AC0 /* Roles */,
@@ -2376,6 +2386,7 @@
 		56D06D761DAFBDBF008E9AC0 /* AboutProject */ = {
 			isa = PBXGroup;
 			children = (
+				F725FBD21DC365B600793EA3 /* infoiPad */,
 				56D06D771DAFBDBF008E9AC0 /* Info */,
 				56D06D7A1DAFBDBF008E9AC0 /* Main */,
 				56D06D7E1DAFBDBF008E9AC0 /* Roles */,
@@ -3195,6 +3206,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F725FBD11DC365A500793EA3 /* infoiPad */ = {
+			isa = PBXGroup;
+			children = (
+				F725FBD61DC3663A00793EA3 /* InfoiPadTableViewController.h */,
+				F725FBDD1DC3680F00793EA3 /* InfoiPadModel.h */,
+				F725FBDE1DC3680F00793EA3 /* InfoiPadViewModel.h */,
+			);
+			path = infoiPad;
+			sourceTree = "<group>";
+		};
+		F725FBD21DC365B600793EA3 /* infoiPad */ = {
+			isa = PBXGroup;
+			children = (
+				F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */,
+				F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */,
+				F725FBDB1DC367D800793EA3 /* InfoiPadModel.m */,
+			);
+			path = infoiPad;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3435,6 +3466,7 @@
 				F7ED84451DB0036500CF76D7 /* TaskStatusDefaultValues.m in Sources */,
 				56D06F251DAFBDC0008E9AC0 /* FeedsViewController.m in Sources */,
 				56D06F7E1DAFBDC0008E9AC0 /* ChangePassViewController.m in Sources */,
+				F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */,
 				56D06FB41DAFBDC0008E9AC0 /* OSFlexibleTextFieldCell.m in Sources */,
 				56D06ED31DAFBDC0008E9AC0 /* TaskProjectRoleTypeModel.m in Sources */,
 				565340D81DBF767000B40187 /* BaseLaunchViewController.m in Sources */,
@@ -3530,6 +3562,7 @@
 				560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */,
 				56D06FB31DAFBDC0008E9AC0 /* OSDatePickerCell.m in Sources */,
 				56D06EB31DAFBDC0008E9AC0 /* ProjectTaskStage+CoreDataClass.m in Sources */,
+				F725FBDC1DC367D800793EA3 /* InfoiPadModel.m in Sources */,
 				56D06F4D1DAFBDC0008E9AC0 /* CollectionCell.m in Sources */,
 				56D06F381DAFBDC0008E9AC0 /* SingleUserCollectionCellFactory.m in Sources */,
 				560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */,
@@ -3562,6 +3595,7 @@
 				56D06EFE1DAFBDC0008E9AC0 /* SystemsInfoModel.m in Sources */,
 				56D06F551DAFBDC0008E9AC0 /* LogWithDetailCell.m in Sources */,
 				56D06F541DAFBDC0008E9AC0 /* LogWithAcitonCell.m in Sources */,
+				F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */,
 				56D06F6B1DAFBDC0008E9AC0 /* TasksListTableViewCell.m in Sources */,
 				56D06FB61DAFBDC0008E9AC0 /* OSGroupOfUserInfoCell.m in Sources */,
 				56D06EAC1DAFBDC0008E9AC0 /* ProjectTaskRoleAssignments.m in Sources */,
