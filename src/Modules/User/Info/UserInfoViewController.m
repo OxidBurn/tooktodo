@@ -142,10 +142,12 @@
     if ( IS_PHONE )
     {
         segueId = @"ShowServiceTermsiPhone";
+        
     }
     else
     {
         segueId = @"ShowServiceTermsiPad";
+        
     }
     
     [self performSegueWithIdentifier: segueId
