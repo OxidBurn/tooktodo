@@ -7,14 +7,23 @@
 //
 
 #import "InformationViewModel.h"
-#import "DataManager+ProjectInfo.h"
 
+// Classes
+#import "AboutProjectModel.h"
+#import "AboutProjectCellsFactory.h"
+
+typedef NS_ENUM(NSUInteger, SectionNumber) {
+    
+    SectionOne,
+    SectionTwo,
+    SectionThree,
+    
+};
 
 @interface InformationViewModel()
 
-@property (nonatomic, strong) ProjectInfo * projectInfo;
-@property (nonatomic, strong) NSArray     * sectionContentArray;
-@property (nonatomic, strong) NSArray     * itemInfo;
+// properties
+@property (strong, nonatomic) AboutProjectModel* model;
 
 @end
 
@@ -22,143 +31,96 @@
 
 #pragma mark - Properties -
 
-- (void) updateProjectInfo
+- (AboutProjectModel*) model
 {
-    ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
-    
-    self.itemInfo = @[
-                  @[projectInfo.title        ? projectInfo.title : @"NO TITLE",
-                    projectInfo.commercialObjectTypeDescription ? projectInfo.commercialObjectTypeDescription : @"нет",
-                    @"нет"],
-                  @[@"нет",
-                    projectInfo.regionName   ? projectInfo.regionName : @"нет",
-                    projectInfo.city         ? projectInfo.city : @"нет",
-                    projectInfo.street       ? projectInfo.street : @"нет",
-                    projectInfo.building     ? projectInfo.building : @"нет",
-                    projectInfo.residentialObjectTypeDescription ? projectInfo.residentialObjectTypeDescription : @"нет",
-                    projectInfo.floor        ? projectInfo.floor.stringValue : @"нет",
-                    projectInfo.apartment    ? projectInfo.apartment : @"нет",
-                    @"нет"]];
-}
-
-- (NSArray*) itemInfo
-{
-    if (_itemInfo == nil)
+    if ( _model == nil )
     {
-        ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
-        
-        _itemInfo = @[
-                      @[projectInfo.title        ? projectInfo.title : @"NO TITLE",
-                        projectInfo.commercialObjectTypeDescription ? projectInfo.commercialObjectTypeDescription : @"нет",
-                        @"нет"],
-                      @[@"нет",
-                        projectInfo.regionName   ? projectInfo.regionName : @"нет",
-                        projectInfo.city         ? projectInfo.city : @"нет",
-                        projectInfo.street       ? projectInfo.street : @"нет",
-                        projectInfo.building     ? projectInfo.building : @"нет",
-                        projectInfo.residentialObjectTypeDescription ? projectInfo.residentialObjectTypeDescription : @"нет",
-                        projectInfo.floor        ? projectInfo.floor.stringValue : @"нет",
-                        projectInfo.apartment    ? projectInfo.apartment : @"нет",
-                        @"нет"]];
-        
+        _model = [AboutProjectModel new];
     }
     
-    return _itemInfo;
+    return _model;
 }
-
-
-- (NSArray*) sectionContentArray
-{
-    if (_sectionContentArray == nil)
-    {
-        _sectionContentArray = @[@[@"",
-                                   @"Класс недвижимости",
-                                   @"Тип объекта"],
-                                 @[@"Страна",
-                                   @"Регион",
-                                   @"Город / населенный пункт",
-                                   @"Улица",
-                                   @"Дом",
-                                   @"Корпус / строение",
-                                   @"Этаж",
-                                   @"Квартира",
-                                   @"Комментарий"]];
-    }
-    
-    return _sectionContentArray;
-}
-
 
 #pragma mark - Table view datasource methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
 {
-    return 2;
+    return [self.model getNumberOfSections];
 }
 
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return [self.itemInfo[section] count];
+    return [self.model getNumberOfRowsForSection: section];
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    NSString* cellID      = @"InformationCellID";
+    UITableViewCell* cell = [UITableViewCell new];
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellID
-                                                            forIndexPath: indexPath];
+    AboutProjectCellsFactory* factory = [AboutProjectCellsFactory new];
     
-    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 15.0f];
-    UIFont* detailFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 13.0f];
+    NSString* cellTitle = [self.model getCellTitleForIndexPath: indexPath];
     
+    NSString* cellDetail = [self.model getCellDetailForIndexPath: indexPath];
     
-    cell.detailTextLabel.font = detailFont;
-    cell.textLabel.font       = customFont;
-    
-    if (indexPath.section == 0 && indexPath.row == 0)
+    switch ( indexPath.section )
     {
-        
-        cell.textLabel.text       = self.itemInfo[0][0];
-        cell.detailTextLabel.text = @"";
-    }
-    else
-    {
-        NSString* fillInfo  = self.itemInfo[indexPath.section][indexPath.row];
-        NSString* textLabel = self.sectionContentArray[indexPath.section][indexPath.row];
-        
-        cell.textLabel.text            = textLabel;
-        cell.detailTextLabel.text      = fillInfo;
-        cell.detailTextLabel.textColor = [UIColor blackColor];
-        
-        if ([fillInfo isEqualToString: @"нет"])
+        case SectionOne:
+        case SectionTwo:
         {
-            cell.detailTextLabel.textColor = [UIColor grayColor];
+            cell = [factory returnRightDetailCellWithTitle: cellTitle
+                                                withDetail: cellDetail
+                                              forTableView: tableView];
         }
+            
+            break;
         
+        case SectionThree:
+        {
+            cell = [factory returnRightDetailCellWithTitle: cellTitle
+                                                withDetail: cellDetail
+                                              forTableView: tableView];
+//            cell = [factory returnMapViewCellWithTitle: cellTitle
+//                                       withCoordinates: cellDetail
+//                                          forTableView: tableView];
+        }
+            
+            break;
+            
+        default:
+            break;
     }
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
 
 #pragma mark - TableView Delegate methods -
 
-- (CGFloat)             tableView: (UITableView*) tableView
-estimatedHeightForHeaderInSection: (NSInteger)    section
-{
-    if (section == 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1.f;
-    }
-}
+//- (CGFloat)             tableView: (UITableView*) tableView
+//estimatedHeightForHeaderInSection: (NSInteger)    section
+//{
+//    if (section == 0)
+//    {
+//        return 0;
+//    }
+//    else
+//    {
+//        return 1.f;
+//    }
+//}
 
+#pragma mark - Public -
+
+- (void) updateProjectInfo
+{
+    [self.model updateProjectInfo];
+}
 
 @end

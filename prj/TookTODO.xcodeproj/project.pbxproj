@@ -396,6 +396,9 @@
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
 		F725FBDC1DC367D800793EA3 /* InfoiPadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBDB1DC367D800793EA3 /* InfoiPadModel.m */; };
 		F725FBE11DC3728A00793EA3 /* AboutProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE01DC3728A00793EA3 /* AboutProjectTableViewCell.m */; };
+		F725FBE41DC3AA9C00793EA3 /* AboutProjectMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */; };
+		F725FBE71DC3AD9C00793EA3 /* AboutProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */; };
+		F725FBEA1DC3B34600793EA3 /* AboutProjectCellsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
 		F7ED843F1DAFCE9100CF76D7 /* AttachmentsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7ED843E1DAFCE9100CF76D7 /* AttachmentsCellFactory.m */; };
@@ -1160,6 +1163,12 @@
 		F725FBDE1DC3680F00793EA3 /* InfoiPadViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoiPadViewModel.h; sourceTree = "<group>"; };
 		F725FBDF1DC3727E00793EA3 /* AboutProjectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutProjectTableViewCell.h; sourceTree = "<group>"; };
 		F725FBE01DC3728A00793EA3 /* AboutProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectTableViewCell.m; sourceTree = "<group>"; };
+		F725FBE21DC3AA9C00793EA3 /* AboutProjectMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectMapCell.h; sourceTree = "<group>"; };
+		F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectMapCell.m; sourceTree = "<group>"; };
+		F725FBE51DC3AD9C00793EA3 /* AboutProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectModel.h; sourceTree = "<group>"; };
+		F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectModel.m; sourceTree = "<group>"; };
+		F725FBE81DC3B34600793EA3 /* AboutProjectCellsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectCellsFactory.h; sourceTree = "<group>"; };
+		F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectCellsFactory.m; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
 		F75295B61DB65B8500534482 /* TaskDetailContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailContentManager.m; sourceTree = "<group>"; };
 		F75295B81DB6895A00534482 /* TaskDetailContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailContentManager.h; path = ../TaskDetailContentManager.h; sourceTree = "<group>"; };
@@ -2400,6 +2409,12 @@
 			children = (
 				56D06D781DAFBDBF008E9AC0 /* InformationViewController.m */,
 				56D06D791DAFBDBF008E9AC0 /* InformationViewModel.m */,
+				F725FBE51DC3AD9C00793EA3 /* AboutProjectModel.h */,
+				F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */,
+				F725FBE21DC3AA9C00793EA3 /* AboutProjectMapCell.h */,
+				F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */,
+				F725FBE81DC3B34600793EA3 /* AboutProjectCellsFactory.h */,
+				F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -3603,6 +3618,7 @@
 				56D06EA81DAFBDC0008E9AC0 /* ProjectTaskResponsible+CoreDataProperties.m in Sources */,
 				56D06F981DAFBDC0008E9AC0 /* TeamAPIService.m in Sources */,
 				56D06F7A1DAFBDC0008E9AC0 /* TeamProfileInfoModel.m in Sources */,
+				F725FBE41DC3AA9C00793EA3 /* AboutProjectMapCell.m in Sources */,
 				56D06F911DAFBDC0008E9AC0 /* BaseAPIService.m in Sources */,
 				56D06F6C1DAFBDC0008E9AC0 /* TasksProjectTitleView.m in Sources */,
 				56D06F2B1DAFBDC0008E9AC0 /* OfflineSettingsItem.m in Sources */,
@@ -3618,8 +3634,10 @@
 				56D06F1B1DAFBDC0008E9AC0 /* SelectSystemViewModel.m in Sources */,
 				564DE3BA1DB1582E00BF9817 /* AddNewRoleViewModel.m in Sources */,
 				56D06F761DAFBDC0008E9AC0 /* AddContactModel.m in Sources */,
+				F725FBE71DC3AD9C00793EA3 /* AboutProjectModel.m in Sources */,
 				56D06EB01DAFBDC0008E9AC0 /* ProjectTaskRoom+CoreDataProperties.m in Sources */,
 				56D06F5A1DAFBDC0008E9AC0 /* FilterSubtaskCellFactory.m in Sources */,
+				F725FBEA1DC3B34600793EA3 /* AboutProjectCellsFactory.m in Sources */,
 				56D06FA81DAFBDC0008E9AC0 /* AvatarGenerator.m in Sources */,
 				56D06EA91DAFBDC0008E9AC0 /* ProjectTaskRoleAssignment+CoreDataProperties.m in Sources */,
 				564DE3B11DB1476F00BF9817 /* NewProjectRoleTypeModel.m in Sources */,
