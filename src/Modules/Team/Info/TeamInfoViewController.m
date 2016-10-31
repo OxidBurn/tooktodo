@@ -96,13 +96,26 @@
     {
         FilledTeamInfo* teamMember = [self.viewModel getSelectedTeamMember];
         
+        
+        // iPhone code block
+//        if (self.profilesVC)
+//        {
+//        self.profilesVC = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+//            
+//            NSMutableArray* stack = self.navigationController.viewControllers.mutableCopy;
+//            
+//            [stack addObject: self.profilesVC.navigationController];
+//            
+//            self.navigationController.viewControllers = stack.copy;
+//        }
+        
         if (self.profilesVC == nil)
         {
             TeamProfilesInfoViewController* vc = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
             
             self.profilesVC = vc;
         }
-       
+        
         [self.profilesVC fillSelectedTeamMember: teamMember];
         
         [self.profilesVC refreshTableView];

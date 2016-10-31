@@ -149,15 +149,13 @@
     // Need to call method in viewModel and model
     // for changing selected state in team member value
     
-    [self.navigationController popViewControllerAnimated: YES];
+    [self.navigationController.navigationController popViewControllerAnimated: YES];
 }
 
 - (void) leftBarButtonActionForiPad
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
-    
-    
 }
 
 #pragma mark - Internal methods -
