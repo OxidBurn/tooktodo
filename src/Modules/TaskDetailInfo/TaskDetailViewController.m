@@ -158,12 +158,15 @@
     };
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+- (BOOL)    splitViewController: (UISplitViewController*) splitViewController
+collapseSecondaryViewController: (UIViewController*)      secondaryViewController
+      ontoPrimaryViewController: (UIViewController*)      primaryViewController
 {
     return YES;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController showDetailViewController: (UIViewController*)      vc
+                      sender: (id)                     sender
 {
     return YES;
 }
