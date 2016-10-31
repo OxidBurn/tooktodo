@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -20,7 +20,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zwN-pL-910"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="X3Q-74-qNG">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vhi-hp-yEc">
@@ -160,7 +160,7 @@
                         <viewControllerLayoutGuide type="bottom" id="S7U-l7-iYl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z6R-QY-WY8">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M9N-3q-vJM">
@@ -394,7 +394,7 @@
                         <viewControllerLayoutGuide type="bottom" id="MQU-7z-4D5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="V23-vW-cTT">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IRH-gf-tw5">
@@ -446,7 +446,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="GUt-pL-ezG">
                             <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cWi-Vy-IIZ">
-                                <rect key="frame" x="960" y="7" width="44" height="30"/>
+                                <rect key="frame" x="315" y="7" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="addNewRoleBtnIcon"/>
                                 <connections>
@@ -484,7 +484,7 @@
                         <viewControllerLayoutGuide type="bottom" id="d49-t6-dv5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XA4-M7-EDb">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nvd-ZG-KYC">
@@ -533,11 +533,12 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutProjectMapCellId" rowHeight="160" id="Dve-hR-qDy" customClass="AboutProjectMapCell">
                                         <rect key="frame" x="0.0" y="70" width="445" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dve-hR-qDy" id="e3d-If-W44">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="Dve-hR-qDy" id="e3d-If-W44">
                                             <frame key="frameInset" width="445" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ahr-jf-0Hj">
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ahr-jf-0Hj">
+                                                    <frame key="frameInset" minY="43" width="445" height="117"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="117" id="isI-aR-dzR"/>
                                                     </constraints>
@@ -552,7 +553,8 @@
                                                         </mask>
                                                     </variation>
                                                 </mapView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проект на карте" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCd-oZ-yRO">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Проект на карте" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCd-oZ-yRO">
+                                                    <frame key="frameInset" minX="20" minY="12" width="121" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120.5" id="VxZ-G1-3tv"/>
                                                         <constraint firstAttribute="height" constant="18" id="aOK-EE-Nnj"/>
@@ -573,7 +575,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55.787918 37.530337" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8j-Hb-riB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="55.787918 37.530337" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8j-Hb-riB">
+                                                    <frame key="frameInset" minX="296" minY="16" width="135" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="D1Y-Jf-FGw"/>
                                                     </constraints>
@@ -594,6 +597,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ahr-jf-0Hj" firstAttribute="leading" secondItem="e3d-If-W44" secondAttribute="leading" id="C4x-xI-6PH"/>
+                                                <constraint firstItem="Ahr-jf-0Hj" firstAttribute="top" secondItem="a8j-Hb-riB" secondAttribute="bottom" constant="12" id="Ds5-eD-qkM"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ahr-jf-0Hj" secondAttribute="bottom" id="GSo-so-jad"/>
                                                 <constraint firstItem="VCd-oZ-yRO" firstAttribute="leading" secondItem="e3d-If-W44" secondAttribute="leading" constant="20" id="ddj-St-3Hk"/>
                                                 <constraint firstItem="a8j-Hb-riB" firstAttribute="top" secondItem="e3d-If-W44" secondAttribute="top" constant="16" id="f4c-zJ-VZV"/>
@@ -608,11 +612,11 @@
                                                     <exclude reference="a8j-Hb-riB"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="ddj-St-3Hk"/>
+                                                    <exclude reference="mcX-H0-0NJ"/>
                                                     <exclude reference="C4x-xI-6PH"/>
                                                     <exclude reference="GSo-so-jad"/>
                                                     <exclude reference="pzQ-mD-jPz"/>
-                                                    <exclude reference="ddj-St-3Hk"/>
-                                                    <exclude reference="mcX-H0-0NJ"/>
                                                     <exclude reference="f4c-zJ-VZV"/>
                                                     <exclude reference="xkz-SV-Pug"/>
                                                 </mask>
@@ -624,11 +628,11 @@
                                                     <include reference="a8j-Hb-riB"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="ddj-St-3Hk"/>
+                                                    <include reference="mcX-H0-0NJ"/>
                                                     <include reference="C4x-xI-6PH"/>
                                                     <include reference="GSo-so-jad"/>
                                                     <include reference="pzQ-mD-jPz"/>
-                                                    <include reference="ddj-St-3Hk"/>
-                                                    <include reference="mcX-H0-0NJ"/>
                                                     <include reference="f4c-zJ-VZV"/>
                                                     <include reference="xkz-SV-Pug"/>
                                                 </mask>
@@ -758,7 +762,7 @@
                         <viewControllerLayoutGuide type="bottom" id="r1W-FR-eJ0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HTa-xE-dFI">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OrV-Bp-3On">
@@ -802,7 +806,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Id4-TX-CkB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CVL-yZ-baC">
-                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoEmptyPage" translatesAutoresizingMaskIntoConstraints="NO" id="4Z0-4l-Eas">
@@ -849,7 +853,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZDZ-SD-KxX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wKk-3R-Po6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wKk-3R-Po6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -891,7 +895,7 @@
                         <viewControllerLayoutGuide type="bottom" id="76t-z4-A9u"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wYa-pW-4Fs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Wx-M7-73f">
@@ -967,7 +971,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7TQ-a8-any" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Okg-cg-9fQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Okg-cg-9fQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -986,7 +990,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vmc-tP-2uJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Jyi-Ed-Z8T">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jyi-Ed-Z8T">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>

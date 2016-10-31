@@ -31,7 +31,7 @@
 
 @property (assign, nonatomic) FilteringMemebersState memberListState;
 
-
+@property (nonatomic, strong) FilledTeamInfo* selectedTeamMember;
 
 // methods
 
@@ -41,6 +41,11 @@
 @implementation TeamInfoModel
 
 #pragma mark - Public methods -
+
+- (FilledTeamInfo*) getSelectedTeamMember
+{
+    return self.selectedTeamMember;
+}
 
 - (NSString*) getProjectName
 {
@@ -116,11 +121,13 @@
     {
         case TableNormalState:
         {
+            self.selectedTeamMember = self.teamList[index];
             return self.teamList[index];
             break;
         }
         case TableFilteringState:
         {
+            self.selectedTeamMember = self.filteringList[index];
             return self.filteringList[index];
             break;
         }

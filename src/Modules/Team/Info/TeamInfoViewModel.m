@@ -58,6 +58,10 @@ static CGFloat sectionHeaderHeight = 30;
     [self.model updateTeamInfoWithCompletion: completion];
 }
 
+- (FilledTeamInfo*) getSelectedTeamMember
+{
+    return [self.model getSelectedTeamMember];
+}
 
 #pragma mark - Table view data source methods -
 
@@ -123,6 +127,7 @@ static CGFloat sectionHeaderHeight = 30;
     
     if ( self.didShowMemberInfo )
         self.didShowMemberInfo();
+
 }
 
 

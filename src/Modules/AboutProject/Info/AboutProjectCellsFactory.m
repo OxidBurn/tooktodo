@@ -12,7 +12,7 @@
 #import "AboutProjectMapCell.h"
 
 static NSString* RightDetailcellID = @"InformationCellID";
-static NSString* MapViewCellID     = @"AboutProjectMapCell";
+static NSString* MapViewCellID     = @"AboutProjectMapCellId";
 
 @interface AboutProjectCellsFactory()
 

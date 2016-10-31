@@ -66,6 +66,7 @@
     [super viewWillAppear: animated];
     
     [self updateUserInfo];
+    
 }
 
 - (void) viewDidLoad
@@ -79,7 +80,10 @@
         [blockSelf.profileInfoTableView reloadData];
         
     };
+    
 }
+
+
 
 #pragma mark - Memory managment -
 
@@ -119,6 +123,23 @@
     }
     
     return _viewModel;
+}
+
+#pragma mark - Public -
+
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember
+{
+    [self.viewModel fillSelectedTeamMember: teamMember];
+}
+
+- (void) refreshTableView
+{
+    [self.profileInfoTableView reloadData];
+}
+
+- (void) reloadUserInformationViewData
+{
+    [self updateUserInfo];
 }
 
 #pragma mark - Acitons -

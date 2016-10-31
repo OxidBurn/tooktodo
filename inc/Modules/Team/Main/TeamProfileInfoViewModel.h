@@ -11,6 +11,7 @@
 // Classes
 #import "RolesViewController.h"
 #import "OSAlertControllerProtocol.h"
+#import "FilledTeamInfo.h"
 
 @protocol TeamProfileViewModelDelegate;
 
@@ -25,6 +26,8 @@
 - (void) performActionForIndex: (NSUInteger) index;
 
 - (NSString*) getProjectName;
+
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
 
 @end
 

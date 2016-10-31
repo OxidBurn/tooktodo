@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     UITableViewCell* cell = [UITableViewCell new];
+
     
     AboutProjectCellsFactory* factory = [AboutProjectCellsFactory new];
     
@@ -80,13 +81,9 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
         
         case SectionThree:
         {
-            cell = [factory returnRightDetailCellWithTitle: cellTitle
-                                                withDetail: cellDetail
-                                              forTableView: tableView
-                                             withIndexPath: indexPath];
-//            cell = [factory returnMapViewCellWithTitle: cellTitle
-//                                       withCoordinates: cellDetail
-//                                          forTableView: tableView];
+            cell = [factory returnMapViewCellWithTitle: cellTitle
+                                       withCoordinates: cellDetail
+                                          forTableView: tableView];
         }
             
             break;
@@ -107,6 +104,28 @@ heightForHeaderInSection: (NSInteger)    section
         height = 0;
     else
         height = 10;
+    
+    return height;
+}
+
+- (CGFloat) tableView: (UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = 0;
+    
+    switch (indexPath.section)
+    {
+        case SectionOne:
+        case SectionTwo:
+        {
+            height = 44;
+        }
+            break;
+        case SectionThree:
+        {
+            height = 160;
+        }
+            break;
+    }
     
     return height;
 }

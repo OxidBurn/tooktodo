@@ -15,6 +15,8 @@
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 #import "TeamInfoViewModel.h"
+#import "FilledTeamInfo.h"
+#import "TeamProfilesInfoViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -32,6 +34,7 @@
 
 @property (strong, nonatomic) TeamInfoViewModel* viewModel;
 @property (nonatomic, strong) InviteInfo*        inviteInfo;
+@property (nonatomic, strong) TeamProfilesInfoViewController* profilesVC;
 
 // Methods
 
@@ -71,6 +74,8 @@
     
     // Hide search bar on show
     [self setupTableView];
+    
+    [self.teamInfoTableView reloadData];
 }
 
 
@@ -81,6 +86,30 @@
     [super didReceiveMemoryWarning];
 }
 
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id) sender
+{
+    if ([segue.identifier isEqualToString: @"ShowTeamMemberInfoID"])
+    {
+        FilledTeamInfo* teamMember = [self.viewModel getSelectedTeamMember];
+        
+        if (self.profilesVC == nil)
+        {
+            TeamProfilesInfoViewController* vc = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+            
+            self.profilesVC = vc;
+        }
+       
+        [self.profilesVC fillSelectedTeamMember: teamMember];
+        
+        [self.profilesVC refreshTableView];
+        
+        [self.profilesVC reloadUserInformationViewData];
+    }
+}
 
 #pragma mark - Properties -
 
@@ -95,6 +124,7 @@
     
     return _viewModel;
 }
+
 
 #pragma mark - Public mehtods -
 
@@ -129,6 +159,8 @@
     [self.teamInfoTableView setContentOffset: CGPointMake(0, self.searchBar.height)];
 }
 
+
+
 - (void) bindingUI
 {
     self.teamInfoTableView.dataSource = self.viewModel;
@@ -146,10 +178,11 @@
         
     __weak typeof(self) blockSelf = self;
     
-    self.viewModel.didShowMemberInfo = ^(){
+    self.viewModel.didShowMemberInfo = ^() {
         
         [blockSelf performSegueWithIdentifier: @"ShowTeamMemberInfoID"
                                        sender: blockSelf];
+        
         
     };
 }

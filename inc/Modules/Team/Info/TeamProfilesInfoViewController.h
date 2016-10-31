@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+
+//Classes
 #import "BaseMainViewController.h"
+#import "FilledTeamInfo.h"
 
 @interface TeamProfilesInfoViewController : BaseMainViewController
 
+//Methods
+
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
+
+- (void) refreshTableView;
+
+- (void) reloadUserInformationViewData;
+
 @end
+

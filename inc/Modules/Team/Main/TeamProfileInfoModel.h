@@ -10,7 +10,10 @@
 
 // Frameworks
 #import "ReactiveCocoa.h"
+
+//Classes
 #import "ProjectRoles.h"
+#import "FilledTeamInfo.h"
 
 @protocol TeamProfileInfoModelDelegate;
 
@@ -55,6 +58,8 @@
 - (void) reloadContent;
 
 - (void) updateMemberRole: (ProjectRoles*) role;
+
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
 
 @end
 

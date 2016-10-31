@@ -101,7 +101,7 @@ typedef NS_ENUM(NSInteger, Permission)
     return _assignment;
 }
 
-- (FilledTeamInfo*) memberInfo
+/*- (FilledTeamInfo*) memberInfo
 {
     if (_memberInfo == nil)
     {
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSInteger, Permission)
     }
     
     return _memberInfo;
-}
+}*/
 
 #pragma mark - Public methods -
 
@@ -340,5 +340,10 @@ typedef NS_ENUM(NSInteger, Permission)
     }
     
     return @"";
+}
+
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember
+{
+    self.memberInfo = teamMember;
 }
 @end

@@ -53,6 +53,8 @@ typedef NS_ENUM(NSUInteger, FilteringMemebersState)
 
 - (void) stopFiltering;
 
+- (FilledTeamInfo*) getSelectedTeamMember;
+
 @end
 
 @protocol TeamInfoModelDelegate <NSObject>

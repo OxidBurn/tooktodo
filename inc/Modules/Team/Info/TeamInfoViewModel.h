@@ -9,6 +9,9 @@
 // Frameworks
 @import UIKit;
 
+//Classes
+#import "FilledTeamInfo.h"
+
 @protocol TeamInfoViewModelDelegate;
 
 @interface TeamInfoViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -28,6 +31,7 @@
 
 - (NSString*) getProjectName;
 
+- (FilledTeamInfo*) getSelectedTeamMember;
 
 @end
 

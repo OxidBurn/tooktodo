@@ -52,21 +52,6 @@
     NSLog(@"error %@",  error.localizedDescription);
 }
 
-- (IBAction)setMapType:(UISegmentedControl *)sender {
-    switch (sender.selectedSegmentIndex) {
-        case 0:
-            self.aboutProjectMapView.mapType = MKMapTypeStandard;
-            break;
-        case 1:
-            self.aboutProjectMapView.mapType = MKMapTypeSatellite;
-            break;
-        case 2:
-            self.aboutProjectMapView.mapType = MKMapTypeHybrid;
-            break;
-        default:
-            break;
-    }
-}
 
 - (IBAction)zoomToCurrentLocation:(UIBarButtonItem *)sender {
     float spanX = 0.00725;

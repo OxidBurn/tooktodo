@@ -86,6 +86,11 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     [self.model performActionForIndex: index];
 }
 
+- (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember
+{
+    [self.model fillSelectedTeamMember: teamMember];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
