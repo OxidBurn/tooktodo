@@ -14,7 +14,7 @@
         <!--System Info View Controller-->
         <scene sceneID="F7r-EL-JNH">
             <objects>
-                <viewController storyboardIdentifier="SystemInfoControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q2F-Ms-6oP" customClass="SystemInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SystemInfoControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q2F-Ms-6oP" customClass="SystemInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NoA-3C-XJA"/>
                         <viewControllerLayoutGuide type="bottom" id="zwN-pL-910"/>
@@ -24,10 +24,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vhi-hp-yEc">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9212459921836853" green="0.92942821979522705" blue="0.93347418308258057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="445" id="csL-N7-YfM"/>
                                 </constraints>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="XEn-2f-dBK">
+                                    <rect key="frame" x="0.0" y="70" width="445" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemsCellID" id="DWZ-fT-MML">
                                         <rect key="frame" x="0.0" y="28" width="445" height="42"/>
@@ -144,12 +149,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uje-vj-Dzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2832.8000000000002" y="4389.3553223388308"/>
+            <point key="canvasLocation" x="2832.421875" y="4389.0625"/>
         </scene>
         <!--РОЛИ-->
         <scene sceneID="hee-39-HIO">
             <objects>
-                <viewController storyboardIdentifier="RoleInfoControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBu-cs-eVD" customClass="RoleInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RoleInfoControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pBu-cs-eVD" customClass="RoleInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="op4-aL-CAo"/>
                         <viewControllerLayoutGuide type="bottom" id="S7U-l7-iYl"/>
@@ -159,10 +164,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M9N-3q-vJM">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.9212459921836853" green="0.92942821979522705" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="445" id="HhR-5u-LOg"/>
                                 </constraints>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="lCy-Bp-rP1">
+                                    <rect key="frame" x="0.0" y="70" width="445" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoleCellID" rowHeight="42" id="s71-zr-KiX" customClass="ProjectRoleInfoTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="445" height="42"/>
@@ -276,7 +286,7 @@
                                 </variation>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.9212459921836853" green="0.92942821979522705" blue="0.93347418308258057" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="M9N-3q-vJM" secondAttribute="trailing" id="6fB-XW-l2Q"/>
                             <constraint firstItem="M9N-3q-vJM" firstAttribute="top" secondItem="z6R-QY-WY8" secondAttribute="top" constant="55" id="9Tb-pA-930"/>
@@ -478,11 +488,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="42" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nvd-ZG-KYC">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="445" id="ZvR-rc-M2p"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="n7s-d0-4LS">
+                                    <rect key="frame" x="0.0" y="230" width="445" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InformationCellID" textLabel="Jdy-Qo-flC" detailTextLabel="Jih-Rd-ZfD" style="IBUITableViewCellStyleValue1" id="ZR9-1U-pgV">
                                         <rect key="frame" x="0.0" y="28" width="445" height="42"/>
@@ -639,7 +654,7 @@
                                 </variation>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.90196078431372551" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="d49-t6-dv5" firstAttribute="top" secondItem="nvd-ZG-KYC" secondAttribute="bottom" id="8h2-g9-fcU"/>
                             <constraint firstItem="nvd-ZG-KYC" firstAttribute="leading" secondItem="XA4-M7-EDb" secondAttribute="leading" id="HR3-Ni-lYF"/>
@@ -853,7 +868,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KQf-QZ-Ys2" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nFV-gY-ssR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nFV-gY-ssR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -990,7 +1005,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X6o-ng-BMh" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Kvi-ry-TaN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kvi-ry-TaN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>

@@ -72,7 +72,8 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
         {
             cell = [factory returnRightDetailCellWithTitle: cellTitle
                                                 withDetail: cellDetail
-                                              forTableView: tableView];
+                                              forTableView: tableView
+                                             withIndexPath: indexPath];
         }
             
             break;
@@ -81,7 +82,8 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
         {
             cell = [factory returnRightDetailCellWithTitle: cellTitle
                                                 withDetail: cellDetail
-                                              forTableView: tableView];
+                                              forTableView: tableView
+                                             withIndexPath: indexPath];
 //            cell = [factory returnMapViewCellWithTitle: cellTitle
 //                                       withCoordinates: cellDetail
 //                                          forTableView: tableView];
@@ -96,25 +98,35 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)    tableView: (UITableView*) tableView
+heightForHeaderInSection: (NSInteger)    section
 {
-    return 10;
+    CGFloat height = 0.f;
+    
+    if ( section == SectionOne )
+        height = 0;
+    else
+        height = 10;
+    
+    return height;
 }
 
+- (UIView*)  tableView: (UITableView*) tableView
+viewForHeaderInSection: (NSInteger)    section
+{
+    CGRect rect = CGRectMake(0, 0, CGRectGetMaxX(tableView.frame), 10);
+    
+    UIView* view = [[UIView alloc] initWithFrame: rect];
+    
+    view.backgroundColor = [UIColor colorWithRed: 230.0/256
+                                           green: 232.0/256
+                                            blue: 234.0/256
+                                           alpha: 1.f];
+    
+    return view;
+}
 #pragma mark - TableView Delegate methods -
 
-//- (CGFloat)             tableView: (UITableView*) tableView
-//estimatedHeightForHeaderInSection: (NSInteger)    section
-//{
-//    if (section == 0)
-//    {
-//        return 0;
-//    }
-//    else
-//    {
-//        return 1.f;
-//    }
-//}
 
 #pragma mark - Public -
 

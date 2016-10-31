@@ -43,14 +43,27 @@ static NSString* MapViewCellID     = @"AboutProjectMapCell";
 - (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    title
                                          withDetail: (NSString*)    detail
                                        forTableView: (UITableView*) tableView
+                                      withIndexPath: (NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: RightDetailcellID];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: RightDetailcellID
+                                                            forIndexPath: indexPath];
     
-    UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 15.0f];
-    UIFont* detailFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 13.0f];
+    UIFont* customFont = nil;
     
+    UIFont* detailFont = nil;
+    
+    if ( indexPath.section == 0 && indexPath.row == 0 )
+    {
+        customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                     size: 17.0f];
+    }
+    else
+    {
+        customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                     size: 15.0f];
+        detailFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                     size: 13.0f];
+    }
     cell.detailTextLabel.font = detailFont;
     cell.textLabel.font       = customFont;
     

@@ -38,7 +38,7 @@
 
 - (void) deselectCell
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor whiteColor];
     
     self.selectedStateView.hidden = YES;
 }

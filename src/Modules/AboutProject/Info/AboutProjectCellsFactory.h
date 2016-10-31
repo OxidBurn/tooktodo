@@ -16,7 +16,8 @@
 // methods
 - (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    title
                                          withDetail: (NSString*)    detail
-                                       forTableView: (UITableView*) tableView;
+                                       forTableView: (UITableView*) tableView
+                                      withIndexPath: (NSIndexPath*) indexPath;
 
 - (UITableViewCell*) returnMapViewCellWithTitle: (NSString*)    title
                                 withCoordinates: (NSString*)    coordinates
