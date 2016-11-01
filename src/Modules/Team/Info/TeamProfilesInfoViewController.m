@@ -24,6 +24,7 @@
 #import "RolesViewController.h"
 #import "OSAlertController.h"
 #import "UIViewController+Helper.h"
+#import "TeamInfoViewController.h"
 
 @interface TeamProfilesInfoViewController () <TeamProfileViewModelDelegate, MFMailComposeViewControllerDelegate, UISplitViewControllerDelegate>
 
@@ -37,8 +38,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* profileFullNameLabel;
 
+
 // Methods
-- (IBAction) onDismiss: (UIBarButtonItem*) sender;
 
 
 @end
@@ -59,6 +60,11 @@
     self.profileInfoTableView.delegate   = self.viewModel;
     
     self.splitViewController.delegate = self;
+    
+    if ( IS_PHONE )
+    {
+        [self setupBackButtonUI];
+    }
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -125,6 +131,19 @@
     return _viewModel;
 }
 
+- (void) setupBackButtonUI
+{
+    UIBarButtonItem* backBtn = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"ArrowBack"]
+                                                                style: UIBarButtonItemStylePlain
+                                                               target: self.navigationController.navigationController
+                                                               action: @selector(popViewControllerAnimated:)];
+    
+    self.navigationItem.leftBarButtonItem = backBtn;
+    self.navigationController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+//    self.navigationController.navigationBar.topItem.backBarButtonItem = backBtn;
+}
+
 #pragma mark - Public -
 
 - (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember
@@ -144,18 +163,15 @@
 
 #pragma mark - Acitons -
 
-- (IBAction) onDismiss: (UIBarButtonItem*) sender
-{
-    // Need to call method in viewModel and model
-    // for changing selected state in team member value
-    
-    [self.navigationController.navigationController popViewControllerAnimated: YES];
-}
-
 - (void) leftBarButtonActionForiPad
 {
     [self dismissViewControllerAnimated: YES
                              completion: nil];
+}
+
+- (void) onDismiss
+{
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 #pragma mark - Internal methods -
@@ -261,14 +277,41 @@
 
 #pragma mark - Split view controller delegate methods -
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController
+    showDetailViewController: (UIViewController*)      vc
+                      sender: (id)                     sender
 {
-    return YES;
+    if ( [sender isKindOfClass: [TeamInfoViewController class]] &&
+         [((TeamInfoViewController*)sender).profilesVC isKindOfClass: [TeamProfilesInfoViewController class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(id)sender
 {
     return NO;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+collapseSecondaryViewController:(UIViewController *)secondaryViewController
+  ontoPrimaryViewController:(UIViewController *)primaryViewController {
+    
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]]
+        && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[TeamProfilesInfoViewController class]]) {
+        
+        // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+        return YES;
+        
+    } else {
+        
+        return NO;
+        
+    }
 }
 
 @end

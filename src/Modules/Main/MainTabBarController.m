@@ -146,7 +146,7 @@
 {
     UINavigationController* controller = (UINavigationController*)self.containerController;
     
-    if ( [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
+    if ( [controller isKindOfClass: [UINavigationController class]] && [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
         [controller.visibleViewController needToUpdateContent];
 
 }

@@ -34,7 +34,6 @@
 
 @property (strong, nonatomic) TeamInfoViewModel* viewModel;
 @property (nonatomic, strong) InviteInfo*        inviteInfo;
-@property (nonatomic, strong) TeamProfilesInfoViewController* profilesVC;
 
 // Methods
 
@@ -90,31 +89,13 @@
 #pragma mark - Segue -
 
 - (void) prepareForSegue: (UIStoryboardSegue*) segue
-                  sender: (id) sender
+                  sender: (id)                 sender
 {
     if ([segue.identifier isEqualToString: @"ShowTeamMemberInfoID"])
     {
         FilledTeamInfo* teamMember = [self.viewModel getSelectedTeamMember];
         
-        
-        // iPhone code block
-//        if (self.profilesVC)
-//        {
-//        self.profilesVC = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
-//            
-//            NSMutableArray* stack = self.navigationController.viewControllers.mutableCopy;
-//            
-//            [stack addObject: self.profilesVC.navigationController];
-//            
-//            self.navigationController.viewControllers = stack.copy;
-//        }
-        
-        if (self.profilesVC == nil)
-        {
-            TeamProfilesInfoViewController* vc = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
-            
-            self.profilesVC = vc;
-        }
+        self.profilesVC = (TeamProfilesInfoViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [self.profilesVC fillSelectedTeamMember: teamMember];
         
