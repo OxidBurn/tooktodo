@@ -152,8 +152,8 @@
 {
     CGRect barButtonFrame = self.onSortTasks.customView.bounds;
     
-    CGRect newFrame = CGRectMake(CGRectGetWidth(self.view.frame) - 35,
-                                 barButtonFrame.origin.y + 62,
+    CGRect newFrame = CGRectMake(CGRectGetWidth(self.view.frame) - 70,
+                                 barButtonFrame.origin.y + 50,
                                  barButtonFrame.size.width,
                                  barButtonFrame.size.height);
     
