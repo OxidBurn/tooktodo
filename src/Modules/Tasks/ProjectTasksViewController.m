@@ -17,6 +17,7 @@
 #import "ProjectTasksViewModel.h"
 #import "PopoverViewController.h"
 #import "TaskDetailViewController.h"
+#import "ProjectTask+CoreDataClass.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -89,13 +90,11 @@
 {
     if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueId"] )
     {
-//        FilledTeamInfo* teamMember = [self.viewModel getSelectedTeamMember];
-        
+        ProjectTask* task = [self.viewModel getSelectedProjectTask];
+
         self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
-//        [self.profilesVC fillSelectedTeamMember: teamMember];
-//        
-//        [self.profilesVC refreshTableView];
+        [self.taskDetailVC fillSelectedTask: task];
     }
 }
 

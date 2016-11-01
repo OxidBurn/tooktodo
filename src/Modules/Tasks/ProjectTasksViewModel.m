@@ -48,6 +48,11 @@
     return [self.model updateContent];
 }
 
+- (ProjectTask*) getSelectedProjectTask
+{
+    return [self.model getSelectedProjectTask];
+}
+
 #pragma mark - UITable view data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

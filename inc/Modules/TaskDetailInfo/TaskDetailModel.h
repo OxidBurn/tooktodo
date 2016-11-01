@@ -11,6 +11,7 @@
 // Classes
 #import "TaskRowContent.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectTask+CoreDataClass.h"
 
 @protocol TaskDetailModelDelegate;
 
@@ -40,6 +41,9 @@
 - (NSString*) getTaskTitle;
 
 - (NSString*) getTaskDescriptionValue;
+
+- (void) fillSelectedTask: (ProjectTask*) task
+           withCompletion: (CompletionWithSuccess) completion;
 
 @end
 

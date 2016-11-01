@@ -46,15 +46,15 @@
     return _taskTableViewContent;
 }
 
-- (ProjectTask*) task
-{
-    if ( _task == nil )
-    {
-        _task = [DataManagerShared getSelectedTask];
-    }
-    
-    return _task;
-}
+//- (ProjectTask*) task
+//{
+//    if ( _task == nil )
+//    {
+//        _task = [DataManagerShared getSelectedTask];
+//    }
+//    
+//    return _task;
+//}
 
 - (TaskDetailContentManager*) contentManager
 {
@@ -64,6 +64,17 @@
     }
     
     return _contentManager;
+}
+
+- (void) fillSelectedTask: (ProjectTask*) task
+           withCompletion: (CompletionWithSuccess) completion
+{
+    self.task = task;
+    
+    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task];
+    
+    if (completion)
+        completion(YES);
 }
 
 #pragma mark - Public -

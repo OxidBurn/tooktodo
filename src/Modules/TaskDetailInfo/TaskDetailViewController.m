@@ -53,6 +53,13 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    [self.taskTableView reloadData];
+}
+
 #pragma mark - Properties -
 
 - (TaskDetailViewModel*) viewModel
@@ -70,6 +77,21 @@
 - (TaskStatusType) getStatusType
 {
     return [self.viewModel getTaskStatus];
+}
+
+- (void) fillSelectedTask: (ProjectTask*) task
+{
+    [self.viewModel fillSelectedTask: task
+                      withCompletion: ^(BOOL isSuccess) {
+         
+         [self refreshTableView];
+     }];
+    
+}
+
+- (void) refreshTableView
+{
+    [self.taskTableView reloadData];
 }
 
 #pragma mark - Segue -

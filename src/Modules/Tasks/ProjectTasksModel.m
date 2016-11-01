@@ -106,9 +106,14 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (void) markTaskAsSelected: (NSIndexPath*) index
 {
-    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+//    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+//    
+//    [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
+//                                            withSelectedState: YES];
     
-    [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
+    self.selectedTask = [self getInfoForCellAtIndexPath: index];
+    
+    [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedTask
                                             withSelectedState: YES];
 }
 
