@@ -110,4 +110,23 @@ static bool isFirstAccess = YES;
     return [UserDefaults integerForKey: @"AllProjectsSortingAccedingType"];
 }
 
+- (void) saveSortedTasks: (TasksSortingType)           tasksType
+       withAscendingType: (ContentAccedingSortingType) ascending
+{
+    [UserDefaults setInteger: tasksType
+                      forKey: @"TasksSortingType"];
+    [UserDefaults setInteger: ascending
+                      forKey: @"TasksSortingAscendingType"];
+}
+
+- (TasksSortingType) getTasksSortingType
+{
+    return [UserDefaults integerForKey: @"TasksSortingType"];
+}
+
+-(ContentAccedingSortingType) getAccedingTypeForTasks
+{
+    return [UserDefaults integerForKey: @"TasksSortingAscendingType"];
+}
+
 @end
