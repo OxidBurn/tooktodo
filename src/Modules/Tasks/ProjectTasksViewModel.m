@@ -13,6 +13,7 @@
 #import "StageTitleView.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
+#import "TaskDetailInfoCell.h"
 #import "ProjectsEnumerations.h"
 
 @interface ProjectTasksViewModel()
@@ -69,7 +70,7 @@
 - (CGFloat)    tableView: (UITableView*) tableView
  heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model getCellHeightAtIndexPath: indexPath];
+    return 139.f;
 }
 
 - (nullable UIView*) tableView: (UITableView*) tableView

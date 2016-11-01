@@ -104,17 +104,6 @@ static NSString* contentKey = @"contentInfoKey";
     return cellInfo;
 }
 
-
-- (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path
-{
-    NSString* cellID = [self getCellIDAtIndexPath: path];
-    
-    if ( [cellID isEqualToString: @"StageTypeCellID"] )
-        return 55.0f;
-    else
-        return 139.0f;
-}
-
 - (void) markTaskAsSelected: (NSIndexPath*) index
 {
     ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
