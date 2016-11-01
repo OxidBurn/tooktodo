@@ -17,6 +17,19 @@ typedef NS_ENUM(NSUInteger, AllProjectsSortingType)
     SortingByCreationDateType,
 };
 
+typedef NS_ENUM(NSUInteger, TasksSortingType)
+{
+    SortByName,
+    SortByStartDay,
+    SortByEndDay,
+    SortByFactStartDay,
+    SortByFactEndDay,
+    SortByResponsible,
+    SortByRoom,
+    SortBySystem,
+    SortByStatus,
+};
+
 typedef NS_ENUM(NSUInteger, ContentAccedingSortingType)
 {
     GrowsSortingType      = 1,

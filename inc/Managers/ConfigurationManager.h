@@ -31,4 +31,11 @@
 
 - (ContentAccedingSortingType) getAccedingType;
 
+- (void) saveSortedTasks: (TasksSortingType)           tasksType
+       withAscendingType: (ContentAccedingSortingType) ascending;
+
+- (TasksSortingType) getTasksSortingType;
+
+- (ContentAccedingSortingType) getAccedingTypeForTasks;
+
 @end

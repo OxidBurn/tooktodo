@@ -15,23 +15,35 @@
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 #import "ProjectTasksViewModel.h"
+#import "PopoverViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
+#import "BaseMainViewController+Popover.h"
 
 @interface ProjectTasksViewController () <UISplitViewControllerDelegate>
 
 // Properties
+
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
+
+@property (nonatomic, strong) ProjectTasksViewModel* viewModel;
+
+// Outlets
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
-@property (nonatomic, strong) ProjectTasksViewModel* viewModel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 
 // Methods
 
 - (void) bindingUI;
+
+// Actions
+
+- (IBAction) onSortTasks:(UIBarButtonItem*) sender;
+
 
 @end
 
@@ -49,12 +61,19 @@
     // Binding UI components with model
     [self bindingUI];
     
+    if (IS_PHONE == NO)
+    {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+
+    
     // handling splitVC
     self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
 {
+ 
     [super viewWillAppear: animated];
     
     [self updateContent];
@@ -98,6 +117,14 @@
     }
 }
 
+
+- (IBAction) onSortTasks: (UIBarButtonItem*) sender
+{
+    [self showPopoverWithDataSource: self.viewModel
+                       withDelegate: self.viewModel
+                    withSourceFrame: [self getFrameForSortingPopover]];
+}
+
 - (void) updateContent
 {
     @weakify(self)
@@ -120,6 +147,19 @@
 {
     [self updateContent];
 }
+
+- (CGRect) getFrameForSortingPopover
+{
+    CGRect barButtonFrame = self.onSortTasks.customView.bounds;
+    
+    CGRect newFrame = CGRectMake(CGRectGetWidth(self.view.frame) - 35,
+                                 barButtonFrame.origin.y + 62,
+                                 barButtonFrame.size.width,
+                                 barButtonFrame.size.height);
+    
+    return newFrame;
+}
+
 
 #pragma mark - UISplitViewControllerDelegate methods -
 
