@@ -28,6 +28,8 @@ static NSString* contentKey = @"contentInfoKey";
 
 @property (nonatomic, strong) NSArray* stages;
 
+@property (strong, nonatomic) ProjectTask* selectedTask;
+
 // methods
 
 
@@ -36,6 +38,11 @@ static NSString* contentKey = @"contentInfoKey";
 @implementation ProjectTasksModel
 
 #pragma mark - Public methods -
+
+- (ProjectTask*) getSelectedProjectTask
+{
+    return self.selectedTask;
+}
 
 - (RACSignal*) updateContent
 {
@@ -87,21 +94,7 @@ static NSString* contentKey = @"contentInfoKey";
                                    }];
 }
 
-- (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path
-{
-    id cellInfo = [self getInfoForCellAtIndexPath: path];
-    
-    if ( [cellInfo isKindOfClass: [ProjectTaskStage class]] )
-    {
-        return @"StageTypeCellID";
-    }
-    else
-    {
-        return @"TaskInfoCellID";
-    }
-    
-    return @"";
-}
+
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {

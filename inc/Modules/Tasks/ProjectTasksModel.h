@@ -39,4 +39,6 @@
 
 - (TasksSortingType) getTasksSortingType;
 
+- (ProjectTask*) getSelectedProjectTask;
+
 @end
