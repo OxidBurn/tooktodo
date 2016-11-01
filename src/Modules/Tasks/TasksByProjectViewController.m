@@ -48,6 +48,11 @@
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
     
+    if (IS_PHONE == NO)
+    {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+    
     // Binding UI components with model
     [self bindingUI];
     

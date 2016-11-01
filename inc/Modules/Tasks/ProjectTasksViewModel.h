@@ -10,7 +10,10 @@
 #import <Foundation/Foundation.h>
 #import "ReactiveCocoa.h"
 
-@interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+//Classes
+#import "PopoverViewController.h"
+
+@interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, PopoverModelDelegate, PopoverModelDataSource>
 
 // properties
 

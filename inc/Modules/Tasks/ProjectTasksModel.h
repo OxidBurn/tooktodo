@@ -10,6 +10,7 @@
 #import "ReactiveCocoa.h"
 
 #import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectsEnumerations.h"
 
 @interface ProjectTasksModel : NSObject
 
@@ -31,5 +32,11 @@
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section;
 
 - (void) markTaskAsSelected: (NSIndexPath*) index;
+
+- (NSArray*) getPopoverContent;
+
+- (ContentAccedingSortingType) getTasksSortingAscendingType;
+
+- (TasksSortingType) getTasksSortingType;
 
 @end

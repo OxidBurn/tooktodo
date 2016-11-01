@@ -161,5 +161,33 @@
     }
 }
 
+#pragma mark - PopoverViewController dataSource methods -
+
+- (NSArray*) getPopoverContent
+{
+    return [self.model getPopoverContent];
+}
+
+- (NSUInteger) selectedItem
+{
+    return [self.model getTasksSortingType];
+}
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType
+{
+    return [self.model getTasksSortingAscendingType];
+}
+
+#pragma mark - PopoverViewController delegate methods -
+
+- (void) didDiminutionSortingAtIndex: (NSUInteger) index
+{
+    
+}
+
+- (void) didGrowSortingAtIndex: (NSUInteger) index
+{
+    
+}
 
 @end

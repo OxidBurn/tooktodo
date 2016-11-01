@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "TasksService.h"
+#import "ConfigurationManager.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -129,6 +130,30 @@ static NSString* contentKey = @"contentInfoKey";
                                             withSelectedState: YES];
 }
 
+- (NSArray*) getPopoverContent
+{
+    NSArray* contentArr = @[@"Название",
+                            @"Дата начала",
+                            @"Дата завершения",
+                            @"Факт. дата начала",
+                            @"Факт. дата завершения",
+                            @"Ответственный",
+                            @"Помещение",
+                            @"Система",
+                            @"Статус"];
+    
+    return contentArr;
+}
+
+- (TasksSortingType) getTasksSortingType
+{
+    return [[ConfigurationManager sharedInstance] getTasksSortingType];
+}
+
+- (ContentAccedingSortingType) getTasksSortingAscendingType
+{
+    return [[ConfigurationManager sharedInstance] getAccedingTypeForTasks];
+}
 
 #pragma mark - Internal methods -
 
