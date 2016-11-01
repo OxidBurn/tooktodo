@@ -58,7 +58,6 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     UITableViewCell* cell = [UITableViewCell new];
-
     
     AboutProjectCellsFactory* factory = [AboutProjectCellsFactory new];
     
@@ -92,6 +91,8 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
             break;
     }
     
+    [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
+
     return cell;
 }
 

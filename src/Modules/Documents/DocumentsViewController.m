@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
+#import "Macroses.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -19,7 +20,6 @@
 @interface DocumentsViewController()
 
 // properties
-
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 // methods
@@ -42,6 +42,10 @@
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ДОКУМЕНТЫ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
+    
+    // Handing 'Menu' button according to device
+    if ( IS_PHONE == NO )
+        self.navigationItem.leftBarButtonItem = nil;
 }
 
 

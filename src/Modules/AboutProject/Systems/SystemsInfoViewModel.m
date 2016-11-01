@@ -60,6 +60,8 @@
 {
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SystemsCellID"];
     
+    [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
+    
     cell.textLabel.attributedText = [self.model getTitleForCellAtIndex: indexPath.row];
     
     return cell;

@@ -61,6 +61,8 @@
 {
     ProjectRoleInfoTableViewCell* cell = (ProjectRoleInfoTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"RoleCellID"];
     
+    [cell setSelectionStyle: UITableViewCellSelectionStyleNone];
+
     ProjectRoles* roleInfo = [self.model getRoleInfoAtIndex: indexPath.row];
     
     cell.titleLabel.text = roleInfo.title;
