@@ -29,16 +29,16 @@
                                     <constraint firstAttribute="width" constant="445" id="csL-N7-YfM"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="XEn-2f-dBK">
-                                    <rect key="frame" x="0.0" y="70" width="445" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="70" width="320" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SystemsCellID" id="DWZ-fT-MML">
-                                        <rect key="frame" x="0.0" y="28" width="445" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWZ-fT-MML" id="0L8-lI-gUo">
-                                            <frame key="frameInset" width="445" height="41"/>
+                                            <frame key="frameInset" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -151,6 +151,14 @@
             </objects>
             <point key="canvasLocation" x="2832.421875" y="4389.0625"/>
         </scene>
+        <!--AddNewRole-->
+        <scene sceneID="gcb-rW-9Tf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddNewRole" id="39i-CI-IXX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37Y-qh-rLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1664" y="3200"/>
+        </scene>
         <!--РОЛИ-->
         <scene sceneID="hee-39-HIO">
             <objects>
@@ -169,16 +177,16 @@
                                     <constraint firstAttribute="width" constant="445" id="HhR-5u-LOg"/>
                                 </constraints>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="lCy-Bp-rP1">
-                                    <rect key="frame" x="0.0" y="70" width="445" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="70" width="320" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RoleCellID" rowHeight="42" id="s71-zr-KiX" customClass="ProjectRoleInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="445" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s71-zr-KiX" id="YbP-EA-5Om">
-                                            <frame key="frameInset" width="445" height="41"/>
+                                            <frame key="frameInset" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaq-Yn-TvH">
@@ -374,6 +382,9 @@
                     <navigationItem key="navigationItem" title="РОЛИ" id="uFC-RE-bKi">
                         <barButtonItem key="rightBarButtonItem" image="Add" id="5O0-Gh-EFZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="39i-CI-IXX" kind="presentation" identifier="ShowAddNewRoleControllerSegueID" modalPresentationStyle="formSheet" id="iu1-6v-5Jp"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -494,16 +505,16 @@
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="n7s-d0-4LS">
-                                    <rect key="frame" x="0.0" y="230" width="445" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="230" width="320" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.90196078430000004" green="0.90980392160000001" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InformationCellID" textLabel="Jdy-Qo-flC" detailTextLabel="Jih-Rd-ZfD" style="IBUITableViewCellStyleValue1" id="ZR9-1U-pgV">
-                                        <rect key="frame" x="0.0" y="28" width="445" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZR9-1U-pgV" id="VFx-Og-uhr">
-                                            <frame key="frameInset" width="445" height="41"/>
+                                            <frame key="frameInset" width="320" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdy-Qo-flC">
@@ -517,7 +528,7 @@
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jih-Rd-ZfD">
-                                                    <frame key="frameInset" minX="394" minY="14" width="36" height="16"/>
+                                                    <frame key="frameInset" minX="269" minY="14" width="36" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -531,10 +542,10 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AboutProjectMapCellId" rowHeight="160" id="Dve-hR-qDy" customClass="AboutProjectMapCell">
-                                        <rect key="frame" x="0.0" y="70" width="445" height="160"/>
+                                        <rect key="frame" x="0.0" y="70" width="320" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dve-hR-qDy" id="e3d-If-W44">
-                                            <frame key="frameInset" width="445" height="159"/>
+                                            <frame key="frameInset" width="320" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ahr-jf-0Hj">
@@ -831,7 +842,7 @@
                 <navigationController storyboardIdentifier="AboutProjectiPhoneReference" automaticallyAdjustsScrollViewInsets="NO" id="elg-i0-rbR" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="iNt-CU-dUD" customClass="BaseNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="iNt-CU-dUD" customClass="BaseNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941330000001" green="0.74117648599999997" blue="0.71764707569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -850,7 +861,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZDZ-SD-KxX" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wKk-3R-Po6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wKk-3R-Po6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
