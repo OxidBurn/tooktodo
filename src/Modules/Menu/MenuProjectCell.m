@@ -47,16 +47,14 @@
     {
         self.selectedStateImage.hidden = !info.isSelected.boolValue;
     }
+    
+    if ( info.isSelected.boolValue )
+    {
+        self.contentView.backgroundColor = [UIColor colorWithRed: 0.20 green: 0.25 blue: 0.31 alpha: 1.00];
+    }
     else
     {
-        if ( info.isSelected.boolValue )
-        {
-            self.contentView.backgroundColor = [UIColor colorWithRed: 0.20 green: 0.25 blue: 0.31 alpha: 1.00];
-        }
-        else
-        {
-            self.contentView.backgroundColor = [UIColor colorWithRed:0.15 green:0.18 blue:0.22 alpha:1.00];
-        }
+        self.contentView.backgroundColor = [UIColor colorWithRed:0.15 green:0.18 blue:0.22 alpha:1.00];
     }
 }
 
