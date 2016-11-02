@@ -12,6 +12,7 @@
 #import "TaskFilterContentManager.h"
 #import "ProjectInfo+CoreDataProperties.h"
 #import "DataManager+ProjectInfo.h"
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFilterModel()
 
@@ -20,6 +21,10 @@
 
 @property (strong, nonatomic) ProjectInfo* projectInfo;
 
+@property (strong, nonatomic) TaskFilterConfiguration* filterConfig;
+
+@property (strong, nonatomic) TaskFilterContentManager* contentManager;
+
 // methods
 
 
@@ -27,7 +32,18 @@
 
 @implementation TaskFilterModel
 
+
 #pragma mark - Properties -
+
+- (TaskFilterContentManager*) contentManager
+{
+    if ( _contentManager == nil )
+    {
+        _contentManager = [TaskFilterContentManager new];
+    }
+    
+    return _contentManager;
+}
 
 - (ProjectInfo*) projectInfo
 {
@@ -42,12 +58,20 @@
 {
     if ( _tableViewContent == nil )
     {
-        TaskFilterContentManager* manager = [TaskFilterContentManager new];
-        
-        _tableViewContent = [manager getTableViewContentForProjectInfo: self.projectInfo];
+        _tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig];
     }
     
     return _tableViewContent;
+}
+
+- (TaskFilterConfiguration*) filterConfig
+{
+    if ( _filterConfig == nil )
+    {
+        _filterConfig = [TaskFilterConfiguration new];
+    }
+    
+    return _filterConfig;
 }
 
 @end

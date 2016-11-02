@@ -16,6 +16,7 @@
 #import "OSSwitchTableCellFactory.h"
 #import "FilterSubtaskCellFactory.h"
 #import "CustomExpandedIconCellFactory.h"
+#import "OSGroupOfUserInfoCell.h"
 
 @implementation TaskFilterMainFactory
 

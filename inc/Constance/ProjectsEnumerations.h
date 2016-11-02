@@ -141,7 +141,19 @@ typedef NS_ENUM(NSUInteger, SectionsList) {
     SectionOne,
     SectionTwo,
     SectionThree,
+    SectionFour,
     
+};
+
+
+typedef NS_ENUM(NSUInteger, TaskFilterCellId)
+{
+    TaskFilterSingleUserCell,
+    TaskFilterRightDetailCell,
+    TaskFilterSwitchCell,
+    TaskFilterCustomDisclosureCell,
+    TaskFilterFilterByTermsCell,
+    TaskFilterGroupOfUsersCell,
 };
 
 #endif /* ProjectsEnumerations_h */
