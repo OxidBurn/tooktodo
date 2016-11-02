@@ -91,8 +91,11 @@
     if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueId"] )
     {
         ProjectTask* task = [self.viewModel getSelectedProjectTask];
-
-        self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        
+        if ( self.taskDetailVC == nil )
+        {
+            self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        }
         
         [self.taskDetailVC fillSelectedTask: task];
     }

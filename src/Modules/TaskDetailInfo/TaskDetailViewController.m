@@ -37,6 +37,7 @@
 
 @implementation TaskDetailViewController
 
+
 #pragma mark - Lyfe cycle -
 
 - (void) viewDidLoad
@@ -60,6 +61,7 @@
     [self.taskTableView reloadData];
 }
 
+
 #pragma mark - Properties -
 
 - (TaskDetailViewModel*) viewModel
@@ -71,6 +73,7 @@
     
     return _viewModel;
 }
+
 
 #pragma mark - Public -
 
@@ -101,8 +104,8 @@
 {
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
-        
         UINavigationController* destinationNavController = segue.destinationViewController;
+        
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         
         vc.delegate = self;
