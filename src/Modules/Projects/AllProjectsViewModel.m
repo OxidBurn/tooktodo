@@ -224,6 +224,12 @@ static CGFloat sectionHeaderHeight = 30;
                                blockSelf.didSelectedProject(selectedProject.projectID);
                            
                        }];
+    
+    if (IS_PHONE == NO)
+    {
+        if (self.dismissController)
+            self.dismissController();
+    }
 }
 
 #pragma mark - Sorting popover delegate -
