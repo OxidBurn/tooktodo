@@ -37,6 +37,7 @@
 
 @implementation TaskDetailViewController
 
+
 #pragma mark - Lyfe cycle -
 
 - (void) viewDidLoad
@@ -53,6 +54,14 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+    [super viewWillAppear: animated];
+    
+    [self.taskTableView reloadData];
+}
+
+
 #pragma mark - Properties -
 
 - (TaskDetailViewModel*) viewModel
@@ -65,11 +74,27 @@
     return _viewModel;
 }
 
+
 #pragma mark - Public -
 
 - (TaskStatusType) getStatusType
 {
     return [self.viewModel getTaskStatus];
+}
+
+- (void) fillSelectedTask: (ProjectTask*) task
+{
+    [self.viewModel fillSelectedTask: task
+                      withCompletion: ^(BOOL isSuccess) {
+         
+         [self refreshTableView];
+     }];
+    
+}
+
+- (void) refreshTableView
+{
+    [self.taskTableView reloadData];
 }
 
 #pragma mark - Segue -
@@ -79,8 +104,8 @@
 {
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
-        
         UINavigationController* destinationNavController = segue.destinationViewController;
+        
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         
         vc.delegate = self;

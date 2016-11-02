@@ -16,6 +16,8 @@
 #import "MainTabBarController.h"
 #import "ProjectTasksViewModel.h"
 #import "PopoverViewController.h"
+#import "TaskDetailViewController.h"
+#import "ProjectTask+CoreDataClass.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (nonatomic, strong) ProjectTasksViewModel* viewModel;
+
+@property (strong, nonatomic) TaskDetailViewController* taskDetailVC;
 
 // Outlets
 
@@ -77,6 +81,24 @@
     [super viewWillAppear: animated];
     
     [self updateContent];
+}
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueId"] )
+    {
+        ProjectTask* task = [self.viewModel getSelectedProjectTask];
+        
+        if ( self.taskDetailVC == nil )
+        {
+            self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        }
+        
+        [self.taskDetailVC fillSelectedTask: task];
+    }
 }
 
 

@@ -95,6 +95,14 @@
     return [self.model getTaskStatus];
 }
 
+- (void) fillSelectedTask: (ProjectTask*) task
+           withCompletion: (CompletionWithSuccess) completion
+{
+    [self.model fillSelectedTask: task
+                  withCompletion: completion];
+    
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

@@ -40,7 +40,24 @@
 {
     self.titleLabel.text           = info.title;
     self.descriptionLabel.text     = [NSString stringWithFormat: @"%@ %@ %@", (info.street) ? info.street : @"", (info.building) ? info.building : @"", (info.apartment) ? info.apartment : @""];
-    self.selectedStateImage.hidden = !info.isSelected.boolValue;
+    
+    // If used iPhone need to show selected checkmark image
+    // in iPad case: fill background with lighter color
+    if (IS_PHONE )
+    {
+        self.selectedStateImage.hidden = !info.isSelected.boolValue;
+    }
+    else
+    {
+        if ( info.isSelected.boolValue )
+        {
+            self.contentView.backgroundColor = [UIColor colorWithRed: 0.20 green: 0.25 blue: 0.31 alpha: 1.00];
+        }
+        else
+        {
+            self.contentView.backgroundColor = [UIColor colorWithRed:0.15 green:0.18 blue:0.22 alpha:1.00];
+        }
+    }
 }
 
 @end

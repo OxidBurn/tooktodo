@@ -46,7 +46,7 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
     [super loadView];
     
     self.sideMenuYPadding = (IS_PHONE) ? 20.0f : 0.0f;
-    self.sideMenuXPadding = (IS_PHONE) ? -10.0f : 22;
+    self.sideMenuXPadding = (IS_PHONE) ? -10.0f : 14;
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
     self.slidingViewController.customAnchoredGestures = @[];

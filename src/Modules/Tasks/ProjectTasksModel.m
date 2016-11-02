@@ -28,6 +28,8 @@ static NSString* contentKey = @"contentInfoKey";
 
 @property (nonatomic, strong) NSArray* stages;
 
+@property (strong, nonatomic) ProjectTask* selectedTask;
+
 // methods
 
 
@@ -36,6 +38,11 @@ static NSString* contentKey = @"contentInfoKey";
 @implementation ProjectTasksModel
 
 #pragma mark - Public methods -
+
+- (ProjectTask*) getSelectedProjectTask
+{
+    return self.selectedTask;
+}
 
 - (RACSignal*) updateContent
 {
@@ -87,21 +94,7 @@ static NSString* contentKey = @"contentInfoKey";
                                    }];
 }
 
-- (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path
-{
-    id cellInfo = [self getInfoForCellAtIndexPath: path];
-    
-    if ( [cellInfo isKindOfClass: [ProjectTaskStage class]] )
-    {
-        return @"StageTypeCellID";
-    }
-    else
-    {
-        return @"TaskInfoCellID";
-    }
-    
-    return @"";
-}
+
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
@@ -111,22 +104,16 @@ static NSString* contentKey = @"contentInfoKey";
     return cellInfo;
 }
 
-
-- (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path
-{
-    NSString* cellID = [self getCellIDAtIndexPath: path];
-    
-    if ( [cellID isEqualToString: @"StageTypeCellID"] )
-        return 55.0f;
-    else
-        return 139.0f;
-}
-
 - (void) markTaskAsSelected: (NSIndexPath*) index
 {
-    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+//    ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
+//    
+//    [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
+//                                            withSelectedState: YES];
     
-    [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
+    self.selectedTask = [self getInfoForCellAtIndexPath: index];
+    
+    [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedTask
                                             withSelectedState: YES];
 }
 

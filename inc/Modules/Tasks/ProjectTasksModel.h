@@ -18,12 +18,8 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
 
-- (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path;
-
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             indexPath
                          withCompletion: (CompletionWithSuccess) completion;
-
-- (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path;
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
@@ -39,8 +35,12 @@
 
 - (TasksSortingType) getTasksSortingType;
 
+
 - (NSArray*) applyTasksSortingType: (TasksSortingType)           type
                            toArray: (NSArray*)                   array
                         isAcceding: (ContentAccedingSortingType) isAcceding;
+
+- (ProjectTask*) getSelectedProjectTask;
+
 
 @end

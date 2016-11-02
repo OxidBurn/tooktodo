@@ -13,6 +13,7 @@
 #import "StageTitleView.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
+#import "TaskDetailInfoCell.h"
 #import "ProjectsEnumerations.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "DataManager+Tasks.h"
@@ -81,6 +82,11 @@
     return tasks;
 }
 
+- (ProjectTask*) getSelectedProjectTask
+{
+    return [self.model getSelectedProjectTask];
+}
+
 #pragma mark - UITable view data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -103,7 +109,7 @@
 - (CGFloat)    tableView: (UITableView*) tableView
  heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return [self.model getCellHeightAtIndexPath: indexPath];
+    return 139.f;
 }
 
 - (nullable UIView*) tableView: (UITableView*) tableView
@@ -139,7 +145,7 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: [self.model getCellIDAtIndexPath: indexPath]];
+    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView dequeueReusableCellWithIdentifier: @"TaskInfoCellID"];
     
     cell.cellIndexPath = indexPath;
     
