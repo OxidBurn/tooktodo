@@ -243,12 +243,6 @@
     self.addContactViewModel.roleID = value.sort;
 }
 
-//- (void) didSelectRole: (ProjectRoleType*) value
-//{
-//    self.roleLabel.text             = value.title;
-//    self.addContactViewModel.roleID = value.roleTypeID;
-//}
-
 #pragma mark - UITableViewDelegate methods -
 
 - (void) tableView: (UITableView*)     tableView

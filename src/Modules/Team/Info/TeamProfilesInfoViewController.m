@@ -108,9 +108,9 @@
                     sender: sender];
     
     
-    if ([segue.identifier isEqualToString: @"ShowRolesControllerID"])
+    if ([segue.identifier isEqualToString: @"ShowRolesControllerIDiPhone"] || [segue.identifier isEqualToString: @"ShowRoleControllerIDiPad"])
     {
-        RolesViewController* controller = segue.destinationViewController;
+        RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [controller setRolesViewControllerDelegate: self.viewModel];
     }
@@ -199,6 +199,7 @@
         
     };
 }
+
 
 #pragma mark - TeamProfileViewModelDelegate Methods -
 
