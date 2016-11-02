@@ -8,13 +8,15 @@
 
 // Frameworks
 #import "ReactiveCocoa.h"
-
+#import "ProjectTask+CoreDataClass.h"
 
 @interface AllTasksViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 // properties
 
 @property (copy, nonatomic) void(^didShowTaskInfo)();
+
+- (ProjectTask*) getSelectedProjectTask;
 
 // methods
 
