@@ -8,6 +8,22 @@
 
 #import "FilterByTermsCellFactory.h"
 
+// Classes
+#import "FilterByTermsCell.h"
+
 @implementation FilterByTermsCellFactory
+
+
+#pragma mark - Public -
+
+- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)    title
+                                           withDetail: (NSString*)    detail
+                                         forTableView: (UITableView*) tableView
+{
+    FilterByTermsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FilterByTermsCellID"];
+    
+    return cell;
+}
+
 
 @end

@@ -85,11 +85,11 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     if ( _cellsIdArray == nil )
     {
         _cellsIdArray = @[ @"SingleUserInfoCellID",
-                                     @"RightDetailCellID",
-                                     @"SwitchCellID",
-                                     @"CustomDisclosureIconCellID",
-                                     @"FilterByTermsCellID",
-                                     @"GroupOfUsersCellID" ];
+                           @"RightDetailCellID",
+                           @"SwitchCellID",
+                           @"CustomDisclosureIconCellID",
+                           @"FilterByTermsCellID",
+                           @"GroupOfUsersCellID" ];
     }
     
     return _cellsIdArray;
@@ -132,7 +132,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     NSString* filterByOwnerRowCellId = [self determineCellIdForContent: filterConfig.byOwner];
     
-    filterByOwnerRow.title      = self.allTitlesArray[FilterByOwnerRow];
+    filterByOwnerRow.title      = self.allTitlesArray[SectionOne][FilterByOwnerRow];
     filterByOwnerRow.cellTypeId = [self determineCellTypeIdForCellId: filterByOwnerRowCellId];
     filterByOwnerRow.cellId     = filterByOwnerRowCellId;
     filterByOwnerRow.detail     = @"Не выбрано";
@@ -141,7 +141,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     NSString* filterByResponsibleRowCellId = [self determineCellIdForContent: filterConfig.byResponsible];
 
-    filterByResponsibleRow.title  = self.allTitlesArray[FilterByResponsibleRow];
+    filterByResponsibleRow.title  = self.allTitlesArray[SectionOne][FilterByResponsibleRow];
     filterByOwnerRow.cellTypeId   = [self determineCellTypeIdForCellId: filterByResponsibleRowCellId];
     filterByResponsibleRow.cellId = filterByResponsibleRowCellId;
     filterByResponsibleRow.detail = @"Не выбрано";
@@ -150,16 +150,17 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     NSString* filterByClaimingRowCellId = [self determineCellIdForContent: filterConfig.byClaiming];
 
-    filterByClaimingRow.title   = self.allTitlesArray[FilterByClaimingRow];
+    filterByClaimingRow.title   = self.allTitlesArray[SectionOne][FilterByClaimingRow];
     filterByOwnerRow.cellTypeId = [self determineCellTypeIdForCellId: filterByClaimingRowCellId];
     filterByClaimingRow.cellId  = filterByClaimingRowCellId;
     filterByClaimingRow.detail  = @"Не выбрано";
     
     TaskFilterRowContent* filterByTaskStatusRow = [TaskFilterRowContent new];
     
-    filterByTaskStatusRow.title  = self.allTitlesArray[FilterByTaskStatusRow];
-    filterByTaskStatusRow.cellId = self.cellsIdArray[TaskFilterRightDetailCell];
-    filterByTaskStatusRow.detail = @"Не выбрано";
+    filterByTaskStatusRow.title      = self.allTitlesArray[SectionOne][FilterByTaskStatusRow];
+    filterByTaskStatusRow.cellTypeId = TaskFilterRightDetailCell;
+    filterByTaskStatusRow.cellId     = self.cellsIdArray[TaskFilterRightDetailCell];
+    filterByTaskStatusRow.detail     = @"Не выбрано";
     
     NSArray* sectionOneContent = @[ filterByOwnerRow,
                                     filterByResponsibleRow,
@@ -173,15 +174,17 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 {
     TaskFilterRowContent* filterByTermsRow = [TaskFilterRowContent new];
     
-    filterByTermsRow.title  = self.allTitlesArray[FilterByTermsRow];
-    filterByTermsRow.cellId = self.cellsIdArray[TaskFilterCustomDisclosureCell];
-    filterByTermsRow.detail = @"Не выбрано";
+    filterByTermsRow.title      = self.allTitlesArray[SectionTwo][FilterByTermsRow];
+    filterByTermsRow.cellTypeId = TaskFilterCustomDisclosureCell;
+    filterByTermsRow.cellId     = self.cellsIdArray[TaskFilterCustomDisclosureCell];
+    filterByTermsRow.detail     = @"Не выбрано";
     
     TaskFilterRowContent* filterByFactTermsRow = [TaskFilterRowContent new];
     
-    filterByFactTermsRow.title  = self.allTitlesArray[FilterByFactTermsRow];
-    filterByFactTermsRow.cellId = self.cellsIdArray[TaskFilterCustomDisclosureCell];
-    filterByFactTermsRow.detail = @"Не выбрано";
+    filterByFactTermsRow.title      = self.allTitlesArray[SectionTwo][FilterByFactTermsRow];
+    filterByFactTermsRow.cellTypeId = TaskFilterCustomDisclosureCell;
+    filterByFactTermsRow.cellId     = self.cellsIdArray[TaskFilterCustomDisclosureCell];
+    filterByFactTermsRow.detail     = @"Не выбрано";
     
     NSArray* sectionTwoContent = @[ filterByTermsRow, filterByFactTermsRow ];
     
@@ -192,21 +195,24 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 {
     TaskFilterRowContent* filterByWorkAreaRow = [TaskFilterRowContent new];
     
-    filterByWorkAreaRow.title  = self.allTitlesArray[FilterByWorkAreaRow];
-    filterByWorkAreaRow.cellId = self.cellsIdArray[TaskFilterRightDetailCell];
-    filterByWorkAreaRow.detail = @"Не выбрано";
+    filterByWorkAreaRow.title      = self.allTitlesArray[SectionThree][FilterByWorkAreaRow];
+    filterByWorkAreaRow.cellTypeId = TaskFilterRightDetailCell;
+    filterByWorkAreaRow.cellId     = self.cellsIdArray[TaskFilterRightDetailCell];
+    filterByWorkAreaRow.detail     = @"Не выбрано";
     
     TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
     
-    filterBySystemRow.title  = self.allTitlesArray[FilterBySystemRow];
-    filterBySystemRow.cellId = self.cellsIdArray[TaskFilterRightDetailCell];
-    filterBySystemRow.detail = @"Не выбрано";
+    filterBySystemRow.title      = self.allTitlesArray[SectionThree][FilterBySystemRow];
+    filterBySystemRow.cellTypeId = TaskFilterRightDetailCell;
+    filterBySystemRow.cellId     = self.cellsIdArray[TaskFilterRightDetailCell];
+    filterBySystemRow.detail     = @"Не выбрано";
     
     TaskFilterRowContent* filterByTaskTypeRow = [TaskFilterRowContent new];
     
-    filterByTaskTypeRow.title  = self.allTitlesArray[FilterByTaskTypeRow];
-    filterByTaskTypeRow.cellId = self.cellsIdArray[TaskFilterRightDetailCell];
-    filterByTaskTypeRow.detail = @"Не выбрано";
+    filterByTaskTypeRow.title      = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
+    filterByTaskTypeRow.cellTypeId = TaskFilterRightDetailCell;
+    filterByTaskTypeRow.cellId     = self.cellsIdArray[TaskFilterRightDetailCell];
+    filterByTaskTypeRow.detail     = @"Не выбрано";
     
     NSArray* sectionThree = @[ filterByWorkAreaRow,
                                filterBySystemRow,
@@ -219,21 +225,24 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 {
     TaskFilterRowContent* filterByDoneTasksRow = [TaskFilterRowContent new];
     
-    filterByDoneTasksRow.title  = self.allTitlesArray[FilterByDoneTasksRow];
-    filterByDoneTasksRow.cellId = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByDoneTasksRow.detail = @"Не выбрано";
+    filterByDoneTasksRow.title      = self.allTitlesArray[SectionFour][FilterByDoneTasksRow];
+    filterByDoneTasksRow.cellTypeId = TaskFilterSwitchCell;
+    filterByDoneTasksRow.cellId     = self.cellsIdArray[TaskFilterSwitchCell];
+    filterByDoneTasksRow.detail     = @"Не выбрано";
     
     TaskFilterRowContent* filterByCanceledTasksRow = [TaskFilterRowContent new];
     
-    filterByCanceledTasksRow.title  = self.allTitlesArray[FilterByCanceledTasksRow];
-    filterByCanceledTasksRow.cellId = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByCanceledTasksRow.detail = @"Не выбрано";
+    filterByCanceledTasksRow.title      = self.allTitlesArray[SectionFour][FilterByCanceledTasksRow];
+    filterByCanceledTasksRow.cellTypeId = TaskFilterSwitchCell;
+    filterByCanceledTasksRow.cellId     = self.cellsIdArray[TaskFilterSwitchCell];
+    filterByCanceledTasksRow.detail     = @"Не выбрано";
     
     TaskFilterRowContent* filterByOverdueTasksRow = [TaskFilterRowContent new];
     
-    filterByOverdueTasksRow.title  = self.allTitlesArray[FilterByOverdueTasksRow];
-    filterByOverdueTasksRow.cellId = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByOverdueTasksRow.detail = @"Не выбрано";
+    filterByOverdueTasksRow.title      = self.allTitlesArray[SectionFour][FilterByOverdueTasksRow];
+    filterByOverdueTasksRow.cellTypeId = TaskFilterSwitchCell;
+    filterByOverdueTasksRow.cellId     = self.cellsIdArray[TaskFilterSwitchCell];
+    filterByOverdueTasksRow.detail     = @"Не выбрано";
     
     NSArray* sectionFour = @[ filterByDoneTasksRow,
                               filterByCanceledTasksRow,
@@ -251,7 +260,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     if ( arrayToCheck == nil || arrayToCheck.count == 0 )
     {
-        cellId = self.cellsIdArray[RightDetailCell];
+        cellId = self.cellsIdArray[TaskFilterRightDetailCell];
     } else
         if ( arrayToCheck.count == 1 )
         {
@@ -264,9 +273,9 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 
 - (TaskFilterCellId) determineCellTypeIdForCellId: (NSString*) cellId
 {
-    NSUInteger* cellIdType = [self.cellsIdArray indexOfObject: cellId];
+    NSUInteger index = [self.cellsIdArray indexOfObject: cellId];
     
-    return cellIdType;
+    return index;
 }
                                
 @end

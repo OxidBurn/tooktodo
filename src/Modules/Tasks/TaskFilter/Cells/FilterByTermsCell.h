@@ -10,4 +10,7 @@
 
 @interface FilterByTermsCell : UITableViewCell
 
+// methods
+
+
 @end

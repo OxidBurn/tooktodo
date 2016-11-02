@@ -27,4 +27,10 @@
 
 @property (strong, nonatomic) NSString* avatarUrl;
 
+@property (strong, nonatomic) NSArray* selectesUsers;
+
+@property (assign, nonatomic) NSUInteger switchControllTag;
+
+@property (assign, nonatomic) BOOL isOn;
+
 @end

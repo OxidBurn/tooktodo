@@ -74,4 +74,22 @@
     return _filterConfig;
 }
 
+
+#pragma mark - Public -
+
+- (TaskFilterRowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
+{
+    TaskFilterRowContent* content = self.tableViewContent[indexPath.section][indexPath.row];
+    
+    return content;
+}
+
+- (NSUInteger) getNumberOfRowsIsSection: (NSUInteger) section
+{
+    NSUInteger numberOfRows = [self.tableViewContent[section] count];
+    
+    return numberOfRows;
+}
+
+
 @end

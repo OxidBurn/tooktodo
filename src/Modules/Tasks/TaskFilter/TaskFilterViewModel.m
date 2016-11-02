@@ -46,7 +46,7 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return 1;
+    return [self.model getNumberOfRowsIsSection: section];
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -56,11 +56,25 @@
     
     TaskFilterMainFactory* factory = [TaskFilterMainFactory new];
     
+    TaskFilterRowContent* content = [self.model getRowContentForIndexPath: indexPath];
     
+    cell = [factory createCellForTableView: tableView
+                            withRowContent: content];
     
-    return nil;
+    return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 0;
+    
+    if ( section != SectionOne )
+    {
+        height = 10;
+    }
+    
+    return height;
+}
 
 #pragma mark - UITableViewDelegate methods -
 

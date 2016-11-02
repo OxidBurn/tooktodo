@@ -13,5 +13,10 @@
 
 @interface FilterByTermsCellFactory : NSObject
 
+// methods
+
+- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)    title
+                                           withDetail: (NSString*)    detail
+                                         forTableView: (UITableView*) tableView;
 
 @end
