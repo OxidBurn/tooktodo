@@ -12,6 +12,7 @@
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 #import "AllTasksViewModel.h"
+#import "ProjectTask+CoreDataClass.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
 @property (strong, nonatomic) AllTasksViewModel* viewModel;
+
+
 
 // Methods
 
@@ -82,6 +85,24 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueID"] )
+    {
+        ProjectTask* task = [self.viewModel getSelectedProjectTask];
+        
+        self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        
+        [self.taskDetailVC fillSelectedTask: task];
+        
+        [self.taskDetailVC refreshTableView];
+    }
 }
 
 

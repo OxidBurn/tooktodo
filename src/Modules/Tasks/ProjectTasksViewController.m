@@ -16,7 +16,6 @@
 #import "MainTabBarController.h"
 #import "ProjectTasksViewModel.h"
 #import "PopoverViewController.h"
-#import "TaskDetailViewController.h"
 #import "ProjectTask+CoreDataClass.h"
 
 // Categories
@@ -31,8 +30,6 @@
 @property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (nonatomic, strong) ProjectTasksViewModel* viewModel;
-
-@property (strong, nonatomic) TaskDetailViewController* taskDetailVC;
 
 // Outlets
 
@@ -92,12 +89,11 @@
     {
         ProjectTask* task = [self.viewModel getSelectedProjectTask];
         
-        if ( self.taskDetailVC == nil )
-        {
-            self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
-        }
+        self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [self.taskDetailVC fillSelectedTask: task];
+        
+        [self.taskDetailVC refreshTableView];
     }
 }
 

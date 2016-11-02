@@ -14,6 +14,7 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
 #import "ProjectsEnumerations.h"
+#import "DataManager+Tasks.h"
 
 @interface AllTasksViewModel()
 
@@ -49,6 +50,10 @@
     return [self.model updateContent];
 }
 
+- (ProjectTask*) getSelectedProjectTask
+{
+    return [DataManagerShared getSelectedTask];
+}
 
 #pragma mark - UITable view data source -
 
@@ -121,8 +126,12 @@
         
         [blockSelf.model markTaskAsSelected: index];
         
-        if ( blockSelf.didShowTaskInfo )
-            blockSelf.didShowTaskInfo();
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            if ( blockSelf.didShowTaskInfo )
+                blockSelf.didShowTaskInfo();
+            
+        });
     };
     
     return cell;

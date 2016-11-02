@@ -9,10 +9,10 @@
 
 //Classes
 #import "BaseMainViewController.h"
-
+#import "TaskDetailViewController.h"
 
 @interface ProjectTasksViewController : BaseMainViewController
 
-
+@property (strong, nonatomic) TaskDetailViewController* taskDetailVC;
 
 @end
