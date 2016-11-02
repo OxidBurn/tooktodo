@@ -39,4 +39,8 @@
 
 - (TasksSortingType) getTasksSortingType;
 
+- (NSArray*) applyTasksSortingType: (TasksSortingType)           type
+                           toArray: (NSArray*)                   array
+                        isAcceding: (ContentAccedingSortingType) isAcceding;
+
 @end

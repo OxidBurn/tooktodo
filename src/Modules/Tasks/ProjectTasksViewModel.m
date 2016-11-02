@@ -14,12 +14,17 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "DataManager+Tasks.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface ProjectTasksViewModel()
 
 // properties
 
 @property (strong, nonatomic) ProjectTasksModel* model;
+
+@property (nonatomic, strong) NSArray* tasksArray;
 
 // methods
 
@@ -40,11 +45,40 @@
     return _model;
 }
 
+- (NSArray *)tasksArray
+{
+    if (_tasksArray == nil)
+    {
+        _tasksArray = [self getTasks];
+    }
+    
+    return _tasksArray;
+}
+
 #pragma mark - Public methods -
 
 - (RACSignal*) updateContent
 {
-    return [self.model updateContent];
+    RACSignal* updateSignal = [self.model updateContent];
+    
+    return updateSignal;
+}
+
+- (void) applySortingForTaskList: (TasksSortingType)           type
+                      isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    self.tasksArray = [self.model applyTasksSortingType: type
+                                                toArray: self.tasksArray
+                                             isAcceding: isAcceding];
+}
+
+- (NSArray*) getTasks
+{
+    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
+    
+    NSArray* tasks = currentProject.tasks.allObjects;
+    
+    return tasks;
 }
 
 #pragma mark - UITable view data source -
@@ -111,7 +145,8 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
+    
+    [cell fillInfoForCell: self.tasksArray[indexPath.row]];
     
     __weak typeof(self) blockSelf = self;
     
@@ -123,6 +158,7 @@
             blockSelf.didShowTaskInfo();
         
     };
+    
     
     return cell;
 }
@@ -182,12 +218,22 @@
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
 {
+    [self applySortingForTaskList: index
+                       isAcceding: DiminutionSortingType];
     
+    //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
 }
 
 - (void) didGrowSortingAtIndex: (NSUInteger) index
 {
+    [self applySortingForTaskList: index
+                       isAcceding: GrowsSortingType];
     
+     //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
 }
 
 @end

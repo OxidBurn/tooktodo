@@ -155,7 +155,84 @@ static NSString* contentKey = @"contentInfoKey";
     return [[ConfigurationManager sharedInstance] getAccedingTypeForTasks];
 }
 
+- (NSArray*) applyTasksSortingType: (TasksSortingType)           type
+                           toArray: (NSArray*)                   array
+                        isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    [[ConfigurationManager sharedInstance] saveSortedTasks: type
+                                         withAscendingType: isAcceding];
+    
+    return [self applyDefaultSorting: array
+                         isAcsending: isAcceding];
+}
+
 #pragma mark - Internal methods -
+
+- (NSArray*) applyDefaultSorting: (NSArray*) array
+                     isAcsending: (BOOL)     isAcceding
+{
+    NSSortDescriptor* sortingDescriptor = [NSSortDescriptor sortDescriptorWithKey: [self getSortingKey]
+                                                                        ascending: isAcceding];
+    
+    NSArray* sortedArray = [array sortedArrayUsingDescriptors: @[sortingDescriptor]];
+    
+    return sortedArray;
+}
+
+- (NSString*) getSortingKey
+{
+    TasksSortingType type = [[ConfigurationManager sharedInstance] getTasksSortingType];
+    
+    switch (type)
+    {
+        case SortByName:
+        {
+            return @"title";
+            break;
+        }
+        case SortByStartDay:
+        {
+            return @"startDay";
+            break;
+        }
+        case SortByEndDay:
+        {
+            return @"endDate";
+            break;
+        }
+        case SortByFactStartDay:
+        {
+            return @"startDay";
+            break;
+        }
+        case SortByFactEndDay:
+        {
+            return @"closedDate";
+            break;
+        }
+        case SortByResponsible:
+        {
+            return @"responsible";
+            break;
+        }
+        case SortByRoom:
+        {
+            return @"room";
+            break;
+        }
+        case SortBySystem:
+        {
+            return @"workArea";
+            break;
+        }
+        case SortByStatus:
+        {
+            return @"status";
+            break;
+        }
+    }
+}
+
 
 - (void) updateAllTasksData
 {

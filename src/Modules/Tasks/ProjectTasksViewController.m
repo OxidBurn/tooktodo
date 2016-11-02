@@ -107,6 +107,16 @@
         [blockSelf performSegueWithIdentifier: @"ShowTaskDetailSegueId"
                                        sender: blockSelf];
     };
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        self.viewModel.reloadTable = ^(){
+            
+            [blockSelf.tasksByProjectTableView reloadData];
+            NSLog(@"data is reloaded");
+        };
+    });
+    
 }
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
