@@ -81,6 +81,8 @@ typedef NS_ENUM(NSInteger, PermissionType)
     self.sendEmailToTeamMemberBtn.tag = indexPath.row;
     
     [self checkIfPhoneNumberExists: teamInfo];
+    
+    
     [self chechIfEmailExists:       teamInfo];
 
     
@@ -109,6 +111,8 @@ typedef NS_ENUM(NSInteger, PermissionType)
     {
         self.callToTeamMemberBtn.hidden = YES;
     }
+    else
+        self.callToTeamMemberBtn.hidden = NO;
 }
 
 - (void) chechIfEmailExists: (FilledTeamInfo*) teamInfo
