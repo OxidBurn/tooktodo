@@ -101,16 +101,6 @@ typedef NS_ENUM(NSInteger, Permission)
     return _assignment;
 }
 
-/*- (FilledTeamInfo*) memberInfo
-{
-    if (_memberInfo == nil)
-    {
-        _memberInfo = [FilledTeamInfo new];
-        [_memberInfo fillTeamInfo: self.assignment];
-    }
-    
-    return _memberInfo;
-}*/
 
 #pragma mark - Public methods -
 
@@ -244,6 +234,8 @@ typedef NS_ENUM(NSInteger, Permission)
 
 - (void) updateMemberRole: (ProjectRoles*) role
 {
+    // TODO: Need to implement updating on the server side
+    
     [DataManagerShared updateTeamMemberRole: role
                              withCompletion: ^(BOOL isSuccess) {
                                  
@@ -253,6 +245,7 @@ typedef NS_ENUM(NSInteger, Permission)
                                  
                                  teamMember.role = role.title;
                                  
+                                 self.memberInfo = teamMember;
                             }];
 }
 

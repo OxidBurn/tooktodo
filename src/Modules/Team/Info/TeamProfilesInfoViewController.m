@@ -75,21 +75,6 @@
     
 }
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.reloadTableView = ^(){
-        
-        [blockSelf.profileInfoTableView reloadData];
-        
-    };
-    
-}
-
-
 
 #pragma mark - Memory managment -
 
@@ -106,7 +91,6 @@
 {
     [super prepareForSegue: segue
                     sender: sender];
-    
     
     if ([segue.identifier isEqualToString: @"ShowRolesControllerIDiPhone"] || [segue.identifier isEqualToString: @"ShowRoleControllerIDiPad"])
     {
@@ -138,7 +122,7 @@
                                                                target: self.navigationController.navigationController
                                                                action: @selector(popViewControllerAnimated:)];
     
-    self.navigationItem.leftBarButtonItem = backBtn;
+    self.navigationItem.leftBarButtonItem                                  = backBtn;
     self.navigationController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
