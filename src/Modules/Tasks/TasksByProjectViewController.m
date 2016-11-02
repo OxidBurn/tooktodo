@@ -21,7 +21,6 @@
 @interface TasksByProjectViewController () <UISplitViewControllerDelegate>
 
 // Properties
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
@@ -43,9 +42,6 @@
 - (void) loadView
 {
     [super loadView];
-    
-    // Setup main navigation delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
@@ -147,10 +143,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -

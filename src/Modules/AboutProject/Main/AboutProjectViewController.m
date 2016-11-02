@@ -20,10 +20,6 @@
 @interface AboutProjectViewController ()
 
 // properties
-
-@property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
-
-
 @property (weak, nonatomic) IBOutlet UIButton* addNewRoleBtn;
 @property (strong, nonatomic) AboutProjectViewModel* viewModel;
 
@@ -35,14 +31,12 @@
 
 @implementation AboutProjectViewController
 
+
 #pragma mark - Life cycle -
 
 - (void) loadView
 {
     [super loadView];
-    
-    // setup delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"О ПРОЕКТЕ"

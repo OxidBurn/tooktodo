@@ -27,8 +27,6 @@
 
 // Properties
 
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
-
 @property (nonatomic, strong) ProjectTasksViewModel* viewModel;
 
 // Outlets
@@ -56,9 +54,6 @@
 {
     [super loadView];
     
-    // Setup main navigation delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
-    
     // Binding UI components with model
     [self bindingUI];
     
@@ -67,14 +62,12 @@
         self.navigationItem.leftBarButtonItem = nil;
     }
 
-    
     // handling splitVC
     self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
 {
- 
     [super viewWillAppear: animated];
     
     [self updateContent];
@@ -129,10 +122,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 
