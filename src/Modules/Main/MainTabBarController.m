@@ -36,6 +36,11 @@
     self.mainTabBariPhone.delegate     = self;
     self.mainTabBariPad.delegate       = self;
     self.mainTabBariPhone.taskDelegate = self;
+    
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(showLogin)
+                                name: @"ShowLoginScreen"
+                              object: nil];
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -51,6 +56,21 @@
         {
             [self showWelcomeTour];
         }
+}
+
+
+#pragma mark - Memory managment -
+
+- (void) didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (void)dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"ShowLoginScreen"
+                                 object: nil];
 }
 
 #pragma mark - Properties -
