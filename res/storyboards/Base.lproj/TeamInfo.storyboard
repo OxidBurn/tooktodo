@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u2J-1H-gG4">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="u2J-1H-gG4">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -510,7 +510,7 @@
                         <outlet property="teamInfoTableView" destination="wH7-Or-ohX" id="Iu1-8W-drU"/>
                         <segue destination="GaQ-U9-9nd" kind="showDetail" identifier="ShowTeamMemberInfoID" id="8lN-3b-fBV"/>
                         <segue destination="mLF-vz-Ve0" kind="presentation" identifier="ShowAddMemberInviteiPad" modalPresentationStyle="formSheet" id="iLC-li-Rfu"/>
-                        <segue destination="mLF-vz-Ve0" kind="show" identifier="ShowAddMemberInviteiPhone" id="Kfn-YL-g5w"/>
+                        <segue destination="mLF-vz-Ve0" kind="presentation" identifier="ShowAddMemberInviteiPhone" modalTransitionStyle="coverVertical" id="Kfn-YL-g5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HYM-GZ-fdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1589,7 +1589,7 @@
         <image name="Phone" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iLC-li-Rfu"/>
+        <segue reference="Kfn-YL-g5w"/>
         <segue reference="SBO-RK-4r3"/>
         <segue reference="TQd-Xn-YKq"/>
     </inferredMetricsTieBreakers>
