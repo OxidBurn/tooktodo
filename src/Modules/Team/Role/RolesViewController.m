@@ -105,19 +105,14 @@
 
 - (void) saveSelectedRole
 {
-    if ( self.delegate )
-        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
-    
-    if (IS_PHONE)
+ 
+    if (self.delegate )
     {
-        [self.navigationController popViewControllerAnimated: YES];
+        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
     }
     
-    else
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    
-    
+    [self.navigationController popViewControllerAnimated: YES];
+   
 }
 
 @end
