@@ -34,6 +34,7 @@
 
 @implementation TaskDetailModel
 
+
 #pragma mark - Properties -
 
 - (NSArray*) taskTableViewContent
@@ -46,16 +47,6 @@
     return _taskTableViewContent;
 }
 
-//- (ProjectTask*) task
-//{
-//    if ( _task == nil )
-//    {
-//        _task = [DataManagerShared getSelectedTask];
-//    }
-//    
-//    return _task;
-//}
-
 - (TaskDetailContentManager*) contentManager
 {
     if ( _contentManager == nil )
@@ -66,7 +57,7 @@
     return _contentManager;
 }
 
-- (void) fillSelectedTask: (ProjectTask*) task
+- (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion
 {
     self.task = task;
@@ -76,6 +67,7 @@
     if (completion)
         completion(YES);
 }
+
 
 #pragma mark - Public -
 

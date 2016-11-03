@@ -30,8 +30,6 @@
 @property (weak, nonatomic) IBOutlet UITableView* teamInfoTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
 
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
-
 @property (strong, nonatomic) TeamInfoViewModel* viewModel;
 @property (nonatomic, strong) InviteInfo*        inviteInfo;
 
@@ -54,9 +52,6 @@
 - (void) loadView
 {
     [super loadView];
-    
-    // setup delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Binding controller UI
     [self bindingUI];
@@ -208,10 +203,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 - (IBAction) onAddMemberBarButtonItem: (UIBarButtonItem*) sender

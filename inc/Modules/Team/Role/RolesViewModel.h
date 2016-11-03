@@ -20,7 +20,5 @@
 
 - (RACSignal*) updateRolesInfo;
 
-//- (ProjectRoleType*) getSelectedItem;
-
 
 @end

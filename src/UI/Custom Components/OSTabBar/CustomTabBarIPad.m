@@ -189,8 +189,6 @@ static BOOL isReplaced = NO;
             [self.delegate showMainMenu];
         }
     }
-    
-//    sender.selected = !sender.selected;
 }
 
 - (IBAction) didSelectedFeed: (UIButton*) sender

@@ -636,7 +636,12 @@
                   withSelectedState: (BOOL)                  isSelected
                      withCompletion: (CompletionWithSuccess) completion
 {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        if ( isSelected ) // if user selected new task, need to check and deselect all tasks of the project in DB
+        {
+            [self deselectAllSelectedTasksInContext: localContext];
+        }
         
         ProjectTask* selectedTask = [ProjectTask MR_findFirstByAttribute: @"taskID"
                                                                withValue: task.taskID
@@ -651,6 +656,18 @@
                               completion(contextDidSave);
                           
                       }];
+}
+
+- (void) deselectAllSelectedTasksInContext: (NSManagedObjectContext*) context
+{
+    NSArray* selectedProjectTasks = [ProjectTask MR_findAllWithPredicate: [NSPredicate predicateWithFormat: @"isSelected == YES"]
+                                                               inContext: context];
+    
+    [selectedProjectTasks enumerateObjectsUsingBlock: ^(ProjectTask* task, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        task.isSelected = @(NO);
+        
+    }];
 }
 
 - (ProjectTask*) getSelectedTask

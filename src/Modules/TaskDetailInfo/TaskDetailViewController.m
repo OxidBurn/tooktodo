@@ -13,6 +13,8 @@
 #import "ProjectsEnumerations.h"
 #import "ChangeStatusViewController.h"
 #import "DataManager+Tasks.h"
+#import "ProjectTasksViewController.h"
+#import "TasksByProjectViewController.h"
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UISplitViewControllerDelegate>
 
@@ -37,7 +39,17 @@
 
 @implementation TaskDetailViewController
 
+
 #pragma mark - Lyfe cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    if ( IS_PHONE == NO)
+        self.navigationItem.leftBarButtonItem = nil;
+
+}
 
 - (void) viewDidLoad
 {
@@ -60,6 +72,7 @@
     [self.taskTableView reloadData];
 }
 
+
 #pragma mark - Properties -
 
 - (TaskDetailViewModel*) viewModel
@@ -71,6 +84,7 @@
     
     return _viewModel;
 }
+
 
 #pragma mark - Public -
 
@@ -101,8 +115,8 @@
 {
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
-        
         UINavigationController* destinationNavController = segue.destinationViewController;
+        
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         
         vc.delegate = self;
@@ -116,7 +130,8 @@
 {
     [self.viewModel deselectTask];
     
-    [self.navigationController popViewControllerAnimated: YES];
+    //TODO: Need to make more cleaner solution
+    [self.navigationController.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender
@@ -187,9 +202,18 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     return YES;
 }
 
-- (BOOL) splitViewController: (UISplitViewController*) splitViewController showDetailViewController: (UIViewController*)      vc
+- (BOOL) splitViewController: (UISplitViewController*) splitViewController
+    showDetailViewController: (UIViewController*)      vc
                       sender: (id)                     sender
 {
+    if ( ([sender isKindOfClass: [ProjectTasksViewController class]] &&
+         [((ProjectTasksViewController*)sender).taskDetailVC isKindOfClass: [TaskDetailViewController class]]) ||
+        ([sender isKindOfClass: [TasksByProjectViewController class]] &&
+         [((TasksByProjectViewController*)sender).taskDetailVC isKindOfClass: [TaskDetailViewController class]]))
+    {
+        return NO;
+    }
+    
     return YES;
 }
 

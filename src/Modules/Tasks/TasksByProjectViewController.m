@@ -12,6 +12,7 @@
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
 #import "AllTasksViewModel.h"
+#import "ProjectTask+CoreDataClass.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -20,11 +21,12 @@
 @interface TasksByProjectViewController () <UISplitViewControllerDelegate>
 
 // Properties
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 
 @property (strong, nonatomic) AllTasksViewModel* viewModel;
+
+
 
 // Methods
 
@@ -40,9 +42,6 @@
 - (void) loadView
 {
     [super loadView];
-    
-    // Setup main navigation delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
@@ -82,6 +81,24 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+
+#pragma mark - Segue -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueID"] )
+    {
+        ProjectTask* task = [self.viewModel getSelectedProjectTask];
+        
+        self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        
+        [self.taskDetailVC fillSelectedTask: task];
+        
+        [self.taskDetailVC refreshTableView];
+    }
 }
 
 
@@ -126,10 +143,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -

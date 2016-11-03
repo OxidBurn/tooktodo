@@ -278,9 +278,11 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
 - (void) didSelectRole: (ProjectRoles*) value
 {
     [self.model updateMemberRole: value];
+    
     self.cell.detailTextLabel.text = value.title;
     
     [self.model reloadContent];
+    
     if ( self.reloadTableView )
         self.reloadTableView();
    

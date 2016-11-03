@@ -16,7 +16,6 @@
 #import "MainTabBarController.h"
 #import "ProjectTasksViewModel.h"
 #import "PopoverViewController.h"
-#import "TaskDetailViewController.h"
 #import "ProjectTask+CoreDataClass.h"
 
 // Categories
@@ -28,11 +27,7 @@
 
 // Properties
 
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
-
 @property (nonatomic, strong) ProjectTasksViewModel* viewModel;
-
-@property (strong, nonatomic) TaskDetailViewController* taskDetailVC;
 
 // Outlets
 
@@ -59,9 +54,6 @@
 {
     [super loadView];
     
-    // Setup main navigation delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
-    
     // Binding UI components with model
     [self bindingUI];
     
@@ -70,14 +62,12 @@
         self.navigationItem.leftBarButtonItem = nil;
     }
 
-    
     // handling splitVC
     self.splitViewController.delegate = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
 {
- 
     [super viewWillAppear: animated];
     
     [self updateContent];
@@ -91,10 +81,12 @@
     if ( [segue.identifier isEqualToString: @"ShowTaskDetailSegueId"] )
     {
         ProjectTask* task = [self.viewModel getSelectedProjectTask];
-
+        
         self.taskDetailVC = (TaskDetailViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [self.taskDetailVC fillSelectedTask: task];
+        
+        [self.taskDetailVC refreshTableView];
     }
 }
 
@@ -130,10 +122,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 

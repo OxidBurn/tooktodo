@@ -20,8 +20,6 @@
 
 // properties
 
-@property (weak, nonatomic) id <ProjectsControllersDelegate> delegate;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* editUserInfoBtn;
 
 // methods
@@ -37,9 +35,6 @@
 - (void) loadView
 {
     [super loadView];
-    
-    // setup delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     [self showInfoScreenWithID: @"UserDetailScreen"];
     
@@ -86,10 +81,7 @@
 
 - (void) leftBarButtonActionForiPhone
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 - (void) leftBarButtonActionForiPad

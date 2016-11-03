@@ -75,21 +75,6 @@
     
 }
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.reloadTableView = ^(){
-        
-        [blockSelf.profileInfoTableView reloadData];
-        
-    };
-    
-}
-
-
 
 #pragma mark - Memory managment -
 
@@ -107,10 +92,9 @@
     [super prepareForSegue: segue
                     sender: sender];
     
-    
-    if ([segue.identifier isEqualToString: @"ShowRolesControllerID"])
+    if ([segue.identifier isEqualToString: @"ShowRolesControllerIDiPhone"] || [segue.identifier isEqualToString: @"ShowRoleControllerIDiPad"])
     {
-        RolesViewController* controller = segue.destinationViewController;
+        RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [controller setRolesViewControllerDelegate: self.viewModel];
     }
@@ -138,10 +122,8 @@
                                                                target: self.navigationController.navigationController
                                                                action: @selector(popViewControllerAnimated:)];
     
-    self.navigationItem.leftBarButtonItem = backBtn;
+    self.navigationItem.leftBarButtonItem                                  = backBtn;
     self.navigationController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
-//    self.navigationController.navigationBar.topItem.backBarButtonItem = backBtn;
 }
 
 #pragma mark - Public -
@@ -201,6 +183,7 @@
         
     };
 }
+
 
 #pragma mark - TeamProfileViewModelDelegate Methods -
 
@@ -301,9 +284,9 @@
 collapseSecondaryViewController:(UIViewController *)secondaryViewController
   ontoPrimaryViewController:(UIViewController *)primaryViewController {
     
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]]
-        && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[TeamProfilesInfoViewController class]]) {
-        
+    if ([secondaryViewController isKindOfClass: [UINavigationController class]]
+        && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass: [TeamProfilesInfoViewController class]])
+    {    
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
         

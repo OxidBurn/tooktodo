@@ -107,6 +107,8 @@
     [self.commentsMark setValue: content.commentsNumber
                        withType: TaskMarkerCommentsType];
     
+    [self handleBackgroundImageForTaskAccess: content.isHiddenTask];
+    
 }
 
 #pragma mark - Internal -
@@ -158,7 +160,7 @@
 
 #pragma mark - Helpers -
 
-- (UIImage*) getBackgroundImageForTaskAccess: (BOOL) isHiddenTask
+- (void) handleBackgroundImageForTaskAccess: (BOOL) isHiddenTask
 {
     UIImage* image;
     
@@ -171,7 +173,8 @@
         image = [UIImage imageNamed: @"Eye"];
     }
     
-    return image;
+    [self.accessBtn setImage: image
+                    forState: UIControlStateNormal];
 }
 
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate

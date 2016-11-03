@@ -187,6 +187,12 @@
         [blockSelf.view endEditing: YES];
         
     };
+    
+    self.viewModel.dismissController = ^(){
+      
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+    };
 }
 
 - (CGRect) getFrameForSortingPopover

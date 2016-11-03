@@ -22,6 +22,8 @@
 
 @property (copy, nonatomic) void(^endSearching)();
 
+@property (nonatomic, copy) void(^dismissController)();
+
 // methods
 
 - (void) updateProjectsContent;
