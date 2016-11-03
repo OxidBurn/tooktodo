@@ -58,7 +58,7 @@
 
 #pragma mark - Properties -
 
-- (AboutProjectViewModel *)viewModel
+- (AboutProjectViewModel*) viewModel
 {
     if ( _viewModel == nil )
     {

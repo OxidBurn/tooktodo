@@ -11,6 +11,10 @@
 // Classes
 #import "InfoiPadViewModel.h"
 
+// Category
+#import "BaseMainViewController+NavigationTitle.h"
+#import "UIViewController+Focus.h"
+
 @interface InfoiPadTableViewController ()
 
 // outlets
@@ -26,6 +30,15 @@
 
 
 #pragma mark - Lyfe cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    // Setup navigation
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"О ПРОЕКТЕ"
+                                               withSubTitle: [self.viewModel getProjectName]];
+}
 
 - (void) viewDidLoad
 {

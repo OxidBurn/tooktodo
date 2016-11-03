@@ -15,6 +15,9 @@
 #import "InfoiPadModel.h"
 #import "AboutProjectTableViewCell.h"
 
+// Categories
+#import "DataManager+ProjectInfo.h"
+
 static NSString* cellId = @"AboutProjectiPadCellId";
 
 @interface InfoiPadViewModel()
@@ -55,7 +58,12 @@ static NSString* cellId = @"AboutProjectiPadCellId";
     return _allCells;
 }
 
-#pragma mark - Public -
+#pragma mark - Public methods -
+
+- (NSString*) getProjectName
+{
+    return [DataManagerShared getSelectedProjectName];;
+}
 
 #pragma mark - Table view data source
 

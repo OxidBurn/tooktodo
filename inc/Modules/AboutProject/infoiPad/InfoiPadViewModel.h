@@ -13,4 +13,6 @@
 // properties
 @property (nonatomic, copy) void(^performSegueWithId)(NSString* segueId);
 
+- (NSString*) getProjectName;
+
 @end
