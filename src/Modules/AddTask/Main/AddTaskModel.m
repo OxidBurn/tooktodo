@@ -198,6 +198,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             
             cell = [factory returnRightDetailCellWithTitle: content.title
                                             withDetailText: content.detail
+                                        withSelectedDetail: YES
                                               forTableView: tableView];
         }
             break;

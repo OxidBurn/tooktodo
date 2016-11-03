@@ -16,5 +16,6 @@
 // methods
 - (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    titleText
                                      withDetailText: (NSString*)    detailText
+                                 withSelectedDetail: (BOOL)         isSelected
                                        forTableView: (UITableView*) tableView;
 @end

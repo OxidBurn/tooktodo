@@ -29,6 +29,7 @@
 
 @implementation FilterByTermsCell
 
+
 #pragma mark - Actions -
 
 - (IBAction) onShowEndDateOptions: (UIButton*) sender
@@ -39,6 +40,17 @@
 - (IBAction) onShowStartDateOptions: (UIButton*) sender
 {
     
+}
+
+
+#pragma mark - Public -
+
+- (void) fillCellWithTitle: (NSString*) titleText
+                withDetail: (NSString*) detailText
+{
+    self.titleLabel.text     = titleText;
+    self.endDateLabel.text   = detailText;
+    self.startDateLabel.text = detailText;
 }
 
 @end

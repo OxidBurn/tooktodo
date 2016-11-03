@@ -22,6 +22,9 @@
 {
     FilterByTermsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FilterByTermsCellID"];
     
+    [cell fillCellWithTitle: title
+                 withDetail: detail];
+    
     return cell;
 }
 

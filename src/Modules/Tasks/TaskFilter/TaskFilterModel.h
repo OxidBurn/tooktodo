@@ -18,4 +18,8 @@
 
 - (NSUInteger) getNumberOfRowsIsSection: (NSUInteger) section;
 
+- (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath;
+
+- (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath;
+
 @end

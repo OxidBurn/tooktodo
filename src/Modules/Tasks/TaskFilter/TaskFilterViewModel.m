@@ -17,6 +17,8 @@
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
 
+@property (strong, nonatomic) NSArray* termsCellsIndexesArray;
+
 // methods
 
 
@@ -35,6 +37,18 @@
     
     return _model;
 }
+
+- (NSArray*) termsCellsIndexesArray
+{
+    if ( _termsCellsIndexesArray == nil )
+    {
+        _termsCellsIndexesArray = @[ [NSIndexPath indexPathForRow: 0 inSection: SectionTwo],
+                                     [NSIndexPath indexPathForRow: 1 inSection: SectionTwo]];
+    }
+    
+    return _termsCellsIndexesArray;
+}
+
 
 #pragma mark - UITableViewDataSource methods -
 
@@ -64,7 +78,8 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)    tableView: (UITableView*) tableView
+heightForHeaderInSection: (NSInteger)    section
 {
     CGFloat height = 0;
     
@@ -76,9 +91,41 @@
     return height;
 }
 
+- (CGFloat)   tableView: (UITableView*) tableView
+heightForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    CGFloat height = 41;
+    
+    if ( indexPath.section == SectionTwo )
+        height = [self.model getRowHeightForRowAtIndexPath: indexPath];
+    
+    return height;
+}
+
+
 #pragma mark - UITableViewDelegate methods -
 
-
+- (void)      tableView: (UITableView*) tableView
+didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath
+                             animated: YES];
+    
+    switch ( indexPath.section)
+    {
+        case SectionTwo:
+        {
+            [self.model didSelectTermsCellForIndexPath: indexPath];
+            
+            [tableView reloadRowsAtIndexPaths: self.termsCellsIndexesArray
+                             withRowAnimation: UITableViewRowAnimationFade];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 
 
 @end

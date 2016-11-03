@@ -91,5 +91,44 @@
     return numberOfRows;
 }
 
+- (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    NSArray* sectionContent = self.tableViewContent[indexPath.section];
+    
+    TaskFilterRowContent* content = sectionContent[indexPath.row];
+    
+    return content.rowHeight;
+}
+
+- (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath
+{
+    NSArray* sectionContent = self.tableViewContent[indexPath.section];
+    
+    TaskFilterRowContent* content = sectionContent[indexPath.row];
+    
+    BOOL isExpanded = [content.cellId isEqualToString: @"FilterByTermsCellID"];
+    
+    NSString* newCellId = isExpanded ? @"CustomDisclosureIconCellID" : @"FilterByTermsCellID";
+    
+    CGFloat newRowHeight = isExpanded ? 50 : 110;
+    
+    NSUInteger cellIdType = isExpanded? TaskFilterCustomDisclosureCell : TaskFilterFilterByTermsCell;
+    
+    content.rowHeight  = newRowHeight;
+    content.cellId     = newCellId;
+    content.cellTypeId = cellIdType;
+    
+    NSMutableArray* newContentArray = self.tableViewContent.mutableCopy;
+    
+    NSMutableArray* newSectionContent = sectionContent.mutableCopy;
+    
+    [newSectionContent replaceObjectAtIndex: indexPath.row
+                                 withObject: content];
+    
+    [newContentArray replaceObjectAtIndex: indexPath.section
+                               withObject: newSectionContent];
+    
+    self.tableViewContent = newContentArray.copy;
+}
 
 @end
