@@ -156,4 +156,20 @@ typedef NS_ENUM(NSUInteger, TaskFilterCellId)
     TaskFilterGroupOfUsersCell,
 };
 
+
+typedef NS_ENUM(NSUInteger, FilterByTermsCellType)
+{
+    FilterByTermsType,
+    FilterByFactTermsType,
+};
+
+
+typedef NS_ENUM(NSUInteger, FilterByDateViewControllerType)
+{
+    ByTermsBeginning,
+    ByTermsEnding,
+    ByFactTermsBeginning,
+    ByFactTermsEnding,
+};
+
 #endif /* ProjectsEnumerations_h */

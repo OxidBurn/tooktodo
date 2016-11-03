@@ -8,22 +8,23 @@
 
 #import "FilterByTermsCellFactory.h"
 
-// Classes
-#import "FilterByTermsCell.h"
-
 @implementation FilterByTermsCellFactory
 
 
 #pragma mark - Public -
 
-- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)    title
-                                           withDetail: (NSString*)    detail
-                                         forTableView: (UITableView*) tableView
+- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)             title
+                                           withDetail: (NSString*)             detail
+                                         forTableView: (UITableView*)          tableView
+                                         withCellType: (FilterByTermsCellType) cellType
+                                         withDelegate: (id)                    delegate
 {
     FilterByTermsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FilterByTermsCellID"];
     
     [cell fillCellWithTitle: title
-                 withDetail: detail];
+                 withDetail: detail
+               withCellType: cellType
+               withDelegate: delegate];
     
     return cell;
 }

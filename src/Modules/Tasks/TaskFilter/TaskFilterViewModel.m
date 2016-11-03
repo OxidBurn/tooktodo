@@ -11,8 +11,9 @@
 // Classes
 #import "TaskFilterModel.h"
 #import "TaskFilterMainFactory.h"
+#import "FilterByTermsCell.h"
 
-@interface TaskFilterViewModel()
+@interface TaskFilterViewModel() <FilterByTermsCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
@@ -73,7 +74,8 @@
     TaskFilterRowContent* content = [self.model getRowContentForIndexPath: indexPath];
     
     cell = [factory createCellForTableView: tableView
-                            withRowContent: content];
+                            withRowContent: content
+                              withDelegate: self];
     
     return cell;
 }
@@ -127,5 +129,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     }
 }
 
+
+
+#pragma mark - FilterByTermsCellDelegate methods -
+
+- (void) showFilterByDatesWithType: (FilterByDateViewControllerType) controllerType
+{
+    if ( self.showFilterByTermsWithType )
+        self.showFilterByTermsWithType(controllerType);
+}
 
 @end

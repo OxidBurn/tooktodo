@@ -398,6 +398,9 @@
 		F725FBE41DC3AA9C00793EA3 /* AboutProjectMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */; };
 		F725FBE71DC3AD9C00793EA3 /* AboutProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */; };
 		F725FBEA1DC3B34600793EA3 /* AboutProjectCellsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */; };
+		F748D4901DCB8ABC00C8EAC6 /* FilterByDatesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D48F1DCB8ABC00C8EAC6 /* FilterByDatesViewController.m */; };
+		F748D4931DCB8AEB00C8EAC6 /* FilterByDatesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D4921DCB8AEB00C8EAC6 /* FilterByDatesViewModel.m */; };
+		F748D4961DCB8AF600C8EAC6 /* FilterByDatesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F748D4951DCB8AF600C8EAC6 /* FilterByDatesModel.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
 		F75D31211DCA1A9D00375457 /* FilterByTermsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F75D310F1DCA1A9D00375457 /* FilterByTermsCell.m */; };
@@ -1179,6 +1182,12 @@
 		F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectModel.m; sourceTree = "<group>"; };
 		F725FBE81DC3B34600793EA3 /* AboutProjectCellsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectCellsFactory.h; sourceTree = "<group>"; };
 		F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectCellsFactory.m; sourceTree = "<group>"; };
+		F748D48E1DCB8ABC00C8EAC6 /* FilterByDatesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByDatesViewController.h; sourceTree = "<group>"; };
+		F748D48F1DCB8ABC00C8EAC6 /* FilterByDatesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByDatesViewController.m; sourceTree = "<group>"; };
+		F748D4911DCB8AEB00C8EAC6 /* FilterByDatesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByDatesViewModel.h; sourceTree = "<group>"; };
+		F748D4921DCB8AEB00C8EAC6 /* FilterByDatesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByDatesViewModel.m; sourceTree = "<group>"; };
+		F748D4941DCB8AF600C8EAC6 /* FilterByDatesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByDatesModel.h; sourceTree = "<group>"; };
+		F748D4951DCB8AF600C8EAC6 /* FilterByDatesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByDatesModel.m; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
 		F75295B61DB65B8500534482 /* TaskDetailContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailContentManager.m; sourceTree = "<group>"; };
 		F75295B81DB6895A00534482 /* TaskDetailContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailContentManager.h; path = ../TaskDetailContentManager.h; sourceTree = "<group>"; };
@@ -3274,9 +3283,23 @@
 			path = infoiPad;
 			sourceTree = "<group>";
 		};
+		F748D48D1DCB8ABC00C8EAC6 /* FilterByDates */ = {
+			isa = PBXGroup;
+			children = (
+				F748D48E1DCB8ABC00C8EAC6 /* FilterByDatesViewController.h */,
+				F748D48F1DCB8ABC00C8EAC6 /* FilterByDatesViewController.m */,
+				F748D4911DCB8AEB00C8EAC6 /* FilterByDatesViewModel.h */,
+				F748D4921DCB8AEB00C8EAC6 /* FilterByDatesViewModel.m */,
+				F748D4941DCB8AF600C8EAC6 /* FilterByDatesModel.h */,
+				F748D4951DCB8AF600C8EAC6 /* FilterByDatesModel.m */,
+			);
+			path = FilterByDates;
+			sourceTree = "<group>";
+		};
 		F75D310C1DCA1A9D00375457 /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				F748D48D1DCB8ABC00C8EAC6 /* FilterByDates */,
 				F75D310D1DCA1A9D00375457 /* Cells */,
 				F75D31121DCA1A9D00375457 /* Factories */,
 				F75D31191DCA1A9D00375457 /* TaskFilterContentManager.h */,
@@ -3498,6 +3521,7 @@
 				56D06F411DAFBDC0008E9AC0 /* OnRevisionModel.m in Sources */,
 				56D06FAC1DAFBDC0008E9AC0 /* OSFlexibleTextFieldCellFactory.m in Sources */,
 				56D06EC51DAFBDC0008E9AC0 /* ProjectRegionModel.m in Sources */,
+				F748D4901DCB8ABC00C8EAC6 /* FilterByDatesViewController.m in Sources */,
 				56D06FB21DAFBDC0008E9AC0 /* OSCellWithCheckmark.m in Sources */,
 				56D06F331DAFBDC0008E9AC0 /* ProjectInfoCell.m in Sources */,
 				56D06F261DAFBDC0008E9AC0 /* MainTabBarController.m in Sources */,
@@ -3614,6 +3638,7 @@
 				56D06EF01DAFBDC0008E9AC0 /* AvatarHelper.m in Sources */,
 				56D06EFD1DAFBDC0008E9AC0 /* SystemInfoViewController.m in Sources */,
 				F75D31231DCA1A9D00375457 /* CustomExpandedIconCellFactory.m in Sources */,
+				F748D4931DCB8AEB00C8EAC6 /* FilterByDatesViewModel.m in Sources */,
 				564DE38C1DB0F76A00BF9817 /* TaskStatusActionModel.m in Sources */,
 				56D06FB71DAFBDC0008E9AC0 /* OSMarkedRightDetailCell.m in Sources */,
 				56D06E981DAFBDC0008E9AC0 /* ProjectRoles.m in Sources */,
@@ -3653,6 +3678,7 @@
 				56D06F9E1DAFBDC0008E9AC0 /* AlertControllerSegue.m in Sources */,
 				564DE39A1DB100A600BF9817 /* TaskAvailableActionsList+CoreDataClass.m in Sources */,
 				56D06EDA1DAFBDC0008E9AC0 /* TaskSubTasksModel.m in Sources */,
+				F748D4961DCB8AF600C8EAC6 /* FilterByDatesModel.m in Sources */,
 				56D06F201DAFBDC0008E9AC0 /* RecoverySuccessViewController.m in Sources */,
 				56D06EC11DAFBDC0008E9AC0 /* DefaultRoleModel.m in Sources */,
 				56D06FC41DAFBDC0008E9AC0 /* TabBarSegue.m in Sources */,

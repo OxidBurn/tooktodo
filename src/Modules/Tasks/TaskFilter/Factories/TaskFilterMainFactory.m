@@ -25,6 +25,7 @@
 
 - (UITableViewCell*) createCellForTableView: (UITableView*)           tableView
                              withRowContent: (TaskFilterRowContent*)  content
+                               withDelegate: (id)                     delegate
 {
     NSUInteger cellTypeId = content.cellTypeId;
     
@@ -82,7 +83,9 @@
             
             cell = [factory returnFilterByTermsCellWithTitle: content.title
                                                   withDetail: content.detail
-                                                forTableView: tableView];
+                                                forTableView: tableView
+                                                withCellType: content.termsType
+                                                withDelegate: delegate];
         }
             break;
             

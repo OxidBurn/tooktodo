@@ -184,6 +184,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     filterByTermsRow.detail           = @"Не выбрано";
     filterByTermsRow.detailIsSelected = NO;
     filterByTermsRow.rowHeight        = 50.f;
+    filterByTermsRow.termsType        = FilterByTermsType;
     
     TaskFilterRowContent* filterByFactTermsRow = [TaskFilterRowContent new];
     
@@ -193,6 +194,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     filterByFactTermsRow.detail           = @"Не выбрано";
     filterByFactTermsRow.detailIsSelected = NO;
     filterByFactTermsRow.rowHeight        = 50.f;
+    filterByFactTermsRow.termsType        = FilterByFactTermsType;
     
     NSArray* sectionTwoContent = @[ filterByTermsRow, filterByFactTermsRow ];
     

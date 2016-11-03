@@ -29,6 +29,7 @@
 
 
 // Methods
+- (IBAction) onShowTaskFilter: (UIBarButtonItem*) sender;
 
 - (void) bindingUI;
 
@@ -145,6 +146,15 @@
 {
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
+
+- (IBAction) onShowTaskFilter: (UIBarButtonItem*) sender
+{
+    NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: self];
+}
+
 
 #pragma mark - UISplitViewControllerDelegate methods -
 

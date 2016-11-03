@@ -21,6 +21,8 @@
 
 @property (assign, nonatomic) TaskFilterCellId cellTypeId;
 
+@property (assign, nonatomic) FilterByTermsCellType termsType;
+
 @property (strong, nonatomic) NSString* segueId;
 
 @property (strong, nonatomic) NSString* title;

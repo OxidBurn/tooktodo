@@ -18,6 +18,7 @@
 
 // methods
 - (UITableViewCell*) createCellForTableView: (UITableView*)           tableView
-                             withRowContent: (TaskFilterRowContent*)  content;
+                             withRowContent: (TaskFilterRowContent*)  content
+                               withDelegate: (id)                     delegate;
 
 @end

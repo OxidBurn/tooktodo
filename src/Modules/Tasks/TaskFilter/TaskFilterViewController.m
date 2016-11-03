@@ -12,6 +12,7 @@
 #import "TaskFilterViewModel.h"
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
+#import "FilterByDatesViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -21,7 +22,10 @@
 // properties
 @property (strong, nonatomic) TaskFilterViewModel* viewModel;
 
+@property (assign, nonatomic) FilterByDateViewControllerType controllerType;
+
 // methods
+- (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 - (IBAction) onDoneBarButton: (UIBarButtonItem*) sender;
 - (IBAction) onFilterBtn: (UIButton*) sender;
 - (IBAction) onResetBtn: (UIButton*) sender;
@@ -29,6 +33,7 @@
 @end
 
 @implementation TaskFilterViewController
+
 
 #pragma mark - Lyfe cycle -
 
@@ -38,6 +43,24 @@
     
     [self setupDefaults];
 }
+
+
+#pragma mark - Segues -
+
+- (void) prepareForSegue: (UIStoryboardSegue*) segue
+                  sender: (id)                 sender
+{
+    [super prepareForSegue: segue
+                    sender: sender];
+    
+    if ( [segue.identifier isEqualToString: @"ShowFilterByDatesSegueId"] )
+    {
+        FilterByDatesViewController* controller = [segue destinationViewController];
+        
+        [controller fillControllerType: self.controllerType];
+    }
+}
+
 
 #pragma mark - Properties -
 
@@ -51,7 +74,14 @@
     return _viewModel;
 }
 
+
 #pragma mark - Actions -
+
+- (IBAction) onBackBtn: (UIBarButtonItem*) sender
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
 
 - (IBAction) onDoneBarButton: (UIBarButtonItem*) sender
 {
@@ -80,9 +110,12 @@
     
     __weak typeof(self) blockSelf = self;
     
-    blockSelf.viewModel.reloadTableView = ^(){
+    blockSelf.viewModel.showFilterByTermsWithType = ^(FilterByDateViewControllerType controllerType){
         
-        [blockSelf.taskFilterTableView reloadData];
+        self.controllerType = controllerType;
+        
+        [self performSegueWithIdentifier: @"ShowFilterByDatesSegueId"
+                                  sender: self];
     };
 }
 

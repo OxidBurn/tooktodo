@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel* startDateLabel;
 
 // properties
+@property (assign, nonatomic) FilterByTermsCellType cellType;
 
 // methods
 - (IBAction) onShowEndDateOptions: (UIButton*) sender;
@@ -34,23 +35,67 @@
 
 - (IBAction) onShowEndDateOptions: (UIButton*) sender
 {
+    FilterByDateViewControllerType controllerType = 0;
     
+    switch ( self.cellType )
+    {
+        case FilterByTermsType:
+            
+            controllerType = ByTermsEnding;
+            
+            break;
+            
+        case FilterByFactTermsType:
+            
+            controllerType = ByFactTermsEnding;
+            
+        default:
+            break;
+    }
+    
+    if ( [self.delegate respondsToSelector: @selector(showFilterByDatesWithType:)] )
+        [self.delegate showFilterByDatesWithType: controllerType];
 }
 
 - (IBAction) onShowStartDateOptions: (UIButton*) sender
 {
+    FilterByDateViewControllerType controllerType = 0;
     
+    switch ( self.cellType )
+    {
+        case FilterByTermsType:
+            
+            controllerType = ByTermsBeginning;
+            
+            break;
+            
+        case FilterByFactTermsType:
+            
+            controllerType = ByFactTermsBeginning;
+            
+        default:
+            break;
+    }
+    
+    if ( [self.delegate respondsToSelector: @selector(showFilterByDatesWithType:)] )
+        [self.delegate showFilterByDatesWithType: controllerType];
 }
 
 
 #pragma mark - Public -
 
-- (void) fillCellWithTitle: (NSString*) titleText
-                withDetail: (NSString*) detailText
+- (void) fillCellWithTitle: (NSString*)             titleText
+                withDetail: (NSString*)             detailText
+              withCellType: (FilterByTermsCellType) cellType
+              withDelegate: (id)                    delegate
 {
     self.titleLabel.text     = titleText;
     self.endDateLabel.text   = detailText;
     self.startDateLabel.text = detailText;
+    
+    self.cellType = cellType;
+    
+    self.delegate = delegate;
 }
 
 @end
