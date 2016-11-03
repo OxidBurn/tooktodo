@@ -105,7 +105,7 @@
 {
     [self getAvailableStatusActions];
     
-    __block BOOL canCancelTask = nil;
+    __block BOOL canCancelTask = NO;
     
     if (self.availableStatusActions != nil)
     {

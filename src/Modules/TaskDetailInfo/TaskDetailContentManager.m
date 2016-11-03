@@ -108,7 +108,7 @@
     taskDetailCellContent.cellTypeIndex       = TaskDetailCellType;
     taskDetailCellContent.taskStartDate       = task.startDay;
     taskDetailCellContent.taskEndDate         = task.endDate;
-    taskDetailCellContent.isExpired           = task.isExpired;
+    taskDetailCellContent.isExpired           = task.isExpired.boolValue;
     taskDetailCellContent.status              = task.status.integerValue;
     taskDetailCellContent.taskTypeDescription = task.taskTypeDescription;
     taskDetailCellContent.workAreaShortTitle  = task.workArea.shortTitle;
@@ -250,7 +250,7 @@
     
     subtask.taskStartDate       = task.startDay;
     subtask.taskEndDate         = task.endDate;
-    subtask.isExpired           = task.isExpired;
+    subtask.isExpired           = task.isExpired.boolValue;
     subtask.status              = task.status.integerValue;
     subtask.taskTypeDescription = task.taskTypeDescription;
     subtask.workAreaShortTitle  = task.workArea.shortTitle;
