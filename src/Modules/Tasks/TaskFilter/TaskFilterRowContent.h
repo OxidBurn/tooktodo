@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) NSString* cellId;
 
+@property (assign, nonatomic) CGFloat rowHeight;
+
 @property (assign, nonatomic) TaskFilterCellId cellTypeId;
 
 @property (strong, nonatomic) NSString* segueId;
@@ -32,5 +34,7 @@
 @property (assign, nonatomic) NSUInteger switchControllTag;
 
 @property (assign, nonatomic) BOOL isOn;
+
+@property (assign, nonatomic) BOOL detailIsSelected;
 
 @end

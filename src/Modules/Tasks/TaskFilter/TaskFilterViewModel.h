@@ -13,4 +13,7 @@
 
 @interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+// properties
+@property (nonatomic, copy) void(^reloadTableView)();
+
 @end

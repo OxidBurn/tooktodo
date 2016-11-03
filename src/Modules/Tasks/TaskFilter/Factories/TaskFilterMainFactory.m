@@ -38,6 +38,7 @@
             
             cell = [factory returnRightDetailCellWithTitle: content.title
                                             withDetailText: content.detail
+                                        withSelectedDetail: content.detailIsSelected
                                               forTableView: tableView];
         }
             break;

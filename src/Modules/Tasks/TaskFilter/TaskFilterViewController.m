@@ -10,6 +10,8 @@
 
 // Classes
 #import "TaskFilterViewModel.h"
+#import "BaseMainViewController+NavigationTitle.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface TaskFilterViewController ()
 
@@ -70,8 +72,18 @@
 
 - (void) setupDefaults
 {
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ФИЛЬТР ЗАДАЧ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+    
     self.taskFilterTableView.dataSource = self.viewModel;
     self.taskFilterTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    blockSelf.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.taskFilterTableView reloadData];
+    };
 }
 
 
