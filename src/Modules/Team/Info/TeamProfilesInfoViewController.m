@@ -75,21 +75,6 @@
     
 }
 
-- (void) viewDidLoad
-{
-    [super viewDidLoad];
-    
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.reloadTableView = ^(){
-        
-        [blockSelf.profileInfoTableView reloadData];
-        
-    };
-    
-}
-
-
 
 #pragma mark - Memory managment -
 
@@ -107,10 +92,9 @@
     [super prepareForSegue: segue
                     sender: sender];
     
-    
-    if ([segue.identifier isEqualToString: @"ShowRolesControllerID"])
+    if ([segue.identifier isEqualToString: @"ShowRolesControllerIDiPhone"] || [segue.identifier isEqualToString: @"ShowRoleControllerIDiPad"])
     {
-        RolesViewController* controller = segue.destinationViewController;
+        RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
         
         [controller setRolesViewControllerDelegate: self.viewModel];
     }
@@ -138,7 +122,7 @@
                                                                target: self.navigationController.navigationController
                                                                action: @selector(popViewControllerAnimated:)];
     
-    self.navigationItem.leftBarButtonItem = backBtn;
+    self.navigationItem.leftBarButtonItem                                  = backBtn;
     self.navigationController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 }
 
@@ -199,6 +183,7 @@
         
     };
 }
+
 
 #pragma mark - TeamProfileViewModelDelegate Methods -
 

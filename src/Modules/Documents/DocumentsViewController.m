@@ -20,7 +20,6 @@
 @interface DocumentsViewController()
 
 // properties
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
 
 // methods
 
@@ -35,9 +34,6 @@
 - (void) loadView
 {
     [super loadView];
-    
-    // Main navigation delegate
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
     
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ДОКУМЕНТЫ"
@@ -59,10 +55,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 @end

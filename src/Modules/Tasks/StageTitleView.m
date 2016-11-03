@@ -32,7 +32,7 @@
 - (void) fillInfo: (ProjectTaskStage*) info
 {
     self.stageNameLabel.text    = info.title;
-    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%lu", info.tasks.count];
+    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%u", info.tasks.count];
     
     NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: info.tasks.allObjects];
     

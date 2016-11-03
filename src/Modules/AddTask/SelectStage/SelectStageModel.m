@@ -74,7 +74,7 @@
 {
     ProjectTaskStage* stage = self.stagesArray[index];
     
-    return stage.isSelected;
+    return stage.isSelected.boolValue;
 }
 
 - (void) updateLastIndexPath: (NSIndexPath*) indexPath

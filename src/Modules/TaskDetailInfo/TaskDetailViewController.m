@@ -42,6 +42,15 @@
 
 #pragma mark - Lyfe cycle -
 
+- (void) loadView
+{
+    [super loadView];
+    
+    if ( IS_PHONE == NO)
+        self.navigationItem.leftBarButtonItem = nil;
+
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];

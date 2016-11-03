@@ -49,6 +49,12 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgotBtnTopConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningTopConstraintiPad;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningHeightConstraintiPad;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraintiPad;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningHeightConstraintiPad;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordViewTopConstraintiPad;
+
 // methods
 
 /**
@@ -181,6 +187,8 @@
             
         }
         
+        if (IS_PHONE)
+        {
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
             
             self.emailWarningLable.text                = emailWarning;
@@ -203,7 +211,32 @@
             self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
             
         }];
-        
+        }
+        else
+        {
+            [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
+                
+                self.emailWarningLable.text                = emailWarning;
+                self.emailWarningLable.hidden              = (emailWarning.length == 0);
+                
+                self.emailWarningTopConstraintiPad.constant          = (emailWarning.length == 0) ? 0  : 5;
+                self.emailWarningHeightConstraintiPad.constant = (emailWarning.length == 0) ? 5  : 12;
+                self.passwordViewTopConstraintiPad.constant       = (emailWarning.length == 0) ? 0  : 0;
+                self.forgotBtnTopConstraint.constant       = (emailWarning.length == 0) ? 40 : 25;
+                
+            }];
+            
+            [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
+                
+                self.passwordWarningLabel.text                = passWarning;
+                self.passwordWarningLabel.hidden              = (passWarning.length == 0);
+                
+                self.passwordWarningHeightConstraintiPad.constant = (passWarning.length == 0) ? 5  : 12;
+                self.passwordWarningTopConstraintiPad.constant    = (passWarning.length == 0) ? 0  : 5;
+                self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
+                
+            }];
+        }
     }];
     
     [self.loginBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {

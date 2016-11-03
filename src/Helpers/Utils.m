@@ -439,7 +439,7 @@ static NSDateFormatter* defaultDateFormatter = nil;
 
 + (NSString*) generateStringOfDaysCount: (NSUInteger) count
 {
-    NSString* daysCountString = [NSString stringWithFormat: @"%ld ", count];
+    NSString* daysCountString = [NSString stringWithFormat: @"%ld ", (unsigned long)count];
     NSString* sufixString     = @"";
     
     switch (count)

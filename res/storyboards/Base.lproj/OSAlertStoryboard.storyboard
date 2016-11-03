@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="khY-CR-kSM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="khY-CR-kSM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -86,14 +87,6 @@
                                             <constraint firstAttribute="height" constant="26" id="cKe-df-hfU"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt4-gx-Uhi">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="17" id="epx-Ew-Yg2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Администратор имеет возможность управлять настройками проекта, задачами, участниками." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3H-bg-kvk">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="237" id="KES-95-Vgg"/>
@@ -129,6 +122,14 @@
                                             <constraint firstAttribute="width" constant="1" id="s9t-Sp-Sga"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tt4-gx-Uhi">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="epx-Ew-Yg2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -139,8 +140,8 @@
                                     <constraint firstAttribute="height" constant="198" id="DMb-vw-kO2"/>
                                     <constraint firstItem="Tt4-gx-Uhi" firstAttribute="leading" secondItem="7bK-tc-C9S" secondAttribute="trailing" constant="10" id="Dif-f2-AEL"/>
                                     <constraint firstAttribute="trailing" secondItem="kdk-Ct-l4V" secondAttribute="trailing" id="LRP-1Y-27f"/>
-                                    <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Tt4-gx-Uhi" secondAttribute="trailing" priority="999" constant="40" id="N5b-9V-ixj"/>
-                                    <constraint firstItem="7bK-tc-C9S" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Tfq-5h-RcJ" secondAttribute="leading" constant="37" id="QiP-Au-9Ve"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tt4-gx-Uhi" secondAttribute="trailing" constant="40" id="N5b-9V-ixj"/>
+                                    <constraint firstItem="7bK-tc-C9S" firstAttribute="leadingMargin" secondItem="Tfq-5h-RcJ" secondAttribute="leading" constant="37" id="QiP-Au-9Ve"/>
                                     <constraint firstItem="PdR-lb-aaF" firstAttribute="top" secondItem="Tfq-5h-RcJ" secondAttribute="top" constant="24" id="Ri0-aL-ygE"/>
                                     <constraint firstItem="n1l-WW-i4R" firstAttribute="top" secondItem="Tfq-5h-RcJ" secondAttribute="top" constant="158" id="VNS-aF-MDU"/>
                                     <constraint firstItem="KVR-WM-vV6" firstAttribute="leading" secondItem="Tfq-5h-RcJ" secondAttribute="leading" id="Y9s-wo-reH"/>

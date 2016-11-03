@@ -9,119 +9,67 @@
 #import "RolesViewModel.h"
 
 // Classes
+#import "OSCellWithCheckmark.h"
 #import "InviteInfo.h"
-#import "RolesService.h"
-#import "ProjectRoles.h"
-
+#import "RolesModel.h"
 
 @interface RolesViewModel()
 
-@property (nonatomic, strong) NSArray         * rolesArray;
 @property (strong, nonatomic) NSIndexPath     * lastIndexPath;
-@property (nonatomic, strong) NSString        * chosenRole;
-@property (nonatomic, strong) InviteInfo      * user;
-@property (nonatomic, strong) UITableViewCell * cell;
+@property (nonatomic, strong) RolesModel      * model;
+@property (nonatomic, strong) NSArray* indexesArray;
 
 @end
 
 @implementation RolesViewModel
 
-#pragma mark - Initialization -
-
-- (instancetype) init
-{
-    if ( self = [super init] )
-    {
-        
-    }
-    
-    return self;
-}
 
 #pragma mark - Properties -
 
-- (void) loadDefaultRolesWithCompletion: (CompletionWithSuccess) completion
+- (RolesModel*) model
 {
-    if ([UserDefaults boolForKey: @"isLoadedNewVersion"] == NO )
+    if (_model == nil)
     {
-        [[[RolesService sharedInstance] loadDefaultListOfRoles] subscribeNext: ^(id x) {
-            
-            [UserDefaults setBool: YES
-                           forKey: @"isLoadedNewVersion"];
-            [UserDefaults synchronize];
-            
-            if ( completion )
-                completion(YES);
-            
-        }];
+        _model = [RolesModel new];
     }
-    else
-    {
-        if ( completion )
-            completion(YES);
-    }
+    
+    return _model;
 }
 
 - (RACSignal*) updateRolesInfo
 {
-    @weakify(self)
-    
-    RACSignal* fetchRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [[[RolesService sharedInstance] getRolesOfTheSelectedProject] subscribeNext: ^(NSArray* roles) {
-            
-            @strongify(self)
-            
-            if ( roles.count > 0 )
-            {
-                self.rolesArray = roles;
-                
-                [subscriber sendNext: nil];
-                [subscriber sendCompleted];
-            }
-            else
-            {
-                [self loadDefaultRolesWithCompletion: ^(BOOL isSuccess) {
-                   
-                    [[[RolesService sharedInstance] getDefaultRoles] subscribeNext: ^(NSArray* roles) {
-                        
-                        self.rolesArray = roles;
-                        
-                        [subscriber sendNext: nil];
-                        [subscriber sendCompleted];
-                        
-                    }];
-                    
-                }];
-            }
-        }];
-        
-        return nil;
-    }];
-    
-    return fetchRolesSignal;
+    return [self.model updateRolesInfo];
 }
 
-
-
-- (InviteInfo*) user
+- (NSArray*) indexesArray
 {
-    if (_user == nil)
+    if (_indexesArray == nil)
     {
-        _user = [[InviteInfo alloc] init];
+        NSUInteger numberOfRows = [self.model countOfRows];
+        
+        NSMutableArray* tmp = [NSMutableArray array];
+        
+        for (NSUInteger i; i < numberOfRows; i++)
+        {
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow: i
+                                                        inSection: 0];
+            
+            [tmp addObject: indexPath];
+            
+        }
+        
+        _indexesArray = tmp.copy;
+        tmp = nil;
     }
     
-    return _user;
+    return _indexesArray;
 }
 
 #pragma mark - Public -
 
 - (ProjectRoles*) getSelectedItem;
 {
-    if ( self.lastIndexPath.row < self.rolesArray.count )
-        return self.rolesArray[self.lastIndexPath.row];
-    else
-        return nil;
+  return [self.model getSelectedItem];
 }
 
 
@@ -130,44 +78,20 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)section
 {
-    return self.rolesArray.count;
+    return [self.model countOfRows];
 }
 
 -(UITableViewCell*) tableView: (UITableView*) tableView
         cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    NSString* reuseIdentifier = @"cellID";
+    NSString* reuseIdentifier = @"checkMarkCellID";
     
-    self.cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier
-                                                forIndexPath: indexPath];
-    if (self.cell == nil)
-    {
-        self.cell = [[UITableViewCell alloc] init];
-    }
+    OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: reuseIdentifier];
     
+    [cell fillCellWithContent: [self.model getRoleNameByIndex: indexPath]
+            withSelectedState: [self.model handleSelectedStateForRole: indexPath]];
     
-    ProjectRoles* role = self.rolesArray[indexPath.row];
-    
-    self.cell.textLabel.text = role.title;
-    
-    UIFont* unselectedCustomFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                         size: 13.0f];
-    
-    UIFont* selectedCustomFont = [UIFont fontWithName: @"SFUIText-Medium"
-                                                   size: 13.0f];
-    
-    if ([indexPath compare: self.lastIndexPath] == NSOrderedSame)
-    {
-        self.cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        self.cell.textLabel.font = selectedCustomFont;
-    }
-    else
-    {
-        self.cell.accessoryType = UITableViewCellAccessoryNone;
-        self.cell.textLabel.font = unselectedCustomFont;
-    }
-    
-    return self.cell;
+    return cell;
 }
 
 #pragma mark - TableView Delegate methods -
@@ -178,10 +102,15 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    self.lastIndexPath = indexPath;
+    [self.model updateLastIndexPath: indexPath];
     
-    [tableView reloadData];
+//    [tableView reloadData];
+    
+    [tableView reloadRowsAtIndexPaths: self.indexesArray
+                     withRowAnimation: UITableViewRowAnimationFade];
 }
+
+
 
 
 @end

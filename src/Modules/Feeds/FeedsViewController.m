@@ -16,8 +16,6 @@
 
 @interface FeedsViewController ()
 
-@property (weak, nonatomic) id<ProjectsControllersDelegate> delegate;
-
 @end
 
 @implementation FeedsViewController
@@ -38,8 +36,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -67,10 +63,7 @@
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(showMainMenu)] )
-    {
-        [self.delegate showMainMenu];
-    }
+    [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
 @end

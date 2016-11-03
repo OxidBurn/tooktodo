@@ -92,16 +92,32 @@
 
 - (IBAction) onReady: (UIBarButtonItem*) sender
 {
-    if ( self.delegate )
-       [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
-    
-    [self.navigationController popViewControllerAnimated: YES];
+    [self saveSelectedRole];
 }
 
 - (IBAction) onAddRole: (UIButton*) sender
 {
-    
+    [self saveSelectedRole];
 }
 
+
+#pragma mark - Helpers -
+
+- (void) saveSelectedRole
+{
+    if ( self.delegate )
+        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
+    
+    if (IS_PHONE)
+    {
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+    
+    else
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+    
+    
+}
 
 @end

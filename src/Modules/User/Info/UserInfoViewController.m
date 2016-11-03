@@ -59,8 +59,6 @@
 {
     [super loadView];
     
-    self.delegate = (MainTabBarController*)self.navigationController.parentViewController;
-    
     [self bindingUI];
 }
 
@@ -110,10 +108,15 @@
             
         } completed: ^{
             
-            if ( [self.delegate respondsToSelector: @selector(showLogin)] )
+            if ( IS_PHONE == NO )
             {
-                [self.delegate showLogin];
+                [self dismissViewControllerAnimated: NO
+                                         completion: nil];
             }
+            
+            // Need to implement better solution, re-write with using delegates
+            [DefaultNotifyCenter postNotificationName: @"ShowLoginScreen"
+                                               object: nil];
             
         }];
         
@@ -368,7 +371,6 @@
 
 - (void) createImageControllerForSourceType: (UIImagePickerControllerSourceType) sourceType
 {
-    
     if ( [UIImagePickerController isSourceTypeAvailable: sourceType])
     {
         UIImagePickerController* picker = [[UIImagePickerController alloc] init];
@@ -376,6 +378,17 @@
         picker.delegate      = self;
         picker.allowsEditing = YES;
         picker.sourceType    = sourceType;
+        
+        if ( IS_PHONE == NO )
+        {
+            picker.modalPresentationStyle = UIModalPresentationPopover;
+            
+            UIPopoverPresentationController* imagePickerPresentation = picker.popoverPresentationController;
+            
+            imagePickerPresentation.permittedArrowDirections = UIPopoverArrowDirectionUp;
+            imagePickerPresentation.sourceView = self.view;
+            imagePickerPresentation.sourceRect = self.avatarImageView.frame;
+        }
         
         [self.parentViewController presentViewController: picker
                                                 animated: YES
