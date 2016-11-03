@@ -21,6 +21,8 @@
 
 @property (nonatomic, copy) void(^reloadTableView)();
 
+@property (nonatomic, copy) void(^dismissViewController)();
+
 - (RACSignal*) updateInfo;
 
 - (void) performActionForIndex: (NSUInteger) index;

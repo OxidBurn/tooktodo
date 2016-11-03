@@ -22,5 +22,4 @@
 
 - (void) didSelectRole: (ProjectRoles*) value; //устанавливает выбранную роль
 
-//- (void) didSelectRole: (ProjectRoleType*) value;
 @end

@@ -285,7 +285,10 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     
     if ( self.reloadTableView )
         self.reloadTableView();
-   
+    
+    if (self.dismissViewController)
+        self.dismissViewController();
+    
 }
 
 #pragma mark - Model delegate methods -

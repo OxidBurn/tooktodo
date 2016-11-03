@@ -65,6 +65,14 @@
     {
         [self setupBackButtonUI];
     }
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.dismissViewController = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+    };
 }
 
 - (void) viewWillAppear: (BOOL) animated
