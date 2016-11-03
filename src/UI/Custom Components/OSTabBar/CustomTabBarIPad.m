@@ -204,6 +204,11 @@ static BOOL isReplaced = NO;
 - (IBAction) didSelectedAdd: (UIButton*) sender
 {
     [self updateSelectedItem: sender.tag];
+    
+    if ([self.taskDelegateIPad respondsToSelector:@selector(showTaskOptionsIPad)])
+    {
+        [self.taskDelegateIPad showTaskOptionsIPad];
+    }
 }
 
 - (IBAction) didSelectedDocuments: (UIButton*) sender

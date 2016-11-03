@@ -18,7 +18,7 @@
 
 #import "KeyChainManager.h"
 
-@interface MainTabBarController()  <OSTaskOptionsControllerDelegate, CustomTabBarDelegate>
+@interface MainTabBarController()  <OSTaskOptionsControllerDelegate, CustomTabBarDelegate, CustomTabBarIPadDelegate>
 
 @property (weak, nonatomic) IBOutlet CustomTabBar*     mainTabBariPhone;
 @property (weak, nonatomic) IBOutlet CustomTabBarIPad* mainTabBariPad;
@@ -36,6 +36,7 @@
     self.mainTabBariPhone.delegate     = self;
     self.mainTabBariPad.delegate       = self;
     self.mainTabBariPhone.taskDelegate = self;
+    self.mainTabBariPad.taskDelegateIPad = self;
     
     [DefaultNotifyCenter addObserver: self
                             selector: @selector(showLogin)
@@ -187,6 +188,13 @@
     [self.mainTabBariPad setSelectedItemAtIndex: index];
 }
 
+
+#pragma mark - CustomTabBarIPad delegate methods -
+
+- (void) showTaskOptionsIPad
+{
+    [OSAlertController showTaskOptionControllerOnController: self];
+}
 
 #pragma mark - TaskOptionsControllerDelegate -
 

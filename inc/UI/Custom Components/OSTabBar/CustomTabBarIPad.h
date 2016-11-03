@@ -8,6 +8,16 @@
 
 #import "MainTabBar.h"
 
+@protocol CustomTabBarIPadDelegate;
+
 @interface CustomTabBarIPad : MainTabBar
+
+@property (nonatomic, weak) id<CustomTabBarIPadDelegate> taskDelegateIPad;
+
+@end
+
+@protocol CustomTabBarIPadDelegate <NSObject>
+
+- (void) showTaskOptionsIPad;
 
 @end
