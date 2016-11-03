@@ -90,7 +90,7 @@
         
         self.numberOfUsersLeftLabel.hidden = NO;
         
-        self.numberOfUsersLeftLabel.text = [NSString stringWithFormat: @"+%ld", approvalsLeft];
+        self.numberOfUsersLeftLabel.text = [NSString stringWithFormat: @"+%ld", (unsigned long)approvalsLeft];
         
         [approvals enumerateObjectsUsingBlock: ^(FilledTeamInfo* user, NSUInteger idx, BOOL * _Nonnull stop) {
             
