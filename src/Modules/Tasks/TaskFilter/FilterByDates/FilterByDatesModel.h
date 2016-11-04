@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "RowContent.h"
+
 @interface FilterByDatesModel : NSObject
+
+// methods
+- (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath;
 
 @end

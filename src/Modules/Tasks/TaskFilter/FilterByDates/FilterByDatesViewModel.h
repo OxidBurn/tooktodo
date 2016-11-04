@@ -12,4 +12,7 @@
 
 @interface FilterByDatesViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+// properties
+@property (nonatomic, copy) void(^handleTableViewHeight)(BOOL didExpanded);
+
 @end

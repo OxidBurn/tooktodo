@@ -172,4 +172,19 @@ typedef NS_ENUM(NSUInteger, FilterByDateViewControllerType)
     ByFactTermsEnding,
 };
 
+
+
+typedef NS_ENUM(NSUInteger, FilterByDatesCellId)
+{
+    FilterByDatesRightDetailCell,
+    FilterByDatesDatePickerCell,
+    
+};
+
+typedef NS_ENUM(NSUInteger, FilterByDatesPickerTag)
+{
+    FromDate,
+    BeforeDate,
+};
+
 #endif /* ProjectsEnumerations_h */

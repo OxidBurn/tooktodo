@@ -18,6 +18,8 @@
 
 @property (strong, nonatomic) NSString* cellId;
 
+@property (assign, nonatomic) NSUInteger cellTypeIndex;
+
 @property (strong, nonatomic) NSString* segueId;
 
 @property (assign, nonatomic) BOOL      isHidden;

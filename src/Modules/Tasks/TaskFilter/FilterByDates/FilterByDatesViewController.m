@@ -26,6 +26,8 @@
 
 @property (strong, nonatomic) FilterByDatesViewModel* viewModel;
 
+@property (assign, nonatomic) BOOL pickerIsExpanded;
+
 // methods
 - (IBAction) onResetBtn: (UIButton*) sender;
 - (IBAction) onSaveBtn: (UIButton*) sender;
@@ -129,8 +131,25 @@
 {
     self.filterByDatesTableView.dataSource = self.viewModel;
     self.filterByDatesTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    blockSelf.viewModel.handleTableViewHeight = ^(BOOL didExpanded){
+        
+        if ( didExpanded )
+        {
+            self.tableViewHeightConstraint.constant = 298;
+            
+            self.quickFilterView.hidden = YES;
+        }
+        else
+        {
+            self.tableViewHeightConstraint.constant = 82;
+            
+            self.quickFilterView.hidden = NO;
+        }
+    };
 }
-
 
 
 @end
