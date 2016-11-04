@@ -17,6 +17,7 @@
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
+#import "BaseMainViewController+Popover.h"
 
 @interface TasksByProjectViewController () <UISplitViewControllerDelegate>
 
@@ -26,7 +27,7 @@
 
 @property (strong, nonatomic) AllTasksViewModel* viewModel;
 
-
+@property (nonatomic, weak) IBOutlet UIBarButtonItem* sortTasksBtn;
 
 // Methods
 
@@ -130,6 +131,11 @@
                                        sender: blockSelf];
         
     };
+    
+    self.viewModel.reloadTable = ^(){
+        
+        [blockSelf.tasksByProjectTableView reloadData];
+    };
 }
 
 - (void) willGetFocus
@@ -138,12 +144,31 @@
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
+- (CGRect) getFrameForSortingPopover
+{
+    CGRect barButtonFrame = self.sortTasksBtn.customView.bounds;
+    
+    CGRect newFrame = CGRectMake(CGRectGetWidth(self.view.frame) - 70,
+                                 barButtonFrame.origin.y + 50,
+                                 barButtonFrame.size.width,
+                                 barButtonFrame.size.height);
+    
+    return newFrame;
+}
+
 
 #pragma mark - Actions -
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
+}
+
+- (IBAction) onSortTasks: (UIBarButtonItem*) sender
+{
+    [self showPopoverWithDataSource: self.viewModel
+                       withDelegate: self.viewModel
+                    withSourceFrame: [self getFrameForSortingPopover]];
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -

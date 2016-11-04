@@ -15,6 +15,7 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
+#import "NSObject+Sorting.h"
 
 static NSString* projectKey = @"projectInfoKey";
 static NSString* contentKey = @"contentInfoKey";
@@ -144,6 +145,43 @@ static NSString* contentKey = @"contentInfoKey";
     
     [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
                                             withSelectedState: YES];
+}
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    NSMutableArray* projectsInfoCopy  = self.projectsInfo.copy;
+    
+    NSMutableArray* tmpSectionContent = [NSMutableArray array];
+    
+    [self.projectsInfo enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+        if (section[contentKey])
+        {
+            [section[contentKey] enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([obj isKindOfClass:[ProjectTask class]])
+                {
+                    [tmpSectionContent addObject: obj];
+                }
+                
+            }];
+            
+            NSArray* newSectionContent = [self applyTasksSortingType: type
+                                                             toArray: tmpSectionContent
+                                                          isAcceding: isAcceding];
+            
+            NSMutableDictionary* newSection = section.mutableCopy;
+            
+            [newSection setObject: newSectionContent
+                           forKey: contentKey];
+            
+            [projectsInfoCopy replaceObjectAtIndex: idx
+                                        withObject: newSection];
+        }
+    }];
+    
+    self.projectsInfo = projectsInfoCopy.copy;
 }
 
 #pragma mark - Internal methods -

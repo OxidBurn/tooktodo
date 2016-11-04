@@ -9,12 +9,15 @@
 // Frameworks
 #import "ReactiveCocoa.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "PopoverModel.h"
 
-@interface AllTasksViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface AllTasksViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, PopoverModelDelegate, PopoverModelDataSource>
 
 // properties
 
 @property (copy, nonatomic) void(^didShowTaskInfo)();
+
+@property (nonatomic, copy) void(^reloadTable)();
 
 - (ProjectTask*) getSelectedProjectTask;
 

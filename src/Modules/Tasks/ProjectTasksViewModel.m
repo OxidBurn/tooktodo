@@ -18,6 +18,7 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "DataManager+Tasks.h"
 #import "DataManager+ProjectInfo.h"
+#import "NSObject+Sorting.h"
 
 @interface ProjectTasksViewModel()
 
