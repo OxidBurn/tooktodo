@@ -42,5 +42,11 @@
 
 - (ProjectTask*) getSelectedProjectTask;
 
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding;
+
+
+
+
 
 @end

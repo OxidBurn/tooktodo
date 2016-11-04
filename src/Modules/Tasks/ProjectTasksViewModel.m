@@ -25,8 +25,6 @@
 
 @property (strong, nonatomic) ProjectTasksModel* model;
 
-@property (nonatomic, strong) NSArray* tasksArray;
-
 // methods
 
 
@@ -46,16 +44,6 @@
     return _model;
 }
 
-- (NSArray *)tasksArray
-{
-    if (_tasksArray == nil)
-    {
-        _tasksArray = [self getTasks];
-    }
-    
-    return _tasksArray;
-}
-
 #pragma mark - Public methods -
 
 - (RACSignal*) updateContent
@@ -63,23 +51,6 @@
     RACSignal* updateSignal = [self.model updateContent];
     
     return updateSignal;
-}
-
-- (void) applySortingForTaskList: (TasksSortingType)           type
-                      isAcceding: (ContentAccedingSortingType) isAcceding
-{
-    self.tasksArray = [self.model applyTasksSortingType: type
-                                                toArray: self.tasksArray
-                                             isAcceding: isAcceding];
-}
-
-- (NSArray*) getTasks
-{
-    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
-    
-    NSArray* tasks = currentProject.tasks.allObjects;
-    
-    return tasks;
 }
 
 - (ProjectTask*) getSelectedProjectTask
@@ -116,8 +87,8 @@
         viewForHeaderInSection: (NSInteger)    section
 {
     StageTitleView* stageInfoView = [[MainBundle loadNibNamed: @"StageTitleView"
-                                                                 owner: self
-                                                               options: nil] firstObject];
+                                                        owner: self
+                                                      options: nil] firstObject];
     
     stageInfoView.tag = section;
     
@@ -151,8 +122,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    
-    [cell fillInfoForCell: self.tasksArray[indexPath.row]];
+    [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
     __weak typeof(self) blockSelf = self;
     
@@ -164,7 +134,6 @@
             blockSelf.didShowTaskInfo();
         
     };
-    
     
     return cell;
 }
@@ -178,29 +147,6 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
-    
-    AllTasksCellType selectedCellType = cell.cellType;
-    
-    switch (selectedCellType)
-    {
-        case AllTasksStageCellType:
-        {
-            [self.model markStageAsExpandedAtIndexPath: indexPath.section
-                                        withCompletion: ^(BOOL isSuccess) {
-                                            
-                                            [tableView reloadData];
-                                            
-                                        }];
-        }
-            break;
-            
-        case AllTasksTaskCellType:
-        {
-            
-        }
-            break;
-    }
 }
 
 #pragma mark - PopoverViewController dataSource methods -
@@ -224,8 +170,8 @@
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
 {
-    [self applySortingForTaskList: index
-                       isAcceding: DiminutionSortingType];
+    [self.model sortArrayForType: index
+                      isAcceding: DiminutionSortingType];
     
     //Load new data for table
     if ( self.reloadTable )
@@ -234,8 +180,8 @@
 
 - (void) didGrowSortingAtIndex: (NSUInteger) index
 {
-    [self applySortingForTaskList: index
-                       isAcceding: GrowsSortingType];
+   [self.model sortArrayForType: index
+                     isAcceding: GrowsSortingType];
     
      //Load new data for table
     if ( self.reloadTable )

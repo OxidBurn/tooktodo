@@ -124,7 +124,6 @@
         self.viewModel.reloadTable = ^(){
             
             [blockSelf.tasksByProjectTableView reloadData];
-            NSLog(@"data is reloaded");
         };
     });
     
