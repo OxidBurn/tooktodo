@@ -150,9 +150,11 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding
 {
-    NSMutableArray* projectsInfoCopy  = self.projectsInfo.copy;
+    NSMutableArray* projectsInfoCopy  = self.projectsInfo.mutableCopy;
     
     NSMutableArray* tmpSectionContent = [NSMutableArray array];
+    
+    NSMutableArray* newSectionContent = [NSMutableArray array];
     
     [self.projectsInfo enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
     
@@ -165,19 +167,26 @@ static NSString* contentKey = @"contentInfoKey";
                     [tmpSectionContent addObject: obj];
                 }
                 
+                else if ([obj isKindOfClass: [ProjectTaskStage class]])
+                {
+                    [newSectionContent addObject: obj];
+                }
             }];
             
-            NSArray* newSectionContent = [self applyTasksSortingType: type
-                                                             toArray: tmpSectionContent
-                                                          isAcceding: isAcceding];
+            NSArray* sortedTasks = [self applyTasksSortingType: type
+                                                       toArray: tmpSectionContent
+                                                    isAcceding: isAcceding];
             
+            [newSectionContent addObjectsFromArray: sortedTasks];
+        
             NSMutableDictionary* newSection = section.mutableCopy;
             
-            [newSection setObject: newSectionContent
+            [newSection setObject: newSectionContent.copy
                            forKey: contentKey];
             
             [projectsInfoCopy replaceObjectAtIndex: idx
                                         withObject: newSection];
+            
         }
     }];
     
@@ -193,7 +202,7 @@ static NSString* contentKey = @"contentInfoKey";
     __block NSMutableArray* tmpRowsInfo     = [NSMutableArray array];
     __block NSMutableArray* tmpProjectsInfo = [NSMutableArray array];
     
-    [self.projectsInfo enumerateObjectsUsingBlock:^(ProjectInfo* project, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.projectsInfo enumerateObjectsUsingBlock: ^(ProjectInfo* project, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSMutableDictionary* projectsInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{projectKey : project}];
         
