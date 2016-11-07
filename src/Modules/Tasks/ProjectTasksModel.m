@@ -65,7 +65,7 @@ static NSString* contentKey = @"contentInfoKey";
 {
     NSMutableArray* newStages = self.stages.mutableCopy;
     
-    [self.stages enumerateObjectsUsingBlock:^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.stages enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
         if (section[contentKey])
         {
             NSArray* newSectionContent =  [self applyTasksSortingType: type

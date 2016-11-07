@@ -17,6 +17,7 @@
 @interface AllTasksModel : NSObject
 
 // methods
+- (instancetype) initWithDefaultSortParameters;
 
 - (RACSignal*) updateContent;
 
@@ -42,5 +43,6 @@
 
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding;
+
 
 @end

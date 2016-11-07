@@ -37,7 +37,7 @@
 {
     if ( _model == nil )
     {
-        _model = [AllTasksModel new];
+        _model = [[AllTasksModel alloc]  initWithDefaultSortParameters];
     }
     
     return _model;
