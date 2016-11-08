@@ -46,7 +46,10 @@
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
 {
-    
+    if ([self.delegate respondsToSelector:@selector(performSegueToAddSubtaskWithID:)])
+    {
+        [self.delegate performSegueToAddSubtaskWithID: @"ShowAddSubtask"];
+    }
 }
 
 - (IBAction) onFilterTaskBtn: (UIButton*) sender

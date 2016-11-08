@@ -11,9 +11,21 @@
 // Classes
 #import "TaskRowContent.h"
 
+@protocol FilterSubtasksCellDelegate;
+
 @interface FilterSubtasksCell : UITableViewCell
+
+// properties
+
+@property (nonatomic, weak) id <FilterSubtasksCellDelegate> delegate;
 
 // methods
 - (void) fillCellWithContent: (TaskRowContent*) content;
+
+@end
+
+@protocol FilterSubtasksCellDelegate <NSObject>
+
+- (void) performSegueToAddSubtaskWithID: (NSString*) segueID;
 
 @end
