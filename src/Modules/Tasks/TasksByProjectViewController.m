@@ -13,6 +13,7 @@
 #import "MainTabBarController.h"
 #import "AllTasksViewModel.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "TaskFilterViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -26,6 +27,7 @@
 
 @property (strong, nonatomic) AllTasksViewModel* viewModel;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem* filterBtn;
 
 
 // Methods
@@ -151,8 +153,10 @@
 {
     NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
     
+    id customSender = IS_PHONE ? self : self.splitViewController;
+    
     [self performSegueWithIdentifier: segueId
-                              sender: self];
+                              sender: customSender];
 }
 
 

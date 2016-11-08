@@ -138,15 +138,23 @@
         
         if ( didExpanded )
         {
-            self.tableViewHeightConstraint.constant = 298;
-            
-            self.quickFilterView.hidden = YES;
+            [UIView animateWithDuration: 0.3
+                             animations: ^{
+               
+                self.tableViewHeightConstraint.constant = 298;
+                
+                self.quickFilterView.hidden = YES;
+            }];
         }
         else
         {
-            self.tableViewHeightConstraint.constant = 82;
-            
-            self.quickFilterView.hidden = NO;
+            [UIView animateWithDuration: 0.3
+                             animations:^{
+                                 
+                                 self.tableViewHeightConstraint.constant = 82;
+                                 
+                                 self.quickFilterView.hidden = NO;
+                             }];
         }
     };
 }
