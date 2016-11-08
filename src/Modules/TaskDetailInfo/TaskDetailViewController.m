@@ -15,8 +15,10 @@
 #import "DataManager+Tasks.h"
 #import "ProjectTasksViewController.h"
 #import "TasksByProjectViewController.h"
+#import "SystemDetailPopoverController.h"
 
-@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UISplitViewControllerDelegate>
+
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
@@ -171,6 +173,13 @@
 }
 
 
+#pragma mark - UIPopoverPresentationControllerDelegate methods -
+
+-(UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
+{
+    return UIModalPresentationNone;
+}
+
 #pragma mark - Helpers -
 
 - (void) setupDefaults
@@ -193,7 +202,10 @@
         [blockSelf performSegueWithIdentifier: segueID
                                        sender: blockSelf];
     };
+    
+    [self popoverSettings];
 }
+
 
 - (BOOL)    splitViewController: (UISplitViewController*) splitViewController
 collapseSecondaryViewController: (UIViewController*)      secondaryViewController
@@ -215,6 +227,35 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     }
     
     return YES;
+}
+
+
+- (void) popoverSettings
+{
+    __weak typeof (self) blockSelf = self;
+    
+    self.viewModel.presentControllerAsPopover = ^(CGRect frame) {
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskDetailInfo"
+                                                             bundle: nil];
+        
+        SystemDetailPopoverController* contentController = [storyboard instantiateViewControllerWithIdentifier: @"PopoverViewController"];
+        
+        contentController.modalPresentationStyle   = UIModalPresentationPopover;
+        UIPopoverPresentationController* popoverVC = contentController.popoverPresentationController;
+        popoverVC.permittedArrowDirections         = UIPopoverArrowDirectionDown;
+        contentController.preferredContentSize     = CGSizeMake(180, 41);
+        popoverVC.containerView.layer.cornerRadius = 3.0f;
+        
+        popoverVC.sourceView = blockSelf.taskTableView;
+        popoverVC.sourceRect = frame;
+        popoverVC.delegate   = blockSelf;
+        
+        [blockSelf presentViewController: contentController
+                                animated: YES
+                              completion: nil];
+
+    };
 }
 
 
