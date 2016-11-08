@@ -27,11 +27,43 @@
 
 
 // methods
+- (IBAction) onAddTaskBtn: (UIButton*) sender;
+
+- (IBAction) onFilterTaskBtn: (UIButton*) sender;
+
+- (IBAction) onCanceledTasksBtn: (UIButton*) sender;
+
+- (IBAction) onDoneTasksBtn: (UIButton*) sender;
 
 
 @end
 
 @implementation FilterSubtasksCell
+
+
+#pragma mark - Actions -
+
+
+- (IBAction) onAddTaskBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onFilterTaskBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onCanceledTasksBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onDoneTasksBtn: (UIButton*) sender
+{
+    
+}
+
 
 #pragma mark - Public -
 

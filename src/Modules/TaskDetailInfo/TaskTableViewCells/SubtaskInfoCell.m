@@ -103,25 +103,5 @@
     return image;
 }
 
-//
-//#pragma mark - Helpers -
-//
-//- (UIImage*) getBackgroundImageForTaskAccess: (BOOL) isHiddenTask
-//{
-//    UIImage* image;
-//    
-//    if ( isHiddenTask )
-//    {
-//        image = [UIImage imageNamed: @"closedEyes"];
-//    }
-//    else
-//    {
-//        image = [UIImage imageNamed: @"Eye"];
-//    }
-//    
-//    return image;
-//}
-
-
 
 @end
