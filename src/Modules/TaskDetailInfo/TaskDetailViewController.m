@@ -236,7 +236,7 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     
     self.viewModel.presentControllerAsPopover = ^(CGRect frame) {
         
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskDetailInfo"
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"Tasks"
                                                              bundle: nil];
         
         SystemDetailPopoverController* contentController = [storyboard instantiateViewControllerWithIdentifier: @"PopoverViewController"];

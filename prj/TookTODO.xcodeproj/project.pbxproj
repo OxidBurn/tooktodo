@@ -391,6 +391,9 @@
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
 		CF05378B1DCCB906002AD056 /* NSObject+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = CF05378A1DCCB906002AD056 /* NSObject+Sorting.m */; };
+		CF1D5E011DD1E11A00CEB8DA /* SystemDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5DFE1DD1E11A00CEB8DA /* SystemDetailModel.m */; };
+		CF1D5E021DD1E11A00CEB8DA /* SystemDetailPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5DFF1DD1E11A00CEB8DA /* SystemDetailPopoverController.m */; };
+		CF1D5E031DD1E11A00CEB8DA /* SystemDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5E001DD1E11A00CEB8DA /* SystemDetailViewModel.m */; };
 		CFCAA3D21DCA580A00B8EF16 /* RolesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */; };
 		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
@@ -1155,6 +1158,12 @@
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
 		CF0537891DCCB906002AD056 /* NSObject+Sorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Sorting.h"; sourceTree = "<group>"; };
 		CF05378A1DCCB906002AD056 /* NSObject+Sorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Sorting.m"; sourceTree = "<group>"; };
+		CF1D5DFE1DD1E11A00CEB8DA /* SystemDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailModel.m; sourceTree = "<group>"; };
+		CF1D5DFF1DD1E11A00CEB8DA /* SystemDetailPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailPopoverController.m; sourceTree = "<group>"; };
+		CF1D5E001DD1E11A00CEB8DA /* SystemDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailViewModel.m; sourceTree = "<group>"; };
+		CF1D5E051DD1E14800CEB8DA /* SystemDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailModel.h; sourceTree = "<group>"; };
+		CF1D5E061DD1E14800CEB8DA /* SystemDetailPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailPopoverController.h; sourceTree = "<group>"; };
+		CF1D5E071DD1E14800CEB8DA /* SystemDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemDetailViewModel.h; sourceTree = "<group>"; };
 		CFCAA3D01DCA580A00B8EF16 /* RolesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesModel.h; sourceTree = "<group>"; };
 		CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RolesModel.m; sourceTree = "<group>"; };
 		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
@@ -1726,6 +1735,7 @@
 		56D06C401DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CF1D5E041DD1E14800CEB8DA /* DetailPopover */,
 				560EDD321DB615F6006F361D /* CancelRequest */,
 				56D06C411DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06C4E1DAFBDBF008E9AC0 /* CustomViews */,
@@ -2635,6 +2645,7 @@
 		56D06DCD1DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				CF1D5DFD1DD1E11A00CEB8DA /* DetailPopover */,
 				560EDD2B1DB615EB006F361D /* CancelRequest */,
 				56D06DCE1DAFBDBF008E9AC0 /* CollectionCells */,
 				56D06DDB1DAFBDBF008E9AC0 /* CustomViews */,
@@ -3223,6 +3234,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CF1D5DFD1DD1E11A00CEB8DA /* DetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D5DFE1DD1E11A00CEB8DA /* SystemDetailModel.m */,
+				CF1D5DFF1DD1E11A00CEB8DA /* SystemDetailPopoverController.m */,
+				CF1D5E001DD1E11A00CEB8DA /* SystemDetailViewModel.m */,
+			);
+			path = DetailPopover;
+			sourceTree = "<group>";
+		};
+		CF1D5E041DD1E14800CEB8DA /* DetailPopover */ = {
+			isa = PBXGroup;
+			children = (
+				CF1D5E051DD1E14800CEB8DA /* SystemDetailModel.h */,
+				CF1D5E061DD1E14800CEB8DA /* SystemDetailPopoverController.h */,
+				CF1D5E071DD1E14800CEB8DA /* SystemDetailViewModel.h */,
+			);
+			path = DetailPopover;
+			sourceTree = "<group>";
+		};
 		F725FBD11DC365A500793EA3 /* infoiPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -3433,6 +3464,7 @@
 				56D06EA31DAFBDC0008E9AC0 /* ProjectTaskMarker+CoreDataProperties.m in Sources */,
 				56D06F831DAFBDC0008E9AC0 /* UserInfoTableViewCell.m in Sources */,
 				56D06EC31DAFBDC0008E9AC0 /* ProjectInfoModel.m in Sources */,
+				CF1D5E031DD1E11A00CEB8DA /* SystemDetailViewModel.m in Sources */,
 				56D06F0B1DAFBDC0008E9AC0 /* AddTermTasksViewController.m in Sources */,
 				56D06F7D1DAFBDC0008E9AC0 /* RolesViewModel.m in Sources */,
 				56D06F141DAFBDC0008E9AC0 /* SelectRoomViewController.m in Sources */,
@@ -3646,6 +3678,7 @@
 				56D06EA91DAFBDC0008E9AC0 /* ProjectTaskRoleAssignment+CoreDataProperties.m in Sources */,
 				564DE3B11DB1476F00BF9817 /* NewProjectRoleTypeModel.m in Sources */,
 				56D06EDF1DAFBDC0008E9AC0 /* RolesService.m in Sources */,
+				CF1D5E021DD1E11A00CEB8DA /* SystemDetailPopoverController.m in Sources */,
 				56D06FAA1DAFBDC0008E9AC0 /* OSDatePickerCellFactory.m in Sources */,
 				56D06EAD1DAFBDC0008E9AC0 /* ProjectTaskRoleType+CoreDataProperties.m in Sources */,
 				56D06EB71DAFBDC0008E9AC0 /* ProjectTaskWorkArea+CoreDataProperties.m in Sources */,
@@ -3754,6 +3787,7 @@
 				56D06EC21DAFBDC0008E9AC0 /* ProjectCountryModel.m in Sources */,
 				56D06F711DAFBDC0008E9AC0 /* TeamInfoModel.m in Sources */,
 				56D06FB01DAFBDC0008E9AC0 /* OSSingleUserInfoCellFactory.m in Sources */,
+				CF1D5E011DD1E11A00CEB8DA /* SystemDetailModel.m in Sources */,
 				56D06F131DAFBDC0008E9AC0 /* SelectRoomModel.m in Sources */,
 				56D06EB81DAFBDC0008E9AC0 /* ProjectTaskWorkArea.m in Sources */,
 				56D06EC91DAFBDC0008E9AC0 /* ProjectSystemsModel.m in Sources */,
