@@ -10,4 +10,6 @@
 
 @interface TestAttachments : NSObject
 
++ (NSArray*) returnArrayWithAttachments;
+
 @end

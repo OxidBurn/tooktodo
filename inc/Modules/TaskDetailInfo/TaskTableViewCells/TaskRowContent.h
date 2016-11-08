@@ -83,7 +83,7 @@
 
 @property (assign, nonatomic) NSString* taskStatusMarkImageName;
 
-
+@property (strong, nonatomic) NSArray* attachmentsArray;
 
 
 // properties for test methods

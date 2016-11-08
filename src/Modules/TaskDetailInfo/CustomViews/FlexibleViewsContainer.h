@@ -17,8 +17,9 @@ typedef NS_ENUM(NSUInteger, FlexibleViewsContainerType)
 @interface FlexibleViewsContainer : UIView
 
 // methods
-- (instancetype) initWithType: (FlexibleViewsContainerType) viewType;
+- (void) setTypeToViewsContainer: (FlexibleViewsContainerType) type;
 
-- (void) fillViewsContainerWithViews: (NSArray*) viewsArray;
+- (void) fillViewsContainerWithViews: (NSArray*) viewsArray
+                      withCompletion: (CompletionWithSuccess) completion;
 
 @end

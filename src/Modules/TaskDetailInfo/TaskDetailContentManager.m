@@ -15,6 +15,9 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "TasksService.h"
 
+// Test class import
+#import "TestAttachments.h"
+
 @interface TaskDetailContentManager()
 
 // properties
@@ -288,7 +291,8 @@
     comment.commentAuthorAvatar = [UIImage imageNamed: @"UserMark"];
     comment.commentDate         = [NSDate date];
     
-    comment.commentText = @"Обычно тут что-то совершенно непонятное, вот и я не стал нарушать традиции";
+    comment.commentText = @"Комментарии будут жить здесь с прикрепленными файлами или без";
+    comment.attachmentsArray = [TestAttachments returnArrayWithAttachments];
     
     return @[comment];
 }
