@@ -10,6 +10,7 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "FlexibleViewsContainer.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel*         userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel*         commentDateLabel;
 @property (weak, nonatomic) IBOutlet UITextView*      commentContentTextView;
+@property (weak, nonatomic) IBOutlet FlexibleViewsContainer* attachmentsContainerView;
 
 
 // properties
