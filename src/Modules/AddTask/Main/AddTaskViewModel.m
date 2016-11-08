@@ -130,6 +130,13 @@
     return [self.model returnTaskName];
 }
 
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden
+{
+    [self.model fillDefaultStage: stage
+                  andHiddenState: isHidden];
+}
+
 
 #pragma mark - UITableView data source -
 

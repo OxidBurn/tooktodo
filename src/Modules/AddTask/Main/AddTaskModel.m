@@ -336,7 +336,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.stage;
 }
 
-
 - (id) returnSelectedRoom
 {
     if ( self.task.level )
@@ -381,6 +380,28 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
         completion(YES);
 }
 
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden
+{
+    self.task.isHiddenTask = isHidden;
+    self.task.stage        = stage;
+    
+    RowContent* rowHiddenTsk = self.addTaskTableViewContent[SectionOne][TaskHiddenStatusRow];
+    
+    rowHiddenTsk.isHidden = isHidden;
+    
+    [self updateContentWithRow: rowHiddenTsk
+                     inSection: SectionOne
+                         inRow: TaskHiddenStatusRow];
+    
+    RowContent* rowStage = self.addTaskTableViewContent[SectionThree][TaskStageRow];
+    
+    rowStage.detail = stage.title;
+    
+    [self updateContentWithRow: rowStage
+                     inSection: SectionThree
+                         inRow: TaskStageRow];
+}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 

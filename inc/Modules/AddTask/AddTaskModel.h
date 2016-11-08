@@ -57,7 +57,8 @@
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
-//- (RACSignal*) returnNewTaskSignal;
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden;
 
 @end
 

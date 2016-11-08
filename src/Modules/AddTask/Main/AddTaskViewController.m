@@ -215,6 +215,18 @@
     return _viewModel;
 }
 
+
+#pragma mark - Public -
+
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden
+{
+    [self.viewModel fillDefaultStage: stage
+                      andHiddenState: isHidden];
+    
+}
+
+
 #pragma mark - Actions -
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender

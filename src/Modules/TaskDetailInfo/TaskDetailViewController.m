@@ -16,6 +16,7 @@
 #import "ProjectTasksViewController.h"
 #import "TasksByProjectViewController.h"
 #import "SystemDetailPopoverController.h"
+#import "AddTaskViewController.h"
 
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
@@ -124,6 +125,16 @@
         vc.delegate = self;
     }
     
+    if ([segue.identifier isEqualToString: @"ShowAddSubtask"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        
+        AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
+        
+        [vc fillDefaultStage: [self.viewModel getTaskStage]
+              andHiddenState: [self.viewModel getTaskState]];
+    }
+    
 }
 
 #pragma mark - Actions -
@@ -163,13 +174,6 @@
 {
     [self performSegueWithIdentifier: segueID
                               sender: self];
-}
-
-- (void) updataTaskDetailInfoTaskStatus
-{
-    [self.viewModel updateTaskStatus];
-    
-    [self.taskTableView reloadData];
 }
 
 

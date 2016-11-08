@@ -45,6 +45,10 @@
 - (void) fillSelectedTask: (ProjectTask*) task
            withCompletion: (CompletionWithSuccess) completion;
 
+- (ProjectTaskStage*) getTaskStage;
+
+- (BOOL) getTaskState;
+
 @end
 
 @protocol TaskDetailModelDelegate <NSObject>

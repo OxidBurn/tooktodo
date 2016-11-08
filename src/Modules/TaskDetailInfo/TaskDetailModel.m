@@ -34,7 +34,6 @@
 
 @implementation TaskDetailModel
 
-
 #pragma mark - Properties -
 
 - (NSArray*) taskTableViewContent
@@ -148,6 +147,16 @@
     [self updateContentWithRow: row
                      inSection: 0
                          inRow: 0];
+}
+
+- (ProjectTaskStage*) getTaskStage
+{
+    return self.task.stage;
+}
+
+- (BOOL) getTaskState
+{
+    return self.task.access.boolValue;
 }
 
 #pragma mark - Helpers -

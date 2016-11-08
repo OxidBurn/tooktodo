@@ -65,6 +65,8 @@
 
 @property (strong, nonatomic) NSString* workAreaTitle;
 
+@property (strong, nonatomic) NSString* taskStageTitle;
+
 @property (assign, nonatomic) NSUInteger roomNumber; // брать из ProjectTaskRoom *room;
 
 @property (assign, nonatomic) NSUInteger levelNumber; // брать из ProjectTaskRoomLevel *roomLevel;

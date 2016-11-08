@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ProjectTaskStage+CoreDataClass.h"
+
 @interface AddTaskViewController : UIViewController
+
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden;
 
 @end

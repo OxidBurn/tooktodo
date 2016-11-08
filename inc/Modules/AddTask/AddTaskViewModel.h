@@ -60,6 +60,9 @@
 
 - (NSString*) returnTaskName;
 
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden;
+
 //- (RACSignal*) getNewTaskSignal;
 
 @end

@@ -104,6 +104,16 @@
     
 }
 
+- (ProjectTaskStage*) getTaskStage
+{
+    return [self.model getTaskStage];
+}
+
+- (BOOL) getTaskState
+{
+    return [self.model getTaskState];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -248,6 +258,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [self.model updateTaskStatus];
 }
+
+
+
 
 #pragma mark - TaskDetailCellDelegate methods -
 

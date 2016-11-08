@@ -14,6 +14,7 @@
 //Classes
 #import "ProjectsEnumerations.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "ProjectTaskStage+CoreDataClass.h"
 
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
@@ -36,5 +37,8 @@
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion;
 
+- (ProjectTaskStage*) getTaskStage;
+
+- (BOOL) getTaskState;
 
 @end
