@@ -14,12 +14,13 @@
 #import "TaskDescriptionCell.h"
 #import "TaskInfoHeaderView.h"
 #import "TaskDetailInfoCell.h"
+#import "FilterSubtasksCell.h"
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -132,6 +133,12 @@
         detailCell.delegate   = self;
     }
     
+    if ([cell isKindOfClass: [FilterSubtasksCell class]])
+    {
+        FilterSubtasksCell* subtaskCell  = (FilterSubtasksCell*)cell;
+        
+        subtaskCell.delegate = self;
+    }
     return cell;
 }
 
@@ -255,6 +262,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
+
+
+#pragma mark - FilterSubtasksCellDelegate  methods -
+
+- (void) performSegueToAddSubtaskWithID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
+}
+
 
 #pragma mark - Helpers -
 
