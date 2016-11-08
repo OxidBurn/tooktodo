@@ -29,5 +29,7 @@
 
 - (void) performSegueWithID: (NSString*) segueID;
 
+- (void) showPopover: (CGRect) senderFrame;
+
 @end
 
