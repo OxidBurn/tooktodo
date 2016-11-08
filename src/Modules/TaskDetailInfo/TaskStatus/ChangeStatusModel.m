@@ -130,7 +130,7 @@
 
 - (NSUInteger) returnOnComletionStatusIndex
 {
-    NSUInteger index = [self.statusesArray indexOfObject: @(5)];
+    NSUInteger index = [self.statusesArray indexOfObject: @(TaskOnCompletionStatusType)];
     
     return index;
 }
@@ -139,7 +139,7 @@
 {
     if ([self checkIfUserCanCancelTask] == TaskCancelRequestType)
     {
-        NSUInteger index = [self.statusesArray indexOfObject: @(3)];
+        NSUInteger index = [self.statusesArray indexOfObject: @(TaskCancelRequestType)];
         
         return index;
     }
@@ -170,9 +170,9 @@
 {
     NSArray* defaultArr = @[@(TaskWaitingStatusType),
                             @(TaskInProgressStatusType),
+                            @(TaskOnApprovingStatusType),
                             @(TaskCompletedStatusType),
                             @(TaskCanceledStatusType),
-                            @(TaskOnApprovingStatusType),
                             @(TaskOnCompletionStatusType)];
     
     NSNumber* currStatus = self.task.status;
