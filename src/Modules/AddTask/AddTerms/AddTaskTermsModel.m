@@ -149,7 +149,8 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                                               withTag: content.switchTag
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
-                                         withDelegate: self];
+                                         withDelegate: self
+                                     withEnabledState: YES];
         }
             
             break;

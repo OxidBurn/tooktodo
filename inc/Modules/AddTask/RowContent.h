@@ -22,7 +22,10 @@
 
 @property (assign, nonatomic) BOOL      isHidden;
 
-//@property (strong, nonatomic) NSString* markImageName;
+@property (nonatomic, assign) BOOL      isSwitchEnabled;
+
+@property (nonatomic, assign) BOOL      userInteractionEnabled;
+
 @property (nonatomic, strong) UIColor* markImage;
 
 @property (assign, nonatomic) NSUInteger pickerTag;

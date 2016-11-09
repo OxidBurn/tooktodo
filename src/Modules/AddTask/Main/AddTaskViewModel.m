@@ -13,6 +13,7 @@
 #import "OSFlexibleTextFieldCell.h"
 #import "ProjectsEnumerations.h"
 #import "OSSwitchTableCell.h"
+#import "RowContent.h"
 
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
@@ -63,6 +64,11 @@
 - (NewTask*) getNewTask
 {
     return [self.model returnNewTask];
+}
+
+- (AddTaskModel*) getModel
+{
+    return self.model;
 }
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
@@ -137,6 +143,10 @@
                   andHiddenState: isHidden];
 }
 
+- (void) fillControllerType: (TaskControllerType) controllerType
+{
+    [self.model fillControllerType: controllerType];
+}
 
 #pragma mark - UITableView data source -
 

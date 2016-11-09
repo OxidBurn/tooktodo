@@ -91,6 +91,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 @property (strong, nonatomic) NSArray* allSeguesInfoArray;
 
+@property (nonatomic, assign) TaskControllerType controllerType;
+
 
 // methods
 
@@ -199,6 +201,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             cell = [factory returnRightDetailCellWithTitle: content.title
                                             withDetailText: content.detail
                                               forTableView: tableView];
+            
+            
         }
             break;
             
@@ -221,7 +225,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
                                               withTag: AddTaskIsHiddenTaskSwitchTag
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
-                                         withDelegate: self];
+                                         withDelegate: self
+                                     withEnabledState: [self handleEnabledSwitchStateForContent: content]];
         }
             break;
             
@@ -266,6 +271,11 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             
         default:
             break;
+    }
+    
+    if (content.userInteractionEnabled == NO)
+    {
+        cell.userInteractionEnabled = NO;
     }
     
     return cell;
@@ -401,6 +411,13 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     [self updateContentWithRow: rowStage
                      inSection: SectionThree
                          inRow: TaskStageRow];
+}
+
+- (void) fillControllerType: (TaskControllerType) controllerType
+{
+    self.addTaskTableViewContent = nil;
+    
+    self.controllerType = controllerType;
 }
 
 #pragma mark - OSSwitchTableCellDelegate methods -
@@ -628,6 +645,36 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 #pragma mark - Internal -
 
+- (BOOL) handleEnabledSwitchStateForContent: (RowContent*) rowContent
+{
+   // TaskControllerType controllerType = -1;
+    
+//    if ([self.dataSource respondsToSelector:@selector(getControllerType)])
+//    {
+//        controllerType = [self.dataSource getControllerType];
+//    }
+    
+    switch (self.controllerType)
+    {
+        case AddTaskControllerType:
+        {
+            rowContent.isSwitchEnabled = YES;
+            break;
+        }
+         
+        case AddSubtaskControllerType:
+        {
+            rowContent.isSwitchEnabled = NO;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return rowContent.isSwitchEnabled;
+}
+
 - (NSArray*) createTableViewContent
 {
     NSArray* sectionOne   = [self createSectionOne];
@@ -728,6 +775,32 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     rowThree.detail  = @"Не реализовано";
     rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
+    
+    
+//    TaskControllerType controllerType = -1;
+//    
+//    if ([self.dataSource respondsToSelector:@selector(getControllerType)])
+//    {
+//        controllerType = [self.dataSource getControllerType];
+//    }
+    switch (self.controllerType)
+    {
+        case AddTaskControllerType:
+        {
+            rowThree.userInteractionEnabled = YES;
+            break;
+        }
+            
+        case AddSubtaskControllerType:
+        {
+            rowThree.userInteractionEnabled = NO;
+            break;
+        }
+            
+        default:
+            break;
+    }
+
     
     RowContent* rowFour = [RowContent new];
     

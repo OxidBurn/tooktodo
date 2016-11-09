@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 #import "ProjectTaskStage+CoreDataClass.h"
+#import "ProjectsEnumerations.h"
 
 @interface AddTaskViewController : UIViewController
 
+// methods
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
+- (void) fillControllerType: (TaskControllerType) controllerType;
+
 @end
+

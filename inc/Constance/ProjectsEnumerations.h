@@ -144,4 +144,10 @@ typedef NS_ENUM(NSUInteger, SectionsList) {
     
 };
 
+typedef NS_ENUM(NSUInteger, TaskControllerType)
+{
+    AddTaskControllerType,
+    AddSubtaskControllerType,
+};
+
 #endif /* ProjectsEnumerations_h */

@@ -11,13 +11,17 @@
 
 //Classes
 #import "NewTask.h"
+#import "ProjectsEnumerations.h"
 
 @protocol AddTaskModelDelegate;
+@protocol AddTaskModelDataSource;
 
 @interface AddTaskModel : NSObject
 
 // properties
 @property (weak, nonatomic) id <AddTaskModelDelegate> delegate;
+@property (nonatomic, weak) id <AddTaskModelDataSource> dataSource;
+
 // methods
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
@@ -60,6 +64,8 @@
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
+- (void) fillControllerType: (TaskControllerType) controllerType;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>
@@ -67,3 +73,10 @@
 - (void) reloadData;
 
 @end
+
+@protocol AddTaskModelDataSource <NSObject>
+
+- (TaskControllerType) getControllerType;
+
+@end
+

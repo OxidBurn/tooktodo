@@ -19,7 +19,7 @@
 
 
 // methods
-- (IBAction)onSwitchControl:(UISwitch *)sender;
+- (IBAction) onSwitchControl: (UISwitch*) sender;
 
 
 @end
@@ -65,6 +65,7 @@
                    withTag: (NSUInteger) tag
            withSwitchState: (BOOL)       isSelected
               withDelegate: (id)         delegate
+          withEnabledState: (BOOL)       isEnabled
 {
     self.titleLabel.text  = titleText;
     
@@ -73,6 +74,8 @@
     self.delegate = delegate;
     
     self.switchControl.tag = tag;
+    
+    self.switchControl.enabled = isEnabled;
 }
 
 - (void) resetValue
