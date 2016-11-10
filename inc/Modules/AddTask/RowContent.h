@@ -40,4 +40,6 @@
 
 @property (strong, nonatomic) NSDate*   maximumDate;
 
+- (instancetype) initWithUserInteractionEnabled;
+
 @end

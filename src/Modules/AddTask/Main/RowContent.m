@@ -10,5 +10,14 @@
 
 @implementation RowContent
 
+- (instancetype) initWithUserInteractionEnabled
+{
+    if (self = [super init])
+    {
+        self.userInteractionEnabled = YES;
+    }
+    
+    return self;
+}
 
 @end
