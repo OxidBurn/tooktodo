@@ -30,21 +30,14 @@
 
 @property (assign, nonatomic) TaskInfoSecondSectionContentType secondSectionContentType;
 
+@property (assign, nonatomic) CGRect tableViewFrame;
+
 @end
 
 @implementation TaskDetailModel
 
-#pragma mark - Properties -
 
-- (NSArray*) taskTableViewContent
-{
-    if ( _taskTableViewContent == nil )
-    {
-        _taskTableViewContent = [self.contentManager getTableViewContentForTask: self.task];
-    }
-    
-    return _taskTableViewContent;
-}
+#pragma mark - Properties -
 
 - (TaskDetailContentManager*) contentManager
 {
@@ -61,7 +54,8 @@
 {
     self.task = task;
     
-    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task];
+    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
+                                                          forTableViewWithFrame: self.tableViewFrame];
     
     if (completion)
         completion(YES);
@@ -158,6 +152,33 @@
 {
     return self.task.access.boolValue;
 }
+
+- (CGFloat) countHeightForCommentCellForIndexPath: (NSIndexPath*) indexPath
+{
+    TaskRowContent* content = self.taskTableViewContent[indexPath.section][indexPath.row];
+    
+    // default cell height without any attachments or edit buttons
+    CGFloat cellHeight = 100;
+    
+    if ( content.containerView )
+    {
+        CGFloat containerHeight = content.containerView.frame.size.height;
+        
+        // distance between cells and distance before container
+        cellHeight += containerHeight + 30;
+    }
+    
+    return cellHeight;
+}
+
+- (void) createContentForTableViewWithFrame: (CGRect) frame
+{
+    self.tableViewFrame = frame;
+    
+    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: self.task
+                                                          forTableViewWithFrame: frame];
+}
+
 
 #pragma mark - Helpers -
 

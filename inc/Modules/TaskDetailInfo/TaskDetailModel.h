@@ -21,35 +21,47 @@
 
 @property (nonatomic, weak) id<TaskDetailModelDelegate> delegate;
 
-// methods
+
+// methods for different counts
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;
 
+- (CGFloat) countHeightForCommentCellForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSString*) getTaskTitle;
+
+- (NSString*) getTaskDescriptionValue;
+
+
+// getters for table view
 - (NSArray*) returnHeaderNumbersInfo;
+
+- (TaskRowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
+
+- (TaskInfoSecondSectionContentType) getSecondSectionContentType;
 
 - (TaskStatusType) getTaskStatus;
 
+
+// methods for work with content or data base
 - (void) deselectTask;
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 
 - (void) updateTaskStatus;
 
-- (TaskRowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
-
-- (TaskInfoSecondSectionContentType) getSecondSectionContentType;
-
-- (NSString*) getTaskTitle;
-
-- (NSString*) getTaskDescriptionValue;
-
 - (void) fillSelectedTask: (ProjectTask*) task
            withCompletion: (CompletionWithSuccess) completion;
 
+- (void) createContentForTableViewWithFrame: (CGRect) frame;
+
+
+// methods for handling controller type
 - (ProjectTaskStage*) getTaskStage;
 
 - (BOOL) getTaskState;
 
 @end
+
 
 @protocol TaskDetailModelDelegate <NSObject>
 

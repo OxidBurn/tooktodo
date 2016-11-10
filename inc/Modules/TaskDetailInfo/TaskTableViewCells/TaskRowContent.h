@@ -10,6 +10,7 @@
 
 // Classes
 #import "TaskMarkerComponent.h"
+#import "FlexibleViewsContainer.h"
 
 @interface TaskRowContent : NSObject
 
@@ -83,8 +84,8 @@
 
 @property (assign, nonatomic) NSString* taskStatusMarkImageName;
 
-
-
+// delete after implementing next property
+@property (strong, nonatomic) FlexibleViewsContainer* containerView;
 
 // properties for test methods
 @property (strong, nonatomic) NSString* attachmentTitle;

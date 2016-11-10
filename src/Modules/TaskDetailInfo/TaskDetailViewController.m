@@ -51,7 +51,6 @@
     
     if ( IS_PHONE == NO)
         self.navigationItem.leftBarButtonItem = nil;
-
 }
 
 - (void) viewDidLoad
@@ -82,7 +81,7 @@
 {
     if ( _viewModel == nil )
     {
-        _viewModel = [TaskDetailViewModel new];
+        _viewModel = [[TaskDetailViewModel alloc] init];
     }
     
     return _viewModel;

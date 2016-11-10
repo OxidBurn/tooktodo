@@ -28,6 +28,7 @@
 
 - (UITableViewCell*) createCellForTableView: (UITableView*)    tableView
                                 withContent: (TaskRowContent*) content
+                               withDelegate: (id)              delegate
 {
     UITableViewCell* cell = [[UITableViewCell alloc] init];
         
@@ -109,7 +110,8 @@
             CommentsCellFactory* factory = [CommentsCellFactory new];
             
             cell = [factory returnCommentsCellForTableView: tableView
-                                               withContent: content];
+                                               withContent: content
+                                              withDelegate: delegate];
         }
             break;
     }
