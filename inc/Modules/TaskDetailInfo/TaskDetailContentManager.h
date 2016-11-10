@@ -16,7 +16,8 @@
 @interface TaskDetailContentManager : NSObject
 
 // methods
-- (NSArray*) getTableViewContentForTask: (ProjectTask*) task;
+- (NSArray*) getTableViewContentForTask: (ProjectTask*) task
+                  forTableViewWithFrame: (CGRect)       tableViewFrame;
 
 - (NSArray*) createSectionTwoContentAccordingToType: (NSUInteger) typeIndex
                                             forTask: (ProjectTask*) task;

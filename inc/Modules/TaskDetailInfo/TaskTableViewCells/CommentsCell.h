@@ -11,9 +11,22 @@
 // Classes
 #import "TaskRowContent.h"
 
+@protocol CommentCellDelegate;
+
 @interface CommentsCell : UITableViewCell
 
+// properties
+@property (weak, nonatomic) id <CommentCellDelegate> delegate;
+
 // methods
-- (void) fillCellWithContent: (TaskRowContent*) content;
+- (void) fillCellWithContent: (TaskRowContent*) content
+                   withWidth: (CGFloat)         width
+                withDelegate: (id)              delegate;
+
+@end
+
+@protocol CommentCellDelegate <NSObject>
+
+- (void) updateTableView;
 
 @end

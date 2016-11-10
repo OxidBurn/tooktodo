@@ -20,6 +20,6 @@ typedef NS_ENUM(NSUInteger, FlexibleViewsContainerType)
 - (void) setTypeToViewsContainer: (FlexibleViewsContainerType) type;
 
 - (void) fillViewsContainerWithViews: (NSArray*) viewsArray
-                      withCompletion: (CompletionWithSuccess) completion;
+                            forWidth: (CGFloat)  width;
 
 @end

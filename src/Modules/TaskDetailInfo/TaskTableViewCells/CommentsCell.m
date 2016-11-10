@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel*                userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel*                commentDateLabel;
 @property (weak, nonatomic) IBOutlet UITextView*             commentContentTextView;
-@property (weak, nonatomic) IBOutlet FlexibleViewsContainer* attachmentsContainerView;
+@property (strong, nonatomic) FlexibleViewsContainer* attachmentsContainerView;
 
 
 // properties
@@ -39,7 +39,11 @@
 #pragma mark - Public -
 
 - (void) fillCellWithContent: (TaskRowContent*) content
+                   withWidth: (CGFloat)         width
+                withDelegate: (id)              delegate
 {
+    self.delegate = delegate;
+    
     [self.userAvatarImageView setImage: content.commentAuthorAvatar];
     
     self.userNameLabel.text = content.commentAuthorName;
@@ -50,21 +54,25 @@
     
     [self.attachmentsContainerView setTypeToViewsContainer: ViewForCommentCell];
     
-    if ( content.attachmentsArray )
+    if ( content.containerView )
     {
-        NSArray* viewsArray = [self createAttachmentsViewsWithTitles: content.attachmentsArray];
-        
-        [self.attachmentsContainerView fillViewsContainerWithViews: viewsArray
-                                                    withCompletion: ^(BOOL isSuccess) {
+        if ( self.attachmentsContainerView == nil )
+        {
+            CGFloat containerX = self.commentContentTextView.frame.origin.x;
+            CGFloat containerY = self.commentContentTextView.frame.origin.y +
+                                 self.commentContentTextView.frame.size.height + 25;
+            CGFloat containerWidth = width - 30;
+            CGFloat containerHeight = content.containerView.frame.size.height;
             
-                                                        CGRect frame = self.frame;
-                                                        
-                                                        CGFloat height = self.attachmentsContainerView.height + 97;
-                                                        
-                                                        frame.size.height = height;
-                                                        
-                                                        self.frame = frame;
-        }];
+            CGRect containerFrame = CGRectMake(containerX, containerY, containerWidth, containerHeight);
+            
+            self.attachmentsContainerView = content.containerView;
+            
+            self.attachmentsContainerView.frame = containerFrame;
+            
+            [self addSubview: self.attachmentsContainerView];
+        }
+        
     }
 }
 

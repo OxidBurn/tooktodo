@@ -35,11 +35,13 @@
 }
 
 - (void) fillViewsContainerWithViews: (NSArray*)              viewsArray
-                      withCompletion: (CompletionWithSuccess) completion
+                            forWidth: (CGFloat)               width
 {
+    self.autoresizesSubviews = NO;
+    
     self.viewsArray = viewsArray;
     
-    __block CGFloat widthLeftToEdge = self.frame.size.width;
+    __block CGFloat widthLeftToEdge = width;
     __block NSUInteger numberOfRows = 1;
     __block CGPoint currentPointToAddView = CGPointMake(0, 0);
     
@@ -52,21 +54,21 @@
             [self addViewAsSubview: view
                  beginingFromPoint: currentPointToAddView];
             
-            widthLeftToEdge -= view.frame.size.width;
             currentPointToAddView.x += view.frame.size.width + 10;
+            widthLeftToEdge -= view.frame.size.width + 10;
         }
         else
         {
             numberOfRows++;
             currentPointToAddView.y += 20;
             currentPointToAddView.x = 0;
-            widthLeftToEdge         = self.frame.size.width;
+            widthLeftToEdge         = width;
             
             [self addViewAsSubview: view
                  beginingFromPoint: currentPointToAddView];
             
-            widthLeftToEdge -= view.frame.size.width;
             currentPointToAddView.x += view.frame.size.width + 10;
+            widthLeftToEdge -= currentPointToAddView.x;
         }
     }];
     
@@ -77,9 +79,6 @@
     containerFrame.size.height = containerHeight;
     
     self.frame = containerFrame;
-    
-    if (completion)
-        completion(YES);
 }
 
 
