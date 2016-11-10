@@ -19,7 +19,7 @@
 //// Helpers
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailModel() <ChangeStatusControllerDelegate>
+@interface TaskDetailModel()
 
 // properties
 @property (strong, nonatomic) ProjectTask* task;
