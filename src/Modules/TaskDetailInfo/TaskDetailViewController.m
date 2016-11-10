@@ -131,10 +131,10 @@
         
         AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
         
+        [vc fillControllerType: AddSubtaskControllerType];
+        
         [vc fillDefaultStage: [self.viewModel getTaskStage]
               andHiddenState: [self.viewModel getTaskState]];
-        
-        [vc fillControllerType: AddSubtaskControllerType];
     }
     
 }

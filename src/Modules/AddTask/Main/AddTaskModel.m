@@ -202,7 +202,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
                                             withDetailText: content.detail
                                               forTableView: tableView];
             
-            
         }
             break;
             
@@ -212,6 +211,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             
             cell = [factory returnFlexibleCellWithTextContent: content.title
                                                  forTableView: tableView];
+            
+            
         }
             break;
             
@@ -409,6 +410,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     
     rowStage.detail = stage.title;
     
+    [self disableUserInteractionForStage];
  
     [self updateContentWithRow: rowStage
                      inSection: SectionThree
@@ -419,8 +421,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 - (void) fillControllerType: (TaskControllerType) controllerType
 {
     self.controllerType = controllerType;
-    
-    [self disableUserInteractionForStage];
 }
 
 - (void) disableUserInteractionForStage
@@ -470,6 +470,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     row.membersArray = selectedUsersArray;
     
     [self updateContentWithRow: row inSection: SectionOne inRow: TaskResponsibleRow];
+    
 }
 
 - (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
@@ -496,6 +497,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     {
         [self.delegate reloadData];
     }
+    
 }
 
 - (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
@@ -514,6 +516,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     {
         [self.delegate reloadData];
     }
+
 }
 
 

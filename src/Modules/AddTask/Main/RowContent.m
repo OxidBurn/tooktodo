@@ -20,4 +20,9 @@
     return self;
 }
 
+- (void) setUserInteractionEnabled: (BOOL) userInteractionEnabled
+{
+    _userInteractionEnabled = userInteractionEnabled;
+}
+
 @end
