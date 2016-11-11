@@ -12,6 +12,7 @@
 #import "AddContactModel.h"
 #import "Utils.h"
 #import "InviteInfo.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
 
 typedef NS_ENUM(NSUInteger, InviteTextFieldType)
 {
