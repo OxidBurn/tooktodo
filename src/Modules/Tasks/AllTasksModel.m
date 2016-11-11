@@ -15,17 +15,25 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
+#import "NSObject+Sorting.h"
 
-static NSString* projectKey = @"projectInfoKey";
-static NSString* contentKey = @"contentInfoKey";
+//static NSString* projectKey = @"projectInfoKey";
+//static NSString* contentKey = @"contentInfoKey";
+
 
 @interface AllTasksModel()
 
 // properties
 
-@property (strong, nonatomic) NSArray* projectsInfo;
+@property (strong, nonatomic) NSArray* projectsInfoArray;
+
+@property (nonatomic, strong) NSArray* tableContentArray;
 
 @property (strong, nonatomic) NSArray* rowsInfo;
+
+@property (nonatomic, assign) ContentAccedingSortingType ascending;
+
+@property (nonatomic, assign) TasksSortingType sortType;
 
 // methods
 
@@ -33,6 +41,36 @@ static NSString* contentKey = @"contentInfoKey";
 @end
 
 @implementation AllTasksModel
+
+
+#pragma mark - Initialization -
+
+- (instancetype) initWithDefaultSortParameters
+{
+    self = [super init];
+    
+    if (self)
+    {
+        //Default sorting by name in ascending
+        self.ascending = GrowsSortingType;
+        self.sortType  = SortByName;
+    }
+    
+    return self;
+}
+
+
+#pragma mark - Properties -
+
+- (NSArray*) projectsInfoArray
+{
+    if (_projectsInfoArray == nil)
+    {
+        _projectsInfoArray = [DataManagerShared getAllProjects];
+    }
+    
+    return _projectsInfoArray;
+}
 
 
 #pragma mark - Public methods -
@@ -53,19 +91,19 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (NSUInteger) countOfSections
 {
-    return self.projectsInfo.count;
+    return self.projectsInfoArray.count;
 }
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
 {
-    NSArray* rowsInfoCount = self.projectsInfo[section][contentKey];
+    NSArray* sectionInfo = self.tableContentArray[section];
     
-    return rowsInfoCount.count;
+    return sectionInfo.count;
 }
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section
 {
-    return self.projectsInfo[section][projectKey];
+    return self.projectsInfoArray[section];
 }
 
 - (void) markProjectAsExpanded: (NSUInteger)            projectIndex
@@ -89,7 +127,7 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) markStageAsExpandedAtIndexPath: (NSIndexPath*)          indexPath
                          withCompletion: (CompletionWithSuccess) completion
 {
-    ProjectTaskStage* stage = self.projectsInfo[indexPath.section][contentKey][indexPath.row];
+    ProjectTaskStage* stage = self.tableContentArray[indexPath.section][indexPath.row];
     
     __weak typeof(self) blockSelf = self;
     
@@ -112,20 +150,20 @@ static NSString* contentKey = @"contentInfoKey";
     {
         return @"StageTypeCellID";
     }
-    else
+    else if ([cellInfo isKindOfClass: [ProjectTask class]])
     {
         return @"TaskInfoCellID";
     }
     
-    return @"";
+    else return @"";
 }
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-    NSArray* cellsContentInfo = self.projectsInfo[path.section][contentKey];
-    id cellInfo               = cellsContentInfo[path.row];
+
+    NSArray* sectionContent = self.tableContentArray[path.section];
     
-    return cellInfo;
+    return sectionContent[path.row];
 }
 
 - (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path
@@ -146,53 +184,69 @@ static NSString* contentKey = @"contentInfoKey";
                                             withSelectedState: YES];
 }
 
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    self.sortType  = type;
+    self.ascending = isAcceding;
+    
+    [self updateAllTasksData];
+}
+
 #pragma mark - Internal methods -
 
 - (void) updateAllTasksData
 {
-    self.projectsInfo = [DataManagerShared getAllProjects];
+    //array which contains all info about projects, stages, tasks
+    __block NSMutableArray* tmpContent = [NSMutableArray array];
     
-    __block NSMutableArray* tmpRowsInfo     = [NSMutableArray array];
-    __block NSMutableArray* tmpProjectsInfo = [NSMutableArray array];
-    
-    [self.projectsInfo enumerateObjectsUsingBlock:^(ProjectInfo* project, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.projectsInfoArray enumerateObjectsUsingBlock:^(ProjectInfo*  _Nonnull projectInfo, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        NSMutableDictionary* projectsInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{projectKey : project}];
+        //Storing stages and tasks as rows in one section
+        NSMutableArray* tmpSectionContent = [NSMutableArray array];
         
-        if ( project.isExpanded.boolValue )
+        
+        if (projectInfo.isExpanded.boolValue)
         {
-            [project.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            [projectInfo.stage enumerateObjectsUsingBlock:^(ProjectTaskStage * _Nonnull stage, BOOL * _Nonnull stop) {
                 
-                [tmpRowsInfo addObject: obj];
+                [tmpSectionContent addObject: stage];
                 
-                if ( obj.isExpanded.boolValue )
+                if (stage.isExpanded.boolValue)
                 {
-                    [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
-                        
-                        [tmpRowsInfo addObject: obj];
-                        
+                    __block NSMutableArray* tasksArray = [NSMutableArray array];
+                    
+                    [stage.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, BOOL * _Nonnull stop) {
+                    
+                        [tasksArray addObject: task];
                     }];
+                    
+                    //applying sorting for tasks in expanded stages
+                    NSArray* sortedTasks = [self applyTasksSortingType: self.sortType
+                                                               toArray: tasksArray.copy
+                                                            isAcceding: self.ascending];
+                    
+                    [sortedTasks enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull sortedTask, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        [tmpSectionContent addObject: sortedTask];
+                    }];
+                    
                 }
-                
+             
             }];
         }
         
-        if ( tmpRowsInfo.count > 0 )
-        {
-            [projectsInfoDic setObject: tmpRowsInfo.copy
-                                forKey: contentKey];
-            
-            [tmpRowsInfo removeAllObjects];
-        }
+        [tmpContent addObject: tmpSectionContent.copy];
         
-        [tmpProjectsInfo addObject: projectsInfoDic];
+        tmpSectionContent = nil;
         
     }];
     
-    self.projectsInfo = tmpProjectsInfo.copy;
+    self.tableContentArray = tmpContent.copy;
     
-    tmpRowsInfo     = nil;
-    tmpProjectsInfo = nil;
+    tmpContent = nil;
 }
+
 
 @end

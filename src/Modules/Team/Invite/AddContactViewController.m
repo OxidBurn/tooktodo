@@ -241,6 +241,7 @@
 {
     self.roleLabel.text             = value.title;
     self.addContactViewModel.roleID = value.sort;
+    
 }
 
 #pragma mark - UITableViewDelegate methods -

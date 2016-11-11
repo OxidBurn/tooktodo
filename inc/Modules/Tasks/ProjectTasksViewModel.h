@@ -20,6 +20,8 @@
 
 @property (copy, nonatomic) void(^didShowTaskInfo)();
 
+@property (nonatomic, copy) void(^reloadTable)();
+
 // methods
 
 - (RACSignal*) updateContent;

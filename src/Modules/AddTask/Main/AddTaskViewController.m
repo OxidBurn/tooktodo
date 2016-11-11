@@ -20,8 +20,10 @@
 #import "TeamInfoViewController.h"
 #import "SelectRoomViewController.h"
 #import "AddTaskTypeViewController.h"
+#import "ProjectsEnumerations.h"
+#import "AddTaskModel.h"
 
-@interface AddTaskViewController () <AddTaskViewModelDelegate>
+@interface AddTaskViewController () <AddTaskViewModelDelegate, AddTaskModelDataSource>
 
 // outlets
 
@@ -43,6 +45,7 @@
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 @property (nonatomic, assign) BOOL isChangedUI;
+@property (nonatomic, assign) TaskControllerType controllerType;
 
 // methods
 
@@ -75,6 +78,8 @@
     [self bindUI];
     
     self.isChangedUI = NO;
+//    
+//    [self.viewModel getModel].dataSource = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -215,6 +220,22 @@
     return _viewModel;
 }
 
+
+#pragma mark - Public -
+
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden
+{
+    [self.viewModel fillDefaultStage: stage
+                      andHiddenState: isHidden];
+    
+}
+
+- (void) fillControllerType: (TaskControllerType) controllerType
+{
+    [self.viewModel fillControllerType: controllerType];
+}
+
 #pragma mark - Actions -
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
@@ -274,6 +295,14 @@
 - (void) reloadAddTaskTableView
 {
     [self.addTaskTableView reloadData];
+}
+
+
+#pragma mark - AddTaskModelDataSource methods -
+
+- (TaskControllerType) getControllerType
+{
+    return self.controllerType;
 }
 
 #pragma mark - Internal methods -

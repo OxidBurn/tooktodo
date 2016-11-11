@@ -15,6 +15,10 @@
 #import "AllTaskBaseTableViewCell.h"
 #import "TaskDetailInfoCell.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "DataManager+Tasks.h"
+#import "DataManager+ProjectInfo.h"
+#import "NSObject+Sorting.h"
 
 @interface ProjectTasksViewModel()
 
@@ -45,7 +49,9 @@
 
 - (RACSignal*) updateContent
 {
-    return [self.model updateContent];
+    RACSignal* updateSignal = [self.model updateContent];
+    
+    return updateSignal;
 }
 
 - (ProjectTask*) getSelectedProjectTask
@@ -82,8 +88,8 @@
         viewForHeaderInSection: (NSInteger)    section
 {
     StageTitleView* stageInfoView = [[MainBundle loadNibNamed: @"StageTitleView"
-                                                                 owner: self
-                                                               options: nil] firstObject];
+                                                        owner: self
+                                                      options: nil] firstObject];
     
     stageInfoView.tag = section;
     
@@ -142,29 +148,6 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
-    
-    AllTasksCellType selectedCellType = cell.cellType;
-    
-    switch (selectedCellType)
-    {
-        case AllTasksStageCellType:
-        {
-            [self.model markStageAsExpandedAtIndexPath: indexPath.section
-                                        withCompletion: ^(BOOL isSuccess) {
-                                            
-                                            [tableView reloadData];
-                                            
-                                        }];
-        }
-            break;
-            
-        case AllTasksTaskCellType:
-        {
-            
-        }
-            break;
-    }
 }
 
 #pragma mark - PopoverViewController dataSource methods -
@@ -188,12 +171,22 @@
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
 {
+    [self.model sortArrayForType: index
+                      isAcceding: DiminutionSortingType];
     
+    //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
 }
 
 - (void) didGrowSortingAtIndex: (NSUInteger) index
 {
+   [self.model sortArrayForType: index
+                     isAcceding: GrowsSortingType];
     
+     //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
 }
 
 @end

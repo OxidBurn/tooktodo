@@ -27,11 +27,46 @@
 
 
 // methods
+- (IBAction) onAddTaskBtn: (UIButton*) sender;
+
+- (IBAction) onFilterTaskBtn: (UIButton*) sender;
+
+- (IBAction) onCanceledTasksBtn: (UIButton*) sender;
+
+- (IBAction) onDoneTasksBtn: (UIButton*) sender;
 
 
 @end
 
 @implementation FilterSubtasksCell
+
+
+#pragma mark - Actions -
+
+
+- (IBAction) onAddTaskBtn: (UIButton*) sender
+{
+    if ([self.delegate respondsToSelector:@selector(performSegueToAddSubtaskWithID:)])
+    {
+        [self.delegate performSegueToAddSubtaskWithID: @"ShowAddSubtask"];
+    }
+}
+
+- (IBAction) onFilterTaskBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onCanceledTasksBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onDoneTasksBtn: (UIButton*) sender
+{
+    
+}
+
 
 #pragma mark - Public -
 

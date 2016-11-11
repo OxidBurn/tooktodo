@@ -14,11 +14,18 @@
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "TasksService.h"
+#import "AttachmentView.h"
+#import "FlexibleViewsContainer.h"
+
+// Test class import
+#import "TestAttachments.h"
 
 @interface TaskDetailContentManager()
 
 // properties
 @property (strong, nonatomic) NSArray* tableViewCellsIdArray;
+
+@property (assign, nonatomic) CGRect tableViewFrame;
 
 @end
 
@@ -50,7 +57,10 @@
 #pragma mark - Public -
 
 - (NSArray*) getTableViewContentForTask: (ProjectTask*) task
+                  forTableViewWithFrame: (CGRect)       tableViewFrame
 {
+    self.tableViewFrame = tableViewFrame;
+    
     NSArray* sectionOne = [self createSectionOneForTask: task];
     
     NSArray* sectionTwo = [self createSectionTwoForTask: task];
@@ -233,6 +243,27 @@
     
     return content;
 }
+
+
+- (NSArray*) createAttachmentsViewsWithTitles: (NSArray*) attachmentsArray
+{
+    __block NSMutableArray* viewsArray = [NSMutableArray new];
+    
+    [attachmentsArray enumerateObjectsUsingBlock: ^(NSString* title, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        AttachmentView* view = [[[NSBundle mainBundle] loadNibNamed: @"AttachmentView"
+                                                              owner: nil
+                                                            options: nil] lastObject];
+        
+        [view fillViewWithAttachmentName: title];
+        
+        [viewsArray addObject: view];
+    }];
+    
+    return viewsArray.copy;
+}
+
+
 #pragma mark - Helpers -
 
 - (CGFloat) returnFloatFromNumber: (NSNumber*) number
@@ -284,13 +315,43 @@
     
     comment.cellId = self.tableViewCellsIdArray[CommentsCellType];
     
+    comment.cellTypeIndex = CommentsCellType;
+    
     comment.commentAuthorName = @"Тестовый Пользователь";
     comment.commentAuthorAvatar = [UIImage imageNamed: @"UserMark"];
     comment.commentDate         = [NSDate date];
     
-    comment.commentText = @"Обычно тут что-то совершенно непонятное, вот и я не стал нарушать традиции";
+    comment.commentText = @"Комментарии будут жить здесь с прикрепленными файлами или без. Небходим достаточно длинный текст чтобы проверить правильность заполнения ячейки";
     
-    return @[comment];
+    NSArray* attachmentsTitlesArray = [TestAttachments returnArrayWithAttachments];
+    
+    NSArray* attachmentsArray = [self createAttachmentsViewsWithTitles: attachmentsTitlesArray];
+    
+    CGRect containerFrame = CGRectMake(0,
+                                       0,
+                                       self.tableViewFrame.size.width - 30,
+                                       20);
+    
+    FlexibleViewsContainer* container = [[FlexibleViewsContainer alloc] initWithFrame: containerFrame];
+    
+    [container fillViewsContainerWithViews: attachmentsArray
+                                  forWidth: containerFrame.size.width];
+    
+    comment.containerView = container;
+    
+    TaskRowContent* anotherComment = [TaskRowContent new];
+    
+    anotherComment.cellId = self.tableViewCellsIdArray[CommentsCellType];
+    
+    anotherComment.cellTypeIndex = CommentsCellType;
+    
+    anotherComment.commentAuthorName = @"Немногословный Юзер";
+    anotherComment.commentAuthorAvatar = [UIImage imageNamed: @"UserMark"];
+    anotherComment.commentDate         = [NSDate date];
+    
+    anotherComment.commentText = @"Буду краток...";
+    
+    return @[comment, anotherComment];
 }
 
 @end

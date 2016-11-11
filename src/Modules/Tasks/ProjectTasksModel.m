@@ -12,10 +12,12 @@
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "TasksService.h"
 #import "ConfigurationManager.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
+#import "NSObject+Sorting.h"
 
 static NSString* stageKey   = @"stageInfoKey";
 static NSString* contentKey = @"contentInfoKey";
@@ -58,6 +60,32 @@ static NSString* contentKey = @"contentInfoKey";
     return updateInfoSignal;
 }
 
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    NSMutableArray* newStages = self.stages.mutableCopy;
+    
+    [self.stages enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (section[contentKey])
+        {
+            NSArray* newSectionContent =  [self applyTasksSortingType: type
+                                                              toArray: section[contentKey]
+                                                           isAcceding: isAcceding];
+            
+            NSMutableDictionary* newSection = section.mutableCopy;
+            
+            [newSection setObject: newSectionContent
+                           forKey: contentKey];
+            
+            [newStages replaceObjectAtIndex: idx
+                                 withObject: newSection];
+        }
+     
+    }];
+    
+    self.stages = newStages.copy;
+}
+
 - (NSUInteger) countOfSections
 {
     return self.stages.count;
@@ -94,8 +122,6 @@ static NSString* contentKey = @"contentInfoKey";
                                    }];
 }
 
-
-
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
     NSArray* cellsContentInfo = self.stages[path.section][contentKey];
@@ -111,33 +137,6 @@ static NSString* contentKey = @"contentInfoKey";
     [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedTask
                                             withSelectedState: YES];
 }
-
-- (NSArray*) getPopoverContent
-{
-    NSArray* contentArr = @[@"Название",
-                            @"Дата начала",
-                            @"Дата завершения",
-                            @"Факт. дата начала",
-                            @"Факт. дата завершения",
-                            @"Ответственный",
-                            @"Помещение",
-                            @"Система",
-                            @"Статус"];
-    
-    return contentArr;
-}
-
-- (TasksSortingType) getTasksSortingType
-{
-    return [[ConfigurationManager sharedInstance] getTasksSortingType];
-}
-
-- (ContentAccedingSortingType) getTasksSortingAscendingType
-{
-    return [[ConfigurationManager sharedInstance] getAccedingTypeForTasks];
-}
-
-#pragma mark - Internal methods -
 
 - (void) updateAllTasksData
 {

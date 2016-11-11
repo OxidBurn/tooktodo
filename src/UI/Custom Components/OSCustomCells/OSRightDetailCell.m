@@ -27,8 +27,10 @@
 - (void) fillCellWithTitle: (NSString*) titleText
                 withDetail: (NSString*) detailText
 {
-    self.titleLabel.text  = titleText;
-    self.detailLabel.text = detailText;
+    self.titleLabel.text        = titleText;
+    self.detailLabel.text       = detailText;
+    self.userInteractionEnabled = YES;
+    self.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 @end

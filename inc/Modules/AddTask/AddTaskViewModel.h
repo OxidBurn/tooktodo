@@ -14,6 +14,7 @@
 
 //Classes
 #import "NewTask.h"
+#import "AddTaskModel.h"
 
 @protocol AddTaskViewModelDelegate;
 
@@ -60,7 +61,12 @@
 
 - (NSString*) returnTaskName;
 
-//- (RACSignal*) getNewTaskSignal;
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden;
+
+- (AddTaskModel*) getModel;
+
+- (void) fillControllerType: (TaskControllerType) controllerType;
 
 @end
 

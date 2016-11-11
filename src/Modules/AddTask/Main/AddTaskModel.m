@@ -91,6 +91,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 @property (strong, nonatomic) NSArray* allSeguesInfoArray;
 
+@property (nonatomic, assign) TaskControllerType controllerType;
+
 
 // methods
 
@@ -199,6 +201,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             cell = [factory returnRightDetailCellWithTitle: content.title
                                             withDetailText: content.detail
                                               forTableView: tableView];
+            
         }
             break;
             
@@ -208,6 +211,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             
             cell = [factory returnFlexibleCellWithTextContent: content.title
                                                  forTableView: tableView];
+            
+            
         }
             break;
             
@@ -221,7 +226,8 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
                                               withTag: AddTaskIsHiddenTaskSwitchTag
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
-                                         withDelegate: self];
+                                         withDelegate: self
+                                     withEnabledState: [self handleEnabledSwitchStateForContent: content]];
         }
             break;
             
@@ -266,6 +272,12 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
             
         default:
             break;
+    }
+    
+    if (content.userInteractionEnabled == NO)
+    {
+        cell.userInteractionEnabled = NO;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
@@ -336,7 +348,6 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     return self.task.stage;
 }
 
-
 - (id) returnSelectedRoom
 {
     if ( self.task.level )
@@ -381,6 +392,59 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
         completion(YES);
 }
 
+- (void) fillDefaultStage: (ProjectTaskStage*) stage
+           andHiddenState: (BOOL)              isHidden
+{
+    self.task.isHiddenTask = isHidden;
+    self.task.stage        = stage;
+    
+    RowContent* rowHiddenTsk = self.addTaskTableViewContent[SectionOne][TaskHiddenStatusRow];
+    
+    rowHiddenTsk.isHidden = isHidden;
+    
+    [self updateContentWithRow: rowHiddenTsk
+                     inSection: SectionOne
+                         inRow: TaskHiddenStatusRow];
+    
+    RowContent* rowStage = self.addTaskTableViewContent[SectionThree][TaskStageRow];
+    
+    rowStage.detail = stage.title;
+    
+    [self disableUserInteractionForStage];
+ 
+    [self updateContentWithRow: rowStage
+                     inSection: SectionThree
+                         inRow: TaskStageRow];
+    
+}
+
+- (void) fillControllerType: (TaskControllerType) controllerType
+{
+    self.controllerType = controllerType;
+}
+
+- (void) disableUserInteractionForStage
+{
+    RowContent* rowStage = self.addTaskTableViewContent[SectionThree][TaskStageRow];
+    
+    switch (self.controllerType)
+    {
+        case AddTaskControllerType:
+        {
+            rowStage.userInteractionEnabled = YES;
+            break;
+        }
+            
+        case AddSubtaskControllerType:
+        {
+            rowStage.userInteractionEnabled = NO;
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -406,6 +470,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     row.membersArray = selectedUsersArray;
     
     [self updateContentWithRow: row inSection: SectionOne inRow: TaskResponsibleRow];
+    
 }
 
 - (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
@@ -432,6 +497,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     {
         [self.delegate reloadData];
     }
+    
 }
 
 - (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
@@ -450,6 +516,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     {
         [self.delegate reloadData];
     }
+
 }
 
 
@@ -607,6 +674,30 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 #pragma mark - Internal -
 
+- (BOOL) handleEnabledSwitchStateForContent: (RowContent*) rowContent
+{
+
+    switch (self.controllerType)
+    {
+        case AddTaskControllerType:
+        {
+            rowContent.isSwitchEnabled = YES;
+            break;
+        }
+         
+        case AddSubtaskControllerType:
+        {
+            rowContent.isSwitchEnabled = NO;
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    return rowContent.isSwitchEnabled;
+}
+
 - (NSArray*) createTableViewContent
 {
     NSArray* sectionOne   = [self createSectionOne];
@@ -620,31 +711,32 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 - (NSArray*) createSectionOne
 {
-    RowContent* rowOne = [RowContent new];
+    RowContent* rowOne = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowOne.cellId = self.addTaskTableViewCellsInfo[FlexibleTextFieldCell];
     rowOne.title  = self.task.taskName ? self.task.taskName : @"Название задачи";
     
-    RowContent* rowTwo = [RowContent new];
+    RowContent* rowTwo = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowTwo.cellId  = self.addTaskTableViewCellsInfo[FlexibleCell];
     rowTwo.title   = self.task.taskDescription ? self.task.taskDescription : @"Описание задачи";
     rowTwo.segueId = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
     
-    RowContent* rowThree = [RowContent new];
+    RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowThree.cellId   = self.addTaskTableViewCellsInfo[SwitchCell];
     rowThree.title    = @"Скрытая задача";
     rowThree.isHidden = self.task.isHiddenTask? self.task.isHiddenTask : NO;
     
-    RowContent* rowFour = [RowContent new];
+    RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
     rowFour.title        = @"Ответственный";
     rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
     
-    RowContent* rowFive = [RowContent new];
+    
+    RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     
     NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: self.task.claiming];
     
@@ -656,7 +748,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     rowFive.membersArray = self.task.claiming;
     rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
     
-    RowContent* rowSix = [RowContent new];
+    RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
     
     NSString* cellForRowSixId = [self determineCellIdForGroupOfMembers: self.task.observers];
     
@@ -673,7 +765,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 - (NSArray*) createSectionTwo
 {
-    RowContent* row = [RowContent new];
+    RowContent* row = [[RowContent alloc] initWithUserInteractionEnabled];
     
     row.title   = @"Сроки";
     row.detail  = [self createTermsLabelTextForStartDate: self.task.terms.startDate
@@ -688,34 +780,35 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
 
 - (NSArray*) createSectionThree
 {
-    RowContent* rowOne = [RowContent new];
+    RowContent* rowOne = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowOne.title   = @"Помещение";
     rowOne.detail  = @"Не выбрано";
     rowOne.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowOne.segueId = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
     
-    RowContent* rowTwo = [RowContent new];
+    RowContent* rowTwo = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowTwo.title  = @"Задача на плане";
     rowTwo.detail = @"Не реализовано";
     rowTwo.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
     
-    RowContent* rowThree = [RowContent new];
+    RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowThree.title   = @"Этап";
     rowThree.detail  = @"Не реализовано";
     rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
+
     
-    RowContent* rowFour = [RowContent new];
+    RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFour.title   = @"Система";
     rowFour.detail  = @"Не реализовано";
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     
-    RowContent* rowFive = [RowContent new];
+    RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFive.title         = @"Тип задачи";
     rowFive.detail        = @"Не реализовано";
@@ -723,7 +816,7 @@ typedef NS_ENUM(NSUInteger, RowTypeSectionThree) {
     rowFive.cellId        = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
     rowFive.segueId       = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
     
-    RowContent* rowSix = [RowContent new];
+    RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowSix.title  = @"Документы к задаче";
     rowSix.detail = @"Не реализовано";

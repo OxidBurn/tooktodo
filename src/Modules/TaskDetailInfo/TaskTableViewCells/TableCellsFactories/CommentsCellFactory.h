@@ -18,6 +18,7 @@
 
 // methods
 - (UITableViewCell*) returnCommentsCellForTableView: (UITableView*)    tableView
-                                        withContent: (TaskRowContent*) content;
+                                        withContent: (TaskRowContent*) content
+                                       withDelegate: (id)              delegate;
 
 @end

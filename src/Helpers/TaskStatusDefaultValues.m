@@ -20,6 +20,12 @@
 
 @property (strong, nonatomic) NSArray* imagesInfoArray;
 
+@property (strong, nonatomic) UIColor* yellowColor;
+
+@property (strong, nonatomic) UIColor* greenColor;
+
+@property (strong, nonatomic) UIColor* redColor;
+
 // methods
 
 
@@ -27,7 +33,47 @@
 
 @implementation TaskStatusDefaultValues
 
+
 #pragma mark - Properties -
+
+- (UIColor*) yellowColor
+{
+    if ( _yellowColor == nil )
+    {
+        _yellowColor = [UIColor colorWithRed: 248.0/256
+                                       green: 216.0/256
+                                        blue: 24.0/256
+                                       alpha: 1.f];
+    }
+    
+    return _yellowColor;
+}
+
+- (UIColor*) greenColor
+{
+    if ( _greenColor == nil )
+    {
+        _greenColor = [UIColor colorWithRed: 79.0/256
+                                      green: 197.0/256
+                                       blue: 45.0/256
+                                      alpha: 1.f];
+    }
+    
+    return _greenColor;
+}
+
+- (UIColor*) redColor
+{
+    if ( _redColor == nil )
+    {
+        _redColor = [UIColor colorWithRed: 255.0/256
+                                    green: 70.0/256
+                                     blue: 70.0/256
+                                    alpha: 1.f];
+    }
+    
+    return _redColor;
+}
 
 - (NSArray*) titlesInfoArray
 {
@@ -35,9 +81,9 @@
     {
         _titlesInfoArray = @[ @"Ожидание",
                               @"В работе",
+                              @"На утверждении",
                               @"Выполнена",
                               @"Отменена",
-                              @"На утверждении",
                               @"На доработке",
                               @"Запрос на отмену"];
     }
@@ -49,40 +95,13 @@
 {
     if ( _colorsInfoArray == nil )
     {
-        _colorsInfoArray = @[ [UIColor colorWithRed: 248.0/256
-                                              green: 216.0/256
-                                               blue: 24.0/256
-                                              alpha: 1.f],
-                              
-                              [UIColor colorWithRed: 79.0/256
-                                              green: 197.0/256
-                                               blue: 45.0/256
-                                              alpha: 1.f],
-                              
-                              [UIColor colorWithRed: 79.0/256
-                                              green: 197.0/256
-                                               blue: 45.0/256
-                                              alpha: 1.f],
-                              
-                              [UIColor colorWithRed: 255.0/256
-                                              green: 70.0/256
-                                               blue: 70.0/256
-                                              alpha: 1.f],
-                              
-                              [UIColor colorWithRed: 248.0/256
-                                              green: 216.0/256
-                                               blue: 24.0/256
-                                              alpha: 1.f],
-                              
-                              [UIColor colorWithRed: 248.0/256
-                                              green: 216.0/256
-                                               blue: 24.0/256
-                                              alpha: 1.f],
-        
-                              [UIColor colorWithRed: 255.0/256
-                                              green: 70.0/256
-                                               blue: 70.0/256
-                                              alpha: 1.f]];
+        _colorsInfoArray = @[ self.yellowColor,
+                              self.greenColor,
+                              self.yellowColor,
+                              self.greenColor,
+                              self.redColor,
+                              self.yellowColor,
+                              self.redColor ];
     }
     
     return _colorsInfoArray;
@@ -94,11 +113,11 @@
     {
         _imagesInfoArray = @[ [UIImage imageNamed: @"TaskStatusWaitingIcon"],
                               [UIImage imageNamed: @"TaskStatusInProgressIcon"],
+                              [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
                               [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
-                              [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
                               [UIImage imageNamed: @"TaskStatusOnCompletion"],
-                              [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
+                              [UIImage imageNamed: @"TaskStatusCanceledIcon"] ];
     }
     
     return _imagesInfoArray;

@@ -16,10 +16,13 @@
 #pragma mark - Public -
 - (UITableViewCell*) returnCommentsCellForTableView: (UITableView*)    tableView
                                         withContent: (TaskRowContent*) content
+                                       withDelegate: (id)              delegate
 {
-    CommentsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"CommentsCellId"];
+    CommentsCell* cell = (CommentsCell*)[tableView dequeueReusableCellWithIdentifier: @"CommentsCellId"];
     
-    [cell fillCellWithContent: content];
+    [cell fillCellWithContent: content
+                    withWidth: CGRectGetWidth( tableView.frame )
+                 withDelegate: delegate];
 
     return cell;
 }

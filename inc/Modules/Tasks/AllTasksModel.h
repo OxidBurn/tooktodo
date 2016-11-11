@@ -13,12 +13,11 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 
+
 @interface AllTasksModel : NSObject
 
-// properties
-
-
 // methods
+- (instancetype) initWithDefaultSortParameters;
 
 - (RACSignal*) updateContent;
 
@@ -41,5 +40,9 @@
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
 - (void) markTaskAsSelected: (NSIndexPath*) index;
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding;
+
 
 @end

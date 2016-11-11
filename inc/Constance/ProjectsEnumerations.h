@@ -46,9 +46,9 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
 {
     TaskWaitingStatusType      = 0,
     TaskInProgressStatusType   = 1,
-    TaskCompletedStatusType    = 2,
-    TaskCanceledStatusType     = 3,
-    TaskOnApprovingStatusType  = 4,
+    TaskOnApprovingStatusType  = 2,
+    TaskCompletedStatusType    = 3,
+    TaskCanceledStatusType     = 4,
     TaskOnCompletionStatusType = 5,
     TaskCancelRequestType      = 6,
 };
@@ -142,6 +142,12 @@ typedef NS_ENUM(NSUInteger, SectionsList) {
     SectionTwo,
     SectionThree,
     
+};
+
+typedef NS_ENUM(NSUInteger, TaskControllerType)
+{
+    AddTaskControllerType,
+    AddSubtaskControllerType,
 };
 
 #endif /* ProjectsEnumerations_h */

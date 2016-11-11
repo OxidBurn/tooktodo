@@ -15,6 +15,7 @@
 #import "AllTaskBaseTableViewCell.h"
 #import "ProjectsEnumerations.h"
 #import "DataManager+Tasks.h"
+#import "NSObject+Sorting.h"
 
 @interface AllTasksViewModel()
 
@@ -36,7 +37,7 @@
 {
     if ( _model == nil )
     {
-        _model = [AllTasksModel new];
+        _model = [[AllTasksModel alloc]  initWithDefaultSortParameters];
     }
     
     return _model;
@@ -171,6 +172,44 @@
     }
 }
 
+#pragma mark - PopoverViewController dataSource methods -
+
+- (NSArray*) getPopoverContent
+{
+    return [self.model getPopoverContent];
+}
+
+- (NSUInteger) selectedItem
+{
+    return [self.model getTasksSortingType];
+}
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType
+{
+    return [self getTasksSortingAscendingType];
+}
+
+#pragma mark - PopoverViewController delegate methods -
+
+- (void) didDiminutionSortingAtIndex: (NSUInteger) index
+{
+    [self.model sortArrayForType: index
+                      isAcceding: DiminutionSortingType];
+    
+    //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
+}
+
+- (void) didGrowSortingAtIndex: (NSUInteger) index
+{
+    [self.model sortArrayForType: index
+                      isAcceding: GrowsSortingType];
+    
+    //Load new data for table
+    if ( self.reloadTable )
+        self.reloadTable();
+}
 
 
 @end

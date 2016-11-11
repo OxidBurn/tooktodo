@@ -20,5 +20,6 @@
 
 @protocol RolesViewControllerDelegate
 
-- (void) didSelectRole: (ProjectRoles*) value; //устанавливает выбранную роль
+- (void) didSelectRole: (ProjectRoles*) value;
+
 @end

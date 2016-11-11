@@ -29,12 +29,9 @@
 
 - (void) markTaskAsSelected: (NSIndexPath*) index;
 
-- (NSArray*) getPopoverContent;
-
-- (ContentAccedingSortingType) getTasksSortingAscendingType;
-
-- (TasksSortingType) getTasksSortingType;
-
 - (ProjectTask*) getSelectedProjectTask;
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding;
 
 @end

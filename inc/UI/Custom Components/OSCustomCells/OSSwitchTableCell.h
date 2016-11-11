@@ -20,7 +20,8 @@
 - (void) fillCellWithTitle: (NSString*)  titleText
                    withTag: (NSUInteger) tag
            withSwitchState: (BOOL)       isSelected
-              withDelegate: (id)         delegate;
+              withDelegate: (id)         delegate
+          withEnabledState: (BOOL)       isEnabled;
 
 - (void) resetValue;
 

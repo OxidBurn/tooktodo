@@ -73,12 +73,11 @@
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];
     };
-    
+
     self.viewModel.popToVC = ^(){
       
         [blockSelf.navigationController popViewControllerAnimated: YES];
     };
-
 }
 
 - (void) viewWillAppear: (BOOL) animated

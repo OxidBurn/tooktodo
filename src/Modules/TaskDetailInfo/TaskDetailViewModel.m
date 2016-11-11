@@ -14,12 +14,14 @@
 #import "TaskDescriptionCell.h"
 #import "TaskInfoHeaderView.h"
 #import "TaskDetailInfoCell.h"
+#import "FilterSubtasksCell.h"
+#import "CommentsCell.h"
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -30,11 +32,12 @@
 
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
 
-@property (strong, nonatomic) NSArray* rowHeightsArray;
+@property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
 
 @end
 
 @implementation TaskDetailViewModel
+
 
 #pragma mark - Properties -
 
@@ -42,7 +45,7 @@
 {
     if ( _model == nil )
     {
-        _model = [TaskDetailModel new];
+        _model = [[TaskDetailModel alloc] init];
     }
     
     return _model;
@@ -73,19 +76,19 @@
     return _headerView;
 }
 
-- (NSArray*) rowHeightsArray
+- (NSArray*) secondSectionRowHeightsArray
 {
-    if ( _rowHeightsArray == nil )
+    if ( _secondSectionRowHeightsArray == nil )
     {
         // first number in each subarray is value for the first row in second section in table view
         // second number is default value for all other cells in section two
-        _rowHeightsArray = @[@[ @(58), @(129) ],
+        _secondSectionRowHeightsArray = @[@[ @(58), @(129) ],
                              @[ @(58), @(54)  ],
-                             @[ @(61), @(129) ],
+                             @[ @(61), @(100) ],
                              @[ @(59)         ]];
     }
     
-    return _rowHeightsArray;
+    return _secondSectionRowHeightsArray;
 }
 
 #pragma mark - Public -
@@ -101,6 +104,16 @@
     [self.model fillSelectedTask: task
                   withCompletion: completion];
     
+}
+
+- (ProjectTaskStage*) getTaskStage
+{
+    return [self.model getTaskStage];
+}
+
+- (BOOL) getTaskState
+{
+    return [self.model getTaskState];
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -120,10 +133,15 @@
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     if ( self.tableView == nil )
+    {
         self.tableView = tableView;
+        
+        [self.model createContentForTableViewWithFrame: tableView.frame];
+    }
     
     UITableViewCell* cell = [self.factory createCellForTableView: tableView
-                                                     withContent: [self.model getContentForIndexPath: indexPath]];
+                                                     withContent: [self.model getContentForIndexPath: indexPath]
+                                                    withDelegate: self];
     
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
     {
@@ -132,6 +150,12 @@
         detailCell.delegate   = self;
     }
     
+    if ([cell isKindOfClass: [FilterSubtasksCell class]])
+    {
+        FilterSubtasksCell* subtaskCell  = (FilterSubtasksCell*)cell;
+        
+        subtaskCell.delegate = self;
+    }
     return cell;
 }
 
@@ -147,16 +171,13 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             switch ( indexPath.row )
             {
                 case 0:
-                {
                     height = [self countHeightForTaskDetailCellForTableView: tableView];
-                }
                 
                     break;
                 
                 case 1:
-                {
                     height = [self countHeightForTaskDescrioptionCellForTableView: tableView];
-                }
+                    
                     break;
                     
                 case 2:
@@ -205,6 +226,7 @@ heightForHeaderInSection: (NSInteger)    section
     return height;
 }
 
+
 #pragma mark - UITableViewDelegate methods -
 
 - (void)      tableView: (UITableView*) tableView
@@ -214,11 +236,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                              animated: YES];
 }
 
+
 #pragma mark - TaskInfoFooterDelegate -
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex
 {
     [self updateSecondSectionContentForType: typeIndex];
+}
+
+
+#pragma mark - CommentCellDelegate -
+
+- (void) updateTableView
+{
+    [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
+                  withRowAnimation: UITableViewRowAnimationFade];
 }
 
 
@@ -242,6 +274,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateTaskStatus];
 }
 
+
+
+
 #pragma mark - TaskDetailCellDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
@@ -250,34 +285,61 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.performSegue(segueID);
 }
 
+- (void) showPopover: (CGRect) senderFrame
+{
+    if (self.presentControllerAsPopover)
+        self.presentControllerAsPopover(senderFrame);
+}
+
+
+#pragma mark - FilterSubtasksCellDelegate  methods -
+
+- (void) performSegueToAddSubtaskWithID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
+}
+
+
 #pragma mark - Helpers -
 
+// This method counts second section cells heights according to cell types
 - (CGFloat) returnSecondSectionRowHeightForIndexPath: (NSIndexPath*) indexPath
 {
     CGFloat height;
     
     TaskInfoSecondSectionContentType contentType = [self.model getSecondSectionContentType];
     
-    NSArray* heightsArrayForContentType = self.rowHeightsArray[contentType];
+    NSArray* heightsArrayForContentType = self.secondSectionRowHeightsArray[contentType];
+    
+    NSNumber* defaultHeightValue = heightsArrayForContentType[1];
 
     switch ( indexPath.row )
     {
         case 0:
         {
-                NSNumber* heightNumberValue = heightsArrayForContentType[0];
-                
-                height = heightNumberValue.integerValue;
+                height = defaultHeightValue.integerValue;
         }
+            break;
             
+        case 1:
+        {
+            if ( [self.model getSecondSectionContentType] == CommentsContentType )
+            {
+                height = [self.model countHeightForCommentCellForIndexPath: indexPath];
+            }
+            else
+            {
+                height = defaultHeightValue.integerValue;
+            }
+        }
             break;
             
         default:
         {
             if ( heightsArrayForContentType.count > 1 )
             {
-                NSNumber* heightNumberValue = heightsArrayForContentType[1];
-                
-                height = heightNumberValue.integerValue;
+                height = defaultHeightValue.integerValue;
             }
         }
             break;
