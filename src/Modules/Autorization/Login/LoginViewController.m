@@ -57,6 +57,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningHeightConstraintiPad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordViewTopConstraintiPad;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailVerticalToLogoConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgotPassVerticalToEnterConstraint;
+
 // methods
 
 /**
@@ -515,5 +518,26 @@
         }
     }
 }
+
+
+#pragma mark - Trait collection -
+
+- (void) traitCollectionDidChange: (UITraitCollection *) previousTraitCollection
+{
+    [super traitCollectionDidChange: previousTraitCollection ];
+    
+    if ( (self.traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass)
+        || (self.traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass) )
+    {
+        CGFloat height = self.view.window.frame.size.height;
+        
+        if ( height > 600 )
+        {
+            self.emailVerticalToLogoConstraint.constant       = 58.f;
+            self.forgotPassVerticalToEnterConstraint.constant = 41.f;
+        }
+    }
+}
+
 
 @end
