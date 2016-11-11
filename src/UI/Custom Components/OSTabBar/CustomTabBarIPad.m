@@ -67,28 +67,32 @@ static BOOL isReplaced = NO;
 
 - (id) awakeAfterUsingCoder: (NSCoder*) aDecoder
 {
-    if (!isReplaced)
+    if ( isReplaced )
+    {
+        [DefaultNotifyCenter addObserver: self
+                                selector: @selector(updateMainMenuSelectedState:)
+                                    name: @"UpdateiPadMainMenuState"
+                                  object: nil];
+        
+        return self;
+    }
+    else
     {
         isReplaced = YES;
         
-        CustomTabBarIPad* replaced = [[[NSBundle mainBundle] loadNibNamed: @"TabBarForIPad"
-                                                                    owner: nil
-                                                                  options: nil] lastObject];
+        NSArray* views = [[NSBundle mainBundle] loadNibNamed: @"TabBarForIPad"
+                                                       owner: nil
+                                                     options: nil];
+        
+        CustomTabBarIPad* replaced = [views lastObject];
         
         replaced.frame                                     = self.frame;
         replaced.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        isReplaced = NO;
 
         return replaced;
     }
-    
-    isReplaced = NO;
-    
-    [DefaultNotifyCenter addObserver: self
-                            selector: @selector(updateMainMenuSelectedState:)
-                                name: @"UpdateiPadMainMenuState"
-                              object: nil];
-    
-    return self;
 }
 
 
