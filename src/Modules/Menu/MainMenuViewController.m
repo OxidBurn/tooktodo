@@ -155,7 +155,6 @@
     if ( [self.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
     {
         [self.delegate showControllerWithSegueID: @"ShowAllTasks"];
-       // [self.delegate setSelectedTabBarItemAtIndex: 1];
     }
 }
 
