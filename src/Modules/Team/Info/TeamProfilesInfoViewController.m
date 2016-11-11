@@ -107,9 +107,19 @@
     
     if ([segue.identifier isEqualToString: @"ShowRolesControllerIDiPhone"] || [segue.identifier isEqualToString: @"ShowRoleControllerIDiPad"])
     {
-        RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+        if(IS_PHONE)
+        {
+            RolesViewController* controller = segue.destinationViewController;
         
-        [controller setRolesViewControllerDelegate: self.viewModel];
+            [controller setRolesViewControllerDelegate: self.viewModel];
+        }
+        
+        else
+        {
+            RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
+            
+            [controller setRolesViewControllerDelegate: self.viewModel];
+        }
     }
     
 }
