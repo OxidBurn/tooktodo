@@ -33,7 +33,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wH7-Or-ohX">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Поиск" id="jdF-xI-sGi">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -1132,8 +1132,8 @@
                         <outlet property="profileAvatarImageView" destination="3al-AZ-1Dq" id="fjG-gK-oMR"/>
                         <outlet property="profileFullNameLabel" destination="0Wf-EH-tBC" id="hrQ-BY-7wm"/>
                         <outlet property="profileInfoTableView" destination="fDH-fK-pN2" id="5Ju-gw-XjR"/>
-                        <segue destination="q3R-EY-pdj" kind="show" identifier="ShowRolesControllerIDiPhone" id="m24-6A-Iqb"/>
                         <segue destination="q3R-EY-pdj" kind="presentation" identifier="ShowRoleControllerIDiPad" modalPresentationStyle="formSheet" id="SBO-RK-4r3"/>
+                        <segue destination="wOH-J0-2TP" kind="show" identifier="ShowRolesControllerIDiPhone" id="9sd-X8-ogb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="saN-5N-jt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1525,7 +1525,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GaQ-U9-9nd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iLd-fd-rwF">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iLd-fd-rwF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1547,7 +1547,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b4L-AQ-8Su" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="glU-1q-c0U">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="glU-1q-c0U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1566,7 +1566,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mLF-vz-Ve0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j63-9E-l5h">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j63-9E-l5h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1585,7 +1585,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q3R-EY-pdj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0YC-KJ-3nb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="0YC-KJ-3nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1610,7 +1610,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Kfn-YL-g5w"/>
-        <segue reference="TQd-Xn-YKq"/>
-        <segue reference="SBO-RK-4r3"/>
+        <segue reference="9sd-X8-ogb"/>
     </inferredMetricsTieBreakers>
 </document>

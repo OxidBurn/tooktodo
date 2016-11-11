@@ -82,7 +82,7 @@
 {
     if (IS_PHONE)
     {
-          [self.navigationController.navigationController popViewControllerAnimated: YES];
+          [self.navigationController popViewControllerAnimated: YES];
     }
     
     else
@@ -113,7 +113,7 @@
     
     if (IS_PHONE)
     {
-        [self.navigationController.navigationController popViewControllerAnimated: YES];
+        [self.navigationController popViewControllerAnimated: YES];
     }
     else
     {
