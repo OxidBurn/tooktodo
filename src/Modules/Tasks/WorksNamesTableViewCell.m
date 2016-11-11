@@ -49,11 +49,11 @@
 {
     ProjectTaskStage* stageInfo = (ProjectTaskStage*) info;
     
-    NSString* countOfTasks         = [NSString stringWithFormat: @"%lu", stageInfo.tasks.count];
+    NSString* countOfTasks         = [NSString stringWithFormat: @"%u", stageInfo.tasks.count];
     NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: stageInfo.tasks.allObjects];
     
-    self.titleWorkNamesLabel.text           = stageInfo.title;
-    self.amountTasksLabel.text              = countOfTasks;
+    self.titleWorkNamesLabel.text = stageInfo.title;
+    self.amountTasksLabel.text    = countOfTasks;
     
     
     if ( countOfExpiredTasks > 0 )

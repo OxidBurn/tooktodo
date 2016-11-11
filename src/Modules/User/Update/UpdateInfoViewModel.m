@@ -120,7 +120,7 @@
  shouldChangeCharactersInRange: (NSRange)      range
              replacementString: (NSString*)    string
 {
-    if ( textField.text.length > 100 )
+    if ( textField.text.length >= 100 )
         return NO;
     
     return YES;
