@@ -82,7 +82,7 @@
 {
     if (IS_PHONE)
     {
-          [self.navigationController popViewControllerAnimated: YES];
+          [self.navigationController.navigationController popViewControllerAnimated: YES];
     }
     
     else
@@ -111,7 +111,14 @@
         [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
     }
     
-    [self.navigationController popViewControllerAnimated: YES];
+    if (IS_PHONE)
+    {
+        [self.navigationController.navigationController popViewControllerAnimated: YES];
+    }
+    else
+    {
+        [self.navigationController popViewControllerAnimated: YES];
+    }
    
 }
 
