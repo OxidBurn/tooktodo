@@ -116,14 +116,20 @@
 
 #pragma mark - Text field delegate -
 
-- (BOOL)             textField: (UITextField*) textField
- shouldChangeCharactersInRange: (NSRange)      range
-             replacementString: (NSString*)    string
+- (BOOL)            textField: (UITextField*) textField
+shouldChangeCharactersInRange: (NSRange)      range
+            replacementString: (NSString*)    string
 {
-    if ( textField.text.length >= 100 )
-        return NO;
+    BOOL shouldReturn = YES;
     
-    return YES;
+    if ( textField.text.length > 100 && string.length > 0)
+    {
+        string = @"";
+        
+        shouldReturn = NO;
+    }
+    
+    return shouldReturn;
 }
 
 @end

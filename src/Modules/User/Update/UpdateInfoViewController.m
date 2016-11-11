@@ -13,7 +13,7 @@
 #import "ReactiveCocoa.h"
 #import "UITextField+AKNumericFormatter.h"
 
-@interface UpdateInfoViewController ()
+@interface UpdateInfoViewController () 
 
 // properties
 
