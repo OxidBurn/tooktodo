@@ -145,9 +145,9 @@
                                                         withSurname: info.lastName];
     NSString* fileName = (info.memberID.stringValue.length > 0) ? info.memberID.stringValue : [NSString stringWithFormat: @"%@%@", info.firstName, info.lastName];
     
-    member.avatarPath              = [[AvatarHelper sharedInstance] generateAvatarForName: fileName
-                                                                         withAbbreviation: fullNameAbbreviation
-                                                                            withImageSize: CGSizeMake(20, 20)];
+    member.avatarSrc  = [[AvatarHelper sharedInstance] generateAvatarForName: fileName
+                                                            withAbbreviation: fullNameAbbreviation
+                                                               withImageSize: CGSizeMake(20, 20)];
 }
 
 - (TeamMember*) getMemberWithID: (NSNumber*)               memberID

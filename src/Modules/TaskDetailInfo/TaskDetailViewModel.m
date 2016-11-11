@@ -233,8 +233,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [self.model updateSecondSectionContentType: typeIndex];
     
-    [self.tableView reloadSections: [NSIndexSet indexSetWithIndex: 1]
-                  withRowAnimation: UITableViewRowAnimationFade];
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadData];
+    
+    [self.tableView layoutIfNeeded];
+    
+    [self.tableView setContentOffset: offset animated: NO];
 }
 
 - (void) updateTaskStatus

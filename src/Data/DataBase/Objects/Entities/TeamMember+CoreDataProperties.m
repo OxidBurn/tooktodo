@@ -23,7 +23,7 @@
 @dynamic patronymicName;
 @dynamic phoneNumber;
 @dynamic userID;
-@dynamic avatarPath;
+@dynamic avatarSrc;
 @dynamic isSelected;
 @dynamic project;
 
