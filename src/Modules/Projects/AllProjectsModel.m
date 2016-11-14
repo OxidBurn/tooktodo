@@ -32,18 +32,12 @@
 {
     RACSignal* fetchAllProjectsSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        [[[ProjectsService sharedInstance] getAllProjectsList] subscribeNext: ^(NSArray* projectsArray) {
-            
-            NSArray* sortedArray = [self applyDefaultSorting: projectsArray
-                                                  isAcceding: [self getProjectsSortAccedingType]];
-            
-            [subscriber sendNext: sortedArray];
-            
-        } completed: ^{
-            
-            [subscriber sendCompleted];
-            
-        }];
+        NSArray* projectsArray = [DataManagerShared getAllProjects];
+        
+        NSArray* sortedArray = [self applyDefaultSorting: projectsArray
+                                              isAcceding: [self getProjectsSortAccedingType]];
+        
+        [subscriber sendNext: sortedArray];
         
         return nil;
     }];

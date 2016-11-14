@@ -371,9 +371,11 @@
 {
     ProjectInfo* prevSelectedProject = [self getSelectedProjectInfo];
     
+    NSDate* currentDate = [NSDate date];
+    
     prevSelectedProject.isSelected = @(NO);
     project.isSelected             = @(YES);
-    project.lastVisit              = [NSDate date];
+    project.lastVisit              = currentDate;
     
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion: ^(BOOL contextDidSave, NSError * _Nullable error) {
         
