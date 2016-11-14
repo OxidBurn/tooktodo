@@ -102,11 +102,14 @@
         
         UserInfo* userInfo = [user MR_inContext: localContext];
         
-        userInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
-        userInfo.firstName         = newInfo.name;
-        userInfo.lastName          = newInfo.surname;
-        userInfo.phoneNumber       = newInfo.phoneNumber;
-        userInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
+        if (newInfo.name.length > 0 && newInfo.surname.length > 0)
+        {
+            userInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
+            userInfo.firstName         = newInfo.name;
+            userInfo.lastName          = newInfo.surname;
+            userInfo.phoneNumber       = newInfo.phoneNumber;
+            userInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
+        }
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {

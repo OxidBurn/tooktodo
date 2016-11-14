@@ -65,7 +65,7 @@
            withCompletion: (void(^)(BOOL isSuccess)) completion
 {
     
-    if ( [self isEqualNewInfoWithOld: newInfo] )
+    if ( [self isEqualNewInfoWithOld: newInfo])
     {
         if ( completion )
             completion(YES);
@@ -76,6 +76,8 @@
                                                 withNewInfo: newInfo
                                              withCompletion: completion];
     }
+    
+  
 }
 
 

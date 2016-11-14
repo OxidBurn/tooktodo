@@ -91,18 +91,22 @@ static bool isFirstAccess = YES;
         
         BOOL isSuccess = [[info valueForKey: @"isSuccess"] boolValue];
         
-        if ( isSuccess )
+        if (newInfo.name.length > 0 && newInfo.surname.length > 0)
         {
-            [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
-            
-            // Update info localy
-            [[DataManager sharedInstance] updateUserInfo: newInfo
-                                                 forUser: user
-                                          withCompletion: completion];
-            
-            if ( completion )
-                completion(YES);
+            if ( isSuccess )
+            {
+                [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
+                
+                // Update info localy
+                [[DataManager sharedInstance] updateUserInfo: newInfo
+                                                     forUser: user
+                                              withCompletion: completion];
+                
+                if ( completion )
+                    completion(YES);
+            }
         }
+        
         else
         {
             NSArray* modelErrors = info[@"modelErrors"];

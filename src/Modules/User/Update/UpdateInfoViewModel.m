@@ -83,15 +83,19 @@
             @strongify(self)
             
             return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+               
+               
+                    [self.model updateUserValues: [self getFilledObject]
+                                  withCompletion: ^(BOOL isSuccess) {
+                                      
+                                      [subscriber sendNext: @(isSuccess)];
+                                      
+                                      [subscriber sendCompleted];
+                                      
+                                  }];
+                    
                 
-                [self.model updateUserValues: [self getFilledObject]
-                              withCompletion: ^(BOOL isSuccess) {
-                                  
-                                  [subscriber sendNext: @(isSuccess)];
-                                  [subscriber sendCompleted];
-                                  
-                              }];
-                
+            
                 return nil;
             }];
             
