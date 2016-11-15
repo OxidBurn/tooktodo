@@ -379,7 +379,7 @@
         picker.allowsEditing = YES;
         picker.sourceType    = sourceType;
         
-        if ( IS_PHONE == NO )
+        if ( IS_PHONE == NO && sourceType == UIImagePickerControllerSourceTypePhotoLibrary )
         {
             picker.modalPresentationStyle = UIModalPresentationPopover;
             

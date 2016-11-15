@@ -96,6 +96,13 @@ static BOOL isReplaced = NO;
     }
 }
 
+- (void) didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    
+    [self didSelectFirstMenuItem];
+}
+
 
 #pragma mark - Memory managment -
 

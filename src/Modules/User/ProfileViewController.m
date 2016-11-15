@@ -94,6 +94,11 @@
 
 #pragma mark - Internal methods -
 
+- (BOOL) shouldAutorotate
+{
+    return NO;
+}
+
 - (void) showInfoScreenWithID: (NSString*) storyboardID
 {
     [self performSegueWithIdentifier: storyboardID
