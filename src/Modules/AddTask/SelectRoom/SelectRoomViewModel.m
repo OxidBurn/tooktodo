@@ -13,6 +13,7 @@
 #import "SelectRoomModel.h"
 #import "OSCellWithCheckmark.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface SelectRoomViewModel()
 
@@ -43,6 +44,11 @@
 }
 
 #pragma mark - Public -
+
+- (NSString*) getProjectName
+{
+    return [DataManagerShared getSelectedProjectName];;
+}
 
 - (RACSignal*) updateContent
 {

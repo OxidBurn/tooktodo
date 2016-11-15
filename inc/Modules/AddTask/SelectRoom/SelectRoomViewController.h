@@ -10,9 +10,11 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 
+#import "BaseMainViewController.h"
+
 @protocol SelectRoomViewController;
 
-@interface SelectRoomViewController : UIViewController
+@interface SelectRoomViewController : BaseMainViewController
 
 // properties
 @property (nonatomic, weak) id<SelectRoomViewController> delegate;

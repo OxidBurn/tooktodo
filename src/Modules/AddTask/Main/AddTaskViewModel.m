@@ -14,6 +14,7 @@
 #import "ProjectsEnumerations.h"
 #import "OSSwitchTableCell.h"
 #import "RowContent.h"
+#import "AddTaskMainFactory.h"
 
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
@@ -30,6 +31,7 @@
 
 @implementation AddTaskViewModel
 
+
 #pragma mark - Initialization -
 
 - (instancetype) init
@@ -43,6 +45,7 @@
     
     return self;
 }
+
 
 #pragma mark - Properties -
 
@@ -143,10 +146,11 @@
                   andHiddenState: isHidden];
 }
 
-- (void) fillControllerType: (TaskControllerType) controllerType
+- (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     [self.model fillControllerType: controllerType];
 }
+
 
 #pragma mark - UITableView data source -
 
@@ -169,8 +173,13 @@
         self.tableView = tableView;
     }
     
-    UITableViewCell* cell = [self.model createCellForTableView: (UITableView*) tableView
-                                                  forIndexPath: (NSIndexPath*) indexPath];
+    RowContent* content = [self.model getContentForIndexPath: indexPath];
+    
+    AddTaskMainFactory* factory = [AddTaskMainFactory new];
+    
+    UITableViewCell* cell = [factory createCellForTableView: tableView
+                                                withContent: content
+                                               withDelegate: self.model];
 
     return cell;
 }
@@ -221,6 +230,7 @@ heightForHeaderInSection: (NSInteger)   section
     return height;
 }
 
+
 #pragma mark - UITableView delegate -
 
 - (void)      tableView: (UITableView*) tableView
@@ -269,9 +279,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateTaskNameWithString: newTaskNameString];
     
     if ( [self.delegate respondsToSelector: @selector(reloadAddTaskTableView)] )
-    {
         [self.delegate reloadAddTaskTableView];
-    }
 }
 
 - (AddTaskViewModel*) getViewModel
@@ -333,12 +341,10 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
                                                                                               inSection: 0]];
-    
     [cell resetCellContent];
     
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
-    
     [switchCell resetValue];
 }
 

@@ -12,6 +12,7 @@
 //Classes
 #import "NewTask.h"
 #import "ProjectsEnumerations.h"
+#import "RowContent.h"
 
 @protocol AddTaskModelDelegate;
 @protocol AddTaskModelDataSource;
@@ -25,9 +26,6 @@
 // methods
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
-
-- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
-                               forIndexPath: (NSIndexPath*) indexPath;
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
 
@@ -64,7 +62,9 @@
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
-- (void) fillControllerType: (TaskControllerType) controllerType;
+- (void) fillControllerType: (AddTaskControllerType) controllerType;
+
+- (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
 
 @end
 
@@ -76,7 +76,7 @@
 
 @protocol AddTaskModelDataSource <NSObject>
 
-- (TaskControllerType) getControllerType;
+- (AddTaskControllerType) getControllerType;
 
 @end
 

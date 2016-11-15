@@ -45,7 +45,7 @@
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 @property (nonatomic, assign) BOOL isChangedUI;
-@property (nonatomic, assign) TaskControllerType controllerType;
+@property (nonatomic, assign) AddTaskControllerType controllerType;
 
 // methods
 
@@ -65,6 +65,7 @@
 
 @implementation AddTaskViewController
 
+
 #pragma mark - Life cycle -
 
 - (void) loadView
@@ -78,8 +79,6 @@
     [self bindUI];
     
     self.isChangedUI = NO;
-//    
-//    [self.viewModel getModel].dataSource = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -89,12 +88,6 @@
     [self.addTaskTableView reloadData];
 }
 
-#pragma mark - Memory managment -
-
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark - Segue -
 
@@ -157,21 +150,23 @@
             
         case ShowStagesSegue:
         {
-            SelectStageViewController* controller = [segue destinationViewController];
-            
-            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
-                             withDelegate: [self.viewModel returnModel]];
+            // ToDo: uncomment when stages will store to data base
+//            SelectStageViewController* controller = [segue destinationViewController];
+//            
+//            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
+//                             withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowSystemSegue:
         {
-            SelectSystemViewController* controller = [segue destinationViewController];
-            
-            ProjectSystem* system = [self.viewModel returnSelectedSystem];
-            
-            [controller fillSelectedSystem: system
-                              withDelegate: [self.viewModel returnModel]];
+            // ToDo: uncomment when systems will store to data base
+//            SelectSystemViewController* controller = [segue destinationViewController];
+//            
+//            ProjectSystem* system = [self.viewModel returnSelectedSystem];
+//            
+//            [controller fillSelectedSystem: system
+//                              withDelegate: [self.viewModel returnModel]];
         }
             break;
             
@@ -183,7 +178,6 @@
             
             [controller fillSelectedRoom: room
                             withDelegate: [self.viewModel returnModel]];
-            
         }
             break;
             
@@ -195,14 +189,11 @@
             
             [controller fillSelectedTaskType: type
                                 withDelegate: [self.viewModel returnModel]];
-            
-        
         }
             
         default:
             break;
     }
-
 }
 
 
@@ -231,10 +222,11 @@
     
 }
 
-- (void) fillControllerType: (TaskControllerType) controllerType
+- (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     [self.viewModel fillControllerType: controllerType];
 }
+
 
 #pragma mark - Actions -
 
@@ -244,9 +236,7 @@
         
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
-        
     }];
-
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -255,7 +245,6 @@
        
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
-        
     }];
 }
 
@@ -281,6 +270,7 @@
     
 }
 
+
 #pragma mark - AddTaskViewModel delegate methods -
 
 - (void) performSegueWithSegueId: (NSString*) segueId
@@ -300,10 +290,11 @@
 
 #pragma mark - AddTaskModelDataSource methods -
 
-- (TaskControllerType) getControllerType
+- (AddTaskControllerType) getControllerType
 {
     return self.controllerType;
 }
+
 
 #pragma mark - Internal methods -
 
@@ -458,6 +449,5 @@
     self.createOnBaseBtn.hidden           = NO;
     
 }
-
 
 @end

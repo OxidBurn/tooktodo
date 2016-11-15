@@ -30,6 +30,7 @@
 
 @implementation OSFlexibleTextFieldCell
 
+
 #pragma mark - Properties -
 
 - (UIColor*) steelColor
@@ -79,6 +80,8 @@
     
     [self editTextLabel];
 }
+
+
 #pragma mark - UITextFieldDelegate methods -
 
 - (void) textFieldDidBeginEditing:(UITextField *)textField

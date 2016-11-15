@@ -66,7 +66,7 @@
 
 - (AddTaskModel*) getModel;
 
-- (void) fillControllerType: (TaskControllerType) controllerType;
+- (void) fillControllerType: (AddTaskControllerType) controllerType;
 
 @end
 

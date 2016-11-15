@@ -25,4 +25,6 @@
 
 - (id) getSelectedInfo;
 
+- (NSString*) getProjectName;
+
 @end

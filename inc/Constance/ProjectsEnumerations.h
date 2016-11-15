@@ -144,9 +144,9 @@ typedef NS_ENUM(NSUInteger, SectionsList) {
     
 };
 
-typedef NS_ENUM(NSUInteger, TaskControllerType)
+typedef NS_ENUM(NSUInteger, AddTaskControllerType)
 {
-    AddTaskControllerType,
+    AddNewTaskControllerType,
     AddSubtaskControllerType,
 };
 
