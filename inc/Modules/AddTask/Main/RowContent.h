@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @interface RowContent : NSObject
 
 @property (strong, nonatomic) NSString* title;
@@ -17,6 +20,8 @@
 @property (strong, nonatomic) NSArray*  membersArray;
 
 @property (strong, nonatomic) NSString* cellId;
+
+@property (assign, nonatomic) AddTaskTableViewCellType cellIndex;
 
 @property (strong, nonatomic) NSString* segueId;
 

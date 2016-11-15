@@ -15,8 +15,8 @@
 #import "TasksService.h"
 #import "ChangeStatusViewController.h"
 #import "TaskDetailContentManager.h"
-
-//// Helpers
+#import "AddTaskContentManager+UpdadingContent.h"
+// Helpers
 #import "ProjectsEnumerations.h"
 
 @interface TaskDetailModel()
@@ -129,18 +129,8 @@
 
 - (void) updateTaskStatus
 {
-    self.task = [DataManagerShared getSelectedTask];
-    
-    // row that contains info about first cell in table view
-    TaskRowContent* row   = self.taskTableViewContent[0][0];
-    
-    row.status            = self.task.status.integerValue;
-    row.statusDescription = self.task.statusDescription;
-    
-    // updating content with new status value
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 0];
+#warning TookToDo: overwrite method using AddTaskContentManager
+//    [self.contentManager update];
 }
 
 - (ProjectTaskStage*) getTaskStage
@@ -177,28 +167,6 @@
     
     self.taskTableViewContent = [self.contentManager getTableViewContentForTask: self.task
                                                           forTableViewWithFrame: frame];
-}
-
-
-#pragma mark - Helpers -
-
-- (void) updateContentWithRow: (TaskRowContent*) newRow
-                    inSection: (NSUInteger) section
-                        inRow: (NSUInteger) row
-{
-    NSArray* sectionContent = self.taskTableViewContent[section];
-    
-    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.taskTableViewContent];
-    
-    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
-    
-    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
-    
-    sectionContent = [sectionCopy copy];
-    
-    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
-    
-    self.taskTableViewContent = [contentCopy copy];
 }
 
 @end

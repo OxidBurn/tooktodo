@@ -17,7 +17,7 @@
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
-- (void) fillControllerType: (TaskControllerType) controllerType;
+- (void) fillControllerType: (AddTaskControllerType) controllerType;
 
 @end
 
