@@ -45,7 +45,7 @@
 
 @property (strong, nonatomic) AddTaskViewModel* viewModel;
 @property (nonatomic, assign) BOOL isChangedUI;
-@property (nonatomic, assign) TaskControllerType controllerType;
+@property (nonatomic, assign) AddTaskControllerType controllerType;
 
 // methods
 
@@ -78,8 +78,6 @@
     [self bindUI];
     
     self.isChangedUI = NO;
-//    
-//    [self.viewModel getModel].dataSource = self;
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -87,6 +85,13 @@
     [super viewWillAppear: animated];
     
     [self.addTaskTableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear: animated];
+    
+//    [self.viewModel ]
 }
 
 #pragma mark - Memory managment -
@@ -157,21 +162,23 @@
             
         case ShowStagesSegue:
         {
-            SelectStageViewController* controller = [segue destinationViewController];
-            
-            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
-                             withDelegate: [self.viewModel returnModel]];
+            // ToDo: uncomment when stages will store to data base
+//            SelectStageViewController* controller = [segue destinationViewController];
+//            
+//            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
+//                             withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowSystemSegue:
         {
-            SelectSystemViewController* controller = [segue destinationViewController];
-            
-            ProjectSystem* system = [self.viewModel returnSelectedSystem];
-            
-            [controller fillSelectedSystem: system
-                              withDelegate: [self.viewModel returnModel]];
+            // ToDo: uncomment when systems will store to data base
+//            SelectSystemViewController* controller = [segue destinationViewController];
+//            
+//            ProjectSystem* system = [self.viewModel returnSelectedSystem];
+//            
+//            [controller fillSelectedSystem: system
+//                              withDelegate: [self.viewModel returnModel]];
         }
             break;
             
@@ -231,7 +238,7 @@
     
 }
 
-- (void) fillControllerType: (TaskControllerType) controllerType
+- (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     [self.viewModel fillControllerType: controllerType];
 }
@@ -300,7 +307,7 @@
 
 #pragma mark - AddTaskModelDataSource methods -
 
-- (TaskControllerType) getControllerType
+- (AddTaskControllerType) getControllerType
 {
     return self.controllerType;
 }

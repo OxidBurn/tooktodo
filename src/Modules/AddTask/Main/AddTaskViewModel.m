@@ -14,6 +14,7 @@
 #import "ProjectsEnumerations.h"
 #import "OSSwitchTableCell.h"
 #import "RowContent.h"
+#import "AddTaskMainFactory.h"
 
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
@@ -143,9 +144,15 @@
                   andHiddenState: isHidden];
 }
 
-- (void) fillControllerType: (TaskControllerType) controllerType
+- (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     [self.model fillControllerType: controllerType];
+}
+
+// refactor methods
+- (void) fillContentManagerWithContent
+{
+    [self.model fillContentManagerWithContent];
 }
 
 #pragma mark - UITableView data source -
@@ -169,8 +176,13 @@
         self.tableView = tableView;
     }
     
-    UITableViewCell* cell = [self.model createCellForTableView: (UITableView*) tableView
-                                                  forIndexPath: (NSIndexPath*) indexPath];
+    RowContent* content = [self.model getContentForIndexPath: indexPath];
+    
+    AddTaskMainFactory* factory = [AddTaskMainFactory new];
+    
+    UITableViewCell* cell = [factory createCellForTableView: tableView
+                                                withContent: content
+                                               withDelegate: self.model];
 
     return cell;
 }
@@ -269,9 +281,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model updateTaskNameWithString: newTaskNameString];
     
     if ( [self.delegate respondsToSelector: @selector(reloadAddTaskTableView)] )
-    {
         [self.delegate reloadAddTaskTableView];
-    }
 }
 
 - (AddTaskViewModel*) getViewModel

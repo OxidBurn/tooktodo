@@ -107,9 +107,7 @@
 
 - (IBAction) onSelectAllBtn: (UIButton*) sender
 {
-    
     [self.viewModel selectAll];
-
 }
 
 #pragma mark - Pulbic -

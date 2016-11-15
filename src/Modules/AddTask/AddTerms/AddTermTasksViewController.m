@@ -68,7 +68,12 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    
+    if ( [self.delegate respondsToSelector: @selector( updateTerms:)] )
+    {
+        [self.delegate updateTerms: [self.viewModel returnTerms]];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
