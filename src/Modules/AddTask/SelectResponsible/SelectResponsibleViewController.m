@@ -132,6 +132,7 @@
     self.selectResponsibleTableView.dataSource = self.viewModel;
     self.selectResponsibleTableView.delegate   = self.viewModel;
     
+    [self handleNavigationBarTitle];
     
     // Update team info when appeared screen
     // made for immediate update team info after
@@ -253,6 +254,37 @@
         default:
             break;
     }
+}
+
+- (void) handleNavigationBarTitle
+{
+    NSString* title = [NSString new];
+    
+    switch ( [self.viewModel returnControllerType] )
+    {
+        case SelectResponsibleController:
+        {
+            title = @"ОТВЕТСТВЕННЫЕ";
+        }
+            break;
+            
+        case SelectClaimingController:
+        {
+            title = @"УТВЕРЖДАЮЩИЕ";
+        }
+            break;
+            
+        case SelectObserversController:
+        {
+            title = @"НАБЛЮДАТЕЛИ";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    self.navigationItem.title = title;
 }
 
 @end

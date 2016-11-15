@@ -16,6 +16,9 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 
+// Categories
+#import "BaseMainViewController+NavigationTitle.h"
+
 @interface SelectRoomViewController ()
 
 // Properties
@@ -86,6 +89,10 @@
 {
     self.roomLevelTableView.dataSource = self.viewModel;
     self.roomLevelTableView.delegate   = self.viewModel;
+    
+    // Setup navigation
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ВЫБОР ПОМЕЩЕНИЯ"
+                                               withSubTitle: [self.viewModel getProjectName]];
 }
 
 
