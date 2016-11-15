@@ -68,21 +68,15 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 #pragma mark - Initialization -
 
-- (instancetype) initWithCoder: (NSCoder*) aDecoder
+- (void) didMoveToSuperview
 {
-    if ( self = [super initWithCoder: aDecoder] )
-    {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            [self didSelectFirstMenuItem];
-            
-            [self createGesrures];
-            
-        });
-    }
+    [super didMoveToSuperview];
     
-    return self;
+    [self didSelectFirstMenuItem];
+    
+    [self createGesrures];
 }
+
 
 #pragma mark - Properties -
 

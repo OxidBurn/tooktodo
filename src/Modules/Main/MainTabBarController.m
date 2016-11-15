@@ -23,9 +23,12 @@
 @property (weak, nonatomic) IBOutlet CustomTabBar*     mainTabBariPhone;
 @property (weak, nonatomic) IBOutlet CustomTabBarIPad* mainTabBariPad;
 
+@property (assign, nonatomic) BOOL isCheckedLogin;
+
 @end
 
 @implementation MainTabBarController 
+
 
 #pragma mark - Life cycle -
 
@@ -41,23 +44,32 @@
                             selector: @selector(showLogin)
                                 name: @"ShowLoginScreen"
                               object: nil];
-}
-
-- (void) viewDidAppear: (BOOL) animated
-{
-    [super viewDidAppear: animated];
     
-    if ( [self shouldShowLogin] )
-    {
-        [self presentLoginController];
-    }
-    else
-        if ( [self isFirstSetup] )
-        {
-            [self showWelcomeTour];
-        }
+    
+
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    // Hack for showing login screen before will load feed screen
+    // If will find any better solution, please remove this chunk of code
+    if ( self.isCheckedLogin == NO )
+    {
+        if ( [self shouldShowLogin] )
+        {
+            [self presentLoginController];
+        }
+        else
+            if ( [self isFirstSetup] )
+            {
+                [self showWelcomeTour];
+            }
+        
+        self.isCheckedLogin = YES;
+    }
+}
 
 #pragma mark - Memory managment -
 
@@ -66,7 +78,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)dealloc
+- (void) dealloc
 {
     [DefaultNotifyCenter removeObserver: self
                                    name: @"ShowLoginScreen"

@@ -63,6 +63,7 @@ static BOOL isReplaced = NO;
 
 @implementation CustomTabBarIPad
 
+
 #pragma mark - Initialization -
 
 - (id) awakeAfterUsingCoder: (NSCoder*) aDecoder
@@ -98,7 +99,7 @@ static BOOL isReplaced = NO;
 
 #pragma mark - Memory managment -
 
-- (void)dealloc
+- (void) dealloc
 {
     [DefaultNotifyCenter removeObserver: self
                                    name: @"UpdateiPadMainMenuState"
