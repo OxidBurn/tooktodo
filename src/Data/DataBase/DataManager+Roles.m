@@ -120,6 +120,14 @@
         role.project                   = project;
         role.hasProjectRoleAssignments = @(info.hasProjectRoleAssignments);
     }
+    else
+    {
+        role.title                     = info.title;
+        role.sort                      = info.sort;
+        role.projectID                 = info.projectId;
+        role.project                   = project;
+        role.hasProjectRoleAssignments = @(info.hasProjectRoleAssignments);
+    }
 }
 
 - (void) persistNewRole: (ProjectRoleModel*)      info
@@ -137,6 +145,11 @@
         role.projectID                 = @0;
         role.isDefault                 = @(YES);
         role.hasProjectRoleAssignments = @(NO);
+    }
+    else
+    {
+        role.roleID = info.roleID;
+        role.title  = info.title;
     }
 }
 
