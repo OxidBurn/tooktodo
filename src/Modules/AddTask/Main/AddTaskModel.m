@@ -23,8 +23,6 @@
 #import "AddTaskTypeViewController.h"
 #import "TasksService.h"
 #import "OSSwitchTableCell.h"
-
-// refactor classes
 #import "AddTaskContentManager.h"
 #import "AddTaskContentManager+UpdadingContent.h"
 
@@ -55,6 +53,7 @@
 @end
 
 @implementation AddTaskModel
+
 
 #pragma mark - Properties -
 
@@ -110,22 +109,12 @@
 
 #pragma mark - Public -
 
-// refactor methods
-
 - (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath
 {
     RowContent* content = self.addTaskTableViewContent[indexPath.section][indexPath.row];
     
     return content;
 }
-
-- (void) fillContentManagerWithContent
-{
-   
-}
-
-// end of refactor public methods
-
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
 {
@@ -251,6 +240,7 @@
     self.addTaskTableViewContent = [self.contentManager updateTaskHiddenProperty: isHidden];
 }
 
+
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
 
 - (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
@@ -290,6 +280,7 @@
         [self.delegate reloadData];
 }
 
+
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
 
@@ -300,6 +291,7 @@
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
 }
+
 
 #pragma mark - AddTaskTypeControllerDelegate methods-
 
@@ -315,12 +307,14 @@
         [self.delegate reloadData];
 }
 
+
 #pragma mark - AddTaskTermsControllerDelegate methods -
 
 - (void) updateTerms: (TermsData*) terms
 {
     [self.contentManager updateTerms: terms];
 }
+
 
 #pragma mark - AddMessageViewControllerDelegate methods -
 

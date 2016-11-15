@@ -68,9 +68,6 @@
 
 - (void) fillControllerType: (AddTaskControllerType) controllerType;
 
-// refactor methods
-- (void) fillContentManagerWithContent;
-
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

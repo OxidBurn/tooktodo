@@ -31,6 +31,7 @@
 
 @implementation AddTaskViewModel
 
+
 #pragma mark - Initialization -
 
 - (instancetype) init
@@ -44,6 +45,7 @@
     
     return self;
 }
+
 
 #pragma mark - Properties -
 
@@ -149,11 +151,6 @@
     [self.model fillControllerType: controllerType];
 }
 
-// refactor methods
-- (void) fillContentManagerWithContent
-{
-    [self.model fillContentManagerWithContent];
-}
 
 #pragma mark - UITableView data source -
 
@@ -232,6 +229,7 @@ heightForHeaderInSection: (NSInteger)   section
     }
     return height;
 }
+
 
 #pragma mark - UITableView delegate -
 
@@ -343,12 +341,10 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
                                                                                               inSection: 0]];
-    
     [cell resetCellContent];
     
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
-    
     [switchCell resetValue];
 }
 

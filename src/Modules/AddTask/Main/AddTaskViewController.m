@@ -65,6 +65,7 @@
 
 @implementation AddTaskViewController
 
+
 #pragma mark - Life cycle -
 
 - (void) loadView
@@ -87,19 +88,6 @@
     [self.addTaskTableView reloadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear: animated];
-    
-//    [self.viewModel ]
-}
-
-#pragma mark - Memory managment -
-
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark - Segue -
 
@@ -190,7 +178,6 @@
             
             [controller fillSelectedRoom: room
                             withDelegate: [self.viewModel returnModel]];
-            
         }
             break;
             
@@ -202,14 +189,11 @@
             
             [controller fillSelectedTaskType: type
                                 withDelegate: [self.viewModel returnModel]];
-            
-        
         }
             
         default:
             break;
     }
-
 }
 
 
@@ -243,6 +227,7 @@
     [self.viewModel fillControllerType: controllerType];
 }
 
+
 #pragma mark - Actions -
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
@@ -251,9 +236,7 @@
         
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
-        
     }];
-
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -262,7 +245,6 @@
        
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
-        
     }];
 }
 
@@ -288,6 +270,7 @@
     
 }
 
+
 #pragma mark - AddTaskViewModel delegate methods -
 
 - (void) performSegueWithSegueId: (NSString*) segueId
@@ -311,6 +294,7 @@
 {
     return self.controllerType;
 }
+
 
 #pragma mark - Internal methods -
 
@@ -465,6 +449,5 @@
     self.createOnBaseBtn.hidden           = NO;
     
 }
-
 
 @end

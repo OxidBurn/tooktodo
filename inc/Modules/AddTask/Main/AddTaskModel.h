@@ -64,11 +64,7 @@
 
 - (void) fillControllerType: (AddTaskControllerType) controllerType;
 
-
-// Refactor methods
 - (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
-
-- (void) fillContentManagerWithContent;
 
 @end
 

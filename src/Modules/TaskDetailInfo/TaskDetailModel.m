@@ -129,8 +129,7 @@
 
 - (void) updateTaskStatus
 {
-#warning TookToDo: overwrite method using AddTaskContentManager
-//    [self.contentManager update];
+// overwrite method using AddTaskContentManager
 }
 
 - (ProjectTaskStage*) getTaskStage
