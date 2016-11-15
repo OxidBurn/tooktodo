@@ -118,9 +118,6 @@ static bool isFirstAccess = YES;
              
              [subscriber sendError: error];
              
-         }
-         completed: ^{
-             
          }];
         
         return nil;
@@ -155,7 +152,7 @@ static bool isFirstAccess = YES;
     
     @weakify(self)
     
-    RACSignal* createNewRoleTypeSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* createNewRoleTypeSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [[[[RolesAPIService sharedInstance] createNewRoleTypeForProject: requestURL
                                                         withParameter: parameters]
@@ -174,7 +171,7 @@ static bool isFirstAccess = YES;
              
              
          }
-         error:^(NSError *error) {
+         error: ^(NSError *error) {
              
              [subscriber sendError: error];
              

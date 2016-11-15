@@ -77,8 +77,8 @@
     
     [self.createNewRoleBtn.rac_command.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeCompleted: ^{
-           
+        [signal subscribeNext: ^(id x) {
+            
             @strongify(self)
             
             [SVProgressHUD showSuccessWithStatus: @"Новая роль успешно создана."];
@@ -88,15 +88,13 @@
             
         }];
         
-    }
-                                                                error: ^(NSError *error) {
+    }];
+    
+    [self.createNewRoleBtn.rac_command.errors subscribeNext: ^(NSError* error) {
+       
+        [SVProgressHUD showErrorWithStatus: @"Возникла проблема при создании новой роли в проекте."];
         
-                                                                    [SVProgressHUD showErrorWithStatus: @"Возникла проблема с созданием новой роли в проекте."];
-                                                                    
-    }
-                                                            completed: ^{
-                                                                
-                                                            }];
+    }];
 }
 
 
