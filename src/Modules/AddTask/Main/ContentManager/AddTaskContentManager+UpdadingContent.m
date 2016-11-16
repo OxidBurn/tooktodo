@@ -65,23 +65,6 @@
     
 }
 
-- (void) updateTaskStatus
-{
-    self.projectTask = [DataManagerShared getSelectedTask];
-    
-    // row that contains info about first cell in table view
-    RowContent* row   = self.addTaskContentArray[0][0];
-    
-#warning ToDo: switch TaskDetailRowContent to RowContent class
-//    row.status            = self.projectTask.status.integerValue;
-//    row.statusDescription = self.projectTask.statusDescription;
-    
-    // updating content with new status value
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 0];
-}
-
 - (NSArray*) updateTaskHiddenProperty: (BOOL) isHidden
 {
     self.task.isHiddenTask = isHidden;
@@ -186,8 +169,9 @@
     
     if (stage)
     {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = stage.title;
+        row.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
+        row.cellIndex = RightDetailCell;
+        row.detail    = stage.title;
     }
     else
     {

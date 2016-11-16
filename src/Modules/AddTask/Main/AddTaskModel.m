@@ -89,7 +89,7 @@
 {
     if ( _addTaskTableViewContent == nil )
     {
-        _addTaskTableViewContent = [self.contentManager getTableViewContentForNewTask];
+        _addTaskTableViewContent = [self.contentManager getTableViewContentForControllerType: self.controllerType];
     }
     
     return _addTaskTableViewContent;
@@ -230,6 +230,8 @@
 - (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     self.controllerType = controllerType;
+    
+    self.addTaskTableViewContent = [self.contentManager getTableViewContentForControllerType: controllerType];
 }
 
 

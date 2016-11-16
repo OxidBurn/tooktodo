@@ -103,8 +103,10 @@
     return self.task;
 }
 
-- (NSArray*) getTableViewContentForNewTask
+- (NSArray*) getTableViewContentForControllerType: (AddTaskControllerType) controllerType
 {
+    self.controllerType = controllerType;
+    
     return self.addTaskContentArray;
 }
 
@@ -161,6 +163,7 @@
     rowThree.cellIndex = SwitchCell;
     rowThree.title     = @"Скрытая задача";
     rowThree.isHidden  = self.task.isHiddenTask? self.task.isHiddenTask : NO;
+    rowThree.isSwitchEnabled = [self handleInteractionsForControllerType];
     
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
@@ -242,7 +245,6 @@
     rowThree.title   = @"Этап";
     rowThree.detail  = @"Не реализовано";
     rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
-    // ToDo: uncomment when stages will be implemented
     rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
     rowThree.cellIndex = RightDetailCell;
     
@@ -272,6 +274,18 @@
     rowSix.cellIndex = RightDetailCell;
 
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
+}
+
+- (BOOL) handleInteractionsForControllerType
+{
+    BOOL isEnabled = YES;
+    
+    if ( self.controllerType == AddSubtaskControllerType )
+    {
+        isEnabled = NO;
+    }
+    
+    return isEnabled;
 }
 
 @end

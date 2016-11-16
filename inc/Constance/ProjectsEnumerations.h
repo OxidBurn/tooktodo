@@ -108,8 +108,8 @@ typedef NS_ENUM(NSUInteger, AllSwitchCellsTags) {
     
 };
 
-typedef NS_ENUM(NSUInteger, TaskInfoSecondSectionContentType) {
-    
+typedef NS_ENUM(NSUInteger, TaskInfoSecondSectionContentType)
+{    
     SubtasksContentType,
     AttachmentsContentType,
     CommentsContentType,
@@ -118,8 +118,8 @@ typedef NS_ENUM(NSUInteger, TaskInfoSecondSectionContentType) {
 };
 
 
-typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells) {
-    
+typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells)
+{
     TaskDetailCellType,
     TaskDescriptionCellType,
     CollectionCellType,
@@ -132,22 +132,21 @@ typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells) {
     FilterSubtasksCellType,
     FilterAttachmentsCellType,
     AddCommentCellType,
-    
 };
 
 
-typedef NS_ENUM(NSUInteger, SectionsList) {
-    
+typedef NS_ENUM(NSUInteger, SectionsList)
+{
     SectionOne,
     SectionTwo,
     SectionThree,
-    
 };
 
 typedef NS_ENUM(NSUInteger, AddTaskControllerType)
 {
     AddNewTaskControllerType,
     AddSubtaskControllerType,
+    EditTaskControllerType,
 };
 
 #endif /* ProjectsEnumerations_h */
