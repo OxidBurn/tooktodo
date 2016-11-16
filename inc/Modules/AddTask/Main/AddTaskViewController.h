@@ -19,5 +19,7 @@
 
 - (void) fillControllerType: (AddTaskControllerType) controllerType;
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
+
 @end
 

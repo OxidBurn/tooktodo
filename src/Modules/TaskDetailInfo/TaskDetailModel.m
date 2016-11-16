@@ -179,6 +179,11 @@
                                                           forTableViewWithFrame: frame];
 }
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    
+}
+
 
 #pragma mark - Helpers -
 

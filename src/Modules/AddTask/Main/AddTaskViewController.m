@@ -225,6 +225,11 @@
     [self.viewModel fillControllerType: controllerType];
 }
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    
+}
+
 
 #pragma mark - Actions -
 

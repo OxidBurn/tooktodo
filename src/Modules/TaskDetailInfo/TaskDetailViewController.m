@@ -136,6 +136,15 @@
               andHiddenState: [self.viewModel getTaskState]];
     }
     
+    if ( [segue.identifier isEqualToString: @"ShowEditTaskController"] )
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        
+        AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
+        
+        [vc fillControllerType: EditTaskControllerType];
+    }
+    
 }
 
 #pragma mark - Actions -
@@ -150,7 +159,8 @@
 
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender
 {
-    
+    [self performSegueWithIdentifier: @"ShowEditTaskController"
+                              sender: self];
 }
 
 - (IBAction) onSelectAttachmentsGesture: (UITapGestureRecognizer*) sender
