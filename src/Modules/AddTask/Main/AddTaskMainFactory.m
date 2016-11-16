@@ -89,7 +89,7 @@
                                       withSwitchState: stateBoolValue
                                          forTableView: tableView
                                          withDelegate: self
-                                     withEnabledState: content.userInteractionEnabled];
+                                     withEnabledState: content.isSwitchEnabled];
         }
             break;
             

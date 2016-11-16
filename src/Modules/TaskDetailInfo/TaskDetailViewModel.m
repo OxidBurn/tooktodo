@@ -116,6 +116,11 @@
     return [self.model getTaskState];
 }
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    [self.model fillTaskToEdit: taskToEdit];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, AddTaskRowTypeSectionThree) {
 @property (strong, nonatomic) NSArray* addTaskTableViewSeguesInfo;
 
 // methods
-- (NSArray*) getTableViewContentForNewTask;
+- (NSArray*) getTableViewContentForControllerType: (AddTaskControllerType) controllerType;
 
 - (NewTask*) getNewTaskObject;
 

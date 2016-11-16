@@ -64,6 +64,23 @@
 }
 
 
+#pragma mark - Actions -
+
+- (IBAction) onCancel: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+- (IBAction) onReady: (id) sender
+{
+    [self saveData];
+}
+- (IBAction) onSaveBtn: (UIButton*) sender
+{
+    [self saveData];
+}
+
+
 #pragma mark - Internal -
 
 - (void) bindUI
@@ -83,18 +100,4 @@
         [self.navigationController popViewControllerAnimated: YES];
     }
 }
-
-#pragma mark - Actions -
-
-- (IBAction) onCancel: (UIBarButtonItem*) sender
-{
-    [self.navigationController popViewControllerAnimated: YES];
-}
-
-- (IBAction) onReady: (id) sender
-{
-    [self saveData];
-}
-
-
 @end

@@ -15,8 +15,6 @@
            andHiddenState: (BOOL)                  isHidden
         forControllerType: (AddTaskControllerType) controllerType;
 
-- (void) updateTaskStatus;
-
 // model delegate updating methods
 - (NSArray*) updateTaskHiddenProperty: (BOOL) isHidden;
 

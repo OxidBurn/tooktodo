@@ -150,23 +150,21 @@
             
         case ShowStagesSegue:
         {
-            // ToDo: uncomment when stages will store to data base
-//            SelectStageViewController* controller = [segue destinationViewController];
-//            
-//            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
-//                             withDelegate: [self.viewModel returnModel]];
+            SelectStageViewController* controller = [segue destinationViewController];
+            
+            [controller fillSelectedStage: [self.viewModel returnSelectedStage]
+                             withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowSystemSegue:
         {
-            // ToDo: uncomment when systems will store to data base
-//            SelectSystemViewController* controller = [segue destinationViewController];
-//            
-//            ProjectSystem* system = [self.viewModel returnSelectedSystem];
-//            
-//            [controller fillSelectedSystem: system
-//                              withDelegate: [self.viewModel returnModel]];
+            SelectSystemViewController* controller = [segue destinationViewController];
+            
+            ProjectSystem* system = [self.viewModel returnSelectedSystem];
+            
+            [controller fillSelectedSystem: system
+                              withDelegate: [self.viewModel returnModel]];
         }
             break;
             
@@ -225,6 +223,11 @@
 - (void) fillControllerType: (AddTaskControllerType) controllerType
 {
     [self.viewModel fillControllerType: controllerType];
+}
+
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    
 }
 
 
