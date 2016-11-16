@@ -66,6 +66,7 @@
                           inContext: (NSManagedObjectContext*) context
 {
     ProjectSystem* system = [self getSystemWithID: info.systemID
+                                        inProject: project
                                         inContext: context];
     
     if ( system == nil )
@@ -78,14 +79,24 @@
         system.hasTasks   = @(info.hasTasks);
         system.project    = project;
     }
+    else
+    {
+        system.title      = info.title;
+        system.shortTitle = info.shortTitle;
+        system.hasTasks   = @(info.hasTasks);
+    }
 }
 
 - (ProjectSystem*) getSystemWithID: (NSNumber*)               systemID
+                         inProject: (ProjectInfo*)            project
                          inContext: (NSManagedObjectContext*) context
 {
-    return [ProjectSystem MR_findFirstByAttribute: @"systemID"
-                                        withValue: systemID
-                                        inContext: context];
+    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"systemID == %@ AND project == %@", systemID, project];
+    
+    ProjectSystem* system = [ProjectSystem MR_findFirstWithPredicate: findPredicate
+                                                           inContext: context];
+    
+    return system;
 }
 
 @end

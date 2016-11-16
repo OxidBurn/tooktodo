@@ -42,7 +42,7 @@
 @property (strong, nonatomic) NSNumber<Optional> * projectRelatedId;
 @property (strong, nonatomic) TaskResponsibleModel<Optional> * responsible;
 @property (strong, nonatomic) TaskRoomLevelModel<Optional> * roomLevel;
-@property (strong, nonatomic) TaskStageModel* stage;
+@property (strong, nonatomic) TaskStageModel<Optional>* stage;
 @property (strong, nonatomic) NSDate<Optional> * startDate;
 @property (strong, nonatomic) NSNumber* status;
 @property (strong, nonatomic) NSString* statusDescription;

@@ -32,8 +32,6 @@
     
     RACSignal* fetchSystemsInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        
-        
         [[RACScheduler mainThreadScheduler] schedule: ^{
         
             @strongify(self)
