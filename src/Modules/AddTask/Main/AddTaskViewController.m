@@ -228,6 +228,8 @@
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
 {
     [self.viewModel fillTaskToEdit: taskToEdit];
+    
+    [self changeUI];
 }
 
 
@@ -417,6 +419,10 @@
                      animations: ^{
                          
                          [self changeUI];
+                         self.messageView.hidden               = NO;
+                         self.tableViewTopConstraint.constant  = 75;
+
+
                      }
                      completion: ^(BOOL finished) {
                          
@@ -442,8 +448,6 @@
 - (void) changeUI
 {
     self.view.backgroundColor             = [UIColor whiteColor];
-    self.tableViewTopConstraint.constant  = 75;
-    self.messageView.hidden               = NO;
     
     self.addTaskAndCreateNewBtn.hidden    = YES;
     self.deleteTask.hidden                = NO;

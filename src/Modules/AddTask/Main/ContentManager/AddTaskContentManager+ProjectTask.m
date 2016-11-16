@@ -52,6 +52,7 @@
     rowThree.cellIndex = SwitchCell;
     rowThree.title     = @"Скрытая задача";
     rowThree.isHidden  = task.access;
+    rowThree.isSwitchEnabled = YES;
     
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     

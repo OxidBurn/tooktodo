@@ -83,9 +83,9 @@
         // first number in each subarray is value for the first row in second section in table view
         // second number is default value for all other cells in section two
         _secondSectionRowHeightsArray = @[@[ @(58), @(129) ],
-                             @[ @(58), @(54)  ],
-                             @[ @(61), @(100) ],
-                             @[ @(59)         ]];
+                                          @[ @(58), @(54)  ],
+                                          @[ @(61), @(100) ],
+                                          @[ @(59)         ]];
     }
     
     return _secondSectionRowHeightsArray;
@@ -323,13 +323,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     NSArray* heightsArrayForContentType = self.secondSectionRowHeightsArray[contentType];
     
+    NSNumber* firstRowHeight = heightsArrayForContentType[0];
+    
     NSNumber* defaultHeightValue = heightsArrayForContentType[1];
 
     switch ( indexPath.row )
     {
         case 0:
         {
-                height = defaultHeightValue.integerValue;
+                height = firstRowHeight.integerValue;
         }
             break;
             
