@@ -13,7 +13,13 @@
 		560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */; };
 		5613A70E1DC20C09003E2843 /* UIViewController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613A70D1DC20C09003E2843 /* UIViewController+Helper.m */; };
 		5626A68C1DBF95B50015AFEC /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5626A68B1DBF95B50015AFEC /* MainTabBar.m */; };
+		5627AD081DDC6E0200D355F4 /* TaskCommentsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5627AD071DDC6E0200D355F4 /* TaskCommentsService.m */; };
 		5636E8FF1D80A80700CF06FA /* service_agreements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5636E8FE1D80A80700CF06FA /* service_agreements.txt */; };
+		5643A2DA1DDC757200038414 /* DataManager+TaskComments.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643A2D91DDC757200038414 /* DataManager+TaskComments.m */; };
+		5643A2DD1DDC761800038414 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643A2DC1DDC761800038414 /* CommentsModel.m */; };
+		5643A2E21DDC9B2B00038414 /* TaskComment+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643A2DF1DDC9B2B00038414 /* TaskComment+CoreDataClass.m */; };
+		5643A2E31DDC9B2B00038414 /* TaskComment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643A2E11DDC9B2B00038414 /* TaskComment+CoreDataProperties.m */; };
+		5643A2E61DDCA97A00038414 /* TaskCommentsAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643A2E51DDCA97A00038414 /* TaskCommentsAPIService.m */; };
 		564DE3861DB0F60800BF9817 /* TaskAvailableActionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */; };
 		564DE3891DB0F65700BF9817 /* TaskActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE3881DB0F65700BF9817 /* TaskActionModel.m */; };
 		564DE38C1DB0F76A00BF9817 /* TaskStatusActionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564DE38B1DB0F76A00BF9817 /* TaskStatusActionModel.m */; };
@@ -431,7 +437,21 @@
 		5626A68A1DBF95B50015AFEC /* MainTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBar.h; sourceTree = "<group>"; };
 		5626A68B1DBF95B50015AFEC /* MainTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBar.m; sourceTree = "<group>"; };
 		5627AD051DDC6C7200D355F4 /* DataManager+TaskAvailableActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+TaskAvailableActions.h"; sourceTree = "<group>"; };
+		5627AD071DDC6E0200D355F4 /* TaskCommentsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCommentsService.m; sourceTree = "<group>"; };
 		5636E8FE1D80A80700CF06FA /* service_agreements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = service_agreements.txt; sourceTree = "<group>"; };
+		5643A2D91DDC757200038414 /* DataManager+TaskComments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+TaskComments.m"; sourceTree = "<group>"; };
+		5643A2DC1DDC761800038414 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsModel.m; sourceTree = "<group>"; };
+		5643A2DF1DDC9B2B00038414 /* TaskComment+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskComment+CoreDataClass.m"; sourceTree = "<group>"; };
+		5643A2E11DDC9B2B00038414 /* TaskComment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TaskComment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5643A2E51DDCA97A00038414 /* TaskCommentsAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCommentsAPIService.m; sourceTree = "<group>"; };
+		5643A2E71DDCAF5500038414 /* TaskCommentsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCommentsService.h; sourceTree = "<group>"; };
+		5643A2E81DDCAF5C00038414 /* DataManager+TaskComments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+TaskComments.h"; sourceTree = "<group>"; };
+		5643A2E91DDCAF6700038414 /* TaskComment+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaskComment+CoreDataClass.h"; sourceTree = "<group>"; };
+		5643A2EA1DDCAF6700038414 /* TaskComment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TaskComment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5643A2EB1DDCAF6F00038414 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsModel.h; sourceTree = "<group>"; };
+		5643A2EC1DDCAF6F00038414 /* NewProjectRoleTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProjectRoleTypeModel.h; sourceTree = "<group>"; };
+		5643A2ED1DDCAF6F00038414 /* NewProjectRoleTypeModelErrorsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProjectRoleTypeModelErrorsModel.h; sourceTree = "<group>"; };
+		5643A2EE1DDCAF7B00038414 /* TaskCommentsAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCommentsAPIService.h; sourceTree = "<group>"; };
 		564DE3851DB0F60800BF9817 /* TaskAvailableActionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAvailableActionsModel.m; sourceTree = "<group>"; };
 		564DE3881DB0F65700BF9817 /* TaskActionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskActionModel.m; sourceTree = "<group>"; };
 		564DE38B1DB0F76A00BF9817 /* TaskStatusActionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskStatusActionModel.m; sourceTree = "<group>"; };
@@ -457,9 +477,7 @@
 		564DE3AA1DB100C100BF9817 /* TaskStagesActionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskStagesActionModel.h; sourceTree = "<group>"; };
 		564DE3AB1DB100C100BF9817 /* TaskStatusActionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskStatusActionModel.h; sourceTree = "<group>"; };
 		564DE3AD1DB1010700BF9817 /* DataManager+TaskAvailableActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+TaskAvailableActions.m"; sourceTree = "<group>"; };
-		564DE3AF1DB1476F00BF9817 /* NewProjectRoleTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProjectRoleTypeModel.h; sourceTree = "<group>"; };
 		564DE3B01DB1476F00BF9817 /* NewProjectRoleTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProjectRoleTypeModel.m; sourceTree = "<group>"; };
-		564DE3B21DB147E900BF9817 /* NewProjectRoleTypeModelErrorsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewProjectRoleTypeModelErrorsModel.h; sourceTree = "<group>"; };
 		564DE3B31DB147E900BF9817 /* NewProjectRoleTypeModelErrorsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewProjectRoleTypeModelErrorsModel.m; sourceTree = "<group>"; };
 		564DE3B51DB1582E00BF9817 /* AddNewRoleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewRoleModel.m; path = AddNewRoleType/AddNewRoleModel.m; sourceTree = "<group>"; };
 		564DE3B61DB1582E00BF9817 /* AddNewRoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddNewRoleViewController.m; path = AddNewRoleType/AddNewRoleViewController.m; sourceTree = "<group>"; };
@@ -1323,6 +1341,7 @@
 		56D06B6E1DAFBDBF008E9AC0 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2E81DDCAF5C00038414 /* DataManager+TaskComments.h */,
 				5627AD051DDC6C7200D355F4 /* DataManager+TaskAvailableActions.h */,
 				56D06B6F1DAFBDBF008E9AC0 /* DataManager+ProjectInfo.h */,
 				56D06B701DAFBDBF008E9AC0 /* DataManager+Roles.h */,
@@ -1349,6 +1368,8 @@
 		56D06B781DAFBDBF008E9AC0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2E91DDCAF6700038414 /* TaskComment+CoreDataClass.h */,
+				5643A2EA1DDCAF6700038414 /* TaskComment+CoreDataProperties.h */,
 				564DE3A01DB100B600BF9817 /* TaskAvailableAction+CoreDataClass.h */,
 				564DE3A11DB100B600BF9817 /* TaskAvailableAction+CoreDataProperties.h */,
 				564DE3A21DB100B600BF9817 /* TaskAvailableActionsList+CoreDataClass.h */,
@@ -1416,6 +1437,9 @@
 		56D06BAF1DAFBDBF008E9AC0 /* JSONObjects */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2EB1DDCAF6F00038414 /* CommentsModel.h */,
+				5643A2EC1DDCAF6F00038414 /* NewProjectRoleTypeModel.h */,
+				5643A2ED1DDCAF6F00038414 /* NewProjectRoleTypeModelErrorsModel.h */,
 				564DE3A81DB100C100BF9817 /* TaskActionModel.h */,
 				564DE3A91DB100C100BF9817 /* TaskAvailableActionsModel.h */,
 				564DE3AA1DB100C100BF9817 /* TaskStagesActionModel.h */,
@@ -1456,6 +1480,7 @@
 		56D06BCD1DAFBDBF008E9AC0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2E71DDCAF5500038414 /* TaskCommentsService.h */,
 				56D06BCE1DAFBDBF008E9AC0 /* ProjectsService.h */,
 				56D06BCF1DAFBDBF008E9AC0 /* RolesService.h */,
 				56D06BD01DAFBDBF008E9AC0 /* RoomsService.h */,
@@ -2022,6 +2047,7 @@
 		56D06CB21DAFBDBF008E9AC0 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2EE1DDCAF7B00038414 /* TaskCommentsAPIService.h */,
 				56D06CB31DAFBDBF008E9AC0 /* BaseAPIService.h */,
 				56D06CB41DAFBDBF008E9AC0 /* LoginAPIService.h */,
 				56D06CB51DAFBDBF008E9AC0 /* ProjectsAPIService.h */,
@@ -2221,6 +2247,7 @@
 		56D06CFB1DAFBDBF008E9AC0 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2D91DDC757200038414 /* DataManager+TaskComments.m */,
 				56D06CFC1DAFBDBF008E9AC0 /* DataManager+ProjectInfo.m */,
 				56D06CFD1DAFBDBF008E9AC0 /* DataManager+Roles.m */,
 				56D06CFE1DAFBDBF008E9AC0 /* DataManager+Room.m */,
@@ -2247,6 +2274,8 @@
 		56D06D051DAFBDBF008E9AC0 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				5643A2DF1DDC9B2B00038414 /* TaskComment+CoreDataClass.m */,
+				5643A2E11DDC9B2B00038414 /* TaskComment+CoreDataProperties.m */,
 				564DE3901DB100A600BF9817 /* TaskAvailableAction+CoreDataClass.m */,
 				564DE3911DB100A600BF9817 /* TaskAvailableAction+CoreDataProperties.m */,
 				564DE3921DB100A600BF9817 /* TaskAvailableActionsList+CoreDataClass.m */,
@@ -2347,10 +2376,9 @@
 				564DE3881DB0F65700BF9817 /* TaskActionModel.m */,
 				564DE38B1DB0F76A00BF9817 /* TaskStatusActionModel.m */,
 				564DE38E1DB0F7CA00BF9817 /* TaskStagesActionModel.m */,
-				564DE3AF1DB1476F00BF9817 /* NewProjectRoleTypeModel.h */,
 				564DE3B01DB1476F00BF9817 /* NewProjectRoleTypeModel.m */,
-				564DE3B21DB147E900BF9817 /* NewProjectRoleTypeModelErrorsModel.h */,
 				564DE3B31DB147E900BF9817 /* NewProjectRoleTypeModelErrorsModel.m */,
+				5643A2DC1DDC761800038414 /* CommentsModel.m */,
 			);
 			path = JSONObjects;
 			sourceTree = "<group>";
@@ -2365,6 +2393,7 @@
 				56D06D5F1DAFBDBF008E9AC0 /* TasksService.m */,
 				56D06D601DAFBDBF008E9AC0 /* TeamService.m */,
 				56D06D611DAFBDBF008E9AC0 /* UserInfoService.m */,
+				5627AD071DDC6E0200D355F4 /* TaskCommentsService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2948,6 +2977,7 @@
 				56D06E451DAFBDBF008E9AC0 /* TasksAPIService.m */,
 				56D06E461DAFBDBF008E9AC0 /* TeamAPIService.m */,
 				56D06E471DAFBDBF008E9AC0 /* UserAPIService.m */,
+				5643A2E51DDCA97A00038414 /* TaskCommentsAPIService.m */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -3513,6 +3543,7 @@
 				56D06F5F1DAFBDC0008E9AC0 /* TaskDetailInfoCell.m in Sources */,
 				56D06F2A1DAFBDC0008E9AC0 /* MenuProjectCell.m in Sources */,
 				56D06F001DAFBDC0008E9AC0 /* AddMessageModel.m in Sources */,
+				5643A2DA1DDC757200038414 /* DataManager+TaskComments.m in Sources */,
 				564DE3AE1DB1010700BF9817 /* DataManager+TaskAvailableActions.m in Sources */,
 				56D06E951DAFBDC0008E9AC0 /* ProjectRoleAssignments+CoreDataClass.m in Sources */,
 				56D06F361DAFBDC0008E9AC0 /* GroupOfUsersCollectionFactory.m in Sources */,
@@ -3530,6 +3561,7 @@
 				56D06E881DAFBDC0008E9AC0 /* DataManager+Team.m in Sources */,
 				56D06EA31DAFBDC0008E9AC0 /* ProjectTaskMarker+CoreDataProperties.m in Sources */,
 				56D06F831DAFBDC0008E9AC0 /* UserInfoTableViewCell.m in Sources */,
+				5643A2E61DDCA97A00038414 /* TaskCommentsAPIService.m in Sources */,
 				56D06EC31DAFBDC0008E9AC0 /* ProjectInfoModel.m in Sources */,
 				CF1D5E031DD1E11A00CEB8DA /* SystemDetailViewModel.m in Sources */,
 				56D06F0B1DAFBDC0008E9AC0 /* AddTermTasksViewController.m in Sources */,
@@ -3600,9 +3632,11 @@
 				56D06FC51DAFBDC0008E9AC0 /* UITextView+PlaceHolder.m in Sources */,
 				56D06E871DAFBDC0008E9AC0 /* DataManager+Tasks.m in Sources */,
 				56D06EE11DAFBDC0008E9AC0 /* SystemsService.m in Sources */,
+				5643A2E31DDC9B2B00038414 /* TaskComment+CoreDataProperties.m in Sources */,
 				56D06F041DAFBDC0008E9AC0 /* AddTaskTypeTableViewCell.m in Sources */,
 				564DE3B81DB1582E00BF9817 /* AddNewRoleModel.m in Sources */,
 				564DE3981DB100A600BF9817 /* TaskAvailableAction+CoreDataClass.m in Sources */,
+				5627AD081DDC6E0200D355F4 /* TaskCommentsService.m in Sources */,
 				56D06F351DAFBDC0008E9AC0 /* DetailCollectionCellFactory.m in Sources */,
 				56D06E8E1DAFBDC0008E9AC0 /* ProjectCountry.m in Sources */,
 				56D06EEC1DAFBDC0008E9AC0 /* UISearchBar+TextFieldControl.m in Sources */,
@@ -3793,6 +3827,7 @@
 				56D06E9D1DAFBDC0008E9AC0 /* ProjectTask+CoreDataClass.m in Sources */,
 				56D06EF11DAFBDC0008E9AC0 /* Utils.m in Sources */,
 				564DE3991DB100A600BF9817 /* TaskAvailableAction+CoreDataProperties.m in Sources */,
+				5643A2E21DDC9B2B00038414 /* TaskComment+CoreDataClass.m in Sources */,
 				56D06E971DAFBDC0008E9AC0 /* ProjectRoles+CoreDataProperties.m in Sources */,
 				56D06E8A1DAFBDC0008E9AC0 /* DataManager.m in Sources */,
 				56D06F281DAFBDC0008E9AC0 /* MainMenuViewController.m in Sources */,
@@ -3860,6 +3895,7 @@
 				56D06EC21DAFBDC0008E9AC0 /* ProjectCountryModel.m in Sources */,
 				56D06F711DAFBDC0008E9AC0 /* TeamInfoModel.m in Sources */,
 				56D06FB01DAFBDC0008E9AC0 /* OSSingleUserInfoCellFactory.m in Sources */,
+				5643A2DD1DDC761800038414 /* CommentsModel.m in Sources */,
 				CF1D5E011DD1E11A00CEB8DA /* SystemDetailModel.m in Sources */,
 				56D06F131DAFBDC0008E9AC0 /* SelectRoomModel.m in Sources */,
 				56D06EB81DAFBDC0008E9AC0 /* ProjectTaskWorkArea.m in Sources */,
