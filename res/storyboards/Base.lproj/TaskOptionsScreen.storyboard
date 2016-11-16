@@ -690,7 +690,7 @@
             <objects>
                 <navigationController storyboardIdentifier="AddTaskNavControllerID" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Cg7-f8-mnr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5TP-fl-2Yw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="5TP-fl-2Yw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -965,7 +965,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Поиск" id="Z1I-G1-hch">
-                                    <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
@@ -1123,7 +1123,7 @@
         <scene sceneID="28Z-1u-gSP">
             <objects>
                 <navigationController id="AdS-Qi-SQA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nzy-Au-jVM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="nzy-Au-jVM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1382,6 +1382,7 @@
                                 <connections>
                                     <action selector="onSave:" destination="GiV-MS-Nwq" eventType="touchUpInside" id="Ysj-U0-QHa"/>
                                     <action selector="onSaveBtn:" destination="slz-WN-5qc" eventType="touchUpInside" id="huN-lF-VqS"/>
+                                    <action selector="onSaveBtn:" destination="p8e-9a-aAf" eventType="touchUpInside" id="pPx-5s-KoG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1486,6 +1487,7 @@
                                 <connections>
                                     <action selector="onSave:" destination="GiV-MS-Nwq" eventType="touchUpInside" id="WlR-Ye-nI3"/>
                                     <action selector="onSaveBtn:" destination="slz-WN-5qc" eventType="touchUpInside" id="TRO-xG-j9b"/>
+                                    <action selector="onSaveBtn:" destination="Bux-sk-L1w" eventType="touchUpInside" id="hSc-eV-pEh"/>
                                 </connections>
                             </button>
                         </subviews>

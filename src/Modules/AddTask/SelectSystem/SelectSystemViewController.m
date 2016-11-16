@@ -93,5 +93,9 @@
     [self saveData];
 }
 
+- (IBAction) onSaveBtn: (UIButton*) sender
+{
+    [self saveData];
+}
 
 @end
