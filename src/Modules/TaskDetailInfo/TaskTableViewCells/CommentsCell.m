@@ -20,12 +20,13 @@
 @interface CommentsCell()
 
 // outlets
-@property (weak, nonatomic) IBOutlet AvatarImageView*        userAvatarImageView;
-@property (weak, nonatomic) IBOutlet UIButton*               editCommentBtn;
-@property (weak, nonatomic) IBOutlet UILabel*                userNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel*                commentDateLabel;
-@property (weak, nonatomic) IBOutlet UITextView*             commentContentTextView;
-@property (strong, nonatomic) FlexibleViewsContainer* attachmentsContainerView;
+@property (weak, nonatomic) IBOutlet AvatarImageView*    userAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIButton*           editCommentBtn;
+@property (weak, nonatomic) IBOutlet UILabel*            userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*            commentDateLabel;
+@property (weak, nonatomic) IBOutlet UITextView*         commentContentTextView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* TextViewHeightConstraint;
+@property (strong, nonatomic) FlexibleViewsContainer*    attachmentsContainerView;
 
 
 // properties
