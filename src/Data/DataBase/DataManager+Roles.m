@@ -106,6 +106,7 @@
               inContext: (NSManagedObjectContext*) context
 {
     ProjectRoles* role = [self getRolesWithID: info.roleID
+                                    inProject: project
                                     inContext: context];
     
     if ( role == nil )
@@ -176,11 +177,15 @@
 
 
 - (ProjectRoles*) getRolesWithID: (NSNumber*)               roleID
+                       inProject: (ProjectInfo*)            project
                        inContext: (NSManagedObjectContext*) context
 {
-    return [ProjectRoles MR_findFirstByAttribute: @"roleID"
-                                       withValue: roleID
-                                       inContext: context];
+    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"roleID == %@ AND project == %@", roleID, project];
+    
+    ProjectRoles* role = [ProjectRoles MR_findFirstWithPredicate: findPredicate
+                                                       inContext: context];
+    
+    return role;
 }
 
 - (NSArray*) getAllDefaultRoles
