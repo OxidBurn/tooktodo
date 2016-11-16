@@ -20,6 +20,8 @@
 #import "ProjectTask+CoreDataProperties.h"
 #import "TaskComment+CoreDataProperties.h"
 
+#import "Utils.h"
+
 // Test class import
 #import "TestAttachments.h"
 
@@ -238,6 +240,7 @@
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
                 
+                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 20;
     
                 [commentsTmp addObject: newRow];
             }
@@ -283,6 +286,19 @@
 - (CGFloat) returnFloatFromNumber: (NSNumber*) number
 {
     return number.floatValue;
+}
+
+- (CGFloat) countTextViewHeightForString: (NSString*) string
+{
+    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 13.f];
+
+    CGSize size = [Utils findHeightForText: string
+                                    havingWidth: self.tableViewFrame.size.width - 30
+                                        andFont: font];
+    
+    CGFloat height = size.height;
+    
+    return height;
 }
 
 #pragma mark - Test methods -
@@ -337,6 +353,8 @@
     
     comment.commentText = @"Комментарии будут жить здесь с прикрепленными файлами или без. Небходим достаточно длинный текст чтобы проверить правильность заполнения ячейки";
     
+    comment.commentTextViewHeight = [self countTextViewHeightForString: comment.commentText] + 20;
+    
     NSArray* attachmentsTitlesArray = [TestAttachments returnArrayWithAttachments];
     
     NSArray* attachmentsArray = [self createAttachmentsViewsWithTitles: attachmentsTitlesArray];
@@ -365,7 +383,11 @@
     
     anotherComment.commentText = @"Буду краток...";
     
+    anotherComment.commentTextViewHeight = [self countTextViewHeightForString: anotherComment.commentText] + 20;
+    
     return @[comment, anotherComment];
 }
+
+
 
 @end

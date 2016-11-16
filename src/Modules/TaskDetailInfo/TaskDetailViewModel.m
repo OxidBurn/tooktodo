@@ -352,7 +352,10 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         {
             if ( heightsArrayForContentType.count > 1 )
             {
-                height = defaultHeightValue.integerValue;
+                if ( [self.model getSecondSectionContentType] == CommentsContentType )
+                    height = [self.model countHeightForCommentCellForIndexPath: indexPath];
+                else
+                    height = defaultHeightValue.integerValue;
             }
         }
             break;
