@@ -96,6 +96,8 @@
 
 @property (strong, nonatomic) UIImage* commentAuthorAvatar;
 
+@property (strong, nonatomic) NSString* commentAuthorAvatarSrc;
+
 @property (strong, nonatomic) NSString* commentText;
 
 @property (strong, nonatomic) NSDate* commentDate;

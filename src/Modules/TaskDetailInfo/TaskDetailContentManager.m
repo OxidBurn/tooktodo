@@ -17,6 +17,9 @@
 #import "AttachmentView.h"
 #import "FlexibleViewsContainer.h"
 
+#import "ProjectTask+CoreDataProperties.h"
+#import "TaskComment+CoreDataProperties.h"
+
 // Test class import
 #import "TestAttachments.h"
 
@@ -210,24 +213,35 @@
     addCommentCellContent.cellId        = self.tableViewCellsIdArray[AddCommentCellType];
     addCommentCellContent.cellTypeIndex = AddCommentCellType;
     
-    NSArray* testContent        = [self createTestComment];
+    NSArray* testContent        = [NSArray new];
+    
+    if ( [task comments].count == 0 )
+        testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
     
-    // this code will be used with real data
-    //    if ( self.task.commentsCount )
-    //    {
-    //        for (int i = 0; i < self.task.commentsCount.intValue; i++)
-    //        {
-    //            TaskRowContent* newRow = [TaskRowContent new];
-    //
-    //            newRow.cellId    = self.tableViewCellsIdArray[CommentsCell];
-    //
-    //            [commentsTmp addObject: newRow];
-    //
-    //            // here content will be filled
-    //        }
-    //    }
+    NSNumber* numberOfComments = [task commentsCount];
+    
+        if ( [task comments] && [task commentsCount] )
+        {
+            for (int i = 0; i < numberOfComments.integerValue; i++)
+            {
+                TaskComment* comment = [[task comments] objectAtIndex: i];
+                
+                TaskRowContent* newRow = [TaskRowContent new];
+                
+                newRow.commentText            = comment.message;
+                newRow.commentAuthorName      = comment.author;
+                newRow.commentAuthorAvatarSrc = comment.avatarSrc;
+                newRow.commentDate            = comment.date;
+    
+                newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
+                newRow.cellTypeIndex = CommentsCellType;
+                
+    
+                [commentsTmp addObject: newRow];
+            }
+        }
     
     [commentsTmp insertObject: addCommentCellContent
                       atIndex: 0];

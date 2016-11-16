@@ -12,6 +12,7 @@
 #import "AvatarImageView.h"
 #import "FlexibleViewsContainer.h"
 #import "AttachmentView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -42,9 +43,15 @@
                    withWidth: (CGFloat)         width
                 withDelegate: (id)              delegate
 {
+    self.userAvatarImageView.clipsToBounds = YES;
+    [self.userAvatarImageView.layer setCornerRadius: 10];
+    
     self.delegate = delegate;
     
-    [self.userAvatarImageView setImage: content.commentAuthorAvatar];
+    if ( content.commentAuthorAvatar )
+        [self.userAvatarImageView setImage: content.commentAuthorAvatar];
+    else
+        [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: content.commentAuthorAvatarSrc]];
     
     self.userNameLabel.text = content.commentAuthorName;
     
@@ -75,27 +82,5 @@
         
     }
 }
-
-
-#pragma mark - Internal -
-
-- (NSArray*) createAttachmentsViewsWithTitles: (NSArray*) attachmentsArray
-{
-    __block NSMutableArray* viewsArray = [NSMutableArray new];
-    
-    [attachmentsArray enumerateObjectsUsingBlock: ^(NSString* title, NSUInteger idx, BOOL * _Nonnull stop) {
-       
-        AttachmentView* view = [[[NSBundle mainBundle] loadNibNamed: @"AttachmentView"
-                                                              owner: nil
-                                                            options: nil] lastObject];
-        
-        [view fillViewWithAttachmentName: title];
-        
-        [viewsArray addObject: view];
-    }];
-    
-    return viewsArray.copy;
-}
-
 
 @end
