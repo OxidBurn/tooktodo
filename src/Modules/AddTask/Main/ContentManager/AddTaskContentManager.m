@@ -235,7 +235,7 @@
     rowTwo.title     = @"Задача на плане";
     rowTwo.detail    = @"Не реализовано";
     rowTwo.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
-    rowOne.cellIndex = RightDetailCell;
+    rowTwo.cellIndex = RightDetailCell;
 
     RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
     
@@ -243,8 +243,8 @@
     rowThree.detail  = @"Не реализовано";
     rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     // ToDo: uncomment when stages will be implemented
-//    rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
-    rowOne.cellIndex = RightDetailCell;
+    rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
+    rowThree.cellIndex = RightDetailCell;
     
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
@@ -252,8 +252,8 @@
     rowFour.detail  = @"Не реализовано";
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     // ToDo: uncomment when systems will be implemented
-//    rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
-    rowOne.cellIndex = RightDetailCell;
+    rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
+    rowFour.cellIndex = RightDetailCell;
     
     RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     
@@ -269,7 +269,7 @@
     rowSix.title     = @"Документы к задаче";
     rowSix.detail    = @"Не реализовано";
     rowSix.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
-    rowOne.cellIndex = RightDetailCell;
+    rowSix.cellIndex = RightDetailCell;
 
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
