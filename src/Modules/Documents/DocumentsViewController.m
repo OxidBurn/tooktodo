@@ -17,7 +17,7 @@
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 
-@interface DocumentsViewController()
+@interface DocumentsViewController() <UISplitViewControllerDelegate>
 
 // properties
 
@@ -39,6 +39,8 @@
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ДОКУМЕНТЫ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
     
+    self.splitViewController.delegate = self;
+    
     // Handing 'Menu' button according to device
     if ( IS_PHONE == NO )
         self.navigationItem.leftBarButtonItem = nil;
@@ -56,6 +58,16 @@
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
 {
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
+}
+
+
+#pragma mark - UISplitViewControllerDelegate methods -
+
+- (BOOL)    splitViewController: (UISplitViewController*) splitViewController
+collapseSecondaryViewController: (UIViewController*)      secondaryViewController
+      ontoPrimaryViewController: (UIViewController*)      primaryViewController
+{
+    return YES;
 }
 
 @end
