@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -134,6 +134,7 @@
         <attribute name="taskTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="availableActions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="task" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TaskComment" inverseName="task" inverseEntity="TaskComment" syncable="YES"/>
         <relationship name="marker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskMarker" inverseName="task" inverseEntity="ProjectTaskMarker" syncable="YES"/>
         <relationship name="ownerUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskOwner" inverseName="task" inverseEntity="ProjectTaskOwner" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="tasks" inverseEntity="ProjectInfo" syncable="YES"/>
@@ -301,6 +302,19 @@
         <attribute name="stautsActionDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="availableActionsList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskAvailableActionsList" inverseName="statusActions" inverseEntity="TaskAvailableActionsList" syncable="YES"/>
     </entity>
+    <entity name="TaskComment" representedClassName="TaskComment" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authorId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="commentID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storageFiles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskStorageFiles" inverseName="comment" inverseEntity="TaskStorageFiles" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="comments" inverseEntity="ProjectTask" syncable="YES"/>
+    </entity>
+    <entity name="TaskStorageFiles" syncable="YES">
+        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskComment" inverseName="storageFiles" inverseEntity="TaskComment" syncable="YES"/>
+    </entity>
     <entity name="TeamMember" representedClassName="TeamMember" syncable="YES">
         <attribute name="additionalPhoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="avatarSrc" optional="YES" attributeType="String" syncable="YES"/>
@@ -353,7 +367,7 @@
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectRoleType" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="135"/>
-        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="675"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="690"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="285"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
         <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="150"/>
@@ -368,12 +382,14 @@
         <element name="ProjectTaskStage" positionX="-9" positionY="135" width="128" height="150"/>
         <element name="ProjectTaskWorkArea" positionX="9" positionY="153" width="128" height="120"/>
         <element name="RoomLevelMap" positionX="-45" positionY="99" width="128" height="165"/>
+        <element name="TaskAvailableAction" positionX="-36" positionY="108" width="128" height="88"/>
+        <element name="TaskAvailableActionsList" positionX="-45" positionY="99" width="128" height="103"/>
+        <element name="TaskAvailableStagesAction" positionX="-18" positionY="126" width="128" height="103"/>
+        <element name="TaskAvailableStatusAction" positionX="-27" positionY="117" width="128" height="88"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="TaskAvailableActionsList" positionX="-45" positionY="99" width="128" height="103"/>
-        <element name="TaskAvailableAction" positionX="-36" positionY="108" width="128" height="88"/>
-        <element name="TaskAvailableStatusAction" positionX="-27" positionY="117" width="128" height="88"/>
-        <element name="TaskAvailableStagesAction" positionX="-18" positionY="126" width="128" height="103"/>
+        <element name="TaskComment" positionX="-45" positionY="99" width="128" height="165"/>
+        <element name="TaskStorageFiles" positionX="-36" positionY="108" width="128" height="60"/>
     </elements>
 </model>

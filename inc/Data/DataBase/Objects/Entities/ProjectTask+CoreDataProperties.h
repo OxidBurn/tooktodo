@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/14/16.
+//  Created by Nikolay Chaban on 11/16/16.
 //
 //
 
@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActions;
+@property (nullable, nonatomic, retain) NSOrderedSet<TaskComment *> *comments;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
@@ -56,11 +58,21 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
-@property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActions;
 
 @end
 
 @interface ProjectTask (CoreDataGeneratedAccessors)
+
+- (void)insertObject:(TaskComment *)value inCommentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromCommentsAtIndex:(NSUInteger)idx;
+- (void)insertComments:(NSArray<TaskComment *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeCommentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInCommentsAtIndex:(NSUInteger)idx withObject:(TaskComment *)value;
+- (void)replaceCommentsAtIndexes:(NSIndexSet *)indexes withComments:(NSArray<TaskComment *> *)values;
+- (void)addCommentsObject:(TaskComment *)value;
+- (void)removeCommentsObject:(TaskComment *)value;
+- (void)addComments:(NSOrderedSet<TaskComment *> *)values;
+- (void)removeComments:(NSOrderedSet<TaskComment *> *)values;
 
 - (void)addRoomsObject:(ProjectTaskRoom *)value;
 - (void)removeRoomsObject:(ProjectTaskRoom *)value;

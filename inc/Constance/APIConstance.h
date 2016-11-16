@@ -39,5 +39,6 @@ static NSString* projectGetRoomsLevelURL        = @"/api/roomLevel/list?projectI
 static NSString* projectTaskAvailableActionsURL = @"/api/v2/project/{projectId}/tasks/{taskId}/availableActions";
 static NSString* createNewProjectRoleTypeURL    = @"/api/v2/project/{projectId}/roleTypes";
 static NSString* createNewTaskURL               = @"/api/task";
+static NSString* taskCommentsURL                = @"/api/task/p{projectId}-t{taskId}/comment/list";
 
 #endif /* APIConstance_h */

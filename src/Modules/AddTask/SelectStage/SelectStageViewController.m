@@ -75,6 +75,10 @@
 {
     [self saveData];
 }
+- (IBAction) onSaveBtn: (UIButton*) sender
+{
+    [self saveData];
+}
 
 
 #pragma mark - Internal -

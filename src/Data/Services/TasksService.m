@@ -16,6 +16,7 @@
 #import "TaskAvailableActionsModel.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "FilledTeamInfo.h"
+#import "TaskCommentsService.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -164,6 +165,14 @@
                                                 
                                             }
                                             error:^(NSError *error) {
+                                                
+                                            }];
+                                           
+                                           [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
+                                            subscribeNext: ^(id x) {
+                                                
+                                            }
+                                            error: ^(NSError *error) {
                                                 
                                             }];
                                        }
