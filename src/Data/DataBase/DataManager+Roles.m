@@ -135,6 +135,7 @@
               inContext: (NSManagedObjectContext*) context
 {
     ProjectRoles* role = [self getRolesWithID: info.roleID
+                                    inProject: nil
                                     inContext: context];
     
     if ( role == nil )
