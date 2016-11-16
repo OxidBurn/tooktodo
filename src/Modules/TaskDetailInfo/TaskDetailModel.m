@@ -179,9 +179,9 @@
                                                           forTableViewWithFrame: frame];
 }
 
-- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+- (ProjectTask*) getCurrentTask
 {
-    
+    return self.task;
 }
 
 

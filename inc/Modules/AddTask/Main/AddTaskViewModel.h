@@ -68,6 +68,8 @@
 
 - (void) fillControllerType: (AddTaskControllerType) controllerType;
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
+
 @end
 
 @protocol AddTaskViewModelDelegate <NSObject>

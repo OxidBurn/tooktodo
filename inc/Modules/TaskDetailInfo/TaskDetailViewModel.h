@@ -32,8 +32,6 @@
 
 - (TaskStatusType) getTaskStatus;
 
-- (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
-
 - (void) updateTaskStatus;
 
 - (void) fillSelectedTask: (ProjectTask*)          task
@@ -42,5 +40,7 @@
 - (ProjectTaskStage*) getTaskStage;
 
 - (BOOL) getTaskState;
+
+- (ProjectTask*) getCurrentTask;
 
 @end

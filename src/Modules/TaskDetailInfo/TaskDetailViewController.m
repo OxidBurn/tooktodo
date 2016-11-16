@@ -143,6 +143,8 @@
         AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
         
         [vc fillControllerType: EditTaskControllerType];
+        
+        [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
     }
     
 }

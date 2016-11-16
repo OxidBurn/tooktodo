@@ -151,6 +151,11 @@
     [self.model fillControllerType: controllerType];
 }
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    [self.model fillTaskToEdit: taskToEdit];
+}
+
 
 #pragma mark - UITableView data source -
 

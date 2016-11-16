@@ -25,6 +25,7 @@
 #import "OSSwitchTableCell.h"
 #import "AddTaskContentManager.h"
 #import "AddTaskContentManager+UpdadingContent.h"
+#import "AddTaskContentManager+ProjectTask.h"
 
 
 @interface AddTaskModel() <AddMessageViewControllerDelegate,
@@ -232,6 +233,11 @@
     self.controllerType = controllerType;
     
     self.addTaskTableViewContent = [self.contentManager getTableViewContentForControllerType: controllerType];
+}
+
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+{
+    self.addTaskTableViewContent = [self.contentManager convertProjectTaskToContent: taskToEdit];
 }
 
 

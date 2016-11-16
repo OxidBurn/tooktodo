@@ -60,7 +60,7 @@
 
 - (BOOL) getTaskState;
 
-- (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
+- (ProjectTask*) getCurrentTask;
 
 @end
 

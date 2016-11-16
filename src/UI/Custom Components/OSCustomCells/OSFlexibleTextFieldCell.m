@@ -53,8 +53,10 @@
 - (void) fillCellWithText: (NSString*) textContent
 {
     if ( textContent.length > 0 )
-    self.taskNameLabel.text = textContent;
+        self.taskNameLabel.text      = textContent;
     
+    if ( [textContent isEqualToString: @"Название задачи"] == NO )
+        self.taskNameLabel.textColor = [UIColor blackColor];
 }
 
 - (void) editTextLabel

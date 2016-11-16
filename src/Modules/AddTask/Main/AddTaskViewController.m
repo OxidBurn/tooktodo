@@ -227,7 +227,7 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
 {
-    
+    [self.viewModel fillTaskToEdit: taskToEdit];
 }
 
 

@@ -116,10 +116,11 @@
     return [self.model getTaskState];
 }
 
-- (void) fillTaskToEdit: (ProjectTask*) taskToEdit
+- (ProjectTask*) getCurrentTask
 {
-    [self.model fillTaskToEdit: taskToEdit];
+    return [self.model getCurrentTask];
 }
+
 
 #pragma mark - UITableViewDataSourse methods -
 

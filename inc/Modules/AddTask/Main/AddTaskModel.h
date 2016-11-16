@@ -66,6 +66,8 @@
 
 - (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath;
 
+- (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>
