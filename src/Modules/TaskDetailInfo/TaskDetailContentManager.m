@@ -168,8 +168,13 @@
     
     NSMutableArray* subtasksTmp = testContent.mutableCopy;
     
-    [subtasksTmp insertObject: filterSubtaskCellContent
-                      atIndex: 0];
+
+    
+        [subtasksTmp insertObject: filterSubtaskCellContent
+                          atIndex: 0];
+
+    
+    
     
     return subtasksTmp.copy;
 }
@@ -289,24 +294,38 @@
 
 - (NSArray*) createTestSubtaskForTask: (ProjectTask*) task
 {
-    TaskRowContent* subtask = [TaskRowContent new];
     
-    subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
     
-    subtask.taskStartDate       = task.startDay;
-    subtask.taskEndDate         = task.endDate;
-    subtask.isExpired           = task.isExpired.boolValue;
-    subtask.status              = task.status.integerValue;
-    subtask.taskTypeDescription = task.taskTypeDescription;
-    subtask.workAreaShortTitle  = task.workArea.shortTitle;
-    subtask.taskTitle           = task.title;
-    subtask.statusDescription   = task.statusDescription;
-    subtask.subtasksNumber      = task.subTasks.count;
-    subtask.attachmentsNumber   = task.attachments.integerValue;
-    subtask.roomNumber          = task.room.number.integerValue;
-    subtask.commentsNumber      = task.commentsCount.integerValue;
+    NSArray* subtasksArray = task.subTasks.allObjects;
     
-    return @[subtask];
+    __block NSMutableArray* subtasksTmp = [NSMutableArray array];
+    
+    [subtasksArray enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        TaskRowContent* subtask = [TaskRowContent new];
+        
+        subtask.taskStartDate       = obj.startDay;
+        subtask.taskEndDate         = obj.endDate;
+        subtask.isExpired           = obj.isExpired.boolValue;
+        subtask.status              = obj.status.integerValue;
+        subtask.taskTypeDescription = obj.taskTypeDescription;
+        subtask.workAreaShortTitle  = obj.workArea.shortTitle;
+        subtask.taskTitle           = obj.title;
+        subtask.statusDescription   = obj.statusDescription;
+        subtask.subtasksNumber      = obj.subTasks.count;
+        subtask.attachmentsNumber   = obj.attachments.integerValue;
+        subtask.roomNumber          = obj.room.number.integerValue;
+        subtask.commentsNumber      = obj.commentsCount.integerValue;
+        subtask.ownerUser           = @[obj.ownerUser];
+        
+        subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
+        
+        [subtasksTmp addObject: subtask];
+        
+    }];
+
+    
+    return subtasksTmp.copy;
 }
 
 - (NSArray*) createTestAttachmentForTask: task

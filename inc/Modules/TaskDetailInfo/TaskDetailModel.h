@@ -62,6 +62,8 @@
 
 - (ProjectTask*) getCurrentTask;
 
+- (NSArray*) getSubtasks;
+
 @end
 
 

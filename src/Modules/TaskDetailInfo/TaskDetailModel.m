@@ -141,6 +141,7 @@
     [self updateContentWithRow: row
                      inSection: 0
                          inRow: 0];
+
 }
 
 - (ProjectTaskStage*) getTaskStage
@@ -184,6 +185,10 @@
     return self.task;
 }
 
+- (NSArray*) getSubtasks
+{
+    return self.task.subTasks.allObjects;
+}
 
 #pragma mark - Helpers -
 
