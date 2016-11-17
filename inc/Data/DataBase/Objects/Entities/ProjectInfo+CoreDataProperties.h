@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/4/16.
+//  Created by Nikolay Chaban on 11/17/16.
 //
 //
 
@@ -40,16 +40,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, copy) NSString *street;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSString *info;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoles *> *roles;
+@property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoomLevel *> *roomLevel;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskStage *> *stage;
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
-@property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoomLevel *> *roomLevel;
 
 @end
 
@@ -70,6 +71,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addRoles:(NSSet<ProjectRoles *> *)values;
 - (void)removeRoles:(NSSet<ProjectRoles *> *)values;
 
+- (void)insertObject:(ProjectTaskRoomLevel *)value inRoomLevelAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromRoomLevelAtIndex:(NSUInteger)idx;
+- (void)insertRoomLevel:(NSArray<ProjectTaskRoomLevel *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeRoomLevelAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInRoomLevelAtIndex:(NSUInteger)idx withObject:(ProjectTaskRoomLevel *)value;
+- (void)replaceRoomLevelAtIndexes:(NSIndexSet *)indexes withRoomLevel:(NSArray<ProjectTaskRoomLevel *> *)values;
+- (void)addRoomLevelObject:(ProjectTaskRoomLevel *)value;
+- (void)removeRoomLevelObject:(ProjectTaskRoomLevel *)value;
+- (void)addRoomLevel:(NSOrderedSet<ProjectTaskRoomLevel *> *)values;
+- (void)removeRoomLevel:(NSOrderedSet<ProjectTaskRoomLevel *> *)values;
+
 - (void)addStageObject:(ProjectTaskStage *)value;
 - (void)removeStageObject:(ProjectTaskStage *)value;
 - (void)addStage:(NSSet<ProjectTaskStage *> *)values;
@@ -89,17 +101,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeTeamObject:(TeamMember *)value;
 - (void)addTeam:(NSSet<TeamMember *> *)values;
 - (void)removeTeam:(NSSet<TeamMember *> *)values;
-
-- (void)insertObject:(ProjectTaskRoomLevel *)value inRoomLevelAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromRoomLevelAtIndex:(NSUInteger)idx;
-- (void)insertRoomLevel:(NSArray<ProjectTaskRoomLevel *> *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeRoomLevelAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInRoomLevelAtIndex:(NSUInteger)idx withObject:(ProjectTaskRoomLevel *)value;
-- (void)replaceRoomLevelAtIndexes:(NSIndexSet *)indexes withRoomLevel:(NSArray<ProjectTaskRoomLevel *> *)values;
-- (void)addRoomLevelObject:(ProjectTaskRoomLevel *)value;
-- (void)removeRoomLevelObject:(ProjectTaskRoomLevel *)value;
-- (void)addRoomLevel:(NSOrderedSet<ProjectTaskRoomLevel *> *)values;
-- (void)removeRoomLevel:(NSOrderedSet<ProjectTaskRoomLevel *> *)values;
 
 @end
 

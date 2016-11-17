@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/4/16.
+//  Created by Nikolay Chaban on 11/17/16.
 //
 //
 
@@ -39,15 +39,16 @@
 @dynamic residentialObjectTypeDescription;
 @dynamic street;
 @dynamic title;
+@dynamic info;
 @dynamic country;
 @dynamic offlineSettings;
 @dynamic projectRoleAssignments;
 @dynamic region;
 @dynamic roles;
+@dynamic roomLevel;
 @dynamic stage;
 @dynamic systems;
 @dynamic tasks;
 @dynamic team;
-@dynamic roomLevel;
 
 @end

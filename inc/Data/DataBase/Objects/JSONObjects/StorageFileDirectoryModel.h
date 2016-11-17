@@ -8,20 +8,23 @@
 
 #import <JSONModel/JSONModel.h>
 
+// Classes
+#import "UserInfoData.h"
+
 @protocol StorageFileDirectoryModel;
 
 @interface StorageFileDirectoryModel : JSONModel
 
-@property (strong, nonatomic) NSArray<Optional>* childDirectories;
-@property (strong, nonatomic) NSString* parentDirectoryId;
-@property (strong, nonatomic) NSArray<StorageFileDirectoryModel>* parentDirectories;
-@property (strong, nonatomic) NSString* author;
-@property (strong, nonatomic) NSString* storageFileDirectoryID;
-@property (strong, nonatomic) NSString* title;
-@property (strong, nonatomic) NSNumber* accessType;
-@property (strong, nonatomic) NSNumber* directoryType;
-@property (strong, nonatomic) NSDate* createdDate;
-@property (strong, nonatomic) NSDate* lastModifiedDate;
-@property (strong, nonatomic) NSArray* availableActions;
+@property (strong, nonatomic) NSArray<Optional>         * childDirectories;
+@property (strong, nonatomic) NSString                  * parentDirectoryId;
+@property (strong, nonatomic) NSArray<StorageFileDirectoryModel> * parentDirectories;
+@property (strong, nonatomic) UserInfoData              * author;
+@property (strong, nonatomic) NSString                  * storageFileDirectoryID;
+@property (strong, nonatomic) NSString                  * title;
+@property (strong, nonatomic) NSNumber                  * accessType;
+@property (strong, nonatomic) NSNumber                  * directoryType;
+@property (strong, nonatomic) NSDate                    * createdDate;
+@property (strong, nonatomic) NSDate                    * lastModifiedDate;
+@property (strong, nonatomic) NSArray                   * availableActions;
 
 @end

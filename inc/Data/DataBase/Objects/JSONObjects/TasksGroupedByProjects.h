@@ -9,7 +9,7 @@
 #import <JSONModel/JSONModel.h>
 
 // Classes
-#import "ProjectTaskModel.h"
+#import "TaskSortedByProjectModel.h"
 
 @protocol ShortProjectInfoModel;
 
@@ -23,10 +23,10 @@
 
 @interface ShortProjectInfoModel : JSONModel
 
-@property (nonatomic) NSUInteger                projectID;
-@property (nonatomic) NSUInteger                ownerUserId;
-@property (nonatomic) NSString<Optional>        * region;
-@property (nonatomic) NSString                  * title;
-@property (nonatomic) NSArray<ProjectTaskModel> * tasks;
+@property (nonatomic) NSUInteger                        projectID;
+@property (nonatomic) NSUInteger                        ownerUserId;
+@property (nonatomic) NSString<Optional>                * region;
+@property (nonatomic) NSString                          * title;
+@property (nonatomic) NSArray<TaskSortedByProjectModel> * tasks;
 
 @end

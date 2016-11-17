@@ -155,7 +155,7 @@
                            projectInfo.residentialObjectTypeDescription ? projectInfo.residentialObjectTypeDescription : @"нет",
                            projectInfo.floor        ? projectInfo.floor.stringValue : @"нет",
                            projectInfo.apartment    ? projectInfo.apartment : @"нет",
-                           @"нет"]];
+                           projectInfo.info         ? projectInfo.info : @"нет"]];
     return content;
 }
 
@@ -175,7 +175,7 @@
                            projectInfo.residentialObjectTypeDescription ? projectInfo.residentialObjectTypeDescription : @"нет",
                            projectInfo.floor        ? projectInfo.floor.stringValue : @"нет",
                            projectInfo.apartment    ? projectInfo.apartment : @"нет",
-                           @"нет"],
+                           projectInfo.info         ? projectInfo.info : @"нет"],
                          @[@"координаты"]];
     return content;
 }

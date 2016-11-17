@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) NSString* userName;
 @property (strong, nonatomic) NSString* emailConfirmed;
-@property (strong, nonatomic) NSString* role;
+@property (strong, nonatomic) NSString<Optional>* role;
 @property (assign, nonatomic) NSUInteger userID;
 @property (strong, nonatomic) NSString* email;
 @property (strong, nonatomic) NSString* lastName;

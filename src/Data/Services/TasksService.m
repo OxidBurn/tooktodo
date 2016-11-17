@@ -230,7 +230,7 @@
 - (void) parseTasksForCurrentUser: (NSDictionary*)         response
                    withCompletion: (CompletionWithSuccess) completion
 {
-    NSError* parsingError              = nil;
+    NSError* parsingError       = nil;
     TasksGroupedByProjects* parsedInfo = [[TasksGroupedByProjects alloc] initWithDictionary: response
                                                                                       error: &parsingError];
     

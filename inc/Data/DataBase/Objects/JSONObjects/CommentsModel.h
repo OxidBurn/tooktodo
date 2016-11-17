@@ -6,7 +6,11 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+// Frameworks
 #import <JSONModel/JSONModel.h>
+
+// Classes
+#import "StorageFilesModel.h"
 
 @interface CommentsModel : JSONModel
 
@@ -16,6 +20,6 @@
 @property (strong, nonatomic) NSString* avatarSrc;
 @property (strong, nonatomic) NSString* authorId;
 @property (strong, nonatomic) NSDate* date;
-@property (strong, nonatomic) NSArray* storageFiles;
+@property (strong, nonatomic) NSArray<StorageFilesModel>* storageFiles;
 
 @end

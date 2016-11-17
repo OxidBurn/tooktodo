@@ -379,6 +379,10 @@
 		56D06FC51DAFBDC0008E9AC0 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D06E811DAFBDBF008E9AC0 /* UITextView+PlaceHolder.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		56D06FC81DAFC1D0008E9AC0 /* TaskOptionsScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56D06FC61DAFC1D0008E9AC0 /* TaskOptionsScreen.storyboard */; };
 		56D06FCB1DAFFA51008E9AC0 /* AddNewRole.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56D06FC91DAFFA51008E9AC0 /* AddNewRole.storyboard */; };
+		56D09EF01DDE29CC0081C382 /* FileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D09EEC1DDE29CC0081C382 /* FileDataModel.m */; };
+		56D09EF21DDE29CC0081C382 /* StorageFileDirectoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D09EEE1DDE29CC0081C382 /* StorageFileDirectoryModel.m */; };
+		56D09EF31DDE29CC0081C382 /* StorageFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D09EEF1DDE29CC0081C382 /* StorageFilesModel.m */; };
+		56D09EF91DDE38170081C382 /* TaskSortedByProjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D09EF81DDE38170081C382 /* TaskSortedByProjectModel.m */; };
 		56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */; };
 		56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */; };
 		56E1B98E1D6F0FA1003E46DA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */; };
@@ -388,15 +392,11 @@
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
 		5917AE7A1DA5415700C1FEDF /* StatusSystem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917AE791DA5415700C1FEDF /* StatusSystem.storyboard */; };
 		5947BFA81DA40A05001CB5D8 /* SubTaskInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5947BFA71DA40A05001CB5D8 /* SubTaskInfoView.xib */; };
-		595770041DDE16D0001A4EF7 /* StorageFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 595770031DDE16D0001A4EF7 /* StorageFilesModel.m */; };
-		595770071DDE197B001A4EF7 /* StorageFileDirectoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 595770061DDE197B001A4EF7 /* StorageFileDirectoryModel.m */; };
-		5957700A1DDE1A2C001A4EF7 /* FileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 595770091DDE1A2C001A4EF7 /* FileDataModel.m */; };
 		596DBA431DA3D49A0080A376 /* RoomLevelSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596DBA421DA3D49A0080A376 /* RoomLevelSectionView.xib */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
 		59A793471D59D3480062007E /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793451D59D3480062007E /* Lato-Regular.ttf */; };
 		59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793461D59D3480062007E /* Lato-Semibold.ttf */; };
-		59C0639A1DDE251B009028D9 /* StorageFileAutorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C063991DDE251B009028D9 /* StorageFileAutorModel.m */; };
 		59D61B001DACEA75001D98B2 /* SF-UI-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AFE1DACEA75001D98B2 /* SF-UI-Text-Bold.otf */; };
 		59D61B011DACEA75001D98B2 /* SF-UI-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59D61AFF1DACEA75001D98B2 /* SF-UI-Text-Semibold.otf */; };
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
@@ -1160,6 +1160,14 @@
 		56D06E811DAFBDBF008E9AC0 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
 		56D06FC71DAFC1D0008E9AC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TaskOptionsScreen.storyboard; sourceTree = "<group>"; };
 		56D06FCA1DAFFA51008E9AC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/AddNewRole.storyboard; sourceTree = "<group>"; };
+		56D09EEC1DDE29CC0081C382 /* FileDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDataModel.m; sourceTree = "<group>"; };
+		56D09EEE1DDE29CC0081C382 /* StorageFileDirectoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageFileDirectoryModel.m; sourceTree = "<group>"; };
+		56D09EEF1DDE29CC0081C382 /* StorageFilesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageFilesModel.m; sourceTree = "<group>"; };
+		56D09EF41DDE32410081C382 /* AboutProjectCellsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectCellsFactory.h; sourceTree = "<group>"; };
+		56D09EF51DDE32410081C382 /* AboutProjectMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectMapCell.h; sourceTree = "<group>"; };
+		56D09EF61DDE32410081C382 /* AboutProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectModel.h; sourceTree = "<group>"; };
+		56D09EF71DDE38170081C382 /* TaskSortedByProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskSortedByProjectModel.h; sourceTree = "<group>"; };
+		56D09EF81DDE38170081C382 /* TaskSortedByProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskSortedByProjectModel.m; sourceTree = "<group>"; };
 		56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
 		56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
@@ -1170,18 +1178,13 @@
 		5917AE791DA5415700C1FEDF /* StatusSystem.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StatusSystem.storyboard; sourceTree = "<group>"; };
 		5947BFA71DA40A05001CB5D8 /* SubTaskInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubTaskInfoView.xib; sourceTree = "<group>"; };
 		595770021DDE16D0001A4EF7 /* StorageFilesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageFilesModel.h; sourceTree = "<group>"; };
-		595770031DDE16D0001A4EF7 /* StorageFilesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageFilesModel.m; sourceTree = "<group>"; };
 		595770051DDE197B001A4EF7 /* StorageFileDirectoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageFileDirectoryModel.h; sourceTree = "<group>"; };
-		595770061DDE197B001A4EF7 /* StorageFileDirectoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageFileDirectoryModel.m; sourceTree = "<group>"; };
 		595770081DDE1A2C001A4EF7 /* FileDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDataModel.h; sourceTree = "<group>"; };
-		595770091DDE1A2C001A4EF7 /* FileDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDataModel.m; sourceTree = "<group>"; };
 		596DBA421DA3D49A0080A376 /* RoomLevelSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomLevelSectionView.xib; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		59A793451D59D3480062007E /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		59A793461D59D3480062007E /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
-		59C063981DDE251B009028D9 /* StorageFileAutorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageFileAutorModel.h; sourceTree = "<group>"; };
-		59C063991DDE251B009028D9 /* StorageFileAutorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StorageFileAutorModel.m; sourceTree = "<group>"; };
 		59D61AFE1DACEA75001D98B2 /* SF-UI-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Bold.otf"; sourceTree = "<group>"; };
 		59D61AFF1DACEA75001D98B2 /* SF-UI-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Semibold.otf"; sourceTree = "<group>"; };
 		59D9BCEE1D5868B7009DFBA8 /* TookTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TookTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1211,11 +1214,8 @@
 		F725FBDE1DC3680F00793EA3 /* InfoiPadViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoiPadViewModel.h; sourceTree = "<group>"; };
 		F725FBDF1DC3727E00793EA3 /* AboutProjectTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutProjectTableViewCell.h; sourceTree = "<group>"; };
 		F725FBE01DC3728A00793EA3 /* AboutProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectTableViewCell.m; sourceTree = "<group>"; };
-		F725FBE21DC3AA9C00793EA3 /* AboutProjectMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectMapCell.h; sourceTree = "<group>"; };
 		F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectMapCell.m; sourceTree = "<group>"; };
-		F725FBE51DC3AD9C00793EA3 /* AboutProjectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectModel.h; sourceTree = "<group>"; };
 		F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectModel.m; sourceTree = "<group>"; };
-		F725FBE81DC3B34600793EA3 /* AboutProjectCellsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutProjectCellsFactory.h; sourceTree = "<group>"; };
 		F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutProjectCellsFactory.m; sourceTree = "<group>"; };
 		F72DC5401DDB545500E0AC3A /* AddTaskContentManager+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AddTaskContentManager+Helpers.m"; sourceTree = "<group>"; };
 		F72DC5411DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AddTaskContentManager+UpdadingContent.m"; sourceTree = "<group>"; };
@@ -1489,13 +1489,8 @@
 				56D06BCB1DAFBDBF008E9AC0 /* TeamMemberModel.h */,
 				56D06BCC1DAFBDBF008E9AC0 /* UserInfoData.h */,
 				595770021DDE16D0001A4EF7 /* StorageFilesModel.h */,
-				595770031DDE16D0001A4EF7 /* StorageFilesModel.m */,
 				595770051DDE197B001A4EF7 /* StorageFileDirectoryModel.h */,
-				595770061DDE197B001A4EF7 /* StorageFileDirectoryModel.m */,
 				595770081DDE1A2C001A4EF7 /* FileDataModel.h */,
-				595770091DDE1A2C001A4EF7 /* FileDataModel.m */,
-				59C063981DDE251B009028D9 /* StorageFileAutorModel.h */,
-				59C063991DDE251B009028D9 /* StorageFileAutorModel.m */,
 			);
 			path = JSONObjects;
 			sourceTree = "<group>";
@@ -1587,6 +1582,9 @@
 		56D06BE81DAFBDBF008E9AC0 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				56D09EF41DDE32410081C382 /* AboutProjectCellsFactory.h */,
+				56D09EF51DDE32410081C382 /* AboutProjectMapCell.h */,
+				56D09EF61DDE32410081C382 /* AboutProjectModel.h */,
 				56D06BE91DAFBDBF008E9AC0 /* InformationViewController.h */,
 				56D06BEA1DAFBDBF008E9AC0 /* InformationViewModel.h */,
 			);
@@ -2366,6 +2364,9 @@
 		56D06D3C1DAFBDBF008E9AC0 /* JSONObjects */ = {
 			isa = PBXGroup;
 			children = (
+				56D09EEC1DDE29CC0081C382 /* FileDataModel.m */,
+				56D09EEE1DDE29CC0081C382 /* StorageFileDirectoryModel.m */,
+				56D09EEF1DDE29CC0081C382 /* StorageFilesModel.m */,
 				56D06D3D1DAFBDBF008E9AC0 /* DefaultRoleModel.m */,
 				56D06D3E1DAFBDBF008E9AC0 /* ProjectCountryModel.m */,
 				56D06D3F1DAFBDBF008E9AC0 /* ProjectInfoModel.m */,
@@ -2402,6 +2403,8 @@
 				564DE3B01DB1476F00BF9817 /* NewProjectRoleTypeModel.m */,
 				564DE3B31DB147E900BF9817 /* NewProjectRoleTypeModelErrorsModel.m */,
 				5643A2DC1DDC761800038414 /* CommentsModel.m */,
+				56D09EF71DDE38170081C382 /* TaskSortedByProjectModel.h */,
+				56D09EF81DDE38170081C382 /* TaskSortedByProjectModel.m */,
 			);
 			path = JSONObjects;
 			sourceTree = "<group>";
@@ -2501,11 +2504,8 @@
 			children = (
 				56D06D781DAFBDBF008E9AC0 /* InformationViewController.m */,
 				56D06D791DAFBDBF008E9AC0 /* InformationViewModel.m */,
-				F725FBE51DC3AD9C00793EA3 /* AboutProjectModel.h */,
 				F725FBE61DC3AD9C00793EA3 /* AboutProjectModel.m */,
-				F725FBE21DC3AA9C00793EA3 /* AboutProjectMapCell.h */,
 				F725FBE31DC3AA9C00793EA3 /* AboutProjectMapCell.m */,
-				F725FBE81DC3B34600793EA3 /* AboutProjectCellsFactory.h */,
 				F725FBE91DC3B34600793EA3 /* AboutProjectCellsFactory.m */,
 			);
 			path = Info;
@@ -3619,7 +3619,6 @@
 				56D06FBB1DAFBDC0008E9AC0 /* OSTaskOptionsController.m in Sources */,
 				56D06EDB1DAFBDC0008E9AC0 /* TaskWorkAreaModel.m in Sources */,
 				56D06EFB1DAFBDC0008E9AC0 /* RoleInfoViewController.m in Sources */,
-				595770071DDE197B001A4EF7 /* StorageFileDirectoryModel.m in Sources */,
 				56D06F8D1DAFBDC0008E9AC0 /* UpdateInfoViewModel.m in Sources */,
 				5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */,
 				56D06F5E1DAFBDC0008E9AC0 /* TaskDescriptionCell.m in Sources */,
@@ -3670,6 +3669,7 @@
 				56D06FA01DAFBDC0008E9AC0 /* OSAlertController.m in Sources */,
 				56D06F2D1DAFBDC0008E9AC0 /* OfflineSyncModel.m in Sources */,
 				56D06F051DAFBDC0008E9AC0 /* AddTaskTypeViewController.m in Sources */,
+				56D09EF91DDE38170081C382 /* TaskSortedByProjectModel.m in Sources */,
 				56D06F3A1DAFBDC0008E9AC0 /* DetailCollectionCell.m in Sources */,
 				56D06F6A1DAFBDC0008E9AC0 /* TasksByProjectViewController.m in Sources */,
 				56D06EE51DAFBDC0008E9AC0 /* JSONValueTransformer+CustomDate.m in Sources */,
@@ -3695,7 +3695,6 @@
 				56D06EF01DAFBDC0008E9AC0 /* AvatarHelper.m in Sources */,
 				56D06EFD1DAFBDC0008E9AC0 /* SystemInfoViewController.m in Sources */,
 				564DE38C1DB0F76A00BF9817 /* TaskStatusActionModel.m in Sources */,
-				59C0639A1DDE251B009028D9 /* StorageFileAutorModel.m in Sources */,
 				56D06FB71DAFBDC0008E9AC0 /* OSMarkedRightDetailCell.m in Sources */,
 				56D06E981DAFBDC0008E9AC0 /* ProjectRoles.m in Sources */,
 				56D06E821DAFBDC0008E9AC0 /* AppDelegate.m in Sources */,
@@ -3726,6 +3725,7 @@
 				56D06F901DAFBDC0008E9AC0 /* WelcomeTourViewController.m in Sources */,
 				56D06FB51DAFBDC0008E9AC0 /* OSFlexibleTextTableCell.m in Sources */,
 				F72DC5441DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m in Sources */,
+				56D09EF01DDE29CC0081C382 /* FileDataModel.m in Sources */,
 				56D06F3B1DAFBDC0008E9AC0 /* GroupOfUsersCollectionCell.m in Sources */,
 				56D06FBD1DAFBDC0008E9AC0 /* OSLabelWithBorder.m in Sources */,
 				F775C18E1DD210F3002FB201 /* TestAttachments.m in Sources */,
@@ -3740,6 +3740,7 @@
 				56D06EC11DAFBDC0008E9AC0 /* DefaultRoleModel.m in Sources */,
 				56D06FC41DAFBDC0008E9AC0 /* TabBarSegue.m in Sources */,
 				56D06ED71DAFBDC0008E9AC0 /* TaskRoomModel.m in Sources */,
+				56D09EF21DDE29CC0081C382 /* StorageFileDirectoryModel.m in Sources */,
 				5626A68C1DBF95B50015AFEC /* MainTabBar.m in Sources */,
 				56D06F591DAFBDC0008E9AC0 /* FilterAttachmentsCellFactory.m in Sources */,
 				560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */,
@@ -3767,7 +3768,6 @@
 				56D06EF81DAFBDC0008E9AC0 /* AboutProjectViewModel.m in Sources */,
 				56D06E9F1DAFBDC0008E9AC0 /* ProjectTaskAssignee+CoreDataClass.m in Sources */,
 				56D06EF61DAFBDC0008E9AC0 /* AboutProjectSegue.m in Sources */,
-				595770041DDE16D0001A4EF7 /* StorageFilesModel.m in Sources */,
 				56D06F861DAFBDC0008E9AC0 /* UserNotificationCell.m in Sources */,
 				56D06F671DAFBDC0008E9AC0 /* StageTitleView.m in Sources */,
 				56D06EF51DAFBDC0008E9AC0 /* InformationViewModel.m in Sources */,
@@ -3795,6 +3795,7 @@
 				56D06F111DAFBDC0008E9AC0 /* SelectResponsibleViewModel.m in Sources */,
 				56D06EAA1DAFBDC0008E9AC0 /* ProjectTaskRoleAssignment.m in Sources */,
 				56D06E831DAFBDC0008E9AC0 /* DataManager+ProjectInfo.m in Sources */,
+				56D09EF31DDE29CC0081C382 /* StorageFilesModel.m in Sources */,
 				56D06F8B1DAFBDC0008E9AC0 /* UpdatedUserInfo.m in Sources */,
 				56D06ECD1DAFBDC0008E9AC0 /* TaskAssigneeModel.m in Sources */,
 				56D06EF71DAFBDC0008E9AC0 /* AboutProjectViewController.m in Sources */,
@@ -3893,7 +3894,6 @@
 				56D06EA21DAFBDC0008E9AC0 /* ProjectTaskMapContour+CoreDataProperties.m in Sources */,
 				56D06FC21DAFBDC0008E9AC0 /* OSSecureTextField.m in Sources */,
 				56D06F311DAFBDC0008E9AC0 /* AllProjectsViewController.m in Sources */,
-				5957700A1DDE1A2C001A4EF7 /* FileDataModel.m in Sources */,
 				56D06FBF1DAFBDC0008E9AC0 /* PopoverCell.m in Sources */,
 				56D06F1F1DAFBDC0008E9AC0 /* RecoveryModel.m in Sources */,
 				F775C18B1DD20206002FB201 /* AttachmentView.m in Sources */,

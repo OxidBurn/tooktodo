@@ -44,7 +44,7 @@
 
 @property (nonatomic, strong) NSArray<ProjectRoleAssignmentsModel>* projectRoleAssignments;
 
-@property (nonatomic, strong) id<Optional> info;
+@property (nonatomic, strong) NSString<Optional>* info;
 
 @property (nonatomic, strong) NSString<Optional>* apartment;
 

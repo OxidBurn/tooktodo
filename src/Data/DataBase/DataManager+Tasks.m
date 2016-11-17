@@ -299,14 +299,27 @@
     // Store subtasks
     if ( info.subTasks )
     {
-        [info.subTasks enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray* subTasksList = @[];
+        
+        if ( [info.subTasks isKindOfClass: [NSArray class]] )
+        {
+            subTasksList = info.subTasks;
+        }
+        else
+        {
+            TaskSubTasksModel* subTasksModel = (TaskSubTasksModel*)info.subTasks;
+            
+            subTasksList = subTasksModel.list;
+        }
+        
+        [subTasksList enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             ProjectTask* subTask = [self persistTaskWithInfo: obj
                                                   forProject: project
                                                    inContext: context];
             
             [task addSubTasksObject: subTask];
-            
+
         }];
     }
     

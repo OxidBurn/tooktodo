@@ -85,6 +85,7 @@
     projectInfo.phoneNumber                      = data.phoneNumber;
     projectInfo.commercialObjectTypeDescription  = data.commercialObjectTypeDescription;
     projectInfo.floor                            = data.floor;
+    projectInfo.info                             = data.info;
     projectInfo.address                          = [NSString stringWithFormat: @"%@ %@ %@ %@", data.regionName, data.city, data.street, data.building];
     
     if ( data.projectRoleAssignments )
