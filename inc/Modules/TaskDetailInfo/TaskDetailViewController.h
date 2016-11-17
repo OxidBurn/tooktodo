@@ -10,10 +10,11 @@
 //Classes
 #import "ProjectsEnumerations.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "BaseMainViewController.h"
 
 @protocol TaskDetailViewControllerDelegate;
 
-@interface TaskDetailViewController : UIViewController
+@interface TaskDetailViewController : BaseMainViewController
 
 @property (nonatomic, weak) id <TaskDetailViewControllerDelegate> delegate;
 

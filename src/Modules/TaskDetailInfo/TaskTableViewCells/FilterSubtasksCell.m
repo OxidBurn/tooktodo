@@ -8,6 +8,9 @@
 
 #import "FilterSubtasksCell.h"
 
+//Extentions
+#import "BaseMainViewController+Popover.h"
+
 @interface FilterSubtasksCell()
 
 // outlets
@@ -54,7 +57,10 @@
 
 - (IBAction) onFilterTaskBtn: (UIButton*) sender
 {
-    
+    if ([self.delegate respondsToSelector: @selector(showSortingPopoverWithFrame:)])
+    {
+        [self.delegate showSortingPopoverWithFrame: sender.frame];
+    }
 }
 
 - (IBAction) onCanceledTasksBtn: (UIButton*) sender

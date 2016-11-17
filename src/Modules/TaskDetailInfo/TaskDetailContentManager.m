@@ -144,7 +144,7 @@
     collectionCellContent.cellId          = self.tableViewCellsIdArray[CollectionCellType];
     collectionCellContent.cellTypeIndex   = CollectionCellType;
     
-    NSArray* sectionOne = @[ taskDetailCellContent, taskDescriptionCellContent, collectionCellContent ];
+    NSArray* sectionOne = @[taskDetailCellContent, taskDescriptionCellContent, collectionCellContent];
     
     return sectionOne;
 }

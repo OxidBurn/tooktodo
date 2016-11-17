@@ -15,6 +15,7 @@
 
 - (void) showPopoverWithDataSource: (id <PopoverModelDataSource>) dataSource
                       withDelegate: (id <PopoverModelDelegate>)   delegate
-                   withSourceFrame: (CGRect)                      frame;
+                   withSourceFrame: (CGRect)                      frame
+                     withDirection: (UIPopoverArrowDirection) arrowDirection;
 
 @end

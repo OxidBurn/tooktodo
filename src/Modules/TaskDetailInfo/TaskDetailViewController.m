@@ -18,6 +18,8 @@
 #import "SystemDetailPopoverController.h"
 #import "AddTaskViewController.h"
 
+//Extentions
+#import "BaseMainViewController+Popover.h"
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
 
@@ -199,7 +201,7 @@
 
 #pragma mark - UIPopoverPresentationControllerDelegate methods -
 
--(UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
+- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
 {
     return UIModalPresentationNone;
 }
@@ -216,18 +218,28 @@
     
     __weak typeof(self) blockSelf = self;
     
-    blockSelf.viewModel.reloadTableView = ^(){
+    self.viewModel.reloadTableView = ^(){
         
         [blockSelf.taskTableView reloadData];
     };
     
-    blockSelf.viewModel.performSegue = ^(NSString* segueID){
+    self.viewModel.performSegue = ^(NSString* segueID){
         
         [blockSelf performSegueWithIdentifier: segueID
                                        sender: blockSelf];
     };
     
     [self popoverSettings];
+    
+    self.viewModel.showSortingPopoverBlock = ^(CGRect frame){
+        
+      [blockSelf showPopoverWithDataSource: blockSelf.viewModel
+                              withDelegate: blockSelf.viewModel
+                           withSourceFrame: frame
+                             withDirection: UIPopoverArrowDirectionAny];
+    };
+    
+    
 }
 
 
