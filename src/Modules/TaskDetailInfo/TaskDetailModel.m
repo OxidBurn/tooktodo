@@ -159,15 +159,19 @@
 {
     TaskRowContent* content = self.taskTableViewContent[indexPath.section][indexPath.row];
     
-    // default cell height without any attachments or edit buttons
-    CGFloat cellHeight = 100;
+    // default cell height without any attachments, text views or edit buttons
+    CGFloat cellHeight = 40;
+    
+    // adding text view height, which depends of comment length and device width
+    // 10 is gap to the next cell
+    cellHeight += content.commentTextViewHeight + 10;
     
     if ( content.containerView )
     {
         CGFloat containerHeight = content.containerView.frame.size.height;
         
-        // distance between cells and distance before container
-        cellHeight += containerHeight + 30;
+        // distance before container
+        cellHeight += containerHeight + 20;
     }
     
     return cellHeight;
