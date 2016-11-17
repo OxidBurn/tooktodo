@@ -28,4 +28,6 @@
 
 - (void) performSegueToAddSubtaskWithID: (NSString*) segueID;
 
+- (void) showSortingPopoverWithFrame: (CGRect) frame;
+
 @end

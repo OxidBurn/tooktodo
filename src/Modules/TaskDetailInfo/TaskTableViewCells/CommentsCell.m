@@ -47,6 +47,8 @@
     self.userAvatarImageView.clipsToBounds = YES;
     [self.userAvatarImageView.layer setCornerRadius: 10];
     
+    self.TextViewHeightConstraint.constant = content.commentTextViewHeight;
+    
     self.delegate = delegate;
     
     if ( content.commentAuthorAvatar )
@@ -68,7 +70,7 @@
         {
             CGFloat containerX = self.commentContentTextView.frame.origin.x;
             CGFloat containerY = self.commentContentTextView.frame.origin.y +
-                                 self.commentContentTextView.frame.size.height + 25;
+                                 content.commentTextViewHeight + 18;
             CGFloat containerWidth = width - 30;
             CGFloat containerHeight = content.containerView.frame.size.height;
             

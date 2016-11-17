@@ -18,6 +18,7 @@
 #import "AddTaskContentManager+UpdadingContent.h"
 // Helpers
 #import "ProjectsEnumerations.h"
+#import "NSObject+Sorting.h"
 
 @interface TaskDetailModel()
 
@@ -141,6 +142,7 @@
     [self updateContentWithRow: row
                      inSection: 0
                          inRow: 0];
+
 }
 
 - (ProjectTaskStage*) getTaskStage
@@ -157,15 +159,19 @@
 {
     TaskRowContent* content = self.taskTableViewContent[indexPath.section][indexPath.row];
     
-    // default cell height without any attachments or edit buttons
-    CGFloat cellHeight = 100;
+    // default cell height without any attachments, text views or edit buttons
+    CGFloat cellHeight = 40;
+    
+    // adding text view height, which depends of comment length and device width
+    // 10 is gap to the next cell
+    cellHeight += content.commentTextViewHeight + 10;
     
     if ( content.containerView )
     {
         CGFloat containerHeight = content.containerView.frame.size.height;
         
-        // distance between cells and distance before container
-        cellHeight += containerHeight + 30;
+        // distance before container
+        cellHeight += containerHeight + 20;
     }
     
     return cellHeight;
@@ -184,6 +190,24 @@
     return self.task;
 }
 
+- (NSArray*) getSubtasks
+{
+    return self.task.subTasks.allObjects;
+}
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    NSArray* arrForSort = [self getSubtasks];
+
+   NSArray* sortedArray =  [self applyTasksSortingType: type
+                                               toArray: arrForSort
+                                            isAcceding: isAcceding];
+    
+    self.taskTableViewContent = [self.contentManager updateContentWithSortedSubtasks: sortedArray
+                                                                          forContent: self.taskTableViewContent];
+    
+}
 
 #pragma mark - Helpers -
 

@@ -23,6 +23,7 @@
 // properties
 
 @property (nonatomic, assign) BOOL isAlert;
+@property (assign, nonatomic) BOOL isKeyboard;
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField       *emailTextField;
@@ -37,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UIView            *contentAlertView;
 @property (weak, nonatomic) IBOutlet UIImageView       *alertImg;
 @property (weak, nonatomic) IBOutlet UILabel           *alertLabel;
-
 
 // Models
 @property (strong, nonatomic) LoginViewModel    * viewModel;
@@ -203,12 +203,14 @@
         // 2. increase the size of the view so that the area behind the keyboard is covered up.
         rect.origin.y -= kOFFSET_FOR_KEYBOARD;
         rect.size.height += kOFFSET_FOR_KEYBOARD;
+        self.isKeyboard = YES;
     }
     else
     {
         // revert back to the normal state.
         rect.origin.y    += kOFFSET_FOR_KEYBOARD;
         rect.size.height -= kOFFSET_FOR_KEYBOARD;
+        self.isKeyboard = NO;
     }
     self.view.frame = rect;
     
@@ -454,6 +456,14 @@
 
 - (void) animateLoginAlert
 {
+    CGRect alertViewFrame = self.alertView.frame;
+    
+    CGFloat positionY = self.isKeyboard ? 80 : 0;
+    
+    alertViewFrame.origin.y = positionY;
+    
+    self.alertView.frame = alertViewFrame;
+    
     [UIView animateWithDuration: 0.5
                      animations: ^{
                          

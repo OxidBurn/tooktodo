@@ -98,6 +98,7 @@
     
     [self.taskStatusMark setStatusString: content.taskTypeDescription
                                 withType: content.taskType];
+
     
     self.taskTitleLabel.text = content.taskTitle;
         

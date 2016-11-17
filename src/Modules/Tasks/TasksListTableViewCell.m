@@ -100,8 +100,8 @@
     self.roomNumbersLabel.text = room.number.stringValue;
     
     // Type of subtask
-    [self.typeTaskMarkerView setStatusString: @"Замечание"
-                                    withType: StatusMarkerOrangeType];
+    [self.typeTaskMarkerView setStatusString: taskInfo.taskTypeDescription
+                                    withType: taskInfo.taskType.integerValue];
     
     // Setup task status
     [self setupStatusTypeButton: taskInfo];

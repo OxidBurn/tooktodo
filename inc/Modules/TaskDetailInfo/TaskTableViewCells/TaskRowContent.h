@@ -87,7 +87,9 @@
 // delete after implementing next property
 @property (strong, nonatomic) FlexibleViewsContainer* containerView;
 
-// properties for test methods
+// properties for comments
+@property (assign, nonatomic) CGFloat commentTextViewHeight;
+
 @property (strong, nonatomic) NSString* attachmentTitle;
 
 @property (strong, nonatomic) UIImage* attachmentImage;
@@ -101,6 +103,7 @@
 @property (strong, nonatomic) NSString* commentText;
 
 @property (strong, nonatomic) NSDate* commentDate;
+
 
 
 

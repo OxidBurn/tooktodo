@@ -7,16 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM (NSUInteger, StatusMarkerComponentType)
-{
-    StatusMarkerOrangeType,
-    StatusMarkerBlueType,
-};
+#import "ProjectsEnumerations.h"
 
 @interface StatusMarkerComponent : UIView
 
 - (void) setStatusString: (NSString*) status
-                withType: (StatusMarkerComponentType) type;
+                withType: (TaskType) type;
 
 @end

@@ -15,8 +15,10 @@
 #import "ProjectsEnumerations.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskStage+CoreDataClass.h"
+#import "PopoverViewController.h"
+#import "PopoverModel.h"
 
-@interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource,  PopoverModelDelegate, PopoverModelDataSource>
 
 // properties
 @property (nonatomic, copy) void(^reloadTableView)();
@@ -24,6 +26,8 @@
 @property (nonatomic, copy) void(^performSegue)(NSString* segueID);
 
 @property (nonatomic, copy) void(^presentControllerAsPopover)(CGRect frame);
+
+@property (nonatomic, copy) void(^showSortingPopoverBlock)(CGRect frame);
 
 // methods
 - (void) deselectTask;
