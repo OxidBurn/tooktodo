@@ -431,10 +431,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) didGrowSortingAtIndex: (NSUInteger) index
 {
-//    [self.model sortArrayForType: index
-//                      isAcceding: GrowsSortingType];
-    [self.tableView reloadData];
-
+    [UIView setAnimationsEnabled: NO];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadRowsAtIndexPaths: [self.tableView indexPathsForVisibleRows]
+                          withRowAnimation: UITableViewRowAnimationNone];
+    
+    [self.tableView setContentOffset: offset
+                            animated: NO];
+    
+    [UIView setAnimationsEnabled: YES];
 }
 
 #pragma mark - PopoverModelDataSource methods -
