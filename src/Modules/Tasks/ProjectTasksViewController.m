@@ -139,7 +139,8 @@
 {
     [self showPopoverWithDataSource: self.viewModel
                        withDelegate: self.viewModel
-                    withSourceFrame: [self getFrameForSortingPopover]];
+                    withSourceFrame: [self getFrameForSortingPopover]
+                      withDirection: UIPopoverArrowDirectionUp];
 }
 
 - (void) updateContent

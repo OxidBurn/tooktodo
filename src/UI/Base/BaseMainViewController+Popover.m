@@ -16,6 +16,8 @@
 - (void) showPopoverWithDataSource: (id <PopoverModelDataSource>) dataSource
                       withDelegate: (id <PopoverModelDelegate>)   delegate
                    withSourceFrame: (CGRect)                      frame
+                     withDirection: (UIPopoverArrowDirection)     arrowDirection
+
 {
     PopoverModel* model = [[PopoverModel alloc] initWithDataSource: dataSource
                                                       withDelegate: delegate];
@@ -26,7 +28,7 @@
     
     [controller setupControllerWithDelegate: self
                                   withFrame: frame
-                              withDirection: UIPopoverArrowDirectionUp];
+                              withDirection: arrowDirection];
 }
 
 #pragma mark - UIPopoverPresentationControllerDelegate methods -

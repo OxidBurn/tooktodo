@@ -20,6 +20,8 @@
 #import "ProjectTask+CoreDataProperties.h"
 #import "TaskComment+CoreDataProperties.h"
 
+#import "Utils.h"
+
 // Test class import
 #import "TestAttachments.h"
 
@@ -131,6 +133,7 @@
     taskDetailCellContent.attachmentsNumber   = task.attachments.integerValue;
     taskDetailCellContent.roomNumber          = task.room.number.integerValue;
     taskDetailCellContent.commentsNumber      = task.commentsCount.integerValue;
+    taskDetailCellContent.taskType            = task.taskType.integerValue;
     
     TaskRowContent* taskDescriptionCellContent = [TaskRowContent new];
     
@@ -143,7 +146,7 @@
     collectionCellContent.cellId          = self.tableViewCellsIdArray[CollectionCellType];
     collectionCellContent.cellTypeIndex   = CollectionCellType;
     
-    NSArray* sectionOne = @[ taskDetailCellContent, taskDescriptionCellContent, collectionCellContent ];
+    NSArray* sectionOne = @[taskDetailCellContent, taskDescriptionCellContent, collectionCellContent];
     
     return sectionOne;
 }
@@ -164,14 +167,35 @@
     filterSubtaskCellContent.cellId        = self.tableViewCellsIdArray[FilterSubtasksCellType];
     filterSubtaskCellContent.cellTypeIndex = FilterSubtasksCellType;
     
-    NSArray* testContent        = [self createTestSubtaskForTask: task];
+    NSArray* content        = [self createSubtaskForTask: task];
     
-    NSMutableArray* subtasksTmp = testContent.mutableCopy;
+    NSMutableArray* subtasksTmp = content.mutableCopy;
     
     [subtasksTmp insertObject: filterSubtaskCellContent
                       atIndex: 0];
     
     return subtasksTmp.copy;
+}
+
+
+- (NSArray*) updateContentWithSortedSubtasks: (NSArray*) sortedArray
+                                  forContent: (NSArray*) content
+{
+    NSArray* newSubtaskContent = [self fillSubtasksContent: sortedArray];
+    
+    NSMutableArray* tmpContent = content.mutableCopy;
+    
+    TaskRowContent* firstRow = tmpContent[1][0];
+    
+    NSMutableArray* tmpSubtasksContent = newSubtaskContent.mutableCopy;
+    
+    [tmpSubtasksContent insertObject: firstRow
+                             atIndex: 0];
+    
+    [tmpContent replaceObjectAtIndex: 1
+                          withObject: tmpSubtasksContent.copy];
+    
+    return tmpContent.copy;
 }
 
 - (NSArray*) createAttachmentsContentForTask: task
@@ -238,6 +262,7 @@
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
                 
+                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 20;
     
                 [commentsTmp addObject: newRow];
             }
@@ -285,29 +310,68 @@
     return number.floatValue;
 }
 
+
+- (NSArray*) createSubtaskForTask: (ProjectTask*) task
+{
+    NSArray* subtasksArray = task.subTasks.allObjects;
+ 
+    return [self fillSubtasksContent: subtasksArray];
+}
+
+- (CGFloat) countTextViewHeightForString: (NSString*) string
+{
+    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 13.f];
+
+    CGSize size = [Utils findHeightForText: string
+                               havingWidth: self.tableViewFrame.size.width - 30
+                                   andFont: font];
+    
+    CGFloat height = size.height;
+    
+    if (height > 69)
+        height = 69;
+    
+    return height;
+}
+
 #pragma mark - Test methods -
 
-- (NSArray*) createTestSubtaskForTask: (ProjectTask*) task
+
+- (NSArray*) fillSubtasksContent: (NSArray*) subtasksArray
 {
-    TaskRowContent* subtask = [TaskRowContent new];
+    __block NSMutableArray* subtasksTmp = [NSMutableArray array];
     
-    subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
+    [subtasksArray enumerateObjectsUsingBlock: ^(ProjectTask*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        TaskRowContent* subtask = [TaskRowContent new];
+        
+        subtask.taskStartDate       = obj.startDay;
+        subtask.taskEndDate         = obj.endDate;
+        subtask.isExpired           = obj.isExpired.boolValue;
+        subtask.status              = obj.status.integerValue;
+        subtask.taskTypeDescription = obj.taskTypeDescription;
+        subtask.workAreaShortTitle  = obj.workArea.shortTitle;
+        subtask.taskTitle           = obj.title;
+        subtask.statusDescription   = obj.statusDescription;
+        subtask.subtasksNumber      = obj.subTasks.count;
+        subtask.attachmentsNumber   = obj.attachments.integerValue;
+        subtask.roomNumber          = obj.room.number.integerValue;
+        subtask.commentsNumber      = obj.commentsCount.integerValue;
+        subtask.ownerUser           = @[obj.ownerUser];
+        subtask.taskType            = obj.taskType.integerValue;
+        
+        subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
+        
+        [subtasksTmp addObject: subtask];
+        
+    }];
     
-    subtask.taskStartDate       = task.startDay;
-    subtask.taskEndDate         = task.endDate;
-    subtask.isExpired           = task.isExpired.boolValue;
-    subtask.status              = task.status.integerValue;
-    subtask.taskTypeDescription = task.taskTypeDescription;
-    subtask.workAreaShortTitle  = task.workArea.shortTitle;
-    subtask.taskTitle           = task.title;
-    subtask.statusDescription   = task.statusDescription;
-    subtask.subtasksNumber      = task.subTasks.count;
-    subtask.attachmentsNumber   = task.attachments.integerValue;
-    subtask.roomNumber          = task.room.number.integerValue;
-    subtask.commentsNumber      = task.commentsCount.integerValue;
     
-    return @[subtask];
+    return subtasksTmp.copy;
 }
+
+
+#pragma mark - Test methods -
 
 - (NSArray*) createTestAttachmentForTask: task
 {
@@ -337,6 +401,8 @@
     
     comment.commentText = @"Комментарии будут жить здесь с прикрепленными файлами или без. Небходим достаточно длинный текст чтобы проверить правильность заполнения ячейки";
     
+    comment.commentTextViewHeight = [self countTextViewHeightForString: comment.commentText] + 20;
+    
     NSArray* attachmentsTitlesArray = [TestAttachments returnArrayWithAttachments];
     
     NSArray* attachmentsArray = [self createAttachmentsViewsWithTitles: attachmentsTitlesArray];
@@ -365,7 +431,11 @@
     
     anotherComment.commentText = @"Буду краток...";
     
+    anotherComment.commentTextViewHeight = [self countTextViewHeightForString: anotherComment.commentText] + 20;
+    
     return @[comment, anotherComment];
 }
+
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "StatusMarkerComponent.h"
+#import "ProjectsEnumerations.h"
 
 @interface StatusMarkerComponent()
 
@@ -53,7 +54,8 @@
     // Marker image
     self.componentImage = [[UIImageView alloc] initWithFrame: CGRectMake(0, 1, 10, 10)];
     
-    self.componentImage.contentMode = UIViewContentModeScaleAspectFit;
+    self.componentImage.layer.cornerRadius = self.componentImage.width / 2;
+    self.componentImage.clipsToBounds = YES;
     
     [self addSubview: self.componentImage];
     
@@ -101,32 +103,66 @@
 #pragma mark - Public methods -
 
 - (void) setStatusString: (NSString*) status
-                withType: (StatusMarkerComponentType) type
+                withType: (TaskType) type
 {
     // Set marker values
-    self.componentImage.image = [self getImageForType: type];
-    self.componentString.text  = [NSString stringWithFormat: @"%@", status];
+    self.componentImage.backgroundColor = [self getColorForType: type];
+    self.componentString.text  = [self getTaskTypeDescription: type];
 }
 
-- (UIImage*) getImageForType: (StatusMarkerComponentType) type
+
+#pragma mark - Internal methods -
+
+- (UIColor*) getColorForType: (TaskType) type
 {
-    UIImage* markerImage = nil;
+    UIColor* typeColor = [UIColor clearColor];
     
     switch (type)
     {
-        case StatusMarkerBlueType:
-        {
-            markerImage = [UIImage imageNamed: @"Orange"];
+        case TaskWorkType:
+            typeColor = [UIColor colorWithRed: 0.310 green: 0.773 blue: 0.176 alpha: 1.000];
             break;
-        }
-        case StatusMarkerOrangeType:
-        {
-            markerImage =  [UIImage imageNamed: @"Blue"];
+            
+        case TaskAgreementType:
+            typeColor = [UIColor colorWithRed: 0.424 green: 0.663 blue: 0.792 alpha: 1.000];
             break;
-        }
+            
+        case TaskObservationType:
+            typeColor = [UIColor colorWithRed: 1.00 green: 0.89 blue: 0.27 alpha: 1.00];
+            break;
+            
+        case TaskRemarkType:
+            typeColor = [UIColor colorWithRed: 0.961 green: 0.651 blue: 0.137 alpha: 1.000];
+            break;
     }
     
-    return markerImage;
+    return typeColor;
+}
+
+- (NSString*) getTaskTypeDescription: (TaskType) type
+{
+    NSString* typeDescription = @"";
+    
+    switch (type)
+    {
+        case TaskWorkType:
+            typeDescription = @"Работа";
+            break;
+            
+        case TaskAgreementType:
+            typeDescription = @"Согласование";
+            break;
+            
+        case TaskObservationType:
+            typeDescription = @"Наблюдение";
+            break;
+            
+        case TaskRemarkType:
+            typeDescription = @"Замечание";
+            break;
+    }
+    
+    return typeDescription;
 }
 
 @end

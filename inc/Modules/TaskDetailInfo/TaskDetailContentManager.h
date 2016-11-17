@@ -22,4 +22,7 @@
 - (NSArray*) createSectionTwoContentAccordingToType: (NSUInteger) typeIndex
                                             forTask: (ProjectTask*) task;
 
+- (NSArray*) updateContentWithSortedSubtasks: (NSArray*) sortedArray
+                                  forContent: (NSArray*) content;
+
 @end

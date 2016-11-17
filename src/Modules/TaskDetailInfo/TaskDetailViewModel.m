@@ -16,6 +16,8 @@
 #import "TaskDetailInfoCell.h"
 #import "FilterSubtasksCell.h"
 #import "CommentsCell.h"
+#import "NSObject+Sorting.h"
+
 
 // Helpers
 #import "Utils.h"
@@ -121,6 +123,29 @@
     return [self.model getCurrentTask];
 }
 
+
+- (void) deselectTask
+{
+    [self.model deselectTask];
+}
+
+- (void) updateSecondSectionContentForType: (NSUInteger) typeIndex
+{
+    [self.model updateSecondSectionContentType: typeIndex];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadData];
+    
+    [self.tableView layoutIfNeeded];
+    
+    [self.tableView setContentOffset: offset animated: NO];
+}
+
+- (void) updateTaskStatus
+{
+    [self.model updateTaskStatus];
+}
 
 #pragma mark - UITableViewDataSourse methods -
 
@@ -260,34 +285,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
-#pragma mark - Public -
-
-- (void) deselectTask
-{
-    [self.model deselectTask];
-}
-
-- (void) updateSecondSectionContentForType: (NSUInteger) typeIndex
-{
-    [self.model updateSecondSectionContentType: typeIndex];
-    
-    CGPoint offset = self.tableView.contentOffset;
-    
-    [self.tableView reloadData];
-    
-    [self.tableView layoutIfNeeded];
-    
-    [self.tableView setContentOffset: offset animated: NO];
-}
-
-- (void) updateTaskStatus
-{
-    [self.model updateTaskStatus];
-}
-
-
-
-
 #pragma mark - TaskDetailCellDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
@@ -311,6 +308,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.performSegue(segueID);
 }
 
+- (void) showSortingPopoverWithFrame: (CGRect) frame
+{
+    CGRect rect = [self.tableView rectForRowAtIndexPath: [NSIndexPath indexPathForRow: 0 inSection: 1]];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    frame.origin.y += rect.origin.y - offset.y + 60;
+    
+    if (self.showSortingPopoverBlock)
+        self.showSortingPopoverBlock(frame);
+}
 
 #pragma mark - Helpers -
 
@@ -352,7 +360,10 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         {
             if ( heightsArrayForContentType.count > 1 )
             {
-                height = defaultHeightValue.integerValue;
+                if ( [self.model getSecondSectionContentType] == CommentsContentType )
+                    height = [self.model countHeightForCommentCellForIndexPath: indexPath];
+                else
+                    height = defaultHeightValue.integerValue;
             }
         }
             break;
@@ -409,6 +420,61 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     }
     
     return height;
+}
+
+#pragma mark - PopoverModelDelegate methods -
+
+- (void) didDiminutionSortingAtIndex: (NSUInteger) index
+{
+    [self.model sortArrayForType: index
+                      isAcceding: DiminutionSortingType];
+    
+    [UIView setAnimationsEnabled: NO];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadRowsAtIndexPaths: [self.tableView indexPathsForVisibleRows]
+                          withRowAnimation: UITableViewRowAnimationNone];
+    
+    [self.tableView setContentOffset: offset
+                            animated: NO];
+    
+    [UIView setAnimationsEnabled: YES];
+}
+
+- (void) didGrowSortingAtIndex: (NSUInteger) index
+{
+    [self.model sortArrayForType: index
+                      isAcceding: GrowsSortingType];
+    
+    [UIView setAnimationsEnabled: NO];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadRowsAtIndexPaths: [self.tableView indexPathsForVisibleRows]
+                          withRowAnimation: UITableViewRowAnimationNone];
+    
+    [self.tableView setContentOffset: offset
+                            animated: NO];
+    
+    [UIView setAnimationsEnabled: YES];
+}
+
+#pragma mark - PopoverModelDataSource methods -
+
+- (NSArray*) getPopoverContent
+{
+    return [self.model getPopoverContent];
+}
+
+- (NSUInteger) selectedItem
+{
+    return [self.model getTasksSortingType];
+}
+
+- (ContentAccedingSortingType) getProjectsSortAccedingType
+{
+    return [self.model getTasksSortingAscendingType];
 }
 
 @end

@@ -12,6 +12,13 @@
 #import "AvatarImageView.h"
 #import "TaskMarkerComponent.h"
 #import "StatusMarkerComponent.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
+#import "ProjectTaskOwner.h"
+#import "SDWebImageCompat.h"
+#import "UIImageView+WebCache.h"
+
+// Helpers
+#import "TaskStatusDefaultValues.h"
 
 @interface SubtaskInfoCell()
 
@@ -31,8 +38,7 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent*   commentsMark;
 @property (weak, nonatomic) IBOutlet UILabel*               roomNumberLabel;
 @property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
-
-
+@property (nonatomic, weak) IBOutlet AvatarImageView*       avatarImage;
 
 // properties
 
@@ -63,12 +69,10 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
-    [self.taskStatusMark setStatusString: content.taskTypeDescription
-                                withType: content.taskType];
     
     self.taskTitleLabel.text = content.taskTitle;
     
-    self.statusDescriptionLabel.text = content.statusDescription;
+    self.workAreaShortTitle.text = content.workAreaShortTitle;
     
     [self.subtaskMark setValue: content.subtasksNumber
                       withType: TaskMarkerSubtaskType];
@@ -78,6 +82,23 @@
     
     [self.commentsMark setValue: content.commentsNumber
                        withType: TaskMarkerCommentsType];
+    
+    [self handleTaskStatusTypeBtn: content.status];
+    
+    [self.taskStatusMark setStatusString: content.taskTypeDescription
+                                withType: content.taskType];
+    
+    
+    //Uncomment when responsible won't be nil
+    
+//    ProjectTaskResponsible* responsible = content.responsibleUser.firstObject;
+//    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: responsible.avatarSrc]];
+    
+    
+    //Delete when responsible won't be nil
+    ProjectTaskOwner* owner = content.ownerUser.firstObject;
+    
+    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: owner.avatarSrc]];
     
 }
 
@@ -101,6 +122,24 @@
     }
     
     return image;
+}
+
+- (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
+{
+    self.changeStatusMarkImageView.image  = [[TaskStatusDefaultValues sharedInstance]
+                                             returnIconImageForTaskStatus: taskStatusType];
+    
+    self.statusBtn.backgroundColor        = [[TaskStatusDefaultValues sharedInstance]
+                                             returnColorForTaskStatus: taskStatusType];
+    
+    self.statusDescriptionLabel.text      = [[TaskStatusDefaultValues sharedInstance]
+                                             returnTitleForTaskStatus: taskStatusType];
+    
+    self.statusExpandedImageView.image    = [[TaskStatusDefaultValues sharedInstance]
+                                             returnArrowImageForTaskStatus: taskStatusType];
+    
+    self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
+                                             returnFontColorForTaskStatus: taskStatusType];
 }
 
 
