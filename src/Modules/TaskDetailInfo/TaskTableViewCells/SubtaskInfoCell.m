@@ -13,6 +13,9 @@
 #import "TaskMarkerComponent.h"
 #import "StatusMarkerComponent.h"
 
+// Helpers
+#import "TaskStatusDefaultValues.h"
+
 @interface SubtaskInfoCell()
 
 // outlets
@@ -31,8 +34,6 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent*   commentsMark;
 @property (weak, nonatomic) IBOutlet UILabel*               roomNumberLabel;
 @property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
-
-
 
 // properties
 
@@ -68,7 +69,6 @@
     
     self.taskTitleLabel.text = content.taskTitle;
     
-    self.statusDescriptionLabel.text = content.statusDescription;
     
     [self.subtaskMark setValue: content.subtasksNumber
                       withType: TaskMarkerSubtaskType];
@@ -78,6 +78,8 @@
     
     [self.commentsMark setValue: content.commentsNumber
                        withType: TaskMarkerCommentsType];
+    
+     [self handleTaskStatusTypeBtn: content.status];
     
 }
 
@@ -101,6 +103,24 @@
     }
     
     return image;
+}
+
+- (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
+{
+    self.changeStatusMarkImageView.image  = [[TaskStatusDefaultValues sharedInstance]
+                                             returnIconImageForTaskStatus: taskStatusType];
+    
+    self.statusBtn.backgroundColor        = [[TaskStatusDefaultValues sharedInstance]
+                                             returnColorForTaskStatus: taskStatusType];
+    
+    self.statusDescriptionLabel.text      = [[TaskStatusDefaultValues sharedInstance]
+                                             returnTitleForTaskStatus: taskStatusType];
+    
+    self.statusExpandedImageView.image    = [[TaskStatusDefaultValues sharedInstance]
+                                             returnArrowImageForTaskStatus: taskStatusType];
+    
+    self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
+                                             returnFontColorForTaskStatus: taskStatusType];
 }
 
 

@@ -131,6 +131,7 @@
     taskDetailCellContent.attachmentsNumber   = task.attachments.integerValue;
     taskDetailCellContent.roomNumber          = task.room.number.integerValue;
     taskDetailCellContent.commentsNumber      = task.commentsCount.integerValue;
+    taskDetailCellContent.taskType            = task.taskType.integerValue;
     
     TaskRowContent* taskDescriptionCellContent = [TaskRowContent new];
     
@@ -164,17 +165,12 @@
     filterSubtaskCellContent.cellId        = self.tableViewCellsIdArray[FilterSubtasksCellType];
     filterSubtaskCellContent.cellTypeIndex = FilterSubtasksCellType;
     
-    NSArray* testContent        = [self createTestSubtaskForTask: task];
+    NSArray* testContent        = [self createSubtaskForTask: task];
     
     NSMutableArray* subtasksTmp = testContent.mutableCopy;
     
-
-    
-        [subtasksTmp insertObject: filterSubtaskCellContent
-                          atIndex: 0];
-
-    
-    
+    [subtasksTmp insertObject: filterSubtaskCellContent
+                      atIndex: 0];
     
     return subtasksTmp.copy;
 }
@@ -292,10 +288,8 @@
 
 #pragma mark - Test methods -
 
-- (NSArray*) createTestSubtaskForTask: (ProjectTask*) task
+- (NSArray*) createSubtaskForTask: (ProjectTask*) task
 {
-    
-    
     NSArray* subtasksArray = task.subTasks.allObjects;
     
     __block NSMutableArray* subtasksTmp = [NSMutableArray array];
@@ -317,6 +311,7 @@
         subtask.roomNumber          = obj.room.number.integerValue;
         subtask.commentsNumber      = obj.commentsCount.integerValue;
         subtask.ownerUser           = @[obj.ownerUser];
+        subtask.taskType            = obj.taskType.integerValue;
         
         subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
         
