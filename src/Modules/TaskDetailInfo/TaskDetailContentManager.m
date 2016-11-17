@@ -293,10 +293,13 @@
     UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 13.f];
 
     CGSize size = [Utils findHeightForText: string
-                                    havingWidth: self.tableViewFrame.size.width - 30
-                                        andFont: font];
+                               havingWidth: self.tableViewFrame.size.width - 30
+                                   andFont: font];
     
     CGFloat height = size.height;
+    
+    if (height > 69)
+        height = 69;
     
     return height;
 }
