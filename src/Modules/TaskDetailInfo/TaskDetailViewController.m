@@ -279,7 +279,7 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
         
         contentController.modalPresentationStyle   = UIModalPresentationPopover;
         UIPopoverPresentationController* popoverVC = contentController.popoverPresentationController;
-        popoverVC.permittedArrowDirections         = UIPopoverArrowDirectionDown;
+        popoverVC.permittedArrowDirections         = UIPopoverArrowDirectionDown | UITextLayoutDirectionUp;
         contentController.preferredContentSize     = CGSizeMake(180, 41);
         popoverVC.containerView.layer.cornerRadius = 3.0f;
         

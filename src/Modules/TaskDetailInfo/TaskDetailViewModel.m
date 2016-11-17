@@ -423,14 +423,27 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
 {
-//    [self.model sortArrayForType: index
-//                      isAcceding: DiminutionSortingType];
+    [self.model sortArrayForType: index
+                      isAcceding: DiminutionSortingType];
     
-    [self.tableView reloadData];
+    [UIView setAnimationsEnabled: NO];
+    
+    CGPoint offset = self.tableView.contentOffset;
+    
+    [self.tableView reloadRowsAtIndexPaths: [self.tableView indexPathsForVisibleRows]
+                          withRowAnimation: UITableViewRowAnimationNone];
+    
+    [self.tableView setContentOffset: offset
+                            animated: NO];
+    
+    [UIView setAnimationsEnabled: YES];
 }
 
 - (void) didGrowSortingAtIndex: (NSUInteger) index
 {
+    [self.model sortArrayForType: index
+                      isAcceding: GrowsSortingType];
+    
     [UIView setAnimationsEnabled: NO];
     
     CGPoint offset = self.tableView.contentOffset;

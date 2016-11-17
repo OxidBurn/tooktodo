@@ -64,6 +64,10 @@
 
 - (NSArray*) getSubtasks;
 
+// methods for sorting subtasks
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding;
 @end
 
 

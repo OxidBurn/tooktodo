@@ -18,6 +18,7 @@
 #import "AddTaskContentManager+UpdadingContent.h"
 // Helpers
 #import "ProjectsEnumerations.h"
+#import "NSObject+Sorting.h"
 
 @interface TaskDetailModel()
 
@@ -188,6 +189,20 @@
 - (NSArray*) getSubtasks
 {
     return self.task.subTasks.allObjects;
+}
+
+- (void) sortArrayForType: (TasksSortingType)           type
+               isAcceding: (ContentAccedingSortingType) isAcceding
+{
+    NSArray* arrForSort = [self getSubtasks];
+
+   NSArray* sortedArray =  [self applyTasksSortingType: type
+                                               toArray: arrForSort
+                                            isAcceding: isAcceding];
+    
+    self.taskTableViewContent = [self.contentManager updateContentWithSortedSubtasks: sortedArray
+                                                                          forContent: self.taskTableViewContent];
+    
 }
 
 #pragma mark - Helpers -

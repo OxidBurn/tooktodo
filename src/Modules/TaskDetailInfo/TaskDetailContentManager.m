@@ -165,14 +165,35 @@
     filterSubtaskCellContent.cellId        = self.tableViewCellsIdArray[FilterSubtasksCellType];
     filterSubtaskCellContent.cellTypeIndex = FilterSubtasksCellType;
     
-    NSArray* testContent        = [self createSubtaskForTask: task];
+    NSArray* content        = [self createSubtaskForTask: task];
     
-    NSMutableArray* subtasksTmp = testContent.mutableCopy;
+    NSMutableArray* subtasksTmp = content.mutableCopy;
     
     [subtasksTmp insertObject: filterSubtaskCellContent
                       atIndex: 0];
     
     return subtasksTmp.copy;
+}
+
+
+- (NSArray*) updateContentWithSortedSubtasks: (NSArray*) sortedArray
+                                  forContent: (NSArray*) content
+{
+    NSArray* newSubtaskContent = [self fillSubtasksContent: sortedArray];
+    
+    NSMutableArray* tmpContent = content.mutableCopy;
+    
+    TaskRowContent* firstRow = tmpContent[1][0];
+    
+    NSMutableArray* tmpSubtasksContent = newSubtaskContent.mutableCopy;
+    
+    [tmpSubtasksContent insertObject: firstRow
+                             atIndex: 0];
+    
+    [tmpContent replaceObjectAtIndex: 1
+                          withObject: tmpSubtasksContent.copy];
+    
+    return tmpContent.copy;
 }
 
 - (NSArray*) createAttachmentsContentForTask: task
@@ -286,15 +307,18 @@
     return number.floatValue;
 }
 
-#pragma mark - Test methods -
-
 - (NSArray*) createSubtaskForTask: (ProjectTask*) task
 {
     NSArray* subtasksArray = task.subTasks.allObjects;
-    
+ 
+    return [self fillSubtasksContent: subtasksArray];
+}
+
+- (NSArray*) fillSubtasksContent: (NSArray*) subtasksArray
+{
     __block NSMutableArray* subtasksTmp = [NSMutableArray array];
     
-    [subtasksArray enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [subtasksArray enumerateObjectsUsingBlock: ^(ProjectTask*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         TaskRowContent* subtask = [TaskRowContent new];
         
@@ -318,10 +342,13 @@
         [subtasksTmp addObject: subtask];
         
     }];
-
+    
     
     return subtasksTmp.copy;
 }
+
+
+#pragma mark - Test methods -
 
 - (NSArray*) createTestAttachmentForTask: task
 {
