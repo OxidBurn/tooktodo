@@ -6,17 +6,17 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "OSAlertDeleteTaskViewModel.h"
+#import "OSAlertDeleteTaskWithSubtasksViewModel.h"
 
 @import UIKit;
 
-@interface OSAlertDeleteTaskViewModel()
+@interface OSAlertDeleteTaskWithSubtasksViewModel()
 
 @property (nonatomic, strong) NSArray* titlesArray;
 
 @end
 
-@implementation OSAlertDeleteTaskViewModel
+@implementation OSAlertDeleteTaskWithSubtasksViewModel
 
 
 #pragma mark - Properties -
@@ -111,6 +111,12 @@
     if (indexPath.row == 0)
     {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    if ( indexPath.row == 3 )
+    {
+        if ( self.dismissAlert )
+            self.dismissAlert();
     }
     
     //    if (indexPath.row == 1)

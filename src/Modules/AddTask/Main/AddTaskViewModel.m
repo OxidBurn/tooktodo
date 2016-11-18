@@ -156,6 +156,15 @@
     [self.model fillTaskToEdit: taskToEdit];
 }
 
+- (BOOL) checkSubtasks
+{
+   return [self.model checkSubtasks];
+}
+
+- (NSString*) returnTaskToEditTitle
+{
+    return [self.model returnTaskToEditTitle];
+}
 
 #pragma mark - UITableView data source -
 

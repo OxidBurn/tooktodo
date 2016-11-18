@@ -22,6 +22,7 @@
 #import "AddTaskTypeViewController.h"
 #import "ProjectsEnumerations.h"
 #import "AddTaskModel.h"
+#import "OSAlertController.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate, AddTaskModelDataSource>
 
@@ -267,7 +268,20 @@
 
 - (IBAction) onDeleteTask: (UIButton*) sender
 {
+    BOOL hasSubtasks = [self.viewModel checkSubtasks];
     
+    if ( hasSubtasks)
+    {
+        [OSAlertController showAlertWithDeleteTaskOnController: self];
+    }
+    else
+    {
+        NSString* taskTitle = [self.viewModel returnTaskToEditTitle];
+        
+        [OSAlertController showDeleteTaskAlertOnController: self
+                                             withTaskTitle: taskTitle
+                                              withDelegate: self.viewModel];
+    }
 }
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
@@ -418,7 +432,6 @@
                         options: UIViewAnimationOptionCurveEaseIn
                      animations: ^{
                          
-                         [self changeUI];
                          self.messageView.hidden               = NO;
                          self.tableViewTopConstraint.constant  = 75;
 

@@ -35,9 +35,10 @@
                     <connections>
                         <segue destination="Sf9-b4-SU4" kind="custom" identifier="ShowAlertWithImageID" customClass="AlertControllerSegue" id="9FV-PV-LQW"/>
                         <segue destination="SbO-aN-FbD" kind="custom" identifier="ShowAlertWithTableFirstID" customClass="AlertControllerSegue" id="9Fr-U8-kA7"/>
-                        <segue destination="8ix-FU-wSl" kind="custom" identifier="ShowAlertWithTableSecondID" customClass="AlertControllerSegue" id="pHg-xM-hEc"/>
+                        <segue destination="8ix-FU-wSl" kind="custom" identifier="ShowDeleteTasksWithSubtasksSegueID" customClass="AlertControllerSegue" id="pHg-xM-hEc"/>
                         <segue destination="HCd-1i-L4u" kind="custom" identifier="ShowIncorrectCredentialsID" customClass="AlertControllerSegue" id="rAj-zl-8gT"/>
                         <segue destination="xrm-M9-K8c" kind="custom" identifier="ShowOptionsMenu" customClass="AlertControllerSegue" id="1uS-5s-lKL"/>
+                        <segue destination="yzh-2q-O6U" kind="custom" identifier="ShowDeleteTaskSegueID" customClass="AlertControllerSegue" id="zsl-W8-q1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Udh-4v-h9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -79,7 +80,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Назначить администратором" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdR-lb-aaF">
-                                        <rect key="frame" x="11.5" y="24" width="247" height="20"/>
+                                        <rect key="frame" x="12" y="24" width="247" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="247" id="gq3-6l-3HO"/>
                                             <constraint firstAttribute="height" constant="20" id="yYx-6L-hSk"/>
@@ -276,10 +277,10 @@
             </objects>
             <point key="canvasLocation" x="1291" y="1152"/>
         </scene>
-        <!--Alert Delete Task Controller-->
+        <!--Alert Delete Task With Subtasks Controller-->
         <scene sceneID="Rr1-SE-x9M">
             <objects>
-                <viewController storyboardIdentifier="DeleteTaskControllerID" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8ix-FU-wSl" customClass="OSAlertDeleteTaskController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeleteTaskWithSubtasksControllerID" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8ix-FU-wSl" customClass="OSAlertDeleteTaskWithSubtasksController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="quY-wX-eDk"/>
                         <viewControllerLayoutGuide type="bottom" id="uKL-0x-zXb"/>
@@ -304,7 +305,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0O-AY-xJo">
-                                                            <rect key="frame" x="14.5" y="11" width="241" height="20"/>
+                                                            <rect key="frame" x="15" y="11" width="241" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="241" id="HBI-rb-MFj"/>
                                                                 <constraint firstAttribute="height" constant="20" id="ayk-Ao-M5g"/>
@@ -605,39 +606,36 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="MUc-OQ-gya"/>
-                                <exclude reference="XMP-Qt-trF"/>
-                                <exclude reference="ZK0-dp-3D3"/>
-                                <exclude reference="G4Y-II-1tc"/>
-                                <exclude reference="BzS-L8-5Ap"/>
                                 <exclude reference="hDT-0O-DYT"/>
+                                <exclude reference="ZK0-dp-3D3"/>
+                                <exclude reference="MUc-OQ-gya"/>
+                                <exclude reference="G4Y-II-1tc"/>
+                                <exclude reference="XMP-Qt-trF"/>
                                 <exclude reference="0Vu-b5-KCF"/>
                                 <exclude reference="6ZR-Ox-igV"/>
                                 <exclude reference="Bxw-Tx-f2O"/>
                                 <exclude reference="mtU-9z-yVw"/>
                                 <exclude reference="vIs-KI-MbN"/>
                                 <exclude reference="y3v-st-l7r"/>
+                                <exclude reference="BzS-L8-5Ap"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
                             <mask key="constraints">
-                                <include reference="MUc-OQ-gya"/>
-                                <exclude reference="OYC-HE-lnn"/>
-                                <exclude reference="m1F-Dy-8zl"/>
-                                <include reference="XMP-Qt-trF"/>
-                                <exclude reference="c2T-Bw-Pii"/>
-                                <exclude reference="tcw-Me-eT3"/>
-                                <exclude reference="SWK-vS-d2m"/>
-                                <include reference="ZK0-dp-3D3"/>
-                                <exclude reference="74W-Vz-fTX"/>
-                                <include reference="G4Y-II-1tc"/>
-                                <exclude reference="oDd-kz-OLU"/>
-                                <include reference="BzS-L8-5Ap"/>
-                                <exclude reference="EyD-3l-AS9"/>
-                                <exclude reference="hrz-fd-ehh"/>
                                 <exclude reference="2sr-dP-Drb"/>
                                 <exclude reference="KBy-oj-1ic"/>
                                 <include reference="hDT-0O-DYT"/>
+                                <exclude reference="SWK-vS-d2m"/>
+                                <include reference="ZK0-dp-3D3"/>
+                                <include reference="MUc-OQ-gya"/>
+                                <exclude reference="OYC-HE-lnn"/>
+                                <exclude reference="m1F-Dy-8zl"/>
+                                <exclude reference="74W-Vz-fTX"/>
+                                <include reference="G4Y-II-1tc"/>
+                                <exclude reference="oDd-kz-OLU"/>
+                                <include reference="XMP-Qt-trF"/>
+                                <exclude reference="c2T-Bw-Pii"/>
+                                <exclude reference="tcw-Me-eT3"/>
                                 <include reference="0Vu-b5-KCF"/>
                                 <include reference="6ZR-Ox-igV"/>
                                 <include reference="Bxw-Tx-f2O"/>
@@ -645,6 +643,9 @@
                                 <include reference="vIs-KI-MbN"/>
                                 <exclude reference="xCD-8J-KBp"/>
                                 <include reference="y3v-st-l7r"/>
+                                <include reference="BzS-L8-5Ap"/>
+                                <exclude reference="EyD-3l-AS9"/>
+                                <exclude reference="hrz-fd-ehh"/>
                             </mask>
                         </variation>
                     </view>
@@ -691,7 +692,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Назначить администратором" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKo-Pu-N68">
-                                        <rect key="frame" x="11.5" y="24" width="247" height="20"/>
+                                        <rect key="frame" x="12" y="24" width="247" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="247" id="kwS-Y1-14E"/>
                                             <constraint firstAttribute="height" constant="20" id="xnf-Ow-THv"/>
@@ -707,7 +708,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы указали неверный пароль или адрес электронной почты, попробуйте еще раз." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw9-eS-OVQ">
-                                        <rect key="frame" x="29.5" y="48" width="211" height="60"/>
+                                        <rect key="frame" x="30" y="48" width="211" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="211" id="HQw-HK-EYi"/>
                                             <constraint firstAttribute="height" constant="60" id="uaI-0L-3Eh"/>
@@ -762,6 +763,130 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="659" y="1152"/>
+        </scene>
+        <!--Alert Delete Tasks Controller-->
+        <scene sceneID="qN7-fs-h8p">
+            <objects>
+                <viewController storyboardIdentifier="OSDeleteTaskAlert" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yzh-2q-O6U" customClass="OSAlertDeleteTasksController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4cZ-GS-m8T"/>
+                        <viewControllerLayoutGuide type="bottom" id="xMu-EP-40x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5QW-nE-Vw9">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9g-fx-Zya">
+                                <rect key="frame" x="548" y="413" width="270" height="198"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAR-K0-e5o">
+                                        <rect key="frame" x="0.0" y="158" width="134" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="134" id="1qr-Qt-UvO"/>
+                                            <constraint firstAttribute="height" constant="40" id="Fx6-sU-xCO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                        <state key="normal" title="Отмена">
+                                            <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onCancelBtn:" destination="yzh-2q-O6U" eventType="touchUpInside" id="1Ss-2G-gNC"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы действительно хотите удалить задачу" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aH-nM-RyC">
+                                        <rect key="frame" x="8" y="24" width="254" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="5q8-0k-RnU"/>
+                                            <constraint firstAttribute="width" constant="254" id="a3a-rs-K8j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название задачи" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tov-kG-mCP">
+                                        <rect key="frame" x="16" y="87" width="238" height="50"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4x-ge-NbH">
+                                        <rect key="frame" x="135" y="158" width="135" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135" id="L6l-mr-L4W"/>
+                                            <constraint firstAttribute="height" constant="40" id="vnG-Wc-ro0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                        <state key="normal" title="Удалить">
+                                            <color key="titleColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onDeleteBtn:" destination="yzh-2q-O6U" eventType="touchUpInside" id="fFD-wK-FCu"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xyZ-FY-WDP">
+                                        <rect key="frame" x="0.0" y="157" width="270" height="1"/>
+                                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="LXd-Nt-INZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eB4-aR-VEV">
+                                        <rect key="frame" x="134" y="158" width="1" height="40"/>
+                                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="XZN-zI-iKi"/>
+                                            <constraint firstAttribute="width" constant="1" id="zfh-c6-XaU"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eB4-aR-VEV" firstAttribute="leading" secondItem="iAR-K0-e5o" secondAttribute="trailing" id="7R4-CA-aSP"/>
+                                    <constraint firstItem="Tov-kG-mCP" firstAttribute="top" secondItem="3aH-nM-RyC" secondAttribute="bottom" constant="17" id="A1s-Ij-n7l"/>
+                                    <constraint firstItem="iAR-K0-e5o" firstAttribute="top" secondItem="xyZ-FY-WDP" secondAttribute="bottom" id="BdL-pQ-TjQ"/>
+                                    <constraint firstItem="xyZ-FY-WDP" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" id="DdY-Gd-ocM"/>
+                                    <constraint firstItem="j4x-ge-NbH" firstAttribute="top" secondItem="xyZ-FY-WDP" secondAttribute="bottom" id="EMV-SM-MLa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tov-kG-mCP" secondAttribute="trailing" constant="16" id="Ezh-BX-ttq"/>
+                                    <constraint firstItem="eB4-aR-VEV" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="158" id="FFW-4A-NB6"/>
+                                    <constraint firstAttribute="trailing" secondItem="j4x-ge-NbH" secondAttribute="trailing" id="IG6-Vw-Shg"/>
+                                    <constraint firstItem="xyZ-FY-WDP" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="157" id="Kdp-gt-V8w"/>
+                                    <constraint firstItem="3aH-nM-RyC" firstAttribute="centerX" secondItem="g9g-fx-Zya" secondAttribute="centerX" id="S3o-Ud-GVU"/>
+                                    <constraint firstAttribute="width" constant="270" id="YOG-2H-nnW"/>
+                                    <constraint firstAttribute="trailing" secondItem="xyZ-FY-WDP" secondAttribute="trailing" id="Yk4-ii-uLW"/>
+                                    <constraint firstItem="iAR-K0-e5o" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" id="l4X-DN-1KO"/>
+                                    <constraint firstItem="3aH-nM-RyC" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="24" id="raV-9F-h2z"/>
+                                    <constraint firstItem="xyZ-FY-WDP" firstAttribute="top" secondItem="Tov-kG-mCP" secondAttribute="bottom" constant="20" id="sUj-HA-0qZ"/>
+                                    <constraint firstItem="Tov-kG-mCP" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" constant="16" id="tag-dM-8aQ"/>
+                                    <constraint firstAttribute="height" constant="198" id="zA2-vh-xoh"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.49057112069999997" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="g9g-fx-Zya" firstAttribute="centerX" secondItem="5QW-nE-Vw9" secondAttribute="centerX" id="36T-6a-Wh2"/>
+                            <constraint firstItem="g9g-fx-Zya" firstAttribute="centerY" secondItem="5QW-nE-Vw9" secondAttribute="centerY" id="xLR-MU-pw4"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="otH-LC-jEj" appends="YES" id="MDT-Uo-aPt"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="taskTitleLabel" destination="Tov-kG-mCP" id="e7w-Nd-qeU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LMi-fX-Smd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="otH-LC-jEj">
+                    <connections>
+                        <action selector="onDismiss:" destination="yzh-2q-O6U" id="ghY-dg-FcB"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-652.26939970717422" y="1151.953125"/>
         </scene>
     </scenes>
     <resources>

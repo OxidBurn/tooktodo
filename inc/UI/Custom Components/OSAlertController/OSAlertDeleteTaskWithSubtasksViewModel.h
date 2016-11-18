@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OSAlertDeleteTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface OSAlertDeleteTaskWithSubtasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+
+// properties
+@property (nonatomic, copy) void(^dismissAlert)();
 
 @end

@@ -68,6 +68,10 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+- (BOOL) checkSubtasks;
+
+- (NSString*) returnTaskToEditTitle;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>

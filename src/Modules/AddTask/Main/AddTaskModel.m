@@ -48,6 +48,8 @@
 
 @property (strong, nonatomic) AddTaskContentManager* contentManager;
 
+@property (strong, nonatomic) ProjectTask* editedTask;
+
 // methods
 
 
@@ -238,6 +240,20 @@
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
 {
     self.addTaskTableViewContent = [self.contentManager convertProjectTaskToContent: taskToEdit];
+    
+    self.editedTask = taskToEdit;
+}
+
+- (BOOL) checkSubtasks
+{
+    BOOL hasSubtasks = (self.editedTask.subTasks.count > 0 );
+    
+    return hasSubtasks;
+}
+
+- (NSString*) returnTaskToEditTitle
+{
+    return self.editedTask.title;
 }
 
 
