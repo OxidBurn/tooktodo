@@ -143,7 +143,10 @@
 
 - (IBAction) onChangeTaskStatus: (UIButton*) sender
 {
-    
+    if ([self.delegate respondsToSelector:@selector(performSegueToChangeStatusWithID:)])
+    {
+        [self.delegate performSegueToChangeStatusWithID: @"ShowStatusList"];
+    }
 }
 
 - (IBAction) onShowTaskDetail: (UIButton*) sender

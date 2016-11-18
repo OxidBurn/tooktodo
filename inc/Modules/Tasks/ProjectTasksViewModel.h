@@ -18,7 +18,7 @@
 
 // properties
 
-@property (copy, nonatomic) void(^didShowTaskInfo)();
+@property (copy, nonatomic) void(^performSegue)(NSString* segueID);
 
 @property (nonatomic, copy) void(^reloadTable)();
 
@@ -27,5 +27,7 @@
 - (RACSignal*) updateContent;
 
 - (ProjectTask*) getSelectedProjectTask;
+
+- (void) updateTaskStatus;
 
 @end

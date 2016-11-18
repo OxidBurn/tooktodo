@@ -13,7 +13,6 @@
 #import "ProjectsEnumerations.h"
 
 @protocol TaskDetailCellDelegate;
-@protocol TaskDetailCellDataSouce;
 
 @interface TaskDetailInfoCell : UITableViewCell
 

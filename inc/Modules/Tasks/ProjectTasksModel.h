@@ -34,4 +34,6 @@
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding;
 
+- (void) updateTaskStatusForIndexPath: (NSIndexPath*) path;
+
 @end

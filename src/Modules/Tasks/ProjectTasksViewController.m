@@ -17,13 +17,14 @@
 #import "ProjectTasksViewModel.h"
 #import "PopoverViewController.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "ChangeStatusViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 #import "BaseMainViewController+Popover.h"
 
-@interface ProjectTasksViewController () <UISplitViewControllerDelegate>
+@interface ProjectTasksViewController () <UISplitViewControllerDelegate, ChangeStatusControllerDelegate>
 
 // Properties
 
@@ -88,6 +89,15 @@
         
         [self.taskDetailVC refreshTableView];
     }
+    
+    if ([segue.identifier isEqualToString: @"ShowStatusList"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        
+        ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
+        
+        vc.delegate = self;
+    }
 }
 
 
@@ -112,13 +122,7 @@
     self.tasksByProjectTableView.delegate   = self.viewModel;
     
     __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.didShowTaskInfo = ^(){
-        
-        [blockSelf performSegueWithIdentifier: @"ShowTaskDetailSegueId"
-                                       sender: blockSelf];
-    };
-    
+       
     dispatch_async(dispatch_get_main_queue(), ^{
         
         self.viewModel.reloadTable = ^(){
@@ -126,6 +130,12 @@
             [blockSelf.tasksByProjectTableView reloadData];
         };
     });
+    
+    self.viewModel.performSegue = ^(NSString* segueID) {
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
     
 }
 
@@ -177,6 +187,17 @@
     
     return newFrame;
 }
+
+
+#pragma mark - ChangeStatusControllerDelegate methods -
+
+- (void) updataTaskDetailInfoTaskStatus
+{
+    [self.viewModel updateTaskStatus];
+    
+    [self.tasksByProjectTableView reloadData];
+}
+
 
 
 #pragma mark - UISplitViewControllerDelegate methods -
