@@ -15,11 +15,10 @@
 //Classes
 #import "NewTask.h"
 #import "AddTaskModel.h"
-<<<<<<< HEAD
+
 #import "OSAlertController.h"
-=======
+
 #import "DataManager+Room.h"
->>>>>>> fixRoomSelection
 
 @protocol AddTaskViewModelDelegate;
 
