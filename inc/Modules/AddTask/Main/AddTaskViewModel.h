@@ -15,6 +15,7 @@
 //Classes
 #import "NewTask.h"
 #import "AddTaskModel.h"
+#import "DataManager+Room.h"
 
 @protocol AddTaskViewModelDelegate;
 
@@ -69,6 +70,8 @@
 - (void) fillControllerType: (AddTaskControllerType) controllerType;
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
+
+- (void) deselectAllRoomsInfo;
 
 @end
 

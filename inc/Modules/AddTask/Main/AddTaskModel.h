@@ -68,6 +68,8 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+- (void) deselectAllRoomsInfo;
+
 @end
 
 @protocol AddTaskModelDelegate <NSObject>

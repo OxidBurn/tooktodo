@@ -16,6 +16,7 @@
 #import "RowContent.h"
 #import "AddTaskMainFactory.h"
 
+
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
 // properties
@@ -154,6 +155,11 @@
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
 {
     [self.model fillTaskToEdit: taskToEdit];
+}
+
+- (void) deselectAllRoomsInfo
+{
+    [self.model deselectAllRoomsInfo];
 }
 
 

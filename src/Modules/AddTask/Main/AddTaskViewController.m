@@ -255,6 +255,9 @@
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender
 {
+
+    [self.viewModel deselectAllRoomsInfo];
+    
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
