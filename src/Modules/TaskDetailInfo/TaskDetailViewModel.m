@@ -516,12 +516,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     frame.size.height = MIN(frame.size.height, 122);
 
     self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 122);
-    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
 
-//    if (self.addCommentCell.addCommentTextView.scrollEnabled)
-//    {
-//        return;
-//    }
+    if (self.addCommentCell.addCommentTextView.scrollEnabled)
+    {
+        return;
+    }
+
+    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
 
     CGPoint contentOffset = self.tableView.contentOffset;
     [UIView setAnimationsEnabled: false];
