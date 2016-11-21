@@ -43,6 +43,7 @@
 
 - (IBAction) onSortTasks:(UIBarButtonItem*) sender;
 
+- (IBAction) onFilterBtn: (UIBarButtonItem*) sender;
 
 @end
 
@@ -131,6 +132,16 @@
     [self showPopoverWithDataSource: self.viewModel
                        withDelegate: self.viewModel
                     withSourceFrame: [self getFrameForSortingPopover]];
+}
+
+- (IBAction) onFilterBtn: (UIBarButtonItem*) sender
+{
+    NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
+    
+    id customSender = IS_PHONE ? self : self.splitViewController;
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: customSender];
 }
 
 - (void) updateContent
