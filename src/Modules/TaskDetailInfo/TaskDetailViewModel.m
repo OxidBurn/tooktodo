@@ -242,8 +242,8 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
             {
                 height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
-                height = MIN(height, 122);
-                if (height < 122)
+                height = MIN(height, 152);
+                if (height < 152)
                 {
                     self.addCommentCell.addCommentTextView.scrollEnabled = false;
                     self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
@@ -513,9 +513,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     CGRect frame = self.addCommentCell.frame;
     frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
-    frame.size.height = MIN(frame.size.height, 122);
+    frame.size.height = MIN(frame.size.height, 152);
 
-    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 122);
+    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
 
     if (self.addCommentCell.addCommentTextView.scrollEnabled)
     {
