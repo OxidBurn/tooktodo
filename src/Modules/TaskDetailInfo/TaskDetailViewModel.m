@@ -108,6 +108,11 @@
     
 }
 
+- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model reloadDataWithCompletion: completion];
+}
+
 - (ProjectTaskStage*) getTaskStage
 {
     return [self.model getTaskStage];

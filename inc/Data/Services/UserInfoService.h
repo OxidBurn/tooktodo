@@ -34,4 +34,6 @@
 
 - (RACSignal*) getNewUserInfo;
 
+- (NSNumber*) getUserID;
+
 @end

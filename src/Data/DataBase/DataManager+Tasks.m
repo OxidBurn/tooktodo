@@ -127,6 +127,29 @@
                       }];
 }
 
+- (void) persistNewSubtask: (ProjectTaskModel*)     info
+            withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectTask* selectedTask    = [DataManagerShared getSelectedTaskInContext: localContext];
+        ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: localContext];
+        
+        ProjectTask* newSubTask = [self persistTaskWithInfo: info
+                                                 forProject: selectedProject
+                                                  inContext: localContext];
+        
+        [selectedTask addSubTasksObject: newSubTask];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 #pragma mark - Internal methods -
 
 - (ProjectTask*) persistTaskWithInfo: (ProjectTaskModel*)       info

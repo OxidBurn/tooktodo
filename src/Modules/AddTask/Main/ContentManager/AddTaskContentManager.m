@@ -243,7 +243,7 @@
     RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowThree.title   = @"Этап";
-    rowThree.detail  = @"Не реализовано";
+    rowThree.detail  = @"Не выбран";
     rowThree.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowThree.segueId = self.addTaskTableViewSeguesInfo[ShowSelectStageSegueID];
     rowThree.cellIndex = RightDetailCell;
@@ -251,7 +251,7 @@
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFour.title   = @"Система";
-    rowFour.detail  = @"Не реализовано";
+    rowFour.detail  = @"Не выбран";
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     // ToDo: uncomment when systems will be implemented
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];

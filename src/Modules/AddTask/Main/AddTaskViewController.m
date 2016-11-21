@@ -267,12 +267,17 @@
 
 - (IBAction) onDeleteTask: (UIButton*) sender
 {
-    
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
 {
-    
+    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+        
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+    }];
 }
 
 

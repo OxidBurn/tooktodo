@@ -52,6 +52,9 @@
 - (void) fillSelectedTask: (ProjectTask*) task
            withCompletion: (CompletionWithSuccess) completion;
 
+// Reloading task content info, after appearing on task info screen
+- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion;
+
 - (void) createContentForTableViewWithFrame: (CGRect) frame;
 
 

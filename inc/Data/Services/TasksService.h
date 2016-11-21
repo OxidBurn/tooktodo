@@ -31,6 +31,9 @@
 - (void) changeSelectedStageForTask: (ProjectTask*) task
                   withSelectedState: (BOOL)         isSelected;
 
-- (RACSignal*) createNewTaskWithInfo: (NewTask*) task;
+- (RACSignal*) createNewTaskWithInfo: (NewTask*) task
+                           isSubtask: (BOOL)     isSubtask;
+
+- (ProjectTask*) getUpdatedSelectedTask;
 
 @end

@@ -17,6 +17,7 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "FilledTeamInfo.h"
 #import "TaskCommentsService.h"
+#import "UserInfoService.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -181,8 +182,12 @@
 }
 
 - (RACSignal*) createNewTaskWithInfo: (NewTask*) task
+                           isSubtask: (BOOL)     isSubtask
 {
-    NSDictionary* requestParameters = [self buildNewTaskParameter: task];
+    NSDictionary* requestParameters = [self buildNewTaskParameter: task
+                                                        isSubtask: isSubtask];
+    
+    @weakify(self)
     
     RACSignal* createNewTaskSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -190,7 +195,28 @@
          deliverOn: [RACScheduler mainThreadScheduler]]
          subscribeNext: ^(RACTuple* response) {
              
-             NSLog(@"Response: %@", response);
+             @strongify(self)
+             
+             if ( isSubtask )
+             {
+                 [self parseNewTaskInfo: response[0]
+                         withCompletion: ^(BOOL isSuccess) {
+                             
+                             [subscriber sendNext: nil];
+                             [subscriber sendCompleted];
+                             
+                         }];
+             }
+             else
+             {
+                 [self parseTasksForProjectFromResponse: @[response[0]]
+                                         withCompletion:^(BOOL isSuccess) {
+                                             
+                                             [subscriber sendNext: nil];
+                                             [subscriber sendCompleted];
+                                             
+                                         }];
+             }
              
          }
          error: ^(NSError *error) {
@@ -230,7 +256,7 @@
 - (void) parseTasksForCurrentUser: (NSDictionary*)         response
                    withCompletion: (CompletionWithSuccess) completion
 {
-    NSError* parsingError       = nil;
+    NSError* parsingError              = nil;
     TasksGroupedByProjects* parsedInfo = [[TasksGroupedByProjects alloc] initWithDictionary: response
                                                                                       error: &parsingError];
     
@@ -249,7 +275,7 @@
                                   withTask: (ProjectTask*)          task
                             withCompletion: (CompletionWithSuccess) completion
 {
-    NSError* parsingError = nil;
+    NSError* parsingError                           = nil;
     TaskAvailableActionsModel* taskAvailableActions = [[TaskAvailableActionsModel alloc] initWithDictionary: response
                                                                                                       error: &parsingError];
     
@@ -264,6 +290,30 @@
     }
 }
 
+- (void) parseNewTaskInfo: (NSDictionary*)         response
+           withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parsingError      = nil;
+    ProjectTaskModel* taskInfo = [[ProjectTaskModel alloc] initWithDictionary: response
+                                                                        error: &parsingError];
+    
+    if ( parsingError )
+    {
+        NSLog(@"<ERROR> Error with parsing new tasks response: \n%@", parsingError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewSubtask: taskInfo
+                              withCompletion: completion];
+    }
+}
+
+- (ProjectTask*) getUpdatedSelectedTask
+{
+    ProjectTask* task = [DataManagerShared getSelectedTask];
+    
+    return task;
+}
 
 #pragma mark - Internal methods -
 
@@ -281,8 +331,9 @@
 }
 
 - (NSDictionary*) buildNewTaskParameter: (NewTask*) taskInfo
+                              isSubtask: (BOOL)     subtask
 {
-    ProjectInfo* taskProject = [DataManagerShared getSelectedProjectInfo];
+    ProjectInfo* taskProject              = [DataManagerShared getSelectedProjectInfo];
     NSMutableDictionary* newTaskParameter = [NSMutableDictionary new];
     
     newTaskParameter[@"title"] = taskInfo.taskName;
@@ -295,18 +346,20 @@
     newTaskParameter[@"isIncludedRestDays"] = @(taskInfo.terms.includingWeekends);
     newTaskParameter[@"taskAccess"]         = @(taskInfo.isHiddenTask);
     newTaskParameter[@"files"]              = @[];
-    newTaskParameter[@"markerModel"]        = @{};
+    newTaskParameter[@"marker"]             = @{};
+    newTaskParameter[@"ownerUserId"]        = [[UserInfoService sharedInstance] getUserID];
+    newTaskParameter[@"isAllRooms"]         = @NO;
     
     if ( taskInfo.terms.startDate )
     {
-    newTaskParameter[@"startDate"] = [NSDate stringFromDate: taskInfo.terms.startDate
-                                                 withFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+        newTaskParameter[@"startDate"] = [NSDate stringFromDate: taskInfo.terms.startDate
+                                                     withFormat: @"dd.MM.yyyy"];
     }
     
     if ( taskInfo.terms.endDate )
     {
         newTaskParameter[@"endDate"] = [NSDate stringFromDate: taskInfo.terms.endDate
-                                                   withFormat: @"yyyy-MM-dd'T'HH:mm:ss.SSS"];
+                                                   withFormat: @"dd.MM.yyyy"];
     }
     
     newTaskParameter[@"duration"] = @(taskInfo.terms.duration);
@@ -317,11 +370,11 @@
     {
         NSDictionary* roomModelDic     = @{@"id"      : taskInfo.room.roomID,
                                            @"levelId" : taskInfo.room.roomLevel.roomLevelID};
-        newTaskParameter[@"roomModel"] = roomModelDic;
+        newTaskParameter[@"rooms"] = roomModelDic;
     }
     else
     {
-        newTaskParameter[@"roomModel"] = @{};
+        newTaskParameter[@"rooms"] = @{};
     }
     
     
@@ -331,11 +384,11 @@
         NSDictionary* stageModelDic     = @{@"id"       : taskInfo.stage.stageID,
                                             @"title"    : taskInfo.stage.title,
                                             @"isCommon" : taskInfo.stage.isCommon};
-        newTaskParameter[@"stageModel"] = stageModelDic;
+        newTaskParameter[@"stage"] = stageModelDic;
     }
     else
     {
-        newTaskParameter[@"stageModel"] = @{};
+        newTaskParameter[@"stage"] = @{};
     }
     
     // Work Area Model
@@ -343,13 +396,14 @@
     {
         NSDictionary* workAreaModelDic     = @{@"id" : taskInfo.system.systemID,
                                                @"title" : taskInfo.system.title,
-                                               @"shortTitle" : taskInfo.system.shortTitle};
+                                               @"shortTitle" : taskInfo.system.shortTitle,
+                                               @"hasTasks"   : taskInfo.system.hasTasks};
         
-        newTaskParameter[@"workAreaModel"] = workAreaModelDic;
+        newTaskParameter[@"workArea"] = workAreaModelDic;
     }
     else
     {
-        newTaskParameter[@"workAreaModel"] = @{};
+        newTaskParameter[@"workArea"] = @{};
     }
     
     // Task Role Assignment Models
@@ -378,6 +432,13 @@
     
     newTaskParameter[@"taskRoleAssignmentModels"] = taskRoleAssignmentModelsArr;
     
+    
+    if ( subtask )
+    {
+        ProjectTask* selectedTask = [DataManagerShared getSelectedTask];
+        
+        newTaskParameter[@"parentTaskId"] = selectedTask.taskID;
+    }
     
     return newTaskParameter.copy;
 }

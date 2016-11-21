@@ -201,23 +201,23 @@
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
-//    [[[TasksService sharedInstance] createNewTaskWithInfo: self.task]
-//     subscribeNext: ^(id x) {
-//         
-//         if ( completion )
-//             completion(YES);
-//         
-//     }
-//     error: ^(NSError *error) {
-//         
-//         NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
-//         
-//     }];
+    BOOL isSubtask = (self.controllerType == AddSubtaskControllerType);
     
-    [SVProgressHUD showErrorWithStatus: @"Создание задачи в процессе разработки!"];
-    
-    if ( completion )
-        completion(YES);
+    [[[TasksService sharedInstance] createNewTaskWithInfo: self.task
+                                                isSubtask: isSubtask]
+     subscribeNext: ^(id x) {
+         
+         if ( completion )
+             completion(YES);
+         
+     }
+     error: ^(NSError *error) {
+         
+         NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
+         
+         [SVProgressHUD showErrorWithStatus: @"Произошла ошибка при создании задачи!"];
+         
+     }];
 }
 
 - (void) fillDefaultStage: (ProjectTaskStage*) stage

@@ -73,7 +73,13 @@
 {
     [super viewWillAppear: animated];
     
-    [self.taskTableView reloadData];
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel reloadDataWithCompletion: ^(BOOL isSuccess) {
+      
+        [blockSelf.taskTableView reloadData];
+        
+    }];
 }
 
 

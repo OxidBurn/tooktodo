@@ -357,7 +357,6 @@
         subtask.attachmentsNumber   = obj.attachments.integerValue;
         subtask.roomNumber          = obj.room.number.integerValue;
         subtask.commentsNumber      = obj.commentsCount.integerValue;
-        subtask.ownerUser           = @[obj.ownerUser];
         subtask.taskType            = obj.taskType.integerValue;
         
         subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];

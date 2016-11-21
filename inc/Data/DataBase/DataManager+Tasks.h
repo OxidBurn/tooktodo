@@ -29,6 +29,9 @@
                forProjectInvite: (ProjectInviteInfo*)      invite
                       inContext: (NSManagedObjectContext*) context;
 
+- (void) persistNewSubtask: (ProjectTaskModel*)     info
+            withCompletion: (CompletionWithSuccess) completion;
+
 // update
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;

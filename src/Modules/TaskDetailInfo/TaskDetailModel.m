@@ -62,6 +62,12 @@
         completion(YES);
 }
 
+- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
+{
+    [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
+            withCompletion: completion];
+}
+
 
 #pragma mark - Public -
 

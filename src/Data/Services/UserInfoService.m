@@ -201,6 +201,11 @@ static bool isFirstAccess = YES;
                                       }];
 }
 
+- (NSNumber*) getUserID
+{
+    return [DataManagerShared getCurrentUserID];
+}
+
 
 #pragma mark - Internal methods -
 
