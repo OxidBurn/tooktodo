@@ -135,6 +135,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             
             cell = [factory returnRightDetailCellWithTitle: content.title
                                             withDetailText: content.detail
+                                        withSelectedDetail: YES
                                               forTableView: tableView];
             break;
         }
