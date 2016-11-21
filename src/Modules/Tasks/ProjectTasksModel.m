@@ -187,7 +187,7 @@ static NSString* contentKey = @"contentInfoKey";
     NSArray* cellsContentInfo = self.stages[path.section][contentKey];
     ProjectTask* cellInfo     = cellsContentInfo[path.row];
     
-    cellInfo.status = self.selectedTask.status;
+    cellInfo.status            = self.selectedTask.status;
     cellInfo.statusDescription = self.selectedTask.statusDescription;
     
 }

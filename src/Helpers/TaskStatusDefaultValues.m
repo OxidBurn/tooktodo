@@ -144,7 +144,6 @@
 }
 
 - (NSString*) returnTitleForTaskStatus: (TaskStatusType) statusType
-
 {
     return self.titlesInfoArray[statusType];
 }
