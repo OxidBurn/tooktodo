@@ -34,6 +34,7 @@
 // properties
 
 // methods
+- (IBAction) onEditComment: (UIButton*) sender;
 
 
 @end
@@ -101,4 +102,6 @@
     
 }
 
+- (IBAction)onEditComment:(UIButton *)sender {
+}
 @end
