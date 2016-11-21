@@ -13,4 +13,6 @@
 // properties
 @property (nonatomic, copy) void(^dismissAlert)();
 
+@property (nonatomic, copy) void(^deleteTaskWithSubtasks)(BOOL withSubtasks);
+
 @end

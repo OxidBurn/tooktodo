@@ -20,5 +20,6 @@
 
 @protocol OSAlertDeleteTasksControllerDelegate <NSObject>
 
+- (void) didDeleteTask;
 
 @end

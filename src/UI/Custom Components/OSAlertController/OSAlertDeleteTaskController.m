@@ -16,10 +16,14 @@
 
 @property (nonatomic, strong) OSAlertDeleteTaskWithSubtasksViewModel* viewModel;
 
+- (void) handleAlertActions;
+
 @end
 
 @implementation OSAlertDeleteTaskWithSubtasksController
 
+
+#pragma mark - Life cycle -
 
 - (void) loadView
 {
@@ -28,25 +32,43 @@
     self.contentTable.delegate   = self.viewModel;
     self.contentTable.dataSource = self.viewModel;
     
-    __weak typeof(self) blockSelf = self;
-    
-    self.viewModel.dismissAlert = ^() {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    };
+    // handle actions from table view
+    [self handleAlertActions];
 }
+
+
+#pragma mark - Property -
 
 - (OSAlertDeleteTaskWithSubtasksViewModel*) viewModel
 {
     if (_viewModel == nil)
     {
         _viewModel = [OSAlertDeleteTaskWithSubtasksViewModel new];
-       // _viewModel.delegate  = self;
     }
     
     return _viewModel;
 }
 
+
+#pragma mark - Internal methods -
+
+- (void) handleAlertActions
+{
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.dismissAlert = ^() {
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+    };
+    
+    
+    self.viewModel.deleteTaskWithSubtasks = ^(BOOL withSubtasks){
+        
+        if ( [blockSelf.delegate respondsToSelector: @selector(deleteTaskWithSubtasks:)] )
+            [blockSelf.delegate deleteTaskWithSubtasks: withSubtasks];
+        
+    };
+}
 
 @end

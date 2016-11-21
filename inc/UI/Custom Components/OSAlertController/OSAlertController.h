@@ -13,6 +13,7 @@
 #import "OSAlertDesignateAdminController.h"
 #import "OSAlertControllerProtocol.h"
 #import "OSAlertDeleteTasksController.h"
+#import "OSAlertDeleteTaskWithSubtasksController.h"
 
 @interface OSAlertController : NSObject
 
@@ -24,7 +25,8 @@
                onController: (UIViewController*)             controller
                withDelegate: (id<OSAlertControllerProtocol>) delegate;
 
-+ (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller;
++ (void) showAlertWithDeleteTaskOnController: (UIViewController*)                                   controller
+                                withDelegate: (id<OSAlertDeleteTaskWithSubtasksControllerDelegate>) delegate;
 
 + (void) showDefaultAlertWithTitle: (NSString*)                     title
                            message: (NSString*)                     message

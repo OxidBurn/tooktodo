@@ -15,26 +15,26 @@
 //Classes
 #import "NewTask.h"
 #import "AddTaskModel.h"
-<<<<<<< HEAD
 #import "OSAlertController.h"
-=======
+#import "OSAlertDeleteTaskWithSubtasksController.h"
 #import "DataManager+Room.h"
->>>>>>> fixRoomSelection
 
 @protocol AddTaskViewModelDelegate;
 
-@interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, OSAlertDeleteTasksControllerDelegate>
+@interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, OSAlertDeleteTasksControllerDelegate, OSAlertDeleteTaskWithSubtasksControllerDelegate>
 
 // properties
+@property (nonatomic, strong) NSString* taskNameText;
+@property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
 
 @property (nonatomic, copy) void(^reloadTableView)();
+@property (nonatomic, copy) void(^dismissTaskInfo)();
 
-@property (weak, nonatomic) id <AddTaskViewModelDelegate> delegate;
 @property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
 @property (nonatomic, strong) RACCommand* enableCreteOnBaseBtnCommand;
 @property (nonatomic, strong) RACCommand* deleteTaskCommand;
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
-@property (nonatomic, strong) NSString* taskNameText;
+
 
 //methods
 

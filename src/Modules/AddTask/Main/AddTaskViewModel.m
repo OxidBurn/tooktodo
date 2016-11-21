@@ -220,7 +220,6 @@ viewForHeaderInSection: (NSInteger)    section
             
         case 1 ... 2:
         {
-            
             UIView* view = [[UIView alloc] initWithFrame: CGRectMake(0, 0, 20, 10)];
             
             view.backgroundColor = [UIColor lightGrayColor];
@@ -369,6 +368,27 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
     [switchCell resetValue];
+}
+
+
+#pragma mark - OS Alert delegate methods -
+
+- (void) deleteTaskWithSubtasks: (BOOL) subtasks
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [self.model deleteTaskWithSubtask: subtasks
+                       withCompletion: ^(BOOL isSuccess) {
+                           
+                           if ( blockSelf.dismissTaskInfo )
+                               blockSelf.dismissTaskInfo();
+                           
+                       }];
+}
+
+- (void) didDeleteTask
+{
+    [self deleteTaskWithSubtasks: NO];
 }
 
 @end

@@ -32,7 +32,7 @@
 
 #pragma mark - Lyfe cycle -
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 }
@@ -46,7 +46,13 @@
 
 - (IBAction) onDeleteBtn: (UIButton*) sender
 {
+    if ( [self.delegate respondsToSelector: @selector(didDeleteTask)] )
+    {
+        [self.delegate didDeleteTask];
+    }
     
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
 }
 
 - (IBAction) onCancelBtn: (UIButton*) sender

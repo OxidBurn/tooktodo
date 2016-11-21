@@ -36,4 +36,7 @@
 
 - (ProjectTask*) getUpdatedSelectedTask;
 
+- (RACSignal*) deleteTask: (ProjectTask*) task
+             withSubtasks: (BOOL)         subtasks;
+
 @end

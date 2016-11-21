@@ -273,6 +273,19 @@
     }];
 }
 
+- (void) deleteTaskWithSubtask: (BOOL)                  withSubtask
+                withCompletion: (CompletionWithSuccess) completion
+{
+    [[[TasksService sharedInstance] deleteTask: self.editedTask
+                                  withSubtasks: withSubtask]
+     subscribeNext: ^(id x) {
+         
+         if ( completion )
+             completion(YES);
+         
+     }];
+}
+
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 

@@ -75,6 +75,9 @@
 
 - (void) deselectAllRoomsInfo;
 
+- (void) deleteTaskWithSubtask: (BOOL)                  withSubtask
+                withCompletion: (CompletionWithSuccess) completion;
+
 
 @end
 
