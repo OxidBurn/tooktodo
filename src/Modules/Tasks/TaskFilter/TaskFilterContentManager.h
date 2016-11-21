@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-#import "ProjectInfo+CoreDataProperties.h"
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFilterContentManager : NSObject
 
 // methods
-- (NSArray*) getTableViewContentForProjectInfo: (ProjectInfo*) projectInfo;
+- (NSArray*) getTableViewContentForConfiguration: (TaskFilterConfiguration*) filterConfig;
 
 @end

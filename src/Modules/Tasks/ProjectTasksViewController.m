@@ -41,8 +41,9 @@
 - (void) bindingUI;
 
 // Actions
+- (IBAction) onFilterBtn: (UIBarButtonItem*) sender;
 
-- (IBAction) onSortTasks:(UIBarButtonItem*) sender;
+- (IBAction) onSortTasks: (UIBarButtonItem*) sender;
 
 
 @end
@@ -144,6 +145,16 @@
     [self.slidingViewController anchorTopViewToRightAnimated: YES];
 }
 
+
+- (IBAction) onFilterBtn: (UIBarButtonItem*) sender
+{
+    NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
+    
+    id customSender = IS_PHONE ? self : self.splitViewController;
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: customSender];
+}
 
 - (IBAction) onSortTasks: (UIBarButtonItem*) sender
 {

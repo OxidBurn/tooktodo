@@ -140,6 +140,7 @@ typedef NS_ENUM(NSUInteger, SectionsList)
     SectionOne,
     SectionTwo,
     SectionThree,
+    SectionFour,
 };
 
 typedef NS_ENUM(NSUInteger, AddTaskControllerType)
@@ -148,5 +149,49 @@ typedef NS_ENUM(NSUInteger, AddTaskControllerType)
     AddSubtaskControllerType, // Create new subtask screen
     EditTaskControllerType, // Editing task screen
 };
+
+// Enumerations for tasks filter
+
+typedef NS_ENUM(NSUInteger, TaskFilterCellId)
+{
+    TaskFilterSingleUserCell,
+    TaskFilterRightDetailCell,
+    TaskFilterSwitchCell,
+    TaskFilterCustomDisclosureCell,
+    TaskFilterFilterByTermsCell,
+    TaskFilterGroupOfUsersCell,
+};
+
+
+typedef NS_ENUM(NSUInteger, FilterByTermsCellType)
+{
+    FilterByTermsType,
+    FilterByFactTermsType,
+};
+
+
+typedef NS_ENUM(NSUInteger, FilterByDateViewControllerType)
+{
+    ByTermsBeginning,
+    ByTermsEnding,
+    ByFactTermsBeginning,
+    ByFactTermsEnding,
+};
+
+
+
+typedef NS_ENUM(NSUInteger, FilterByDatesCellId)
+{
+    FilterByDatesRightDetailCell,
+    FilterByDatesDatePickerCell,
+    
+};
+
+typedef NS_ENUM(NSUInteger, FilterByDatesPickerTag)
+{
+    FromDate,
+    BeforeDate,
+};
+
 
 #endif /* ProjectsEnumerations_h */
