@@ -8,13 +8,19 @@
 
 #import "AllTaskBaseTableViewCell.h"
 
+@protocol TaskListTableViewCellDelegate;
+
 @interface TasksListTableViewCell : AllTaskBaseTableViewCell
 
 // properties
-
+@property (nonatomic, weak) id <TaskListTableViewCellDelegate> delegate;
 
 // methods
 
+@end
 
+@protocol TaskListTableViewCellDelegate <NSObject>
+
+- (void) performSegueToChangeStatusWithID: (NSString*) segueID;
 
 @end

@@ -153,9 +153,9 @@ static NSString* contentKey = @"contentInfoKey";
          if ( obj.isExpanded.boolValue )
         {
             [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
-                
+            
                 [tmpRowsInfo addObject: obj];
-                        
+                
             }];
         }
         
@@ -176,6 +176,18 @@ static NSString* contentKey = @"contentInfoKey";
     
     tmpRowsInfo  = nil;
     tmpStageInfo = nil;
+}
+
+- (void) updateTaskStatusForIndexPath: (NSIndexPath*) path
+{
+    self.selectedTask = [DataManagerShared getSelectedTask];
+    
+    NSArray* cellsContentInfo = self.stages[path.section][contentKey];
+    ProjectTask* cellInfo     = cellsContentInfo[path.row];
+    
+    cellInfo.status = self.selectedTask.status;
+    cellInfo.statusDescription = self.selectedTask.statusDescription;
+    
 }
 
 @end

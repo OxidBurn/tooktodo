@@ -6,19 +6,19 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "OSAlertDeleteTaskController.h"
-#import "OSAlertDeleteTaskViewModel.h"
+#import "OSAlertDeleteTaskWithSubtasksController.h"
+#import "OSAlertDeleteTaskWithSubtasksViewModel.h"
 
 
-@interface OSAlertDeleteTaskController ()
+@interface OSAlertDeleteTaskWithSubtasksController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *contentTable;
 
-@property (nonatomic, strong) OSAlertDeleteTaskViewModel* viewModel;
+@property (nonatomic, strong) OSAlertDeleteTaskWithSubtasksViewModel* viewModel;
 
 @end
 
-@implementation OSAlertDeleteTaskController
+@implementation OSAlertDeleteTaskWithSubtasksController
 
 
 - (void) loadView
@@ -28,13 +28,20 @@
     self.contentTable.delegate   = self.viewModel;
     self.contentTable.dataSource = self.viewModel;
     
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.dismissAlert = ^() {
+        
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+    };
 }
 
-- (OSAlertDeleteTaskViewModel*) viewModel
+- (OSAlertDeleteTaskWithSubtasksViewModel*) viewModel
 {
     if (_viewModel == nil)
     {
-        _viewModel = [OSAlertDeleteTaskViewModel new];
+        _viewModel = [OSAlertDeleteTaskWithSubtasksViewModel new];
        // _viewModel.delegate  = self;
     }
     

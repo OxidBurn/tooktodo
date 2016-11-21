@@ -10,7 +10,7 @@
 
 // Classes
 #import "OSAlertPlanNotLoadedController.h"
-#import "OSAlertDeleteTaskController.h"
+#import "OSAlertDeleteTaskWithSubtasksController.h"
 #import "OSDefaultAlertController.h"
 #import "OSTaskOptionsController.h"
 
@@ -54,7 +54,7 @@
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
     
-    OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskControllerID"];
+    OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskWithSubtasksControllerID"];
     
     [controller presentViewController: alertController
                              animated: YES
@@ -96,4 +96,22 @@
                            completion: nil];
 }
 
++ (void) showDeleteTaskAlertOnController: (UIViewController*) controller
+                           withTaskTitle: (NSString*)         taskTitle
+                            withDelegate: (id <OSAlertDeleteTasksControllerDelegate>)                delegate
+{
+    UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
+                                                              bundle: [NSBundle mainBundle]];
+    
+    OSAlertDeleteTasksController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"OSDeleteTaskAlert"];
+    
+    alertController.delegate = delegate;
+    
+    [controller presentViewController: alertController
+                             animated: YES
+                           completion: nil];
+
+    [alertController setTaskTitle: taskTitle];
+
+}
 @end

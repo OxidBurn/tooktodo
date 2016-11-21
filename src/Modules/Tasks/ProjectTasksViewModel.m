@@ -19,8 +19,9 @@
 #import "DataManager+Tasks.h"
 #import "DataManager+ProjectInfo.h"
 #import "NSObject+Sorting.h"
+#import "TasksListTableViewCell.h"
 
-@interface ProjectTasksViewModel()
+@interface ProjectTasksViewModel() <TaskListTableViewCellDelegate>
 
 // properties
 
@@ -58,6 +59,12 @@
 {
     return [self.model getSelectedProjectTask];
 }
+
+//- (void) updateTaskStatus
+//{
+//    [self.model updateTaskStatusForIndexPath: ];
+//}
+
 
 #pragma mark - UITable view data source -
 
@@ -131,10 +138,20 @@
         
         [blockSelf.model markTaskAsSelected: index];
         
-        if ( blockSelf.didShowTaskInfo )
-            blockSelf.didShowTaskInfo();
+        if ( blockSelf.performSegue )
+            blockSelf.performSegue(@"ShowTaskDetailSegueId");
         
     };
+    
+    if ([cell isKindOfClass: [TasksListTableViewCell class]])
+    {
+        TasksListTableViewCell* tasksCell = (TasksListTableViewCell*) cell;
+        
+        tasksCell.delegate = self;
+        
+        [self.model updateTaskStatusForIndexPath: indexPath];
+
+    }
     
     return cell;
 }
@@ -148,6 +165,15 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
+}
+
+
+#pragma mark - TaskListTableViewCellDelegate methods -
+
+- (void) performSegueToChangeStatusWithID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
 }
 
 #pragma mark - PopoverViewController dataSource methods -

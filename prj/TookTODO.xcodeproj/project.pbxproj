@@ -417,6 +417,7 @@
 		F72DC5431DDB545500E0AC3A /* AddTaskContentManager+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5401DDB545500E0AC3A /* AddTaskContentManager+Helpers.m */; };
 		F72DC5441DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5411DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m */; };
 		F72DC5451DDB545500E0AC3A /* AddTaskContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5421DDB545500E0AC3A /* AddTaskContentManager.m */; };
+		F745D31D1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m in Sources */ = {isa = PBXBuildFile; fileRef = F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
 		F775C1881DD201EB002FB201 /* FlexibleViewsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F775C1871DD201EB002FB201 /* FlexibleViewsContainer.m */; };
@@ -802,8 +803,8 @@
 		56D06CC51DAFBDBF008E9AC0 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		56D06CC61DAFBDBF008E9AC0 /* OSAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertController.h; sourceTree = "<group>"; };
 		56D06CC71DAFBDBF008E9AC0 /* OSAlertControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertControllerProtocol.h; sourceTree = "<group>"; };
-		56D06CC81DAFBDBF008E9AC0 /* OSAlertDeleteTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTaskController.h; sourceTree = "<group>"; };
-		56D06CC91DAFBDBF008E9AC0 /* OSAlertDeleteTaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTaskViewModel.h; sourceTree = "<group>"; };
+		56D06CC81DAFBDBF008E9AC0 /* OSAlertDeleteTaskWithSubtasksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTaskWithSubtasksController.h; sourceTree = "<group>"; };
+		56D06CC91DAFBDBF008E9AC0 /* OSAlertDeleteTaskWithSubtasksViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTaskWithSubtasksViewModel.h; sourceTree = "<group>"; };
 		56D06CCA1DAFBDBF008E9AC0 /* OSAlertDesignateAdminController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDesignateAdminController.h; sourceTree = "<group>"; };
 		56D06CCB1DAFBDBF008E9AC0 /* OSAlertDesignateAdminViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDesignateAdminViewModel.h; sourceTree = "<group>"; };
 		56D06CCC1DAFBDBF008E9AC0 /* OSAlertPlanNotLoadedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertPlanNotLoadedController.h; sourceTree = "<group>"; };
@@ -1229,6 +1230,8 @@
 		F72DC5521DDB547C00E0AC3A /* AddTaskContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskContentManager.h; sourceTree = "<group>"; };
 		F72DC5531DDB547C00E0AC3A /* NewTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTask.h; sourceTree = "<group>"; };
 		F72DC5541DDB547C00E0AC3A /* RowContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RowContent.h; sourceTree = "<group>"; };
+		F745D31B1DDF6AED00A82B7D /* OSAlertDeleteTasksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTasksController.h; sourceTree = "<group>"; };
+		F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTasksController.m; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
 		F75295B61DB65B8500534482 /* TaskDetailContentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailContentManager.m; sourceTree = "<group>"; };
 		F75295B81DB6895A00534482 /* TaskDetailContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDetailContentManager.h; path = ../TaskDetailContentManager.h; sourceTree = "<group>"; };
@@ -2126,8 +2129,8 @@
 				56D06CC51DAFBDBF008E9AC0 /* AlertView.h */,
 				56D06CC61DAFBDBF008E9AC0 /* OSAlertController.h */,
 				56D06CC71DAFBDBF008E9AC0 /* OSAlertControllerProtocol.h */,
-				56D06CC81DAFBDBF008E9AC0 /* OSAlertDeleteTaskController.h */,
-				56D06CC91DAFBDBF008E9AC0 /* OSAlertDeleteTaskViewModel.h */,
+				56D06CC81DAFBDBF008E9AC0 /* OSAlertDeleteTaskWithSubtasksController.h */,
+				56D06CC91DAFBDBF008E9AC0 /* OSAlertDeleteTaskWithSubtasksViewModel.h */,
 				56D06CCA1DAFBDBF008E9AC0 /* OSAlertDesignateAdminController.h */,
 				56D06CCB1DAFBDBF008E9AC0 /* OSAlertDesignateAdminViewModel.h */,
 				56D06CCC1DAFBDBF008E9AC0 /* OSAlertPlanNotLoadedController.h */,
@@ -3057,6 +3060,8 @@
 				56D06E571DAFBDBF008E9AC0 /* OSAlertPlanNotLoadedViewModel.m */,
 				56D06E581DAFBDBF008E9AC0 /* OSAlertViewController.m */,
 				56D06E591DAFBDBF008E9AC0 /* OSDefaultAlertController.m */,
+				F745D31B1DDF6AED00A82B7D /* OSAlertDeleteTasksController.h */,
+				F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */,
 			);
 			path = OSAlertController;
 			sourceTree = "<group>";
@@ -3709,6 +3714,7 @@
 				56D06EBF1DAFBDC0008E9AC0 /* UserNotifications+CoreDataProperties.m in Sources */,
 				56D06ED61DAFBDC0008E9AC0 /* TaskRoomLevelModel.m in Sources */,
 				56D06F241DAFBDC0008E9AC0 /* AddMassageViewController.m in Sources */,
+				F745D31D1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m in Sources */,
 				56D06EF91DAFBDC0008E9AC0 /* ProjectRoleInfoTableViewCell.m in Sources */,
 				56D06EE41DAFBDC0008E9AC0 /* UserInfoService.m in Sources */,
 				56D06F931DAFBDC0008E9AC0 /* ProjectsAPIService.m in Sources */,

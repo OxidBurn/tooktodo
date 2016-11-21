@@ -15,10 +15,11 @@
 //Classes
 #import "NewTask.h"
 #import "AddTaskModel.h"
+#import "OSAlertController.h"
 
 @protocol AddTaskViewModelDelegate;
 
-@interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface AddTaskViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, OSAlertDeleteTasksControllerDelegate>
 
 // properties
 
@@ -70,7 +71,12 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+- (BOOL) checkSubtasks;
+
+- (NSString*) returnTaskToEditTitle;
+
 @end
+
 
 @protocol AddTaskViewModelDelegate <NSObject>
 
