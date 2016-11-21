@@ -8,15 +8,7 @@
 
 #import "AddCommentCell.h"
 
-@interface AddCommentCell()
-
-// outlets
-@property (weak, nonatomic) IBOutlet UILabel*     addCommentLabel;
-
-@property (weak, nonatomic) IBOutlet UITextField* addCommentTextField;
-
-// properties
-
+@interface AddCommentCell() <UITextViewDelegate>
 
 // methods
 - (IBAction) onAddAttachmentsBtn: (UIButton*) sender;
@@ -30,6 +22,18 @@
 - (IBAction) onAddAttachmentsBtn: (UIButton*) sender
 {
     
+}
+
+#pragma mark - UITextViewDelegate -
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if ([self.delegate respondsToSelector:@selector( addCommentCell:
+                                            newCommentTextDidChange: )])
+    {
+        [self.delegate addCommentCell: self
+              newCommentTextDidChange: textView];
+    }
 }
 
 @end

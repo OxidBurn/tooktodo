@@ -17,13 +17,14 @@
 #import "FilterSubtasksCell.h"
 #import "CommentsCell.h"
 #import "NSObject+Sorting.h"
+#import "AddCommentCell.h"
 
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -35,6 +36,8 @@
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
 
 @property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
+
+@property (strong, nonatomic) AddCommentCell* addCommentCell;
 
 @end
 
@@ -192,6 +195,13 @@
         
         subtaskCell.delegate = self;
     }
+
+    if ([cell isKindOfClass:AddCommentCell.class])
+    {
+        self.addCommentCell             = (AddCommentCell*)cell;
+        self.addCommentCell.delegate    = self;
+    }
+
     return cell;
 }
 
@@ -229,6 +239,12 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
         case SectionTwo:
         {
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
+            if (indexPath.row == 0)
+            {
+                self.addCommentCell.addCommentTextView.scrollEnabled = false;
+                height = [self.addCommentCell.addCommentTextView sizeThatFits:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
+                self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
+            }
         }
             
         default:
@@ -480,6 +496,19 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (ContentAccedingSortingType) getProjectsSortAccedingType
 {
     return [self.model getTasksSortingAscendingType];
+}
+
+#pragma mark -
+
+- (void)    addCommentCell: (AddCommentCell*)addCommentCell
+   newCommentTextDidChange: (UITextView*)sender
+{
+    CGPoint contentOffset           = self.tableView.contentOffset;
+    [UIView setAnimationsEnabled: false];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [UIView setAnimationsEnabled: true];
+    self.tableView.contentOffset    = contentOffset;
 }
 
 @end
