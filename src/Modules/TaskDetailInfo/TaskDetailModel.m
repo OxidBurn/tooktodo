@@ -103,10 +103,11 @@
     return sectionContent.count;
 }
 
-- (void) deselectTask
+- (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion
 {
     [[TasksService sharedInstance] changeSelectedStageForTask: self.task
-                                            withSelectedState: NO];
+                                            withSelectedState: NO
+                                               withCompletion: completion];
 }
 
 - (NSArray*) returnHeaderNumbersInfo

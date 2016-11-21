@@ -43,7 +43,7 @@
 
 
 // methods for work with content or data base
-- (void) deselectTask;
+- (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 

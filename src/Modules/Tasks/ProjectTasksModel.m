@@ -130,12 +130,14 @@ static NSString* contentKey = @"contentInfoKey";
     return cellInfo;
 }
 
-- (void) markTaskAsSelected: (NSIndexPath*) index
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion
 {    
     self.selectedTask = [self getInfoForCellAtIndexPath: index];
     
     [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedTask
-                                            withSelectedState: YES];
+                                            withSelectedState: YES
+                                               withCompletion: completion];
 }
 
 - (void) updateAllTasksData

@@ -28,8 +28,9 @@
 
 - (RACSignal*) loadSelectedTaskAvailableActionsForTask: (ProjectTask*) task;
 
-- (void) changeSelectedStageForTask: (ProjectTask*) task
-                  withSelectedState: (BOOL)         isSelected;
+- (void) changeSelectedStageForTask: (ProjectTask*)          task
+                  withSelectedState: (BOOL)                  isSelected
+                     withCompletion: (CompletionWithSuccess) completion;
 
 - (RACSignal*) createNewTaskWithInfo: (NewTask*) task
                            isSubtask: (BOOL)     isSubtask;

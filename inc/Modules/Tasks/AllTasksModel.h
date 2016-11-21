@@ -39,7 +39,8 @@
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
-- (void) markTaskAsSelected: (NSIndexPath*) index;
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion;
 
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding;

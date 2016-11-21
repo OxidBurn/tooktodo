@@ -27,7 +27,8 @@
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section;
 
-- (void) markTaskAsSelected: (NSIndexPath*) index;
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion;
 
 - (ProjectTask*) getSelectedProjectTask;
 

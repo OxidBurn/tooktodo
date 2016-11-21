@@ -30,7 +30,7 @@
 @property (nonatomic, copy) void(^showSortingPopoverBlock)(CGRect frame);
 
 // methods
-- (void) deselectTask;
+- (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) updateSecondSectionContentForType: (NSUInteger) typeIndex;
 

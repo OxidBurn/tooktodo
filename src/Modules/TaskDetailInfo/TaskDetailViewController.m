@@ -161,10 +161,14 @@
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
 {
-    [self.viewModel deselectTask];
+    __weak typeof(self) blockSelf = self;
     
-    //TODO: Need to make more cleaner solution
-    [self.navigationController.navigationController popViewControllerAnimated: YES];
+    [self.viewModel deselectTaskWithCompletion:^(BOOL isSuccess) {
+        
+        //TODO: Need to make more cleaner solution
+        [blockSelf.navigationController.navigationController popViewControllerAnimated: YES];
+        
+    }];
 }
 
 - (IBAction) onChangeBtn: (UIBarButtonItem*) sender

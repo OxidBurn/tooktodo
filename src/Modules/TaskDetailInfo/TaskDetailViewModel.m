@@ -129,9 +129,9 @@
 }
 
 
-- (void) deselectTask
+- (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion
 {
-    [self.model deselectTask];
+    [self.model deselectTaskWithCompletion: completion];
 }
 
 - (void) updateSecondSectionContentForType: (NSUInteger) typeIndex

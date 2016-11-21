@@ -152,9 +152,13 @@
     return loadAvailableActionsSignal;
 }
 
-- (void) changeSelectedStageForTask: (ProjectTask*) task
-                  withSelectedState: (BOOL)         isSelected
+- (void) changeSelectedStageForTask: (ProjectTask*)          task
+                  withSelectedState: (BOOL)                  isSelected
+                     withCompletion: (CompletionWithSuccess) completion
 {
+    if ( isSelected )
+        [SVProgressHUD show];
+    
     [DataManagerShared updateSelectedStateForTask: task
                                 withSelectedState: isSelected
                                    withCompletion: ^(BOOL isSuccess) {
@@ -164,18 +168,28 @@
                                            [[self loadSelectedTaskAvailableActionsForTask: task]
                                             subscribeNext: ^(id x) {
                                                 
+                                                [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
+                                                 subscribeNext: ^(id x) {
+                                                    
+                                                     if ( completion )
+                                                         completion(isSuccess);
+                                                     
+                                                     [SVProgressHUD dismiss];
+                                                     
+                                                 }
+                                                 error: ^(NSError *error) {
+                                                     
+                                                 }];
+                                                
                                             }
                                             error:^(NSError *error) {
                                                 
                                             }];
-                                           
-                                           [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
-                                            subscribeNext: ^(id x) {
-                                                
-                                            }
-                                            error: ^(NSError *error) {
-                                                
-                                            }];
+                                       }
+                                       else
+                                       {
+                                           if ( completion )
+                                               completion(isSuccess);
                                        }
                                        
                                    }];

@@ -136,11 +136,13 @@
     
     cell.didSelectedTaskAtIndex = ^( NSIndexPath* index){
         
-        [blockSelf.model markTaskAsSelected: index];
-        
-        if ( blockSelf.performSegue )
-            blockSelf.performSegue(@"ShowTaskDetailSegueId");
-        
+        [blockSelf.model markTaskAsSelected: index
+                             withCompletion: ^(BOOL isSuccess) {
+                                 
+                                 if ( blockSelf.performSegue )
+                                     blockSelf.performSegue(@"ShowTaskDetailSegueId");
+                                 
+                             }];
     };
     
     if ([cell isKindOfClass: [TasksListTableViewCell class]])
