@@ -13,6 +13,7 @@
 // methods
 
 - (void) fillCellWithTitle: (NSString*) titleText
-                withDetail: (NSString*) detailText;
+                withDetail: (NSString*) detailText
+          detailIsSelected: (BOOL)      isSelected;
 
 @end

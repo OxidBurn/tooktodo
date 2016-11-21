@@ -12,12 +12,13 @@
 @import UIKit;
 
 // Classes
-#import "RowContent.h"
+#import "TaskFilterRowContent.h"
 
 @interface TaskFilterMainFactory : NSObject
 
 // methods
-- (UITableViewCell*) createCellForTableView: (UITableView*) tableView
-                             withRowContent: (RowContent*)  content;
+- (UITableViewCell*) createCellForTableView: (UITableView*)           tableView
+                             withRowContent: (TaskFilterRowContent*)  content
+                               withDelegate: (id)                     delegate;
 
 @end

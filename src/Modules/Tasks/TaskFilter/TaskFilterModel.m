@@ -12,6 +12,7 @@
 #import "TaskFilterContentManager.h"
 #import "ProjectInfo+CoreDataProperties.h"
 #import "DataManager+ProjectInfo.h"
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFilterModel()
 
@@ -20,6 +21,10 @@
 
 @property (strong, nonatomic) ProjectInfo* projectInfo;
 
+@property (strong, nonatomic) TaskFilterConfiguration* filterConfig;
+
+@property (strong, nonatomic) TaskFilterContentManager* contentManager;
+
 // methods
 
 
@@ -27,7 +32,18 @@
 
 @implementation TaskFilterModel
 
+
 #pragma mark - Properties -
+
+- (TaskFilterContentManager*) contentManager
+{
+    if ( _contentManager == nil )
+    {
+        _contentManager = [TaskFilterContentManager new];
+    }
+    
+    return _contentManager;
+}
 
 - (ProjectInfo*) projectInfo
 {
@@ -42,12 +58,77 @@
 {
     if ( _tableViewContent == nil )
     {
-        TaskFilterContentManager* manager = [TaskFilterContentManager new];
-        
-        _tableViewContent = [manager getTableViewContentForProjectInfo: self.projectInfo];
+        _tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig];
     }
     
     return _tableViewContent;
+}
+
+- (TaskFilterConfiguration*) filterConfig
+{
+    if ( _filterConfig == nil )
+    {
+        _filterConfig = [TaskFilterConfiguration new];
+    }
+    
+    return _filterConfig;
+}
+
+
+#pragma mark - Public -
+
+- (TaskFilterRowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
+{
+    TaskFilterRowContent* content = self.tableViewContent[indexPath.section][indexPath.row];
+    
+    return content;
+}
+
+- (NSUInteger) getNumberOfRowsIsSection: (NSUInteger) section
+{
+    NSUInteger numberOfRows = [self.tableViewContent[section] count];
+    
+    return numberOfRows;
+}
+
+- (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    NSArray* sectionContent = self.tableViewContent[indexPath.section];
+    
+    TaskFilterRowContent* content = sectionContent[indexPath.row];
+    
+    return content.rowHeight;
+}
+
+- (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath
+{
+    NSArray* sectionContent = self.tableViewContent[indexPath.section];
+    
+    TaskFilterRowContent* content = sectionContent[indexPath.row];
+    
+    BOOL isExpanded = [content.cellId isEqualToString: @"FilterByTermsCellID"];
+    
+    NSString* newCellId = isExpanded ? @"CustomDisclosureIconCellID" : @"FilterByTermsCellID";
+    
+    CGFloat newRowHeight = isExpanded ? 50 : 110;
+    
+    NSUInteger cellIdType = isExpanded? TaskFilterCustomDisclosureCell : TaskFilterFilterByTermsCell;
+    
+    content.rowHeight  = newRowHeight;
+    content.cellId     = newCellId;
+    content.cellTypeId = cellIdType;
+    
+    NSMutableArray* newContentArray = self.tableViewContent.mutableCopy;
+    
+    NSMutableArray* newSectionContent = sectionContent.mutableCopy;
+    
+    [newSectionContent replaceObjectAtIndex: indexPath.row
+                                 withObject: content];
+    
+    [newContentArray replaceObjectAtIndex: indexPath.section
+                               withObject: newSectionContent];
+    
+    self.tableViewContent = newContentArray.copy;
 }
 
 @end
