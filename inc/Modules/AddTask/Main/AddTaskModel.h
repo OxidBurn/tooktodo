@@ -68,9 +68,13 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+
 - (BOOL) checkSubtasks;
 
 - (NSString*) returnTaskToEditTitle;
+
+- (void) deselectAllRoomsInfo;
+
 
 @end
 

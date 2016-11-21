@@ -117,25 +117,56 @@ static NSString* roomKey  = @"RoomKey";
 {
     __weak typeof(self) blockSelf = self;
     
-    ProjectTaskRoom* room = [self getInfoForCellAtIndexPath: path];
+    id selectedItem = [self getInfoForCellAtIndexPath: path];
     
-    if ( self.selectedRoom != room && self.selectedRoom.isSelected.boolValue )
+  
+    if ([selectedItem isKindOfClass: [ProjectTaskRoom class]])
     {
-        [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
-                                      withCompletion: nil];
+        if ( self.selectedRoom != selectedItem && self.selectedRoom.isSelected.boolValue )
+        {
+            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
+                                          withCompletion: nil];
+            
+        }
+        
+        self.selectedRoom = selectedItem;
+        
+        [DataManagerShared updateSelectedStateOfRoom: selectedItem
+                                      withCompletion: ^(BOOL isSuccess) {
+                                          
+                                          [blockSelf updateData];
+                                          
+                                          if (completion)
+                                              completion (YES);
+                                          
+                                      }];
     }
     
-    self.selectedRoom = room;
+    else if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
+    {
+        if ( self.selectedLevel != selectedItem && self.selectedLevel.isSelected.boolValue )
+        {
+            [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
+                                          withCompletion: nil];
+            
+        }
+        
+        self.selectedRoom = selectedItem;
+        
+        [DataManagerShared updateSelectedStateOfLevel: selectedItem
+                                       withCompletion:^(BOOL isSuccess) {
+                                           [blockSelf updateData];
+                                           
+                                           if (completion)
+                                               completion (YES);
+                                       }];
+        
+        
+    }
     
-    [DataManagerShared updateSelectedStateOfRoom: room
-                                  withCompletion: ^(BOOL isSuccess) {
-                                      
-                                      [blockSelf updateData];
-                                      
-                                      if (completion)
-                                          completion (YES);
-                                      
-                                  }];
+    
+    
+    
 }
 
 - (RACSignal*) updateContent
@@ -246,7 +277,7 @@ static NSString* roomKey  = @"RoomKey";
                     NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
                 
                     self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
-                                                        inSection: 0];
+                                                            inSection: 0];
                 }
                 
             }];

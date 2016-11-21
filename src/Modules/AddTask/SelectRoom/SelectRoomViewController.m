@@ -157,6 +157,8 @@
 
 - (IBAction) onCancelBtn: (UIBarButtonItem*) sender
 {
+    id selectedInfo = [self.viewModel getSelectedInfo];
+    selectedInfo = nil;
     [self.navigationController popViewControllerAnimated: YES];
 }
 @end

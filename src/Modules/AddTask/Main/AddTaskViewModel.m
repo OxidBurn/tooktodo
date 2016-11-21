@@ -16,6 +16,7 @@
 #import "RowContent.h"
 #import "AddTaskMainFactory.h"
 
+
 @interface AddTaskViewModel() <OSFlexibleTextFieldCellDelegate, AddTaskModelDelegate>
 
 // properties
@@ -156,6 +157,7 @@
     [self.model fillTaskToEdit: taskToEdit];
 }
 
+
 - (BOOL) checkSubtasks
 {
    return [self.model checkSubtasks];
@@ -165,6 +167,13 @@
 {
     return [self.model returnTaskToEditTitle];
 }
+
+- (void) deselectAllRoomsInfo
+{
+    [self.model deselectAllRoomsInfo];
+}
+
+
 
 #pragma mark - UITableView data source -
 
