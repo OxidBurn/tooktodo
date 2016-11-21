@@ -241,8 +241,9 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
             if (indexPath.row == 0)
             {
-                self.addCommentCell.addCommentTextView.scrollEnabled = false;
-                height = [self.addCommentCell.addCommentTextView sizeThatFits:CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
+                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
+                height = MIN(height, 122);
+                self.addCommentCell.addCommentTextView.scrollEnabled = !(height < 122);
                 self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
             }
         }
@@ -503,12 +504,25 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void)    addCommentCell: (AddCommentCell*)addCommentCell
    newCommentTextDidChange: (UITextView*)sender
 {
-    CGPoint contentOffset           = self.tableView.contentOffset;
+    CGRect frame = self.addCommentCell.frame;
+    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 30, CGFLOAT_MAX)].height + 30;
+    frame.size.height = MIN(frame.size.height, 122);
+    self.addCommentCell.frame = frame;
+
+    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 122);
+    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
+
+    if (self.addCommentCell.addCommentTextView.scrollEnabled)
+    {
+        return;
+    }
+
+    CGPoint contentOffset = self.tableView.contentOffset;
     [UIView setAnimationsEnabled: false];
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
     [UIView setAnimationsEnabled: true];
-    self.tableView.contentOffset    = contentOffset;
+    self.tableView.contentOffset  = contentOffset;
 }
 
 @end
