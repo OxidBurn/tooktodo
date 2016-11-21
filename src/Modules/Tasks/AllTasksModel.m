@@ -154,8 +154,8 @@
     {
         return @"TaskInfoCellID";
     }
-    
-    else return @"";
+    else
+        return @"";
 }
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path

@@ -60,10 +60,11 @@
     return [self.model getSelectedProjectTask];
 }
 
-//- (void) updateTaskStatus
-//{
+- (void) updateTaskStatus
+{
+#warning 'Написать обновление статуса задачи'
 //    [self.model updateTaskStatusForIndexPath: ];
-//}
+}
 
 
 #pragma mark - UITable view data source -
@@ -144,16 +145,6 @@
                                  
                              }];
     };
-    
-    if ([cell isKindOfClass: [TasksListTableViewCell class]])
-    {
-        TasksListTableViewCell* tasksCell = (TasksListTableViewCell*) cell;
-        
-        tasksCell.delegate = self;
-        
-        [self.model updateTaskStatusForIndexPath: indexPath];
-
-    }
     
     return cell;
 }
