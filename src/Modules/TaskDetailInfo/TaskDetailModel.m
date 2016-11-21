@@ -50,24 +50,6 @@
     return _contentManager;
 }
 
-- (void) fillSelectedTask: (ProjectTask*)          task
-           withCompletion: (CompletionWithSuccess) completion
-{
-    self.task = task;
-    
-    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
-                                                          forTableViewWithFrame: self.tableViewFrame];
-    
-    if (completion)
-        completion(YES);
-}
-
-- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
-{
-    [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
-            withCompletion: completion];
-}
-
 
 #pragma mark - Public -
 
@@ -215,6 +197,27 @@
                                                                           forContent: self.taskTableViewContent];
     
 }
+
+- (void) fillSelectedTask: (ProjectTask*)          task
+           withCompletion: (CompletionWithSuccess) completion
+{
+    self.task = task;
+    
+    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
+                                                          forTableViewWithFrame: self.tableViewFrame];
+    
+    [self updateSecondSectionContentType: self.secondSectionContentType];
+    
+    if (completion)
+        completion(YES);
+}
+
+- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
+{
+    [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
+            withCompletion: completion];
+}
+
 
 #pragma mark - Helpers -
 
