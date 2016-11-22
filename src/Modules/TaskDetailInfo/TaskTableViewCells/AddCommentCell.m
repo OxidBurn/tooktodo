@@ -24,26 +24,33 @@
     
 }
 
-- (IBAction) onSendClick: (UIButton*) sender
-{
-    if ([self.delegate respondsToSelector:@selector( addCommentCell:
-                                                        onSendClick: )])
-    {
-        [self.delegate addCommentCell: self
-                          onSendClick: sender];
-    }
-}
-
 #pragma mark - UITextViewDelegate -
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
+- (void)textViewDidBeginEditing: (UITextView*)textView
 {
     self.addCommentLabel.alpha = 0;
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
+- (void)textViewDidEndEditing: (UITextView*)textView
 {
     self.addCommentLabel.alpha = textView.text.length == 0;
+}
+
+- (BOOL)        textView: (UITextView*)textView
+ shouldChangeTextInRange: (NSRange)range
+         replacementText: (NSString *)text {
+    if ([text isEqualToString:@"\n"])
+    {
+        if ([self.delegate respondsToSelector:@selector( addCommentCell:
+                                                            onSendClick: )])
+        {
+            [self.delegate addCommentCell: self
+                              onSendClick: textView];
+        }
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 - (void) textViewDidChange:(UITextView *)textView
