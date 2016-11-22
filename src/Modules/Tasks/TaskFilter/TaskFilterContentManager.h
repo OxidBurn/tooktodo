@@ -10,10 +10,12 @@
 
 // Classes
 #import "TaskFilterConfiguration.h"
+#import "ProjectsEnumerations.h"
 
 @interface TaskFilterContentManager : NSObject
 
 // methods
-- (NSArray*) getTableViewContentForConfiguration: (TaskFilterConfiguration*) filterConfig;
+- (NSArray*) getTableViewContentForConfiguration: (TaskFilterConfiguration*) filterConfig
+                                  withFilterType: (TasksFilterType)          filterType;
 
 @end

@@ -193,5 +193,11 @@ typedef NS_ENUM(NSUInteger, FilterByDatesPickerTag)
     BeforeDate,
 };
 
+typedef NS_ENUM(NSUInteger, TasksFilterType)
+{
+    FilterBySingleProject,
+    FilterByAllProjects,
+};
+
 
 #endif /* ProjectsEnumerations_h */
