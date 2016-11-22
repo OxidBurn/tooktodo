@@ -79,28 +79,31 @@
 {
     NSString* requestURL = [self buildPostCommentURL];
 
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"message": comment,
-                                                                 @"files": @[
-                                                                           @"string"
-                                                                           ]}
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary* requestParameters = @{@"message" : comment,
+                                        @"files" : @[]};
 
     @weakify(self)
+    
     RACSignal* loadCommentsForTaskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
         [[[TaskCommentsAPIService sharedInstance] postCommentforTask: requestURL
-                                                          withParams: jsonString]
+                                                          withParams: requestParameters]
          subscribeNext: ^(RACTuple* response) {
+             
              @strongify(self)
+             
              [self parseCommentsResponse: response[0]
                           withCompletion: ^(BOOL isSuccess) {
+                              
                               [subscriber sendNext: nil];
                               [subscriber sendCompleted];
+                              
                           }];
          }
          error: ^(NSError *error) {
+             
              [subscriber sendError: error];
+             
          }];
         return nil;
     }];
