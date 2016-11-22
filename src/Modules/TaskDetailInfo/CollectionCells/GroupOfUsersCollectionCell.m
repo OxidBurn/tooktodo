@@ -7,6 +7,10 @@
 //
 
 #import "GroupOfUsersCollectionCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+//Classes
+#import "FilledTeamInfo.h"
 
 @interface GroupOfUsersCollectionCell()
 
@@ -14,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel* groupNameLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView* disclosureIndicatorImageView;
-
 @property (weak, nonatomic) IBOutlet UIImageView* firstAvatarImageView;
 @property (weak, nonatomic) IBOutlet UIImageView* secondAvatarImageView;
 @property (weak, nonatomic) IBOutlet UIImageView* thirdAvatarImageView;
@@ -28,7 +31,6 @@
 
 // methods
 
-
 @end
 
 @implementation GroupOfUsersCollectionCell
@@ -41,5 +43,30 @@
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content
 {
     self.groupNameLabel.text = content.cellTitle;
+    
+    if (content.observers)
+    {
+        [content.observers enumerateObjectsUsingBlock:^(FilledTeamInfo*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self.firstAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.secondAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.thirdAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.fourthAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.fifthAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+        }];
+    }
+    
+    else if (content.claiming)
+    {
+        [content.claiming enumerateObjectsUsingBlock:^(FilledTeamInfo*   _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+            [self.firstAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.secondAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.thirdAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.fourthAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+            [self.fifthAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+        }];
+    }
+    
 }
 @end
