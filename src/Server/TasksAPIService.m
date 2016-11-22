@@ -55,4 +55,12 @@
     return [[[requestManager rac_POST: createNewTaskURL parameters: parameters] logError] replayLazily];
 }
 
+- (RACSignal*) deleteTaskWithURL: (NSString*)     url
+                  withParameters: (NSDictionary*) parameters
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_DELETE: url parameters: parameters] logError] replayLazily];
+}
+
 @end

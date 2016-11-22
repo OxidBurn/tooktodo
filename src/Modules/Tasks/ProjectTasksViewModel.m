@@ -60,10 +60,11 @@
     return [self.model getSelectedProjectTask];
 }
 
-//- (void) updateTaskStatus
-//{
+- (void) updateTaskStatus
+{
+#warning 'Написать обновление статуса задачи'
 //    [self.model updateTaskStatusForIndexPath: ];
-//}
+}
 
 
 #pragma mark - UITable view data source -
@@ -136,22 +137,14 @@
     
     cell.didSelectedTaskAtIndex = ^( NSIndexPath* index){
         
-        [blockSelf.model markTaskAsSelected: index];
-        
-        if ( blockSelf.performSegue )
-            blockSelf.performSegue(@"ShowTaskDetailSegueId");
-        
+        [blockSelf.model markTaskAsSelected: index
+                             withCompletion: ^(BOOL isSuccess) {
+                                 
+                                 if ( blockSelf.performSegue )
+                                     blockSelf.performSegue(@"ShowTaskDetailSegueId");
+                                 
+                             }];
     };
-    
-    if ([cell isKindOfClass: [TasksListTableViewCell class]])
-    {
-        TasksListTableViewCell* tasksCell = (TasksListTableViewCell*) cell;
-        
-        tasksCell.delegate = self;
-        
-        [self.model updateTaskStatusForIndexPath: indexPath];
-
-    }
     
     return cell;
 }

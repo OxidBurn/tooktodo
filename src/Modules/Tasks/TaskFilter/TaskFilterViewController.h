@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TaskFilterViewController : UIViewController
+#import "BaseMainViewController.h"
+
+@interface TaskFilterViewController: BaseMainViewController
 
 @end

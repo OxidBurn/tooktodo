@@ -256,6 +256,8 @@
 
 - (IBAction) onCancel: (UIBarButtonItem*) sender
 {
+    [self.viewModel deselectAllRoomsInfo];
+    
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
@@ -272,7 +274,8 @@
     
     if ( hasSubtasks)
     {
-        [OSAlertController showAlertWithDeleteTaskOnController: self];
+        [OSAlertController showAlertWithDeleteTaskOnController: self
+                                                  withDelegate: self.viewModel];
     }
     else
     {
@@ -393,11 +396,15 @@
     self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableCreteOnBaseBtnCommand;
     
     
+    @weakify(self)
+    
         [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
          {
             [signal subscribeNext: ^(NSString* taskName) {
                 
             
+                @strongify(self)
+                
                 self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
             
                 
@@ -405,7 +412,8 @@
              
             [signal subscribeCompleted: ^{
                 
-    
+                @strongify(self)
+                
                 [self showTaskCreatedMessage];
             
                 NewTask* t = [self.viewModel getNewTask];
@@ -426,6 +434,15 @@
         }];
         
     }];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.dismissTaskInfo = ^(){
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+        
+    };
    
 }
 

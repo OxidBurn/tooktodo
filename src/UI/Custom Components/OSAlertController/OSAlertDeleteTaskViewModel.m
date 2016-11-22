@@ -8,6 +8,14 @@
 
 #import "OSAlertDeleteTaskWithSubtasksViewModel.h"
 
+typedef NS_ENUM(NSUInteger, DeleteTaskTableCellsType)
+{
+    DeleteTaskTitleCellType,
+    DeleteTaskDeleteSubtasksCellType,
+    DeleteTaskSaveSubTasksCellType,
+    DeleteTaskCancelCellType,
+};
+
 @import UIKit;
 
 @interface OSAlertDeleteTaskWithSubtasksViewModel()
@@ -54,7 +62,8 @@
 //    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
 //                                                    size: 17.0f];
 //    
-    cell.textLabel.text = self.titlesArray[indexPath.row];
+    cell.textLabel.text          = self.titlesArray[indexPath.row];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
    // cell.textLabel.font = customFont;
     
     if (indexPath.row == 0)
@@ -108,25 +117,36 @@
     
     UITableViewCell* cell = [tableView cellForRowAtIndexPath: indexPath];
     
-    if (indexPath.row == 0)
+    switch (indexPath.row)
     {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        case DeleteTaskTitleCellType:
+        {
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+            break;
+        case DeleteTaskDeleteSubtasksCellType:
+        {
+            if ( self.deleteTaskWithSubtasks )
+                self.deleteTaskWithSubtasks(YES);
+        }
+            break;
+        case DeleteTaskSaveSubTasksCellType:
+        {
+            if ( self.deleteTaskWithSubtasks )
+                self.deleteTaskWithSubtasks(NO);
+        }
+            break;
+        case DeleteTaskCancelCellType:
+        {
+            
+        }
+            break;
+        default:
+            break;
     }
     
-    if ( indexPath.row == 3 )
-    {
-        if ( self.dismissAlert )
-            self.dismissAlert();
-    }
-    
-    //    if (indexPath.row == 1)
-    //    {
-    //        //делегатом обработать нажатие на ячейку
-    //        if ([self.delegate performSelector:@selector(showControllerWithIdentifier:)])
-    //        {
-    //            //[self.delegate showControllerWithIdentifier: @"ShowImgAlert"];
-    //        }
-    //    }
+    if ( self.dismissAlert )
+        self.dismissAlert();
 }
 
 - (void) tableView: (UITableView*) tableView
@@ -134,18 +154,18 @@
  forRowAtIndexPath: (NSIndexPath*) indexPath
 {
     // Remove seperator inset
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
+    if ([cell respondsToSelector: @selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset: UIEdgeInsetsZero];
     }
     
     // Prevent the cell from inheriting the Table View's margin settings
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [cell setPreservesSuperviewLayoutMargins:NO];
+    if ([cell respondsToSelector: @selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins: NO];
     }
     
     // Explictly set your cell's layout margins
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
+    if ([cell respondsToSelector: @selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins: UIEdgeInsetsZero];
     }
 }
 

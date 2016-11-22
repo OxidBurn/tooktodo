@@ -26,4 +26,14 @@
 @implementation RightDetailWithCustomExpandedIconCell
 
 
+#pragma mark - Public -
+
+- (void) fillCellWithTitle: (NSString*) titleText
+                withDetail: (NSString*) detailText
+{
+    self.titleLabel.text      = titleText;
+    self.detailInfoLabel.text = detailText;
+}
+
+
 @end

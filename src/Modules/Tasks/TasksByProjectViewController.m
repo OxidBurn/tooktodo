@@ -30,6 +30,7 @@
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* sortTasksBtn;
 
 // Methods
+- (IBAction) onShowTasksFilter: (UIBarButtonItem*) sender;
 
 - (void) bindingUI;
 
@@ -170,6 +171,16 @@
                        withDelegate: self.viewModel
                     withSourceFrame: [self getFrameForSortingPopover]
                       withDirection: UIPopoverArrowDirectionUp];
+}
+
+- (IBAction)onShowTasksFilter: (UIBarButtonItem*) sender
+{
+    NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
+    
+    id customSender = IS_PHONE ? self : self.splitViewController;
+    
+    [self performSegueWithIdentifier: segueId
+                              sender: customSender];
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -

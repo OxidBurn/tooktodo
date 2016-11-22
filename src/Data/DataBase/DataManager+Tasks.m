@@ -150,6 +150,42 @@
                       }];
 }
 
+- (void) deleteTaskWithInfo: (ProjectTask*)          task
+                withSubtask: (BOOL)                  subtask
+             withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        if ( subtask )
+        {
+            [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, BOOL * _Nonnull stop) {
+               
+                [subTask MR_deleteEntityInContext: localContext];
+                
+            }];
+        }
+        else
+            if ( task.subTasks.count > 0 )
+            {
+                [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, BOOL * _Nonnull stop) {
+                    
+                    subTask.parentTaskId = nil;
+                    subTask.stage        = task.stage;
+                    
+                }];
+            }
+        
+        [task MR_deleteEntityInContext: localContext];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 #pragma mark - Internal methods -
 
 - (ProjectTask*) persistTaskWithInfo: (ProjectTaskModel*)       info

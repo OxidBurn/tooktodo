@@ -26,7 +26,7 @@
 #import "AddTaskContentManager.h"
 #import "AddTaskContentManager+UpdadingContent.h"
 #import "AddTaskContentManager+ProjectTask.h"
-
+#import "DataManager+Room.h"
 
 @interface AddTaskModel() <AddMessageViewControllerDelegate,
                            OSSwitchTableCellDelegate,
@@ -254,6 +254,36 @@
 - (NSString*) returnTaskToEditTitle
 {
     return self.editedTask.title;
+}
+
+- (void) deselectAllRoomsInfo
+{
+    NSArray* levelsArray = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    
+    [levelsArray enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.isSelected = @(YES);
+        obj.isExpanded = @(YES);
+        
+        [DataManagerShared updateSelectedStateOfLevel: obj
+                                       withCompletion: nil];
+        
+        [DataManagerShared updateExpandedStateOfLevel: obj
+                                       withCompletion: nil];
+    }];
+}
+
+- (void) deleteTaskWithSubtask: (BOOL)                  withSubtask
+                withCompletion: (CompletionWithSuccess) completion
+{
+    [[[TasksService sharedInstance] deleteTask: self.editedTask
+                                  withSubtasks: withSubtask]
+     subscribeNext: ^(id x) {
+         
+         if ( completion )
+             completion(YES);
+         
+     }];
 }
 
 

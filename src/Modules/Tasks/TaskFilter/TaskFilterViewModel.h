@@ -11,6 +11,12 @@
 // Frameworks
 @import UIKit;
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+
+// properties
+@property (nonatomic, copy) void(^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);
 
 @end

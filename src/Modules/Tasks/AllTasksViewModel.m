@@ -125,14 +125,13 @@
     
     cell.didSelectedTaskAtIndex = ^( NSIndexPath* index ){
         
-        [blockSelf.model markTaskAsSelected: index];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            if ( blockSelf.didShowTaskInfo )
-                blockSelf.didShowTaskInfo();
-            
-        });
+        [blockSelf.model markTaskAsSelected: index
+                             withCompletion: ^(BOOL isSuccess) {
+                                 
+                                 if ( blockSelf.didShowTaskInfo )
+                                     blockSelf.didShowTaskInfo();
+                                 
+                             }];
     };
     
     return cell;

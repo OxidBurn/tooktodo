@@ -27,11 +27,14 @@
 @property (weak, nonatomic) IBOutlet UITextView*         commentContentTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* TextViewHeightConstraint;
 @property (strong, nonatomic) FlexibleViewsContainer*    attachmentsContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 
 
 // properties
 
 // methods
+- (IBAction) onEditComment: (UIButton*) sender;
 
 
 @end
@@ -86,4 +89,19 @@
     }
 }
 
+
+#pragma mark - Action -
+
+- (IBAction)onCancelBtn:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)onEditBtn:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)onEditComment:(UIButton *)sender {
+}
 @end

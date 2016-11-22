@@ -8,6 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
+@protocol FilterByTermsCellDelegate;
+
 @interface FilterByTermsCell : UITableViewCell
+
+// properties
+@property (weak, nonatomic) id <FilterByTermsCellDelegate> delegate;
+
+// methods
+
+- (void) fillCellWithTitle: (NSString*)             titleText
+                withDetail: (NSString*)             detailText
+              withCellType: (FilterByTermsCellType) cellType
+              withDelegate: (id)                    delegate;
+
+@end
+
+@protocol FilterByTermsCellDelegate <NSObject>
+
+- (void) showFilterByDatesWithType: (FilterByDateViewControllerType) controllerType;
 
 @end

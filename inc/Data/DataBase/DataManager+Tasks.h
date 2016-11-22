@@ -47,6 +47,11 @@
     withStatusDescription: (NSString*)             statusDescription
            withCompletion: (CompletionWithSuccess) completion;
 
+// delete
+- (void) deleteTaskWithInfo: (ProjectTask*)          task
+                withSubtask: (BOOL)                  subtask
+             withCompletion: (CompletionWithSuccess) completion;
+
 // Get methods
 - (ProjectRoleAssignments*) getSelectedProjectRoleAssignment;
 

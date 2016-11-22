@@ -154,8 +154,8 @@
     {
         return @"TaskInfoCellID";
     }
-    
-    else return @"";
+    else
+        return @"";
 }
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
@@ -176,12 +176,14 @@
         return 139.0f;
 }
 
-- (void) markTaskAsSelected: (NSIndexPath*) index
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion
 {
     ProjectTask* selectedTask = [self getInfoForCellAtIndexPath: index];
     
     [[TasksService sharedInstance] changeSelectedStageForTask: selectedTask
-                                            withSelectedState: YES];
+                                            withSelectedState: YES
+                                               withCompletion: completion];
 }
 
 - (void) sortArrayForType: (TasksSortingType)           type

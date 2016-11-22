@@ -121,7 +121,7 @@
 }
 
 - (void) setupStatusTypeButton: (ProjectTask*) task
-{  
+{
     self.taskStatusBtn.backgroundColor = [[TaskStatusDefaultValues sharedInstance]
                                           returnColorForTaskStatus: task.status.integerValue];
     

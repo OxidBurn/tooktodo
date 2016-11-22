@@ -12,10 +12,14 @@
 
 @interface OSAlertDeleteTaskWithSubtasksController : OSAlertViewController
 
+@property (weak, nonatomic) id<OSAlertDeleteTaskWithSubtasksControllerDelegate> delegate;
+
 @end
 
 @protocol OSAlertDeleteTaskWithSubtasksControllerDelegate <NSObject>
 
 - (void) performActionAtIndexPath: (NSIndexPath*) indexPath;
+
+- (void) deleteTaskWithSubtasks: (BOOL) subtasks;
 
 @end

@@ -10,7 +10,6 @@
 
 // Classes
 #import "OSAlertPlanNotLoadedController.h"
-#import "OSAlertDeleteTaskWithSubtasksController.h"
 #import "OSDefaultAlertController.h"
 #import "OSTaskOptionsController.h"
 
@@ -49,12 +48,15 @@
 
 }
 
-+ (void) showAlertWithDeleteTaskOnController: (UIViewController*) controller
++ (void) showAlertWithDeleteTaskOnController: (UIViewController*)                                   controller
+                                withDelegate: (id<OSAlertDeleteTaskWithSubtasksControllerDelegate>) delegate
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];
     
-    OSAlertPlanNotLoadedController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskWithSubtasksControllerID"];
+    OSAlertDeleteTaskWithSubtasksController* alertController = [alertStoryboard instantiateViewControllerWithIdentifier: @"DeleteTaskWithSubtasksControllerID"];
+    
+    alertController.delegate = delegate;
     
     [controller presentViewController: alertController
                              animated: YES
@@ -96,9 +98,9 @@
                            completion: nil];
 }
 
-+ (void) showDeleteTaskAlertOnController: (UIViewController*) controller
-                           withTaskTitle: (NSString*)         taskTitle
-                            withDelegate: (id <OSAlertDeleteTasksControllerDelegate>)                delegate
++ (void) showDeleteTaskAlertOnController: (UIViewController*)                         controller
+                           withTaskTitle: (NSString*)                                 taskTitle
+                            withDelegate: (id <OSAlertDeleteTasksControllerDelegate>) delegate
 {
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"OSAlertStoryboard"
                                                               bundle: [NSBundle mainBundle]];

@@ -23,4 +23,7 @@
 
 - (RACSignal*) createNewTaskWithParameter: (NSDictionary*) parameters;
 
+- (RACSignal*) deleteTaskWithURL: (NSString*)     url
+                  withParameters: (NSDictionary*) parameters;
+
 @end

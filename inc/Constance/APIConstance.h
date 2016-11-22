@@ -41,5 +41,6 @@ static NSString* createNewProjectRoleTypeURL    = @"/api/v2/project/{projectId}/
 static NSString* createNewTaskURL               = @"/api/task";
 static NSString* taskCommentsURL                = @"/api/task/p{projectId}-t{taskId}/comment/list";
 static NSString* postCommentURL                 = @"/api/task/p{projectId}-t{taskId}/comment";
+static NSString* deleteTaskURL                  = @"/api/task/p{projectId}-t{taskId}";
 
 #endif /* APIConstance_h */

@@ -152,9 +152,13 @@
     return loadAvailableActionsSignal;
 }
 
-- (void) changeSelectedStageForTask: (ProjectTask*) task
-                  withSelectedState: (BOOL)         isSelected
+- (void) changeSelectedStageForTask: (ProjectTask*)          task
+                  withSelectedState: (BOOL)                  isSelected
+                     withCompletion: (CompletionWithSuccess) completion
 {
+    if ( isSelected )
+        [SVProgressHUD show];
+    
     [DataManagerShared updateSelectedStateForTask: task
                                 withSelectedState: isSelected
                                    withCompletion: ^(BOOL isSuccess) {
@@ -164,18 +168,28 @@
                                            [[self loadSelectedTaskAvailableActionsForTask: task]
                                             subscribeNext: ^(id x) {
                                                 
+                                                [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
+                                                 subscribeNext: ^(id x) {
+                                                    
+                                                     if ( completion )
+                                                         completion(isSuccess);
+                                                     
+                                                     [SVProgressHUD dismiss];
+                                                     
+                                                 }
+                                                 error: ^(NSError *error) {
+                                                     
+                                                 }];
+                                                
                                             }
                                             error:^(NSError *error) {
                                                 
                                             }];
-                                           
-                                           [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
-                                            subscribeNext: ^(id x) {
-                                                
-                                            }
-                                            error: ^(NSError *error) {
-                                                
-                                            }];
+                                       }
+                                       else
+                                       {
+                                           if ( completion )
+                                               completion(isSuccess);
                                        }
                                        
                                    }];
@@ -229,6 +243,49 @@
     }];
     
     return createNewTaskSignal;
+}
+
+- (RACSignal*) deleteTask: (ProjectTask*) task
+             withSubtasks: (BOOL)         subtasks
+{
+    NSString* requestURL            = [self buildDeleteTaskURL: task];
+    NSDictionary* requestParameters = @{@"saveChildTasks" : @(subtasks)};
+
+    @weakify(self)
+    
+    RACSignal* deleteTaskSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] deleteTaskWithURL: requestURL
+                                             withParameters: requestParameters]
+         subscribeNext: ^(RACTuple* response) {
+             
+             NSLog(@"<INFO> Task delete resopnse %@", response);
+             
+             @strongify(self)
+             
+             [self deleteTaskFromDataBase: task
+                         withDeleteOption: subtasks
+                           withCompletion: ^(BOOL isSuccess) {
+                              
+                               [subscriber sendNext: nil];
+                               [subscriber sendCompleted];
+                               
+                           }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+             NSLog(@"<ERROR> with deleting task on server %@", error.userInfo);
+             
+         }];
+        
+        
+        return nil;
+    }];
+    
+    return deleteTaskSignal;
 }
 
 #pragma mark - Data base methods -
@@ -441,6 +498,26 @@
     }
     
     return newTaskParameter.copy;
+}
+
+- (NSString*) buildDeleteTaskURL: (ProjectTask*) task
+{
+    NSString* requestURL = [deleteTaskURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                    withString: task.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: task.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (void) deleteTaskFromDataBase: (ProjectTask*)          task
+               withDeleteOption: (BOOL)                  withSubtask
+                 withCompletion: (CompletionWithSuccess) completion
+{
+    [DataManagerShared deleteTaskWithInfo: task
+                              withSubtask: withSubtask
+                           withCompletion: completion];
 }
 
 @end

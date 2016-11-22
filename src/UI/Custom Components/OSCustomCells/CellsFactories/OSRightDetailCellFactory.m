@@ -17,12 +17,14 @@
 
 - (UITableViewCell*) returnRightDetailCellWithTitle: (NSString*)    titleText
                                      withDetailText: (NSString*)    detailText
+                                 withSelectedDetail: (BOOL)         isSelected
                                        forTableView: (UITableView*) tableView
 {
     OSRightDetailCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RightDetailCellID"];
     
     [cell fillCellWithTitle: titleText
-                 withDetail: detailText];
+                 withDetail: detailText
+           detailIsSelected: isSelected];
     
     return cell;
 }

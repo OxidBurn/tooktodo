@@ -50,24 +50,6 @@
     return _contentManager;
 }
 
-- (void) fillSelectedTask: (ProjectTask*)          task
-           withCompletion: (CompletionWithSuccess) completion
-{
-    self.task = task;
-    
-    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
-                                                          forTableViewWithFrame: self.tableViewFrame];
-    
-    if (completion)
-        completion(YES);
-}
-
-- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
-{
-    [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
-            withCompletion: completion];
-}
-
 
 #pragma mark - Public -
 
@@ -103,16 +85,17 @@
     return sectionContent.count;
 }
 
-- (void) deselectTask
+- (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion
 {
     [[TasksService sharedInstance] changeSelectedStageForTask: self.task
-                                            withSelectedState: NO];
+                                            withSelectedState: NO
+                                               withCompletion: completion];
 }
 
 - (NSArray*) returnHeaderNumbersInfo
 {
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
-                             self.task.attachments ? self.task.attachments : @(0),
+                             self.task.attachments ? self.task.attachments : @0,
                              self.task.commentsCount ? self.task.commentsCount : @(0),
                              @(0) ];
     
@@ -214,6 +197,27 @@
                                                                           forContent: self.taskTableViewContent];
     
 }
+
+- (void) fillSelectedTask: (ProjectTask*)          task
+           withCompletion: (CompletionWithSuccess) completion
+{
+    self.task = task;
+    
+    self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
+                                                          forTableViewWithFrame: self.tableViewFrame];
+    
+    [self updateSecondSectionContentType: self.secondSectionContentType];
+    
+    if (completion)
+        completion(YES);
+}
+
+- (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
+{
+    [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
+            withCompletion: completion];
+}
+
 
 #pragma mark - Helpers -
 
