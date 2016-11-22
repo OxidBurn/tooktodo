@@ -155,6 +155,11 @@
     [self.model updateTaskStatus];
 }
 
+- (void) hideKeyboard
+{
+    [self.addCommentCell.addCommentTextView resignFirstResponder];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

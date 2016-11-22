@@ -25,9 +25,11 @@
 
 // outlets
 @property (weak, nonatomic) IBOutlet UITableView* taskTableView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint* taskTableViewBottom;
 
 // properties
 @property (strong, nonatomic) TaskDetailViewModel* viewModel;
+@property (strong, nonatomic) UITapGestureRecognizer *keyboardRecognizer;
 
 // methods
 - (IBAction) onBackBtn:   (UIBarButtonItem*) sender;
@@ -41,6 +43,8 @@
 - (IBAction) onSelectSubtasksGesture: (UITapGestureRecognizer*) sender;
 
 @end
+
+#define kToolBarHeight (56)
 
 @implementation TaskDetailViewController
 
@@ -62,10 +66,29 @@
     [self setupDefaults];
     
     self.splitViewController.delegate = self;
+
+    [self setKeyboardRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableClick:)]];
+
+    __weak typeof(self) weakSelf = self;
+    [NSNotificationCenter.defaultCenter addObserverForName:UIKeyboardWillShowNotification
+                                                    object:nil
+                                                     queue:nil
+                                                usingBlock:^(NSNotification * _Nonnull note) {
+                                                    [weakSelf.taskTableView addGestureRecognizer:weakSelf.keyboardRecognizer];
+                                                CGFloat height = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+                                                    weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
+     }];
+}
+
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void) didReceiveMemoryWarning
 {
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+
     [super didReceiveMemoryWarning];
 }
 
@@ -188,6 +211,12 @@
     [self.viewModel updateSecondSectionContentForType: SubtasksContentType];
 }
 
+- (void)onTableClick: (id)sender
+{
+    [self.viewModel hideKeyboard];
+    self.taskTableViewBottom.constant = 0;
+    [self.taskTableView removeGestureRecognizer:self.keyboardRecognizer];
+}
 
 #pragma mark - ChangeStatusControllerDelegate methods -
 
