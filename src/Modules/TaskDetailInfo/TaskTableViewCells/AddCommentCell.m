@@ -24,9 +24,19 @@
     
 }
 
+- (IBAction) onSendClick: (UIButton*) sender
+{
+    if ([self.delegate respondsToSelector:@selector( addCommentCell:
+                                                        onSendClick: )])
+    {
+        [self.delegate addCommentCell: self
+                          onSendClick: sender];
+    }
+}
+
 #pragma mark - UITextViewDelegate -
 
-- (void)textViewDidChange:(UITextView *)textView
+- (void) textViewDidChange:(UITextView *)textView
 {
     if ([self.delegate respondsToSelector:@selector( addCommentCell:
                                             newCommentTextDidChange: )])

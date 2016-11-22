@@ -18,6 +18,7 @@
 #import "CommentsCell.h"
 #import "NSObject+Sorting.h"
 #import "AddCommentCell.h"
+#import "TaskCommentsService.h"
 
 
 // Helpers
@@ -535,6 +536,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.tableView endUpdates];
     [UIView setAnimationsEnabled: true];
     self.tableView.contentOffset  = contentOffset;
+}
+
+- (void) addCommentCell:(AddCommentCell *)addCommentCell
+            onSendClick:(UIButton *)sender
+{
+    RACSignal* signal = [TaskCommentsService.sharedInstance postCommentForSelectedTask:addCommentCell.addCommentTextView.text];
+    
+    [signal subscribeNext: ^(id response) {
+         NSLog(@"%@", response);
+     } error: ^(NSError *error) {
+
+     }];
 }
 
 @end

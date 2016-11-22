@@ -14,6 +14,8 @@
 
 - (void)    addCommentCell: (AddCommentCell*)addCommentCell
    newCommentTextDidChange: (UITextView*)sender;
+- (void)    addCommentCell: (AddCommentCell*)addCommentCell
+               onSendClick: (UIButton*)sender;
 
 @end
 

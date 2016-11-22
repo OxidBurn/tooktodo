@@ -38,4 +38,12 @@
     return [[[requestManager rac_GET: requestString parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) postCommentforTask: (NSString*) requestString
+                       withParams: (NSDictionary*) params
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+
+    return [[[requestManager rac_POST:requestString parameters: params] logError] replayLazily];
+}
+
 @end

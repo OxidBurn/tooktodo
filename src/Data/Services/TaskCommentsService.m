@@ -75,6 +75,38 @@
     return loadCommentsForTaskSignal;
 }
 
+- (RACSignal*) postCommentForSelectedTask: (NSString *)comment
+{
+    NSString* requestURL = [self buildPostCommentURL];
+
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:@{@"message": comment,
+                                                                 @"files": @[
+                                                                           @"string"
+                                                                           ]}
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    @weakify(self)
+    RACSignal* loadCommentsForTaskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [[[TaskCommentsAPIService sharedInstance] postCommentforTask: requestURL
+                                                          withParams: jsonString]
+         subscribeNext: ^(RACTuple* response) {
+             @strongify(self)
+             [self parseCommentsResponse: response[0]
+                          withCompletion: ^(BOOL isSuccess) {
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                          }];
+         }
+         error: ^(NSError *error) {
+             [subscriber sendError: error];
+         }];
+        return nil;
+    }];
+
+    return loadCommentsForTaskSignal;
+}
 
 #pragma mark - Internal methods -
 
@@ -88,6 +120,19 @@
     requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
                                                        withString: selectedTask.taskID.stringValue];
     
+    return requestURL;
+}
+
+- (NSString*) buildPostCommentURL
+{
+    ProjectTask* selectedTask = [DataManagerShared getSelectedTask];
+
+    NSString* requestURL = [postCommentURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                      withString: selectedTask.projectId.stringValue];
+
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: selectedTask.taskID.stringValue];
+
     return requestURL;
 }
 
