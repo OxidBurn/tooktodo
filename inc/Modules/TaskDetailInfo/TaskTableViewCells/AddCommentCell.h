@@ -22,6 +22,7 @@
 @interface AddCommentCell : UITableViewCell
 
 // outlets
+@property (nonatomic) IBOutlet UILabel *addCommentLabel;
 @property (nonatomic) IBOutlet UITextView *addCommentTextView;
 
 @property (weak, nonatomic) id<AddCommentCellDelegate> delegate;

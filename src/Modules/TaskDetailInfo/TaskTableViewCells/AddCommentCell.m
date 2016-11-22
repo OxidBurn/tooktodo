@@ -36,6 +36,16 @@
 
 #pragma mark - UITextViewDelegate -
 
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    self.addCommentLabel.alpha = 0;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    self.addCommentLabel.alpha = textView.text.length == 0;
+}
+
 - (void) textViewDidChange:(UITextView *)textView
 {
     if ([self.delegate respondsToSelector:@selector( addCommentCell:
