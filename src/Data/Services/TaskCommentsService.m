@@ -92,11 +92,11 @@
              
              @strongify(self)
              
-             [self parseCommentsResponse: response[0]
-                          withCompletion: ^(BOOL isSuccess) {
-                              
-                              [subscriber sendNext: nil];
-                              [subscriber sendCompleted];
+             [self parsePostCommentResponse: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+
+                                 [subscriber sendNext: nil];
+                                 [subscriber sendCompleted];
                               
                           }];
          }
@@ -146,6 +146,24 @@
     NSArray* commentsList = [CommentsModel arrayOfModelsFromDictionaries: response
                                                                    error: &parseError];
     
+    if ( parseError )
+    {
+        NSLog(@"Error with parsing task comments response: %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewCommentsForSelectedTasks: commentsList
+                                               withCompletion: completion];
+    }
+}
+
+- (void) parsePostCommentResponse: (NSArray*) response
+                   withCompletion: (CompletionWithSuccessAndComment) completion
+{
+    NSError* parseError   = nil;
+    NSArray* commentsList = [CommentsModel arrayOfModelsFromDictionaries: @[response]
+                                                                   error: &parseError];
+
     if ( parseError )
     {
         NSLog(@"Error with parsing task comments response: %@", parseError.localizedDescription);

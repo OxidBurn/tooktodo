@@ -243,8 +243,8 @@
         testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
-    
-    NSNumber* numberOfComments = [task commentsCount];
+
+    NSNumber* numberOfComments = @([task comments].count);
     
         if ( [task comments] && [task commentsCount] )
         {
@@ -267,7 +267,7 @@
                 [commentsTmp addObject: newRow];
             }
         }
-    
+
     [commentsTmp insertObject: addCommentCellContent
                       atIndex: 0];
     

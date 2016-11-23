@@ -19,7 +19,7 @@
 #import "NSObject+Sorting.h"
 #import "AddCommentCell.h"
 #import "TaskCommentsService.h"
-
+#import "TasksService.h"
 
 // Helpers
 #import "Utils.h"
@@ -544,9 +544,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     RACSignal* signal = [TaskCommentsService.sharedInstance postCommentForSelectedTask:addCommentCell.addCommentTextView.text];
     
     [signal subscribeNext: ^(id response) {
-         NSLog(@"%@", response);
+        [self.model fillSelectedTask:self.model.getCurrentTask withCompletion:^(BOOL isSuccess) {
+            self.model.getCurrentTask;
+            [self updateTableView];
+        }];
      } error: ^(NSError *error) {
-
      }];
 }
 

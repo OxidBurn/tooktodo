@@ -78,6 +78,12 @@
                                                 CGFloat height = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
                                                     weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
      }];
+    [NSNotificationCenter.defaultCenter addObserverForName:UIKeyboardWillHideNotification
+                                                    object:nil
+                                                     queue:nil
+                                                usingBlock:^(NSNotification * _Nonnull note) {
+                                                    [weakSelf onTableClick:nil];
+                                                }];
 }
 
 - (void)dealloc
