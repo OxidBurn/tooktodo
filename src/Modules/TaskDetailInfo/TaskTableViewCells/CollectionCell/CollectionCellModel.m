@@ -221,8 +221,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     TaskCollectionCellsContent* itemSeven = [TaskCollectionCellsContent new];
     
-    itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
-    itemSeven.cellTitle = @"Утверждающий";
+    itemSeven.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    itemSeven.cellTitle = @"Утверждающие";
     itemSeven.claiming  = [self createApproversArray];
     
     TaskCollectionCellsContent* itemEight = [TaskCollectionCellsContent new];
@@ -272,7 +272,6 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 - (NSArray*) createApproversArray
 {
-
     NSArray* teamInfo = [DataManagerShared getAllTeamInfo];
     NSMutableArray* convertedTeamTmpArr = [NSMutableArray array];
     
@@ -304,7 +303,6 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     }];
     
     return tmpApproversArray.copy;
-    
 }
 
 //- (NSArray*) createRoleAssignmentsArray

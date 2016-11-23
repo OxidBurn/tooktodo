@@ -44,8 +44,10 @@
     
     if ( content.taskOwner )
         userInfo = content.taskOwner.firstObject;
-    else
+    else if (content.responsible)
         userInfo = content.responsible.firstObject;
+    else if (content.claiming)
+        userInfo = content.claiming.firstObject;
     
     self.userNameLabel.text = userInfo.fullname;
     
