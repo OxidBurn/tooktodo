@@ -27,8 +27,8 @@
 // Helpers
 #import "NSDate+Helper.h"
 
-typedef NS_ENUM(NSUInteger, CollectionItemsList) {
-
+typedef NS_ENUM(NSUInteger, CollectionItemsList)
+{
     TermsItem,
     ActualTermsItem,
     PremisesItem,
@@ -40,14 +40,21 @@ typedef NS_ENUM(NSUInteger, CollectionItemsList) {
     
 };
 
-typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
-    
+typedef NS_ENUM(NSUInteger, CellectionItemCellId)
+{
     TermsCell,
     DetailCell,
     OnPlanCell,
     SingleUserCell,
     GroupOfUsersCell,
     
+};
+
+typedef NS_ENUM(NSUInteger, AssignmentRoleType)
+{
+    ResponsibleType,
+    ClaimingsType,
+    ObserverType,
 };
 
 @interface CollectionCellModel()
@@ -160,8 +167,6 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
             cell = [factory returnGroupOfUsersCellWithContent: content
                                             forCollectionView: collection
                                                 withIndexPath: indexPath];
-            
-            [self createClaimingsArray];
         }
             break;
     }
@@ -217,13 +222,13 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     
     itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     itemSeven.cellTitle = @"Утверждающий";
-    itemSeven.claiming  = [self createClaimingsArray];
+    itemSeven.claiming  = [self createRoleAssignmentsArray];
     
     TaskCollectionCellsContent* itemEight = [TaskCollectionCellsContent new];
 
     itemEight.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     itemEight.cellTitle = @"Наблюдатели";
-    itemEight.observers = [self createObserversArray];
+    itemEight.observers = [self createRoleAssignmentsArray];
     
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
@@ -264,7 +269,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     return @[ responsible ];
 }
 
-- (NSArray*) createClaimingsArray
+- (NSArray*) createRoleAssignmentsArray
 {
     //getting roleAssignments witch linked with task (claimings, observers, responsible)
     NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
@@ -283,68 +288,60 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     }];
     
     //tmp array to save claiming users
-    NSMutableArray* tmpClaimings = [NSMutableArray array];
+    NSMutableArray* tmpTaskRoleAssignmentUsers = [NSMutableArray array];
     
-    //enumeration of roleAssignments to check if it is claiming
+    //enumeration of roleAssignments to check its role
     [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (obj.taskRoleType.integerValue == 1)
-        {
-            [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull claimingUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
-            
-                
-                if ([obj.roleAssignmentsID isEqual: claimingUrs.memberID])
-                {
-                    [tmpClaimings addObject: claimingUrs];
-                }
-                
-            }];
 
-        }
-    }];
-    
-    return tmpClaimings.copy;
-}
-
-- (NSArray*) createObserversArray
-{
-    //getting roleAssignments witch linked with task (claimings, observers, responsible)
-    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
-    
-    //getting all team info to compare with taskRoleAssignments
-    NSArray* teamInfo = [DataManagerShared getAllTeamInfo];
-    NSMutableArray* convertedTeamTmpArr = [NSMutableArray array];
-    
-    [teamInfo enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        FilledTeamInfo* filledUserObj = [FilledTeamInfo new];
-        
-        [filledUserObj fillTeamInfo: obj];
-        
-        [convertedTeamTmpArr addObject: filledUserObj];
-    }];
-    
-    //tmp array to save claiming users
-    NSMutableArray* tmpObservers = [NSMutableArray array];
-    
-    //enumeration of roleAssignments to check if it is claiming
-    [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (obj.taskRoleType.integerValue == 2)
+        switch (obj.taskRoleType.integerValue)
         {
-            [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull observerUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
+            case ResponsibleType:
+            {
+                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull responsible,  NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    
+                    if ([obj.roleAssignmentsID isEqual: responsible.memberID])
+                    {
+                        [tmpTaskRoleAssignmentUsers addObject: responsible];
+                    }
+                    
+                }];
+            }
+                break;
                 
-                if ([obj.roleAssignmentsID isEqual: observerUrs.memberID])
-                {
-                    [tmpObservers addObject: observerUrs];
-                }
+            case ClaimingsType:
+            {
+                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull claimingUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    
+                    if ([obj.roleAssignmentsID isEqual: claimingUrs.memberID])
+                    {
+                        [tmpTaskRoleAssignmentUsers addObject: claimingUrs];
+                    }
+                    
+                }];
+
+            }
                 
-            }];
-            
+            case ObserverType:
+            {
+                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull observerUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ([obj.roleAssignmentsID isEqual: observerUrs.memberID])
+                    {
+                        [tmpTaskRoleAssignmentUsers addObject: observerUrs];
+                    }
+                    
+                }];
+            }
+                
+            default:
+                break;
         }
+        
     }];
     
-    return tmpObservers.copy;
+    return tmpTaskRoleAssignmentUsers.copy;
 }
 
 
