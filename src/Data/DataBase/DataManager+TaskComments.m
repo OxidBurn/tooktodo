@@ -78,6 +78,7 @@
         newComment.authorId     = info.authorId;
         newComment.avatarSrc    = info.avatarSrc;
         newComment.task         = task;
+        newComment.date         = info.date;
     }
     else
     {

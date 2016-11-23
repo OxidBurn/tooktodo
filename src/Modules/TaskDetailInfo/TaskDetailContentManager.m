@@ -268,6 +268,11 @@
             }
         }
 
+    NSSortDescriptor *descriptior = [[NSSortDescriptor alloc] initWithKey: @"commentDate"
+                                                                ascending: false];
+
+    [commentsTmp sortUsingDescriptors: @[descriptior]];
+
     [commentsTmp insertObject: addCommentCellContent
                       atIndex: 0];
     

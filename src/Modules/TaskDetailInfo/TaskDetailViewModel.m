@@ -548,8 +548,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         @strongify(self)
         [self.model fillSelectedTask: self.model.getCurrentTask
                       withCompletion: ^(BOOL isSuccess) {
-            @strongify(self)
-            [self updateTableView];
+                          @strongify(self)
+                          [self updateTableView];
+                          [self.addCommentCell.addCommentTextView setText: @""];
         }];
      } error: ^(NSError *error) {
      }];
