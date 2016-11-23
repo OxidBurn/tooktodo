@@ -104,7 +104,6 @@
 
 @property (strong, nonatomic) NSDate* commentDate;
 
-
-
+@property (strong, nonatomic) NSNumber* commentID;
 
 @end

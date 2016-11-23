@@ -258,6 +258,7 @@
                 newRow.commentAuthorName      = comment.author;
                 newRow.commentAuthorAvatarSrc = comment.avatarSrc;
                 newRow.commentDate            = comment.date;
+                newRow.commentID            = comment.commentID;
     
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;

@@ -82,7 +82,7 @@
                                                     object:nil
                                                      queue:nil
                                                 usingBlock:^(NSNotification * _Nonnull note) {
-                                                    [weakSelf onTableClick:nil];
+//                                                    [weakSelf onTableClick:nil];
                                                 }];
 }
 

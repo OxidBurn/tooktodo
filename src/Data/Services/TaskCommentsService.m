@@ -75,11 +75,11 @@
     return loadCommentsForTaskSignal;
 }
 
-- (RACSignal*) postCommentForSelectedTask: (NSString *)comment
+- (RACSignal*) postCommentForSelectedTask: (NSString *)message
 {
     NSString* requestURL = [self buildPostCommentURL];
 
-    NSDictionary* requestParameters = @{@"message" : comment,
+    NSDictionary* requestParameters = @{@"message" : message,
                                         @"files" : @[]};
 
     @weakify(self)
@@ -111,6 +111,45 @@
     return loadCommentsForTaskSignal;
 }
 
+- (RACSignal*) editCommentForSelectedTask: (NSString *) message
+                                commentID: (NSNumber*)  commentID
+{
+    NSString* requestURL = [self buildEditPostCommentURL];
+
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", commentID];
+
+    NSDictionary* requestParameters = @{@"message" : message,
+                                        @"files" : @[]};
+
+    @weakify(self)
+
+    RACSignal* loadCommentsForTaskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+
+        [[[TaskCommentsAPIService sharedInstance] editCommentforTask: requestURL
+                                                          withParams: requestParameters]
+         subscribeNext: ^(RACTuple* response) {
+
+             @strongify(self)
+
+             [self parsePostCommentResponse: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+
+                                 [subscriber sendNext: nil];
+                                 [subscriber sendCompleted];
+
+                             }];
+         }
+         error: ^(NSError *error) {
+
+             [subscriber sendError: error];
+
+         }];
+        return nil;
+    }];
+    
+    return loadCommentsForTaskSignal;
+}
+
 #pragma mark - Internal methods -
 
 - (NSString*) buildRequestURL
@@ -132,6 +171,19 @@
 
     NSString* requestURL = [postCommentURL stringByReplacingOccurrencesOfString: @"{projectId}"
                                                                       withString: selectedTask.projectId.stringValue];
+
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: selectedTask.taskID.stringValue];
+
+    return requestURL;
+}
+
+- (NSString*) buildEditPostCommentURL
+{
+    ProjectTask* selectedTask = [DataManagerShared getSelectedTask];
+
+    NSString* requestURL = [postCommentURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                     withString: selectedTask.projectId.stringValue];
 
     requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
                                                        withString: selectedTask.taskID.stringValue];

@@ -23,4 +23,7 @@
 - (RACSignal*) postCommentforTask: (NSString*)     requestString
                        withParams: (NSDictionary*) params;
 
+- (RACSignal*) editCommentforTask: (NSString*)     requestString
+                       withParams: (NSDictionary*) params;
+
 @end

@@ -17,16 +17,22 @@
 
 // properties
 @property (weak, nonatomic) id <CommentCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextView*     commentContentTextView;
 
 // methods
-- (void) fillCellWithContent: (TaskRowContent*) content
-                   withWidth: (CGFloat)         width
-                withDelegate: (id)              delegate;
+- (void) fillCellWithContent: (TaskRowContent*)      content
+                   withWidth: (CGFloat)              width
+                withDelegate: (id)                   delegate;
 
 @end
 
 @protocol CommentCellDelegate <NSObject>
 
 - (void) updateTableView;
+
+- (void) commentsCell: (CommentsCell*) commentsCell
+            onEditBtn: (id)            sender;
+- (void) commentsCell: (CommentsCell*) commentsCell
+          onCancelBtn: (id) sender;
 
 @end

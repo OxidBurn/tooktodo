@@ -38,6 +38,7 @@
 
 @property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
 
+@property (strong, nonatomic) NSNumber *commentID;
 @property (strong, nonatomic) AddCommentCell* addCommentCell;
 
 @end
@@ -319,6 +320,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                   withRowAnimation: UITableViewRowAnimationFade];
 }
 
+- (void) commentsCell: (CommentsCell*) commentsCell
+            onEditBtn: (id) sender
+{
+    self.addCommentCell.addCommentTextView.text = commentsCell.commentContentTextView.text;
+    [self.addCommentCell.addCommentTextView becomeFirstResponder];
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentsCell];
+    self.commentID = [self.model getContentForIndexPath:indexPath].commentID;
+}
+
+- (void) commentsCell: (CommentsCell*) commentsCell
+          onCancelBtn: (id) sender
+{
+
+}
 
 #pragma mark - TaskDetailCellDelegate methods -
 
@@ -541,6 +557,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) addCommentCell:(AddCommentCell *)addCommentCell
             onSendClick:(UIButton *)sender
 {
+    if (self.commentID) {
+        @weakify(self)
+        RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
+                                                                                 commentID: self.commentID];
+        [signal subscribeNext: ^(id response) {
+            @strongify(self)
+            [self.model fillSelectedTask: self.model.getCurrentTask
+                          withCompletion: ^(BOOL isSuccess) {
+                              @strongify(self)
+                              [self updateTableView];
+                              [self.addCommentCell.addCommentTextView setText: @""];
+                          }];
+        } error: ^(NSError *error) {
+        }];
+    }
     @weakify(self)
     RACSignal* signal = [TaskCommentsService.sharedInstance
                          postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
