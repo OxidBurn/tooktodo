@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "TasksService.h"
@@ -243,8 +243,8 @@
         testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
-    
-    NSNumber* numberOfComments = [task commentsCount];
+
+    NSNumber* numberOfComments = @([task comments].count);
     
         if ( [task comments] && [task commentsCount] )
         {
@@ -262,12 +262,17 @@
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
                 
-                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 20;
+                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 28;
     
                 [commentsTmp addObject: newRow];
             }
         }
-    
+
+    NSSortDescriptor *descriptior = [[NSSortDescriptor alloc] initWithKey: @"commentDate"
+                                                                ascending: false];
+
+    [commentsTmp sortUsingDescriptors: @[descriptior]];
+
     [commentsTmp insertObject: addCommentCellContent
                       atIndex: 0];
     
@@ -320,7 +325,7 @@
 
 - (CGFloat) countTextViewHeightForString: (NSString*) string
 {
-    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 13.f];
+    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 14.f];
 
     CGSize size = [Utils findHeightForText: string
                                havingWidth: self.tableViewFrame.size.width - 30
@@ -328,8 +333,8 @@
     
     CGFloat height = size.height;
     
-    if (height > 69)
-        height = 69;
+    if (height > 152)
+        height = 152;
     
     return height;
 }

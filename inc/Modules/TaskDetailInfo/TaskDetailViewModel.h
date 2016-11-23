@@ -38,6 +38,8 @@
 
 - (void) updateTaskStatus;
 
+- (void) hideKeyboard;
+
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion;
 

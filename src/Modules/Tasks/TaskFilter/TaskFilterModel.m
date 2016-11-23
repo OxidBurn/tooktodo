@@ -25,6 +25,8 @@
 
 @property (strong, nonatomic) TaskFilterContentManager* contentManager;
 
+@property (assign, nonatomic) TasksFilterType taskFilterType;
+
 // methods
 
 
@@ -58,7 +60,8 @@
 {
     if ( _tableViewContent == nil )
     {
-        _tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig];
+        _tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
+                                                                      withFilterType: self.taskFilterType];
     }
     
     return _tableViewContent;
@@ -129,6 +132,11 @@
                                withObject: newSectionContent];
     
     self.tableViewContent = newContentArray.copy;
+}
+
+- (void) fillFilterType: (TasksFilterType) filterType
+{
+    self.taskFilterType = filterType;
 }
 
 @end

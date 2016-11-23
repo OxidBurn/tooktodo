@@ -20,4 +20,7 @@
 
 - (RACSignal*) loadAllCommentsForTask: (NSString*) url;
 
+- (RACSignal*) postCommentforTask: (NSString*)     requestString
+                       withParams: (NSDictionary*) params;
+
 @end

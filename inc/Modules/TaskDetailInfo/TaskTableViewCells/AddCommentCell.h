@@ -8,6 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@class AddCommentCell;
+
+@protocol AddCommentCellDelegate <NSObject>
+
+- (void)    addCommentCell: (AddCommentCell*)addCommentCell
+   newCommentTextDidChange: (UITextView*)sender;
+- (void)    addCommentCell: (AddCommentCell*)addCommentCell
+               onSendClick: (UITextView*)sender;
+
+@end
+
 @interface AddCommentCell : UITableViewCell
+
+// outlets
+@property (nonatomic) IBOutlet UILabel *addCommentLabel;
+@property (nonatomic) IBOutlet UITextView *addCommentTextView;
+
+@property (weak, nonatomic) id<AddCommentCellDelegate> delegate;
 
 @end

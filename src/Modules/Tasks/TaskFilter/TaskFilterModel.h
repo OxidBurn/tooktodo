@@ -22,4 +22,6 @@
 
 - (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath;
 
+- (void) fillFilterType: (TasksFilterType) filterType;
+
 @end

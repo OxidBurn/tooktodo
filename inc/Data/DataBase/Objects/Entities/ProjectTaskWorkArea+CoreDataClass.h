@@ -1,19 +1,19 @@
 //
-//  ProjectTaskWorkArea.h
+//  ProjectTaskWorkArea+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class ProjectTask;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskWorkArea : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 

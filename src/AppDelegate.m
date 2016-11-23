@@ -23,6 +23,7 @@
  didFinishLaunchingWithOptions: (NSDictionary*)  launchOptions
 {
     [Fabric with: @[[Crashlytics class]]];
+    [SVProgressHUD setDefaultMaskType: SVProgressHUDMaskTypeClear];
     
     return YES;
 }

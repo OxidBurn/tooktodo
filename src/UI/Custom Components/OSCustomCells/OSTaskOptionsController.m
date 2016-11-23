@@ -37,7 +37,7 @@
 
 - (IBAction) onDismiss:     (UIButton*) sender;
 
-
+- (IBAction) onDismissGesture: (UITapGestureRecognizer*) sender;
 
 @end
 
@@ -96,6 +96,13 @@
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
+
+- (IBAction) onDismissGesture: (UITapGestureRecognizer*) sender
+{
+    [self dismissViewControllerAnimated: YES
+                             completion: nil];
+}
+
 
 #pragma mark - Helpers -
 

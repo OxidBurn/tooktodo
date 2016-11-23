@@ -1,8 +1,8 @@
 //
-//  ProjectTaskOwner.h
+//  ProjectTaskOwner+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -14,8 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskOwner : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
 
 @end
 

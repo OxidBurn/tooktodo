@@ -96,7 +96,7 @@
 {
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
                              self.task.attachments ? self.task.attachments : @0,
-                             self.task.commentsCount ? self.task.commentsCount : @(0),
+                             self.task.commentsCount ? @([self.task comments].count) : @(0),
                              @(0) ];
     
     return headerInfo;

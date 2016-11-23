@@ -130,6 +130,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
+#pragma mark - Public -
+
+- (void) fillFilterType: (TasksFilterType) filterType
+{
+    [self.model fillFilterType: filterType];
+}
+
 
 #pragma mark - FilterByTermsCellDelegate methods -
 

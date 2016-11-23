@@ -24,6 +24,8 @@
 
 @property (assign, nonatomic) FilterByDateViewControllerType controllerType;
 
+@property (assign, nonatomic) TasksFilterType taskFilterType;
+
 // methods
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 - (IBAction) onDoneBarButton: (UIBarButtonItem*) sender;
@@ -75,6 +77,16 @@
 }
 
 
+#pragma mark - Public -
+
+- (void) fillFilterType: (TasksFilterType) filterType
+{
+    self.taskFilterType = filterType;
+    
+    [self.viewModel fillFilterType: filterType];
+}
+
+
 #pragma mark - Actions -
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
@@ -97,6 +109,7 @@
 {
     
 }
+
 
 #pragma mark - Internal -
 

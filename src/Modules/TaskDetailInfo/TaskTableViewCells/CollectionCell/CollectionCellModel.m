@@ -12,7 +12,7 @@
 #import "DataManager+Tasks.h"
 #import "TaskCollectionCellsContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataProperties.h"
 #import "FilledTeamInfo.h"
 #import "ProjectTaskRoleAssignments.h"
 #import "DataManager+Team.h"

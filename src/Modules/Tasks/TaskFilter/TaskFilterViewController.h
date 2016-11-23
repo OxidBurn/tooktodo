@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 #import "BaseMainViewController.h"
 
 @interface TaskFilterViewController: BaseMainViewController
+
+// methods
+- (void) fillFilterType: (TasksFilterType) filterType;
 
 @end

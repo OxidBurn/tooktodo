@@ -11,12 +11,12 @@
 // Classes
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataProperties.h"
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectTaskMarker.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectTaskRoleType.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskMapContour+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
@@ -41,10 +41,12 @@
 #import "TasksGroupedByProjects.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ProjectRoleType+CoreDataClass.h"
+#import "TaskApprovementsModel.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Room.h"
+#import "DataManager+TaskApprovements.h"
 
 @implementation DataManager (Tasks)
 
@@ -282,7 +284,9 @@
     if ( info.attachments.count )
         task.attachments = info.attachments.count;
     
-    task.commentsCount = info.commentsCount;
+    task.commentsCount    = info.commentsCount;
+    task.factualStartDate = info.factualStartDate;
+    task.factualEndDate   = info.factualEndDate;
     
     // Store task responsible
     if ( info.responsible )
@@ -388,6 +392,18 @@
         [info.taskRoleAssignments enumerateObjectsUsingBlock: ^(TaskRoleAssignmentsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
            
             [self persistTaskRoleAssignments: obj
+                                     forTask: task
+                                   inContext: context];
+            
+        }];
+    }
+    
+    // Task approvements
+    if ( info.approvments )
+    {
+        [info.approvments enumerateObjectsUsingBlock: ^(TaskApprovementsModel* approvementModel, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistNewTaskApprovements: approvementModel
                                      forTask: task
                                    inContext: context];
             

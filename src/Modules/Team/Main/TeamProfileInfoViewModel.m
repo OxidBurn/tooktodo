@@ -13,7 +13,7 @@
 
 //Classes
 #import "ContactInfoCell.h"
-#import "TeamMember.h"
+#import "TeamMember+CoreDataProperties.h"
 #import "DataManager+Team.h"
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"

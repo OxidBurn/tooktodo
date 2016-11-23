@@ -19,4 +19,7 @@
 // properties
 @property (nonatomic, copy) void(^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);
 
+// methods
+- (void) fillFilterType: (TasksFilterType) filterType;
+
 @end

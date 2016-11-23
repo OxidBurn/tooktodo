@@ -9,7 +9,7 @@
 #import "DataManager.h"
 
 // Classes
-#import "TeamMember.h"
+#import "TeamMember+CoreDataProperties.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 

@@ -13,6 +13,7 @@
 #import "MainTabBarController.h"
 #import "AllTasksViewModel.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "TaskFilterViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -100,6 +101,16 @@
         [self.taskDetailVC fillSelectedTask: task];
         
         [self.taskDetailVC refreshTableView];
+    }
+    
+    if ( [segue.identifier isEqualToString: @"ShowTaskFilteriPhone"] ||
+         [segue.identifier isEqualToString: @"ShowTaskFilteriPad"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+        
+        TaskFilterViewController* vc = (TaskFilterViewController*)destinationNavController.topViewController;
+        
+        [vc fillFilterType: FilterByAllProjects];
     }
 }
 

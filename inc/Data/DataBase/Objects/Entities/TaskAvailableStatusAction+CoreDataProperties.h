@@ -2,7 +2,7 @@
 //  TaskAvailableStatusAction+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 10/14/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSNumber *statusActionID;
 @property (nullable, nonatomic, copy) NSString *stautsActionDescription;
+@property (nullable, nonatomic, copy) NSNumber *usedForFilter;
 @property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActionsList;
 
 @end

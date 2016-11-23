@@ -19,6 +19,7 @@
 #import "TaskRoleAssignmentsModel.h"
 #import "TaskWorkAreaModel.h"
 #import "TaskAttachmentsModel.h"
+#import "TaskApprovementsModel.h"
 
 @protocol ProjectTaskModel;
 
@@ -53,10 +54,13 @@
 @property (strong, nonatomic) NSArray<TaskRoleAssignmentsModel, Optional> * taskRoleAssignments;
 @property (strong, nonatomic) NSNumber<Optional> * taskType;
 @property (strong, nonatomic) NSString<Optional> * taskTypeDescription;
-@property (strong, nonatomic) NSString * title;
+@property (strong, nonatomic) NSString<Optional> * title;
 @property (strong, nonatomic) NSNumber<Optional>* commentsCount;
 @property (strong, nonatomic) TaskWorkAreaModel<Optional> * workArea;
-
+@property (strong, nonatomic) NSDate<Optional>* factualEndDate;
+@property (strong, nonatomic) NSDate<Optional>* factualStartDate;
+@property (strong, nonatomic) NSArray<Optional>* availableStatusActions;
+@property (strong, nonatomic) NSArray<TaskApprovementsModel, Optional>* approvments;
 @property (strong, nonatomic) NSNumber* isIncludedRestDays;
 @property (strong, nonatomic) NSNumber* isExpired;
 @property (strong, nonatomic) NSNumber<Optional> * isTaskStatusChanged;

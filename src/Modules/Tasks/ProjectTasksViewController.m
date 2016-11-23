@@ -18,6 +18,7 @@
 #import "PopoverViewController.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ChangeStatusViewController.h"
+#import "TaskFilterViewController.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -98,6 +99,16 @@
         ChangeStatusViewController* vc = (ChangeStatusViewController*)destinationNavController.topViewController;
         
         vc.delegate = self;
+    }
+    
+    if ( [segue.identifier isEqualToString: @"ShowTaskFilteriPhone"] ||
+         [segue.identifier isEqualToString: @"ShowTaskFilteriPad"])
+    {
+        UINavigationController* destinationNavController = segue.destinationViewController;
+
+        TaskFilterViewController* vc = (TaskFilterViewController*)destinationNavController.topViewController;
+        
+        [vc fillFilterType: FilterBySingleProject];
     }
 }
 

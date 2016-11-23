@@ -2,7 +2,7 @@
 //  TaskAvailableStatusAction+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 10/14/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -16,6 +16,7 @@
 
 @dynamic statusActionID;
 @dynamic stautsActionDescription;
+@dynamic usedForFilter;
 @dynamic availableActionsList;
 
 @end
