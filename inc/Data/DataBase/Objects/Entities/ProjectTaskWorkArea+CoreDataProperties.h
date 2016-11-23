@@ -2,24 +2,25 @@
 //  ProjectTaskWorkArea+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskWorkArea (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *hasTasks;
-@property (nullable, nonatomic, retain) NSNumber *workAreaID;
-@property (nullable, nonatomic, retain) NSString *shortTitle;
-@property (nullable, nonatomic, retain) NSString *title;
-@property (nullable, nonatomic, retain) NSManagedObject *task;
++ (NSFetchRequest<ProjectTaskWorkArea *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSNumber *hasTasks;
+@property (nullable, nonatomic, copy) NSString *shortTitle;
+@property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) NSNumber *workAreaID;
+@property (nullable, nonatomic, copy) NSNumber *usedForFilters;
+@property (nullable, nonatomic, retain) ProjectTask *task;
 
 @end
 

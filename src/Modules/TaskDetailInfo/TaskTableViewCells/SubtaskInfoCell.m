@@ -13,7 +13,7 @@
 #import "TaskMarkerComponent.h"
 #import "StatusMarkerComponent.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataClass.h"
 #import "SDWebImageCompat.h"
 #import "UIImageView+WebCache.h"
 

@@ -13,11 +13,11 @@
 #import "TaskMarkerComponent.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataProperties.h"
 
 // Categories
 #import "UIImageView+WebCache.h"

@@ -2,7 +2,7 @@
 //  ProjectTaskResponsible+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/20/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -23,10 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *lastName;
 @property (nullable, nonatomic, copy) NSNumber *projectPermission;
 @property (nullable, nonatomic, copy) NSNumber *responsibleID;
+@property (nullable, nonatomic, copy) NSNumber *usedForFilters;
 @property (nullable, nonatomic, retain) ProjectTaskAssignee *assignee;
+@property (nullable, nonatomic, retain) ProjectInviteInfo *invite;
 @property (nullable, nonatomic, retain) ProjectTaskRoleType *projectRoleType;
 @property (nullable, nonatomic, retain) ProjectTask *task;
-@property (nullable, nonatomic, retain) ProjectInviteInfo *invite;
 
 @end
 

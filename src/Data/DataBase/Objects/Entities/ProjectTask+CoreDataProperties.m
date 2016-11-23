@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/16/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -22,6 +22,8 @@
 @dynamic duration;
 @dynamic endDate;
 @dynamic extraId;
+@dynamic factualEndDate;
+@dynamic factualStartDate;
 @dynamic isAllRooms;
 @dynamic isExpired;
 @dynamic isIncludedRestDays;

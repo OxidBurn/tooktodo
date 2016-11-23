@@ -43,4 +43,13 @@ static NSString* taskCommentsURL                = @"/api/task/p{projectId}-t{tas
 static NSString* postCommentURL                 = @"/api/task/p{projectId}-t{taskId}/comment";
 static NSString* deleteTaskURL                  = @"/api/task/p{projectId}-t{taskId}";
 
+// Grab filters info
+static NSString* getFiltersStatusesURL     = @"/api/tasksFilter/project/{projectId}/counters/statuses";
+static NSString* getFiltersWorkAreasURL    = @"/api/tasksFilter/project/{projectId}/counters/workAreas";
+static NSString* getFiltersCreatersURL     = @"/api/tasksFilter/project/{projectId}/counters/creaters";
+static NSString* getFiltersResponsiblesURL = @"/api/tasksFilter/project/{projectId}/counters/responsibles";
+static NSString* getFiltersApproversURL    = @"/api/tasksFilter/project/{projectId}/counters/approvers";
+static NSString* getFiltersTypesURL        = @"/api/tasksFilter/project/{projectId}/counters/types";
+static NSString* getFiltersExpiredURL      = @"/api/tasksFilter/project/{projectId}/counters/expired";
+
 #endif /* APIConstance_h */

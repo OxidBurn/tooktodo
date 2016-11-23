@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/16/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
 //
 
@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *duration;
 @property (nullable, nonatomic, copy) NSDate *endDate;
 @property (nullable, nonatomic, copy) NSNumber *extraId;
+@property (nullable, nonatomic, copy) NSDate *factualEndDate;
+@property (nullable, nonatomic, copy) NSDate *factualStartDate;
 @property (nullable, nonatomic, copy) NSNumber *isAllRooms;
 @property (nullable, nonatomic, copy) NSNumber *isExpired;
 @property (nullable, nonatomic, copy) NSNumber *isIncludedRestDays;

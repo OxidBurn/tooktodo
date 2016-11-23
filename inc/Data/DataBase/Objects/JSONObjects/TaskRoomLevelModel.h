@@ -16,7 +16,7 @@
 
 @property (assign, nonatomic) NSUInteger roomLevelID;
 @property (assign, nonatomic) NSUInteger level;
-@property (strong, nonatomic) NSArray<TaskRoomModel>* rooms;
+@property (strong, nonatomic) NSArray<TaskRoomModel, Optional>* rooms;
 @property (strong, nonatomic) RoomLevelMapModel<Optional>* map;
 
 @end

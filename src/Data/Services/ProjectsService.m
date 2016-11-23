@@ -16,6 +16,7 @@
 #import "SystemsService.h"
 #import "TasksService.h"
 #import "RoomsService.h"
+#import "TaskFiltersService.h"
 
 // Extensions
 #import "DataManager+ProjectInfo.h"
@@ -90,11 +91,13 @@ static bool isFirstAccess = YES;
 {
     // Load all roles
     // Load systems
+    // Load all task filters data
     NSArray* signals = @[[[RolesService sharedInstance] loadAllRolesForProject: project],
                          [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID],
                          [[TasksService sharedInstance] loadAllTasksForProjectWithID: project.projectID],
                           [self loadUserPermissionForProjectWithID: project.projectID],
-                         [[RoomsService sharedInstance] getRoomLevelsForSelectedProjectWithID: project.projectID]];
+                         [[RoomsService sharedInstance] getRoomLevelsForSelectedProjectWithID: project.projectID],
+                         [[TaskFiltersService sharedInstance] loadAllTaskFiltersInfo: project.projectID]];
     
     RACSignal* loadProjectInfo = [RACSignal combineLatest: signals];
     

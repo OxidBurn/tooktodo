@@ -8,6 +8,8 @@
 
 #import <JSONModel/JSONModel.h>
 
+@protocol TaskApprovementsModel;
+
 @interface TaskApprovementsModel : JSONModel
 
 @property (strong, nonatomic) NSDate   * createdDate;

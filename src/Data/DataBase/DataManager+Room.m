@@ -24,7 +24,7 @@
                       forTask: (ProjectTask*)            task
                     inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskRoomLevel* roomLevel = [ProjectTaskRoomLevel MR_findFirstOrCreateByAttribute: @"roomLevel"
+    ProjectTaskRoomLevel* roomLevel = [ProjectTaskRoomLevel MR_findFirstOrCreateByAttribute: @"roomLevelID"
                                                                                   withValue: @(info.roomLevelID)
                                                                                   inContext: context];
     

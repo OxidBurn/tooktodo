@@ -15,7 +15,7 @@
 #import "ProjectSystem+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskStage+CoreDataClass.h"
-#import "TeamMember.h"
+#import "TeamMember+CoreDataProperties.h"
 @implementation ProjectInfo
 
 @end

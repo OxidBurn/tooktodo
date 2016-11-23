@@ -12,7 +12,7 @@
 #import "DataManager+Systems.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "DataManager+Tasks.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 
 @implementation SystemDetailModel
 

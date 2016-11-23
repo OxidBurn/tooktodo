@@ -10,7 +10,7 @@
 
 // Classes
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "TaskRowContent.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "TasksService.h"

@@ -9,13 +9,13 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskMarker.h"
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignments.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 @implementation ProjectTask
 
 @end

@@ -65,4 +65,9 @@
 
 @property (strong, nonatomic) TaskSubTasksModel<Optional> * subTasks;
 
+@property (strong, nonatomic) NSDate<Optional>* factualEndDate;
+@property (strong, nonatomic) NSDate<Optional>* factualStartDate;
+@property (strong, nonatomic) NSArray<Optional>* availableStatusActions;
+@property (strong, nonatomic) NSArray<Optional>* approvments;
+
 @end

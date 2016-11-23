@@ -2,16 +2,17 @@
 //  ProjectTaskOwner+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
 #import "ProjectTaskOwner+CoreDataProperties.h"
 
 @implementation ProjectTaskOwner (CoreDataProperties)
+
++ (NSFetchRequest<ProjectTaskOwner *> *)fetchRequest {
+	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskOwner"];
+}
 
 @dynamic additionalPhoneNumber;
 @dynamic avatarSrc;
@@ -19,12 +20,13 @@
 @dynamic email;
 @dynamic emailConfirmed;
 @dynamic firstName;
-@dynamic ownerID;
 @dynamic isSubscribedOnEmailNotifications;
 @dynamic isTourViewed;
 @dynamic lastName;
+@dynamic ownerID;
 @dynamic phoneNumber;
 @dynamic userName;
+@dynamic usedForFilters;
 @dynamic role;
 @dynamic task;
 

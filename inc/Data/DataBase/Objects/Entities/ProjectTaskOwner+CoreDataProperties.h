@@ -2,31 +2,32 @@
 //  ProjectTaskOwner+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/22/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskOwner.h"
+#import "ProjectTaskOwner+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskOwner (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *additionalPhoneNumber;
-@property (nullable, nonatomic, retain) NSString *avatarSrc;
-@property (nullable, nonatomic, retain) NSString *displayName;
-@property (nullable, nonatomic, retain) NSString *email;
-@property (nullable, nonatomic, retain) NSNumber *emailConfirmed;
-@property (nullable, nonatomic, retain) NSString *firstName;
-@property (nullable, nonatomic, retain) NSNumber *ownerID;
-@property (nullable, nonatomic, retain) NSNumber *isSubscribedOnEmailNotifications;
-@property (nullable, nonatomic, retain) NSNumber *isTourViewed;
-@property (nullable, nonatomic, retain) NSString *lastName;
-@property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSString *userName;
++ (NSFetchRequest<ProjectTaskOwner *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSString *additionalPhoneNumber;
+@property (nullable, nonatomic, copy) NSString *avatarSrc;
+@property (nullable, nonatomic, copy) NSString *displayName;
+@property (nullable, nonatomic, copy) NSString *email;
+@property (nullable, nonatomic, copy) NSNumber *emailConfirmed;
+@property (nullable, nonatomic, copy) NSString *firstName;
+@property (nullable, nonatomic, copy) NSNumber *isSubscribedOnEmailNotifications;
+@property (nullable, nonatomic, copy) NSNumber *isTourViewed;
+@property (nullable, nonatomic, copy) NSString *lastName;
+@property (nullable, nonatomic, copy) NSNumber *ownerID;
+@property (nullable, nonatomic, copy) NSString *phoneNumber;
+@property (nullable, nonatomic, copy) NSString *userName;
+@property (nullable, nonatomic, copy) NSNumber *usedForFilters;
 @property (nullable, nonatomic, retain) ProjectRoles *role;
 @property (nullable, nonatomic, retain) ProjectTask *task;
 
