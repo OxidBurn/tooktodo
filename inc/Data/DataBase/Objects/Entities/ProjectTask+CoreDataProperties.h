@@ -3,8 +3,6 @@
 //  
 //
 //  Created by Nikolay Chaban on 11/23/16.
-//
-//
 
 #import "ProjectTask+CoreDataClass.h"
 
