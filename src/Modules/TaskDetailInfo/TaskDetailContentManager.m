@@ -243,8 +243,8 @@
         testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
-    
-    NSNumber* numberOfComments = [task commentsCount];
+
+    NSNumber* numberOfComments = @([task comments].count);
     
         if ( [task comments] && [task commentsCount] )
         {
@@ -267,7 +267,12 @@
                 [commentsTmp addObject: newRow];
             }
         }
-    
+
+    NSSortDescriptor *descriptior = [[NSSortDescriptor alloc] initWithKey: @"commentDate"
+                                                                ascending: false];
+
+    [commentsTmp sortUsingDescriptors: @[descriptior]];
+
     [commentsTmp insertObject: addCommentCellContent
                       atIndex: 0];
     

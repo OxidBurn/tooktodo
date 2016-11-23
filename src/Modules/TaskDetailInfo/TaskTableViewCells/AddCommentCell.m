@@ -8,15 +8,7 @@
 
 #import "AddCommentCell.h"
 
-@interface AddCommentCell()
-
-// outlets
-@property (weak, nonatomic) IBOutlet UILabel*     addCommentLabel;
-
-@property (weak, nonatomic) IBOutlet UITextField* addCommentTextField;
-
-// properties
-
+@interface AddCommentCell() <UITextViewDelegate>
 
 // methods
 - (IBAction) onAddAttachmentsBtn: (UIButton*) sender;
@@ -30,6 +22,45 @@
 - (IBAction) onAddAttachmentsBtn: (UIButton*) sender
 {
     
+}
+
+#pragma mark - UITextViewDelegate -
+
+- (void)textViewDidBeginEditing: (UITextView*)textView
+{
+    self.addCommentLabel.alpha = 0;
+}
+
+- (void)textViewDidEndEditing: (UITextView*)textView
+{
+    self.addCommentLabel.alpha = textView.text.length == 0;
+}
+
+- (BOOL)        textView: (UITextView*)textView
+ shouldChangeTextInRange: (NSRange)range
+         replacementText: (NSString *)text {
+    if ([text isEqualToString:@"\n"])
+    {
+        if ([self.delegate respondsToSelector:@selector( addCommentCell:
+                                                            onSendClick: )])
+        {
+            [self.delegate addCommentCell: self
+                              onSendClick: textView];
+        }
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void) textViewDidChange:(UITextView *)textView
+{
+    if ([self.delegate respondsToSelector:@selector( addCommentCell:
+                                            newCommentTextDidChange: )])
+    {
+        [self.delegate addCommentCell: self
+              newCommentTextDidChange: textView];
+    }
 }
 
 @end

@@ -17,13 +17,15 @@
 #import "FilterSubtasksCell.h"
 #import "CommentsCell.h"
 #import "NSObject+Sorting.h"
-
+#import "AddCommentCell.h"
+#import "TaskCommentsService.h"
+#import "TasksService.h"
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -35,6 +37,8 @@
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
 
 @property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
+
+@property (strong, nonatomic) AddCommentCell* addCommentCell;
 
 @end
 
@@ -152,6 +156,11 @@
     [self.model updateTaskStatus];
 }
 
+- (void) hideKeyboard
+{
+    [self.addCommentCell.addCommentTextView resignFirstResponder];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -192,6 +201,13 @@
         
         subtaskCell.delegate = self;
     }
+
+    if ([cell isKindOfClass:AddCommentCell.class])
+    {
+        self.addCommentCell             = (AddCommentCell*)cell;
+        self.addCommentCell.delegate    = self;
+    }
+
     return cell;
 }
 
@@ -229,6 +245,20 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
         case SectionTwo:
         {
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
+            if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
+            {
+                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
+                height = MIN(height, 152);
+                if (height < 152)
+                {
+                    self.addCommentCell.addCommentTextView.scrollEnabled = false;
+                    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
+                }
+                else
+                {
+                    self.addCommentCell.addCommentTextView.scrollEnabled = true;
+                }
+            }
         }
             
         default:
@@ -480,6 +510,50 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (ContentAccedingSortingType) getProjectsSortAccedingType
 {
     return [self.model getTasksSortingAscendingType];
+}
+
+#pragma mark -
+
+- (void)    addCommentCell: (AddCommentCell*)addCommentCell
+   newCommentTextDidChange: (UITextView*)sender
+{
+    CGRect frame = self.addCommentCell.frame;
+    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
+    frame.size.height = MIN(frame.size.height, 152);
+
+    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
+
+    if (self.addCommentCell.addCommentTextView.scrollEnabled)
+    {
+        return;
+    }
+
+    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
+
+    CGPoint contentOffset = self.tableView.contentOffset;
+    [UIView setAnimationsEnabled: false];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [UIView setAnimationsEnabled: true];
+    self.tableView.contentOffset  = contentOffset;
+}
+
+- (void) addCommentCell:(AddCommentCell *)addCommentCell
+            onSendClick:(UIButton *)sender
+{
+    @weakify(self)
+    RACSignal* signal = [TaskCommentsService.sharedInstance
+                         postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
+    [signal subscribeNext: ^(id response) {
+        @strongify(self)
+        [self.model fillSelectedTask: self.model.getCurrentTask
+                      withCompletion: ^(BOOL isSuccess) {
+                          @strongify(self)
+                          [self updateTableView];
+                          [self.addCommentCell.addCommentTextView setText: @""];
+        }];
+     } error: ^(NSError *error) {
+     }];
 }
 
 @end
