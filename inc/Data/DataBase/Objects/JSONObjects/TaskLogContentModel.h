@@ -1,5 +1,5 @@
 //
-//  TaskLogContentModel.h
+//  TaskLogsModel.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11/23/16.
@@ -8,11 +8,13 @@
 
 #import <JSONModel/JSONModel.h>
 
-#import "TaskLogsModel.h"
+@interface TaskLogDataContentModel : JSONModel
 
-@interface TaskLogContentModel : JSONModel
-
-@property (nonatomic, strong) TaskLogsModel<Optional>* list;
-@property (nonatomic, strong) NSNumber*                unviewedCount;
+@property (nonatomic, strong) NSDate*   createdDate;
+@property (nonatomic, strong) NSString* userFullName;
+@property (nonatomic, strong) NSString* userAvatar;
+@property (nonatomic, strong) NSString* projectRoleTypeDescription;
+@property (nonatomic, strong) NSString* text;
+@property (nonatomic, strong) TaskLogDataContentModel<Optional>* data;
 
 @end

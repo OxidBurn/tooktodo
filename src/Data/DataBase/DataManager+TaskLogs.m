@@ -11,6 +11,8 @@
 // Classes
 #import "TaskLogInfo+CoreDataClass.h"
 #import "TaskLogDataContent+CoreDataClass.h"
+#import "TaskLogContentModel.h"
+#import "TaskLogDataContentModel.h"
 
 @implementation DataManager (TaskLogs)
 
@@ -20,9 +22,9 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        [logsInfo enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [logsInfo enumerateObjectsUsingBlock:^(TaskLogContentModel* log, NSUInteger idx, BOOL * _Nonnull stop) {
            
-            [self persistNewLog: obj
+            [self persistNewLog: log
                         forTask: task
                       inContext: localContext];
             
@@ -41,7 +43,7 @@
 #pragma mark - Internal methods -
 
 
-- (void) persistNewLog: (id)                      info
+- (void) persistNewLog: (TaskLogContentModel*)          info
                forTask: (ProjectTask*)            task
              inContext: (NSManagedObjectContext*) context
 {
@@ -63,7 +65,7 @@
     }
 }
 
-- (void) persistNewLogsData: (id)                      info
+- (void) persistNewLogsData: (TaskLogDataContentModel*) info
                      forLog: (TaskLogInfo*)            log
                   inContext: (NSManagedObjectContext*) context
 {
@@ -72,10 +74,10 @@
     dataContent.taskLog = log;
 }
 
-- (TaskLogInfo*) getTaskLogWithInfo: (id)                      info
+- (TaskLogInfo*) getTaskLogWithInfo: (TaskLogContentModel*)    info
                           inContext: (NSManagedObjectContext*) context
 {
-    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"createdDate == %@ AND userFullName == %@", info.createDate, info.userFullName];
+    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"createdDate == %@ AND userFullName == %@", info.createdDate, info.userFullName];
     
     TaskLogInfo* log = [TaskLogInfo MR_findFirstWithPredicate: findPredicate
                                                     inContext: context];

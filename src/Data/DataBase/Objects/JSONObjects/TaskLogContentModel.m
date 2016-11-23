@@ -1,5 +1,5 @@
 //
-//  TaskLogContentModel.m
+//  TaskLogsModel.m
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11/23/16.
@@ -9,5 +9,7 @@
 #import "TaskLogContentModel.h"
 
 @implementation TaskLogContentModel
+
+
 
 @end

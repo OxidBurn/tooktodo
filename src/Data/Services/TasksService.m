@@ -166,14 +166,14 @@
              
              @strongify(self)
              
-             [self parseNewTaskInfo: response[0]
-                            forTask: (ProjectTask*) task
-                     withCompletion: ^(BOOL isSuccess) {
-                         
-                         [subscriber sendNext: nil];
-                         [subscriber sendCompleted];
-                         
-                     }];
+             [self parseTaskLogsResponse: response[0]
+                                 forTask: task
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
              
          }
          error: ^(NSError *error) {
