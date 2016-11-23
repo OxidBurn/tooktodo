@@ -63,4 +63,12 @@
     return [[[requestManager rac_DELETE: url parameters: parameters] logError] replayLazily];
 }
 
+- (RACSignal*) loadTaskLogs: (NSString*) url
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return [[[requestManager rac_GET: url parameters: nil] logError] replayLazily];
+}
+
+
 @end

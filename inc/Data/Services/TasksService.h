@@ -28,6 +28,8 @@
 
 - (RACSignal*) loadSelectedTaskAvailableActionsForTask: (ProjectTask*) task;
 
+- (RACSignal*) loadSelectedTaskLogs: (ProjectTask*) task;
+
 - (void) changeSelectedStageForTask: (ProjectTask*)          task
                   withSelectedState: (BOOL)                  isSelected
                      withCompletion: (CompletionWithSuccess) completion;
