@@ -158,7 +158,7 @@
 }
 
 - (void) parsePostCommentResponse: (NSArray*) response
-                   withCompletion: (CompletionWithSuccessAndComment) completion
+                   withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parseError   = nil;
     NSArray* commentsList = [CommentsModel arrayOfModelsFromDictionaries: @[response]

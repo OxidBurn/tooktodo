@@ -10,6 +10,5 @@
 #define ConstanceBlocks_h
 
 typedef void(^CompletionWithSuccess)(BOOL isSuccess);
-typedef void(^CompletionWithSuccessAndComment)(BOOL isSuccess);
 
 #endif /* ConstanceBlocks_h */

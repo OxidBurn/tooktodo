@@ -541,11 +541,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) addCommentCell:(AddCommentCell *)addCommentCell
             onSendClick:(UIButton *)sender
 {
-    RACSignal* signal = [TaskCommentsService.sharedInstance postCommentForSelectedTask:addCommentCell.addCommentTextView.text];
-    
+    @weakify(self)
+    RACSignal* signal = [TaskCommentsService.sharedInstance
+                         postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
     [signal subscribeNext: ^(id response) {
-        [self.model fillSelectedTask:self.model.getCurrentTask withCompletion:^(BOOL isSuccess) {
-            self.model.getCurrentTask;
+        @strongify(self)
+        [self.model fillSelectedTask: self.model.getCurrentTask
+                      withCompletion: ^(BOOL isSuccess) {
+            @strongify(self)
             [self updateTableView];
         }];
      } error: ^(NSError *error) {
