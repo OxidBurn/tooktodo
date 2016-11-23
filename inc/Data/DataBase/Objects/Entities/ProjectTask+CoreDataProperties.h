@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Lera on 23.11.16.
 //
 //
 
@@ -47,6 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *taskType;
 @property (nullable, nonatomic, copy) NSString *taskTypeDescription;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, retain) NSSet<TaskApprovments *> *approvments;
 @property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActions;
 @property (nullable, nonatomic, retain) NSOrderedSet<TaskComment *> *comments;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
@@ -64,6 +65,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ProjectTask (CoreDataGeneratedAccessors)
+
+- (void)addApprovmentsObject:(TaskApprovments *)value;
+- (void)removeApprovmentsObject:(TaskApprovments *)value;
+- (void)addApprovments:(NSSet<TaskApprovments *> *)values;
+- (void)removeApprovments:(NSSet<TaskApprovments *> *)values;
 
 - (void)insertObject:(TaskComment *)value inCommentsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromCommentsAtIndex:(NSUInteger)idx;
