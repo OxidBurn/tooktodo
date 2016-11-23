@@ -18,12 +18,14 @@
 #import "FilledTeamInfo.h"
 #import "TaskCommentsService.h"
 #import "UserInfoService.h"
+#import "TaskLogsModel.h"
 
 // Categories
 #import "DataManager+Tasks.h"
 #import "DataManager+TaskAvailableActions.h"
 #import "DataManager+ProjectInfo.h"
 #import "NSDate+Helper.h"
+#import "DataManager+TaskLogs.h"
 
 @implementation TasksService
 
@@ -152,6 +154,40 @@
     return loadAvailableActionsSignal;
 }
 
+- (RACSignal*) loadSelectedTaskLogs: (ProjectTask*) task
+{
+    NSString* requestURL = [self buildGetTaskLogsURL: task];
+    
+    @weakify(self)
+    
+    RACSignal* loadingTaskLogsSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TasksAPIService sharedInstance] loadTaskLogs: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseTaskLogsResponse: response[0]
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadingTaskLogsSignal;
+}
+
 - (void) changeSelectedStageForTask: (ProjectTask*)          task
                   withSelectedState: (BOOL)                  isSelected
                      withCompletion: (CompletionWithSuccess) completion
@@ -165,26 +201,20 @@
                                        
                                        if ( isSelected )
                                        {
-                                           [[self loadSelectedTaskAvailableActionsForTask: task]
-                                            subscribeNext: ^(id x) {
-                                                
-                                                [[[TaskCommentsService sharedInstance] getCommentsForSelectedTask]
-                                                 subscribeNext: ^(id x) {
-                                                    
-                                                     if ( completion )
-                                                         completion(isSuccess);
-                                                     
-                                                     [SVProgressHUD dismiss];
-                                                     
-                                                 }
-                                                 error: ^(NSError *error) {
-                                                     
-                                                 }];
-                                                
-                                            }
-                                            error:^(NSError *error) {
-                                                
-                                            }];
+                                           NSArray* signals = @[[self loadSelectedTaskAvailableActionsForTask: task],
+                                                                [[TaskCommentsService sharedInstance] getCommentsForSelectedTask],
+                                                                [self loadSelectedTaskLogs: task]];
+                                           
+                                           RACSignal* loadSelectedTaskInfoSignal = [RACSignal combineLatest: signals];
+                                           
+                                           [loadSelectedTaskInfoSignal subscribeCompleted: ^{
+                                               
+                                               if ( completion )
+                                                   completion(isSuccess);
+                                               
+                                               [SVProgressHUD dismiss];
+                                               
+                                           }];
                                        }
                                        else
                                        {
@@ -372,6 +402,24 @@
     return task;
 }
 
+- (void) parseTaskLogsResponse: (NSDictionary*)         response
+                withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError     = nil;
+    TaskLogsModel* taskLogs = [[TaskLogsModel alloc] initWithDictionary: response
+                                                                  error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> with parsing task logs response %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared persistNewLogs: taskLogs.list
+                           withCompletion: completion];
+    }
+}
+
 #pragma mark - Internal methods -
 
 
@@ -504,6 +552,17 @@
 {
     NSString* requestURL = [deleteTaskURL stringByReplacingOccurrencesOfString: @"{projectId}"
                                                                     withString: task.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: task.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSString*) buildGetTaskLogsURL: (ProjectTask*) task
+{
+    NSString* requestURL = [logsTaskURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                  withString: task.projectId.stringValue];
     
     requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
                                                        withString: task.taskID.stringValue];

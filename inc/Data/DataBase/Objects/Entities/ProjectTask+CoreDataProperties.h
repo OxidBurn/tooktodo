@@ -2,9 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Lera on 23.11.16.
-//
-//
+//  Created by Nikolay Chaban on 11/23/16.
 
 #import "ProjectTask+CoreDataClass.h"
 
@@ -61,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
+@property (nullable, nonatomic, retain) NSSet<TaskLogInfo *> *logs;
 
 @end
 
@@ -96,6 +95,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeTaskRoleAssignmentsObject:(ProjectTaskRoleAssignments *)value;
 - (void)addTaskRoleAssignments:(NSSet<ProjectTaskRoleAssignments *> *)values;
 - (void)removeTaskRoleAssignments:(NSSet<ProjectTaskRoleAssignments *> *)values;
+
+- (void)addLogsObject:(TaskLogInfo *)value;
+- (void)removeLogsObject:(TaskLogInfo *)value;
+- (void)addLogs:(NSSet<TaskLogInfo *> *)values;
+- (void)removeLogs:(NSSet<TaskLogInfo *> *)values;
 
 @end
 

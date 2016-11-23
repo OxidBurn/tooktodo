@@ -26,4 +26,6 @@
 - (RACSignal*) deleteTaskWithURL: (NSString*)     url
                   withParameters: (NSDictionary*) parameters;
 
+- (RACSignal*) loadTaskLogs: (NSString*) url;
+
 @end
