@@ -7,8 +7,8 @@
 //
 
 #import "TaskLogInfo+CoreDataClass.h"
-#import "ProjectTask.h"
-#import "TaskLogDataContent.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "TaskLogDataContent+CoreDataClass.h"
 @implementation TaskLogInfo
 
 @end
