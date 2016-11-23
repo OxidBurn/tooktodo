@@ -16,6 +16,7 @@
 #import "FilledTeamInfo.h"
 #import "ProjectTaskRoleAssignments.h"
 #import "DataManager+Team.h"
+#import "TaskApprovments+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -222,13 +223,13 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     itemSeven.cellTitle = @"Утверждающий";
-    itemSeven.claiming  = [self createRoleAssignmentsArray];
+    itemSeven.claiming  = [self createApproversArray];
     
     TaskCollectionCellsContent* itemEight = [TaskCollectionCellsContent new];
 
     itemEight.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     itemEight.cellTitle = @"Наблюдатели";
-    itemEight.observers = [self createRoleAssignmentsArray];
+//    itemEight.observers = [self createRoleAssignmentsArray];
     
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
@@ -269,12 +270,9 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     return @[ responsible ];
 }
 
-- (NSArray*) createRoleAssignmentsArray
+- (NSArray*) createApproversArray
 {
-    //getting roleAssignments witch linked with task (claimings, observers, responsible)
-    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
-    
-    //getting all team info to compare with taskRoleAssignments
+
     NSArray* teamInfo = [DataManagerShared getAllTeamInfo];
     NSMutableArray* convertedTeamTmpArr = [NSMutableArray array];
     
@@ -288,61 +286,99 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     }];
     
     //tmp array to save claiming users
-    NSMutableArray* tmpTaskRoleAssignmentUsers = [NSMutableArray array];
+    NSMutableArray* tmpApproversArray = [NSMutableArray array];
     
-    //enumeration of roleAssignments to check its role
-    [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
-        switch (obj.taskRoleType.integerValue)
-        {
-            case ResponsibleType:
+    NSArray* taskApprovements = self.task.approvments.allObjects;
+    
+    [taskApprovements enumerateObjectsUsingBlock: ^(TaskApprovments*  _Nonnull approvment, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull user,  NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([approvment.approverUserId isEqual: user.userId])
             {
-                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull responsible,  NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    
-                    if ([obj.roleAssignmentsID isEqual: responsible.memberID])
-                    {
-                        [tmpTaskRoleAssignmentUsers addObject: responsible];
-                    }
-                    
-                }];
+                [tmpApproversArray addObject: user];
             }
-                break;
-                
-            case ClaimingsType:
-            {
-                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull claimingUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    
-                    if ([obj.roleAssignmentsID isEqual: claimingUrs.memberID])
-                    {
-                        [tmpTaskRoleAssignmentUsers addObject: claimingUrs];
-                    }
-                    
-                }];
-
-            }
-                
-            case ObserverType:
-            {
-                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull observerUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if ([obj.roleAssignmentsID isEqual: observerUrs.memberID])
-                    {
-                        [tmpTaskRoleAssignmentUsers addObject: observerUrs];
-                    }
-                    
-                }];
-            }
-                
-            default:
-                break;
-        }
+            
+        }];
         
     }];
     
-    return tmpTaskRoleAssignmentUsers.copy;
+    return tmpApproversArray.copy;
+    
 }
+
+//- (NSArray*) createRoleAssignmentsArray
+//{
+//    //getting roleAssignments witch linked with task (claimings, observers, responsible)
+//    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
+//    
+//    //getting all team info to compare with taskRoleAssignments
+//    NSArray* teamInfo = [DataManagerShared getAllTeamInfo];
+//    NSMutableArray* convertedTeamTmpArr = [NSMutableArray array];
+//    
+//    [teamInfo enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        FilledTeamInfo* filledUserObj = [FilledTeamInfo new];
+//        
+//        [filledUserObj fillTeamInfo: obj];
+//        
+//        [convertedTeamTmpArr addObject: filledUserObj];
+//    }];
+//    
+//    //tmp array to save claiming users
+//    NSMutableArray* tmpTaskRoleAssignmentUsers = [NSMutableArray array];
+//    
+//    //enumeration of roleAssignments to check its role
+//    [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        
+//        switch (obj.taskRoleType.integerValue)
+//        {
+//            case ResponsibleType:
+//            {
+//                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull responsible,  NSUInteger idx, BOOL * _Nonnull stop) {
+//                    
+//                    if ([obj.roleAssignmentsID isEqual: responsible.memberID])
+//                    {
+//                        [tmpTaskRoleAssignmentUsers addObject: responsible];
+//                    }
+//                    
+//                }];
+//            }
+//                break;
+//                
+//            case ClaimingsType:
+//            {
+//                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull claimingUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
+//                    
+//                    if ([obj.roleAssignmentsID isEqual: claimingUrs.memberID])
+//                    {
+//                        [tmpTaskRoleAssignmentUsers addObject: claimingUrs];
+//                    }
+//                    
+//                }];
+//
+//            }
+//                
+//            case ObserverType:
+//            {
+//                [convertedTeamTmpArr enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull observerUrs,  NSUInteger idx, BOOL * _Nonnull stop) {
+//                    
+//                    if ([obj.roleAssignmentsID isEqual: observerUrs.memberID])
+//                    {
+//                        [tmpTaskRoleAssignmentUsers addObject: observerUrs];
+//                    }
+//                    
+//                }];
+//            }
+//                
+//            default:
+//                break;
+//        }
+//        
+//    }];
+//    
+//    return tmpTaskRoleAssignmentUsers.copy;
+//}
 
 
 - (NSString*) determineCollectionCellIdForContent: (NSArray*) arrayToCheck
