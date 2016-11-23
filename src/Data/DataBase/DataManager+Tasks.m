@@ -20,8 +20,8 @@
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskMapContour+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskRoleAssignment.h"
-#import "ProjectTaskRoleAssignments.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskModel.h"
 #import "TaskRoomModel.h"
 #import "TaskOwnerModel.h"
@@ -42,6 +42,7 @@
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ProjectRoleType+CoreDataClass.h"
 #import "TaskApprovementsModel.h"
+#import "ProjectTaskRoleAssignment+CoreDataProperties.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -387,7 +388,7 @@
     }
     
     // Store tasks role assignments
-    if ( info.responsible )
+    if ( info.taskRoleAssignments )
     {
         [info.taskRoleAssignments enumerateObjectsUsingBlock: ^(TaskRoleAssignmentsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
            
@@ -566,10 +567,119 @@
 }
 
 - (void) persistRoleAssignment: (TaskProjectRoleAssignmentModel*) info
-                   forAssignee: (ProjectTaskAssignee*)            assignee
+            forTaskAssignments: (ProjectTaskRoleAssignments*)     assignments
                      inContext: (NSManagedObjectContext*)         context
 {
+    ProjectTaskRoleAssignment* roleAssignment = [self getAssignmentWithID: info.taskRoleAssignmnetID
+                                                        inRoleAssignments: assignments
+                                                                inContext: context];
     
+    if ( roleAssignment == nil )
+    {
+        roleAssignment = [ProjectTaskRoleAssignment MR_createEntityInContext: context];
+        
+        roleAssignment.projectRoleAssignments = assignments;
+        roleAssignment.taskRoleAssignmnetID   = info.taskRoleAssignmnetID;
+    }
+    
+    roleAssignment.projectPermission = info.projectPermission;
+    roleAssignment.isBlocked         = info.isBlocked;
+    
+    if ( info.assignee )
+    {
+        [self persistTaskAssignee: info.assignee
+            forTaskRoleAssignment: roleAssignment
+                        inContext: context];
+    }
+    
+    if ( info.invite )
+    {
+        [self persistTaskInvite: info.invite
+          forTaskRoleAssignment: roleAssignment
+                      inContext: context];
+    }
+    
+    if ( info.projectRoleType )
+    {
+        [self persistTaskProjectRoleType: info.projectRoleType
+                        inRoleAssignment: roleAssignment
+                               inContext: context];
+    }
+}
+
+- (void) persistTaskAssignee: (TaskAssigneeModel*)         info
+       forTaskRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                   inContext: (NSManagedObjectContext*)    context
+{
+    ProjectTaskAssignee* assignee = [self getProjectTaskAssigneeWithID: @(info.assigneeID)
+                                                      inRoleAssignment: assignment
+                                                             inContext: context];
+    
+    if ( assignee == nil )
+    {
+        assignee = [ProjectTaskAssignee MR_createEntityInContext: context];
+        
+        assignee.roleAssignment = assignment;
+        assignee.assigneeID     = @(info.assigneeID);
+    }
+    
+    assignee.additionalPhoneNumber            = info.additionalPhoneNumber;
+    assignee.avatarSrc                        = info.avatarSrc;
+    assignee.displayName                      = info.displayName;
+    assignee.email                            = info.email;
+    assignee.emailConfirmed                   = info.emailConfirmed;
+    assignee.firstName                        = info.firstName;
+    assignee.isSubscribedOnEmailNotifications = info.isSubscribedOnEmailNotifications;
+    assignee.isTourViewed                     = info.isTourViewed;
+    assignee.lastName                         = info.lastName;
+    assignee.phoneNumber                      = info.phoneNumber;
+    assignee.userName                         = info.userName;
+}
+
+- (void) persistTaskInvite: (ProjectInviteInfoModel*)    info
+     forTaskRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                 inContext: (NSManagedObjectContext*)    context
+{
+    ProjectInviteInfo* invite = [self getInviteWithID: info.inviteID
+                              inProjectRoleAssignment: assignment
+                                            inContext: context];
+    
+    if ( invite == nil )
+    {
+        invite = [ProjectInviteInfo MR_createEntityInContext: context];
+        
+        invite.inviteID              = info.inviteID;
+        invite.projectTaskAssignment = assignment;
+    }
+    
+    invite.email        = info.email;
+    invite.firstName    = info.firstName;
+    invite.lastName     = info.lastName;
+    invite.isUsed       = info.isUsed;
+    invite.isCanceled   = info.isCanceled;
+    invite.inviteStatus = info.inviteStatus;
+    invite.message      = info.message;
+    invite.projectId    = info.projectId;
+    invite.projectName  = info.projectName;
+}
+
+- (void) persistTaskProjectRoleType: (TaskProjectRoleTypeModel*)  info
+                   inRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                          inContext: (NSManagedObjectContext*)    context
+{
+    ProjectTaskRoleType* roleType = [self getRoleTypeWithID: @(info.roleTypeID)
+                                           inRoleAssignment: assignment
+                                                  inContext: context];
+    
+    if ( roleType == nil )
+    {
+        roleType = [ProjectTaskRoleType MR_createEntityInContext: context];
+        
+        roleType.roleTypeID     = @(info.roleTypeID);
+        roleType.roleAssignment = assignment;
+    }
+    
+    roleType.title = info.title;
 }
 
 - (void) persistTaskStage: (TaskStageModel*)         info
@@ -666,6 +776,10 @@
     roleAssignments.roleAssignmentsID       = @(info.roleAssignmentsID);
     roleAssignments.taskRoleType            = @(info.taskRoleType);
     roleAssignments.taskRoleTypeDescription = info.taskRoleTypeDescription;
+    
+    [self persistRoleAssignment: info.projectRoleAssignment
+             forTaskAssignments: roleAssignments
+                      inContext: context];
 }
 
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
@@ -775,5 +889,52 @@
     return task;
 }
 
+- (ProjectTaskRoleAssignment*) getAssignmentWithID: (NSNumber*)                   assignmentID
+                                 inRoleAssignments: (ProjectTaskRoleAssignments*) assignments
+                                         inContext: (NSManagedObjectContext*)     context
+{
+    NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"taskRoleAssignmnetID == %@ AND projectRoleAssignments == %@", assignmentID, assignments];
+    
+    ProjectTaskRoleAssignment* roleAssignment = [ProjectTaskRoleAssignment MR_findFirstWithPredicate: findPredicate
+                                                                                           inContext: context];
+    
+    return roleAssignment;
+}
+
+- (ProjectTaskAssignee*) getProjectTaskAssigneeWithID: (NSNumber*)                  assigneeID
+                                     inRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                                            inContext: (NSManagedObjectContext*)    context
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"assigneeID == %@ AND roleAssignment == %@", assigneeID, assignment];
+    
+    ProjectTaskAssignee* assignee = [ProjectTaskAssignee MR_findFirstWithPredicate: predicate
+                                                                         inContext: context];
+    
+    return assignee;
+}
+
+- (ProjectInviteInfo*) getInviteWithID: (NSNumber*)                  inviteID
+               inProjectRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                             inContext: (NSManagedObjectContext*)    context
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"inviteID == %@ AND projectTaskAssignment == %@", inviteID, assignment];
+    
+    ProjectInviteInfo* invite = [ProjectInviteInfo MR_findFirstWithPredicate: predicate
+                                                                   inContext: context];
+    
+    return invite;
+}
+
+- (ProjectTaskRoleType*) getRoleTypeWithID: (NSNumber*)                  roleTypeID
+                          inRoleAssignment: (ProjectTaskRoleAssignment*) assignment
+                                 inContext: (NSManagedObjectContext*)    context
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roleTypeID == %@ AND roleAssignment == %@", roleTypeID, assignment];
+    
+    ProjectTaskRoleType* roleType = [ProjectTaskRoleType MR_findFirstWithPredicate: predicate
+                                                                         inContext: context];
+    
+    return roleType;
+}
 
 @end

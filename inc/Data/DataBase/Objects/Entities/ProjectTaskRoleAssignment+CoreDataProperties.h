@@ -2,21 +2,26 @@
 //  ProjectTaskRoleAssignment+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/11/16.
+//  Created by Nikolay Chaban on 11/23/16.
 //
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
 //
 
-#import "ProjectTaskRoleAssignment.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ProjectTaskRoleAssignment (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSManagedObject *assignee;
-@property (nullable, nonatomic, retain) NSManagedObject *projectRoleType;
++ (NSFetchRequest<ProjectTaskRoleAssignment *> *)fetchRequest;
+
+@property (nullable, nonatomic, copy) NSNumber *taskRoleAssignmnetID;
+@property (nullable, nonatomic, copy) NSNumber *projectPermission;
+@property (nullable, nonatomic, copy) NSNumber *isBlocked;
+@property (nullable, nonatomic, retain) ProjectTaskAssignee *assignee;
+@property (nullable, nonatomic, retain) ProjectTaskRoleType *projectRoleType;
+@property (nullable, nonatomic, retain) ProjectTaskRoleAssignments *projectRoleAssignments;
+@property (nullable, nonatomic, retain) ProjectInviteInfo *invite;
 
 @end
 

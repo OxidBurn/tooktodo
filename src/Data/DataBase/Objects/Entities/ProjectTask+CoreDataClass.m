@@ -11,7 +11,7 @@
 #import "ProjectTaskMarker.h"
 #import "ProjectTaskOwner+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskRoleAssignments.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
