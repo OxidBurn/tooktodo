@@ -8,7 +8,10 @@
 
 #import <JSONModel/JSONModel.h>
 
-@interface TaskLogDataContentModel : JSONModel
+// Classes
+#import "TaskLogDataContentModel.h"
+
+@interface TaskLogContentModel : JSONModel
 
 @property (nonatomic, strong) NSDate*   createdDate;
 @property (nonatomic, strong) NSString* userFullName;
