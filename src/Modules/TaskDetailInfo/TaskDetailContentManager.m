@@ -262,7 +262,7 @@
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
                 
-                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 20;
+                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 28;
     
                 [commentsTmp addObject: newRow];
             }
@@ -325,7 +325,7 @@
 
 - (CGFloat) countTextViewHeightForString: (NSString*) string
 {
-    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 13.f];
+    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 14.f];
 
     CGSize size = [Utils findHeightForText: string
                                havingWidth: self.tableViewFrame.size.width - 30
@@ -333,8 +333,8 @@
     
     CGFloat height = size.height;
     
-    if (height > 69)
-        height = 69;
+    if (height > 152)
+        height = 152;
     
     return height;
 }
