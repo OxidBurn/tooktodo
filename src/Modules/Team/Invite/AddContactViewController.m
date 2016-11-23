@@ -42,6 +42,25 @@
 @implementation AddContactViewController
 
 
+#pragma mark - Life cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    [self twoLineTitleView];
+    
+    [self bindViewModel];
+    
+    self.firstCheck = YES;
+    
+    // Setup message text view placeholder
+    [self setupMessageTextView];
+    
+    self.tableView.delegate = self;
+}
+
+
 #pragma mark - Properties -
 
 - (AddContactViewModel*) addContactViewModel
@@ -65,34 +84,7 @@
 }
 
 
-#pragma mark - Life cycle -
-
-- (void) loadView
-{
-    [super loadView];
-    
-    [self twoLineTitleView];
-    
-    [self bindViewModel];
-    
-    self.firstCheck = YES;
-    
-    // Setup message text view placeholder
-    [self setupMessageTextView];
-    
-    self.tableView.delegate = self;
-}
-
-
-#pragma mark - Memory managment -
-
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-
-#pragma mark - Internal method -
+#pragma mark - Internal methods -
 
 - (void) setupMessageTextView
 {

@@ -44,11 +44,11 @@
         ProjectInviteInfo* invite = assignment.invite;
         ProjectRoleType* roleType = assignment.projectRoleType;
 
-        self.userId                 = invite.inviteID ? invite.inviteID : @(-1);
+        self.userId                 = invite.inviteID;
         self.firstName              = invite.firstName ? invite.firstName : @"";
-        self.lastName               = invite.lastName ? invite.firstName : @"";
+        self.lastName               = invite.lastName ? invite.lastName : @"";
         self.fullname               = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
-        self.email                  = invite.email ? invite.firstName : @"";
+        self.email                  = invite.email ? invite.email : @"";
         self.phoneNumber            = @"";
         self.additionalPhoneNumber  = @"";
         self.role                   = roleType.title ? roleType.title : @"";
