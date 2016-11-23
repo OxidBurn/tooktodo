@@ -8,8 +8,12 @@
 
 #import "LogWithAcitonCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
 // Classes
 #import "AvatarImageView.h"
+#import "TaskStatusDefaultValues.h"
 
 @interface LogWithAcitonCell()
 
@@ -33,6 +37,29 @@
 @end
 
 @implementation LogWithAcitonCell
+
+
+#pragma mark - Public -
+
+- (void) fillLogCellWithText: (NSString*)  text
+                    withDate: (NSString*)  date
+              withUserAvatar: (NSString*)  avatarSrc
+               withOldStatus: (NSUInteger) oldStatus
+               withNewStatus: (NSUInteger) newStatus
+{
+    self.logInfoLabel.text = text;
+    self.logDateLabel.text = date;
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: avatarSrc]];
+    
+    self.firstActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: oldStatus];
+    self.firstActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: oldStatus];
+    self.firstActionTextLabel.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: oldStatus];
+    
+    self.secondActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: newStatus];
+    self.secondActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: newStatus];
+    self.secondActionTextLabel.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: newStatus];
+}
 
 
 @end

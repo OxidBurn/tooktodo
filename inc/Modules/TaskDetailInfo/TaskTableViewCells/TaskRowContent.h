@@ -84,7 +84,6 @@
 
 @property (assign, nonatomic) NSString* taskStatusMarkImageName;
 
-// delete after implementing next property
 @property (strong, nonatomic) FlexibleViewsContainer* containerView;
 
 // properties for comments
@@ -104,7 +103,20 @@
 
 @property (strong, nonatomic) NSDate* commentDate;
 
+// properties for logs
 
+@property (strong, nonatomic) NSString* logText;
 
+@property (strong, nonatomic) NSString* logDateInString;
+
+@property (strong, nonatomic) NSString* logAuthorAvatarSrs;
+
+@property (assign, nonatomic) NSUInteger oldStatusValue;
+
+@property (assign, nonatomic) NSUInteger newStatusValue;
+
+@property (strong, nonatomic) NSString* oldTerms;
+
+@property (strong, nonatomic) NSString* newTermsValue;
 
 @end

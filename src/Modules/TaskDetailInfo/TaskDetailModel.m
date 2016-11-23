@@ -97,7 +97,7 @@
     NSArray* headerInfo = @[ @(self.task.subTasks.count),
                              self.task.attachments ? self.task.attachments : @0,
                              self.task.commentsCount ? @([self.task comments].count) : @(0),
-                             @(0) ];
+                             @(self.task.logs.count) ];
     
     return headerInfo;
 }
@@ -164,6 +164,38 @@
     }
     
     return cellHeight;
+}
+
+- (CGFloat) countHeightForLogCellForIndexPath: (NSIndexPath*) indexPath
+{
+    CGFloat height;
+    
+    TaskRowContent* content = self.taskTableViewContent[indexPath.section][indexPath.row];
+    
+    TaskDetailTableViewCells index = content.cellTypeIndex;
+    
+    switch ( index )
+    {
+        case LogDefaultCellType:
+            height = 59.f;
+            
+            break;
+            
+        case LogChangedTermsCellType:
+            height = 94.f;
+            
+            break;
+            
+        case LogChangedTaskStatusCellType:
+            height = 109.f;
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    return height;
 }
 
 - (void) createContentForTableViewWithFrame: (CGRect) frame
