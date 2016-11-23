@@ -82,11 +82,8 @@ typedef NS_ENUM(NSInteger, PermissionType)
     
     [self checkIfPhoneNumberExists: teamInfo];
     
-    
     [self chechIfEmailExists:       teamInfo];
 
-    
-    
     [self.teamMemberAvatar sd_setImageWithURL: [NSURL URLWithString: teamInfo.avatarSrc]
                              placeholderImage: [UIImage imageNamed: @"emptyAvatarIcon"]
                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
