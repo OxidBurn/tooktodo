@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *thirdCheckMark;
 @property (weak, nonatomic) IBOutlet UIImageView *fourthCheckMark;
 @property (weak, nonatomic) IBOutlet UIImageView *fifthCheckMark;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *firstAvatarLeadingConstraint;
 
 // properties
 @property (strong, nonatomic) NSArray* arrayWithImages;
