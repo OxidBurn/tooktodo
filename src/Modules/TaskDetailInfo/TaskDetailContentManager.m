@@ -487,7 +487,7 @@
 {
     CGFloat height;
     
-    UIFont* font = [UIFont fontWithName: @"Lato-Regular" size: 14.f];
+    UIFont* font = [UIFont fontWithName: @"SFUIText-Regular" size: 12.f];
     
     CGSize size = [Utils findHeightForText: string
                                havingWidth: self.tableViewFrame.size.width - 69
