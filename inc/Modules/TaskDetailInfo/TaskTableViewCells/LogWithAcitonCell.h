@@ -11,7 +11,7 @@
 @interface LogWithAcitonCell : UITableViewCell
 
 // methods
-- (void) fillLogCellWithText: (NSString*)  text
+- (void) fillLogCellWithText: (NSAttributedString*)  text
                     withDate: (NSString*)  date
               withUserAvatar: (NSString*)  avatarSrc
                withOldStatus: (NSUInteger) oldStatus

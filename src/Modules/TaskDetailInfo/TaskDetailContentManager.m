@@ -389,18 +389,22 @@
     return height;
 }
 
-- (NSString*) createLogWithAuthor: (NSString*) authorName
-                      withLogText: (NSString*) logText
+- (NSAttributedString*) createLogWithAuthor: (NSString*) authorName
+                                withLogText: (NSString*) logText
 {
-    NSDictionary* atributes = @{ NSFontAttributeName : [UIFont fontWithName: @"SFUIText-Bold"
-                                                                       size: 16.0] };
+    NSDictionary* atributes = @{ NSFontAttributeName : [UIFont fontWithName: @"SFUIText-Regular"
+                                                                       size: 12.0] };
     
-    NSAttributedString* name = [[NSAttributedString alloc] initWithString: authorName
-                                                               attributes: atributes];
+    UIColor* authorClr = [UIColor colorWithRed:0.25 green:0.28 blue:0.31 alpha:1.00];
+    NSRange authorRng  = NSMakeRange(0, authorName.length);
     
-    NSString* completeLog = [NSString stringWithFormat: @"%@ %@", name.string, logText];
-    
-    return completeLog;
+    NSString* str = [NSString stringWithFormat:@"%@ %@", authorName, logText];
+    NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:str
+                                                                                attributes:atributes];
+    [attrStr addAttribute: NSForegroundColorAttributeName
+                    value: authorClr
+                    range: authorRng];
+    return attrStr;
 }
 
 - (NSString*) createLogDateWithDate: (NSDate*) date

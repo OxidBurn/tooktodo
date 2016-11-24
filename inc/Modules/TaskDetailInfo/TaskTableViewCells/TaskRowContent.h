@@ -105,7 +105,7 @@
 
 // properties for logs
 
-@property (strong, nonatomic) NSString* logText;
+@property (strong, nonatomic) NSAttributedString* logText;
 
 @property (strong, nonatomic) NSString* logDateInString;
 

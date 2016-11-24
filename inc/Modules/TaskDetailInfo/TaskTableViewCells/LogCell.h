@@ -11,7 +11,7 @@
 @interface LogCell : UITableViewCell
 
 // methods
-- (void) fillLogCellWithText: (NSString*) text
+- (void) fillLogCellWithText: (NSAttributedString*) text
                     withDate: (NSString*) date
               withUserAvatar: (NSString*) avatarSrc;
 
