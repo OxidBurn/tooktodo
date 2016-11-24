@@ -10,7 +10,7 @@
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectRoles.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskRoleAssignment.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
 @implementation ProjectTaskAssignee
 
 @end

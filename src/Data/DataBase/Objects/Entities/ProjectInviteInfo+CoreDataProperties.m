@@ -2,7 +2,7 @@
 //  ProjectInviteInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/20/16.
+//  Created by Nikolay Chaban on 11/23/16.
 //
 //
 
@@ -27,5 +27,6 @@
 @dynamic projectRoleAssignment;
 @dynamic projectRoleType;
 @dynamic projectTaskResponsible;
+@dynamic projectTaskAssignment;
 
 @end

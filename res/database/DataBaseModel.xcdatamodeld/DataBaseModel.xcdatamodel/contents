@@ -63,6 +63,7 @@
         <attribute name="projectName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="invite" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRoleType" inverseName="projectInvite" inverseEntity="ProjectRoleType" syncable="YES"/>
+        <relationship name="projectTaskAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="invite" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
         <relationship name="projectTaskResponsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="invite" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
     </entity>
     <entity name="ProjectRegion" representedClassName="ProjectRegion" syncable="YES">
@@ -223,13 +224,19 @@
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="responsible" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoleAssignment" representedClassName="ProjectTaskRoleAssignment" syncable="YES">
+        <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="projectPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="taskRoleAssignmnetID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="roleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="invite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectTaskAssignment" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="projectRoleAssignments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignments" inverseName="projectRoleAssignment" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
         <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleType" inverseName="roleAssignment" inverseEntity="ProjectTaskRoleType" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoleAssignments" representedClassName="ProjectTaskRoleAssignments" syncable="YES">
         <attribute name="roleAssignmentsID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskRoleType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskRoleTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="projectRoleAssignments" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="taskRoleAssignments" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoleType" representedClassName="ProjectTaskRoleType" syncable="YES">
@@ -407,7 +414,7 @@
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
         <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="585"/>
-        <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="240"/>
+        <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="255"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="165"/>
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
@@ -420,8 +427,8 @@
         <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
         <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="270"/>
         <element name="ProjectTaskResponsible" positionX="-27" positionY="117" width="128" height="240"/>
-        <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="75"/>
-        <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="105"/>
+        <element name="ProjectTaskRoleAssignment" positionX="-45" positionY="99" width="128" height="150"/>
+        <element name="ProjectTaskRoleAssignments" positionX="0" positionY="144" width="128" height="120"/>
         <element name="ProjectTaskRoleType" positionX="-36" positionY="108" width="128" height="105"/>
         <element name="ProjectTaskRoom" positionX="-18" positionY="126" width="128" height="210"/>
         <element name="ProjectTaskRoomLevel" positionX="-36" positionY="108" width="128" height="165"/>
@@ -434,11 +441,11 @@
         <element name="TaskAvailableStagesAction" positionX="-18" positionY="126" width="128" height="103"/>
         <element name="TaskAvailableStatusAction" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="TaskComment" positionX="-45" positionY="99" width="128" height="165"/>
+        <element name="TaskLogDataContent" positionX="-27" positionY="117" width="128" height="345"/>
+        <element name="TaskLogInfo" positionX="-36" positionY="108" width="128" height="150"/>
         <element name="TaskStorageFiles" positionX="-36" positionY="108" width="128" height="60"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="255"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="TaskLogInfo" positionX="-36" positionY="108" width="128" height="150"/>
-        <element name="TaskLogDataContent" positionX="-27" positionY="117" width="128" height="345"/>
     </elements>
 </model>
