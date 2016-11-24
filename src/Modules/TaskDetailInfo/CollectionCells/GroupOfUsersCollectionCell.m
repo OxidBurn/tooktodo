@@ -35,7 +35,22 @@
 
 @implementation GroupOfUsersCollectionCell
 
+
 #pragma mark - Properties -
+
+- (NSArray*) arrayWithImages
+{
+    if (_arrayWithImages == nil)
+    {
+        _arrayWithImages = @[ self.firstAvatarImageView,
+                              self.secondAvatarImageView,
+                              self.thirdAvatarImageView,
+                              self.fourthAvatarImageView,
+                              self.fifthAvatarImageView ];
+    }
+    
+    return _arrayWithImages;
+}
 
 
 #pragma mark - Public -
@@ -46,27 +61,83 @@
     
     if (content.observers)
     {
-        [content.observers enumerateObjectsUsingBlock:^(FilledTeamInfo*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [self.firstAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.secondAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.thirdAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.fourthAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.fifthAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-        }];
+        [self fillImagesWithUsers: content.observers];
     }
     
     else if (content.claiming)
     {
-        [content.claiming enumerateObjectsUsingBlock:^(FilledTeamInfo*   _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           
-            [self.firstAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.secondAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.thirdAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.fourthAvatarImageView sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
-            [self.fifthAvatarImageView  sd_setImageWithURL: [NSURL URLWithString: obj.avatarSrc]];
+        [self fillImagesWithUsers: content.claiming];
+    }
+
+}
+
+
+#pragma mark - Helpers -
+
+- (void) fillImagesWithUsers: (NSArray*) approvals
+{
+    [self resetCellToDefault];
+    
+    if ( approvals.count <= 5 )
+    {
+        [approvals enumerateObjectsUsingBlock: ^(FilledTeamInfo* user, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( user )
+            {
+                UIImageView* imageView = self.arrayWithImages[idx];
+                
+                imageView.hidden = NO;
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+            }
+            
+        }];
+    }
+    
+    else
+    {
+        NSUInteger approvalsLeft = approvals.count - 5;
+        
+        self.numberOfUsersLeftLabel.hidden = NO;
+        
+        self.numberOfUsersLeftLabel.text = [NSString stringWithFormat: @"+%ld", (unsigned long)approvalsLeft];
+        
+        [approvals enumerateObjectsUsingBlock: ^(FilledTeamInfo* user, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( idx < 5 )
+            {
+                UIImageView* imageView = self.arrayWithImages[idx];
+                
+                imageView.hidden = NO;
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+            }
+            
         }];
     }
     
 }
+
+- (void) roundAllImageViews
+{
+    [self.arrayWithImages enumerateObjectsUsingBlock:^(UIImageView* imageView, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        imageView.layer.cornerRadius = 10;
+        imageView.clipsToBounds      = YES;
+    }];
+}
+
+- (void) resetCellToDefault
+{
+    [self roundAllImageViews];
+    
+    [self.arrayWithImages enumerateObjectsUsingBlock:^(UIImageView* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.hidden = YES;
+        
+    }];
+    
+    self.numberOfUsersLeftLabel.hidden = YES;
+}
+
 @end

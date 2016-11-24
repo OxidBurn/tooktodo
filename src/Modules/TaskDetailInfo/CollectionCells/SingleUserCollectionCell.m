@@ -48,8 +48,10 @@
         userInfo = content.responsible.firstObject;
     else if (content.claiming)
         userInfo = content.claiming.firstObject;
+    else if (content.observers)
+        userInfo = content.observers.firstObject;
     
-    self.userNameLabel.text = userInfo.fullname;
+    self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
 }

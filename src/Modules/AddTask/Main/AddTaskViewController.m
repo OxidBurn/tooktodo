@@ -135,6 +135,7 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
                                 withDelegate: [self.viewModel returnModel]];
+            
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedObserversArray]];
         }
             break;
