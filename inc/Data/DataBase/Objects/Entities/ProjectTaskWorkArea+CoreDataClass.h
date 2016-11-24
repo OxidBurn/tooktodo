@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectTask;
+@class ProjectTask, ProjectTaskFilterContent;
 
 NS_ASSUME_NONNULL_BEGIN
 

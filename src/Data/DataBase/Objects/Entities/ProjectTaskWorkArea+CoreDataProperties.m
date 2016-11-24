@@ -19,5 +19,6 @@
 @dynamic title;
 @dynamic workAreaID;
 @dynamic task;
+@dynamic taskFilterContent;
 
 @end

@@ -2,14 +2,14 @@
 //  ProjectSystem+CoreDataClass.h
 //  
 //
-// Created by Nikolay Chaban on 30.09.16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectInfo;
+@class ProjectInfo, ProjectTaskFilterContent;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, copy) NSNumber *workAreaID;
 @property (nullable, nonatomic, retain) ProjectTask *task;
+@property (nullable, nonatomic, retain) ProjectTaskFilterContent *taskFilterContent;
 
 @end
 
