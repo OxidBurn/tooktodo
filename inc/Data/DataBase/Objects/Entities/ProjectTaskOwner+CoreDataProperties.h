@@ -2,7 +2,7 @@
 //  ProjectTaskOwner+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *ownerID;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
 @property (nullable, nonatomic, copy) NSString *userName;
-@property (nullable, nonatomic, copy) NSNumber *usedForFilters;
 @property (nullable, nonatomic, retain) ProjectRoles *role;
 @property (nullable, nonatomic, retain) ProjectTask *task;
 

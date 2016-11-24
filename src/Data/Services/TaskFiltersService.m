@@ -11,6 +11,9 @@
 // Classes
 #import "TaskFiltersAPIService.h"
 
+// Categories
+#import "DataManager+Filters.h"
+
 @interface TaskFiltersService()
 
 // properties
@@ -240,8 +243,8 @@
 
 - (RACSignal*) loadFilterTypes
 {
-    NSString* requestURL = [getFiltersExpiredURL stringByReplacingOccurrencesOfString: @"{projectId}"
-                                                                           withString: self.projectID.stringValue];
+    NSString* requestURL = [getFiltersTypesURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                         withString: self.projectID.stringValue];
     
     @weakify(self)
     
@@ -275,8 +278,8 @@
 
 - (RACSignal*) loadFilterExpired
 {
-    NSString* requestURL = [getFiltersStatusesURL stringByReplacingOccurrencesOfString: @"{projectId}"
-                                                                            withString: self.projectID.stringValue];
+    NSString* requestURL = [getFiltersExpiredURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                           withString: self.projectID.stringValue];
     
     @weakify(self)
     
@@ -313,45 +316,78 @@
 - (void) parseFilterStatusesResopnse: (NSDictionary*)         response
                       withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task statuses filter info response: %@", response);
     
-    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: StatusFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterCreatorsResopnse: (NSDictionary*)         response
                       withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task creators filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: CreatorsFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterWorkAreasResopnse: (NSDictionary*)         response
                        withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task work areas filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: WorkAreasFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterResponsiblesResopnse: (NSDictionary*)         response
                           withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task responsibles filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: ResponsiblesFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterApprovesResopnse: (NSDictionary*)         response
                       withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task approves filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: ApprovesFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterTypesResopnse: (NSDictionary*)         response
                    withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task types filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: TypesFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 - (void) parseFilterExpiredResopnse: (NSDictionary*)         response
                      withCompletion: (CompletionWithSuccess) completion
 {
-    NSLog(@"<INFO> Loaded task filter info response: %@", response);
+    NSLog(@"<INFO> Loaded task expired filter info response: %@", response);
+    
+    [DataManagerShared persistProjectFilter: response
+                                   withType: ExpiredFilterType
+                           forProjectWithID: self.projectID
+                             withCompletion: completion];
 }
 
 @end
