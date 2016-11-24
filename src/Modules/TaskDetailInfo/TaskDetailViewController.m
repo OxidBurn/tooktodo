@@ -70,19 +70,24 @@
     [self setKeyboardRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableClick:)]];
 
     __weak typeof(self) weakSelf = self;
-    [NSNotificationCenter.defaultCenter addObserverForName:UIKeyboardWillShowNotification
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull note) {
-                                                    [weakSelf.taskTableView addGestureRecognizer:weakSelf.keyboardRecognizer];
+    [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillShowNotification
+                                                    object: nil
+                                                     queue: nil
+                                                usingBlock:^(NSNotification* note) {
+                                                    [weakSelf.taskTableView addGestureRecognizer: weakSelf.keyboardRecognizer];
                                                 CGFloat height = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
                                                     weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
+                                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                                        [weakSelf.viewModel scrollToCommentCell];
+                                                        weakSelf.taskTableView.scrollEnabled = false;
+                                                    });
      }];
-    [NSNotificationCenter.defaultCenter addObserverForName:UIKeyboardWillHideNotification
-                                                    object:nil
-                                                     queue:nil
-                                                usingBlock:^(NSNotification * _Nonnull note) {
-                                                    [weakSelf onTableClick:nil];
+    [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillHideNotification
+                                                    object: nil
+                                                     queue: nil
+                                                usingBlock: ^(NSNotification* note) {
+                                                    weakSelf.taskTableViewBottom.constant = 0;
+                                                    weakSelf.taskTableView.scrollEnabled = true;
                                                 }];
 }
 

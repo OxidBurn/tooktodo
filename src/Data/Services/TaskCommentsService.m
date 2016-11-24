@@ -75,25 +75,25 @@
     return loadCommentsForTaskSignal;
 }
 
-- (RACSignal*) postCommentForSelectedTask: (NSString *)comment
+- (RACSignal*) postCommentForSelectedTask: (NSString *)message
 {
     NSString* requestURL = [self buildPostCommentURL];
 
-    NSDictionary* requestParameters = @{@"message" : comment,
+    NSDictionary* requestParameters = @{@"message" : message,
                                         @"files" : @[]};
 
     @weakify(self)
     
     RACSignal* loadCommentsForTaskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        [[[TaskCommentsAPIService sharedInstance] postCommentforTask: requestURL
+        [[[TaskCommentsAPIService sharedInstance] postCommentForTask: requestURL
                                                           withParams: requestParameters]
          subscribeNext: ^(RACTuple* response) {
              
              @strongify(self)
              
-             [self parsePostCommentResponse: response[0]
-                             withCompletion: ^(BOOL isSuccess) {
+             [self parseCommentsResponse: @[response[0]]
+                          withCompletion: ^(BOOL isSuccess) {
 
                                  [subscriber sendNext: nil];
                                  [subscriber sendCompleted];
@@ -109,6 +109,65 @@
     }];
 
     return loadCommentsForTaskSignal;
+}
+
+- (RACSignal*) editCommentForSelectedTask: (NSString *) message
+                                commentID: (NSNumber*)  commentID
+{
+    NSString* requestURL = [self buildPostCommentURL];
+
+    requestURL = [requestURL stringByAppendingFormat:@"/%@", commentID];
+
+    NSDictionary* requestParameters = @{@"message" : message,
+                                        @"files" : @[]};
+
+    @weakify(self)
+
+    RACSignal* loadCommentsForTaskSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+
+        [[[TaskCommentsAPIService sharedInstance] editCommentForTask: requestURL
+                                                          withParams: requestParameters]
+         subscribeNext: ^(RACTuple* response) {
+
+             @strongify(self)
+
+             [self parseCommentsResponse: @[response[0]]
+                          withCompletion: ^(BOOL isSuccess) {
+
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+
+                          }];
+         }
+         error: ^(NSError *error) {
+
+             [subscriber sendError: error];
+
+         }];
+        return nil;
+    }];
+    
+    return loadCommentsForTaskSignal;
+}
+
+- (RACSignal*) deleteCommentForSelectedTaskWithID: (NSNumber*) commentID
+{
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString* requestURL = [self.buildPostCommentURL stringByAppendingFormat: @"/%@", commentID];
+        [[[TaskCommentsAPIService sharedInstance] deleteCommentForTask: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             [DataManagerShared deleteCommentWithID: commentID
+                                             inTask: [DataManagerShared getSelectedTask]
+                                         completion:^{
+                                             [subscriber sendNext: nil];
+                                             [subscriber sendCompleted];
+                                         }];
+         }
+         error: ^(NSError *error) {
+             [subscriber sendError: error];
+         }];
+        return nil;
+    }];
 }
 
 #pragma mark - Internal methods -
@@ -146,24 +205,6 @@
     NSArray* commentsList = [CommentsModel arrayOfModelsFromDictionaries: response
                                                                    error: &parseError];
     
-    if ( parseError )
-    {
-        NSLog(@"Error with parsing task comments response: %@", parseError.localizedDescription);
-    }
-    else
-    {
-        [DataManagerShared persistNewCommentsForSelectedTasks: commentsList
-                                               withCompletion: completion];
-    }
-}
-
-- (void) parsePostCommentResponse: (NSArray*) response
-                   withCompletion: (CompletionWithSuccess) completion
-{
-    NSError* parseError   = nil;
-    NSArray* commentsList = [CommentsModel arrayOfModelsFromDictionaries: @[response]
-                                                                   error: &parseError];
-
     if ( parseError )
     {
         NSLog(@"Error with parsing task comments response: %@", parseError.localizedDescription);

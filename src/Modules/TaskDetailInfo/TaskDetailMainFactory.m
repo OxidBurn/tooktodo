@@ -21,6 +21,9 @@
 #import "SubtaskInfoFactory.h"
 #import "AttachmentsCellFactory.h"
 #import "CommentsCellFactory.h"
+#import "LogsCellFactory.h"
+#import "LogsChangeTermsFactory.h"
+#import "LogsChangeStatusFactory.h"
 
 @implementation TaskDetailMainFactory
 
@@ -112,6 +115,33 @@
             cell = [factory returnCommentsCellForTableView: tableView
                                                withContent: content
                                               withDelegate: delegate];
+        }
+            break;
+            
+        case LogDefaultCellType:
+        {
+            LogsCellFactory* factory = [LogsCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+        case LogChangedTaskStatusCellType:
+        {
+            LogsChangeStatusFactory* factory = [LogsChangeStatusFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+        case LogChangedTermsCellType:
+        {
+            LogsChangeTermsFactory* factory = [LogsChangeTermsFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
         }
             break;
     }

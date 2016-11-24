@@ -439,6 +439,9 @@
 		F775C1881DD201EB002FB201 /* FlexibleViewsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F775C1871DD201EB002FB201 /* FlexibleViewsContainer.m */; };
 		F775C18B1DD20206002FB201 /* AttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F775C18A1DD20206002FB201 /* AttachmentView.m */; };
 		F775C18E1DD210F3002FB201 /* TestAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = F775C18D1DD210F3002FB201 /* TestAttachments.m */; };
+		F7BB2CD21DE5FE34002CFAAE /* LogsCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB2CD11DE5FE34002CFAAE /* LogsCellFactory.m */; };
+		F7BB2CD51DE613E8002CFAAE /* LogsChangeStatusFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB2CD41DE613E8002CFAAE /* LogsChangeStatusFactory.m */; };
+		F7BB2CD81DE613F9002CFAAE /* LogsChangeTermsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB2CD71DE613F9002CFAAE /* LogsChangeTermsFactory.m */; };
 		F7C3CA771DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */; };
 		F7DEE5FF1DD9D12F0089D09A /* AddTaskMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */; };
 		F7EB66F41DE35D6100F44CDF /* FilterByTermsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EB66D11DE35D6100F44CDF /* FilterByTermsCell.m */; };
@@ -1303,6 +1306,12 @@
 		F775C1871DD201EB002FB201 /* FlexibleViewsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlexibleViewsContainer.m; sourceTree = "<group>"; };
 		F775C18A1DD20206002FB201 /* AttachmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachmentView.m; sourceTree = "<group>"; };
 		F775C18D1DD210F3002FB201 /* TestAttachments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAttachments.m; sourceTree = "<group>"; };
+		F7BB2CD01DE5FE34002CFAAE /* LogsCellFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogsCellFactory.h; sourceTree = "<group>"; };
+		F7BB2CD11DE5FE34002CFAAE /* LogsCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogsCellFactory.m; sourceTree = "<group>"; };
+		F7BB2CD31DE613E8002CFAAE /* LogsChangeStatusFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogsChangeStatusFactory.h; sourceTree = "<group>"; };
+		F7BB2CD41DE613E8002CFAAE /* LogsChangeStatusFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogsChangeStatusFactory.m; sourceTree = "<group>"; };
+		F7BB2CD61DE613F9002CFAAE /* LogsChangeTermsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogsChangeTermsFactory.h; sourceTree = "<group>"; };
+		F7BB2CD71DE613F9002CFAAE /* LogsChangeTermsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogsChangeTermsFactory.m; sourceTree = "<group>"; };
 		F7C3CA751DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AddTaskContentManager+ProjectTask.h"; sourceTree = "<group>"; };
 		F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AddTaskContentManager+ProjectTask.m"; sourceTree = "<group>"; };
 		F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskMainFactory.m; sourceTree = "<group>"; };
@@ -2971,6 +2980,12 @@
 				F7ED84411DAFCEA400CF76D7 /* CommentsCellFactory.m */,
 				56D06DFD1DAFBDBF008E9AC0 /* TaskDescriptionFactory.m */,
 				56D06DFE1DAFBDBF008E9AC0 /* TaskDetailInfoFactory.m */,
+				F7BB2CD01DE5FE34002CFAAE /* LogsCellFactory.h */,
+				F7BB2CD11DE5FE34002CFAAE /* LogsCellFactory.m */,
+				F7BB2CD31DE613E8002CFAAE /* LogsChangeStatusFactory.h */,
+				F7BB2CD41DE613E8002CFAAE /* LogsChangeStatusFactory.m */,
+				F7BB2CD61DE613F9002CFAAE /* LogsChangeTermsFactory.h */,
+				F7BB2CD71DE613F9002CFAAE /* LogsChangeTermsFactory.m */,
 			);
 			path = TableCellsFactories;
 			sourceTree = "<group>";
@@ -3900,6 +3915,7 @@
 				F7ED843F1DAFCE9100CF76D7 /* AttachmentsCellFactory.m in Sources */,
 				56D06FA61DAFBDC0008E9AC0 /* OSAlertViewController.m in Sources */,
 				56D06F9A1DAFBDC0008E9AC0 /* BaseMainViewController+NavigationTitle.m in Sources */,
+				F7BB2CD51DE613E8002CFAAE /* LogsChangeStatusFactory.m in Sources */,
 				56D06E8B1DAFBDC0008E9AC0 /* OfflineSettings+CoreDataProperties.m in Sources */,
 				56D06F571DAFBDC0008E9AC0 /* AddCommentCellFactory.m in Sources */,
 				56D06EBD1DAFBDC0008E9AC0 /* UserInfo+CoreDataProperties.m in Sources */,
@@ -4059,6 +4075,7 @@
 				56D06F661DAFBDC0008E9AC0 /* ProjectTasksViewModel.m in Sources */,
 				56D06EEE1DAFBDC0008E9AC0 /* UIViewController+Focus.m in Sources */,
 				560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */,
+				F7BB2CD21DE5FE34002CFAAE /* LogsCellFactory.m in Sources */,
 				56D06EC01DAFBDC0008E9AC0 /* UserNotifications.m in Sources */,
 				56D06F4A1DAFBDC0008E9AC0 /* ChangeStatusViewModel.m in Sources */,
 				56D06F9B1DAFBDC0008E9AC0 /* BaseMainViewController+Popover.m in Sources */,
@@ -4136,6 +4153,7 @@
 				56D06F311DAFBDC0008E9AC0 /* AllProjectsViewController.m in Sources */,
 				56D06FBF1DAFBDC0008E9AC0 /* PopoverCell.m in Sources */,
 				5663BB5D1DE5D99200F82E5B /* TaskLogDataContent+CoreDataProperties.m in Sources */,
+				F7BB2CD81DE613F9002CFAAE /* LogsChangeTermsFactory.m in Sources */,
 				56D06F1F1DAFBDC0008E9AC0 /* RecoveryModel.m in Sources */,
 				F775C18B1DD20206002FB201 /* AttachmentView.m in Sources */,
 				56D06F9F1DAFBDC0008E9AC0 /* AlertView.m in Sources */,

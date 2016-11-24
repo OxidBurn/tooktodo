@@ -21,4 +21,7 @@
 
 - (NSArray*) getAllCommentsForTask: (ProjectTask*) task;
 
+- (void) deleteCommentWithID: (NSNumber*)       commentID
+                      inTask: (ProjectTask*)    task
+                  completion: (void(^)())       completion;
 @end

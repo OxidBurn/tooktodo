@@ -40,6 +40,8 @@
 
 - (void) hideKeyboard;
 
+- (void) scrollToCommentCell;
+
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion;
 

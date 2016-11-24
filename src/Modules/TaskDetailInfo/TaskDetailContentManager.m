@@ -8,6 +8,9 @@
 
 #import "TaskDetailContentManager.h"
 
+// Frameworks
+#import <objc/objc-runtime.h>
+
 // Classes
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskWorkArea+CoreDataClass.h"
@@ -19,8 +22,11 @@
 
 #import "ProjectTask+CoreDataProperties.h"
 #import "TaskComment+CoreDataProperties.h"
+#import "TaskLogInfo+CoreDataProperties.h"
+#import "TaskLogDataContent+CoreDataProperties.h"
 
 #import "Utils.h"
+#import "NSDate+Helper.h"
 
 // Test class import
 #import "TestAttachments.h"
@@ -53,7 +59,10 @@
                                     @"LogCellId",
                                     @"FilterSubtasksCellId",
                                     @"FilterAttachmentsCellId",
-                                    @"AddCommentCellId" ];
+                                    @"AddCommentCellId",
+                                    @"LogDefaultCellId",
+                                    @"LogChangedTermsCellId",
+                                    @"LogChangedTaskStatusCellId"];
     }
     
     return _tableViewCellsIdArray;
@@ -239,8 +248,8 @@
     
     NSArray* testContent        = [NSArray new];
     
-    if ( [task comments].count == 0 )
-        testContent = [self createTestComment];
+//    if ( [task comments].count == 0 )
+//        testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
 
@@ -258,6 +267,7 @@
                 newRow.commentAuthorName      = comment.author;
                 newRow.commentAuthorAvatarSrc = comment.avatarSrc;
                 newRow.commentDate            = comment.date;
+                newRow.commentID            = comment.commentID;
     
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
@@ -279,15 +289,56 @@
     return commentsTmp.copy;
 }
 
-- (NSArray*) createSLogsContentForTask: task
+- (NSArray*) createSLogsContentForTask: (ProjectTask*) task
 {
-    NSArray* content = [NSArray new];
+    NSMutableArray* content = [NSMutableArray new];
     
-    // here will be created content with logs
+    NSArray* allLogs = task.logs.allObjects;
     
-    return content;
-}
+    [allLogs enumerateObjectsUsingBlock: ^(TaskLogInfo* log, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        TaskRowContent* row = [TaskRowContent new];
+        
+        row.logText = [self createLogWithAuthor: log.userFullName
+                                    withLogText: log.text];
+        
+        row.logDateInString = [self createLogDateWithDate: log.createdDate];
+        
+        row.logAuthorAvatarSrs = log.userAvatar;
+        
+        NSArray* properties = [self getAllPropertiesForLogData: log.data];
+        
+        row.cellTypeIndex = [self determineCellIndexForProperties: properties];
 
+        NSLog(@"log properties %@ \ncell index %ld", properties, row.cellTypeIndex);
+        
+        switch ( row.cellTypeIndex )
+        {
+            case LogChangedTaskStatusCellType:
+            {
+                row.oldStatusValue = log.data.oldStatus.integerValue;
+                row.newStatusValue = log.data.newStatus.integerValue;
+            }
+                break;
+            case LogChangedTermsCellType:
+            {
+                row.oldTerms = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                       andEndDate: log.data.oldEndDate];
+                
+                row.newTermsValue = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                       andEndDate: log.data.newEndDate];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        [content addObject: row];
+    }];
+    
+    return content.copy;
+}
 
 - (NSArray*) createAttachmentsViewsWithTitles: (NSArray*) attachmentsArray
 {
@@ -338,6 +389,93 @@
     
     return height;
 }
+
+- (NSAttributedString*) createLogWithAuthor: (NSString*) authorName
+                                withLogText: (NSString*) logText
+{
+    NSDictionary* atributes = @{ NSFontAttributeName : [UIFont fontWithName: @"SFUIText-Regular"
+                                                                       size: 12.0] };
+    
+    UIColor* authorClr = [UIColor colorWithRed:0.25 green:0.28 blue:0.31 alpha:1.00];
+    NSRange authorRng  = NSMakeRange(0, authorName.length);
+    
+    NSString* str = [NSString stringWithFormat:@"%@ %@", authorName, logText];
+    NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:str
+                                                                                attributes:atributes];
+    [attrStr addAttribute: NSForegroundColorAttributeName
+                    value: authorClr
+                    range: authorRng];
+    return attrStr;
+}
+
+- (NSString*) createLogDateWithDate: (NSDate*) date
+{
+    NSString* dateInString = [NSDate stringFromDate: date
+                                         withFormat: @"dd MMMM"];
+    
+    NSString* time = [NSDate stringFromDate: date
+                                 withFormat: @"hh:mm"];
+    
+    return [NSString stringWithFormat: @"%@ в %@", dateInString, time];
+}
+
+
+- (NSArray*) getAllPropertiesForLogData: (TaskLogDataContent*) logData
+{
+    id currentClass = [logData class];
+    
+    NSString* propertyName;
+    
+    unsigned int outCount, i;
+    
+    objc_property_t *properties = class_copyPropertyList(currentClass, &outCount);
+    
+    NSMutableArray* propertiesArray = [NSMutableArray new];
+    
+    for (i = 0; i < outCount; i++) {
+        
+        objc_property_t property = properties[i];
+        
+        propertyName = [NSString stringWithCString:property_getName(property)];
+        
+        if ( [logData valueForKey: propertyName] != nil )
+        {
+            [propertiesArray addObject: propertyName];
+        }
+    }
+    
+    return propertiesArray.copy;
+}
+
+- (TaskDetailTableViewCells) determineCellIndexForProperties: (NSArray*) properties
+{
+    NSUInteger index = LogDefaultCellType;
+    
+    if ( [properties containsObject: @"oldStatus"] )
+    {
+        index = LogChangedTaskStatusCellType;
+    }
+    
+    if ( [properties containsObject: @"oldEndDate"] )
+        index = LogChangedTermsCellType;
+    
+    return index;
+}
+
+- (NSString*) createTermsLabelForStartDate: (NSDate*) startDate
+                                andEndDate: (NSDate*) endDate
+{
+    NSString* start = [NSDate stringFromDate: startDate
+                                  withFormat: @"dd.mm.yyyy"];
+    
+    NSString* end = [NSDate stringFromDate: endDate
+                                withFormat: @"dd.mm.yyyy"];
+    
+    NSString* terms = [NSString stringWithFormat: @"%@ - %@", start, end];
+    
+    return terms;
+}
+
 
 #pragma mark - Test methods -
 

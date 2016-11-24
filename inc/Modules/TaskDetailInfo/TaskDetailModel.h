@@ -27,6 +27,8 @@
 
 - (CGFloat) countHeightForCommentCellForIndexPath: (NSIndexPath*) indexPath;
 
+- (CGFloat) countHeightForLogCellForIndexPath: (NSIndexPath*) indexPath;
+
 - (NSString*) getTaskTitle;
 
 - (NSString*) getTaskDescriptionValue;

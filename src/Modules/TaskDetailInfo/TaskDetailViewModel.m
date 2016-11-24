@@ -20,6 +20,7 @@
 #import "AddCommentCell.h"
 #import "TaskCommentsService.h"
 #import "TasksService.h"
+#import "RowContent.h"
 
 // Helpers
 #import "Utils.h"
@@ -38,6 +39,7 @@
 
 @property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
 
+@property (strong, nonatomic) NSNumber *commentID;
 @property (strong, nonatomic) AddCommentCell* addCommentCell;
 
 @end
@@ -145,9 +147,11 @@
     CGPoint offset = self.tableView.contentOffset;
     
     [self.tableView reloadData];
-    
+    [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                         withDelegate: self];
+
     [self.tableView layoutIfNeeded];
-    
+
     [self.tableView setContentOffset: offset animated: NO];
 }
 
@@ -159,6 +163,13 @@
 - (void) hideKeyboard
 {
     [self.addCommentCell.addCommentTextView resignFirstResponder];
+    self.commentID = nil;
+}
+
+- (void) scrollToCommentCell
+{
+    [self.tableView scrollRectToVisible: self.addCommentCell.frame
+                               animated: true];
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -183,9 +194,11 @@
         
         [self.model createContentForTableViewWithFrame: tableView.frame];
     }
+
+    TaskRowContent *content = [self.model getContentForIndexPath: indexPath];
     
     UITableViewCell* cell = [self.factory createCellForTableView: tableView
-                                                     withContent: [self.model getContentForIndexPath: indexPath]
+                                                     withContent: content
                                                     withDelegate: self];
     
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
@@ -202,10 +215,15 @@
         subtaskCell.delegate = self;
     }
 
-    if ([cell isKindOfClass:AddCommentCell.class])
+    if ([cell isKindOfClass: AddCommentCell.class])
     {
         self.addCommentCell             = (AddCommentCell*)cell;
         self.addCommentCell.delegate    = self;
+    }
+
+    if ([cell isKindOfClass: [CommentsCell class]])
+    {
+        ((CommentsCell *)cell).commentID = content.commentID;
     }
 
     return cell;
@@ -245,11 +263,12 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
         case SectionTwo:
         {
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
+            
             if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
             {
-                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
-                height = MIN(height, 152);
-                if (height < 152)
+                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+                height = MIN(height, 131);
+                if (height < 131)
                 {
                     self.addCommentCell.addCommentTextView.scrollEnabled = false;
                     self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
@@ -319,6 +338,55 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                   withRowAnimation: UITableViewRowAnimationFade];
 }
 
+- (void) commentsCell: (CommentsCell*) commentsCell
+            onEditBtn: (id) sender
+{
+    self.addCommentCell.addCommentTextView.text = commentsCell.commentContentTextView.text;
+
+    [self updateAddCommentHeight];
+
+    [self.addCommentCell.addCommentTextView becomeFirstResponder];
+
+    self.commentID = commentsCell.commentID;
+}
+
+- (void) commentsCell: (CommentsCell*) commentsCell
+          onCancelBtn: (id) sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentsCell];
+    self.commentID = [self.model getContentForIndexPath:indexPath].commentID;
+
+    UIAlertController* alertConroller = [UIAlertController alertControllerWithTitle:@""
+                                                                            message:@"Вы действительно хотите удалить комментарий?"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof (self) weakSelf = self;
+    [alertConroller addAction: [UIAlertAction actionWithTitle:@"Отмена"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          weakSelf.commentID = nil;
+                                                      }]];
+    void (^handler)(UIAlertAction *action) = ^(UIAlertAction *action) {
+        RACSignal* signal = [TaskCommentsService.sharedInstance deleteCommentForSelectedTaskWithID:weakSelf.commentID];
+        [signal subscribeNext: ^(id response) {
+            [weakSelf.model fillSelectedTask: weakSelf.model.getCurrentTask
+                              withCompletion: ^(BOOL isSuccess) {
+                                  [weakSelf.tableView reloadData];
+                                  [weakSelf.headerView fillViewWithInfo: [weakSelf.model returnHeaderNumbersInfo]
+                                                           withDelegate: weakSelf];
+                                  weakSelf.addCommentCell.addCommentTextView.text   = @"";
+                                  weakSelf.addCommentCell.addCommentLabel.alpha     = 1;
+                              }];
+        } error: ^(NSError *error) {
+        }];
+        weakSelf.commentID = nil;
+    };
+    [alertConroller addAction: [UIAlertAction actionWithTitle: @"Удалить"
+                                                        style: UIAlertActionStyleDefault
+                                                      handler: handler]];
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController: alertConroller
+                                                                               animated: true
+                                                                             completion: nil];
+}
 
 #pragma mark - TaskDetailCellDelegate methods -
 
@@ -333,7 +401,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
-
 
 #pragma mark - FilterSubtasksCellDelegate  methods -
 
@@ -357,6 +424,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark - Helpers -
 
+- (void)updateAddCommentHeight
+{
+    CGPoint contentOffset = self.tableView.contentOffset;
+    [UIView setAnimationsEnabled: false];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [UIView setAnimationsEnabled: true];
+    self.tableView.contentOffset = contentOffset;
+}
+
 // This method counts second section cells heights according to cell types
 - (CGFloat) returnSecondSectionRowHeightForIndexPath: (NSIndexPath*) indexPath
 {
@@ -368,13 +445,23 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     NSNumber* firstRowHeight = heightsArrayForContentType[0];
     
-    NSNumber* defaultHeightValue = heightsArrayForContentType[1];
+    NSNumber* defaultHeightValue;
+    
+    if ( contentType != LogsContentType )
+        defaultHeightValue = heightsArrayForContentType[1];
+    else
+        defaultHeightValue = firstRowHeight;
 
     switch ( indexPath.row )
     {
         case 0:
         {
                 height = firstRowHeight.integerValue;
+            
+            if ( [self.model getSecondSectionContentType] == LogsContentType )
+            {
+                height = [self.model countHeightForLogCellForIndexPath: indexPath];
+            }
         }
             break;
             
@@ -387,6 +474,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             else
             {
                 height = defaultHeightValue.integerValue;
+                
+                if ( [self.model getSecondSectionContentType] == LogsContentType )
+                {
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                }
             }
         }
             break;
@@ -399,13 +491,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                     height = [self.model countHeightForCommentCellForIndexPath: indexPath];
                 else
                     height = defaultHeightValue.integerValue;
-            }
+            } else
+                if ( [self.model getSecondSectionContentType] == LogsContentType )
+                {
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                }
         }
             break;
     }
     
     return height;
 }
+
 
 - (CGFloat) countHeightForTaskDetailCellForTableView: (UITableView*) tableView
 {
@@ -514,12 +611,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark -
 
-- (void)    addCommentCell: (AddCommentCell*)addCommentCell
-   newCommentTextDidChange: (UITextView*)sender
+- (void)    addCommentCell: (AddCommentCell*) addCommentCell
+   newCommentTextDidChange: (UITextView*)     sender
 {
     CGRect frame = self.addCommentCell.frame;
-    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
-    frame.size.height = MIN(frame.size.height, 152);
+    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+    frame.size.height = MIN(frame.size.height, 131);
 
     self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
 
@@ -528,19 +625,34 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         return;
     }
 
-    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
+    [self updateAddCommentHeight];
 
-    CGPoint contentOffset = self.tableView.contentOffset;
-    [UIView setAnimationsEnabled: false];
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    [UIView setAnimationsEnabled: true];
-    self.tableView.contentOffset  = contentOffset;
+    [self scrollToCommentCell];
 }
 
-- (void) addCommentCell:(AddCommentCell *)addCommentCell
-            onSendClick:(UIButton *)sender
+- (void) addCommentCell: (AddCommentCell *) addCommentCell
+            onSendClick: (UIButton *)       sender
 {
+    if (self.commentID) {
+        @weakify(self)
+        RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
+                                                                                 commentID: self.commentID];
+        [signal subscribeNext: ^(id response) {
+            @strongify(self)
+            [self.model fillSelectedTask: self.model.getCurrentTask
+                          withCompletion: ^(BOOL isSuccess) {
+                              @strongify(self)
+                              [self.tableView reloadData];
+                              [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                                   withDelegate: self];
+                              self.addCommentCell.addCommentTextView.text   = @"";
+                              self.addCommentCell.addCommentLabel.alpha     = 1;
+                          }];
+        } error: ^(NSError *error) {
+        }];
+        self.commentID = nil;
+        return;
+    }
     @weakify(self)
     RACSignal* signal = [TaskCommentsService.sharedInstance
                          postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
@@ -549,8 +661,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         [self.model fillSelectedTask: self.model.getCurrentTask
                       withCompletion: ^(BOOL isSuccess) {
                           @strongify(self)
-                          [self updateTableView];
-                          [self.addCommentCell.addCommentTextView setText: @""];
+                          [self.tableView reloadData];
+                          [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                               withDelegate: self];
+                          self.addCommentCell.addCommentTextView.text   = @"";
+                          self.addCommentCell.addCommentLabel.alpha     = 1;
         }];
      } error: ^(NSError *error) {
      }];

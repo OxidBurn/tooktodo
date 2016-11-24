@@ -21,20 +21,17 @@
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView*    userAvatarImageView;
-@property (weak, nonatomic) IBOutlet UIButton*           editCommentBtn;
 @property (weak, nonatomic) IBOutlet UILabel*            userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel*            commentDateLabel;
-@property (weak, nonatomic) IBOutlet UITextView*         commentContentTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* TextViewHeightConstraint;
 @property (strong, nonatomic) FlexibleViewsContainer*    attachmentsContainerView;
-@property (weak, nonatomic) IBOutlet UIButton *editBtn;
-@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (weak, nonatomic) IBOutlet UIButton *          editBtn;
+@property (weak, nonatomic) IBOutlet UIButton *          cancelBtn;
 
 
 // properties
 
 // methods
-- (IBAction) onEditComment: (UIButton*) sender;
 
 
 @end
@@ -89,19 +86,22 @@
     }
 }
 
-
 #pragma mark - Action -
 
 - (IBAction)onCancelBtn:(UIButton *)sender
 {
-    
+    if ( [self.delegate respondsToSelector:@selector(commentsCell: onCancelBtn:)] )
+    {
+        [self.delegate commentsCell:self onCancelBtn:sender];
+    }
 }
 
 - (IBAction)onEditBtn:(UIButton *)sender
 {
-    
+    if ( [self.delegate respondsToSelector:@selector(commentsCell: onEditBtn:)] )
+    {
+        [self.delegate commentsCell:self onEditBtn:sender];
+    }
 }
 
-- (IBAction)onEditComment:(UIButton *)sender {
-}
 @end
