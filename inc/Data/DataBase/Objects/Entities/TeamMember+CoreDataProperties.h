@@ -2,7 +2,7 @@
 //  TeamMember+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -27,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *patronymicName;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
 @property (nullable, nonatomic, copy) NSNumber *userID;
-@property (nullable, nonatomic, copy) NSNumber *usedForFilter;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 
 @end

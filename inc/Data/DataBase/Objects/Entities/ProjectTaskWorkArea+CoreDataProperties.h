@@ -2,7 +2,7 @@
 //  ProjectTaskWorkArea+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *shortTitle;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, copy) NSNumber *workAreaID;
-@property (nullable, nonatomic, copy) NSNumber *usedForFilters;
 @property (nullable, nonatomic, retain) ProjectTask *task;
 
 @end

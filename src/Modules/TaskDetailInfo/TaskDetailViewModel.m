@@ -263,6 +263,7 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
         case SectionTwo:
         {
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
+            
             if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
             {
                 height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
@@ -444,13 +445,23 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     NSNumber* firstRowHeight = heightsArrayForContentType[0];
     
-    NSNumber* defaultHeightValue = heightsArrayForContentType[1];
+    NSNumber* defaultHeightValue;
+    
+    if ( contentType != LogsContentType )
+        defaultHeightValue = heightsArrayForContentType[1];
+    else
+        defaultHeightValue = firstRowHeight;
 
     switch ( indexPath.row )
     {
         case 0:
         {
                 height = firstRowHeight.integerValue;
+            
+            if ( [self.model getSecondSectionContentType] == LogsContentType )
+            {
+                height = [self.model countHeightForLogCellForIndexPath: indexPath];
+            }
         }
             break;
             
@@ -463,6 +474,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             else
             {
                 height = defaultHeightValue.integerValue;
+                
+                if ( [self.model getSecondSectionContentType] == LogsContentType )
+                {
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                }
             }
         }
             break;
@@ -475,13 +491,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                     height = [self.model countHeightForCommentCellForIndexPath: indexPath];
                 else
                     height = defaultHeightValue.integerValue;
-            }
+            } else
+                if ( [self.model getSecondSectionContentType] == LogsContentType )
+                {
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                }
         }
             break;
     }
     
     return height;
 }
+
 
 - (CGFloat) countHeightForTaskDetailCellForTableView: (UITableView*) tableView
 {

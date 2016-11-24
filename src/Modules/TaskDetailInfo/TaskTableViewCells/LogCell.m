@@ -9,6 +9,9 @@
 
 #import "LogCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
 // Classes
 #import "AvatarImageView.h"
 
@@ -30,6 +33,17 @@
 
 @implementation LogCell
 
+
+#pragma mark - Public -
+
+- (void) fillLogCellWithText: (NSAttributedString*) text
+                    withDate: (NSString*) date
+              withUserAvatar: (NSString*) avatarSrc
+{    
+    self.logInfoLabel.attributedText = text;
+    self.logDateLabel.text = date;
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: avatarSrc]];
+}
 
 
 @end

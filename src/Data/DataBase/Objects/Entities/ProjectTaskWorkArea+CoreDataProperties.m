@@ -2,7 +2,7 @@
 //  ProjectTaskWorkArea+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -18,7 +18,6 @@
 @dynamic shortTitle;
 @dynamic title;
 @dynamic workAreaID;
-@dynamic usedForFilters;
 @dynamic task;
 
 @end

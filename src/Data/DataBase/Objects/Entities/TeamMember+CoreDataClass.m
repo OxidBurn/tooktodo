@@ -2,7 +2,7 @@
 //  TeamMember+CoreDataClass.m
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
