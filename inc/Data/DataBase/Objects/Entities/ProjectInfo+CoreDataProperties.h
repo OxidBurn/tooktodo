@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/17/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *createdDate;
 @property (nullable, nonatomic, copy) NSDate *endDate;
 @property (nullable, nonatomic, copy) NSNumber *floor;
+@property (nullable, nonatomic, copy) NSString *info;
 @property (nullable, nonatomic, copy) NSNumber *isExpanded;
 @property (nullable, nonatomic, copy) NSNumber *isRolesInvitationAppealClosed;
 @property (nullable, nonatomic, copy) NSNumber *isSelected;
@@ -40,7 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *residentialObjectTypeDescription;
 @property (nullable, nonatomic, copy) NSString *street;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nullable, nonatomic, copy) NSString *info;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
@@ -51,6 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
+@property (nullable, nonatomic, retain) ProjectFilterInfo *filters;
 
 @end
 

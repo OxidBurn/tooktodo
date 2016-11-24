@@ -26,4 +26,6 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
              forProjectWithID: (NSNumber*)             projectID
                withCompletion: (CompletionWithSuccess) completion;
 
+- (NSArray*) getFilterCreatorsListForCurrentProject;
+
 @end

@@ -2,14 +2,14 @@
 //  ProjectInfo+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 11/17/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OfflineSettings, ProjectCountry, ProjectRegion, ProjectRoleAssignments, ProjectRoles, ProjectSystem, ProjectTask, ProjectTaskRoomLevel, ProjectTaskStage, TeamMember;
+@class OfflineSettings, ProjectCountry, ProjectFilterInfo, ProjectRegion, ProjectRoleAssignments, ProjectRoles, ProjectSystem, ProjectTask, ProjectTaskRoomLevel, ProjectTaskStage, TeamMember;
 
 NS_ASSUME_NONNULL_BEGIN
 
