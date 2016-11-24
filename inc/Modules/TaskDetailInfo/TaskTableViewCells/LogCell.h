@@ -10,4 +10,9 @@
 
 @interface LogCell : UITableViewCell
 
+// methods
+- (void) fillLogCellWithText: (NSAttributedString*) text
+                    withDate: (NSString*) date
+              withUserAvatar: (NSString*) avatarSrc;
+
 @end

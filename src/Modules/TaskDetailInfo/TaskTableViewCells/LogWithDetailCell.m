@@ -8,6 +8,9 @@
 
 #import "LogWithDetailCell.h"
 
+// Frameworks
+#import <SDWebImage/UIImageView+WebCache.h>
+
 // Classes
 #import "AvatarImageView.h"
 
@@ -31,6 +34,24 @@
 @end
 
 @implementation LogWithDetailCell
+
+
+#pragma mark - Public -
+
+- (void) fillLogCellWithText: (NSAttributedString*) text
+                    withDate: (NSString*) date
+              withUserAvatar: (NSString*) avatarSrc
+                withOldTerms: (NSString*) oldTerms
+                withNewTerms: (NSString*) newTerms
+{
+    self.logInfoLabel.attributedText = text;
+    self.logDateLabel.text = date;
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: avatarSrc]];
+    
+    self.logFirstDetailLabel.text  = oldTerms;
+    self.logSecondDetailLabel.text = newTerms;
+}
 
 
 @end
