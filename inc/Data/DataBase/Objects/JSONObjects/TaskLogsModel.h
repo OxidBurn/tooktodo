@@ -8,9 +8,12 @@
 
 #import <JSONModel/JSONModel.h>
 
+// Class
+#import "TaskLogContentModel.h"
+
 @interface TaskLogsModel : JSONModel
 
-//@property (nonatomic, strong) NSArray <TaskLogContentModel, Optional>* list;
+@property (nonatomic, strong) NSArray <TaskLogContentModel, Optional>* list;
 @property (nonatomic, strong) NSNumber*                                unviewedCount;
 
 @end

@@ -8,13 +8,9 @@
 
 #import "DataManager.h"
 
-// Classes
-#import "ProjectTask+CoreDataClass.h"
-
 @interface DataManager (TaskLogs)
 
 - (void) persistNewLogs: (NSArray*)              logsInfo
-                forTask: (ProjectTask*)          task
          withCompletion: (CompletionWithSuccess) completion;
 
 @end

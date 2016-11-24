@@ -18,6 +18,7 @@
 #import "FilledTeamInfo.h"
 #import "TaskCommentsService.h"
 #import "UserInfoService.h"
+#import "TaskLogsModel.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -167,7 +168,6 @@
              @strongify(self)
              
              [self parseTaskLogsResponse: response[0]
-                                 forTask: task
                           withCompletion: ^(BOOL isSuccess) {
                               
                               [subscriber sendNext: nil];
@@ -403,11 +403,11 @@
 }
 
 - (void) parseTaskLogsResponse: (NSDictionary*)         response
-                       forTask: (ProjectTask*)          task
                 withCompletion: (CompletionWithSuccess) completion
 {
-    NSError* parseError = nil;
-    
+    NSError* parseError     = nil;
+    TaskLogsModel* taskLogs = [[TaskLogsModel alloc] initWithDictionary: response
+                                                                  error: &parseError];
     
     if ( parseError )
     {
@@ -415,8 +415,7 @@
     }
     else
     {
-        [DataManagerShared persistNewLogs: @[]
-                                  forTask: task
+        [DataManagerShared persistNewLogs: taskLogs.list
                            withCompletion: completion];
     }
 }
