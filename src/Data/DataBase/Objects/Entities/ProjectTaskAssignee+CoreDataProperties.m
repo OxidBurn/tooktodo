@@ -2,7 +2,7 @@
 //  ProjectTaskAssignee+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -30,8 +30,5 @@
 @dynamic responsible;
 @dynamic role;
 @dynamic roleAssignment;
-@dynamic taskCreatorsFilterContent;
-@dynamic taskResponsiblesFilterContent;
-@dynamic taskApprovementsFilterContent;
 
 @end

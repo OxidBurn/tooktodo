@@ -32,4 +32,6 @@
 
 @property (strong, nonatomic) UIImage* taskOnPlanImage;
 
+@property (nonatomic, assign) BOOL hasApprovedTask;
+
 @end

@@ -14,6 +14,12 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskOwner+CoreDataProperties.h"
 #import "FilledTeamInfo.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
+#import "DataManager+Team.h"
+#import "TaskApprovments+CoreDataClass.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -25,8 +31,8 @@
 // Helpers
 #import "NSDate+Helper.h"
 
-typedef NS_ENUM(NSUInteger, CollectionItemsList) {
-
+typedef NS_ENUM(NSUInteger, CollectionItemsList)
+{
     TermsItem,
     ActualTermsItem,
     PremisesItem,
@@ -38,14 +44,21 @@ typedef NS_ENUM(NSUInteger, CollectionItemsList) {
     
 };
 
-typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
-    
+typedef NS_ENUM(NSUInteger, CellectionItemCellId)
+{
     TermsCell,
     DetailCell,
     OnPlanCell,
     SingleUserCell,
     GroupOfUsersCell,
     
+};
+
+typedef NS_ENUM(NSUInteger, AssignmentRoleType)
+{
+    ResponsibleType,
+    ClaimingsType,
+    ObserverType,
 };
 
 @interface CollectionCellModel()
@@ -204,23 +217,39 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     itemFive.taskOwner = [self createOwnerTaskArray];
     
     TaskCollectionCellsContent* itemSix = [TaskCollectionCellsContent new];
+    TaskCollectionCellsContent* itemSeven = [TaskCollectionCellsContent new];
+    TaskCollectionCellsContent* itemEight = [TaskCollectionCellsContent new];
+    
+    [self fillResponsibleArray: itemSix
+            withClaimingsArray: itemSeven
+            withObserversArray: itemEight];
     
     itemSix.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
     itemSix.cellTitle = @"Ответственный";
-    itemSix.responsible = [self createResponsibleArray];
     
-    TaskCollectionCellsContent* itemSeven = [TaskCollectionCellsContent new];
+    itemSeven.cellTitle = @"Утверждающие";
+    itemSeven.hasApprovedTask = [self checkIfTaskApprovedByApprovers: itemSeven.claiming];
     
-    itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
-    itemSeven.cellTitle = @"Утверждающий";
+    if (itemSeven.claiming.count > 1)
+        itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     
-    TaskCollectionCellsContent* itemEight = [TaskCollectionCellsContent new];
-
-    itemEight.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
+    else
+        itemSeven.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    
+   
+    
     itemEight.cellTitle = @"Наблюдатели";
     
+    if (itemEight.observers.count > 1)
+        itemEight.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
+    
+    else
+        itemEight.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    
+
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
+
 
 #pragma mark - Helpers -
 
@@ -247,15 +276,137 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId) {
     return @[ owner ];
 }
 
-- (NSArray*) createResponsibleArray
+- (void) fillResponsibleArray: (TaskCollectionCellsContent*) contentResponsible
+           withClaimingsArray: (TaskCollectionCellsContent*) contentClaimings
+           withObserversArray: (TaskCollectionCellsContent*) contentObservers
 {
-    FilledTeamInfo* responsible = [FilledTeamInfo new];
+    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
     
-    [responsible convertTaskResponsibleToTeamInfo: self.task.responsible];
+    contentResponsible.responsible = [NSArray array];
+    contentClaimings.claiming      = [NSArray array];
+    contentObservers.observers     = [NSArray array];
     
-    return @[ responsible ];
+    __block NSMutableArray* tmpResponsibleArr = contentResponsible.responsible.mutableCopy;
+    __block NSMutableArray* tmpClaimingsArr   = contentClaimings.claiming.mutableCopy;
+    __block NSMutableArray* tmpObserversArr   = contentObservers.observers.mutableCopy;
+    
+    [roleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        switch (taskRoleAssignments.taskRoleType.integerValue)
+        {
+            case ResponsibleType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                
+                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.allObjects;
+                        NSArray* inviteArr = obj.invite.allObjects;
+                        
+                        [tmpResponsibleArr addObjectsFromArray: assigneeArr];
+                        [tmpResponsibleArr addObjectsFromArray: inviteArr];
+                    }
+                    
+                }];
+            }
+                break;
+                
+            case ClaimingsType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                
+                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.allObjects;
+                        NSArray* inviteArr = obj.invite.allObjects;
+                        
+                        [tmpClaimingsArr addObjectsFromArray: assigneeArr];
+                        [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                        
+                        [self checkIfTaskApprovedByApprovers: tmpClaimingsArr];
+                    }
+                    
+                }];
+            }
+                break;
+                
+            case ObserverType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.allObjects;
+                        NSArray* inviteArr   = obj.invite.allObjects;
+                        
+                        [tmpObserversArr addObjectsFromArray: assigneeArr];
+                        [tmpObserversArr addObjectsFromArray: inviteArr];
+                    
+                    }
+                    
+                }];
+                
+            }
+                
+                break;
+                
+            default:
+                break;
+                
+        }
+    }];
+    
+    contentResponsible.responsible = tmpResponsibleArr.copy;
+    contentClaimings.claiming   = tmpClaimingsArr.copy;
+    contentObservers.observers   = tmpObserversArr.copy;
+    
+    tmpObserversArr = nil;
+    tmpClaimingsArr = nil;
+    tmpResponsibleArr = nil;
 }
 
+- (BOOL) checkIfTaskApprovedByApprovers: (NSArray*) approvers
+{
+    __block BOOL isApproved = NO;
+  
+    NSArray* approvmentsArray = self.task.approvments.allObjects;
+    
+    [approvmentsArray enumerateObjectsUsingBlock:^(TaskApprovments*  _Nonnull approvement, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [approvers enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[ProjectTaskAssignee class]])
+            {
+                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
+                
+                if ([approvement.approverUserId isEqual: assignee.assigneeID])
+                {
+                    isApproved = YES;
+                }
+            }
+            
+            if ([obj isKindOfClass:[ProjectInviteInfo class]])
+            {
+                ProjectInviteInfo* invite = (ProjectInviteInfo*)obj;
+                
+                if ([approvement.approverUserId isEqual: invite.inviteID])
+                {
+                    isApproved = YES;
+                }
+            }
+            
+            
+        }];
+    }];
+    
+    return isApproved;
+}
 
 - (NSString*) determineCollectionCellIdForContent: (NSArray*) arrayToCheck
 {

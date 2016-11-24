@@ -51,6 +51,8 @@
     else if (content.observers)
         userInfo = content.observers.firstObject;
     
+       [self handleApprovedMarkForContent: content];
+    
     self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
     if ([userInfo respondsToSelector:@selector(avatarSrc)])
@@ -68,11 +70,23 @@
 
 #pragma mark - Helpers -
 
+
 - (void) handleApprovedMarkForContent: (TaskCollectionCellsContent*) content
 {
-    if (content.claiming.firstObject)
+    if (content.claiming)
     {
+        if (content.hasApprovedTask == YES)
+        {
+            self.userMarkImageView.hidden = NO;
+            self.userMarkImageView.image = [UIImage imageNamed: @"GreenChack"];
+        }
         
+        else if (content.hasApprovedTask == NO)
+        {
+            self.userMarkImageView.hidden = NO;
+            self.userMarkImageView.image = [UIImage imageNamed: @"PencilChack"];
+        }
     }
+
 }
 @end

@@ -2,7 +2,7 @@
 //  ProjectTaskRoleAssignment+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -14,12 +14,12 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskRoleAssignment"];
 }
 
-@dynamic taskRoleAssignmnetID;
-@dynamic projectPermission;
 @dynamic isBlocked;
+@dynamic projectPermission;
+@dynamic taskRoleAssignmnetID;
 @dynamic assignee;
-@dynamic projectRoleType;
-@dynamic projectRoleAssignments;
 @dynamic invite;
+@dynamic projectRoleAssignments;
+@dynamic projectRoleType;
 
 @end
