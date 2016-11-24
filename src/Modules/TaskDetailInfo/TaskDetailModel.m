@@ -167,6 +167,7 @@
 }
 
 - (CGFloat) countHeightForLogCellForIndexPath: (NSIndexPath*) indexPath
+                                 forTableView: (UITableView*) tableView
 {
     CGFloat height;
     
@@ -177,8 +178,9 @@
     switch ( index )
     {
         case LogDefaultCellType:
-            height = 59.f;
-            
+        {
+            height = content.logLabelHeight + 29; // 29 is row height without log label height 
+        }
             break;
             
         case LogChangedTermsCellType:
