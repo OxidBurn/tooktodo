@@ -18,6 +18,9 @@
 + (instancetype) sharedInstance;
 
 - (RACSignal*) getCommentsForSelectedTask;
-- (RACSignal*) postCommentForSelectedTask: (NSString *)comment;
+- (RACSignal*) postCommentForSelectedTask: (NSString *) message;
+- (RACSignal*) editCommentForSelectedTask: (NSString *) message
+                                commentID: (NSNumber*)  commentID;
+- (RACSignal*) deleteCommentForSelectedTaskWithID: (NSNumber*)  commentID;
 
 @end

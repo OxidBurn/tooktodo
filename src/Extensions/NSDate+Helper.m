@@ -188,7 +188,10 @@
 - (NSString *)stringWithFormat:(NSString *)format {
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
 	[outputFormatter setDateFormat:format];
-	NSString *timestamp_str = [outputFormatter stringFromDate:self];
+    
+    outputFormatter.calendar = [[NSLocale currentLocale] objectForKey: NSLocaleCalendar];
+    
+    NSString *timestamp_str = [outputFormatter stringFromDate:self];
 	[outputFormatter release];
 	return timestamp_str;
 }

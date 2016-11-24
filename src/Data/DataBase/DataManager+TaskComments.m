@@ -94,8 +94,20 @@
     
     TaskComment* comment = [TaskComment MR_findFirstWithPredicate: findPredicate
                                                         inContext: context ];
-    
     return comment;
+}
+
+- (void) deleteCommentWithID: (NSNumber*)               commentID
+                      inTask: (ProjectTask*)            task
+                  completion: (void(^)())               completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext* localContext) {
+        [[self getTaskCommentWithID: commentID
+                             inTask: task
+                          inContext: localContext] MR_deleteEntity];
+    } completion:^(BOOL contextDidSave, NSError* error) {
+        completion();
+    }];
 }
 
 @end

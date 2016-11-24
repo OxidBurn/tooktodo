@@ -44,11 +44,35 @@
     
     if ( content.taskOwner )
         userInfo = content.taskOwner.firstObject;
-    else
+    else if (content.responsible)
         userInfo = content.responsible.firstObject;
+    else if (content.claiming)
+        userInfo = content.claiming.firstObject;
+    else if (content.observers)
+        userInfo = content.observers.firstObject;
     
-    self.userNameLabel.text = userInfo.fullname;
+    self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
+    if ([userInfo respondsToSelector:@selector(avatarSrc)])
+    {
+        [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
+    }
+
+    else
+    {
+        self.userAvatarImageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+    }
+    
+}
+
+
+#pragma mark - Helpers -
+
+- (void) handleApprovedMarkForContent: (TaskCollectionCellsContent*) content
+{
+    if (content.claiming.firstObject)
+    {
+        
+    }
 }
 @end
