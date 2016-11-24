@@ -10,6 +10,8 @@
 
 // Class
 #import "ProjectFilterInfo+CoreDataClass.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -84,6 +86,29 @@
                               completion(contextDidSave);
                           
                       }];
+}
+
+
+- (NSArray*) getFilterCreatorsListForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    __block NSMutableArray* creators = [NSMutableArray array];
+    NSDictionary* filterCreatorsDic  = (NSDictionary*)project.filters.creators;
+    NSArray* filtersCreatorsIDs      = filterCreatorsDic.allKeys;
+    
+    [project.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        if ( [filtersCreatorsIDs containsObject: obj.assignee.assigneeID.stringValue] )
+        {
+            [creators addObject: obj.assignee];
+        }
+        
+        NSLog(@"Role assignee %@", obj.assignee.assigneeID);
+        
+    }];
+    
+    return creators;
 }
 
 @end

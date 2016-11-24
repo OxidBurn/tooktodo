@@ -103,7 +103,7 @@
 
 @property (strong, nonatomic) NSDate* commentDate;
 
-@property (strong, nonatomic) NSString* commentID;
+@property (strong, nonatomic) NSNumber* commentID;
 
 // properties for logs
 
@@ -120,5 +120,7 @@
 @property (strong, nonatomic) NSString* oldTerms;
 
 @property (strong, nonatomic) NSString* newTermsValue;
+
+@property (assign, nonatomic) CGFloat logLabelHeight;
 
 @end

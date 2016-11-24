@@ -460,7 +460,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             
             if ( [self.model getSecondSectionContentType] == LogsContentType )
             {
-                height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                height = [self.model countHeightForLogCellForIndexPath: indexPath
+                                                          forTableView: self.tableView];
             }
         }
             break;
@@ -477,7 +478,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                 
                 if ( [self.model getSecondSectionContentType] == LogsContentType )
                 {
-                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath
+                                                              forTableView: self.tableView];
                 }
             }
         }
@@ -494,7 +496,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             } else
                 if ( [self.model getSecondSectionContentType] == LogsContentType )
                 {
-                    height = [self.model countHeightForLogCellForIndexPath: indexPath];
+                    height = [self.model countHeightForLogCellForIndexPath: indexPath
+                                                              forTableView: self.tableView];
                 }
         }
             break;
