@@ -82,13 +82,17 @@
     {
         [approvals enumerateObjectsUsingBlock: ^(FilledTeamInfo* user, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ( user )
+            UIImageView* imageView = self.arrayWithImages[idx];
+                
+            imageView.hidden = NO;
+            
+            if ( [user respondsToSelector: @selector(avatarSrc)] )
             {
-                UIImageView* imageView = self.arrayWithImages[idx];
-                
-                imageView.hidden = NO;
-                
                 [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+            }
+            else
+            {
+                imageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
             }
             
         }];
@@ -106,11 +110,20 @@
             
             if ( idx < 5 )
             {
+               
                 UIImageView* imageView = self.arrayWithImages[idx];
                 
                 imageView.hidden = NO;
                 
-                [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                if ( [user respondsToSelector: @selector(avatarSrc)] )
+                {
+                    [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                }
+                
+                else
+                {
+                    imageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+                }
             }
             
         }];

@@ -53,6 +53,23 @@
     
     self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
+    if ([userInfo respondsToSelector:@selector(avatarSrc)])
+    {
+        [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
+    }
+
+    else
+    {
+        self.userAvatarImageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+    }
+    
+}
+
+
+#pragma mark - Helpers -
+
+- (void) handleApprovedMark
+{
+    
 }
 @end
