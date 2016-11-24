@@ -18,6 +18,7 @@
 // properties
 @property (weak, nonatomic) id <CommentCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITextView*     commentContentTextView;
+@property (strong, nonatomic) NSNumber* commentID;
 
 // methods
 - (void) fillCellWithContent: (TaskRowContent*)      content

@@ -20,6 +20,7 @@
 #import "AddCommentCell.h"
 #import "TaskCommentsService.h"
 #import "TasksService.h"
+#import "RowContent.h"
 
 // Helpers
 #import "Utils.h"
@@ -146,9 +147,11 @@
     CGPoint offset = self.tableView.contentOffset;
     
     [self.tableView reloadData];
-    
+    [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                         withDelegate: self];
+
     [self.tableView layoutIfNeeded];
-    
+
     [self.tableView setContentOffset: offset animated: NO];
 }
 
@@ -191,9 +194,11 @@
         
         [self.model createContentForTableViewWithFrame: tableView.frame];
     }
+
+    RowContent *content = [self.model getContentForIndexPath: indexPath];
     
     UITableViewCell* cell = [self.factory createCellForTableView: tableView
-                                                     withContent: [self.model getContentForIndexPath: indexPath]
+                                                     withContent: content
                                                     withDelegate: self];
     
     if ([cell isKindOfClass: [TaskDetailInfoCell class]])
@@ -210,10 +215,15 @@
         subtaskCell.delegate = self;
     }
 
-    if ([cell isKindOfClass:AddCommentCell.class])
+    if ([cell isKindOfClass: AddCommentCell.class])
     {
         self.addCommentCell             = (AddCommentCell*)cell;
         self.addCommentCell.delegate    = self;
+    }
+
+    if ([cell isKindOfClass: [CommentsCell class]])
+    {
+        ((CommentsCell *)cell).commentID = ((TaskRowContent*)content).commentID;
     }
 
     return cell;
@@ -336,8 +346,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
     [self.addCommentCell.addCommentTextView becomeFirstResponder];
 
-    NSIndexPath *indexPath = [self.tableView indexPathForCell: commentsCell];
-    self.commentID = [self.model getContentForIndexPath: indexPath].commentID;
+    self.commentID = commentsCell.commentID;
+    [self.tableView scrollRectToVisible: commentsCell.frame
+                               animated: true];
 }
 
 - (void) commentsCell: (CommentsCell*) commentsCell
@@ -361,6 +372,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             [weakSelf.model fillSelectedTask: weakSelf.model.getCurrentTask
                               withCompletion: ^(BOOL isSuccess) {
                                   [weakSelf.tableView reloadData];
+                                  [weakSelf.headerView fillViewWithInfo: [weakSelf.model returnHeaderNumbersInfo]
+                                                           withDelegate: weakSelf];
                                   weakSelf.addCommentCell.addCommentTextView.text   = @"";
                                   weakSelf.addCommentCell.addCommentLabel.alpha     = 1;
                               }];
@@ -609,6 +622,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                           withCompletion: ^(BOOL isSuccess) {
                               @strongify(self)
                               [self.tableView reloadData];
+                              [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                                   withDelegate: self];
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
                           }];
@@ -626,6 +641,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                       withCompletion: ^(BOOL isSuccess) {
                           @strongify(self)
                           [self.tableView reloadData];
+                          [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                               withDelegate: self];
                           self.addCommentCell.addCommentTextView.text   = @"";
                           self.addCommentCell.addCommentLabel.alpha     = 1;
         }];
