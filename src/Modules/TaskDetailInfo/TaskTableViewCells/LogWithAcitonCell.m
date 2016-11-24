@@ -57,10 +57,12 @@
     self.firstActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: oldStatus];
     self.firstActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: oldStatus];
     self.firstActionMarkView.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: oldStatus];
+    self.firstActionTextLabel.textColor = [[TaskStatusDefaultValues sharedInstance] returnFontColorForTaskStatus: oldStatus];
     
     self.secondActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: newStatus];
     self.secondActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: newStatus];
     self.secondActionMarkView.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: newStatus];
+    self.secondActionTextLabel.textColor = [[TaskStatusDefaultValues sharedInstance] returnFontColorForTaskStatus: newStatus];
 }
 
 
