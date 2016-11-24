@@ -50,6 +50,7 @@
         userInfo = content.claiming.firstObject;
     else if (content.observers)
         userInfo = content.observers.firstObject;
+
     
     self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
@@ -68,8 +69,13 @@
 
 #pragma mark - Helpers -
 
-- (void) handleApprovedMark
+
+- (void) handleApprovedMarkForContent: (TaskCollectionCellsContent*) content
 {
-    
+    if (content.claiming.firstObject)
+    {
+        
+    }
+
 }
 @end

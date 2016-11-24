@@ -26,6 +26,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* numberOfUsersLeftLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *firstCheckMark;
+@property (weak, nonatomic) IBOutlet UIImageView *secondCheckMark;
+@property (weak, nonatomic) IBOutlet UIImageView *thirdCheckMark;
+@property (weak, nonatomic) IBOutlet UIImageView *fourthCheckMark;
+@property (weak, nonatomic) IBOutlet UIImageView *fifthCheckMark;
+
 // properties
 @property (strong, nonatomic) NSArray* arrayWithImages;
 
