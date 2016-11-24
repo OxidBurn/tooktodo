@@ -255,9 +255,9 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             height = [self returnSecondSectionRowHeightForIndexPath: indexPath];
             if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
             {
-                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
-                height = MIN(height, 152);
-                if (height < 152)
+                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+                height = MIN(height, 131);
+                if (height < 131)
                 {
                     self.addCommentCell.addCommentTextView.scrollEnabled = false;
                     self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
@@ -332,9 +332,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     self.addCommentCell.addCommentTextView.text = commentsCell.commentContentTextView.text;
 
-    [self.tableView scrollToRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:1]
-                          atScrollPosition: UITableViewScrollPositionBottom
-                                  animated: true];
+    [self updateAddCommentHeight];
+
     [self.addCommentCell.addCommentTextView becomeFirstResponder];
 
     NSIndexPath *indexPath = [self.tableView indexPathForCell: commentsCell];
@@ -361,7 +360,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         [signal subscribeNext: ^(id response) {
             [weakSelf.model fillSelectedTask: weakSelf.model.getCurrentTask
                               withCompletion: ^(BOOL isSuccess) {
-                                  [weakSelf updateTableView];
+                                  [weakSelf.tableView reloadData];
                                   weakSelf.addCommentCell.addCommentTextView.text   = @"";
                                   weakSelf.addCommentCell.addCommentLabel.alpha     = 1;
                               }];
@@ -412,6 +411,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 #pragma mark - Helpers -
+
+- (void)updateAddCommentHeight
+{
+    CGPoint contentOffset = self.tableView.contentOffset;
+    [UIView setAnimationsEnabled: false];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    [UIView setAnimationsEnabled: true];
+    self.tableView.contentOffset = contentOffset;
+}
 
 // This method counts second section cells heights according to cell types
 - (CGFloat) returnSecondSectionRowHeightForIndexPath: (NSIndexPath*) indexPath
@@ -574,8 +583,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
    newCommentTextDidChange: (UITextView*)sender
 {
     CGRect frame = self.addCommentCell.frame;
-    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 22, CGFLOAT_MAX)].height + 30;
-    frame.size.height = MIN(frame.size.height, 152);
+    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+    frame.size.height = MIN(frame.size.height, 131);
 
     self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
 
@@ -584,14 +593,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         return;
     }
 
-    self.addCommentCell.addCommentTextView.contentOffset = CGPointZero;
-
-    CGPoint contentOffset = self.tableView.contentOffset;
-    [UIView setAnimationsEnabled: false];
-    [self.tableView beginUpdates];
-    [self.tableView endUpdates];
-    [UIView setAnimationsEnabled: true];
-    self.tableView.contentOffset  = contentOffset;
+    [self updateAddCommentHeight];
 }
 
 - (void) addCommentCell:(AddCommentCell *)addCommentCell
@@ -606,7 +608,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             [self.model fillSelectedTask: self.model.getCurrentTask
                           withCompletion: ^(BOOL isSuccess) {
                               @strongify(self)
-                              [self updateTableView];
+                              [self.tableView reloadData];
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
                           }];
@@ -623,7 +625,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         [self.model fillSelectedTask: self.model.getCurrentTask
                       withCompletion: ^(BOOL isSuccess) {
                           @strongify(self)
-                          [self updateTableView];
+                          [self.tableView reloadData];
                           self.addCommentCell.addCommentTextView.text   = @"";
                           self.addCommentCell.addCommentLabel.alpha     = 1;
         }];
