@@ -202,5 +202,11 @@ typedef NS_ENUM(NSUInteger, TasksFilterType)
     FilterByAllProjects,
 };
 
+typedef NS_ENUM(NSUInteger, FilterByAssigneeType)
+{
+    FilterByCreator,
+    FilterByResponsible,
+};
+
 
 #endif /* ProjectsEnumerations_h */

@@ -13,6 +13,7 @@
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 #import "FilterByDatesViewController.h"
+#import "FilterByAssigneeViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -25,6 +26,8 @@
 @property (assign, nonatomic) FilterByDateViewControllerType controllerType;
 
 @property (assign, nonatomic) TasksFilterType taskFilterType;
+
+@property (assign, nonatomic) FilterByAssigneeType filterByAssigneeType;
 
 // methods
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender;
@@ -60,6 +63,14 @@
         FilterByDatesViewController* controller = [segue destinationViewController];
         
         [controller fillControllerType: self.controllerType];
+    }
+    
+    if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"] )
+    {
+        FilterByAssigneeViewController* controller = [segue destinationViewController];
+        
+        [controller updateFilterType: self.filterByAssigneeType
+                        withDelegate: self.viewModel];
     }
 }
 
@@ -129,6 +140,14 @@
         
         [self performSegueWithIdentifier: @"ShowFilterByDatesSegueId"
                                   sender: self];
+    };
+    
+    blockSelf.viewModel.showFilterByAssigneeWithType = ^(FilterByAssigneeType filterType){
+      
+        blockSelf.filterByAssigneeType = filterType;
+        
+        [blockSelf performSegueWithIdentifier: @"FilterByCreatorSegueId"
+                                       sender: blockSelf];
     };
 }
 

@@ -24,7 +24,7 @@
 // methods
 - (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
 
-- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType;
+- (void) fillContollerTypeSelection: (FilterByAssigneeType) controllerType;
 
 - (ControllerTypeSelection) returnControllerType;
 

@@ -115,6 +115,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     switch ( indexPath.section)
     {
+        case SectionOne:
+        {
+            if ( self.showFilterByAssigneeWithType )
+                self.showFilterByAssigneeWithType(FilterByCreator);
+        }
+            break;
+            
         case SectionTwo:
         {
             [self.model didSelectTermsCellForIndexPath: indexPath];

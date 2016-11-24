@@ -43,10 +43,29 @@
     
     self.userInfoTextLabel.text = userInfo;
     
-    
-    
     self.checkMarkImageView.hidden = !isSelected;
     
+}
+
+- (void) fillCellWithAssignee: (ProjectTaskAssignee*) assignee
+                withCheckMark: (BOOL)                 isSelected
+{
+    NSString* urlString = assignee.avatarSrc;
+    
+    if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+    {
+        urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+    }
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
+    self.userAvatarImageView.clipsToBounds = YES;
+    self.userAvatarImageView.layer.cornerRadius = 10;
+    
+    NSString* userInfo = [NSString stringWithFormat: @"%@ %@", assignee.firstName, assignee.lastName];
+    
+    self.userInfoTextLabel.text = userInfo;
+    
+    self.checkMarkImageView.hidden = !isSelected;
 }
 
 - (void) changeCheckmarkState: (BOOL) state
