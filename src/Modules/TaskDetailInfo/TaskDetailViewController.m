@@ -79,6 +79,7 @@
                                                     weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
                                                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                                         [weakSelf.viewModel scrollToCommentCell];
+                                                        weakSelf.taskTableView.scrollEnabled = false;
                                                     });
      }];
     [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillHideNotification
@@ -86,6 +87,7 @@
                                                      queue: nil
                                                 usingBlock: ^(NSNotification* note) {
                                                     weakSelf.taskTableViewBottom.constant = 0;
+                                                    weakSelf.taskTableView.scrollEnabled = true;
                                                 }];
 }
 

@@ -195,7 +195,7 @@
         [self.model createContentForTableViewWithFrame: tableView.frame];
     }
 
-    RowContent *content = [self.model getContentForIndexPath: indexPath];
+    TaskRowContent *content = [self.model getContentForIndexPath: indexPath];
     
     UITableViewCell* cell = [self.factory createCellForTableView: tableView
                                                      withContent: content
@@ -223,7 +223,7 @@
 
     if ([cell isKindOfClass: [CommentsCell class]])
     {
-        ((CommentsCell *)cell).commentID = ((TaskRowContent*)content).commentID;
+        ((CommentsCell *)cell).commentID = content.commentID;
     }
 
     return cell;
@@ -347,8 +347,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.addCommentCell.addCommentTextView becomeFirstResponder];
 
     self.commentID = commentsCell.commentID;
-    [self.tableView scrollRectToVisible: commentsCell.frame
-                               animated: true];
 }
 
 - (void) commentsCell: (CommentsCell*) commentsCell
@@ -607,6 +605,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     }
 
     [self updateAddCommentHeight];
+
+    [self scrollToCommentCell];
 }
 
 - (void) addCommentCell: (AddCommentCell *) addCommentCell
