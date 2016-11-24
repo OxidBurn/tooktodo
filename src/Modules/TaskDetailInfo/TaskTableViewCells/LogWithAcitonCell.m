@@ -23,9 +23,11 @@
 @property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
 
+@property (weak, nonatomic) IBOutlet UIView*      firstActionMarkView;
 @property (weak, nonatomic) IBOutlet UIImageView* firstActionMarkImageView;
 @property (weak, nonatomic) IBOutlet UILabel*     firstActionTextLabel;
 
+@property (weak, nonatomic) IBOutlet UIView*      secondActionMarkView;
 @property (weak, nonatomic) IBOutlet UIImageView* secondActionMarkImageView;
 @property (weak, nonatomic) IBOutlet UILabel*     secondActionTextLabel;
 
@@ -54,11 +56,11 @@
     
     self.firstActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: oldStatus];
     self.firstActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: oldStatus];
-    self.firstActionTextLabel.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: oldStatus];
+    self.firstActionMarkView.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: oldStatus];
     
     self.secondActionMarkImageView.image = [[TaskStatusDefaultValues sharedInstance] returnIconImageForTaskStatus: newStatus];
     self.secondActionTextLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: newStatus];
-    self.secondActionTextLabel.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: newStatus];
+    self.secondActionMarkView.backgroundColor = [[TaskStatusDefaultValues sharedInstance] returnColorForTaskStatus: newStatus];
 }
 
 
