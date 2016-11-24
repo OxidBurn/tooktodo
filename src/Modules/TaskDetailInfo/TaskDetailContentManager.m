@@ -267,7 +267,7 @@
                 newRow.commentAuthorName      = comment.author;
                 newRow.commentAuthorAvatarSrc = comment.avatarSrc;
                 newRow.commentDate            = comment.date;
-                newRow.commentID            = comment.commentID;
+                newRow.commentID              = comment.commentID;
     
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
@@ -326,9 +326,16 @@
                                                        andEndDate: log.data.oldEndDate];
                 
                 row.newTermsValue = [self createTermsLabelForStartDate: log.data.newStartDate
-                                                       andEndDate: log.data.newEndDate];
+                                                            andEndDate: log.data.newEndDate];
             }
                 break;
+                
+            case LogDefaultCellType:
+            {
+                NSString* fullLogString = [log.userFullName stringByAppendingString: log.text];
+                
+                row.logLabelHeight = [self countHeightForLogLabelWithString: fullLogString];
+            }
                 
             default:
                 break;
@@ -384,8 +391,8 @@
     
     CGFloat height = size.height;
     
-    if (height > 152)
-        height = 152;
+    if (height > 85)
+        height = 85;
     
     return height;
 }
@@ -474,6 +481,21 @@
     NSString* terms = [NSString stringWithFormat: @"%@ - %@", start, end];
     
     return terms;
+}
+
+- (CGFloat) countHeightForLogLabelWithString: (NSString*) string
+{
+    CGFloat height;
+    
+    UIFont* font = [UIFont fontWithName: @"SFUIText-Regular" size: 12.f];
+    
+    CGSize size = [Utils findHeightForText: string
+                               havingWidth: self.tableViewFrame.size.width - 69
+                                   andFont: font];
+    
+    height = size.height;
+    
+    return height;
 }
 
 

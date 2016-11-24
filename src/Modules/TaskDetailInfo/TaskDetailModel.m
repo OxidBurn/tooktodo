@@ -153,7 +153,7 @@
     
     // adding text view height, which depends of comment length and device width
     // 10 is gap to the next cell
-    cellHeight += content.commentTextViewHeight + 10;
+    cellHeight += content.commentTextViewHeight + 18;
     
     if ( content.containerView )
     {
@@ -167,6 +167,7 @@
 }
 
 - (CGFloat) countHeightForLogCellForIndexPath: (NSIndexPath*) indexPath
+                                 forTableView: (UITableView*) tableView
 {
     CGFloat height;
     
@@ -177,8 +178,9 @@
     switch ( index )
     {
         case LogDefaultCellType:
-            height = 59.f;
-            
+        {
+            height = content.logLabelHeight + 36; // 36 is row height without log label height
+        }
             break;
             
         case LogChangedTermsCellType:
