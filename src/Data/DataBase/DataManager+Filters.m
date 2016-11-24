@@ -12,6 +12,8 @@
 #import "ProjectFilterInfo+CoreDataClass.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
+#import "ProjectTask+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -93,13 +95,100 @@
 {
     ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
     
-    __block NSMutableArray* creators = [NSMutableArray array];
     NSDictionary* filterCreatorsDic  = (NSDictionary*)project.filters.creators;
     NSArray* filtersCreatorsIDs      = filterCreatorsDic.allKeys;
     
+    return [self getAssigneeListWithFilter: filtersCreatorsIDs];
+}
+
+- (NSArray*) getFilterResponsiblesForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    NSDictionary* filterResponsibleDic = (NSDictionary*)project.filters.responsibles;
+    NSArray* filterResponsiblesIDs     = filterResponsibleDic.allKeys;
+    
+    return [self getAssigneeListWithFilter: filterResponsiblesIDs];
+}
+
+- (NSArray*) getFilterApprovesForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    NSDictionary* filterApprovesDic = (NSDictionary*)project.filters.approves;
+    NSArray* filterApprovesIDs      = filterApprovesDic.allKeys;
+    
+    return [self getAssigneeListWithFilter: filterApprovesIDs];
+}
+
+- (NSArray*) getFilterStatusesForCurrentProject
+{
+    return @[@{@"title" : @"Ожидание",
+               @"value" : @0},
+             @{@"title" : @"В работе",
+               @"value" : @1},
+             @{@"title" : @"На утверждении",
+               @"value" : @2},
+             @{@"title" : @"На доработке",
+               @"value" : @3},
+             @{@"title" : @"Завершена",
+               @"value" : @4},
+             @{@"title" : @"Отменена",
+               @"value" : @5}];
+}
+
+- (NSArray*) getFilterTypesForCurrentProject
+{
+    return @[@{@"title" : @"Работа",
+               @"value" : @0},
+             @{@"title" : @"Согласование",
+               @"value" : @1},
+             @{@"title" : @"Наблюдение",
+               @"value" : @2},
+             @{@"title" : @"Замечание",
+               @"value" : @3}];
+}
+
+- (NSArray*) getFilterSystemsForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    return project.systems.allObjects;
+}
+
+- (NSArray*) getFilterWorkAreasForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    NSDictionary* filterWorkAreasDic = (NSDictionary*)project.filters.workAreas;
+    NSArray* filterWorkAreasIDs      = filterWorkAreasDic.allKeys;
+    
+    __block NSMutableArray* workAreas = [NSMutableArray array];
+    
+    [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+       
+        if ( [filterWorkAreasIDs containsObject: obj.workArea.workAreaID] )
+        {
+            [workAreas addObject: obj.workArea];
+        }
+        
+    }];
+    
+    return workAreas;
+}
+
+
+#pragma mark - Internal methods -
+
+- (NSArray*) getAssigneeListWithFilter: (NSArray*) filter
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    __block NSMutableArray* creators = [NSMutableArray array];
+    
     [project.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments * _Nonnull obj, BOOL * _Nonnull stop) {
         
-        if ( [filtersCreatorsIDs containsObject: obj.assignee.assigneeID.stringValue] )
+        if ( [filter containsObject: obj.assignee.assigneeID.stringValue] )
         {
             [creators addObject: obj.assignee];
         }

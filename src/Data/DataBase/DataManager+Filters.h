@@ -26,6 +26,20 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
              forProjectWithID: (NSNumber*)             projectID
                withCompletion: (CompletionWithSuccess) completion;
 
+
+// Getting objects
 - (NSArray*) getFilterCreatorsListForCurrentProject;
+
+- (NSArray*) getFilterResponsiblesForCurrentProject;
+
+- (NSArray*) getFilterApprovesForCurrentProject;
+
+- (NSArray*) getFilterStatusesForCurrentProject;
+
+- (NSArray*) getFilterTypesForCurrentProject;
+
+- (NSArray*) getFilterSystemsForCurrentProject;
+
+- (NSArray*) getFilterWorkAreasForCurrentProject;
 
 @end
