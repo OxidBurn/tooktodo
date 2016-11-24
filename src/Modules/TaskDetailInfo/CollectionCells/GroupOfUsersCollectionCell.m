@@ -34,6 +34,7 @@
 
 // properties
 @property (strong, nonatomic) NSArray* arrayWithImages;
+@property (nonatomic, strong) NSArray* checkMarksArray;
 
 // methods
 
@@ -58,6 +59,19 @@
     return _arrayWithImages;
 }
 
+- (NSArray*) checkMarksArray
+{
+    if (_checkMarksArray == nil)
+    {
+        _checkMarksArray = @[self.firstCheckMark,
+                             self.secondCheckMark,
+                             self.thirdCheckMark,
+                             self.fourthCheckMark,
+                             self.fifthCheckMark];
+    }
+    
+    return _checkMarksArray;
+}
 
 #pragma mark - Public -
 
@@ -73,6 +87,8 @@
     else if (content.claiming)
     {
         [self fillImagesWithUsers: content.claiming];
+        [self handleApprovedMarkForContent: content];
+        
     }
 
 }
@@ -136,6 +152,55 @@
     }
     
 }
+
+- (void) handleApprovedMarkForContent: (TaskCollectionCellsContent*) content
+{
+    if (content.claiming.count <= 5)
+    {
+        [content.claiming enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            UIImageView* imageView = self.checkMarksArray[idx];
+            imageView.hidden = NO;
+            
+            if (content.hasApprovedTask == YES)
+            {
+                imageView.image = [UIImage imageNamed: @"GreenChack"];
+            }
+            
+            else if (content.hasApprovedTask == NO)
+            {
+                imageView.image = [UIImage imageNamed: @"PencilChack"];
+            }
+        }];
+        
+    }
+    
+    else
+    {
+        [content.claiming enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( idx < 5 )
+            
+            {
+                UIImageView* imageView = self.checkMarksArray[idx];
+                imageView.hidden = NO;
+            
+                if (content.hasApprovedTask == YES)
+                {
+                    imageView.image = [UIImage imageNamed: @"GreenChack"];
+                }
+            
+                else if (content.hasApprovedTask == NO)
+                {
+                    imageView.image = [UIImage imageNamed: @"PencilChack"];
+                }
+            }
+        }];
+    }
+    
+
+}
+
 
 - (void) roundAllImageViews
 {

@@ -228,12 +228,15 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     itemSix.cellTitle = @"Ответственный";
     
     itemSeven.cellTitle = @"Утверждающие";
+    itemSeven.hasApprovedTask = [self checkIfTaskApprovedByApprovers: itemSeven.claiming];
     
     if (itemSeven.claiming.count > 1)
         itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
     
     else
         itemSeven.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    
+   
     
     itemEight.cellTitle = @"Наблюдатели";
     
@@ -242,6 +245,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     else
         itemEight.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    
 
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
