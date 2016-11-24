@@ -592,8 +592,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark -
 
-- (void)    addCommentCell: (AddCommentCell*)addCommentCell
-   newCommentTextDidChange: (UITextView*)sender
+- (void)    addCommentCell: (AddCommentCell*) addCommentCell
+   newCommentTextDidChange: (UITextView*)     sender
 {
     CGRect frame = self.addCommentCell.frame;
     frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
@@ -609,8 +609,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self updateAddCommentHeight];
 }
 
-- (void) addCommentCell:(AddCommentCell *)addCommentCell
-            onSendClick:(UIButton *)sender
+- (void) addCommentCell: (AddCommentCell *) addCommentCell
+            onSendClick: (UIButton *)       sender
 {
     if (self.commentID) {
         @weakify(self)
