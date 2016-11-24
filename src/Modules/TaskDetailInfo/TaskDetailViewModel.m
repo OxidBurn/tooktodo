@@ -168,8 +168,9 @@
 
 - (void) scrollToCommentCell
 {
-    [self.tableView scrollRectToVisible: self.addCommentCell.frame
-                               animated: true];
+    CGPoint origin = self.addCommentCell.frame.origin;
+    origin.y += [UIScreen mainScreen].bounds.size.height - self.keyboardHeight;
+    [self.tableView setContentOffset: origin];
 }
 
 #pragma mark - UITableViewDataSourse methods -

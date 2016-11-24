@@ -77,6 +77,7 @@
                                                     [weakSelf.taskTableView addGestureRecognizer: weakSelf.keyboardRecognizer];
                                                 CGFloat height = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
                                                     weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
+                                                    weakSelf.viewModel.keyboardHeight = height;
                                                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                                         [weakSelf.viewModel scrollToCommentCell];
                                                         weakSelf.taskTableView.scrollEnabled = false;
