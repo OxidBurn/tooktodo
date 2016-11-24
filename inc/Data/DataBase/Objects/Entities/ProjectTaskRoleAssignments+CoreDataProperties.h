@@ -2,7 +2,7 @@
 //  ProjectTaskRoleAssignments+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -18,8 +18,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *roleAssignmentsID;
 @property (nullable, nonatomic, copy) NSNumber *taskRoleType;
 @property (nullable, nonatomic, copy) NSString *taskRoleTypeDescription;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignment *> *projectRoleAssignment;
 @property (nullable, nonatomic, retain) ProjectTask *task;
-@property (nullable, nonatomic, retain) ProjectTaskRoleAssignment *projectRoleAssignment;
+
+@end
+
+@interface ProjectTaskRoleAssignments (CoreDataGeneratedAccessors)
+
+- (void)addProjectRoleAssignmentObject:(ProjectTaskRoleAssignment *)value;
+- (void)removeProjectRoleAssignmentObject:(ProjectTaskRoleAssignment *)value;
+- (void)addProjectRoleAssignment:(NSSet<ProjectTaskRoleAssignment *> *)values;
+- (void)removeProjectRoleAssignment:(NSSet<ProjectTaskRoleAssignment *> *)values;
 
 @end
 

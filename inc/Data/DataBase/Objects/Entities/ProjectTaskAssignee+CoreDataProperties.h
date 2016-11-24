@@ -2,7 +2,7 @@
 //  ProjectTaskAssignee+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *lastName;
 @property (nullable, nonatomic, copy) NSString *phoneNumber;
 @property (nullable, nonatomic, copy) NSString *userName;
+@property (nullable, nonatomic, retain) ProjectRoleAssignments *projectRoleAssignment;
 @property (nullable, nonatomic, retain) ProjectTaskResponsible *responsible;
 @property (nullable, nonatomic, retain) ProjectRoles *role;
 @property (nullable, nonatomic, retain) ProjectTaskRoleAssignment *roleAssignment;
-@property (nullable, nonatomic, retain) ProjectRoleAssignments *projectRoleAssignment;
 
 @end
 

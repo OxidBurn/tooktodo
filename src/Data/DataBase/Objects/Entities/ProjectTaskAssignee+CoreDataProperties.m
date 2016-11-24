@@ -2,7 +2,7 @@
 //  ProjectTaskAssignee+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 9/19/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -26,9 +26,9 @@
 @dynamic lastName;
 @dynamic phoneNumber;
 @dynamic userName;
+@dynamic projectRoleAssignment;
 @dynamic responsible;
 @dynamic role;
 @dynamic roleAssignment;
-@dynamic projectRoleAssignment;
 
 @end

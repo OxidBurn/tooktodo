@@ -2,7 +2,7 @@
 //  ProjectTaskRoleAssignments+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 24.11.16.
 //
 //
 
@@ -17,7 +17,7 @@
 @dynamic roleAssignmentsID;
 @dynamic taskRoleType;
 @dynamic taskRoleTypeDescription;
-@dynamic task;
 @dynamic projectRoleAssignment;
+@dynamic task;
 
 @end
