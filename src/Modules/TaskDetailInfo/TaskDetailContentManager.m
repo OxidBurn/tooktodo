@@ -239,8 +239,8 @@
     
     NSArray* testContent        = [NSArray new];
     
-    if ( [task comments].count == 0 )
-        testContent = [self createTestComment];
+//    if ( [task comments].count == 0 )
+//        testContent = [self createTestComment];
     
     NSMutableArray* commentsTmp = testContent.mutableCopy;
 

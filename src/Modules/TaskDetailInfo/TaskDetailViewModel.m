@@ -160,6 +160,13 @@
 - (void) hideKeyboard
 {
     [self.addCommentCell.addCommentTextView resignFirstResponder];
+    self.commentID = nil;
+}
+
+- (void) scrollToCommentCell
+{
+    [self.tableView scrollRectToVisible: self.addCommentCell.frame
+                               animated: true];
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -324,10 +331,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             onEditBtn: (id) sender
 {
     self.addCommentCell.addCommentTextView.text = commentsCell.commentContentTextView.text;
+
+    [self.tableView scrollToRowAtIndexPath: [NSIndexPath indexPathForRow:0 inSection:1]
+                          atScrollPosition: UITableViewScrollPositionBottom
+                                  animated: true];
     [self.addCommentCell.addCommentTextView becomeFirstResponder];
 
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentsCell];
-    self.commentID = [self.model getContentForIndexPath:indexPath].commentID;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell: commentsCell];
+    self.commentID = [self.model getContentForIndexPath: indexPath].commentID;
 }
 
 - (void) commentsCell: (CommentsCell*) commentsCell
@@ -339,28 +350,31 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     UIAlertController* alertConroller = [UIAlertController alertControllerWithTitle:@""
                                                                             message:@"Вы действительно хотите удалить комментарий?"
                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof (self) weakSelf = self;
     [alertConroller addAction: [UIAlertAction actionWithTitle:@"Отмена"
                                                         style:UIAlertActionStyleCancel
                                                       handler:^(UIAlertAction *action) {
+                                                          weakSelf.commentID = nil;
                                                       }]];
-    __weak typeof (self) weakSelf = self;
     void (^handler)(UIAlertAction *action) = ^(UIAlertAction *action) {
         RACSignal* signal = [TaskCommentsService.sharedInstance deleteCommentForSelectedTaskWithID:weakSelf.commentID];
         [signal subscribeNext: ^(id response) {
             [weakSelf.model fillSelectedTask: weakSelf.model.getCurrentTask
                               withCompletion: ^(BOOL isSuccess) {
                                   [weakSelf updateTableView];
-                                  weakSelf.addCommentCell.addCommentTextView.text = @"";
+                                  weakSelf.addCommentCell.addCommentTextView.text   = @"";
+                                  weakSelf.addCommentCell.addCommentLabel.alpha     = 1;
                               }];
         } error: ^(NSError *error) {
         }];
+        weakSelf.commentID = nil;
     };
-    [alertConroller addAction: [UIAlertAction actionWithTitle:@"Удалить"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:handler]];
-    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alertConroller
-                                                                               animated:true
-                                                                             completion:nil];
+    [alertConroller addAction: [UIAlertAction actionWithTitle: @"Удалить"
+                                                        style: UIAlertActionStyleDefault
+                                                      handler: handler]];
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController: alertConroller
+                                                                               animated: true
+                                                                             completion: nil];
 }
 
 #pragma mark - TaskDetailCellDelegate methods -
@@ -376,7 +390,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
-
 
 #pragma mark - FilterSubtasksCellDelegate  methods -
 
@@ -594,10 +607,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                           withCompletion: ^(BOOL isSuccess) {
                               @strongify(self)
                               [self updateTableView];
-                              [self.addCommentCell.addCommentTextView setText: @""];
+                              self.addCommentCell.addCommentTextView.text   = @"";
+                              self.addCommentCell.addCommentLabel.alpha     = 1;
                           }];
         } error: ^(NSError *error) {
         }];
+        self.commentID = nil;
+        return;
     }
     @weakify(self)
     RACSignal* signal = [TaskCommentsService.sharedInstance
@@ -608,7 +624,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                       withCompletion: ^(BOOL isSuccess) {
                           @strongify(self)
                           [self updateTableView];
-                          [self.addCommentCell.addCommentTextView setText: @""];
+                          self.addCommentCell.addCommentTextView.text   = @"";
+                          self.addCommentCell.addCommentLabel.alpha     = 1;
         }];
      } error: ^(NSError *error) {
      }];

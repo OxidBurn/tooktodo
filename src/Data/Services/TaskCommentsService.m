@@ -92,7 +92,7 @@
              
              @strongify(self)
              
-             [self parseCommentsResponse: response[0]
+             [self parseCommentsResponse: @[response[0]]
                           withCompletion: ^(BOOL isSuccess) {
 
                                  [subscriber sendNext: nil];
@@ -131,7 +131,7 @@
 
              @strongify(self)
 
-             [self parseCommentsResponse: response[0]
+             [self parseCommentsResponse: @[response[0]]
                           withCompletion: ^(BOOL isSuccess) {
 
                               [subscriber sendNext: nil];
@@ -156,10 +156,12 @@
         NSString* requestURL = [self.buildPostCommentURL stringByAppendingFormat: @"/%@", commentID];
         [[[TaskCommentsAPIService sharedInstance] deleteCommentForTask: requestURL]
          subscribeNext: ^(RACTuple* response) {
-             [DataManagerShared deletCommentWithID: commentID
-                                            inTask: [DataManagerShared getSelectedTask]];
-             [subscriber sendNext: nil];
-             [subscriber sendCompleted];
+             [DataManagerShared deleteCommentWithID: commentID
+                                             inTask: [DataManagerShared getSelectedTask]
+                                         completion:^{
+                                             [subscriber sendNext: nil];
+                                             [subscriber sendCompleted];
+                                         }];
          }
          error: ^(NSError *error) {
              [subscriber sendError: error];
