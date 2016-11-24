@@ -103,6 +103,8 @@
 
 @property (strong, nonatomic) NSDate* commentDate;
 
+@property (strong, nonatomic) NSString* commentID;
+
 // properties for logs
 
 @property (strong, nonatomic) NSAttributedString* logText;
