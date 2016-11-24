@@ -247,7 +247,6 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 }
 
 
-
 #pragma mark - Helpers -
 
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
@@ -319,10 +318,12 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                     if (obj.assignee || obj.invite)
                     {
                         NSArray* assigneeArr = obj.assignee.allObjects;
-                        [tmpClaimingsArr addObjectsFromArray: assigneeArr];
-                    
                         NSArray* inviteArr = obj.invite.allObjects;
+                        
+                        [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                        
+                        [self checkIfTaskApprovedByApprovers: tmpClaimingsArr];
                     }
                     
                 }];
@@ -342,6 +343,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                         
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];
+                    
                     }
                     
                 }];
@@ -365,7 +367,42 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     tmpResponsibleArr = nil;
 }
 
-
+- (BOOL) checkIfTaskApprovedByApprovers: (NSArray*) approvers
+{
+    __block BOOL isApproved = NO;
+  
+    NSArray* approvmentsArray = self.task.approvments.allObjects;
+    
+    [approvmentsArray enumerateObjectsUsingBlock:^(TaskApprovments*  _Nonnull approvement, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [approvers enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj isKindOfClass:[ProjectTaskAssignee class]])
+            {
+                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
+                
+                if ([approvement.approverUserId isEqual: assignee.assigneeID])
+                {
+                    isApproved = YES;
+                }
+            }
+            
+            if ([obj isKindOfClass:[ProjectInviteInfo class]])
+            {
+                ProjectInviteInfo* invite = (ProjectInviteInfo*)obj;
+                
+                if ([approvement.approverUserId isEqual: invite.inviteID])
+                {
+                    isApproved = YES;
+                }
+            }
+            
+            
+        }];
+    }];
+    
+    return isApproved;
+}
 
 - (NSString*) determineCollectionCellIdForContent: (NSArray*) arrayToCheck
 {
