@@ -38,7 +38,7 @@
     return [[[requestManager rac_GET: requestString parameters: nil] logError] replayLazily];
 }
 
-- (RACSignal*) postCommentforTask: (NSString*)     requestString
+- (RACSignal*) postCommentForTask: (NSString*)     requestString
                        withParams: (NSDictionary*) params
 {
     AFHTTPRequestOperationManager* requestManager = [self getRawManager];
@@ -46,12 +46,18 @@
     return [[[requestManager rac_POST: requestString parameters: params] logError] replayLazily];
 }
 
-- (RACSignal*) editCommentforTask: (NSString*)     requestString
+- (RACSignal*) editCommentForTask: (NSString*)     requestString
                        withParams: (NSDictionary*) params
 {
     AFHTTPRequestOperationManager* requestManager = [self getRawManager];
 
     return [[[requestManager rac_PUT: requestString parameters: params] logError] replayLazily];
+}
+
+- (RACSignal*) deleteCommentForTask: (NSString*) requestString
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    return [[[requestManager rac_DELETE: requestString parameters: nil] logError] replayLazily];
 }
 
 @end

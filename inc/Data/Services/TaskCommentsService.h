@@ -21,5 +21,6 @@
 - (RACSignal*) postCommentForSelectedTask: (NSString *) message;
 - (RACSignal*) editCommentForSelectedTask: (NSString *) message
                                 commentID: (NSNumber*)  commentID;
+- (RACSignal*) deleteCommentForSelectedTaskWithID: (NSNumber*)  commentID;
 
 @end

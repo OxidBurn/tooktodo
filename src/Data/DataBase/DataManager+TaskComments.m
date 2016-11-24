@@ -98,4 +98,14 @@
     return comment;
 }
 
+- (void) deletCommentWithID: (NSNumber*)               commentID
+                     inTask: (ProjectTask*)            task
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * localContext) {
+        [[self getTaskCommentWithID: commentID
+                             inTask: task
+                          inContext: localContext] MR_deleteEntityInContext : localContext];
+    }];
+}
+
 @end

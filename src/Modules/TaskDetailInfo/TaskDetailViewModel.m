@@ -333,7 +333,34 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) commentsCell: (CommentsCell*) commentsCell
           onCancelBtn: (id) sender
 {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:commentsCell];
+    self.commentID = [self.model getContentForIndexPath:indexPath].commentID;
 
+    UIAlertController* alertConroller = [UIAlertController alertControllerWithTitle:@""
+                                                                            message:@"Вы действительно хотите удалить комментарий?"
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+    [alertConroller addAction: [UIAlertAction actionWithTitle:@"Отмена"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                      }]];
+    __weak typeof (self) weakSelf = self;
+    void (^handler)(UIAlertAction *action) = ^(UIAlertAction *action) {
+        RACSignal* signal = [TaskCommentsService.sharedInstance deleteCommentForSelectedTaskWithID:weakSelf.commentID];
+        [signal subscribeNext: ^(id response) {
+            [weakSelf.model fillSelectedTask: weakSelf.model.getCurrentTask
+                              withCompletion: ^(BOOL isSuccess) {
+                                  [weakSelf updateTableView];
+                                  weakSelf.addCommentCell.addCommentTextView.text = @"";
+                              }];
+        } error: ^(NSError *error) {
+        }];
+    };
+    [alertConroller addAction: [UIAlertAction actionWithTitle:@"Удалить"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:handler]];
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alertConroller
+                                                                               animated:true
+                                                                             completion:nil];
 }
 
 #pragma mark - TaskDetailCellDelegate methods -

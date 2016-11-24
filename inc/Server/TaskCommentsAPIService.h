@@ -20,10 +20,12 @@
 
 - (RACSignal*) loadAllCommentsForTask: (NSString*) url;
 
-- (RACSignal*) postCommentforTask: (NSString*)     requestString
+- (RACSignal*) postCommentForTask: (NSString*)     requestString
                        withParams: (NSDictionary*) params;
 
-- (RACSignal*) editCommentforTask: (NSString*)     requestString
+- (RACSignal*) editCommentForTask: (NSString*)     requestString
                        withParams: (NSDictionary*) params;
+
+- (RACSignal*) deleteCommentForTask: (NSString*) requestString;
 
 @end
