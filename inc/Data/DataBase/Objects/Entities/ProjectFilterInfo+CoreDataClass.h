@@ -1,5 +1,5 @@
 //
-//  ProjectTaskOwner+CoreDataClass.h
+//  ProjectFilterInfo+CoreDataClass.h
 //  
 //
 //  Created by Nikolay Chaban on 11/24/16.
@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectRoles, ProjectTask;
+@class NSObject, ProjectInfo;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProjectTaskOwner : NSManagedObject
+@interface ProjectFilterInfo : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "ProjectTaskOwner+CoreDataProperties.h"
+#import "ProjectFilterInfo+CoreDataProperties.h"

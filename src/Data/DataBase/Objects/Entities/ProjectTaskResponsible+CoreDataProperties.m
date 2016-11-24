@@ -2,7 +2,7 @@
 //  ProjectTaskResponsible+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -22,7 +22,6 @@
 @dynamic lastName;
 @dynamic projectPermission;
 @dynamic responsibleID;
-@dynamic usedForFilters;
 @dynamic assignee;
 @dynamic invite;
 @dynamic projectRoleType;

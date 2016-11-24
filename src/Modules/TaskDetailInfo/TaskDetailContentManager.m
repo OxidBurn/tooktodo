@@ -384,8 +384,8 @@
     
     CGFloat height = size.height;
     
-    if (height > 152)
-        height = 152;
+    if (height > 85)
+        height = 85;
     
     return height;
 }

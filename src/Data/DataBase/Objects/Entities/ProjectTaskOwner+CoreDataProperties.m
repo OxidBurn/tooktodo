@@ -2,7 +2,7 @@
 //  ProjectTaskOwner+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/22/16.
+//  Created by Nikolay Chaban on 11/24/16.
 //
 //
 
@@ -26,7 +26,6 @@
 @dynamic ownerID;
 @dynamic phoneNumber;
 @dynamic userName;
-@dynamic usedForFilters;
 @dynamic role;
 @dynamic task;
 

@@ -333,19 +333,22 @@
                                                     size: 13.0f];
     
     UILabel* titleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 0, 0)];
+    
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
     titleLabel.text            = @"НОВАЯ ЗАДАЧА";
+    
     [titleLabel sizeToFit];
     
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
+    
     subTitleLabel.backgroundColor = [UIColor clearColor];
     subTitleLabel.textColor       = [UIColor whiteColor];
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
-    //    subTitleLabel.text            = [self.viewModel getProjectName];
+    
     [subTitleLabel sizeToFit];
     
     UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
@@ -378,7 +381,7 @@
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
     
-    self.addTaskTableView.rowHeight = UITableViewAutomaticDimension;
+    self.addTaskTableView.rowHeight          = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
     
     __weak typeof(self) blockSelf = self;

@@ -153,7 +153,7 @@
     
     // adding text view height, which depends of comment length and device width
     // 10 is gap to the next cell
-    cellHeight += content.commentTextViewHeight + 10;
+    cellHeight += content.commentTextViewHeight + 18;
     
     if ( content.containerView )
     {
