@@ -169,6 +169,7 @@
 - (void) selectAll
 {
     self.selectedAssigneeIndexes = nil;
+    self.selectedAssignee        = self.assigneeArray;
     
     __block NSMutableArray* tmp = [NSMutableArray new];
     
@@ -184,6 +185,7 @@
 - (void) deselectAll
 {
     self.selectedAssigneeIndexes = nil;
+    self.selectedAssignee        = nil;
 }
 
 - (NSArray*) getSelectedAssignees
