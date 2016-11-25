@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G31" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -58,6 +58,7 @@
         <relationship name="roomLevel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoomLevel" inverseName="project" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
         <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="project" inverseEntity="ProjectSystem" syncable="YES"/>
+        <relationship name="taskFilterConfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskFilterContent" inverseName="project" inverseEntity="ProjectTaskFilterContent" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="project" inverseEntity="TeamMember" syncable="YES"/>
     </entity>
@@ -199,11 +200,12 @@
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="statuses" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <relationship name="approvements" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskApprovementsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="creators" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskCreatorsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="responsibles" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskResponsiblesFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="systems" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="taskFilterContent" inverseEntity="ProjectSystem" syncable="YES"/>
-        <relationship name="workArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="taskFilterContent" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
+        <relationship name="approvements" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskAssignee" inverseName="taskApprovementsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="creators" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskCreatorsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="taskFilterConfig" inverseEntity="ProjectInfo" syncable="YES"/>
+        <relationship name="responsibles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskResponsiblesFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="taskFilterContent" inverseEntity="ProjectSystem" syncable="YES"/>
+        <relationship name="workArea" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="taskFilterContent" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskMapContour" representedClassName="ProjectTaskMapContour" syncable="YES">
         <attribute name="geoJson" optional="YES" attributeType="String" syncable="YES"/>
@@ -440,7 +442,8 @@
     <elements>
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="600"/>
+        <element name="ProjectFilterInfo" positionX="-45" positionY="99" width="128" height="165"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="615"/>
         <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="255"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="165"/>
@@ -450,6 +453,7 @@
         <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="750"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="330"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
+        <element name="ProjectTaskFilterContent" positionX="-36" positionY="108" width="128" height="270"/>
         <element name="ProjectTaskMapContour" positionX="-27" positionY="117" width="128" height="150"/>
         <element name="ProjectTaskMarker" positionX="-36" positionY="108" width="128" height="135"/>
         <element name="ProjectTaskOwner" positionX="-45" positionY="99" width="128" height="255"/>
@@ -474,7 +478,5 @@
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
-        <element name="ProjectFilterInfo" positionX="-45" positionY="99" width="128" height="165"/>
-        <element name="ProjectTaskFilterContent" positionX="-36" positionY="108" width="128" height="255"/>
     </elements>
 </model>

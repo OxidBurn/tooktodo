@@ -14,6 +14,7 @@
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "ProjectTaskFilterContent+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -181,6 +182,44 @@
                    withCompletion: (CompletionWithSuccess)    completion
 {
     NSLog(@"<INFO> Filter configuration %@", config);
+    
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
+        
+        ProjectTaskFilterContent* taskFilterContent = [ProjectTaskFilterContent MR_findFirstOrCreateByAttribute: @"project"
+                                                                                                      withValue: project
+                                                                                                      inContext: localContext];
+        
+        // Creators
+        [self saveFilterCreatorsForConfig: taskFilterContent
+                                  withSet: config.byCreator
+                                inContext: localContext];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
+- (void) resetFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
+        
+        [project.filters MR_deleteEntityInContext: localContext];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 
@@ -204,6 +243,24 @@
     }];
     
     return creators;
+}
+
+
+// MARK: saving filter configuration items to database
+- (void) saveFilterCreatorsForConfig: (ProjectTaskFilterContent*) filterConfig
+                             withSet: (NSArray*)                  creators
+                           inContext: (NSManagedObjectContext*)   context
+{
+    filterConfig.creators = nil;
+    
+    [creators enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        if ( [filterConfig.creators containsObject: assignee] == NO )
+        {
+            [filterConfig addCreatorsObject: [assignee MR_inContext: context]];
+        }
+        
+    }];
 }
 
 @end

@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 11/25/16.
 //
 //
 
@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *street;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, retain) ProjectCountry *country;
+@property (nullable, nonatomic, retain) ProjectFilterInfo *filters;
 @property (nullable, nonatomic, retain) NSSet<OfflineSettings *> *offlineSettings;
 @property (nullable, nonatomic, retain) NSSet<ProjectRoleAssignments *> *projectRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectRegion *region;
@@ -51,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *tasks;
 @property (nullable, nonatomic, retain) NSSet<TeamMember *> *team;
-@property (nullable, nonatomic, retain) ProjectFilterInfo *filters;
+@property (nullable, nonatomic, retain) ProjectTaskFilterContent *taskFilterConfig;
 
 @end
 

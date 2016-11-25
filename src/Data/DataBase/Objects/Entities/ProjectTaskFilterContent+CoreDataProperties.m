@@ -2,7 +2,7 @@
 //  ProjectTaskFilterContent+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 11/25/16.
 //
 //
 
@@ -14,19 +14,20 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskFilterContent"];
 }
 
+@dynamic endDate;
+@dynamic factualEndDate;
+@dynamic factualStartDate;
+@dynamic isCanceled;
+@dynamic isDone;
+@dynamic isExpired;
+@dynamic startDate;
 @dynamic statuses;
 @dynamic types;
-@dynamic endDate;
-@dynamic startDate;
-@dynamic factualStartDate;
-@dynamic factualEndDate;
-@dynamic isExpired;
-@dynamic isDone;
-@dynamic isCanceled;
+@dynamic approvements;
 @dynamic creators;
 @dynamic responsibles;
-@dynamic approvements;
 @dynamic systems;
 @dynamic workArea;
+@dynamic project;
 
 @end

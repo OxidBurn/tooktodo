@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 11/25/16.
 //
 //
 
@@ -41,6 +41,7 @@
 @dynamic street;
 @dynamic title;
 @dynamic country;
+@dynamic filters;
 @dynamic offlineSettings;
 @dynamic projectRoleAssignments;
 @dynamic region;
@@ -50,6 +51,6 @@
 @dynamic systems;
 @dynamic tasks;
 @dynamic team;
-@dynamic filters;
+@dynamic taskFilterConfig;
 
 @end

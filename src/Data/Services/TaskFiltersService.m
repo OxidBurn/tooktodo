@@ -64,12 +64,13 @@
 - (void) saveFilterConfiguration: (TaskFilterConfiguration*) config
                   withCompletion: (CompletionWithSuccess)    completion
 {
-    
+    [DataManagerShared storeFilterConfiguration: config
+                                 withCompletion: completion];
 }
 
 - (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
 {
-    
+    [DataManagerShared resetFilterConfigurationForCurrentProject: completion];
 }
 
 

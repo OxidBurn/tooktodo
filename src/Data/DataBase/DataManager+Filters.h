@@ -49,4 +49,6 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 - (void) storeFilterConfiguration: (TaskFilterConfiguration*) config
                    withCompletion: (CompletionWithSuccess)    completion;
 
+- (void) resetFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;
+
 @end
