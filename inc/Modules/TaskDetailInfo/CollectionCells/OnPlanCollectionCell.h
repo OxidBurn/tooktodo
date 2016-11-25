@@ -10,8 +10,9 @@
 
 // Classes
 #import "TaskCollectionCellsContent.h"
+#import "ParentCollectionCell.h"
 
-@interface OnPlanCollectionCell : UICollectionViewCell
+@interface OnPlanCollectionCell : ParentCollectionCell
 
 // methods
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content;

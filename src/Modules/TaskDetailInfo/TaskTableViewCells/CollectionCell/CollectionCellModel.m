@@ -20,6 +20,7 @@
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
+#import "ParentCollectionCell.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -70,6 +71,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 @property (strong, nonatomic) NSArray* collectionViewCellsIdArray;
 
+@property (nonatomic, strong) id<ParentCollectionCellDelegate> varToStoreDelegate;
+
 // methods
 
 
@@ -113,10 +116,11 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 - (UICollectionViewCell*) createCellForCollectionView: (UICollectionView*) collection
                                          forIndexPath: (NSIndexPath*)      indexPath
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate
 {
     TaskCollectionCellsContent* content = self.taskCollectionViewContent[indexPath.row];
     
-    UICollectionViewCell* cell = [[UICollectionViewCell alloc] init];
+    ParentCollectionCell* cell = (ParentCollectionCell*)[[UICollectionViewCell alloc] init];
     
     NSString* cellID = content.cellId;
     
@@ -130,7 +134,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnTermsInfoCellWithContent: content
                                          forCollectionView: collection
-                                             withIndexPath: indexPath];
+                                             withIndexPath: indexPath
+                                              withDelegate: delegate];
         }
             break;
             
@@ -140,7 +145,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnDetailCellWithContent: content
                                       forCollectionView: collection
-                                          withIndexPath: indexPath];
+                                          withIndexPath: indexPath
+                                           withDelegate: delegate];
         }
             break;
             
@@ -150,7 +156,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnOnPlanCellWithContent: content
                                       forCollectionView: collection
-                                          withIndexPath: indexPath];
+                                          withIndexPath: indexPath
+                                           withDelegate: delegate];
         }
             break;
             
@@ -160,7 +167,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnSingleUserCellWithContent: content
                                           forCollectionView: collection
-                                              withIndexPath: indexPath];
+                                              withIndexPath: indexPath
+                                               withDelegate: delegate];
         }
             break;
             
@@ -170,7 +178,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnGroupOfUsersCellWithContent: content
                                             forCollectionView: collection
-                                                withIndexPath: indexPath];
+                                                withIndexPath: indexPath
+                                                 withDelegate: delegate];
         }
             break;
     }
@@ -179,6 +188,15 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 }
 
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate
+{
+    self.varToStoreDelegate = delegate;
+}
+
+- (id<ParentCollectionCellDelegate>) getVarToStoreParentCollectionCellDelegate
+{
+    return self.varToStoreDelegate;
+}
 
 #pragma mark - Internal -
 

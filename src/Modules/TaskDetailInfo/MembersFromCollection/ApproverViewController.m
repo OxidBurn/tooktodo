@@ -17,24 +17,37 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
 
 // Methods
-- (IBAction)onDone:(UIBarButtonItem *)sender;
+- (IBAction) onDone: (UIBarButtonItem*) sender;
 
-- (IBAction)onBackBtn:(UIBarButtonItem *)sender;
+- (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 
 @end
 
 @implementation ApproverViewController
 
-- (void)viewDidLoad
+
+#pragma mark - Life cycle -
+
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
 
-- (IBAction) onDone: (UIBarButtonItem*) sender
+#pragma mark - Public -
+
+- (void) fillApprovers: (NSArray*) approvers
 {
     
+}
+
+
+#pragma mark - Actions -
+
+- (IBAction) onDone: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender

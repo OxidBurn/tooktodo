@@ -22,12 +22,14 @@
 #import "TasksService.h"
 #import "RowContent.h"
 #import "OSTableView.h"
+#import "CollectionCell.h"
+#import "ParentCollectionCell.h"
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate>
 
 // properties
 
@@ -39,7 +41,8 @@
 
 @property (strong, nonatomic) NSArray* secondSectionRowHeightsArray;
 
-@property (strong, nonatomic) NSNumber *commentID;
+@property (strong, nonatomic) NSNumber* commentID;
+
 @property (strong, nonatomic) AddCommentCell* addCommentCell;
 
 @end
@@ -425,7 +428,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark - Helpers -
 
-- (void)updateAddCommentHeight
+- (void) updateAddCommentHeight
 {
     CGPoint contentOffset = self.tableView.contentOffset;
     [UIView setAnimationsEnabled: false];
@@ -611,6 +614,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (ContentAccedingSortingType) getProjectsSortAccedingType
 {
     return [self.model getTasksSortingAscendingType];
+}
+
+
+#pragma mark - ParentCollectionCellDelegate methods -
+
+- (void) performSegueToUsersListWithSegueID: (NSString*) segueID
+{
+    if (self.performSegue)
+        self.performSegue(segueID);
 }
 
 #pragma mark -

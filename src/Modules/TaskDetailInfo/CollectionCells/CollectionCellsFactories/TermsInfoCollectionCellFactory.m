@@ -11,18 +11,22 @@
 // Classes
 #import "TermsInfoCollectionCell.h"
 
+
 @implementation TermsInfoCollectionCellFactory
 
 #pragma mark - Public -
 
-- (UICollectionViewCell*) returnTermsInfoCellWithContent: (TaskCollectionCellsContent*) content
+- (ParentCollectionCell*) returnTermsInfoCellWithContent: (TaskCollectionCellsContent*) content
                                        forCollectionView: (UICollectionView*)           collection
                                            withIndexPath: (NSIndexPath*)                indexPath
+                                            withDelegate: (id<ParentCollectionCellDelegate>) delegate;
 {
     TermsInfoCollectionCell* cell = [collection dequeueReusableCellWithReuseIdentifier: content.cellId
                                                                        forIndexPath: indexPath];
     
     [cell fillCellWithContent: content];
+    
+    cell.delegate = delegate;
     
     return cell;
 }

@@ -10,6 +10,19 @@
 
 // Classes
 #import "CollectionCellModel.h"
+#import "ParentCollectionCell.h"
+
+typedef NS_ENUM(NSUInteger, CollectionCellTypes)
+{
+    TermsCellType       = 0,
+    DateCellType        = 1,
+    RoomCellType        = 2,
+    OnPlaneCellType     = 3,
+    CreatorCellType     = 4,
+    ResponsibleCellType = 5,
+    ApproverCellType    = 6,
+    ObserverCellType    = 7,
+};
 
 @interface CollectionCellViewModel()
 
@@ -36,6 +49,14 @@
     return _model;
 }
 
+
+#pragma mark - Public -
+
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate
+{
+    [self.model fillParentCollectionCellDelegate: delegate];
+}
+
 #pragma mark - UICollectionViewDataSource methods -
 
 - (NSInteger) numberOfSectionsInCollectionView: (UICollectionView*) collectionView
@@ -53,13 +74,48 @@
                   cellForItemAtIndexPath: (NSIndexPath*)      indexPath
 {
     return [self.model createCellForCollectionView: collectionView
-                                      forIndexPath: indexPath];
+                                      forIndexPath: indexPath
+                                      withDelegate: [self.model getVarToStoreParentCollectionCellDelegate]];
 }
 
 - (void)  collectionView: (UICollectionView*) collectionView
 didSelectItemAtIndexPath: (NSIndexPath*)      indexPath
 {
+    ParentCollectionCell* cell = (ParentCollectionCell*)[collectionView cellForItemAtIndexPath: indexPath];
     
+    
+    if ([cell.delegate respondsToSelector: @selector(performSegueToUsersListWithSegueID:)])
+    {
+        switch (indexPath.row)
+        {
+            case CreatorCellType:
+            {
+                //uncomment when segue to creator will be implemented
+//                [cell.delegate performSegueToUsersListWithSegueID: @""];
+            }
+                break;
+            case ResponsibleCellType:
+            {
+                //uncomment when segue to responsible will be implemented
+//                [cell.delegate performSegueToUsersListWithSegueID: @""];
+            }
+                break;
+            case ApproverCellType:
+            {
+                [cell.delegate performSegueToUsersListWithSegueID: @"ShowApprovers"];
+            }
+                break;
+            case ObserverCellType:
+            {
+                //uncomment when segue to observers will be implemented
+//                [cell.delegate performSegueToUsersListWithSegueID: @""];
+            }
+                break;
+            default:
+                break;
+        }
+    
+    }
 }
 
 - (CGSize) collectionView: (UICollectionView*)       collectionView
