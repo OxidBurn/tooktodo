@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView*        filterByAssigneeTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar*        searchBar;
 @property (weak, nonatomic) IBOutlet UIButton*           selectAllBtn;
-@property (weak, nonatomic) IBOutlet UIButton*           saveBtn;
+@property (weak, nonatomic) IBOutlet UIButton*           resetBtn;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem*    doneBtn;
 
 // Properties
@@ -29,7 +29,7 @@
 @property (nonatomic, assign) SelectResponsibleSelectAllFlag selectAllFlag;
 
 // Methods
-- (IBAction) onSaveBtn     : (UIButton*)        sender;
+- (IBAction) onResetBtn    : (UIButton*)        sender;
 - (IBAction) onDoneBtn     : (UIBarButtonItem*) sender;
 - (IBAction) onBackBtn     : (UIBarButtonItem*) sender;
 - (IBAction) onSelectAllBtn: (UIButton*)        sender;
@@ -71,12 +71,7 @@
 
 #pragma mark - Actions -
 
-- (IBAction) onSaveBtn: (UIButton*) sender
-{
-    [self saveData];
-}
-
-- (IBAction) deselectAll: (UIButton*) sender
+- (IBAction) onResetBtn: (UIButton*) sender
 {
     [self.viewModel deselectAll];
 }

@@ -21,6 +21,8 @@
 
 - (void) fillFilterType: (FilterByAssigneeType) filterType;
 
+- (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath;
+
 - (void) selectAll;
 
 - (void) deselectAll;

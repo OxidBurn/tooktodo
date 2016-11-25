@@ -131,7 +131,14 @@
                 
                 imageView.hidden = NO;
                 
-                [imageView sd_setImageWithURL: [NSURL URLWithString: assignee.avatarSrc]];
+                NSString* urlString = assignee.avatarSrc;
+                
+                if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+                {
+                    urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                }
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
             }
             
         }];
@@ -153,8 +160,14 @@
                 
                 imageView.hidden = NO;
                 
-                [imageView sd_setImageWithURL: [NSURL URLWithString: assignee.avatarSrc]];
-            }
+                NSString* urlString = assignee.avatarSrc;
+                
+                if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+                {
+                    urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                }
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: urlString]];            }
             
         }];
     }

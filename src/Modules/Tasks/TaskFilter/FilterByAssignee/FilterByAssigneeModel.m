@@ -156,14 +156,34 @@
     }];
 }
 
+- (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath
+{
+    BOOL isSelected;
+    
+    if ( [self.selectedAssigneeIndexes containsObject: @(indexPath.row)] )
+        isSelected = YES;
+    
+    return isSelected;
+}
+
 - (void) selectAll
 {
+    self.selectedAssigneeIndexes = nil;
     
+    __block NSMutableArray* tmp = [NSMutableArray new];
+    
+    [self.assigneeArray enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [tmp addObject: @(idx)];
+        
+    }];
+    
+    self.selectedAssigneeIndexes = tmp.copy;
 }
 
 - (void) deselectAll
 {
-    
+    self.selectedAssigneeIndexes = nil;
 }
 
 - (NSArray*) getSelectedAssignees

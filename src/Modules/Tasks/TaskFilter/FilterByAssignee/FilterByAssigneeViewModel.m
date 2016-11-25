@@ -57,7 +57,7 @@
     OSUserInfoWithCheckmarkCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserInfoWithCheckmarkID"];
     
     [cell fillCellWithAssignee: [self.model getAssigneeForIndexPath: indexPath]
-                 withCheckMark: NO];
+                 withCheckMark: [self.model getCheckmarkStateForIndexPath: indexPath]];
     
     return cell;
 }
