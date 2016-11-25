@@ -10,10 +10,11 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "BaseMainViewController.h"
 
 @protocol FilterByAssigneeViewControllerDelegate;
 
-@interface FilterByAssigneeViewController : UIViewController
+@interface FilterByAssigneeViewController : BaseMainViewController
 
 // properties
 @property (weak, nonatomic) id <FilterByAssigneeViewControllerDelegate> delegate;

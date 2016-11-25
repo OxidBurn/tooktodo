@@ -455,6 +455,10 @@
 		F7BB2CD81DE613F9002CFAAE /* LogsChangeTermsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BB2CD71DE613F9002CFAAE /* LogsChangeTermsFactory.m */; };
 		F7C3CA771DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */; };
 		F7DEE5FF1DD9D12F0089D09A /* AddTaskMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */; };
+		F7E765811DE8A7B300E8F10F /* FilterByStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765801DE8A7B300E8F10F /* FilterByStatusViewController.m */; };
+		F7E765841DE8A7C600E8F10F /* FilterByStatusViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765831DE8A7C600E8F10F /* FilterByStatusViewModel.m */; };
+		F7E765871DE8A7D100E8F10F /* FilterByStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765861DE8A7D100E8F10F /* FilterByStatusModel.m */; };
+		F7E7658A1DE8A81E00E8F10F /* SelectStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765891DE8A81E00E8F10F /* SelectStatusCell.m */; };
 		F7EB66F41DE35D6100F44CDF /* FilterByTermsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EB66D11DE35D6100F44CDF /* FilterByTermsCell.m */; };
 		F7EB66F51DE35D6100F44CDF /* RightDetailWithCustomExpandedIconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EB66D31DE35D6100F44CDF /* RightDetailWithCustomExpandedIconCell.m */; };
 		F7EB66F61DE35D6100F44CDF /* CustomExpandedIconCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EB66D61DE35D6100F44CDF /* CustomExpandedIconCellFactory.m */; };
@@ -1348,6 +1352,14 @@
 		F7C3CA751DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AddTaskContentManager+ProjectTask.h"; sourceTree = "<group>"; };
 		F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AddTaskContentManager+ProjectTask.m"; sourceTree = "<group>"; };
 		F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskMainFactory.m; sourceTree = "<group>"; };
+		F7E7657F1DE8A7B300E8F10F /* FilterByStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByStatusViewController.h; sourceTree = "<group>"; };
+		F7E765801DE8A7B300E8F10F /* FilterByStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByStatusViewController.m; sourceTree = "<group>"; };
+		F7E765821DE8A7C600E8F10F /* FilterByStatusViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByStatusViewModel.h; sourceTree = "<group>"; };
+		F7E765831DE8A7C600E8F10F /* FilterByStatusViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByStatusViewModel.m; sourceTree = "<group>"; };
+		F7E765851DE8A7D100E8F10F /* FilterByStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByStatusModel.h; sourceTree = "<group>"; };
+		F7E765861DE8A7D100E8F10F /* FilterByStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByStatusModel.m; sourceTree = "<group>"; };
+		F7E765881DE8A81E00E8F10F /* SelectStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStatusCell.h; sourceTree = "<group>"; };
+		F7E765891DE8A81E00E8F10F /* SelectStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStatusCell.m; sourceTree = "<group>"; };
 		F7EB66D01DE35D6100F44CDF /* FilterByTermsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByTermsCell.h; sourceTree = "<group>"; };
 		F7EB66D11DE35D6100F44CDF /* FilterByTermsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByTermsCell.m; sourceTree = "<group>"; };
 		F7EB66D21DE35D6100F44CDF /* RightDetailWithCustomExpandedIconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightDetailWithCustomExpandedIconCell.h; sourceTree = "<group>"; };
@@ -3640,9 +3652,25 @@
 			path = FilterByAssignee;
 			sourceTree = "<group>";
 		};
+		F7E7657E1DE8A78C00E8F10F /* FilterByStatus */ = {
+			isa = PBXGroup;
+			children = (
+				F7E7657F1DE8A7B300E8F10F /* FilterByStatusViewController.h */,
+				F7E765801DE8A7B300E8F10F /* FilterByStatusViewController.m */,
+				F7E765821DE8A7C600E8F10F /* FilterByStatusViewModel.h */,
+				F7E765831DE8A7C600E8F10F /* FilterByStatusViewModel.m */,
+				F7E765851DE8A7D100E8F10F /* FilterByStatusModel.h */,
+				F7E765861DE8A7D100E8F10F /* FilterByStatusModel.m */,
+				F7E765881DE8A81E00E8F10F /* SelectStatusCell.h */,
+				F7E765891DE8A81E00E8F10F /* SelectStatusCell.m */,
+			);
+			path = FilterByStatus;
+			sourceTree = "<group>";
+		};
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				F7E7657E1DE8A78C00E8F10F /* FilterByStatus */,
 				F72F3BC71DE76930009648A6 /* FilterByAssignee */,
 				F7EB66CF1DE35D6100F44CDF /* Cells */,
 				F7EB66D41DE35D6100F44CDF /* Factories */,
@@ -3897,6 +3925,7 @@
 				56D06E951DAFBDC0008E9AC0 /* ProjectRoleAssignments+CoreDataClass.m in Sources */,
 				56D06F361DAFBDC0008E9AC0 /* GroupOfUsersCollectionFactory.m in Sources */,
 				56D06E851DAFBDC0008E9AC0 /* DataManager+Room.m in Sources */,
+				F7E765841DE8A7C600E8F10F /* FilterByStatusViewModel.m in Sources */,
 				56D06EC61DAFBDC0008E9AC0 /* ProjectRoleAssignmentsModel.m in Sources */,
 				56D06F411DAFBDC0008E9AC0 /* OnRevisionModel.m in Sources */,
 				56D06FAC1DAFBDC0008E9AC0 /* OSFlexibleTextFieldCellFactory.m in Sources */,
@@ -3913,6 +3942,7 @@
 				56D06E881DAFBDC0008E9AC0 /* DataManager+Team.m in Sources */,
 				56D06EA31DAFBDC0008E9AC0 /* ProjectTaskMarker+CoreDataProperties.m in Sources */,
 				56D06F831DAFBDC0008E9AC0 /* UserInfoTableViewCell.m in Sources */,
+				F7E765871DE8A7D100E8F10F /* FilterByStatusModel.m in Sources */,
 				5643A2E61DDCA97A00038414 /* TaskCommentsAPIService.m in Sources */,
 				56D06EC31DAFBDC0008E9AC0 /* ProjectInfoModel.m in Sources */,
 				CF1D5E031DD1E11A00CEB8DA /* SystemDetailViewModel.m in Sources */,
@@ -4077,6 +4107,7 @@
 				56D06EC71DAFBDC0008E9AC0 /* ProjectRoleModel.m in Sources */,
 				56D06F971DAFBDC0008E9AC0 /* TasksAPIService.m in Sources */,
 				56D06F3F1DAFBDC0008E9AC0 /* TermsInfoCollectionCell.m in Sources */,
+				F7E765811DE8A7B300E8F10F /* FilterByStatusViewController.m in Sources */,
 				56D06F9E1DAFBDC0008E9AC0 /* AlertControllerSegue.m in Sources */,
 				F7EB66F61DE35D6100F44CDF /* CustomExpandedIconCellFactory.m in Sources */,
 				564DE39A1DB100A600BF9817 /* TaskAvailableActionsList+CoreDataClass.m in Sources */,
@@ -4206,6 +4237,7 @@
 				5663BB791DE5EBFD00F82E5B /* TaskLogContentModel.m in Sources */,
 				56D06FAD1DAFBDC0008E9AC0 /* OSGroupOfUsersInfoCellFactory.m in Sources */,
 				56D06F181DAFBDC0008E9AC0 /* SelectStageViewModel.m in Sources */,
+				F7E7658A1DE8A81E00E8F10F /* SelectStatusCell.m in Sources */,
 				56D06EFC1DAFBDC0008E9AC0 /* RoleInfoViewModel.m in Sources */,
 				56D06E9E1DAFBDC0008E9AC0 /* ProjectTask+CoreDataProperties.m in Sources */,
 				56D06F791DAFBDC0008E9AC0 /* InviteInfo.m in Sources */,
