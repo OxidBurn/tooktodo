@@ -14,13 +14,15 @@
 #import "PopoverViewController.h"
 #import "ProjectTask+CoreDataClass.h"
 
-@interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, PopoverModelDelegate, PopoverModelDataSource>
+@interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, PopoverModelDelegate, PopoverModelDataSource, UISearchBarDelegate>
 
 // properties
 
 @property (copy, nonatomic) void(^performSegue)(NSString* segueID);
 
 @property (nonatomic, copy) void(^reloadTable)();
+
+@property (copy, nonatomic) void(^endSearching)();
 
 // methods
 

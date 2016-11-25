@@ -30,7 +30,11 @@ static NSString* contentKey = @"contentInfoKey";
 
 @property (nonatomic, strong) NSArray* stages;
 
+@property (strong, nonatomic) NSArray* filteredStagesContent;
+
 @property (strong, nonatomic) ProjectTask* selectedTask;
+
+@property (assign, nonatomic) SearchTableState tableState;
 
 // methods
 
@@ -189,6 +193,30 @@ static NSString* contentKey = @"contentInfoKey";
     cellInfo.status            = self.selectedTask.status;
     cellInfo.statusDescription = self.selectedTask.statusDescription;
     
+}
+
+- (void) setTableSearchState: (SearchTableState) state
+{
+    self.tableState = state;
+    
+    switch (state)
+    {
+        case TableSearchState:
+        {
+            self.filteredStagesContent = self.stages;
+        }
+            break;
+        case TableNormalState:
+        {
+            self.filteredStagesContent = nil;
+        }
+            break;
+    }
+}
+
+- (void) applyFilteringByText: (NSString*) text
+{
+    NSLog(@"Filtered content %@", self.filteredStagesContent);
 }
 
 @end

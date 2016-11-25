@@ -27,6 +27,8 @@
 
 @property (strong, nonatomic) ProjectTasksModel* model;
 
+@property (assign, nonatomic) BOOL isCanceledSearch;
+
 // methods
 
 
@@ -206,6 +208,56 @@
      //Load new data for table
     if ( self.reloadTable )
         self.reloadTable();
+}
+
+
+#pragma mark - Search bar delegate methods -
+
+- (void) searchBar: (UISearchBar*) searchBar
+     textDidChange: (NSString*)    searchText
+{
+    if ( self.isCanceledSearch == NO )
+    {
+        [self.model applyFilteringByText: searchText];
+        
+        if ( self.reloadTable )
+            self.reloadTable();
+    }
+}
+
+- (BOOL) searchBarShouldBeginEditing: (UISearchBar*) searchBar
+{
+    return !self.isCanceledSearch;
+}
+
+- (void) searchBarTextDidBeginEditing: (UISearchBar*) searchBar
+{
+    [self.model setTableSearchState: TableSearchState];
+    
+    if ( self.reloadTable )
+        self.reloadTable();
+}
+
+- (void) searchBarTextDidEndEditing: (UISearchBar*) searchBar
+{
+    [self.model setTableSearchState: TableNormalState];
+    
+    if ( self.reloadTable )
+        self.reloadTable();
+}
+
+- (void) searchBarClearButtonClicked: (id) sender
+{
+    if ( self.endSearching )
+        self.endSearching();
+    
+    self.isCanceledSearch = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        self.isCanceledSearch = NO;
+        
+    });
 }
 
 @end

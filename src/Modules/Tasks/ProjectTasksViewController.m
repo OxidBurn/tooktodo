@@ -135,6 +135,7 @@
 {
     self.tasksByProjectTableView.dataSource = self.viewModel;
     self.tasksByProjectTableView.delegate   = self.viewModel;
+    self.searchBar.delegate                 = self.viewModel;
     
     __weak typeof(self) blockSelf = self;
        
@@ -150,6 +151,13 @@
         
         [blockSelf performSegueWithIdentifier: segueID
                                        sender: blockSelf];
+    };
+    
+    self.viewModel.endSearching = ^(){
+        
+        [blockSelf.searchBar resignFirstResponder];
+        [blockSelf.view endEditing: YES];
+        
     };
     
 }

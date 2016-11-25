@@ -12,6 +12,12 @@
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 
+typedef NS_ENUM(NSUInteger, SearchTableState)
+{
+    TableNormalState,
+    TableSearchState,
+};
+
 @interface ProjectTasksModel : NSObject
 
 - (RACSignal*) updateContent;
@@ -36,5 +42,9 @@
                isAcceding: (ContentAccedingSortingType) isAcceding;
 
 - (void) updateTaskStatusForIndexPath: (NSIndexPath*) path;
+
+- (void) setTableSearchState: (SearchTableState) state;
+
+- (void) applyFilteringByText: (NSString*) text;
 
 @end
