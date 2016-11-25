@@ -30,7 +30,6 @@
 @interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate>
 
 // properties
-@property (strong, nonatomic) TaskDetailModel* model;
 
 @property (strong, nonatomic) TaskDetailMainFactory* factory;
 
