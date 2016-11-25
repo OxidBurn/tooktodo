@@ -29,7 +29,7 @@
 @property (nonatomic, assign) SelectResponsibleSelectAllFlag selectAllFlag;
 
 // Methods
-- (IBAction) onResetBtn    : (UIButton*)        sender;
+- (IBAction) onSaveData    : (UIButton*)        sender;
 - (IBAction) onDoneBtn     : (UIBarButtonItem*) sender;
 - (IBAction) onBackBtn     : (UIBarButtonItem*) sender;
 - (IBAction) onSelectAllBtn: (UIButton*)        sender;
@@ -71,9 +71,9 @@
 
 #pragma mark - Actions -
 
-- (IBAction) onResetBtn: (UIButton*) sender
+- (IBAction) onSaveData: (UIButton*) sender
 {
-    [self.viewModel deselectAll];
+    [self saveData];
 }
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
@@ -88,7 +88,16 @@
 
 - (IBAction) onSelectAllBtn: (UIButton*) sender
 {
-    [self.viewModel selectAll];
+    if ( sender.selected )
+    {
+        [self.viewModel deselectAll];
+    }
+    else
+    {
+        [self.viewModel selectAll];
+    }
+    
+    sender.selected = !sender.selected;
 }
 
 
