@@ -110,17 +110,38 @@
 
 - (IBAction) onDoneBarButton: (UIBarButtonItem*) sender
 {
+    __weak typeof(self) blockSelf = self;
     
+    [self.viewModel saveFilterConfigurationWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+        
+    }];
 }
 
 - (IBAction) onFilterBtn: (UIButton*) sender
 {
-    NSLog(@"Filter Config %@", [self.viewModel getFilterConfig]);
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel saveFilterConfigurationWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+        
+    }];
 }
 
 - (IBAction) onResetBtn: (UIButton*) sender
 {
+    __weak typeof(self) blockSelf = self;
     
+    [self.viewModel resetFilterConfigurationForCurrentProject: ^(BOOL isSuccess) {
+        
+        [blockSelf dismissViewControllerAnimated: YES
+                                      completion: nil];
+        
+    }];
 }
 
 

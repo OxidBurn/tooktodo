@@ -33,6 +33,11 @@
                      forFilterType: (FilterByAssigneeType) filterType;
 
 // helpers for test
+
+- (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion;
+
 - (TaskFilterConfiguration*) getFilterConfig;
 
 @end

@@ -184,6 +184,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return [self.model getFilterConfig];
 }
 
+- (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model saveFilterConfigurationWithCompletion: completion];
+}
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
+{
+    [self.model resetFilterConfigurationForCurrentProject: completion];
+}
+
 
 #pragma mark - FilterByTermsCellDelegate methods -
 

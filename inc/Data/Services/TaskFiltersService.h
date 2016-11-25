@@ -6,7 +6,12 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
+
+// Frameworks
 #import "ReactiveCocoa.h"
+
+// Classes
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFiltersService : NSObject
 
@@ -15,5 +20,10 @@
 + (instancetype) sharedInstance;
 
 - (RACSignal*) loadAllTaskFiltersInfo: (NSNumber*) projectID;
+
+- (void) saveFilterConfiguration: (TaskFilterConfiguration*) config
+                  withCompletion: (CompletionWithSuccess)    completion;
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion;
 
 @end

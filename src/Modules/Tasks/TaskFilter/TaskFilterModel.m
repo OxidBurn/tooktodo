@@ -13,6 +13,7 @@
 #import "ProjectInfo+CoreDataProperties.h"
 #import "DataManager+ProjectInfo.h"
 #import "TaskFilterConfiguration.h"
+#import "TaskFiltersService.h"
 
 @interface TaskFilterModel()
 
@@ -195,6 +196,17 @@
 }
 
 // helpers for test
+- (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
+{
+    [[TaskFiltersService sharedInstance] saveFilterConfiguration: self.filterConfig
+                                                  withCompletion: completion];
+}
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
+{
+    [[TaskFiltersService sharedInstance] resetFilterConfigurationForCurrentProject: completion];
+}
+
 - (TaskFilterConfiguration*) getFilterConfig
 {
     return self.filterConfig;

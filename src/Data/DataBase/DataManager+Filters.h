@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
     ExpiredFilterType,
 };
 
+// Classes
+#import "TaskFilterConfiguration.h"
+
 @interface DataManager (Filters)
 
 - (void) persistProjectFilter: (NSDictionary*)         filter
@@ -41,5 +44,9 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 - (NSArray*) getFilterSystemsForCurrentProject;
 
 - (NSArray*) getFilterWorkAreasForCurrentProject;
+
+// Save filter configuration
+- (void) storeFilterConfiguration: (TaskFilterConfiguration*) config
+                   withCompletion: (CompletionWithSuccess)    completion;
 
 @end

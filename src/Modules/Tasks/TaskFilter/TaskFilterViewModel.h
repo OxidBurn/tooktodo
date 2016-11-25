@@ -30,4 +30,8 @@
 // helpers for test
 - (TaskFilterConfiguration*) getFilterConfig;
 
+- (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion;
+
 @end

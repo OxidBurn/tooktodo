@@ -177,6 +177,12 @@
     return workAreas;
 }
 
+- (void) storeFilterConfiguration: (TaskFilterConfiguration*) config
+                   withCompletion: (CompletionWithSuccess)    completion
+{
+    NSLog(@"<INFO> Filter configuration %@", config);
+}
+
 
 #pragma mark - Internal methods -
 

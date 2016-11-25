@@ -61,6 +61,17 @@
     return combineOfLoadTaskFiltersInfoSignal;
 }
 
+- (void) saveFilterConfiguration: (TaskFilterConfiguration*) config
+                  withCompletion: (CompletionWithSuccess)    completion
+{
+    
+}
+
+- (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
+{
+    
+}
+
 
 #pragma mark - Internal methods -
 
