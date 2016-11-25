@@ -19,6 +19,8 @@
 // properties
 @property (strong, nonatomic) NSArray* tableViewContent;
 
+@property (strong, nonatomic) NSArray* seguesId;
+
 @property (strong, nonatomic) ProjectInfo* projectInfo;
 
 @property (strong, nonatomic) TaskFilterConfiguration* filterConfig;
@@ -45,6 +47,18 @@
     }
     
     return _contentManager;
+}
+
+- (NSArray*) seguesId
+{
+    if ( _seguesId == nil )
+    {
+        _seguesId = @[ @[@"FilterByCreatorSegueId",
+                         @"",
+                         @""] ];
+    }
+    
+    return _seguesId;
 }
 
 - (ProjectInfo*) projectInfo
@@ -92,6 +106,11 @@
     NSUInteger numberOfRows = [self.tableViewContent[section] count];
     
     return numberOfRows;
+}
+
+- (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath
+{
+    return self.seguesId[indexPath.section][indexPath.row];
 }
 
 - (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath
