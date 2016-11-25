@@ -34,6 +34,7 @@
 // Outlets
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
+@property (weak, nonatomic) IBOutlet UITableView* searchBar;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 
@@ -72,6 +73,8 @@
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
+    
+    [self setupTableView];
     
     [self updateContent];
 }
@@ -149,6 +152,11 @@
                                        sender: blockSelf];
     };
     
+}
+
+- (void) setupTableView
+{
+    [self.tasksByProjectTableView setContentOffset: CGPointMake(0, self.searchBar.height)];
 }
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender
