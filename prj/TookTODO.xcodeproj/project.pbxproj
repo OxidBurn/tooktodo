@@ -414,6 +414,7 @@
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
 		5917AE7A1DA5415700C1FEDF /* StatusSystem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5917AE791DA5415700C1FEDF /* StatusSystem.storyboard */; };
 		5947BFA81DA40A05001CB5D8 /* SubTaskInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5947BFA71DA40A05001CB5D8 /* SubTaskInfoView.xib */; };
+		5959267A1DE84A39004AC1C0 /* ApproverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 595926791DE84A39004AC1C0 /* ApproverViewController.m */; };
 		596DBA431DA3D49A0080A376 /* RoomLevelSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596DBA421DA3D49A0080A376 /* RoomLevelSectionView.xib */; };
 		59823D721D5CAB510028F1D8 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59823D701D5CAB510028F1D8 /* LoginScreen.storyboard */; };
 		59A793441D59D2DD0062007E /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */; };
@@ -1265,6 +1266,8 @@
 		595770021DDE16D0001A4EF7 /* StorageFilesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageFilesModel.h; sourceTree = "<group>"; };
 		595770051DDE197B001A4EF7 /* StorageFileDirectoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageFileDirectoryModel.h; sourceTree = "<group>"; };
 		595770081DDE1A2C001A4EF7 /* FileDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDataModel.h; sourceTree = "<group>"; };
+		595926781DE84A39004AC1C0 /* ApproverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproverViewController.h; sourceTree = "<group>"; };
+		595926791DE84A39004AC1C0 /* ApproverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverViewController.m; sourceTree = "<group>"; };
 		596DBA421DA3D49A0080A376 /* RoomLevelSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomLevelSectionView.xib; sourceTree = "<group>"; };
 		59823D711D5CAB510028F1D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		59A793431D59D2DD0062007E /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
@@ -2915,6 +2918,7 @@
 		56D06DCD1DAFBDBF008E9AC0 /* TaskDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				595926771DE849BD004AC1C0 /* ShowMembersFromCollectionCell */,
 				CF1D5DFD1DD1E11A00CEB8DA /* DetailPopover */,
 				560EDD2B1DB615EB006F361D /* CancelRequest */,
 				56D06DCE1DAFBDBF008E9AC0 /* CollectionCells */,
@@ -3394,6 +3398,15 @@
 				56A19EED1D6AF437004AC3D3 /* OfflineSyncSettings.plist */,
 			);
 			name = settings;
+			sourceTree = "<group>";
+		};
+		595926771DE849BD004AC1C0 /* ShowMembersFromCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				595926781DE84A39004AC1C0 /* ApproverViewController.h */,
+				595926791DE84A39004AC1C0 /* ApproverViewController.m */,
+			);
+			name = ShowMembersFromCollectionCell;
 			sourceTree = "<group>";
 		};
 		59A793421D59D2DD0062007E /* fonts */ = {
@@ -4206,6 +4219,7 @@
 				56D06F231DAFBDC0008E9AC0 /* DocumentsViewController.m in Sources */,
 				5663BB531DE4DBC400F82E5B /* TaskApprovments+CoreDataClass.m in Sources */,
 				56D06F621DAFBDC0008E9AC0 /* AllTasksModel.m in Sources */,
+				5959267A1DE84A39004AC1C0 /* ApproverViewController.m in Sources */,
 				56D06F101DAFBDC0008E9AC0 /* SelectResponsibleViewController.m in Sources */,
 				564DE39B1DB100A600BF9817 /* TaskAvailableActionsList+CoreDataProperties.m in Sources */,
 				56D06EA11DAFBDC0008E9AC0 /* ProjectTaskMapContour+CoreDataClass.m in Sources */,
