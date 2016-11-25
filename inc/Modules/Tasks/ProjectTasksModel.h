@@ -14,8 +14,8 @@
 
 typedef NS_ENUM(NSUInteger, SearchTableState)
 {
-    TableNormalState,
-    TableSearchState,
+    TableNormalState = 0,
+    TableSearchState = 1,
 };
 
 @interface ProjectTasksModel : NSObject
@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 - (RACSignal*) updateContent;
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
+
+- (NSArray*) rowsContentForSection: (NSUInteger) section;
 
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             indexPath
                          withCompletion: (CompletionWithSuccess) completion;
@@ -46,5 +48,7 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 - (void) setTableSearchState: (SearchTableState) state;
 
 - (void) applyFilteringByText: (NSString*) text;
+
+- (SearchTableState) getSearchTableState;
 
 @end

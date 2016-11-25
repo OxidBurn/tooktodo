@@ -17,6 +17,8 @@
 
 // methods
 
-- (void) fillInfo: (ProjectTaskStage*) info;
+- (void)    fillInfo: (ProjectTaskStage*) info
+ withStagesTasksList: (NSArray*)          tasks
+     withSearchState: (NSUInteger)        state;
 
 @end

@@ -29,12 +29,44 @@
 
 #pragma mark - Public methods -
 
-- (void) fillInfo: (ProjectTaskStage*) info
+- (void)    fillInfo: (ProjectTaskStage*) info
+ withStagesTasksList: (NSArray*)          tasks
+     withSearchState: (NSUInteger)        state
 {
-    self.stageNameLabel.text    = info.title;
-    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%u", info.tasks.count];
+    self.stageNameLabel.text       = info.title;
+    NSUInteger countOfExpiredTasks = 0;
     
-    NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: info.tasks.allObjects];
+    switch (state)
+    {
+        case 0:
+        {
+            self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.allObjects.count];
+            countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.allObjects];
+            
+            [self updateExpandedState: info.isExpanded.boolValue];
+        }
+            break;
+        case 1:
+        {
+            if ( tasks.count > 0 )
+            {
+                self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", tasks.count];
+                countOfExpiredTasks         = [self getCountOfExpiredTasks: tasks];
+            }
+            else
+            {
+                self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.allObjects.count];
+                countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.allObjects];
+            }
+            
+            [self updateExpandedState: info.isExpanded.boolValue];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
     
     if ( countOfExpiredTasks > 0 )
     {
@@ -45,8 +77,6 @@
     {
         self.countOfExpiredTasksLabel.hidden = YES;
     }
-    
-    [self updateExpandedState: info.isExpanded.boolValue];
 }
 
 
@@ -90,7 +120,7 @@
 {
     __block NSUInteger count = 0;
     
-    [tasks enumerateObjectsUsingBlock:^(ProjectTask* task, NSUInteger idx, BOOL * _Nonnull stop) {
+    [tasks enumerateObjectsUsingBlock: ^(ProjectTask* task, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( task.isExpired.boolValue )
             count++;

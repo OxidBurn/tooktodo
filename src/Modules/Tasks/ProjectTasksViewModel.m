@@ -105,7 +105,9 @@
     
     ProjectTaskStage* stage = [self.model getStageForSection: section];
     
-    [stageInfoView fillInfo: stage];
+    [stageInfoView fillInfo: stage
+        withStagesTasksList: [self.model rowsContentForSection: section]
+            withSearchState: [self.model getSearchTableState]];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
