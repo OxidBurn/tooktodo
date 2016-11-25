@@ -238,8 +238,6 @@
             [creators addObject: obj.assignee];
         }
         
-        NSLog(@"Role assignee %@", obj.assignee.assigneeID);
-        
     }];
     
     return creators;
