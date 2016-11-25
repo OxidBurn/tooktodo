@@ -16,7 +16,9 @@
 // properties
 @property (strong, nonatomic) NSArray* assigneeArray;
 
-@property (strong, nonatomic) NSArray* selectedAssigneeArray;
+@property (strong, nonatomic) NSArray* selectedAssigneeIndexes;
+
+@property (strong, nonatomic) NSArray* selectedAssignee;
 
 @property (assign, nonatomic) BOOL isSelectedResponsible;
 
@@ -69,14 +71,24 @@
     return _assigneeArray;
 }
 
-- (NSArray*) selectedAssigneeArray
+- (NSArray*) selectedAssigneeIndexes
 {
-    if ( _selectedAssigneeArray == nil )
+    if ( _selectedAssigneeIndexes == nil )
     {
-        _selectedAssigneeArray = [NSArray new];
+        _selectedAssigneeIndexes = [NSArray new];
     }
     
-    return _selectedAssigneeArray;
+    return _selectedAssigneeIndexes;
+}
+
+- (NSArray*) selectedAssignee
+{
+    if ( _selectedAssignee == nil )
+    {
+        _selectedAssignee = [NSArray new];
+    }
+    
+    return _selectedAssignee;
 }
 
 
@@ -94,18 +106,33 @@
 
 - (void) handleAssigneeSelectionForIndexPath: (NSIndexPath*) indexPath
 {
-    NSMutableArray* tmp = self.selectedAssigneeArray.mutableCopy;
+    // adding to array indexes of selected assignee
+    NSMutableArray* tmp = self.selectedAssigneeIndexes.mutableCopy;
     
     NSNumber* index = @(indexPath.row);
     
-    if ( [self.selectedAssigneeArray containsObject: index] )
+    if ( [self.selectedAssigneeIndexes containsObject: index] )
     {
         [tmp removeObject: index];
     }
     else
         [tmp addObject: index];
     
-    self.selectedAssigneeArray = tmp.copy;
+    self.selectedAssigneeIndexes = tmp.copy;
+    
+    // adding to array selected assignees
+    NSMutableArray* tmpAssignees = self.selectedAssignee.mutableCopy;
+    
+    ProjectTaskAssignee* selectedAssignee = self.assigneeArray[indexPath.row];
+    
+    if ( [self.selectedAssigneeIndexes containsObject: selectedAssignee] )
+    {
+        [tmpAssignees removeObject: selectedAssignee];
+    }
+    else
+        [tmpAssignees addObject: selectedAssignee];
+    
+    self.selectedAssignee = tmpAssignees.copy;
 }
 
 
@@ -118,9 +145,9 @@
 
 - (void) saveSelectedAssignees
 {
-    NSLog(@"selected assingnees indexes %@", self.selectedAssigneeArray);
+    NSLog(@"selected assingnees indexes %@", self.selectedAssigneeIndexes);
     
-    [self.selectedAssigneeArray enumerateObjectsUsingBlock: ^(NSNumber* index, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.selectedAssigneeIndexes enumerateObjectsUsingBlock: ^(NSNumber* index, NSUInteger idx, BOOL * _Nonnull stop) {
        
         ProjectTaskAssignee* assingee = self.assigneeArray[index.integerValue];
         
@@ -137,6 +164,16 @@
 - (void) deselectAll
 {
     
+}
+
+- (NSArray*) getSelectedAssignees
+{
+    return self.selectedAssignee;
+}
+
+- (NSArray*) getSelectedAssingeesIndexes
+{
+    return self.selectedAssigneeIndexes;
 }
 
 @end

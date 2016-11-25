@@ -29,10 +29,18 @@
 
 @protocol FilterByAssigneeViewControllerDelegate <NSObject>
 
-- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray;
+- (void) returnSelectedAssigneesArray: (NSArray*)             selectedAssignees
+                       withFilterType: (FilterByAssigneeType) filterType
+                          withIndexes: (NSArray*)             indexesArray;
 
-- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming;
+//- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray;
+//
+//- (void) returnSelectedCreatorsInfo: (NSArray*) selectedCreators;
+//
+//- (void) returnSelectedApproversInfo: (NSArray*) selectedApprovers;
 
-- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers;
+//- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming;
+//
+//- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers;
 
 @end

@@ -148,7 +148,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
         {
             TaskFilterRowContent* filterByOwnerRow = [TaskFilterRowContent new];
             
-            NSString* filterByOwnerRowCellId = [self determineCellIdForContent: filterConfig.byOwner];
+            NSString* filterByOwnerRowCellId = [self determineCellIdForContent: filterConfig.byCreator];
             
             filterByOwnerRow.title            = self.allTitlesArray[SectionOne][FilterByOwnerRow];
             filterByOwnerRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByOwnerRowCellId];
@@ -168,7 +168,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             
             TaskFilterRowContent* filterByClaimingRow = [TaskFilterRowContent new];
             
-            NSString* filterByClaimingRowCellId = [self determineCellIdForContent: filterConfig.byClaiming];
+            NSString* filterByClaimingRowCellId = [self determineCellIdForContent: filterConfig.byApprovers];
             
             filterByClaimingRow.title            = self.allTitlesArray[SectionOne][FilterByClaimingRow];
             filterByClaimingRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByClaimingRowCellId];
@@ -196,7 +196,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
         {
             TaskFilterRowContent* filterByMemberRow = [TaskFilterRowContent new];
             
-            NSString* filterByMemberRowCellId = [self determineCellIdForContent: filterConfig.byOwner];
+            NSString* filterByMemberRowCellId = [self determineCellIdForContent: filterConfig.byResponsible];
             
             filterByMemberRow.title            = self.allTitlesArray[SectionOne][FilterByMemberRow];
             filterByMemberRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByMemberRowCellId];

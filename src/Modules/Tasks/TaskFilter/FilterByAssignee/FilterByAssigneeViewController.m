@@ -133,7 +133,12 @@
 
 - (void) saveData
 {
-    [self.viewModel saveSelectedAssignees];
+    if ( [self.delegate respondsToSelector: @selector(returnSelectedAssigneesArray:withFilterType:withIndexes:)] )
+        [self.delegate returnSelectedAssigneesArray: [self.viewModel getSelectedAssignees]
+                                     withFilterType: self.filterType
+                                        withIndexes: [self.viewModel getSelectedAssingeesIndexes]];
+    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 

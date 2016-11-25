@@ -54,8 +54,8 @@
     if ( _seguesId == nil )
     {
         _seguesId = @[ @[@"FilterByCreatorSegueId",
-                         @"",
-                         @""] ];
+                         @"FilterByResponsibleSegueId",
+                         @"FilterByApproversSegueId"] ];
     }
     
     return _seguesId;
@@ -158,4 +158,42 @@
     self.taskFilterType = filterType;
 }
 
+// method to save data with assignees
+- (void) fillSelectedAssigneesData: (NSArray*)             selectedAssignees
+                       withIndexes: (NSArray*)             indexesArray
+                     forFilterType: (FilterByAssigneeType) filterType
+{
+    switch ( filterType )
+    {
+        case FilterByCreator:
+        {
+            self.filterConfig.byCreator        = selectedAssignees;
+            self.filterConfig.byCreatorIndexes = indexesArray;
+        }
+            break;
+        
+        case FilterByResponsible:
+        {
+            self.filterConfig.byResponsible        = selectedAssignees;
+            self.filterConfig.byResponsibleIndexes = indexesArray;
+        }
+            break;
+            
+        case FilterByApprovers:
+        {
+            self.filterConfig.byApprovers        = selectedAssignees;
+            self.filterConfig.byApproversIndexes = indexesArray;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+// helpers for test
+- (TaskFilterConfiguration*) getFilterConfig
+{
+    return self.filterConfig;
+}
 @end

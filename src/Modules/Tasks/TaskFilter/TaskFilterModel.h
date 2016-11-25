@@ -10,6 +10,7 @@
 
 // Classes
 #import "TaskFilterRowContent.h"
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFilterModel : NSObject
 
@@ -25,5 +26,13 @@
 - (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath;
 
 - (void) fillFilterType: (TasksFilterType) filterType;
+
+// method to save data with assignees
+- (void) fillSelectedAssigneesData: (NSArray*)             selectedAssignees
+                       withIndexes: (NSArray*)             indexesArray
+                     forFilterType: (FilterByAssigneeType) filterType;
+
+// helpers for test
+- (TaskFilterConfiguration*) getFilterConfig;
 
 @end

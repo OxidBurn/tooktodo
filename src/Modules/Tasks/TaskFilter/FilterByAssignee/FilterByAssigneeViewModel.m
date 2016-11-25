@@ -104,9 +104,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.reloadTableView();
 }
 
-- (void) saveSelectedAssignees
+- (NSArray*) getSelectedAssingeesIndexes
 {
-    [self.model saveSelectedAssignees];
+    return [self.model getSelectedAssingeesIndexes];
+}
+
+- (NSArray*) getSelectedAssignees
+{
+    return [self.model getSelectedAssignees];
 }
 
 @end
