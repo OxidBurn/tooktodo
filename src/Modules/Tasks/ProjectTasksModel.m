@@ -151,8 +151,7 @@ static NSString* contentKey = @"contentInfoKey";
         
         NSMutableDictionary* stagesInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{stageKey : obj}];
         
-        
-         if ( obj.isExpanded.boolValue )
+        if ( obj.isExpanded.boolValue )
         {
             [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
             
