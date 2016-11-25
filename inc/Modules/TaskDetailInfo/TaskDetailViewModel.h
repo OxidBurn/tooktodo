@@ -18,6 +18,8 @@
 #import "PopoverViewController.h"
 #import "PopoverModel.h"
 
+@class TaskDetailModel;
+
 @interface TaskDetailViewModel : NSObject <UITableViewDelegate, UITableViewDataSource,  PopoverModelDelegate, PopoverModelDataSource>
 
 // properties
@@ -30,6 +32,8 @@
 @property (nonatomic, copy) void(^showSortingPopoverBlock)(CGRect frame);
 
 @property (nonatomic, assign) CGFloat keyboardHeight;
+
+@property (strong, nonatomic) TaskDetailModel* model;
 
 // methods
 - (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion;
