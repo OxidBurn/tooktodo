@@ -17,6 +17,7 @@
 #import "TasksByProjectViewController.h"
 #import "SystemDetailPopoverController.h"
 #import "AddTaskViewController.h"
+#import "OSTableView.h"
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
@@ -24,7 +25,7 @@
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
 
 // outlets
-@property (weak, nonatomic) IBOutlet UITableView* taskTableView;
+@property (weak, nonatomic) IBOutlet OSTableView* taskTableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* taskTableViewBottom;
 
 // properties
@@ -81,6 +82,7 @@
                                                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                                                         [weakSelf.viewModel scrollToCommentCell];
                                                         weakSelf.taskTableView.scrollEnabled = false;
+                                                        weakSelf.taskTableView.blockScroll = true;
                                                     });
      }];
     [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillHideNotification
@@ -89,6 +91,7 @@
                                                 usingBlock: ^(NSNotification* note) {
                                                     weakSelf.taskTableViewBottom.constant = 0;
                                                     weakSelf.taskTableView.scrollEnabled = true;
+                                                    weakSelf.taskTableView.blockScroll = false;
                                                 }];
 }
 

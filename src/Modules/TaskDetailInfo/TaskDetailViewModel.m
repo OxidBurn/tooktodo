@@ -21,6 +21,7 @@
 #import "TaskCommentsService.h"
 #import "TasksService.h"
 #import "RowContent.h"
+#import "OSTableView.h"
 
 // Helpers
 #import "Utils.h"
@@ -33,7 +34,7 @@
 
 @property (strong, nonatomic) TaskDetailMainFactory* factory;
 
-@property (strong, nonatomic) UITableView* tableView;
+@property (strong, nonatomic) OSTableView* tableView;
 
 @property (strong, nonatomic) TaskInfoHeaderView* headerView;
 
@@ -168,8 +169,9 @@
 
 - (void) scrollToCommentCell
 {
-    [self.tableView scrollRectToVisible: self.addCommentCell.frame
-                               animated: true];
+    self.tableView.offsetShift = CGRectGetMinY(self.addCommentCell.frame)
+    - (UIScreen.mainScreen.bounds.size.height - 64 - self.keyboardHeight)
+    + CGRectGetHeight(self.addCommentCell.frame);
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -185,7 +187,7 @@
     return [self.model returnNumberOfRowsForIndexPath: section];
 }
 
-- (UITableViewCell*) tableView: (UITableView*) tableView
+- (UITableViewCell*) tableView: (OSTableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
     if ( self.tableView == nil )
@@ -266,7 +268,7 @@ heightForRowAtIndexPath: (NSIndexPath*) indexPath
             
             if (indexPath.row == 0 && self.model.getSecondSectionContentType == CommentsContentType)
             {
-                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+                height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 45 - 15, CGFLOAT_MAX)].height + 30.5;
                 height = MIN(height, 131);
                 if (height < 131)
                 {
@@ -618,7 +620,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
    newCommentTextDidChange: (UITextView*)     sender
 {
     CGRect frame = self.addCommentCell.frame;
-    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 71, CGFLOAT_MAX)].height + 30.5;
+    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, CGFLOAT_MAX)].height + 30.5;
     frame.size.height = MIN(frame.size.height, 131);
 
     self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
