@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+//CLasses
+#import "ProjectRoleAssignments+CoreDataClass.h"
+
 @interface ApproverTableViewCell : UITableViewCell
+
+- (void) fillCellWithApproverUser: (ProjectRoleAssignments*) approver;
 
 @end

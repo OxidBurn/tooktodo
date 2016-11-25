@@ -70,7 +70,6 @@
 
 #pragma mark - Helpers -
 
-
 - (void) handleApprovedMarkForContent: (TaskCollectionCellsContent*) content
 {
     if (content.claiming)
