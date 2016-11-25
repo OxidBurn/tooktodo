@@ -34,7 +34,7 @@
 // Outlets
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
-@property (weak, nonatomic) IBOutlet UITableView* searchBar;
+@property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 
