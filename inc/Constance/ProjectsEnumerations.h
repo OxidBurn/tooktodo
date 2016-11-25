@@ -206,6 +206,8 @@ typedef NS_ENUM(NSUInteger, FilterByAssigneeType)
 {
     FilterByCreator,
     FilterByResponsible,
+    FilterByApprovers,
+
 };
 
 

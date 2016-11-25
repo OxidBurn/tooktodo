@@ -142,11 +142,11 @@
                                   sender: self];
     };
     
-    blockSelf.viewModel.showFilterByAssigneeWithType = ^(FilterByAssigneeType filterType){
+    blockSelf.viewModel.showFilterByAssigneeWithType = ^(FilterByAssigneeType filterType, NSString* segueId){
       
         blockSelf.filterByAssigneeType = filterType;
         
-        [blockSelf performSegueWithIdentifier: @"FilterByCreatorSegueId"
+        [blockSelf performSegueWithIdentifier: segueId
                                        sender: blockSelf];
     };
 }

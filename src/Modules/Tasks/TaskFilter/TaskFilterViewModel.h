@@ -19,7 +19,7 @@
 // properties
 @property (nonatomic, copy) void(^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);
 
-@property (nonatomic, copy) void(^showFilterByAssigneeWithType)(FilterByAssigneeType filterType);
+@property (nonatomic, copy) void(^showFilterByAssigneeWithType)(FilterByAssigneeType filterType, NSString* segueId);
 
 // methods
 - (void) fillFilterType: (TasksFilterType) filterType;

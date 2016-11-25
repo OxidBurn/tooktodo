@@ -46,6 +46,18 @@
             }
                 break;
                 
+            case FilterByResponsible:
+            {
+                _assigneeArray = [DataManagerShared getFilterResponsiblesForCurrentProject];
+            }
+                break;
+                
+            case FilterByApprovers:
+            {
+                _assigneeArray = [DataManagerShared getFilterApprovesForCurrentProject];
+            }
+                break;
+                
             default:
             {
                 _assigneeArray = [NSArray new];

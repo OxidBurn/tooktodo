@@ -20,6 +20,8 @@
 
 - (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath;
 
+- (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath;
+
 - (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath;
 
 - (void) fillFilterType: (TasksFilterType) filterType;

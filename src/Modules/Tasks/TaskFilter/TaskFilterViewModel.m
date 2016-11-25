@@ -13,6 +13,13 @@
 #import "TaskFilterMainFactory.h"
 #import "FilterByTermsCell.h"
 
+typedef NS_ENUM(NSUInteger, SectionOneRows)
+{
+    FilterByCreatorsRow,
+    FilterByResponsibleRow,
+    FilterByApproversRow,
+};
+
 @interface TaskFilterViewModel() <FilterByTermsCellDelegate>
 
 // properties
@@ -113,12 +120,39 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
+    NSString* segueId = [self.model getSegueIdForIndexPath: indexPath];
+    
     switch ( indexPath.section)
     {
         case SectionOne:
         {
-            if ( self.showFilterByAssigneeWithType )
-                self.showFilterByAssigneeWithType(FilterByCreator);
+            switch ( indexPath.row )
+            {
+                case FilterByCreatorsRow:
+                {
+                    if ( self.showFilterByAssigneeWithType )
+                        self.showFilterByAssigneeWithType(FilterByCreator, segueId);
+                }
+                    break;
+                    
+                case FilterByResponsibleRow:
+                {
+                    if ( self.showFilterByAssigneeWithType )
+                        self.showFilterByAssigneeWithType(FilterByResponsible, segueId);
+                }
+                    break;
+                    
+                case FilterByApproversRow:
+                {
+                    if ( self.showFilterByAssigneeWithType )
+                        self.showFilterByAssigneeWithType(FilterByApprovers, segueId);
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
         }
             break;
             
