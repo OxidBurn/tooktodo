@@ -7,9 +7,9 @@
 //
 
 #import "ProjectTaskFilterContent+CoreDataClass.h"
-#import "ProjectSystem.h"
-#import "ProjectTaskAssignee.h"
-#import "ProjectTaskWorkArea.h"
+#import "ProjectSystem+CoreDataClass.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 @implementation ProjectTaskFilterContent
 
 @end
