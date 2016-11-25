@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 
 //CLasses
+#import "FilledTeamInfo.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
 
 @interface ApproverTableViewCell : UITableViewCell
 
-- (void) fillCellWithApproverUser: (ProjectRoleAssignments*) approver;
+- (void) fillCellWithApproverUser: (FilledTeamInfo*)   approver
+       withApprovedCheckmarkState: (BOOL)              approvedState;
 
 @end

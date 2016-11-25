@@ -10,6 +10,6 @@
 
 @interface ApproverViewController : UIViewController
 
-- (void) fillApprovers: (NSArray*) approvers;
+
 
 @end

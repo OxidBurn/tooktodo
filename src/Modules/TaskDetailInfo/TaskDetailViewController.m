@@ -201,13 +201,6 @@
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
     }
     
-    if ([segue.identifier isEqualToString: @"ShowApprovers"])
-    {
-        ApproverViewController* vc = segue.destinationViewController;
-        
-        [vc fill]
-    }
-    
 }
 
 #pragma mark - Actions -

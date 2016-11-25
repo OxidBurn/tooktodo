@@ -7,7 +7,6 @@
 //
 
 #import "ApproverTableViewCell.h"
-#import "FilledTeamInfo.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -25,13 +24,29 @@
 
 @implementation ApproverTableViewCell
 
-- (void) fillCellWithApproverUser: (ProjectRoleAssignments*) approver
+- (void) fillCellWithApproverUser: (FilledTeamInfo*)   approver
+       withApprovedCheckmarkState: (BOOL)              approvedState
 {
-    FilledTeamInfo* approverUser = [FilledTeamInfo new];
+    self.userNameImgView.text = [NSString stringWithFormat: @"%@ %@", approver.firstName, approver.lastName];
     
-    [approverUser fillTeamInfo: approver];
+    if ([approver respondsToSelector: @selector(avatarSrc)])
+    {
+         [self.avatarImgView sd_setImageWithURL: [NSURL URLWithString: approver.avatarSrc]];
+    }
     
-    [self.avatarImgView sd_setImageWithURL: [NSURL URLWithString: approverUser.avatarSrc]];
+    else
+        self.avatarImgView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+    
+    [self handleApprovedMarkForUser: approvedState];
+}
+
+- (void) handleApprovedMarkForUser: (BOOL) approved
+{
+    if (approved)
+        self.checkMarkImgView.image = [UIImage imageNamed: @"GreenChack"];
+    
+    else
+        self.checkMarkImgView.image = [UIImage imageNamed: @"PencilChack"];
 }
 
 @end
