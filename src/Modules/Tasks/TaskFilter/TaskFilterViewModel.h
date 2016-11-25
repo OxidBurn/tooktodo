@@ -13,6 +13,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "TaskFilterConfiguration.h"
 
 @interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
@@ -23,5 +24,8 @@
 
 // methods
 - (void) fillFilterType: (TasksFilterType) filterType;
+
+// helpers for test
+- (TaskFilterConfiguration*) getFilterConfig;
 
 @end

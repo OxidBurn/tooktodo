@@ -27,6 +27,8 @@
 
 - (ProjectTaskAssignee*) getAssigneeForIndexPath: (NSIndexPath*) indexPath;
 
-- (void) saveSelectedAssignees;
+- (NSArray*) getSelectedAssignees;
+
+- (NSArray*) getSelectedAssingeesIndexes;
 
 @end

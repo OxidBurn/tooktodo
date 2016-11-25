@@ -28,6 +28,8 @@
 
 - (void) deselectAll;
 
-- (void) saveSelectedAssignees;
+- (NSArray*) getSelectedAssignees;
+
+- (NSArray*) getSelectedAssingeesIndexes;
 
 @end

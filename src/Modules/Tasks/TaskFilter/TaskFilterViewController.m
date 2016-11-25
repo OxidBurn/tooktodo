@@ -65,7 +65,9 @@
         [controller fillControllerType: self.controllerType];
     }
     
-    if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"] )
+    if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"]     ||
+         [segue.identifier isEqualToString: @"FilterByResponsibleSegueId"] ||
+         [segue.identifier isEqualToString: @"FilterByApproversSegueId"]   )
     {
         FilterByAssigneeViewController* controller = [segue destinationViewController];
         
@@ -113,7 +115,7 @@
 
 - (IBAction) onFilterBtn: (UIButton*) sender
 {
-    
+    NSLog(@"Filter Config %@", [self.viewModel getFilterConfig]);
 }
 
 - (IBAction) onResetBtn: (UIButton*) sender
@@ -144,7 +146,7 @@
     
     blockSelf.viewModel.showFilterByAssigneeWithType = ^(FilterByAssigneeType filterType, NSString* segueId){
       
-        blockSelf.filterByAssigneeType = filterType;
+        self.filterByAssigneeType = filterType;
         
         [blockSelf performSegueWithIdentifier: segueId
                                        sender: blockSelf];

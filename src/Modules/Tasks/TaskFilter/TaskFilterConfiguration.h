@@ -13,9 +13,15 @@
 // properties
 @property (strong, nonatomic) NSArray* byResponsible;
 
-@property (strong, nonatomic) NSArray* byOwner;
+@property (strong, nonatomic) NSArray* byCreator;
 
-@property (strong, nonatomic) NSArray* byClaiming;
+@property (strong, nonatomic) NSArray* byApprovers;
+
+@property (strong, nonatomic) NSArray* byResponsibleIndexes;
+
+@property (strong, nonatomic) NSArray* byCreatorIndexes;
+
+@property (strong, nonatomic) NSArray* byApproversIndexes;
 
 @property (strong, nonatomic) NSArray* byStatus;
 

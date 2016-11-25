@@ -12,6 +12,7 @@
 #import "TaskFilterModel.h"
 #import "TaskFilterMainFactory.h"
 #import "FilterByTermsCell.h"
+#import "FilterByAssigneeViewController.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
@@ -20,7 +21,7 @@ typedef NS_ENUM(NSUInteger, SectionOneRows)
     FilterByApproversRow,
 };
 
-@interface TaskFilterViewModel() <FilterByTermsCellDelegate>
+@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate>
 
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
@@ -178,6 +179,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model fillFilterType: filterType];
 }
 
+- (TaskFilterConfiguration*) getFilterConfig
+{
+    return [self.model getFilterConfig];
+}
+
 
 #pragma mark - FilterByTermsCellDelegate methods -
 
@@ -186,5 +192,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if ( self.showFilterByTermsWithType )
         self.showFilterByTermsWithType(controllerType);
 }
+
+
+#pragma mark - FilterByAssigneeDelegate methods -
+
+- (void) returnSelectedAssigneesArray: (NSArray*)             selectedAssignees
+                       withFilterType: (FilterByAssigneeType) filterType
+                          withIndexes: (NSArray*)             indexesArray
+{
+    [self.model fillSelectedAssigneesData: selectedAssignees
+                              withIndexes: indexesArray
+                            forFilterType: filterType];
+}
+
 
 @end
