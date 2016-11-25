@@ -8,14 +8,16 @@
 
 #import "SelectStatusCell.h"
 
+// Classes
+#import "TaskStatusDefaultValues.h"
+
 @interface SelectStatusCell()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UILabel *statusDescrLabel;
+@property (weak, nonatomic) IBOutlet UILabel*     statusDescrLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *markImageView;
+@property (weak, nonatomic) IBOutlet UIImageView* markImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *statusIconImageView;
 // properties
 
 
@@ -26,5 +28,27 @@
 
 @implementation SelectStatusCell
 
+
+#pragma mark - Public -
+
+- (void) fillCellForIndexPath: (NSIndexPath*) indexPath
+            withSelectedState: (BOOL)         isSelected
+{
+    NSUInteger idx = indexPath.row;
+    
+    self.statusDescrLabel.text = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: idx];
+        
+    self.markImageView.hidden = !isSelected;
+}
+
+- (void) changeCheckmarkState: (BOOL) state
+{
+    self.markImageView.hidden = state ? NO : YES;
+}
+
+- (BOOL) currentCheckMarkState
+{
+    return self.markImageView.hidden;
+}
 
 @end

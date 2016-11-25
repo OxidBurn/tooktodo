@@ -10,8 +10,9 @@
 
 // Classes
 #import "TaskCollectionCellsContent.h"
+#import "ParentCollectionCell.h"
 
-@interface GroupOfUsersCollectionCell : UICollectionViewCell
+@interface GroupOfUsersCollectionCell : ParentCollectionCell
 
 // methods
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content;

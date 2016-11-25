@@ -20,8 +20,6 @@
 @property (nonatomic, copy) void(^reloadTableView)();
 
 // methods
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
-
 - (void) fillFilterType: (FilterByAssigneeType) filterType;
 
 - (void) selectAll;

@@ -27,10 +27,12 @@
 
 - (void) fillFilterType: (TasksFilterType) filterType;
 
-// method to save data with assignees
+// methods to save data from delegate methods
 - (void) fillSelectedAssigneesData: (NSArray*)             selectedAssignees
                        withIndexes: (NSArray*)             indexesArray
                      forFilterType: (FilterByAssigneeType) filterType;
+
+- (void) fillSelectedStatusesData: (NSArray*) selectedStatuses;
 
 // helpers for test
 

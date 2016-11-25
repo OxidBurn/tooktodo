@@ -23,7 +23,7 @@
 
 @property (strong, nonatomic) NSArray* byApproversIndexes;
 
-@property (strong, nonatomic) NSArray* byStatus;
+@property (strong, nonatomic) NSArray* statusesList;
 
 @property (strong, nonatomic) NSDictionary* byTerms;
 

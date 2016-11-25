@@ -11,6 +11,8 @@
 
 //Classes
 #import "FilledTeamInfo.h"
+#import "ProjectTaskAssignee+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
 
 @interface GroupOfUsersCollectionCell()
 
@@ -158,17 +160,27 @@
 {
     if (content.claiming.count <= 5)
     {
-        [content.claiming enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [content.claiming enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             UIImageView* imageView = self.checkMarksArray[idx];
             imageView.hidden = NO;
             
-            if (content.hasApprovedTask == YES)
+            NSNumber* claimingID = @0;
+            
+            if ( [obj isKindOfClass:[ProjectTaskAssignee class]] )
+            {
+                claimingID = [(ProjectTaskAssignee*)obj assigneeID];
+            }
+            else
+            {
+                claimingID = [(ProjectInviteInfo*)obj inviteID];
+            }
+            
+            if ([content.approvers containsObject: claimingID])
             {
                 imageView.image = [UIImage imageNamed: @"GreenChack"];
             }
-            
-            else if (content.hasApprovedTask == NO)
+            else
             {
                 imageView.image = [UIImage imageNamed: @"PencilChack"];
             }
@@ -185,13 +197,23 @@
             {
                 UIImageView* imageView = self.checkMarksArray[idx];
                 imageView.hidden = NO;
-            
-                if (content.hasApprovedTask == YES)
+                
+                NSNumber* claimingID = @0;
+                
+                if ( [obj isKindOfClass:[ProjectTaskAssignee class]] )
+                {
+                    claimingID = [(ProjectTaskAssignee*)obj assigneeID];
+                }
+                else
+                {
+                    claimingID = [(ProjectInviteInfo*)obj inviteID];
+                }
+                
+                if ([content.approvers containsObject: claimingID])
                 {
                     imageView.image = [UIImage imageNamed: @"GreenChack"];
                 }
-            
-                else if (content.hasApprovedTask == NO)
+                else
                 {
                     imageView.image = [UIImage imageNamed: @"PencilChack"];
                 }

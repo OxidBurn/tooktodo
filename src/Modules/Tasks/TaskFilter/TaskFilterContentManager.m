@@ -10,6 +10,7 @@
 
 // Classes
 #import "TaskFilterRowContent.h"
+#import "TaskStatusDefaultValues.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRow)
 {
@@ -184,8 +185,38 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByTaskStatusRow.title            = self.allTitlesArray[SectionOne][FilterByTaskStatusRow];
             filterByTaskStatusRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByTaskStatusRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            
+            if ( filterConfig.statusesList.count > 0)
+            {
+                NSNumber* status = filterConfig.statusesList.firstObject;
+                filterByTaskStatusRow.detailIsSelected = YES;
+
+                __block NSString* statuses = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue];
+                
+                if ( filterConfig.statusesList.count == 1)
+                {
+                    NSNumber* status = filterConfig.statusesList.firstObject;
+                    statuses = status.stringValue;
+                }
+                else
+                {
+                    [filterConfig.statusesList enumerateObjectsUsingBlock: ^(NSNumber* status, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( idx > 0)
+                        {
+                            statuses = [statuses stringByAppendingString: [NSString stringWithFormat: @" ,%@",[[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue]]];
+                        }
+                        
+                    }];
+                }
+                
+                filterByTaskStatusRow.detail           = statuses;
+            }
+            else
+            {
             filterByTaskStatusRow.detail           = @"Не выбрано";
             filterByTaskStatusRow.detailIsSelected = NO;
+            }
             
             sectionOneContent = @[ filterByOwnerRow,
                                    filterByResponsibleRow,

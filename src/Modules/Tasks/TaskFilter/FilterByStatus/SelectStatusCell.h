@@ -10,4 +10,12 @@
 
 @interface SelectStatusCell : UITableViewCell
 
+// methods
+- (void) fillCellForIndexPath: (NSIndexPath*) indexPath
+            withSelectedState: (BOOL)         isSelected;
+
+- (void) changeCheckmarkState: (BOOL) state;
+
+- (BOOL) currentCheckMarkState;
+
 @end

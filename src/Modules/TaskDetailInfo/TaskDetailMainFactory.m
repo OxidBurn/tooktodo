@@ -60,7 +60,11 @@
         {
             CollectionCellFactory* factory = [CollectionCellFactory new];
             
-            cell = [factory returnCellectionCellForTableView: tableView];
+            cell = [factory returnCellectionCellForTableView: tableView
+                                                withDelegate: delegate];
+            
+            
+            
         }
             break;
             

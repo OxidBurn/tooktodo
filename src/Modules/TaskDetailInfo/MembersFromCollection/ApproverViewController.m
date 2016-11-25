@@ -8,6 +8,9 @@
 
 #import "ApproverViewController.h"
 
+//Classes
+#import "ApproverViewModel.h"
+
 @interface ApproverViewController ()
 
 // Properties
@@ -16,25 +19,51 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *backBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButtonItem;
 
-// Methods
-- (IBAction)onDone:(UIBarButtonItem *)sender;
+@property (nonatomic, strong) ApproverViewModel* viewModel;
 
-- (IBAction)onBackBtn:(UIBarButtonItem *)sender;
+// Methods
+- (IBAction) onDone: (UIBarButtonItem*) sender;
+
+- (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 
 @end
 
 @implementation ApproverViewController
 
-- (void)viewDidLoad
+
+#pragma mark - Life cycle -
+
+- (void) loadView
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [super loadView];
+    
+    self.approverTableView.delegate   = self.viewModel;
+    self.approverTableView.dataSource = self.viewModel;
 }
 
 
+#pragma mark - Properties -
+
+- (ApproverViewModel*) viewModel
+{
+    if (_viewModel == nil)
+    {
+        _viewModel = [ApproverViewModel new];
+    }
+    
+    return _viewModel;
+}
+
+
+#pragma mark - Public -
+
+
+
+#pragma mark - Actions -
+
 - (IBAction) onDone: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender

@@ -19,6 +19,7 @@
 #import "SystemDetailPopoverController.h"
 #import "AddTaskViewController.h"
 #import "OSTableView.h"
+#import "ApproverViewController.h"
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
@@ -102,7 +103,7 @@
                                                 }];
 }
 
-- (void)dealloc
+- (void) dealloc
 {
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
@@ -237,7 +238,7 @@
     [self.viewModel updateSecondSectionContentForType: SubtasksContentType];
 }
 
-- (void)onTableClick: (id)sender
+- (void) onTableClick: (id) sender
 {
     [self.viewModel hideKeyboard];
     self.taskTableViewBottom.constant = 0;

@@ -20,6 +20,7 @@
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
+#import "ParentCollectionCell.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -70,6 +71,10 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 @property (strong, nonatomic) NSArray* collectionViewCellsIdArray;
 
+@property (nonatomic, strong) id<ParentCollectionCellDelegate> varToStoreDelegate;
+
+@property (nonatomic, strong) NSArray* approversIDsArray;
+
 // methods
 
 
@@ -109,14 +114,35 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     return _taskCollectionViewContent;
 }
 
+- (NSArray*) approversIDsArray
+{
+    if ( _approversIDsArray == nil )
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithCapacity: self.task.approvments.count];
+        
+        [self.task.approvments enumerateObjectsUsingBlock:^(TaskApprovments * _Nonnull obj, BOOL * _Nonnull stop) {
+            
+            [tmpArr addObject: obj.approverUserId];
+            
+        }];
+        
+        _approversIDsArray = tmpArr.copy;
+        
+        tmpArr = nil;
+    }
+    
+    return _approversIDsArray;
+}
+
 #pragma mark - Public -
 
 - (UICollectionViewCell*) createCellForCollectionView: (UICollectionView*) collection
                                          forIndexPath: (NSIndexPath*)      indexPath
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate
 {
     TaskCollectionCellsContent* content = self.taskCollectionViewContent[indexPath.row];
     
-    UICollectionViewCell* cell = [[UICollectionViewCell alloc] init];
+    ParentCollectionCell* cell = (ParentCollectionCell*)[[UICollectionViewCell alloc] init];
     
     NSString* cellID = content.cellId;
     
@@ -130,7 +156,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnTermsInfoCellWithContent: content
                                          forCollectionView: collection
-                                             withIndexPath: indexPath];
+                                             withIndexPath: indexPath
+                                              withDelegate: delegate];
         }
             break;
             
@@ -140,7 +167,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnDetailCellWithContent: content
                                       forCollectionView: collection
-                                          withIndexPath: indexPath];
+                                          withIndexPath: indexPath
+                                           withDelegate: delegate];
         }
             break;
             
@@ -150,7 +178,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnOnPlanCellWithContent: content
                                       forCollectionView: collection
-                                          withIndexPath: indexPath];
+                                          withIndexPath: indexPath
+                                           withDelegate: delegate];
         }
             break;
             
@@ -160,7 +189,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnSingleUserCellWithContent: content
                                           forCollectionView: collection
-                                              withIndexPath: indexPath];
+                                              withIndexPath: indexPath
+                                               withDelegate: delegate];
         }
             break;
             
@@ -170,7 +200,8 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             
             cell = [factory returnGroupOfUsersCellWithContent: content
                                             forCollectionView: collection
-                                                withIndexPath: indexPath];
+                                                withIndexPath: indexPath
+                                                 withDelegate: delegate];
         }
             break;
     }
@@ -179,6 +210,15 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 }
 
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate
+{
+    self.varToStoreDelegate = delegate;
+}
+
+- (id<ParentCollectionCellDelegate>) getVarToStoreParentCollectionCellDelegate
+{
+    return self.varToStoreDelegate;
+}
 
 #pragma mark - Internal -
 
@@ -228,7 +268,6 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     itemSix.cellTitle = @"Ответственный";
     
     itemSeven.cellTitle = @"Утверждающие";
-    itemSeven.hasApprovedTask = [self checkIfTaskApprovedByApprovers: itemSeven.claiming];
     
     if (itemSeven.claiming.count > 1)
         itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
@@ -326,8 +365,6 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
-                        
-                        [self checkIfTaskApprovedByApprovers: tmpClaimingsArr];
                     }
                     
                 }];
@@ -363,19 +400,21 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     }];
     
     contentResponsible.responsible = tmpResponsibleArr.copy;
-    contentClaimings.claiming   = tmpClaimingsArr.copy;
-    contentObservers.observers   = tmpObserversArr.copy;
+    contentClaimings.claiming      = tmpClaimingsArr.copy;
+    contentObservers.observers     = tmpObserversArr.copy;
+    contentClaimings.approvers     = [self checkIfTaskApprovedByApprovers: tmpClaimingsArr];
     
     tmpObserversArr = nil;
     tmpClaimingsArr = nil;
     tmpResponsibleArr = nil;
 }
 
-- (BOOL) checkIfTaskApprovedByApprovers: (NSArray*) approvers
+- (NSArray*) checkIfTaskApprovedByApprovers: (NSArray*) approvers
 {
-    __block BOOL isApproved = NO;
-  
     NSArray* approvmentsArray = self.task.approvments.allObjects;
+    
+    NSMutableArray* tmpApproversArr = [NSMutableArray array];
+    
     
     [approvmentsArray enumerateObjectsUsingBlock:^(TaskApprovments*  _Nonnull approvement, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -387,7 +426,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                 
                 if ([approvement.approverUserId isEqual: assignee.assigneeID])
                 {
-                    isApproved = YES;
+                    [tmpApproversArr addObject: assignee.assigneeID];
                 }
             }
             
@@ -397,7 +436,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                 
                 if ([approvement.approverUserId isEqual: invite.inviteID])
                 {
-                    isApproved = YES;
+                    [tmpApproversArr addObject: invite.inviteID];
                 }
             }
             
@@ -405,7 +444,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         }];
     }];
     
-    return isApproved;
+    return tmpApproversArr.copy;
 }
 
 - (NSString*) determineCollectionCellIdForContent: (NSArray*) arrayToCheck

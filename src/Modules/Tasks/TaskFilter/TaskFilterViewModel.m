@@ -13,15 +13,17 @@
 #import "TaskFilterMainFactory.h"
 #import "FilterByTermsCell.h"
 #import "FilterByAssigneeViewController.h"
+#import "FilterByStatusViewController.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
     FilterByCreatorsRow,
     FilterByResponsibleRow,
     FilterByApproversRow,
+    FilterByStatuses,
 };
 
-@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate>
+@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate, FilterByStatusControllerDelegate>
 
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
@@ -121,12 +123,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    NSString* segueId = [self.model getSegueIdForIndexPath: indexPath];
-    
     switch ( indexPath.section)
     {
         case SectionOne:
         {
+            NSString* segueId = [self.model getSegueIdForIndexPath: indexPath];
+            
             switch ( indexPath.row )
             {
                 case FilterByCreatorsRow:
@@ -149,6 +151,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                         self.showFilterByAssigneeWithType(FilterByApprovers, segueId);
                 }
                     break;
+                    
+                case FilterByStatuses:
+                {
+                    if ( self.showControllerWithSegueId )
+                        self.showControllerWithSegueId (segueId);
+                }
                     
                 default:
                     break;
@@ -221,5 +229,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.reloadTableView();
 }
 
+
+#pragma mark - FilterByStatusDelegate methods -
+
+- (void) returnSelectedStatusesArray: (NSArray*) selectedStatuses
+{
+    [self.model fillSelectedStatusesData: selectedStatuses];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
 
 @end
