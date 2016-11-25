@@ -328,8 +328,6 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (void) applyFilteringByText: (NSString*) text
 {
-    NSLog(@"Filtered content %@", self.filteredStagesContent);
-    
     if ( text.length > 0 )
     {
         self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
