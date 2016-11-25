@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "ProjectTaskAssignee+CoreDataProperties.h"
 
 // Factories
 #import "OSRightDetailCellFactory.h"
@@ -61,9 +62,14 @@
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
+            ProjectTaskAssignee* assignee = content.selectedUsers.firstObject;
+            
+            NSString* userFullName  = assignee.userName;
+            NSString* userAvatarSrc = assignee.avatarSrc;
+            
             cell = [factory returnSingleUserCellWithTitle: content.title
-                                         withUserFullName: nil
-                                           withUserAvatar: nil
+                                         withUserFullName: userFullName
+                                           withUserAvatar: userAvatarSrc
                                              forTableView: tableView];
         }
             break;
@@ -72,9 +78,9 @@
         {
             OSGroupOfUsersInfoCellFactory* factory = [OSGroupOfUsersInfoCellFactory new];
             
-            cell = [factory returnGroupOfUsersCellWithTitle: content.title
-                                             withUsersArray: content.selectesUsers
-                                               forTableView: tableView];
+            cell = [factory returnGroupAssigneesCellWithTitle: content.title
+                                               withUsersArray: content.selectedUsers
+                                                 forTableView: tableView];
         }
             break;
             

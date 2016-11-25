@@ -13,6 +13,7 @@
 
 // Classes
 #import "FilledTeamInfo.h"
+#import "ProjectTaskAssignee+CoreDataProperties.h"
 
 @interface OSGroupOfUserInfoCell()
 
@@ -62,6 +63,14 @@
     [self fillImagesWithUsers: usersArray];
 }
 
+- (void) fillCellWithAssignees: (NSArray*)  assigneesArray
+                     withTitle: (NSString*) title
+{
+    self.groupTitleLabel.text = title;
+    
+    [self fillImagesWithAssignees: assigneesArray];
+}
+
 #pragma mark - Helpers -
 
 - (void) fillImagesWithUsers: (NSArray*) approvals
@@ -106,6 +115,49 @@
         }];
     }
     
+}
+
+- (void) fillImagesWithAssignees: (NSArray*) assignees
+{
+    [self resetCellToDefault];
+    
+    if ( assignees.count <= 5 )
+    {
+        [assignees enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( assignee )
+            {
+                UIImageView* imageView = self.imageViewsArray[idx];
+                
+                imageView.hidden = NO;
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: assignee.avatarSrc]];
+            }
+            
+        }];
+    } else
+    {
+        NSUInteger assigneesLeft = assignees.count - 5;
+        
+        self.firstAvatarTrailingConstraint.constant = 47;
+        
+        self.numberOfUsersLeftLabel.hidden = NO;
+        
+        self.numberOfUsersLeftLabel.text = [NSString stringWithFormat: @"+%ld", (unsigned long) assigneesLeft];
+        
+        [assignees enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( idx < 5 )
+            {
+                UIImageView* imageView = self.imageViewsArray[idx];
+                
+                imageView.hidden = NO;
+                
+                [imageView sd_setImageWithURL: [NSURL URLWithString: assignee.avatarSrc]];
+            }
+            
+        }];
+    }
 }
 
 - (void) roundAllImageViews

@@ -27,5 +27,16 @@
     return cell;
 }
 
+- (UITableViewCell*) returnGroupAssigneesCellWithTitle: (NSString*)    titleText
+                                        withUsersArray: (NSArray*)     usersArray
+                                          forTableView: (UITableView*) tableView
+{
+    OSGroupOfUserInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: @"GroupOfUsersCellID"];
+
+    [cell fillCellWithAssignees: usersArray
+                      withTitle: titleText];
+    
+    return cell;
+}
 
 @end

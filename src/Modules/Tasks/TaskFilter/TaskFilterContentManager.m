@@ -154,7 +154,8 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByOwnerRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByOwnerRowCellId];
             filterByOwnerRow.cellId           = filterByOwnerRowCellId;
             filterByOwnerRow.detail           = @"Не выбрано";
-            filterByOwnerRow.detailIsSelected = NO;
+            filterByOwnerRow.detailIsSelected = (filterByOwnerRow.cellTypeId == TaskFilterRightDetailCell) ? NO: YES;
+            filterByOwnerRow.selectedUsers    = filterConfig.byCreator;
             
             TaskFilterRowContent* filterByResponsibleRow = [TaskFilterRowContent new];
             
@@ -164,17 +165,19 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByResponsibleRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByResponsibleRowCellId];
             filterByResponsibleRow.cellId           = filterByResponsibleRowCellId;
             filterByResponsibleRow.detail           = @"Не выбрано";
-            filterByResponsibleRow.detailIsSelected = NO;
+            filterByResponsibleRow.detailIsSelected = (filterByResponsibleRow.cellTypeId == TaskFilterRightDetailCell) ? NO: YES;
+            filterByResponsibleRow.selectedUsers    = filterConfig.byResponsible;
             
-            TaskFilterRowContent* filterByClaimingRow = [TaskFilterRowContent new];
+            TaskFilterRowContent* filterByApproversRow = [TaskFilterRowContent new];
             
-            NSString* filterByClaimingRowCellId = [self determineCellIdForContent: filterConfig.byApprovers];
+            NSString* filterByApproversRowCellId = [self determineCellIdForContent: filterConfig.byApprovers];
             
-            filterByClaimingRow.title            = self.allTitlesArray[SectionOne][FilterByClaimingRow];
-            filterByClaimingRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByClaimingRowCellId];
-            filterByClaimingRow.cellId           = filterByClaimingRowCellId;
-            filterByClaimingRow.detail           = @"Не выбрано";
-            filterByClaimingRow.detailIsSelected = NO;
+            filterByApproversRow.title            = self.allTitlesArray[SectionOne][FilterByClaimingRow];
+            filterByApproversRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByApproversRowCellId];
+            filterByApproversRow.cellId           = filterByApproversRowCellId;
+            filterByApproversRow.detail           = @"Не выбрано";
+            filterByApproversRow.detailIsSelected = (filterByApproversRow.cellTypeId == TaskFilterRightDetailCell) ? NO: YES;
+            filterByApproversRow.selectedUsers    = filterConfig.byApprovers;
             
             TaskFilterRowContent* filterByTaskStatusRow = [TaskFilterRowContent new];
             
@@ -186,7 +189,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             
             sectionOneContent = @[ filterByOwnerRow,
                                    filterByResponsibleRow,
-                                   filterByClaimingRow,
+                                   filterByApproversRow,
                                    filterByTaskStatusRow ];
 
         }

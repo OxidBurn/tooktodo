@@ -189,6 +189,9 @@
         default:
             break;
     }
+    
+    self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
+                                                                      withFilterType: self.taskFilterType];
 }
 
 // helpers for test

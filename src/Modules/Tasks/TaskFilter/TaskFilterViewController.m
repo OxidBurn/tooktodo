@@ -151,6 +151,11 @@
         [blockSelf performSegueWithIdentifier: segueId
                                        sender: blockSelf];
     };
+    
+    blockSelf.viewModel.reloadTableView = ^(){
+      
+        [self.taskFilterTableView reloadData];
+    };
 }
 
 

@@ -22,6 +22,8 @@
 
 @property (nonatomic, copy) void(^showFilterByAssigneeWithType)(FilterByAssigneeType filterType, NSString* segueId);
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
 // methods
 - (void) fillFilterType: (TasksFilterType) filterType;
 

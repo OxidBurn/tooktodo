@@ -191,6 +191,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     if ( self.showFilterByTermsWithType )
         self.showFilterByTermsWithType(controllerType);
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
 }
 
 
@@ -203,6 +206,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model fillSelectedAssigneesData: selectedAssignees
                               withIndexes: indexesArray
                             forFilterType: filterType];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
 }
 
 

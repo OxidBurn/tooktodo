@@ -15,4 +15,7 @@
 - (void) fillCellWithTitle: (NSString*) titleText
                  withUsers: (NSArray*)  usersArray;
 
+- (void) fillCellWithAssignees: (NSArray*)  assigneesArray
+                     withTitle: (NSString*) title;
+
 @end

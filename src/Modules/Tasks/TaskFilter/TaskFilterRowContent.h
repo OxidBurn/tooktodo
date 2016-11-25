@@ -29,9 +29,11 @@
 
 @property (strong, nonatomic) NSString* detail;
 
+@property (strong, nonatomic) NSString* userFullName;
+
 @property (strong, nonatomic) NSString* avatarUrl;
 
-@property (strong, nonatomic) NSArray* selectesUsers;
+@property (strong, nonatomic) NSArray* selectedUsers;
 
 @property (assign, nonatomic) NSUInteger switchControllTag;
 

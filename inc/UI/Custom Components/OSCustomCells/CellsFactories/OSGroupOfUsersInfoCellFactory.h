@@ -14,4 +14,8 @@
 - (UITableViewCell*) returnGroupOfUsersCellWithTitle: (NSString*)    titleText
                                       withUsersArray: (NSArray*)     usersArray
                                         forTableView: (UITableView*) tableView;
+
+- (UITableViewCell*) returnGroupAssigneesCellWithTitle: (NSString*)    titleText
+                                        withUsersArray: (NSArray*)     usersArray
+                                          forTableView: (UITableView*) tableView;
 @end
