@@ -14,6 +14,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "FilterByDatesViewController.h"
 #import "FilterByAssigneeViewController.h"
+#import "FilterByStatusViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -73,6 +74,13 @@
         
         [controller updateFilterType: self.filterByAssigneeType
                         withDelegate: self.viewModel];
+    }
+    
+    if ( [segue.identifier isEqualToString: @"FilterByStatusSegueId"] )
+    {
+        FilterByStatusViewController* controller = [segue destinationViewController];
+        
+        [controller fillDelegate: self.viewModel];
     }
 }
 
@@ -176,6 +184,12 @@
     blockSelf.viewModel.reloadTableView = ^(){
       
         [self.taskFilterTableView reloadData];
+    };
+    
+    blockSelf.viewModel.showControllerWithSegueId = ^ (NSString* segueId) {
+      
+        [blockSelf performSegueWithIdentifier: segueId
+                                       sender: blockSelf];
     };
 }
 

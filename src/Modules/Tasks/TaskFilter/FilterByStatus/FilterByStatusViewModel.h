@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FilterByStatusViewModel : NSObject
+// Frameworks
+@import UIKit;
+
+@interface FilterByStatusViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+
+// methods
+- (NSArray*) getSelectedStatusesArray;
 
 @end

@@ -31,13 +31,15 @@
     self.titleLabel.text  = titleText;
     self.detailLabel.text = detailText;
     
-    if ( isSelected == NO)
+    if ( isSelected == NO )
     {
         self.detailLabel.textColor = [UIColor colorWithRed: 166.0/256
                                                      green: 185.0/256
                                                       blue: 185.0/256
                                                      alpha: 1.f];
     }
+    else
+        self.detailLabel.textColor = [UIColor blackColor];
 }
 
 @end

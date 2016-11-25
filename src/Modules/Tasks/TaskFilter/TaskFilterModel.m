@@ -56,7 +56,10 @@
     {
         _seguesId = @[ @[@"FilterByCreatorSegueId",
                          @"FilterByResponsibleSegueId",
-                         @"FilterByApproversSegueId"] ];
+                         @"FilterByApproversSegueId",
+                         @"FilterByStatusSegueId"],
+                       @[@"ShowFilterByDatesSegueId",
+                         @"ShowFilterByDatesSegueId"] ];
     }
     
     return _seguesId;
@@ -191,8 +194,14 @@
             break;
     }
     
-    self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
-                                                                      withFilterType: self.taskFilterType];
+    [self updateContent];
+}
+
+- (void) fillSelectedStatusesData: (NSArray*) selectedStatuses
+{
+    self.filterConfig.statusesList = selectedStatuses;
+    
+    [self updateContent];
 }
 
 // helpers for test
@@ -211,4 +220,14 @@
 {
     return self.filterConfig;
 }
+
+
+#pragma mark - Helpers -
+
+- (void) updateContent
+{
+    self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
+                                                                      withFilterType: self.taskFilterType];
+}
+
 @end

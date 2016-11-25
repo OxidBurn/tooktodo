@@ -8,6 +8,20 @@
 
 #import "BaseMainViewController.h"
 
+@protocol FilterByStatusControllerDelegate;
+
 @interface FilterByStatusViewController : BaseMainViewController
+
+// properties
+@property (weak, nonatomic) id <FilterByStatusControllerDelegate> delegate;
+
+// methods
+- (void) fillDelegate: (id) deletate;
+
+@end
+
+@protocol FilterByStatusControllerDelegate <NSObject>
+
+- (void) returnSelectedStatusesArray: (NSArray*) selectedStatuses;
 
 @end

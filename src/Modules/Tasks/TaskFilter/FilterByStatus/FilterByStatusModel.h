@@ -10,4 +10,11 @@
 
 @interface FilterByStatusModel : NSObject
 
+// methods
+- (void) handleStatusesSelectionForIndexPath: (NSIndexPath*) indexPath;
+
+- (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSArray*) getSelectedStatusesArray;
+
 @end
