@@ -57,18 +57,6 @@
     [self handleUI];
 }
 
-- (void) viewWillAppear: (BOOL) animated
-{
-    [super viewWillAppear: animated];
-
-}
-
-#pragma mark - Memory managment -
-
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark - Properties -
 

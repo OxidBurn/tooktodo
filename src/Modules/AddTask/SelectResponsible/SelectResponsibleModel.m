@@ -8,7 +8,6 @@
 
 #import "SelectResponsibleModel.h"
 
-
 // Classes
 #import "DataManager+Tasks.h"
 #import "DataManager+ProjectInfo.h"
@@ -41,6 +40,7 @@
 @end
 
 @implementation SelectResponsibleModel
+
 
 #pragma mark - Properties -
 

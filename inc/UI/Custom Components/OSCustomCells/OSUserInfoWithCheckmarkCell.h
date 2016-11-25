@@ -10,6 +10,7 @@
 
 // Classes
 #import "FilledTeamInfo.h"
+#import "ProjectTaskAssignee+CoreDataProperties.h"
 
 @interface OSUserInfoWithCheckmarkCell : UITableViewCell
 
@@ -20,5 +21,8 @@
 - (void) changeCheckmarkState: (BOOL) state;
 
 - (BOOL) currentCheckMarkState;
+
+- (void) fillCellWithAssignee: (ProjectTaskAssignee*) assignee
+                withCheckMark: (BOOL)                 isSelected;
 
 @end

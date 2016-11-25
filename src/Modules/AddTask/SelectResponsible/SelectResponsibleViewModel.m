@@ -11,7 +11,7 @@
 // Classes
 #import "OSUserInfoWithCheckmarkCell.h"
 #import "FilledTeamInfo.h"
-#import "SelectResponsibleViewController.h"
+#import "SelectResponsibleModel.h"
 
 
 @interface SelectResponsibleViewModel()
@@ -26,6 +26,7 @@
 
 @implementation SelectResponsibleViewModel
 
+
 #pragma mark - Properties -
 
 - (SelectResponsibleModel*) model
@@ -37,6 +38,7 @@
     
     return _model;
 }
+
 
 #pragma mark - UITableViewDataSourse methods -
 

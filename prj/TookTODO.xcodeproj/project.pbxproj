@@ -438,6 +438,9 @@
 		F72DC5431DDB545500E0AC3A /* AddTaskContentManager+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5401DDB545500E0AC3A /* AddTaskContentManager+Helpers.m */; };
 		F72DC5441DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5411DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m */; };
 		F72DC5451DDB545500E0AC3A /* AddTaskContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F72DC5421DDB545500E0AC3A /* AddTaskContentManager.m */; };
+		F72F3BCE1DE76930009648A6 /* FilterByAssigneeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BC91DE76930009648A6 /* FilterByAssigneeModel.m */; };
+		F72F3BCF1DE76930009648A6 /* FilterByAssigneeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BCB1DE76930009648A6 /* FilterByAssigneeViewController.m */; };
+		F72F3BD01DE76930009648A6 /* FilterByAssigneeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */; };
 		F745D31D1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m in Sources */ = {isa = PBXBuildFile; fileRef = F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */; };
 		F75295B41DB65B7800534482 /* TaskDetailMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */; };
 		F75295B71DB65B8500534482 /* TaskDetailContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F75295B61DB65B8500534482 /* TaskDetailContentManager.m */; };
@@ -1312,6 +1315,12 @@
 		F72DC5521DDB547C00E0AC3A /* AddTaskContentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskContentManager.h; sourceTree = "<group>"; };
 		F72DC5531DDB547C00E0AC3A /* NewTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTask.h; sourceTree = "<group>"; };
 		F72DC5541DDB547C00E0AC3A /* RowContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RowContent.h; sourceTree = "<group>"; };
+		F72F3BC81DE76930009648A6 /* FilterByAssigneeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByAssigneeModel.h; sourceTree = "<group>"; };
+		F72F3BC91DE76930009648A6 /* FilterByAssigneeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByAssigneeModel.m; sourceTree = "<group>"; };
+		F72F3BCA1DE76930009648A6 /* FilterByAssigneeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByAssigneeViewController.h; sourceTree = "<group>"; };
+		F72F3BCB1DE76930009648A6 /* FilterByAssigneeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByAssigneeViewController.m; sourceTree = "<group>"; };
+		F72F3BCC1DE76930009648A6 /* FilterByAssigneeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByAssigneeViewModel.h; sourceTree = "<group>"; };
+		F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByAssigneeViewModel.m; sourceTree = "<group>"; };
 		F745D31B1DDF6AED00A82B7D /* OSAlertDeleteTasksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTasksController.h; sourceTree = "<group>"; };
 		F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTasksController.m; sourceTree = "<group>"; };
 		F75295B31DB65B7800534482 /* TaskDetailMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetailMainFactory.m; sourceTree = "<group>"; };
@@ -3570,9 +3579,23 @@
 			path = ContentManager;
 			sourceTree = "<group>";
 		};
+		F72F3BC71DE76930009648A6 /* FilterByAssignee */ = {
+			isa = PBXGroup;
+			children = (
+				F72F3BC81DE76930009648A6 /* FilterByAssigneeModel.h */,
+				F72F3BC91DE76930009648A6 /* FilterByAssigneeModel.m */,
+				F72F3BCA1DE76930009648A6 /* FilterByAssigneeViewController.h */,
+				F72F3BCB1DE76930009648A6 /* FilterByAssigneeViewController.m */,
+				F72F3BCC1DE76930009648A6 /* FilterByAssigneeViewModel.h */,
+				F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */,
+			);
+			path = FilterByAssignee;
+			sourceTree = "<group>";
+		};
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				F72F3BC71DE76930009648A6 /* FilterByAssignee */,
 				F7EB66CF1DE35D6100F44CDF /* Cells */,
 				F7EB66D41DE35D6100F44CDF /* Factories */,
 				F7EB66DB1DE35D6100F44CDF /* FilterByDates */,
@@ -4031,6 +4054,7 @@
 				56D06F2C1DAFBDC0008E9AC0 /* OfflineSynchronizeViewController.m in Sources */,
 				564DE3C91DB15AD200BF9817 /* RowContent.m in Sources */,
 				56D06EE31DAFBDC0008E9AC0 /* TeamService.m in Sources */,
+				F72F3BCF1DE76930009648A6 /* FilterByAssigneeViewController.m in Sources */,
 				56D06F3E1DAFBDC0008E9AC0 /* TaskCollectionCellsContent.m in Sources */,
 				56D06EF31DAFBDC0008E9AC0 /* KeyChainManager.m in Sources */,
 				56D06FBA1DAFBDC0008E9AC0 /* OSSwitchTableCell.m in Sources */,
@@ -4198,6 +4222,7 @@
 				56D06F1E1DAFBDC0008E9AC0 /* LoginViewModel.m in Sources */,
 				56D06F8C1DAFBDC0008E9AC0 /* UpdateInfoViewController.m in Sources */,
 				56D06E8D1DAFBDC0008E9AC0 /* ProjectCountry+CoreDataProperties.m in Sources */,
+				F72F3BCE1DE76930009648A6 /* FilterByAssigneeModel.m in Sources */,
 				56D06FA91DAFBDC0008E9AC0 /* AvatarImageView.m in Sources */,
 				56D06F561DAFBDC0008E9AC0 /* SubtaskInfoCell.m in Sources */,
 				56D06EBE1DAFBDC0008E9AC0 /* UserInfo.m in Sources */,
@@ -4225,6 +4250,7 @@
 				56D06F341DAFBDC0008E9AC0 /* ProjectInfoCellModel.m in Sources */,
 				F7EB67021DE35D6100F44CDF /* TaskFilterViewController.m in Sources */,
 				564DE3B91DB1582E00BF9817 /* AddNewRoleViewController.m in Sources */,
+				F72F3BD01DE76930009648A6 /* FilterByAssigneeViewModel.m in Sources */,
 				56D06F4C1DAFBDC0008E9AC0 /* AttachmentsCell.m in Sources */,
 				56D06EA41DAFBDC0008E9AC0 /* ProjectTaskMarker.m in Sources */,
 				56D06EAB1DAFBDC0008E9AC0 /* ProjectTaskRoleAssignments+CoreDataProperties.m in Sources */,
