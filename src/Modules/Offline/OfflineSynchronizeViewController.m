@@ -11,7 +11,9 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 
-@interface OfflineSynchronizeViewController ()
+#import "OfflineTableViewCell.h"
+
+@interface OfflineSynchronizeViewController () <UITableViewDataSource, UITabBarDelegate>
 
 // properties
 
@@ -43,6 +45,9 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+
+    self.synchronizeOptionsTable.rowHeight = UITableViewAutomaticDimension;
+    self.synchronizeOptionsTable.estimatedRowHeight = 69;
 }
 
 #pragma mark - Memory managment -
@@ -50,6 +55,18 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Actions -
+
+- (IBAction) onDoneClick: (id) sender
+{
+    [self.navigationController popViewControllerAnimated:true];
+}
+
+- (IBAction) onCancelClick: (id) sender
+{
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 #pragma mark - Internal method -
@@ -100,6 +117,19 @@
     self.navigationItem.titleView = twoLineTitleView;
     
     return twoLineTitleView;
+}
+
+#pragma mark - UITableViewDataSource, UITabBarDelegate -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    OfflineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OfflineSyncCellID" forIndexPath:indexPath];
+    return cell;
 }
 
 @end

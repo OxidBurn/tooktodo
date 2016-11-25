@@ -173,7 +173,13 @@
     self.viewModel.didShowProjectSettings = ^(NSNumber* projectID){
         
         NSLog(@"<INFO> Project id: %lu", (unsigned long)projectID.integerValue);
-        
+
+        if ( [blockSelf.delegate respondsToSelector: @selector(showControllerWithSegueID:)] )
+        {
+            UIViewController *viewController = [blockSelf.storyboard instantiateViewControllerWithIdentifier: @"OfflineSyncControllerID"];
+            [blockSelf.navigationController pushViewController: viewController
+                                                 animated: true];
+        }
     };
     
     self.viewModel.reloadTable = ^(){
