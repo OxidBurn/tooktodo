@@ -37,6 +37,7 @@
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
         self.memberID               = assignee.assigneeID;
+        self.hasApprovedTask        = self.hasApprovedTask ? self.hasApprovedTask : NO;
     }
     else if (assignment.invite != nil)
     {
@@ -58,6 +59,7 @@
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
         self.memberID               = invite.inviteID;
+        self.hasApprovedTask        = self.hasApprovedTask ? self.hasApprovedTask : NO;
     }
     
     self.roleID    = assignment.roleID;
@@ -109,6 +111,17 @@
     self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
     self.isClaiming            = self.isClaiming ? self.isClaiming : NO;
     self.isObserver            = self.isObserver ? self.isObserver : NO;
+}
+
+- (void) convertAssigneeToFilledInfo: (ProjectTaskAssignee*) assignee
+{
+
+}
+
+- (void) convertInviteInfo: (ProjectInviteInfo*) invite
+              toFilledUser: (FilledTeamInfo*)    user
+{
+    
 }
 
 @end

@@ -11,10 +11,17 @@
 // Frameworks
 @import UIKit;
 
+#import "ParentCollectionCell.h"
+
 @interface CollectionCellModel : NSObject
 
 // methods
-- (UICollectionViewCell*) createCellForCollectionView: (UICollectionView*) collection
-                                         forIndexPath: (NSIndexPath*)      indexPath;
+- (UICollectionViewCell*) createCellForCollectionView: (UICollectionView*)                collection
+                                         forIndexPath: (NSIndexPath*)                     indexPath
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate;
+
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate;
+
+- (id<ParentCollectionCellDelegate>) getVarToStoreParentCollectionCellDelegate;
 
 @end

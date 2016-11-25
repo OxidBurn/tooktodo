@@ -24,6 +24,8 @@
 
 @property (strong, nonatomic) NSArray* claiming;
 
+@property (nonatomic, strong) NSArray* approvers;
+
 @property (strong, nonatomic) NSArray* observers;
 
 @property (strong, nonatomic) NSString* premises;

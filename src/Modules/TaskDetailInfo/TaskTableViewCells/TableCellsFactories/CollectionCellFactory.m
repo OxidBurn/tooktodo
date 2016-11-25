@@ -8,19 +8,20 @@
 
 #import "CollectionCellFactory.h"
 
-// Classes
-#import "CollectionCell.h"
+
 
 @implementation CollectionCellFactory
 
 #pragma mark - Public -
 
 - (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate
 {
     CollectionCell* cell = [tableView dequeueReusableCellWithIdentifier: @"CollectionCellId"];
     
+    [cell fillParentCollectionCellDelegate: delegate];
+    
     return cell;
 }
-
 
 @end

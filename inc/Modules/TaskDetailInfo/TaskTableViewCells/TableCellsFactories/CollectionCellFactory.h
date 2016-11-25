@@ -14,10 +14,13 @@
 
 // Classes
 #import "TaskRowContent.h"
+#import "CollectionCell.h"
+#import "ParentCollectionCell.h"
 
 @interface CollectionCellFactory : NSObject
 
 // methods
-- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView;
+- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate;
 
 @end

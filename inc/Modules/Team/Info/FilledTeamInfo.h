@@ -36,6 +36,7 @@
 @property (strong, nonatomic) NSNumber* roleID;
 @property (strong, nonatomic) NSNumber* memberID;
 @property (strong, nonatomic) NSNumber* projectID;
+@property (nonatomic, assign) BOOL hasApprovedTask;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 
@@ -45,5 +46,8 @@
 
 - (void) convertTaskResponsibleToTeamInfo: (ProjectTaskResponsible*) taskResponsible;
 
+- (void) convertAssigneeToFilledInfo: (ProjectTaskAssignee*) assignee;
+
+- (void) convertInviteInfoToFilledInfo: (ProjectInviteInfo*) invite;
 
 @end

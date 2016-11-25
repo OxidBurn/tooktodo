@@ -11,10 +11,15 @@
 // Frameworks
 @import UIKit;
 
-@protocol CollectionCellViewModelDelegate;
+// Classes
+#import "ParentCollectionCell.h"
 
 @interface CollectionCellViewModel : NSObject <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate;
+
 @end
+
+
 
 

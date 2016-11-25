@@ -48,5 +48,9 @@
 
 #pragma mark - Public -
 
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate;
+{
+    [self.viewModel fillParentCollectionCellDelegate: delegate];
+}
 
 @end

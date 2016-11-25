@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ParentCollectionCell.h"
+
 @interface CollectionCell : UITableViewCell
 
-// methods
+@property (nonatomic, strong) id<ParentCollectionCellDelegate> varToStoreTaskDetailViewModel;
+
+- (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate;
 
 @end
+

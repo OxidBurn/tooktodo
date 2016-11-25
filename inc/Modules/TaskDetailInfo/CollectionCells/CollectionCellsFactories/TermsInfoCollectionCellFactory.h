@@ -13,12 +13,14 @@
 
 // Classes
 #import "TaskCollectionCellsContent.h"
+#import "ParentCollectionCell.h"
 
 @interface TermsInfoCollectionCellFactory : NSObject
 
 // methods
-- (UICollectionViewCell*) returnTermsInfoCellWithContent: (TaskCollectionCellsContent*) content
+- (ParentCollectionCell*) returnTermsInfoCellWithContent: (TaskCollectionCellsContent*) content
                                        forCollectionView: (UICollectionView*)           collection
-                                           withIndexPath: (NSIndexPath*)                indexPath;
+                                           withIndexPath: (NSIndexPath*)                indexPath
+                                            withDelegate: (id<ParentCollectionCellDelegate>) delegate;
 
 @end

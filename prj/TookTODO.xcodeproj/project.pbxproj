@@ -430,6 +430,9 @@
 		CF1D5E031DD1E11A00CEB8DA /* SystemDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5E001DD1E11A00CEB8DA /* SystemDetailViewModel.m */; };
 		CF3455DF1DE851A70090421D /* ApproverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455DE1DE851A70090421D /* ApproverViewController.m */; };
 		CF3455E71DE852A40090421D /* ApproverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455E61DE852A40090421D /* ApproverTableViewCell.m */; };
+		CF3455EE1DE87F1E0090421D /* ParentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455ED1DE87F1E0090421D /* ParentCollectionCell.m */; };
+		CF3455F11DE897A10090421D /* ApproverViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455F01DE897A10090421D /* ApproverViewModel.m */; };
+		CF3455F41DE897B50090421D /* ApproverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455F31DE897B50090421D /* ApproverModel.m */; };
 		CFCAA3D21DCA580A00B8EF16 /* RolesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */; };
 		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
@@ -1303,6 +1306,12 @@
 		CF3455E41DE8522E0090421D /* ApproverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApproverViewController.h; path = ../../../../inc/Modules/TaskDetailInfo/MembersFromCollection/ApproverViewController.h; sourceTree = "<group>"; };
 		CF3455E61DE852A40090421D /* ApproverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverTableViewCell.m; sourceTree = "<group>"; };
 		CF3455E81DE852F80090421D /* ApproverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApproverTableViewCell.h; path = ../../../../inc/Modules/TaskDetailInfo/MembersFromCollection/ApproverTableViewCell.h; sourceTree = "<group>"; };
+		CF3455EC1DE87F1E0090421D /* ParentCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionCell.h; sourceTree = "<group>"; };
+		CF3455ED1DE87F1E0090421D /* ParentCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionCell.m; sourceTree = "<group>"; };
+		CF3455EF1DE897A10090421D /* ApproverViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproverViewModel.h; sourceTree = "<group>"; };
+		CF3455F01DE897A10090421D /* ApproverViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverViewModel.m; sourceTree = "<group>"; };
+		CF3455F21DE897B50090421D /* ApproverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproverModel.h; sourceTree = "<group>"; };
+		CF3455F31DE897B50090421D /* ApproverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverModel.m; sourceTree = "<group>"; };
 		CFCAA3D01DCA580A00B8EF16 /* RolesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesModel.h; sourceTree = "<group>"; };
 		CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RolesModel.m; sourceTree = "<group>"; };
 		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
@@ -2961,6 +2970,8 @@
 				56D06DD81DAFBDBF008E9AC0 /* SingleUserCollectionCell.m */,
 				56D06DD91DAFBDBF008E9AC0 /* TaskCollectionCellsContent.m */,
 				56D06DDA1DAFBDBF008E9AC0 /* TermsInfoCollectionCell.m */,
+				CF3455EC1DE87F1E0090421D /* ParentCollectionCell.h */,
+				CF3455ED1DE87F1E0090421D /* ParentCollectionCell.m */,
 			);
 			path = CollectionCells;
 			sourceTree = "<group>";
@@ -3567,6 +3578,8 @@
 			children = (
 				CF3455DE1DE851A70090421D /* ApproverViewController.m */,
 				CF3455E61DE852A40090421D /* ApproverTableViewCell.m */,
+				CF3455F01DE897A10090421D /* ApproverViewModel.m */,
+				CF3455F31DE897B50090421D /* ApproverModel.m */,
 			);
 			path = MembersFromCollection;
 			sourceTree = "<group>";
@@ -3576,6 +3589,8 @@
 			children = (
 				CF3455E81DE852F80090421D /* ApproverTableViewCell.h */,
 				CF3455E41DE8522E0090421D /* ApproverViewController.h */,
+				CF3455EF1DE897A10090421D /* ApproverViewModel.h */,
+				CF3455F21DE897B50090421D /* ApproverModel.h */,
 			);
 			name = MembersFromCollection;
 			path = ../../../src/Modules/TaskDetailInfo/MembersFromCollection;
@@ -3973,6 +3988,7 @@
 				564DE3861DB0F60800BF9817 /* TaskAvailableActionsModel.m in Sources */,
 				56D06F8F1DAFBDC0008E9AC0 /* WelcomeTourModel.m in Sources */,
 				56D06F211DAFBDC0008E9AC0 /* RecoveryViewController.m in Sources */,
+				CF3455EE1DE87F1E0090421D /* ParentCollectionCell.m in Sources */,
 				56D06E8C1DAFBDC0008E9AC0 /* OfflineSettings.m in Sources */,
 				56D06F5D1DAFBDC0008E9AC0 /* TaskDetailInfoFactory.m in Sources */,
 				56D06FBB1DAFBDC0008E9AC0 /* OSTaskOptionsController.m in Sources */,
@@ -4109,6 +4125,7 @@
 				56D06F3F1DAFBDC0008E9AC0 /* TermsInfoCollectionCell.m in Sources */,
 				F7E765811DE8A7B300E8F10F /* FilterByStatusViewController.m in Sources */,
 				56D06F9E1DAFBDC0008E9AC0 /* AlertControllerSegue.m in Sources */,
+				CF3455F11DE897A10090421D /* ApproverViewModel.m in Sources */,
 				F7EB66F61DE35D6100F44CDF /* CustomExpandedIconCellFactory.m in Sources */,
 				564DE39A1DB100A600BF9817 /* TaskAvailableActionsList+CoreDataClass.m in Sources */,
 				56D06EDA1DAFBDC0008E9AC0 /* TaskSubTasksModel.m in Sources */,
@@ -4159,6 +4176,7 @@
 				56D06F551DAFBDC0008E9AC0 /* LogWithDetailCell.m in Sources */,
 				56955F601DE72CE100601D03 /* ProjectFilterInfo+CoreDataProperties.m in Sources */,
 				56D06F541DAFBDC0008E9AC0 /* LogWithAcitonCell.m in Sources */,
+				CF3455F41DE897B50090421D /* ApproverModel.m in Sources */,
 				F7EB66F81DE35D6100F44CDF /* TaskFilterMainFactory.m in Sources */,
 				F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */,
 				56D06F6B1DAFBDC0008E9AC0 /* TasksListTableViewCell.m in Sources */,

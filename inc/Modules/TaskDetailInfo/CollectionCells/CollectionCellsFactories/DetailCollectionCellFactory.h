@@ -13,12 +13,14 @@
 
 // Classes
 #import "TaskCollectionCellsContent.h"
+#import "ParentCollectionCell.h"
 
 @interface DetailCollectionCellFactory : NSObject
 
 // methods
-- (UICollectionViewCell*) returnDetailCellWithContent: (TaskCollectionCellsContent*) content
+- (ParentCollectionCell*) returnDetailCellWithContent: (TaskCollectionCellsContent*) content
                                     forCollectionView: (UICollectionView*)           collection
-                                        withIndexPath: (NSIndexPath*)                indexPath;
+                                        withIndexPath: (NSIndexPath*)                indexPath
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate;
 
 @end

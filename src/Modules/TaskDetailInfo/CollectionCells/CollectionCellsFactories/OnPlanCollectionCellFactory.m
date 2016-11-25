@@ -15,14 +15,17 @@
 
 #pragma mark - Public -
 
-- (UICollectionViewCell*) returnOnPlanCellWithContent: (TaskCollectionCellsContent*) content
+- (ParentCollectionCell*) returnOnPlanCellWithContent: (TaskCollectionCellsContent*) content
                                     forCollectionView: (UICollectionView*)           collection
                                         withIndexPath: (NSIndexPath*)                indexPath
+                                         withDelegate: (id<ParentCollectionCellDelegate>) delegate
 {
     OnPlanCollectionCell* cell = [collection dequeueReusableCellWithReuseIdentifier: content.cellId
                                                                        forIndexPath: indexPath];
     
     [cell fillCellWithContent: content];
+    
+    cell.delegate = delegate;
     
     return cell;
 }
