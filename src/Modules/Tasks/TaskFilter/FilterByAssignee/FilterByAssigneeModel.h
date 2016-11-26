@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectsEnumerations.h"
 #import "ProjectTaskAssignee+CoreDataProperties.h"
+#import "TaskFilterConfiguration.h"
 
 @interface FilterByAssigneeModel : NSObject
 
@@ -32,5 +33,7 @@
 - (NSArray*) getSelectedAssignees;
 
 - (NSArray*) getSelectedAssingeesIndexes;
+
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
 @end

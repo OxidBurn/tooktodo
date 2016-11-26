@@ -16,4 +16,8 @@
 // methods
 - (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath;
 
+- (void) setDefaultStartDayIfNotSetByPicker;
+
+- (void)updateDateLabelWithDate: (NSDate*)    date
+               forPickerWithTag: (NSUInteger) pickerTag;
 @end

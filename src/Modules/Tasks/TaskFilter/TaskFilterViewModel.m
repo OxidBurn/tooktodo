@@ -268,8 +268,25 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                    withColor: (UIColor*)  typeColor
 {
     [self.model fillTaskType: type];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
 }
 
 
+#pragma mark - SelectSystem delegate methods -
+
+- (void) returnSelectedSystem: (ProjectSystem*) system
+{
+    
+}
+
+
+#pragma mark - SelectRoom delegate methods -
+
+- (void) returnSelectedInfo: (id) info
+{
+    
+}
 
 @end

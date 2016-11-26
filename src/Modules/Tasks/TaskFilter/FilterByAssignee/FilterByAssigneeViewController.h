@@ -11,6 +11,7 @@
 // Classes
 #import "ProjectsEnumerations.h"
 #import "BaseMainViewController.h"
+#import "TaskFilterConfiguration.h"
 
 @protocol FilterByAssigneeViewControllerDelegate;
 
@@ -23,7 +24,7 @@
 - (void) updateFilterType: (FilterByAssigneeType) filterType
              withDelegate: (id)                   delegate;
 
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
 @end
 
@@ -33,15 +34,5 @@
 - (void) returnSelectedAssigneesArray: (NSArray*)             selectedAssignees
                        withFilterType: (FilterByAssigneeType) filterType
                           withIndexes: (NSArray*)             indexesArray;
-
-//- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray;
-//
-//- (void) returnSelectedCreatorsInfo: (NSArray*) selectedCreators;
-//
-//- (void) returnSelectedApproversInfo: (NSArray*) selectedApprovers;
-
-//- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming;
-//
-//- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers;
 
 @end

@@ -12,6 +12,7 @@
 #import "TaskFilterRowContent.h"
 #import "TaskFilterConfiguration.h"
 #import "TaskFilterContentManager.h"
+#import "ProjectSystem+CoreDataProperties.h"
 
 @interface TaskFilterModel : NSObject
 
@@ -39,6 +40,8 @@
                                              forTag: (TaskFilterAditionalOptionsTags) tag;
 
 - (void) fillTaskType: (NSUInteger) taskType;
+
+- (void) fillSystemInfo: (ProjectSystem*) system;
 
 // helpers for test
 

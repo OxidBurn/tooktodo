@@ -114,4 +114,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return [self.model getSelectedAssignees];
 }
 
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig
+{
+    [self.model fillSelectedUsersInfoFromConfig: filterConfig];
+}
+
 @end

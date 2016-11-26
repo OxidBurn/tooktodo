@@ -30,4 +30,6 @@
 
 - (NSArray*) getSelectedAssingeesIndexes;
 
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
+
 @end

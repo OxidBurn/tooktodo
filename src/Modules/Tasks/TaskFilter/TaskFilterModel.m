@@ -243,6 +243,11 @@
     [self updateContent];
 }
 
+- (void) fillSystemInfo: (ProjectSystem*) system
+{
+    self.filterConfig.bySystem = @[ system ];
+}
+
 // helpers for test
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
 {

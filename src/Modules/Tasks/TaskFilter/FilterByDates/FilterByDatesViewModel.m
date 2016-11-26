@@ -11,8 +11,9 @@
 // Classes
 #import "FilterByDatesModel.h"
 #import "FilterByDatesFactory.h"
+#import "OSDatePickerCell.h"
 
-@interface FilterByDatesViewModel()
+@interface FilterByDatesViewModel() <OSDatePickerCellDelegate>
 
 // properties
 @property (strong, nonatomic) FilterByDatesModel* model;
@@ -118,8 +119,8 @@
     return height;
 }
 
-#pragma mark - UITableView delegate methods -
 
+#pragma mark - UITableView delegate methods -
 
 
 - (void)      tableView: (UITableView*) tableView
@@ -180,7 +181,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     {
         self.startDatePickerShowed = NO;
         
-        //[self.model setDefaultStartDayIfNotSetByPicker];
+        [self.model setDefaultStartDayIfNotSetByPicker];
         
         [self reloadDatePickerCellsForTableView: tableView];
     }
@@ -209,5 +210,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             self.handleTableViewHeight (NO);
     }
 }
+
+
+#pragma mark - OSDatePickerCellDelegate methods -
+
+- (void)updateDateLabelWithDate: (NSDate*)    date
+               forPickerWithTag: (NSUInteger) pickerTag
+{
+    
+}
+
 
 @end

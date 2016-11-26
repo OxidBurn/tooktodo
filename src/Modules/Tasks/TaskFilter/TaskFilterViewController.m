@@ -16,6 +16,9 @@
 #import "FilterByAssigneeViewController.h"
 #import "FilterByStatusViewController.h"
 #import "AddTaskTypeViewController.h"
+#import "SelectSystemViewController.h"
+#import "SelectRoomViewController.h"
+#import "ProjectSystem+CoreDataProperties.h"
 
 @interface TaskFilterViewController ()
 
@@ -79,6 +82,8 @@
         
         [controller updateFilterType: self.filterByAssigneeType
                         withDelegate: self.viewModel];
+        
+        [controller fillSelectedUsersInfoFromConfig: filterConfig];
     }
     
     if ( [segue.identifier isEqualToString: @"FilterByStatusSegueId"] )
@@ -96,6 +101,23 @@
         
         [controller fillSelectedTaskType: taskType.integerValue
                             withDelegate: self.viewModel];
+    }
+    
+    if ( [segue.identifier isEqualToString: @"ShowWorkAreaSegueId"] )
+    {
+        SelectRoomViewController* controller = [segue destinationViewController];
+        
+        
+    }
+    
+    if ( [segue.identifier isEqualToString: @"ShowSystemsSegueId"] )
+    {
+        SelectSystemViewController* controller = [segue destinationViewController];
+        
+        ProjectSystem* system = filterConfig.bySystem.firstObject;
+        
+        [controller fillSelectedSystem: system
+                          withDelegate: self.viewModel];
     }
 }
 

@@ -10,6 +10,7 @@
 
 // Classes
 #import "FilterByDatesContentManager.h"
+#import "TermsData.h"
 
 @interface FilterByDatesModel()
 
@@ -17,6 +18,8 @@
 @property (strong, nonatomic) FilterByDatesContentManager* contentManager;
 
 @property (strong, nonatomic) NSArray* tableViewContent;
+
+@property (strong, nonatomic) TermsData* terms;
 
 // methods
 
@@ -48,12 +51,37 @@
     return _tableViewContent;
 }
 
+- (TermsData*) terms
+{
+    if ( _terms == nil )
+    {
+        _terms = [TermsData new];
+    }
+    
+    return _terms;
+}
+
 #pragma mark - Public -
 
 
 - (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
 {
     return self.tableViewContent[indexPath.row];
+}
+
+- (void) setDefaultStartDayIfNotSetByPicker
+{
+    if ( self.terms.startDate == nil )
+    {
+        [self updateDateLabelWithDate: [NSDate date]
+                     forPickerWithTag: 0];
+    }
+}
+
+- (void) updateDateLabelWithDate: (NSDate*)    date
+                forPickerWithTag: (NSUInteger) pickerTag
+{
+       
 }
 
 @end

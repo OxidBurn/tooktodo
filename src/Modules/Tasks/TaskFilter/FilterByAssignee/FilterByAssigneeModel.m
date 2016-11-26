@@ -198,4 +198,34 @@
     return self.selectedAssigneeIndexes;
 }
 
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig
+{
+    switch ( self.filterType )
+    {
+        case FilterByCreator:
+        {
+            self.selectedAssignee        = filterConfig.byCreator;
+            self.selectedAssigneeIndexes = filterConfig.byCreatorIndexes;
+        }
+            break;
+            
+        case FilterByApprovers:
+        {
+            self.selectedAssignee        = filterConfig.byApprovers;
+            self.selectedAssigneeIndexes = filterConfig.byApproversIndexes;
+        }
+            break;
+            
+        case FilterByResponsible:
+        {
+            self.selectedAssignee        = filterConfig.byResponsible;
+            self.selectedAssigneeIndexes = filterConfig.byResponsibleIndexes;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 @end

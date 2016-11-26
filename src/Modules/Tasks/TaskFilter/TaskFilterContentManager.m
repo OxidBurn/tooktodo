@@ -195,7 +195,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
                 if ( filterConfig.statusesList.count == 1)
                 {
                     NSNumber* status = filterConfig.statusesList.firstObject;
-                    statuses = status.stringValue;
+                    statuses = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue];
                 }
                 else
                 {
@@ -316,7 +316,22 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
             filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByTaskTypeRow.detail           = @"Не выбран";
+            
+            
+            NSString* byTypeDetail = [NSString new];
+            
+            if ( filterConfig.byTaskType.count > 0 )
+            {
+                NSNumber* taskType = filterConfig.byTaskType.firstObject;
+                
+                byTypeDetail = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+            }
+            else
+            {
+                byTypeDetail = @"Не выбран";
+            }
+            
+            filterByTaskTypeRow.detail           = byTypeDetail;
             filterByTaskTypeRow.detailIsSelected = NO;
             
             sectionThree = @[ filterByWorkRoomRow,
@@ -349,8 +364,23 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
             filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByTaskTypeRow.detail           = @"Не выбрано";
-            filterByTaskTypeRow.detailIsSelected = NO;
+
+            NSString* byTypeDetail = [NSString new];
+            
+            if ( filterConfig.byTaskType.count > 0 )
+            {
+                NSNumber* taskType = filterConfig.byTaskType.firstObject;
+                
+                byTypeDetail = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+                filterByTaskTypeRow.detailIsSelected = YES;
+            }
+            else
+            {
+                byTypeDetail = @"Не выбран";
+                filterByTaskTypeRow.detailIsSelected = NO;
+            }
+            
+            filterByTaskTypeRow.detail           = byTypeDetail;
             
             sectionThree = @[ filterByWorkRoomRow,
                               filterBySystemRow,
@@ -425,5 +455,23 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     return index;
 }
-                               
+
+- (NSString*) getTaskTypeDescriptionForIndex: (NSUInteger) index
+{
+    NSString* description = [NSString new];
+    
+    switch ( index )
+    {
+        case TaskWorkType:        description = @"Работа"; break;
+        case TaskAgreementType:   description = @"Согласование"; break;
+        case TaskRemarkType:      description = @"Замечание"; break;
+        case TaskObservationType: description = @"Наблюдение"; break;
+        
+        default:
+            break;
+    }
+    
+    return description;
+}
+
 @end

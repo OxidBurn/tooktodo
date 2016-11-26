@@ -30,6 +30,8 @@
                withDelegate: delegate
            withEnabledState: isEnabled];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 

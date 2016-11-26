@@ -113,9 +113,9 @@
     self.delegate = delegate;
 }
 
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
+- (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-//    [self.viewModel fillSelectedUsersInfo: selectedUsers];
+    [self.viewModel fillSelectedUsersInfoFromConfig: filterConfig];
 }
 
 #pragma mark - Internal -

@@ -272,6 +272,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix, rowSeven ];
 }
 
+
 #pragma mark - OSDatePickerCellDelegate methods -
 
 - (void) updateDateLabelWithDate: (NSDate*)    date
