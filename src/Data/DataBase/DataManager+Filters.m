@@ -206,6 +206,22 @@
                                     withSet: config.byApprovers
                                   inContext: localContext];
         
+        // Statuses
+        [self saveFilterStatusesFromConfig: taskFilterContent
+                                   withSet: config.statusesList];
+        
+        // Is Done
+        [self saveFilterisDoneOptionFromConfig: taskFilterContent
+                                     withValue: config.isDone];
+        
+        // Is Canceled
+        [self saveFilterisCanceledOptionFromConfig: taskFilterContent
+                                         withValue: config.isCanceled];
+        
+        // Is Expired
+        [self saveFilterisExpiredOptionFromConfig: taskFilterContent
+                                        withValue: config.isOverdue];
+        
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
@@ -292,6 +308,30 @@
         [filterConfig addApprovementsObject: [assignee MR_inContext: context]];
         
     }];
+}
+
+- (void) saveFilterisDoneOptionFromConfig: (ProjectTaskFilterContent*) filterConfig
+                                withValue: (BOOL)                      isDone
+{
+    filterConfig.isDone = @(isDone);
+}
+
+- (void) saveFilterisExpiredOptionFromConfig: (ProjectTaskFilterContent*) filterConfig
+                                   withValue: (BOOL)                      isExpired
+{
+    filterConfig.isExpired = @(isExpired);
+}
+
+- (void) saveFilterisCanceledOptionFromConfig: (ProjectTaskFilterContent*) filterConfig
+                                    withValue: (BOOL)                      isCanceled
+{
+    filterConfig.isCanceled = @(isCanceled);
+}
+
+- (void) saveFilterStatusesFromConfig: (ProjectTaskFilterContent*) filterConfig
+                              withSet: (NSArray*)                  statuses
+{
+    filterConfig.statuses = statuses;
 }
 
 @end
