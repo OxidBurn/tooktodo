@@ -58,7 +58,10 @@
                          @"FilterByApproversSegueId",
                          @"FilterByStatusSegueId"],
                        @[@"ShowFilterByDatesSegueId",
-                         @"ShowFilterByDatesSegueId"] ];
+                         @"ShowFilterByDatesSegueId"],
+                       @[@"",
+                         @"",
+                         @"ShowTaskTypeSegueId"]];
     }
     
     return _seguesId;
@@ -229,6 +232,13 @@
         default:
             break;
     }
+    
+    [self updateContent];
+}
+
+- (void) fillTaskType: (NSUInteger) taskType
+{
+    self.filterConfig.byTaskType = @[ @(taskType) ];
     
     [self updateContent];
 }

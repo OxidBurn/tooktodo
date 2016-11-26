@@ -308,6 +308,39 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterBySystemRow];
             filterBySystemRow.cellTypeId       = TaskFilterRightDetailCell;
             filterBySystemRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            filterBySystemRow.detail           = @"Не выбрана";
+            filterBySystemRow.detailIsSelected = NO;
+            
+            TaskFilterRowContent* filterByTaskTypeRow = [TaskFilterRowContent new];
+            
+            filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
+            filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
+            filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            filterByTaskTypeRow.detail           = @"Не выбран";
+            filterByTaskTypeRow.detailIsSelected = NO;
+            
+            sectionThree = @[ filterByWorkRoomRow,
+                              filterBySystemRow,
+                              filterByTaskTypeRow ];
+        }
+            
+            break;
+            
+        case FilterBySingleProject:
+        {
+            TaskFilterRowContent* filterByWorkRoomRow = [TaskFilterRowContent new];
+            
+            filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByWorkRoomRow];
+            filterByWorkRoomRow.cellTypeId       = TaskFilterRightDetailCell;
+            filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            filterByWorkRoomRow.detail           = @"Не выбрано";
+            filterByWorkRoomRow.detailIsSelected = NO;
+            
+            TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
+            
+            filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterBySystemRow];
+            filterBySystemRow.cellTypeId       = TaskFilterRightDetailCell;
+            filterBySystemRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             filterBySystemRow.detail           = @"Не выбрано";
             filterBySystemRow.detailIsSelected = NO;
             
@@ -321,39 +354,6 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             
             sectionThree = @[ filterByWorkRoomRow,
                               filterBySystemRow,
-                              filterByTaskTypeRow ];
-        }
-            
-            break;
-            
-        case FilterBySingleProject:
-        {
-            TaskFilterRowContent* filterByProjectRow = [TaskFilterRowContent new];
-            
-            filterByProjectRow.title            = self.allTitlesArray[SectionThree][FilterByProjectRow];
-            filterByProjectRow.cellTypeId       = TaskFilterRightDetailCell;
-            filterByProjectRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByProjectRow.detail           = @"Не выбрано";
-            filterByProjectRow.detailIsSelected = NO;
-            
-            TaskFilterRowContent* filterByStatusRow = [TaskFilterRowContent new];
-            
-            filterByStatusRow.title            = self.allTitlesArray[SectionThree][FilterByStatusRow];
-            filterByStatusRow.cellTypeId       = TaskFilterRightDetailCell;
-            filterByStatusRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByStatusRow.detail           = @"Не выбрано";
-            filterByStatusRow.detailIsSelected = NO;
-            
-            TaskFilterRowContent* filterByTaskTypeRow = [TaskFilterRowContent new];
-            
-            filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
-            filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
-            filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByTaskTypeRow.detail           = @"Не выбрано";
-            filterByTaskTypeRow.detailIsSelected = NO;
-            
-            sectionThree = @[ filterByProjectRow,
-                              filterByStatusRow,
                               filterByTaskTypeRow ];
         }
             break;

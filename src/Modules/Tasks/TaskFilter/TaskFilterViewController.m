@@ -15,6 +15,7 @@
 #import "FilterByDatesViewController.h"
 #import "FilterByAssigneeViewController.h"
 #import "FilterByStatusViewController.h"
+#import "AddTaskTypeViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -61,6 +62,8 @@
     [super prepareForSegue: segue
                     sender: sender];
     
+    TaskFilterConfiguration* filterConfig = [self.viewModel getFilterConfig];
+    
     if ( [segue.identifier isEqualToString: @"ShowFilterByDatesSegueId"] )
     {
         FilterByDatesViewController* controller = [segue destinationViewController];
@@ -83,6 +86,16 @@
         FilterByStatusViewController* controller = [segue destinationViewController];
         
         [controller fillDelegate: self.viewModel];
+    }
+    
+    if ( [segue.identifier isEqualToString: @"ShowTaskTypeSegueId"] )
+    {
+        AddTaskTypeViewController* controller = [segue destinationViewController];
+        
+        NSNumber* taskType = filterConfig.byTaskType.firstObject;
+        
+        [controller fillSelectedTaskType: taskType.integerValue
+                            withDelegate: self.viewModel];
     }
 }
 
