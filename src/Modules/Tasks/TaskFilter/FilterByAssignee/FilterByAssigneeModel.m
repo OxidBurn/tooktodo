@@ -125,7 +125,7 @@
     
     ProjectTaskAssignee* selectedAssignee = self.assigneeArray[indexPath.row];
     
-    if ( [self.selectedAssigneeIndexes containsObject: selectedAssignee] )
+    if ( [self.selectedAssignee containsObject: selectedAssignee] )
     {
         [tmpAssignees removeObject: selectedAssignee];
     }
