@@ -19,13 +19,14 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "ChangeStatusViewController.h"
 #import "TaskFilterViewController.h"
+#import "TaskFilterViewControllerDelegate.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 #import "BaseMainViewController+Popover.h"
 
-@interface ProjectTasksViewController () <UISplitViewControllerDelegate, ChangeStatusControllerDelegate>
+@interface ProjectTasksViewController () <UISplitViewControllerDelegate, ChangeStatusControllerDelegate, TaskFilterViewControllerDelegate>
 
 // Properties
 
@@ -111,7 +112,8 @@
 
         TaskFilterViewController* vc = (TaskFilterViewController*)destinationNavController.topViewController;
         
-        [vc fillFilterType: FilterBySingleProject];
+        [vc fillFilterType: FilterBySingleProject
+              withDelegate: self];
         
         
     }
@@ -238,6 +240,18 @@
     [self.tasksByProjectTableView reloadData];
 }
 
+
+#pragma mark - Task filter delegate methods -
+
+- (void) applyFilterForTasks
+{
+    
+}
+
+- (void) resetFilterForTasks
+{
+    
+}
 
 
 #pragma mark - UISplitViewControllerDelegate methods -
