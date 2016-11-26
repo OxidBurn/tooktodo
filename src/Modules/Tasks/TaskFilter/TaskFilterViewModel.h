@@ -14,8 +14,9 @@
 // Classes
 #import "ProjectsEnumerations.h"
 #import "TaskFilterConfiguration.h"
+#import "AddTaskTypeViewController.h"
 
-@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
+@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, AddTaskTypeDelegate>
 
 // properties
 @property (nonatomic, copy) void (^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);

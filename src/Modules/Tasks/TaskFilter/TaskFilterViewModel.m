@@ -175,6 +175,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         }
             break;
             
+        case SectionThree:
+        {
+            NSString* segueId = [self.model getSegueIdForIndexPath: indexPath];
+            
+            if ( self.showControllerWithSegueId )
+                self.showControllerWithSegueId(segueId);
+        }
+            break;
+            
         default:
             break;
     }
@@ -250,6 +259,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model fillSelectedAditionalTermsOptionsWithValue: isOn
                                                     forTag: tag];
 }
+
+
+#pragma mark - AddTaskType delegate methods -
+
+- (void) didSelectedTaskType: (TaskType)  type
+             withDescription: (NSString*) typeDescription
+                   withColor: (UIColor*)  typeColor
+{
+    [self.model fillTaskType: type];
+}
+
 
 
 @end

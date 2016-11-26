@@ -38,6 +38,8 @@
 - (void) fillSelectedAditionalTermsOptionsWithValue: (BOOL)                           isOn
                                              forTag: (TaskFilterAditionalOptionsTags) tag;
 
+- (void) fillTaskType: (NSUInteger) taskType;
+
 // helpers for test
 
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;
