@@ -44,7 +44,6 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     FilterByOverdueTasksRow,
 };
 
-
 @interface TaskFilterContentManager()
 
 // properties
@@ -371,28 +370,28 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 {
     TaskFilterRowContent* filterByDoneTasksRow = [TaskFilterRowContent new];
     
-    filterByDoneTasksRow.title            = self.allTitlesArray[SectionFour][FilterByDoneTasksRow];
-    filterByDoneTasksRow.cellTypeId       = TaskFilterSwitchCell;
-    filterByDoneTasksRow.cellId           = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByDoneTasksRow.detail           = @"Не выбрано";
-    filterByDoneTasksRow.detailIsSelected = NO;
+    filterByDoneTasksRow.title         = self.allTitlesArray[SectionFour][FilterByDoneTasksRow];
+    filterByDoneTasksRow.cellTypeId    = TaskFilterSwitchCell;
+    filterByDoneTasksRow.cellId        = self.cellsIdArray[TaskFilterSwitchCell];
+    
+    filterByDoneTasksRow.switchControllTag = FilterByDoneTasksTag;
     
     TaskFilterRowContent* filterByCanceledTasksRow = [TaskFilterRowContent new];
     
     filterByCanceledTasksRow.title            = self.allTitlesArray[SectionFour][FilterByCanceledTasksRow];
     filterByCanceledTasksRow.cellTypeId       = TaskFilterSwitchCell;
     filterByCanceledTasksRow.cellId           = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByCanceledTasksRow.detail           = @"Не выбрано";
-    filterByCanceledTasksRow.detailIsSelected = NO;
     
+    filterByCanceledTasksRow.switchControllTag = FilterByCanceledTasksTag;
+
     TaskFilterRowContent* filterByOverdueTasksRow = [TaskFilterRowContent new];
     
     filterByOverdueTasksRow.title            = self.allTitlesArray[SectionFour][FilterByOverdueTasksRow];
     filterByOverdueTasksRow.cellTypeId       = TaskFilterSwitchCell;
     filterByOverdueTasksRow.cellId           = self.cellsIdArray[TaskFilterSwitchCell];
-    filterByOverdueTasksRow.detail           = @"Не выбрано";
-    filterByOverdueTasksRow.detailIsSelected = NO;
     
+    filterByOverdueTasksRow.switchControllTag = FilterByOverdueTasksTag;
+
     NSArray* sectionFour = @[ filterByDoneTasksRow,
                               filterByCanceledTasksRow,
                               filterByOverdueTasksRow ];

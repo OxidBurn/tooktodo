@@ -25,7 +25,7 @@
     OSSwitchTableCell* cell = [tableView dequeueReusableCellWithIdentifier: @"SwitchCellID"];
     
     [cell fillCellWithTitle: titleText
-                    withTag: (NSUInteger) tag
+                    withTag: tag
             withSwitchState: isOn
                withDelegate: delegate
            withEnabledState: isEnabled];

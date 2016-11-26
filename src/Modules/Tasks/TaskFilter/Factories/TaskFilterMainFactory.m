@@ -53,7 +53,7 @@
                                               withTag: content.switchControllTag
                                       withSwitchState: content.isOn
                                          forTableView: tableView
-                                         withDelegate: nil
+                                         withDelegate: delegate
                                      withEnabledState: YES];
         }
             break;

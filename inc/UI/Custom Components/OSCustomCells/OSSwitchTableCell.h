@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+// Classes
+#import "ProjectsEnumerations.h"
+
 @protocol OSSwitchTableCellDelegate;
 
 @interface OSSwitchTableCell : UITableViewCell
@@ -35,6 +38,9 @@
 
 - (void) updateTermsOption: (BOOL)       isOn
                     forTag: (NSUInteger) tag;
+
+- (void) updateFilterParameterWithValue: (BOOL)                           isOn
+                                 forTag: (TaskFilterAditionalOptionsTags) tag;
 
 
 @end

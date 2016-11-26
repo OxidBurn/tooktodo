@@ -14,6 +14,7 @@
 #import "FilterByTermsCell.h"
 #import "FilterByAssigneeViewController.h"
 #import "FilterByStatusViewController.h"
+#import "OSSwitchTableCell.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
@@ -23,7 +24,7 @@ typedef NS_ENUM(NSUInteger, SectionOneRows)
     FilterByStatuses,
 };
 
-@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate, FilterByStatusControllerDelegate>
+@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate, FilterByStatusControllerDelegate, OSSwitchTableCellDelegate>
 
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
@@ -239,5 +240,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if ( self.reloadTableView )
         self.reloadTableView();
 }
+
+
+#pragma mark - OSSwitchTableCellDelegate methods -
+
+- (void) updateFilterParameterWithValue: (BOOL)                           isOn
+                                 forTag: (TaskFilterAditionalOptionsTags) tag
+{
+    [self.model fillSelectedAditionalTermsOptionsWithValue: isOn
+                                                    forTag: tag];
+}
+
 
 @end
