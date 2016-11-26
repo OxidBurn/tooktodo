@@ -211,4 +211,12 @@ typedef NS_ENUM(NSUInteger, FilterByAssigneeType)
 };
 
 
+typedef NS_ENUM(NSUInteger, TaskFilterAditionalOptionsTags)
+{
+    FilterByDoneTasksTag     = 11,
+    FilterByCanceledTasksTag = 12,
+    FilterByOverdueTasksTag  = 13,
+};
+
+
 #endif /* ProjectsEnumerations_h */

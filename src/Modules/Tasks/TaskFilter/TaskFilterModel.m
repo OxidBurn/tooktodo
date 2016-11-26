@@ -9,7 +9,6 @@
 #import "TaskFilterModel.h"
 
 // Classes
-#import "TaskFilterContentManager.h"
 #import "ProjectInfo+CoreDataProperties.h"
 #import "DataManager+ProjectInfo.h"
 #import "TaskFilterConfiguration.h"
@@ -200,6 +199,36 @@
 - (void) fillSelectedStatusesData: (NSArray*) selectedStatuses
 {
     self.filterConfig.statusesList = selectedStatuses;
+    
+    [self updateContent];
+}
+
+- (void) fillSelectedAditionalTermsOptionsWithValue: (BOOL)                           isOn
+                                             forTag: (TaskFilterAditionalOptionsTags) tag
+{
+    switch ( tag )
+    {
+        case FilterByCanceledTasksTag:
+        {
+            self.filterConfig.isCanceled = isOn;
+        }
+            break;
+            
+        case FilterByOverdueTasksTag:
+        {
+            self.filterConfig.isOverdue = isOn;
+        }
+            break;
+            
+        case FilterByDoneTasksTag:
+        {
+            self.filterConfig.isDone = isOn;
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     [self updateContent];
 }

@@ -11,6 +11,7 @@
 // Classes
 #import "TaskFilterRowContent.h"
 #import "TaskFilterConfiguration.h"
+#import "TaskFilterContentManager.h"
 
 @interface TaskFilterModel : NSObject
 
@@ -33,6 +34,9 @@
                      forFilterType: (FilterByAssigneeType) filterType;
 
 - (void) fillSelectedStatusesData: (NSArray*) selectedStatuses;
+
+- (void) fillSelectedAditionalTermsOptionsWithValue: (BOOL)                           isOn
+                                             forTag: (TaskFilterAditionalOptionsTags) tag;
 
 // helpers for test
 

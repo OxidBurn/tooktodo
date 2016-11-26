@@ -8,9 +8,6 @@
 
 #import "OSSwitchTableCell.h"
 
-// Classes
-#import "ProjectsEnumerations.h"
-
 @interface OSSwitchTableCell()
 
 // properties
@@ -52,6 +49,15 @@
             }
         }
             break;
+            
+        case FilterByDoneTasksTag:
+        case FilterByOverdueTasksTag:
+        case FilterByCanceledTasksTag:
+        {
+            if ( [self.delegate respondsToSelector:@selector(updateFilterParameterWithValue:forTag:)] )
+                [self.delegate updateFilterParameterWithValue: sender.isOn
+                                                       forTag: sender.tag];
+        }
 
         default:
             break;
