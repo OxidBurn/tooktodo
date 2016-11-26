@@ -215,8 +215,9 @@
     
     blockSelf.viewModel.showControllerWithSegueId = ^ (NSString* segueId) {
       
-        [blockSelf performSegueWithIdentifier: segueId
-                                       sender: blockSelf];
+        if ( segueId )
+            [blockSelf performSegueWithIdentifier: segueId
+                                           sender: blockSelf];
     };
 }
 

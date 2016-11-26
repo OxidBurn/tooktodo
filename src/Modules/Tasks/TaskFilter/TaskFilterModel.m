@@ -59,8 +59,8 @@
                          @"FilterByStatusSegueId"],
                        @[@"ShowFilterByDatesSegueId",
                          @"ShowFilterByDatesSegueId"],
-                       @[@"",
-                         @"",
+                       @[@"ShowWorkAreaSegueId",
+                         @"ShowSystemsSegueId",
                          @"ShowTaskTypeSegueId"]];
     }
     
