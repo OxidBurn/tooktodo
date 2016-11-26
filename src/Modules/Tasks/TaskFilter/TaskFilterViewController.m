@@ -30,6 +30,8 @@
 
 @property (assign, nonatomic) FilterByAssigneeType filterByAssigneeType;
 
+@property (weak, nonatomic) id<TaskFilterViewControllerDelegate> delegate;
+
 // methods
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender;
 - (IBAction) onDoneBarButton: (UIBarButtonItem*) sender;
@@ -100,8 +102,10 @@
 
 #pragma mark - Public -
 
-- (void) fillFilterType: (TasksFilterType) filterType
+- (void) fillFilterType: (TasksFilterType)                      filterType
+           withDelegate: (id<TaskFilterViewControllerDelegate>) delegate
 {
+    self.delegate       = delegate;
     self.taskFilterType = filterType;
     
     [self.viewModel fillFilterType: filterType];
@@ -134,6 +138,11 @@
     
     [self.viewModel saveFilterConfigurationWithCompletion: ^(BOOL isSuccess) {
         
+        if ( [blockSelf.delegate respondsToSelector: @selector(applyFilterForTasks)] )
+        {
+            [blockSelf.delegate applyFilterForTasks];
+        }
+        
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];
         
@@ -145,6 +154,11 @@
     __weak typeof(self) blockSelf = self;
     
     [self.viewModel resetFilterConfigurationForCurrentProject: ^(BOOL isSuccess) {
+        
+        if ( [blockSelf.delegate respondsToSelector: @selector(resetFilterForTasks)] )
+        {
+            [blockSelf.delegate resetFilterForTasks];
+        }
         
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];

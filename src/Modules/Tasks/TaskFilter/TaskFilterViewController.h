@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 
 // Classes
+#import "BaseMainViewController.h"
+
+#import "TaskFilterViewControllerDelegate.h"
 #import "ProjectsEnumerations.h"
 
-#import "BaseMainViewController.h"
+@protocol TaskFilterViewControllerDelegate;
 
 @interface TaskFilterViewController: BaseMainViewController
 
 // methods
-- (void) fillFilterType: (TasksFilterType) filterType;
+- (void) fillFilterType: (TasksFilterType)                      filterType
+           withDelegate: (id<TaskFilterViewControllerDelegate>) delegate;
 
 @end

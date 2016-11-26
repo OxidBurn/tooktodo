@@ -94,7 +94,7 @@
         
         [self.taskDetailVC refreshTableView];
     }
-    
+    else
     if ([segue.identifier isEqualToString: @"ShowStatusList"])
     {
         UINavigationController* destinationNavController = segue.destinationViewController;
@@ -103,7 +103,7 @@
         
         vc.delegate = self;
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"ShowTaskFilteriPhone"] ||
          [segue.identifier isEqualToString: @"ShowTaskFilteriPad"])
     {
@@ -112,6 +112,8 @@
         TaskFilterViewController* vc = (TaskFilterViewController*)destinationNavController.topViewController;
         
         [vc fillFilterType: FilterBySingleProject];
+        
+        
     }
 }
 

@@ -14,13 +14,14 @@
 #import "AllTasksViewModel.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "TaskFilterViewController.h"
+#import "TaskFilterViewControllerDelegate.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
 #import "DataManager+ProjectInfo.h"
 #import "BaseMainViewController+Popover.h"
 
-@interface TasksByProjectViewController () <UISplitViewControllerDelegate>
+@interface TasksByProjectViewController () <UISplitViewControllerDelegate, TaskFilterViewControllerDelegate>
 
 // Properties
 
@@ -110,7 +111,8 @@
         
         TaskFilterViewController* vc = (TaskFilterViewController*)destinationNavController.topViewController;
         
-        [vc fillFilterType: FilterByAllProjects];
+        [vc fillFilterType: FilterByAllProjects
+              withDelegate: self];
     }
 }
 
@@ -184,7 +186,7 @@
                       withDirection: UIPopoverArrowDirectionUp];
 }
 
-- (IBAction)onShowTasksFilter: (UIBarButtonItem*) sender
+- (IBAction) onShowTasksFilter: (UIBarButtonItem*) sender
 {
     NSString* segueId = IS_PHONE ? @"ShowTaskFilteriPhone" : @"ShowTaskFilteriPad";
     
@@ -192,6 +194,19 @@
     
     [self performSegueWithIdentifier: segueId
                               sender: customSender];
+}
+
+
+#pragma mark - Task filter delegate methods -
+
+- (void) applyFilterForTasks
+{
+    
+}
+
+- (void) resetFilterForTasks
+{
+    
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -
