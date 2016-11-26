@@ -196,6 +196,16 @@
                                   withSet: config.byCreator
                                 inContext: localContext];
         
+        // Responsibles
+        [self saveFilterResponsiblesFromConfig: taskFilterContent
+                                       withSet: config.byResponsible
+                                     inContext: localContext];
+        
+        // Approvers
+        [self saveFilterApproversFromConfig: taskFilterContent
+                                    withSet: config.byApprovers
+                                  inContext: localContext];
+        
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
@@ -253,10 +263,33 @@
     
     [creators enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        if ( [filterConfig.creators containsObject: assignee] == NO )
-        {
-            [filterConfig addCreatorsObject: [assignee MR_inContext: context]];
-        }
+        [filterConfig addCreatorsObject: [assignee MR_inContext: context]];
+        
+    }];
+}
+
+- (void) saveFilterResponsiblesFromConfig: (ProjectTaskFilterContent*) filterConfig
+                                  withSet: (NSArray*)                  responsibles
+                                inContext: (NSManagedObjectContext*)   context
+{
+    filterConfig.responsibles = nil;
+    
+    [responsibles enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [filterConfig addResponsiblesObject: [assignee MR_inContext: context]];
+        
+    }];
+}
+
+- (void) saveFilterApproversFromConfig: (ProjectTaskFilterContent*) filterConfig
+                               withSet: (NSArray*)                  approvers
+                             inContext: (NSManagedObjectContext*)   context
+{
+    filterConfig.approvements = nil;
+    
+    [approvers enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [filterConfig addApprovementsObject: [assignee MR_inContext: context]];
         
     }];
 }
