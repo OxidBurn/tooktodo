@@ -170,7 +170,7 @@
     
     __block NSMutableArray* rooms = [NSMutableArray array];
     
-    [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
        
         [obj.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
            
@@ -238,7 +238,8 @@
         // Rooms
         [self saveFiltersRoomsForConfig: taskFilterContent
                                 withSet: config.byRooms
-                            withIndexes: config.byRoomIndexes];
+                            withIndexes: config.byRoomIndexes
+                              inContext: localContext];
         
         // Types
         [self saveFiltersTypesFromConfig: taskFilterContent
@@ -272,7 +273,7 @@
         
         ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
         
-        [project.filters MR_deleteEntityInContext: localContext];
+        [project.taskFilterConfig MR_deleteEntityInContext: localContext];
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -345,16 +346,12 @@
         tasks = [self applyFilterByType: tasks
                               withTypes: (NSArray*)content.types];
         
-        
-        
-        return tasks;
-    }
-    else
-    {
-        return tasks;
+        // Filtering by Rooms
+        tasks = [self applyFiltersByRooms: tasks
+                                withRooms: content.rooms.allObjects];
     }
     
-    return @[];
+    return tasks;
 }
 
 #pragma mark - Internal methods -
@@ -555,11 +552,16 @@
 - (void) saveFiltersRoomsForConfig: (ProjectTaskFilterContent*) filterConfig
                            withSet: (NSArray*)                  rooms
                        withIndexes: (NSArray*)                  roomIndexes
+                         inContext: (NSManagedObjectContext*)   context
 {
     filterConfig.rooms                = nil;
     filterConfig.roomsSelectedIndexes = roomIndexes;
     
-    [filterConfig addRooms: [NSSet setWithArray: rooms]];
+    [rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom*  _Nonnull room, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        [filterConfig addRoomsObject: [room MR_inContext: context]];
+        
+    }];
 }
 
 - (void) saveFiltersTypesFromConfig: (ProjectTaskFilterContent*) filterConfig
@@ -857,6 +859,19 @@
     if ( types.count > 0 )
     {
         NSPredicate* predicate = [NSPredicate predicateWithFormat: @"taskType IN %@", types];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyFiltersByRooms: (NSArray*) tasks
+                       withRooms: (NSArray*) rooms
+{
+    if ( rooms.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"ANY %K IN %@", @"rooms", rooms];
         
         tasks = [tasks filteredArrayUsingPredicate: predicate];
     }
