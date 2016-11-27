@@ -63,7 +63,7 @@
                                       @"FilterByStatusSegueId"],
                                     @[@"ShowFilterByDatesSegueId",
                                       @"ShowFilterByDatesSegueId"],
-                                    @[@"ShowWorkAreaSegueId",
+                                    @[@"ShowFilterByRoomsSegueID",
                                       @"ShowSystemsSegueId",
                                       @"ShowFilterByTypesSegueID"]];
     }
