@@ -207,8 +207,8 @@
         <attribute name="startBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="statuses" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="systemSelectedIndexes" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="workAreasSelectedIndexes" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="approvementsAssignee" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskApprovementsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
         <relationship name="approvementsInvite" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="filterInfo" inverseEntity="ProjectInviteInfo" syncable="YES"/>
         <relationship name="creators" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskCreatorsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>

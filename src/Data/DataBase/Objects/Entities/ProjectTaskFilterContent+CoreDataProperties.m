@@ -26,18 +26,18 @@
 @dynamic isDone;
 @dynamic isExpired;
 @dynamic responsiblesSelectedIndexes;
+@dynamic roomsSelectedIndexes;
 @dynamic startBeginDate;
 @dynamic startEndDate;
 @dynamic statuses;
-@dynamic types;
-@dynamic roomsSelectedIndexes;
 @dynamic workAreasSelectedIndexes;
+@dynamic types;
 @dynamic approvementsAssignee;
 @dynamic approvementsInvite;
 @dynamic creators;
 @dynamic project;
 @dynamic responsibles;
-@dynamic workAreas;
 @dynamic rooms;
+@dynamic workAreas;
 
 @end

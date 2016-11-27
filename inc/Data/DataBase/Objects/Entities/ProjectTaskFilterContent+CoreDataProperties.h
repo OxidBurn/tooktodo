@@ -27,19 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *isDone;
 @property (nullable, nonatomic, copy) NSNumber *isExpired;
 @property (nullable, nonatomic, retain) NSObject *responsiblesSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *roomsSelectedIndexes;
 @property (nullable, nonatomic, copy) NSDate *startBeginDate;
 @property (nullable, nonatomic, copy) NSDate *startEndDate;
 @property (nullable, nonatomic, retain) NSObject *statuses;
-@property (nullable, nonatomic, retain) NSObject *types;
-@property (nullable, nonatomic, retain) NSObject *roomsSelectedIndexes;
 @property (nullable, nonatomic, retain) NSObject *workAreasSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *types;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *approvementsAssignee;
 @property (nullable, nonatomic, retain) NSSet<ProjectInviteInfo *> *approvementsInvite;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *creators;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *responsibles;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskWorkArea *> *workAreas;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskWorkArea *> *workAreas;
 
 @end
 
@@ -65,15 +65,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addResponsibles:(NSSet<ProjectTaskAssignee *> *)values;
 - (void)removeResponsibles:(NSSet<ProjectTaskAssignee *> *)values;
 
-- (void)addWorkAreasObject:(ProjectTaskWorkArea *)value;
-- (void)removeWorkAreasObject:(ProjectTaskWorkArea *)value;
-- (void)addWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
-- (void)removeWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
-
 - (void)addRoomsObject:(ProjectTaskRoom *)value;
 - (void)removeRoomsObject:(ProjectTaskRoom *)value;
 - (void)addRooms:(NSSet<ProjectTaskRoom *> *)values;
 - (void)removeRooms:(NSSet<ProjectTaskRoom *> *)values;
+
+- (void)addWorkAreasObject:(ProjectTaskWorkArea *)value;
+- (void)removeWorkAreasObject:(ProjectTaskWorkArea *)value;
+- (void)addWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
+- (void)removeWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
 
 @end
 
