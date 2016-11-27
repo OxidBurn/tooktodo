@@ -393,35 +393,35 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             {
                 filterByWorkRoomRow.detailIsSelected = YES;
                 
-                NSNumber* index = filterConfig.byRoomIndexes.firstObject;
-                
-                __block NSString* rooms = [self getRoomTitleForFilterConfig: filterConfig forIndex: index];
-                
-                if (filterConfig.byRooms.count >=2)
+                if (filterConfig.byRooms.count > 1)
                 {
+                    __block NSMutableString* tmpRoomsTitles = [NSMutableString string];
+                    
                     [filterConfig.byRooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom* room, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        if ( idx > 0)
-                        {
-                            rooms = [rooms stringByAppendingString: [NSString stringWithFormat: @" ,%@", [self getRoomTitleForFilterConfig: filterConfig
-                                                                                                    forIndex: @(idx)]]];
-                        }
+                        NSString* roomTitle = [NSString stringWithFormat: @"%@, ", [self getRoomTitleForFilterConfig: filterConfig
+                                                                                                            forIndex: idx]];
+                        
+                        [tmpRoomsTitles appendString: roomTitle];
                         
                     }];
+                    
+                    filterByWorkRoomRow.detail = tmpRoomsTitles.copy;
+                    
+                    tmpRoomsTitles = nil;
                 }
-                
-                filterByWorkRoomRow.detail = rooms;
+                else
+                {
+                    filterByWorkRoomRow.detail = [self getRoomTitleForFilterConfig: filterConfig
+                                                                          forIndex: 0];
+                }
             }
             else
             {
                 filterByWorkRoomRow.detail           = @"Не выбрано";
                 filterByWorkRoomRow.detailIsSelected = NO;
             }
-            
 
-           
-            
-            
             TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
             
             filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterBySystemRow];
@@ -558,20 +558,9 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 }
 
 - (NSString*) getRoomTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
-                                 forIndex: (NSNumber*) index
+                                 forIndex: (NSUInteger)               index
 {
-    __block NSNumber* indexOfRoom = index.copy;
-    
-   __block ProjectTaskRoom* room  = nil;
-    
-    [filterConfig.byRoomIndexes enumerateObjectsUsingBlock: ^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        indexOfRoom = @([filterConfig.byRoomIndexes indexOfObject: obj]);
-        
-        room = filterConfig.byRooms[indexOfRoom.integerValue];
-    }];
-    
-    index = indexOfRoom;
+   ProjectTaskRoom* room  = filterConfig.byRooms[index];
 
     return room.title;
 }

@@ -32,6 +32,4 @@
 
 - (ProjectTask*) getSelectedProjectTask;
 
-- (void) updateTaskStatus;
-
 @end
