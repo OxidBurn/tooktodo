@@ -35,6 +35,8 @@
 
 @property (strong, nonatomic) NSArray* selectedUsers;
 
+@property (nonatomic, strong) NSArray* selectedRooms;
+
 @property (assign, nonatomic) NSUInteger switchControllTag;
 
 @property (assign, nonatomic) BOOL isOn;

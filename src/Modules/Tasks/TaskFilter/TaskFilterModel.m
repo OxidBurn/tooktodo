@@ -61,7 +61,7 @@
                          @"FilterByStatusSegueId"],
                        @[@"ShowFilterByDatesSegueId",
                          @"ShowFilterByDatesSegueId"],
-                       @[@"ShowWorkAreaSegueId",
+                       @[@"ShowFilterByRoomsSegueID",
                          @"ShowSystemsSegueId",
                          @"ShowFilterByTypesSegueID"]];
     }
@@ -189,6 +189,15 @@
     }
     
     
+    
+    [self updateContent];
+}
+
+- (void) fillSelectedRoomsData: (NSArray*) selectedRooms
+                   withIndexes: (NSArray*) selRoomIndexes
+{
+    self.filterConfig.byRooms = selectedRooms;
+    self.filterConfig.byRoomIndexes = selRoomIndexes;
     
     [self updateContent];
 }

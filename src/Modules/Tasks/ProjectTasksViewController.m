@@ -235,8 +235,6 @@
 
 - (void) updataTaskDetailInfoTaskStatus
 {
-   // [self.viewModel updateTaskStatus];
-    
     [self.tasksByProjectTableView reloadData];
 }
 

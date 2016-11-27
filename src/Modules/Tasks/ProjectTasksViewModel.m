@@ -67,12 +67,6 @@
     return [self.model getSelectedProjectTask];
 }
 
-- (void) updateTaskStatus
-{
-#warning 'Написать обновление статуса задачи'
-//    [self.model updateTaskStatusForIndexPath: ];
-}
-
 
 #pragma mark - UITable view data source -
 

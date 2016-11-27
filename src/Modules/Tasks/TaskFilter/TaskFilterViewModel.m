@@ -18,6 +18,7 @@
 #import "FilterByTypesViewController.h"
 #import "FilterByDatesViewController.h"
 
+
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
     FilterByCreatorsRow,
@@ -242,6 +243,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
+#pragma mark - FilterByRoom delegate -
+
+- (void) returnSelectedRoomsArray: (NSArray*) selectedRooms
+                      withIndexes: (NSArray*) indexesArray
+{
+    [self.model fillSelectedRoomsData: selectedRooms
+                          withIndexes: indexesArray];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
 #pragma mark - FilterByStatusDelegate methods -
 
 - (void) returnSelectedStatusesArray: (NSArray*) selectedStatuses
@@ -280,13 +293,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
 }
 
-
-#pragma mark - SelectRoom delegate methods -
-
-- (void) returnSelectedInfo: (id) info
-{
-    
-}
 
 
 #pragma mark - FilterByDatesControllerDelegate methods -

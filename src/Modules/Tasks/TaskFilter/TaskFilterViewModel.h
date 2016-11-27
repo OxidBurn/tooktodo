@@ -16,10 +16,10 @@
 #import "TaskFilterConfiguration.h"
 #import "AddTaskTypeViewController.h"
 #import "SelectSystemViewController.h"
-#import "SelectRoomViewController.h"
+#import "FilterByRoomViewController.h"
 #import "FilterByTypesViewController.h"
 
-@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, SelectSystemViewControllerDelegate, SelectRoomViewController, FilterByTypesViewControllerDelegate>
+@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, SelectSystemViewControllerDelegate, FilterByTypesViewControllerDelegate, FilterByRoomViewControllerDelegate>
 
 // properties
 @property (nonatomic, copy) void (^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);
