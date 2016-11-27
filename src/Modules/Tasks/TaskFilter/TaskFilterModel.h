@@ -53,4 +53,7 @@
 
 - (TaskFilterConfiguration*) getFilterConfig;
 
+- (void) fillSelectedRoomsData: (NSArray*) selectedRooms
+                   withIndexes: (NSArray*) selRoomIndexes;
+
 @end

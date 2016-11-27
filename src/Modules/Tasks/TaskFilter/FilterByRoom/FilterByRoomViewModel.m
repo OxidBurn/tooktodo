@@ -10,6 +10,7 @@
 
 //Classes
 #import "FilterByRoomModel.h"
+#import "OSCellWithCheckmark.h"
 
 @interface FilterByRoomViewModel()
 
@@ -24,30 +25,83 @@
 @implementation FilterByRoomViewModel
 
 
+#pragma mark - Properties -
+
+- (FilterByRoomModel*) model
+{
+    if (_model == nil)
+    {
+        _model = [FilterByRoomModel new];
+    }
+    
+    return _model;
+}
+
 #pragma mark - Public -
 
 - (NSArray*) getSelectedRooms
 {
-    return nil;
+    return [self.model getSelectedRooms];
 }
 
 - (NSArray*) getSelectedRoomIndexes
 {
-    return nil;
+    return [self.model getSelectedRoomIndexes];
 }
+
+- (void) selectAll
+{
+    [self.model selectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) deselectAll
+{
+    [self.model deselectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) fillSelectedRoomsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
+{
+    [self.model fillSelectedRoomsInfoFromConfig: filterConfig];
+}
+
 
 #pragma mark - UITableViewDatasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return nil;
+    OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
+    
+    [self.model handleRoomSelectionForIndexPath: indexPath];
+    
+    [cell fillCellWithContent: [self.model getRoomTitleForIndexPath: indexPath]
+            withSelectedState: [self.model getCheckmarkStateForIndexPath: indexPath]];
+    
+    
+    
+    return cell;
 }
 
-- (NSInteger)tableView: (UITableView*) tableView
- numberOfRowsInSection: (NSInteger)    section
+- (NSInteger) tableView: (UITableView*) tableView
+  numberOfRowsInSection: (NSInteger)    section
 {
-    return 0;
+    return [self.model getNumberOfRows];
+}
+
+#pragma mark - UITableViewDelegate methods -
+
+- (void)        tableView: (UITableView*) tableView
+  didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    [tableView deselectRowAtIndexPath: indexPath animated: YES];
+    
+    OSCellWithCheckmark* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+    [cell changeCheckmarkState: [self.model getCheckmarkStateForIndexPath: indexPath]];
 }
 
 @end

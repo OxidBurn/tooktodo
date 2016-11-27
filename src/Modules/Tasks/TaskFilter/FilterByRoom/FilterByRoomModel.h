@@ -8,10 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TaskFilterConfiguration.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
+
 @interface FilterByRoomModel : NSObject
 
 - (NSArray*) getSelectedRooms;
 
 - (NSArray*) getSelectedRoomIndexes;
+
+- (void) handleRoomSelectionForIndexPath: (NSIndexPath*) indexPath;
+
+- (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath;
+
+- (void) selectAll;
+
+- (void) deselectAll;
+
+- (void) fillSelectedRoomsInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
+
+- (ProjectTaskRoom*) getRoomForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSUInteger) getNumberOfRows;
+
+- (NSString*) getRoomTitleForIndexPath: (NSIndexPath*) indexPath;
 
 @end

@@ -42,6 +42,10 @@
 
 @property (strong, nonatomic) NSArray* byTaskType;
 
+@property (nonatomic, strong) NSArray* byRooms;
+
+@property (nonatomic, strong) NSArray* byRoomIndexes;
+
 @property (assign, nonatomic) BOOL isDone;
 
 @property (assign, nonatomic) BOOL isCanceled;

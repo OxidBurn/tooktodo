@@ -37,6 +37,14 @@
     
     self.filterByRoomTableView.delegate   = self.viewModel;
     self.filterByRoomTableView.dataSource = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^() {
+        
+        [blockSelf.filterByRoomTableView reloadData];
+        
+    };
 }
 
 
@@ -57,33 +65,39 @@
 
 - (void) fillSelectedRoomsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-    
+    [self.viewModel fillSelectedRoomsInfoFromConfig: filterConfig];
 }
 
 #pragma mark - Actions -
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
-    
+    [self saveData];
 }
 
 - (IBAction) onSelectAllBtn: (UIButton*) sender
 {
+    if ( sender.selected )
+    {
+        [self.viewModel deselectAll];
+    }
+    else
+    {
+        [self.viewModel selectAll];
+    }
     
+    sender.selected = !sender.selected;
 }
-- (IBAction) onResetBtn: (UIButton*) sender
-{
-    
-}
+
 
 - (IBAction) onCanceledBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    
+    [self saveData];
 }
 
 
@@ -96,6 +110,8 @@
         [self.delegate returnSelectedRoomsArray: [self.viewModel getSelectedRooms]
                                     withIndexes: [self.viewModel getSelectedRoomIndexes]];
     }
+    
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 @end

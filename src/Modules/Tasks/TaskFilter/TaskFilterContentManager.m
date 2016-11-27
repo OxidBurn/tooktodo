@@ -12,6 +12,7 @@
 #import "TaskFilterRowContent.h"
 #import "TaskStatusDefaultValues.h"
 #import "NSDate+Helper.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRow)
 {
@@ -317,6 +318,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     {
         case FilterByAllProjects:
         {
+            
             TaskFilterRowContent* filterByWorkRoomRow = [TaskFilterRowContent new];
             
             filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByWorkRoomRow];
@@ -324,6 +326,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             filterByWorkRoomRow.detail           = @"Не выбрано";
             filterByWorkRoomRow.detailIsSelected = NO;
+            
             
             TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
             
@@ -384,6 +387,40 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             filterByWorkRoomRow.detail           = @"Не выбрано";
             filterByWorkRoomRow.detailIsSelected = NO;
+            
+            
+            if ( filterConfig.byRooms.count > 0)
+            {
+                filterByWorkRoomRow.detailIsSelected = YES;
+                
+                NSNumber* index = filterConfig.byRoomIndexes.firstObject;
+                
+                __block NSString* rooms = [self getRoomTitleForFilterConfig: filterConfig forIndex: index];
+                
+                if (filterConfig.byRooms.count >=2)
+                {
+                    [filterConfig.byRooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom* room, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( idx > 0)
+                        {
+                            rooms = [rooms stringByAppendingString: [NSString stringWithFormat: @" ,%@", [self getRoomTitleForFilterConfig: filterConfig
+                                                                                                    forIndex: @(idx)]]];
+                        }
+                        
+                    }];
+                }
+                
+                filterByWorkRoomRow.detail = rooms;
+            }
+            else
+            {
+                filterByWorkRoomRow.detail           = @"Не выбрано";
+                filterByWorkRoomRow.detailIsSelected = NO;
+            }
+            
+
+           
+            
             
             TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
             
@@ -518,6 +555,25 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     }
     
     return description;
+}
+
+- (NSString*) getRoomTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
+                                 forIndex: (NSNumber*) index
+{
+    __block NSNumber* indexOfRoom = index.copy;
+    
+   __block ProjectTaskRoom* room  = nil;
+    
+    [filterConfig.byRoomIndexes enumerateObjectsUsingBlock: ^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        indexOfRoom = @([filterConfig.byRoomIndexes indexOfObject: obj]);
+        
+        room = filterConfig.byRooms[indexOfRoom.integerValue];
+    }];
+    
+    index = indexOfRoom;
+
+    return room.title;
 }
 
 @end
