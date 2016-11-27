@@ -64,7 +64,7 @@
                                     @[@"ShowFilterByDatesSegueId",
                                       @"ShowFilterByDatesSegueId"],
                                     @[@"ShowFilterByRoomsSegueID",
-                                      @"ShowSystemsSegueId",
+                                      @"ShowFilterBySystems",
                                       @"ShowFilterByTypesSegueID"]];
     }
     
@@ -234,6 +234,15 @@
 {
     self.filterConfig.byRooms = selectedRooms;
     self.filterConfig.byRoomIndexes = selRoomIndexes;
+    
+    [self updateContent];
+}
+
+- (void) fillSelectedSystemData: (NSArray*) selectedSystems
+                   withIndexes: (NSArray*) selectedIndexes
+{
+    self.filterConfig.bySystem        = selectedSystems;
+    self.filterConfig.bySystemIndexes = selectedIndexes;
     
     [self updateContent];
 }

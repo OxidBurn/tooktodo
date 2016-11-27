@@ -441,6 +441,9 @@
 		CF7779321DEB42C2003B2818 /* FilterByRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779311DEB42C2003B2818 /* FilterByRoomViewController.m */; };
 		CF7779351DEB42E2003B2818 /* FilterByRoomViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779341DEB42E2003B2818 /* FilterByRoomViewModel.m */; };
 		CF7779381DEB42F2003B2818 /* FilterByRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779371DEB42F2003B2818 /* FilterByRoomModel.m */; };
+		CF77793C1DEB7869003B2818 /* FilterBySystemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF77793B1DEB7869003B2818 /* FilterBySystemsViewController.m */; };
+		CF77793F1DEB7889003B2818 /* FilterBySystemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF77793E1DEB7889003B2818 /* FilterBySystemViewModel.m */; };
+		CF7779421DEB789B003B2818 /* FilterBySystemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779411DEB789B003B2818 /* FilterBySystemModel.m */; };
 		CFCAA3D21DCA580A00B8EF16 /* RolesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */; };
 		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
@@ -1338,6 +1341,12 @@
 		CF7779341DEB42E2003B2818 /* FilterByRoomViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByRoomViewModel.m; sourceTree = "<group>"; };
 		CF7779361DEB42F2003B2818 /* FilterByRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByRoomModel.h; sourceTree = "<group>"; };
 		CF7779371DEB42F2003B2818 /* FilterByRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByRoomModel.m; sourceTree = "<group>"; };
+		CF77793A1DEB7869003B2818 /* FilterBySystemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBySystemsViewController.h; sourceTree = "<group>"; };
+		CF77793B1DEB7869003B2818 /* FilterBySystemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBySystemsViewController.m; sourceTree = "<group>"; };
+		CF77793D1DEB7889003B2818 /* FilterBySystemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBySystemViewModel.h; sourceTree = "<group>"; };
+		CF77793E1DEB7889003B2818 /* FilterBySystemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBySystemViewModel.m; sourceTree = "<group>"; };
+		CF7779401DEB789B003B2818 /* FilterBySystemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBySystemModel.h; sourceTree = "<group>"; };
+		CF7779411DEB789B003B2818 /* FilterBySystemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBySystemModel.m; sourceTree = "<group>"; };
 		CFCAA3D01DCA580A00B8EF16 /* RolesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesModel.h; sourceTree = "<group>"; };
 		CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RolesModel.m; sourceTree = "<group>"; };
 		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
@@ -3661,6 +3670,19 @@
 			path = FilterByRoom;
 			sourceTree = "<group>";
 		};
+		CF7779391DEB7845003B2818 /* FilterBySystems */ = {
+			isa = PBXGroup;
+			children = (
+				CF77793A1DEB7869003B2818 /* FilterBySystemsViewController.h */,
+				CF77793B1DEB7869003B2818 /* FilterBySystemsViewController.m */,
+				CF77793D1DEB7889003B2818 /* FilterBySystemViewModel.h */,
+				CF77793E1DEB7889003B2818 /* FilterBySystemViewModel.m */,
+				CF7779401DEB789B003B2818 /* FilterBySystemModel.h */,
+				CF7779411DEB789B003B2818 /* FilterBySystemModel.m */,
+			);
+			path = FilterBySystems;
+			sourceTree = "<group>";
+		};
 		F725FBD11DC365A500793EA3 /* infoiPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -3750,6 +3772,7 @@
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				CF7779391DEB7845003B2818 /* FilterBySystems */,
 				56699DB31DEB724B00E705F9 /* AppliedFilterView */,
 				CF77792F1DEB425A003B2818 /* FilterByRoom */,
 				CF0486041DEAE49B00BB573C /* FilterByTypes */,
@@ -4041,6 +4064,7 @@
 				56D06E841DAFBDC0008E9AC0 /* DataManager+Roles.m in Sources */,
 				CF04860A1DEAE57500BB573C /* FilterByTypesViewModel.m in Sources */,
 				56D06F681DAFBDC0008E9AC0 /* StatusMarkerComponent.m in Sources */,
+				CF77793F1DEB7889003B2818 /* FilterBySystemViewModel.m in Sources */,
 				56D06FA21DAFBDC0008E9AC0 /* OSAlertDeleteTaskViewModel.m in Sources */,
 				56D06F7B1DAFBDC0008E9AC0 /* TeamProfileInfoViewModel.m in Sources */,
 				56D06F471DAFBDC0008E9AC0 /* CellWithBackground.m in Sources */,
@@ -4138,6 +4162,7 @@
 				56D06E8B1DAFBDC0008E9AC0 /* OfflineSettings+CoreDataProperties.m in Sources */,
 				56D06F571DAFBDC0008E9AC0 /* AddCommentCellFactory.m in Sources */,
 				56D06EBD1DAFBDC0008E9AC0 /* UserInfo+CoreDataProperties.m in Sources */,
+				CF7779421DEB789B003B2818 /* FilterBySystemModel.m in Sources */,
 				56D06F771DAFBDC0008E9AC0 /* AddContactViewController.m in Sources */,
 				56D06F321DAFBDC0008E9AC0 /* AllProjectsViewModel.m in Sources */,
 				56D06F2F1DAFBDC0008E9AC0 /* OfflineTableViewCell.m in Sources */,
@@ -4212,6 +4237,7 @@
 				5626A68C1DBF95B50015AFEC /* MainTabBar.m in Sources */,
 				56D06F591DAFBDC0008E9AC0 /* FilterAttachmentsCellFactory.m in Sources */,
 				560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */,
+				CF77793C1DEB7869003B2818 /* FilterBySystemsViewController.m in Sources */,
 				56D06FB31DAFBDC0008E9AC0 /* OSDatePickerCell.m in Sources */,
 				56D06EB31DAFBDC0008E9AC0 /* ProjectTaskStage+CoreDataClass.m in Sources */,
 				F725FBDC1DC367D800793EA3 /* InfoiPadModel.m in Sources */,

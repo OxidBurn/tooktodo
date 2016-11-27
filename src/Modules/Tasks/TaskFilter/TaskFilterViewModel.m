@@ -255,6 +255,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.reloadTableView();
 }
 
+#pragma mark - FilterBySystem delegate -
+
+- (void) returnSelectedSystemsArray: (NSArray*) selectedSystems
+                        withIndexes: (NSArray*) indexesArray
+{
+    [self.model fillSelectedSystemData: selectedSystems
+                           withIndexes: indexesArray];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
 #pragma mark - FilterByStatusDelegate methods -
 
 - (void) returnSelectedStatusesArray: (NSArray*) selectedStatuses
