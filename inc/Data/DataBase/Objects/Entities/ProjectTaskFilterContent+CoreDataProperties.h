@@ -2,7 +2,7 @@
 //  ProjectTaskFilterContent+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/27/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 
@@ -32,12 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSObject *statuses;
 @property (nullable, nonatomic, retain) NSObject *types;
 @property (nullable, nonatomic, retain) NSObject *roomsSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *workAreasSelectedIndexes;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *approvementsAssignee;
 @property (nullable, nonatomic, retain) NSSet<ProjectInviteInfo *> *approvementsInvite;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *creators;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *responsibles;
-@property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskWorkArea *> *workAreas;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
 
 @end
@@ -64,10 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addResponsibles:(NSSet<ProjectTaskAssignee *> *)values;
 - (void)removeResponsibles:(NSSet<ProjectTaskAssignee *> *)values;
 
-- (void)addSystemsObject:(ProjectSystem *)value;
-- (void)removeSystemsObject:(ProjectSystem *)value;
-- (void)addSystems:(NSSet<ProjectSystem *> *)values;
-- (void)removeSystems:(NSSet<ProjectSystem *> *)values;
+- (void)addWorkAreasObject:(ProjectTaskWorkArea *)value;
+- (void)removeWorkAreasObject:(ProjectTaskWorkArea *)value;
+- (void)addWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
+- (void)removeWorkAreas:(NSSet<ProjectTaskWorkArea *> *)values;
 
 - (void)addRoomsObject:(ProjectTaskRoom *)value;
 - (void)removeRoomsObject:(ProjectTaskRoom *)value;

@@ -8,28 +8,27 @@
 
 #import <Foundation/Foundation.h>
 #import "TaskFilterConfiguration.h"
-#import "ProjectSystem+CoreDataClass.h"
 
 @interface FilterBySystemModel : NSObject
 
 //methods
 
-- (void) handleSystemSelectionForIndexPath: (NSIndexPath*) indexPath;
+- (void) handleWorkAreaSelectionForIndexPath: (NSIndexPath*) indexPath;
 
 - (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath;
 
-- (NSArray*) getSelectedSystems;
+- (NSArray*) getSelectedWorkAreas;
 
-- (NSArray*) getSelectedSystemsIndexes;
+- (NSArray*) getSelectedWorkAreasIndexes;
 
 - (void) selectAll;
 
 - (void) deselectAll;
 
-- (void) fillSelectedSystemsInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
+- (void) fillSelectedWorkAreasInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
 - (NSUInteger) getNumberOfRows;
 
-- (NSString*) getSystemTitleForIndexPath: (NSIndexPath*) indexPath;
+- (NSString*) getWorkAreaTitleForIndexPath: (NSIndexPath*) indexPath;
 
 @end

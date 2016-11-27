@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 
 - (NSArray*) getFilterTypesForCurrentProject;
 
-- (NSArray*) getFilterSystemsForCurrentProject;
+- (NSArray*) getFilterWorkAreasForCurrentProject;
 
 - (NSArray*) getFilterRoomsForCurrentProject;
 

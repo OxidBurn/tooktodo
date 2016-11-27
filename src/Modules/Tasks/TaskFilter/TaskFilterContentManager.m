@@ -518,20 +518,20 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterBySystemRow.detailIsSelected = NO;
             
             
-            if ( filterConfig.bySystem.count > 0)
+            if ( filterConfig.byWorkAreas.count > 0)
             {
                 filterBySystemRow.detailIsSelected = YES;
                 
-                if (filterConfig.bySystem.count > 1)
+                if (filterConfig.byWorkAreas.count > 1)
                 {
                     __block NSMutableString* tmpSystemTitles = [NSMutableString string];
                     
-                    [filterConfig.bySystem enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [filterConfig.byWorkAreas enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        NSString* systemTytle = [NSString stringWithFormat: @"%@, ", [self getSystemTitleForFilterConfig: filterConfig
-                                                                                                                forIndex: idx]];
+                        NSString* workAreaTitles = [NSString stringWithFormat: @"%@, ", [self getWorkAreaTitleForFilterConfig: filterConfig
+                                                                                                                     forIndex: idx]];
                         
-                        [tmpSystemTitles appendString: systemTytle];
+                        [tmpSystemTitles appendString: workAreaTitles];
                         
                     }];
                     
@@ -541,8 +541,8 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
                 }
                 else
                 {
-                    filterBySystemRow.detail = [self getSystemTitleForFilterConfig: filterConfig
-                                                                          forIndex: 0];
+                    filterBySystemRow.detail = [self getWorkAreaTitleForFilterConfig: filterConfig
+                                                                            forIndex: 0];
                 }
             }
             else
@@ -761,12 +761,12 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     return room.title;
 }
 
-- (NSString*) getSystemTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
-                                   forIndex: (NSUInteger)               index
+- (NSString*) getWorkAreaTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
+                                     forIndex: (NSUInteger)               index
 {
-    ProjectSystem* system  = filterConfig.bySystem[index];
+    ProjectSystem* workArea  = filterConfig.byWorkAreas[index];
     
-    return system.title;
+    return workArea.title;
 }
 
 @end

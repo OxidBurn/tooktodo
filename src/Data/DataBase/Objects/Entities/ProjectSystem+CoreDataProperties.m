@@ -2,7 +2,7 @@
 //  ProjectSystem+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 
@@ -20,6 +20,5 @@
 @dynamic systemID;
 @dynamic title;
 @dynamic project;
-@dynamic taskFilterContent;
 
 @end

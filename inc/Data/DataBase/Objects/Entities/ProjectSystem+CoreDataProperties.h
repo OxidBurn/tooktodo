@@ -2,7 +2,7 @@
 //  ProjectSystem+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/24/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 
@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *systemID;
 @property (nullable, nonatomic, copy) NSString *title;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
-@property (nullable, nonatomic, retain) ProjectTaskFilterContent *taskFilterContent;
 
 @end
 

@@ -21,6 +21,7 @@
 #import "TeamMember+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectSystem+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -157,11 +158,14 @@
                @"value" : @3}];
 }
 
-- (NSArray*) getFilterSystemsForCurrentProject
+- (NSArray*) getFilterWorkAreasForCurrentProject
 {
     ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
     
-    return project.systems.allObjects;
+    NSDictionary* filterWorkAreasDic = (NSDictionary*)project.filters.workAreas;
+    NSArray* filterWorkAreasIDs      = filterWorkAreasDic.allKeys;
+    
+    return [self getWorkAreasListWithFilter: filterWorkAreasIDs];
 }
 
 - (NSArray*) getFilterRoomsForCurrentProject
@@ -240,6 +244,12 @@
                                 withSet: config.byRooms
                             withIndexes: config.byRoomIndexes
                               inContext: localContext];
+        
+        // Systems
+        [self saveFilterWorkAreasForConfig: taskFilterContent
+                                   withSet: config.byWorkAreas
+                               withIndexes: config.byWorkAreasIndexes
+                                 inContext: localContext];
         
         // Types
         [self saveFiltersTypesFromConfig: taskFilterContent
@@ -349,6 +359,10 @@
         // Filtering by Rooms
         tasks = [self applyFiltersByRooms: tasks
                                 withRooms: content.rooms.allObjects];
+        
+        // Filtering by systems
+        tasks = [self applyFiltersByWorkAreas: tasks
+                                withWorkAreas: content.workAreas.allObjects];
     }
     
     return tasks;
@@ -371,7 +385,7 @@
         
     }];
     
-    return creators;
+    return creators.copy;
 }
 
 - (NSArray*) getResponsiblesListWithFilter: (NSArray*) filter
@@ -399,7 +413,7 @@
         
     }];
     
-    return responsiblesList;
+    return responsiblesList.copy;
 }
 
 - (NSArray*) getApproversListWithFilter: (NSArray*) filter
@@ -438,7 +452,28 @@
     }];
     
     
-    return approversList;
+    return approversList.copy;
+}
+
+- (NSArray*) getWorkAreasListWithFilter: (NSArray*) filter
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    __block NSMutableArray* workAreasList = [NSMutableArray array];
+    __block NSMutableArray* tmpFilter     = filter.mutableCopy;
+    
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        if ( [tmpFilter containsObject: obj.workArea.workAreaID.stringValue] )
+        {
+            [tmpFilter removeObject: obj.workArea.workAreaID.stringValue];
+            
+            [workAreasList addObject: obj.workArea];
+        }
+        
+    }];
+    
+    return workAreasList.copy;
 }
 
 - (ProjectTaskFilterContent*) getTaskFilterContentForCurrentProject
@@ -560,6 +595,21 @@
     [rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom*  _Nonnull room, NSUInteger idx, BOOL * _Nonnull stop) {
        
         [filterConfig addRoomsObject: [room MR_inContext: context]];
+        
+    }];
+}
+
+- (void) saveFilterWorkAreasForConfig: (ProjectTaskFilterContent*) filterContent
+                              withSet: (NSArray*)                  workAreas
+                          withIndexes: (NSArray*)                  workAreasIndexes
+                            inContext: (NSManagedObjectContext*)   context
+{
+    filterContent.workAreas                = nil;
+    filterContent.workAreasSelectedIndexes = workAreasIndexes;
+    
+    [workAreas enumerateObjectsUsingBlock: ^(ProjectTaskWorkArea*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [filterContent addWorkAreasObject: [obj MR_inContext: context]];
         
     }];
 }
@@ -872,6 +922,19 @@
     if ( rooms.count > 0 )
     {
         NSPredicate* predicate = [NSPredicate predicateWithFormat: @"ANY %K IN %@", @"rooms", rooms];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyFiltersByWorkAreas: (NSArray*) tasks
+                       withWorkAreas: (NSArray*) workAreas
+{
+    if ( workAreas.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"workArea IN %@", workAreas];
         
         tasks = [tasks filteredArrayUsingPredicate: predicate];
     }

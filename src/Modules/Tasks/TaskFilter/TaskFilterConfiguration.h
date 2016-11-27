@@ -38,11 +38,9 @@
 
 @property (strong, nonatomic) NSNumber* byMyRoleInProject;
 
-@property (strong, nonatomic) NSArray* byWorkArea;
+@property (strong, nonatomic) NSArray* byWorkAreas;
 
-@property (strong, nonatomic) NSArray* bySystem;
-
-@property (strong, nonatomic) NSArray* bySystemIndexes;
+@property (strong, nonatomic) NSArray* byWorkAreasIndexes;
 
 @property (strong, nonatomic) NSArray* byTaskType;
 

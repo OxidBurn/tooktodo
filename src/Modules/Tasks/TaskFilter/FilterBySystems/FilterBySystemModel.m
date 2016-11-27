@@ -1,5 +1,5 @@
 //
-//  FilterBySystemModel.m
+//  FilterByWorkAreaModel.m
 //  TookTODO
 //
 //  Created by Lera on 27.11.16.
@@ -7,17 +7,20 @@
 //
 
 #import "FilterBySystemModel.h"
+
+// Classes
 #import "DataManager+Filters.h"
+#import "ProjectTaskWorkArea+CoreDataClass.h"
 
 @interface FilterBySystemModel()
 
 // properties
 
-@property (nonatomic, strong) NSArray* systemsArray;
+@property (nonatomic, strong) NSArray* workAreasArray;
 
-@property (nonatomic, strong) NSArray* selectedSystemsArray;
+@property (nonatomic, strong) NSArray* selectedWorkAreasArray;
 
-@property (nonatomic, strong) NSArray* selectedSystemsIndexesArray;
+@property (nonatomic, strong) NSArray* selectedWorkAreasIndexesArray;
 
 // methods
 
@@ -29,77 +32,77 @@
 
 #pragma mark - Properties -
 
-- (NSArray*) systemsArray
+- (NSArray*) workAreasArray
 {
-    if (_systemsArray == nil)
+    if (_workAreasArray == nil)
     {
-        _systemsArray = [DataManagerShared getFilterSystemsForCurrentProject];
+        _workAreasArray = [DataManagerShared getFilterWorkAreasForCurrentProject];
     }
     
-    return _systemsArray;
+    return _workAreasArray;
 }
 
-- (NSArray*) selectedSystemsArray
+- (NSArray*) selectedWorkAreasArray
 {
-    if (_selectedSystemsArray == nil)
+    if (_selectedWorkAreasArray == nil)
     {
-        _selectedSystemsArray = [NSArray array];
+        _selectedWorkAreasArray = [NSArray array];
     }
     
-    return _selectedSystemsArray;
+    return _selectedWorkAreasArray;
 }
 
-- (NSArray*) selectedSystemsIndexesArray
+- (NSArray*) selectedWorkAreasIndexesArray
 {
-    if (_selectedSystemsIndexesArray == nil)
+    if (_selectedWorkAreasIndexesArray == nil)
     {
-        _selectedSystemsIndexesArray = [NSArray array];
+        _selectedWorkAreasIndexesArray = [NSArray array];
     }
     
-    return _selectedSystemsIndexesArray;
+    return _selectedWorkAreasIndexesArray;
 }
 
 #pragma mark - Public -
 
-- (NSArray*) getSelectedSystemsIndexes
+- (NSArray*) getSelectedWorkAreasIndexes
 {
-    return self.selectedSystemsIndexesArray;
+    return self.selectedWorkAreasIndexesArray;
 }
 
-- (NSArray*) getSelectedSystems
+- (NSArray*) getSelectedWorkAreas
 {
-    return self.selectedSystemsArray;
+    return self.selectedWorkAreasArray;
 }
 
-- (void) handleSystemSelectionForIndexPath: (NSIndexPath*) indexPath
+- (void) handleWorkAreaSelectionForIndexPath: (NSIndexPath*) indexPath
 {
     // adding to array indexes of selected assignee
-    NSMutableArray* tmp = self.selectedSystemsIndexesArray.mutableCopy;
+    NSMutableArray* tmp = self.selectedWorkAreasIndexesArray.mutableCopy;
     
     NSNumber* index = @(indexPath.row);
     
-    if ( [self.selectedSystemsIndexesArray containsObject: index] )
+    if ( [self.selectedWorkAreasIndexesArray containsObject: index] )
     {
         [tmp removeObject: index];
     }
     else
         [tmp addObject: index];
     
-    self.selectedSystemsIndexesArray = tmp.copy;
+    self.selectedWorkAreasIndexesArray = tmp.copy;
     
     // adding to array selected assignees
-    NSMutableArray* tmpSystems = self.selectedSystemsArray.mutableCopy;
+    NSMutableArray* tmpWorkAreas = self.selectedWorkAreasArray.mutableCopy;
     
-    ProjectSystem* selectedSystem = self.systemsArray[indexPath.row];
+    ProjectTaskWorkArea* selectedWorkArea = self.workAreasArray[indexPath.row];
     
-    if ( [self.selectedSystemsArray containsObject: selectedSystem] )
+    if ( [self.selectedWorkAreasArray containsObject: selectedWorkArea] )
     {
-        [tmpSystems removeObject: selectedSystem];
+        [tmpWorkAreas removeObject: selectedWorkArea];
     }
     else
-        [tmpSystems addObject: selectedSystem];
+        [tmpWorkAreas addObject: selectedWorkArea];
     
-    self.selectedSystemsArray = tmpSystems.copy;
+    self.selectedWorkAreasArray = tmpWorkAreas.copy;
     
 }
 
@@ -107,9 +110,9 @@
 {
     BOOL isSelected;
     
-    [self handleSystemSelectionForIndexPath: indexPath];
+    [self handleWorkAreaSelectionForIndexPath: indexPath];
     
-    if ( [self.selectedSystemsIndexesArray containsObject: @(indexPath.row)] )
+    if ( [self.selectedWorkAreasIndexesArray containsObject: @(indexPath.row)] )
         isSelected = YES;
     
     return isSelected;
@@ -117,44 +120,44 @@
 
 - (void) selectAll
 {
-    self.selectedSystemsIndexesArray = nil;
-    self.selectedSystemsArray        = self.systemsArray;
+    self.selectedWorkAreasIndexesArray = nil;
+    self.selectedWorkAreasArray        = self.workAreasArray;
     
     __block NSMutableArray* tmp = [NSMutableArray new];
     
-    [self.systemsArray enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.workAreasArray enumerateObjectsUsingBlock: ^(ProjectTaskWorkArea* WorkArea, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [tmp addObject: @(idx)];
         
     }];
     
-    self.selectedSystemsIndexesArray = tmp.copy;
+    self.selectedWorkAreasIndexesArray = tmp.copy;
 }
 
 - (void) deselectAll
 {
-    self.selectedSystemsIndexesArray = nil;
-    self.selectedSystemsArray       = nil;
+    self.selectedWorkAreasIndexesArray = nil;
+    self.selectedWorkAreasArray       = nil;
 }
 
-- (void) fillSelectedSystemsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
+- (void) fillSelectedWorkAreasInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-    self.selectedSystemsArray        = filterConfig.bySystem;
-    self.selectedSystemsIndexesArray = filterConfig.bySystemIndexes;
+    self.selectedWorkAreasArray        = filterConfig.byWorkAreas;
+    self.selectedWorkAreasIndexesArray = filterConfig.byWorkAreasIndexes;
     
 }
 
 
-- (NSString*) getSystemTitleForIndexPath: (NSIndexPath*) indexPath
+- (NSString*) getWorkAreaTitleForIndexPath: (NSIndexPath*) indexPath
 {
-    ProjectSystem* system = self.systemsArray[indexPath.row];
+    ProjectTaskWorkArea* workArea = self.workAreasArray[indexPath.row];
     
-    return system.title;
+    return workArea.title;
 }
 
 - (NSUInteger) getNumberOfRows
 {
-    return self.systemsArray.count;
+    return self.workAreasArray.count;
 }
 
 

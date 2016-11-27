@@ -238,11 +238,11 @@
     [self updateContent];
 }
 
-- (void) fillSelectedSystemData: (NSArray*) selectedSystems
+- (void) fillSelectedSystemData: (NSArray*) selectedWorkAreas
                     withIndexes: (NSArray*) selectedIndexes
 {
-    self.filterConfig.bySystem        = selectedSystems;
-    self.filterConfig.bySystemIndexes = selectedIndexes;
+    self.filterConfig.byWorkAreas        = selectedWorkAreas;
+    self.filterConfig.byWorkAreasIndexes = selectedIndexes;
     
     [self updateContent];
 }
@@ -291,9 +291,9 @@
     [self updateContent];
 }
 
-- (void) fillSystemInfo: (ProjectSystem*) system
+- (void) fillSystemInfo: (ProjectSystem*) workArea
 {
-    self.filterConfig.bySystem = @[ system ];
+    self.filterConfig.byWorkAreas = @[ workArea ];
 }
 
 - (void) fillTermsInfo: (TermsData*)                     terms
@@ -421,6 +421,8 @@
         configuraiton.isCanceled           = filterContent.isCanceled.boolValue;
         configuraiton.byRooms              = filterContent.rooms.allObjects;
         configuraiton.byRoomIndexes        = (NSArray*)filterContent.roomsSelectedIndexes;
+        configuraiton.byWorkAreas          = filterContent.workAreas.allObjects;
+        configuraiton.byWorkAreasIndexes   = (NSArray*)filterContent.workAreasSelectedIndexes;
     }
     
     return configuraiton;

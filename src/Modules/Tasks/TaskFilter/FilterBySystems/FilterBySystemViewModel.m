@@ -41,12 +41,12 @@
 
 - (NSArray*) getSelectedSystems
 {
-    return [self.model getSelectedSystems];
+    return [self.model getSelectedWorkAreas];
 }
 
 - (NSArray*) getSelectedSystemsIndexes
 {
-    return [self.model getSelectedSystemsIndexes];
+    return [self.model getSelectedWorkAreasIndexes];
 }
 
 - (void) selectAll
@@ -65,7 +65,7 @@
 
 - (void) fillSelectedSystemsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-    [self.model fillSelectedSystemsInfoFromConfig: filterConfig];
+    [self.model fillSelectedWorkAreasInfoFromConfig: filterConfig];
 }
 
 
@@ -76,9 +76,9 @@
 {
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
-    [self.model handleSystemSelectionForIndexPath: indexPath];
+    [self.model handleWorkAreaSelectionForIndexPath: indexPath];
     
-    [cell fillCellWithContent: [self.model getSystemTitleForIndexPath: indexPath]
+    [cell fillCellWithContent: [self.model getWorkAreaTitleForIndexPath: indexPath]
             withSelectedState: [self.model getCheckmarkStateForIndexPath: indexPath]];
     
     return cell;

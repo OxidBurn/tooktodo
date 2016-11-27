@@ -2,14 +2,14 @@
 //  ProjectTaskFilterContent+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 11/27/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSObject, ProjectInfo, ProjectInviteInfo, ProjectSystem, ProjectTaskAssignee, ProjectTaskRoom;
+@class NSObject, ProjectInfo, ProjectInviteInfo, ProjectTaskAssignee, ProjectTaskRoom, ProjectTaskWorkArea;
 
 NS_ASSUME_NONNULL_BEGIN
 
