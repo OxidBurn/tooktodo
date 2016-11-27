@@ -2,7 +2,7 @@
 //  ProjectInviteInfo+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 24.11.16.
+//  Created by Nikolay Chaban on 11/27/16.
 //
 //
 
@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) ProjectRoleType *projectRoleType;
 @property (nullable, nonatomic, retain) ProjectTaskRoleAssignment *projectTaskAssignment;
 @property (nullable, nonatomic, retain) ProjectTaskResponsible *projectTaskResponsible;
+@property (nullable, nonatomic, retain) ProjectTaskFilterContent *filterInfo;
 
 @end
 

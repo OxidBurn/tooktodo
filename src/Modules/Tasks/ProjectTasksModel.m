@@ -18,6 +18,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
 #import "NSObject+Sorting.h"
+#import "DataManager+Filters.h"
 
 static NSString* stageKey   = @"stageInfoKey";
 static NSString* contentKey = @"contentInfoKey";
@@ -62,6 +63,13 @@ static NSString* contentKey = @"contentInfoKey";
     }];
     
     return updateInfoSignal;
+}
+
+- (RACSignal*) applyFilters
+{
+    
+    
+    return nil;
 }
 
 - (void) sortArrayForType: (TasksSortingType)           type
@@ -241,17 +249,21 @@ static NSString* contentKey = @"contentInfoKey";
 {
     self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
     
+    NSArray* allStages = [DataManagerShared getStagesForCurrentProject];
+    
     __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
     __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
     
-    [self.currentProjectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, BOOL * _Nonnull stop) {
+    [allStages enumerateObjectsUsingBlock: ^(ProjectTaskStage*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         NSMutableDictionary* stagesInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{stageKey : obj}];
         
         if ( obj.isExpanded.boolValue )
         {
-            [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+            NSArray* stageTasks = [DataManagerShared applyFiltersToTasks: obj.tasks.allObjects];
             
+            [stageTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
                 [tmpRowsInfo addObject: obj];
                 
             }];
@@ -266,7 +278,7 @@ static NSString* contentKey = @"contentInfoKey";
         }
         
         [tmpStageInfo addObject: stagesInfoDic];
-                
+        
     }];
     
     

@@ -22,6 +22,8 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 
 - (RACSignal*) updateContent;
 
+- (RACSignal*) applyFilters;
+
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
 
 - (NSArray*) rowsContentForSection: (NSUInteger) section;

@@ -21,6 +21,8 @@
 
 - (RACSignal*) updateContent;
 
+- (RACSignal*) applyFilters;
+
 - (NSUInteger) countOfSections;
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;

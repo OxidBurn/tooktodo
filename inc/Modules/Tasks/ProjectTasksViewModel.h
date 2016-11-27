@@ -28,6 +28,8 @@
 
 - (RACSignal*) updateContent;
 
+- (RACSignal*) applyFilters;
+
 - (ProjectTask*) getSelectedProjectTask;
 
 - (void) updateTaskStatus;

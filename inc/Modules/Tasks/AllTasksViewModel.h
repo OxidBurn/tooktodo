@@ -25,5 +25,7 @@
 
 - (RACSignal*) updateContent;
 
+- (void) applyFilters;
+
 
 @end

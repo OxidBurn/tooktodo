@@ -57,6 +57,11 @@
     return updateSignal;
 }
 
+- (RACSignal*) applyFilters
+{
+    return [self.model applyFilters];
+}
+
 - (ProjectTask*) getSelectedProjectTask
 {
     return [self.model getSelectedProjectTask];

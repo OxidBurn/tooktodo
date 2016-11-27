@@ -15,6 +15,11 @@
 #import "ProjectTaskWorkArea+CoreDataClass.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectTaskFilterContent+CoreDataClass.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "TeamMember+CoreDataClass.h"
+#import "ProjectInviteInfo+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -99,7 +104,7 @@
     NSDictionary* filterCreatorsDic  = (NSDictionary*)project.filters.creators;
     NSArray* filtersCreatorsIDs      = filterCreatorsDic.allKeys;
     
-    return [self getAssigneeListWithFilter: filtersCreatorsIDs];
+    return [self getCreatorsListWithFilter: filtersCreatorsIDs];
 }
 
 - (NSArray*) getFilterResponsiblesForCurrentProject
@@ -109,7 +114,7 @@
     NSDictionary* filterResponsibleDic = (NSDictionary*)project.filters.responsibles;
     NSArray* filterResponsiblesIDs     = filterResponsibleDic.allKeys;
     
-    return [self getAssigneeListWithFilter: filterResponsiblesIDs];
+    return [self getResponsiblesListWithFilter: filterResponsiblesIDs];
 }
 
 - (NSArray*) getFilterApprovesForCurrentProject
@@ -119,7 +124,7 @@
     NSDictionary* filterApprovesDic = (NSDictionary*)project.filters.approves;
     NSArray* filterApprovesIDs      = filterApprovesDic.allKeys;
     
-    return [self getAssigneeListWithFilter: filterApprovesIDs];
+    return [self getApproversListWithFilter: filterApprovesIDs];
 }
 
 - (NSArray*) getFilterStatusesForCurrentProject
@@ -248,10 +253,44 @@
                       }];
 }
 
+- (NSArray*) applyFiltersToTasks: (NSArray*) tasks
+{
+    ProjectTaskFilterContent* content = [self getTaskFilterContentForCurrentProject];
+    
+    if ( content )
+    {
+        // Creators
+        tasks = [self applyCreatorsFilter: tasks
+                         withCreatorsList: content.creators.allObjects];
+        
+        // Responsibles
+        tasks = [self applyResponsiblesFilter: tasks
+                         withResponsiblesList: content.responsibles.allObjects];
+        
+        // Approvements
+        NSMutableArray* approvers = [NSMutableArray arrayWithArray: content.approvementsAssignee.allObjects];
+        
+        [approvers addObjectsFromArray: content.approvementsInvite.allObjects];
+        
+        tasks = [self applyApproversFilters: tasks
+                          withApproversList: approvers];
+        
+        // 
+        
+        
+        return tasks;
+    }
+    else
+    {
+        return tasks;
+    }
+    
+    return @[];
+}
 
 #pragma mark - Internal methods -
 
-- (NSArray*) getAssigneeListWithFilter: (NSArray*) filter
+- (NSArray*) getCreatorsListWithFilter: (NSArray*) filter
 {
     ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
     
@@ -267,6 +306,80 @@
     }];
     
     return creators;
+}
+
+- (NSArray*) getResponsiblesListWithFilter: (NSArray*) filter
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    __block NSMutableArray* responsiblesList = [NSMutableArray array];
+    __block NSMutableArray* addedIDs         = [NSMutableArray array];
+    
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+        
+        if ( [filter containsObject: obj.responsible.responsibleID.stringValue] &&
+             [addedIDs containsObject: obj.responsible.responsibleID] == NO )
+        {
+            [addedIDs addObject: obj.responsible.responsibleID];
+            
+            if ( obj.responsible.firstName.length > 0 )
+                [responsiblesList addObject: obj.responsible];
+            else
+                if ( obj.responsible.assignee )
+                {
+                    [responsiblesList addObject: obj.responsible.assignee];
+                }
+        }
+        
+    }];
+    
+    return responsiblesList;
+}
+
+- (NSArray*) getApproversListWithFilter: (NSArray*) filter
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    __block NSMutableArray* approversList = [NSMutableArray array];
+    __block NSMutableArray* tmpFilter = filter.mutableCopy;
+    
+    [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, BOOL * _Nonnull stop) {
+       
+        [task.taskRoleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments * _Nonnull roleAssignments, BOOL * _Nonnull stop) {
+           
+            [roleAssignments.projectRoleAssignment enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment * _Nonnull assignment, BOOL * _Nonnull stop) {
+                
+                if ( [tmpFilter containsObject: assignment.taskRoleAssignmnetID.stringValue] &&
+                    roleAssignments.taskRoleType.integerValue == 1 )
+                {   
+                    [tmpFilter removeObject: assignment.taskRoleAssignmnetID.stringValue];
+                    
+                    ProjectTaskAssignee* assignee = assignment.assignee.anyObject;
+                    
+                    ProjectInviteInfo* invite = assignment.invite.anyObject;
+                    
+                    if ( assignee )
+                        [approversList addObject: assignee];
+                    else
+                        if ( invite )
+                            [approversList addObject: invite];
+                }
+                
+            }];
+            
+        }];
+        
+    }];
+    
+    
+    return approversList;
+}
+
+- (ProjectTaskFilterContent*) getTaskFilterContentForCurrentProject
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    return project.taskFilterConfig;
 }
 
 
@@ -301,11 +414,19 @@
                                withSet: (NSArray*)                  approvers
                              inContext: (NSManagedObjectContext*)   context
 {
-    filterConfig.approvements = nil;
+    filterConfig.approvementsInvite   = nil;
+    filterConfig.approvementsAssignee = nil;
     
-    [approvers enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        [filterConfig addApprovementsObject: [assignee MR_inContext: context]];
+    [approvers enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        if ( [obj isKindOfClass: [ProjectTaskAssignee class]] )
+        {
+            [filterConfig addApprovementsAssigneeObject: [(ProjectTaskAssignee*)obj MR_inContext: context]];
+        }
+        else
+        {
+            [filterConfig addApprovementsInviteObject: [(ProjectInviteInfo*)obj MR_inContext: context]];
+        }
         
     }];
 }
@@ -332,6 +453,92 @@
                               withSet: (NSArray*)                  statuses
 {
     filterConfig.statuses = statuses;
+}
+
+
+// MARK: Apply filters
+
+- (NSArray*) applyCreatorsFilter: (NSArray*) tasks
+                withCreatorsList: (NSArray*) filter
+{
+    if ( filter.count > 0 )
+    {
+        NSMutableArray* creatorsIDs = [NSMutableArray arrayWithCapacity: filter.count];
+        
+        [filter enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [creatorsIDs addObject: obj.assigneeID];
+            
+        }];
+        
+        NSPredicate* creatorsPredicate = [NSPredicate predicateWithFormat: @"ownerUserId IN %@", creatorsIDs];
+        
+        tasks = [tasks filteredArrayUsingPredicate: creatorsPredicate];
+        
+        return tasks;
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyResponsiblesFilter: (NSArray*) tasks
+                withResponsiblesList: (NSArray*) filter
+{
+    if ( filter.count > 0 )
+    {
+        NSMutableArray* responsiblesIDs = [NSMutableArray arrayWithCapacity: filter.count];
+        
+        [filter enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [responsiblesIDs addObject: obj.assigneeID];
+            
+        }];
+        
+        NSPredicate* responsiblesPredicate = [NSPredicate predicateWithFormat: @"responsible.responsibleID IN %@", responsiblesIDs];
+        
+        tasks = [tasks filteredArrayUsingPredicate: responsiblesPredicate];
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyApproversFilters: (NSArray*) tasks
+                 withApproversList: (NSArray*) filter
+{
+    if ( filter.count > 0 )
+    {
+        NSMutableArray* approversIDs = [NSMutableArray arrayWithCapacity: filter.count];
+        
+        [filter enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [obj isKindOfClass: [ProjectTaskAssignee class]] )
+                [approversIDs addObject: [[[(ProjectTaskAssignee*)obj roleAssignment] projectRoleAssignments] roleAssignmentsID]];
+            else
+                [approversIDs addObject: [[[(ProjectInviteInfo*)obj projectTaskAssignment] projectRoleAssignments] roleAssignmentsID]];
+            
+        }];
+        
+        __block NSMutableArray* tmpTasksArray = [NSMutableArray array];
+        
+        [tasks enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [task.taskRoleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments * _Nonnull obj, BOOL * _Nonnull stop) {
+               
+                if ( [approversIDs containsObject: obj.roleAssignmentsID] &&
+                    [tmpTasksArray containsObject: task] == NO )
+                {
+                    [tmpTasksArray addObject: task];
+                }
+                
+            }];
+        }];
+        
+        tasks = tmpTasksArray.copy;
+        
+        tmpTasksArray = nil;
+    }
+    
+    return tasks;
 }
 
 @end

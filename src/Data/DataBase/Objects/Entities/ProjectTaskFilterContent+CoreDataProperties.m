@@ -2,7 +2,7 @@
 //  ProjectTaskFilterContent+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/25/16.
+//  Created by Nikolay Chaban on 11/27/16.
 //
 //
 
@@ -23,11 +23,12 @@
 @dynamic startDate;
 @dynamic statuses;
 @dynamic types;
-@dynamic approvements;
 @dynamic creators;
+@dynamic project;
 @dynamic responsibles;
 @dynamic systems;
 @dynamic workArea;
-@dynamic project;
+@dynamic approvementsAssignee;
+@dynamic approvementsInvite;
 
 @end

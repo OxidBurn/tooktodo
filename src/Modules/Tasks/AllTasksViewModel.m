@@ -56,6 +56,11 @@
     return [DataManagerShared getSelectedTask];
 }
 
+- (void) applyFilters
+{
+    
+}
+
 #pragma mark - UITable view data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

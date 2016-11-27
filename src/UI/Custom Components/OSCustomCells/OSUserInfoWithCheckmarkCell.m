@@ -36,7 +36,8 @@
                         withCheckmark: (BOOL)            isSelected
 {
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: memberInfo.avatarSrc]];
-    self.userAvatarImageView.clipsToBounds = YES;
+    
+    self.userAvatarImageView.clipsToBounds      = YES;
     self.userAvatarImageView.layer.cornerRadius = 10;
     
     NSString* userInfo = [NSString stringWithFormat: @"%@, %@", memberInfo.fullname, memberInfo.role];
@@ -50,15 +51,23 @@
 - (void) fillCellWithAssignee: (ProjectTaskAssignee*) assignee
                 withCheckMark: (BOOL)                 isSelected
 {
-    NSString* urlString = assignee.avatarSrc;
-    
-    if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+    if ( [assignee isKindOfClass: [ProjectTaskAssignee class]] )
     {
-        urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+        NSString* urlString = assignee.avatarSrc;
+        
+        if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+        {
+            urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+        }
+        
+        [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
+    }
+    else
+    {
+        self.userAvatarImageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
     }
     
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
-    self.userAvatarImageView.clipsToBounds = YES;
+    self.userAvatarImageView.clipsToBounds      = YES;
     self.userAvatarImageView.layer.cornerRadius = 10;
     
     NSString* userInfo = [NSString stringWithFormat: @"%@ %@", assignee.firstName, assignee.lastName];

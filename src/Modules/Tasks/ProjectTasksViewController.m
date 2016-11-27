@@ -245,7 +245,7 @@
 
 - (void) applyFilterForTasks
 {
-    
+    [self updateContent];
 }
 
 - (void) resetFilterForTasks

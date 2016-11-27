@@ -2,14 +2,14 @@
 //  ProjectInviteInfo+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 24.11.16.
+//  Created by Nikolay Chaban on 11/27/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectRoleAssignments, ProjectRoleType, ProjectTaskResponsible, ProjectTaskRoleAssignment;
+@class ProjectRoleAssignments, ProjectRoleType, ProjectTaskFilterContent, ProjectTaskResponsible, ProjectTaskRoleAssignment;
 
 NS_ASSUME_NONNULL_BEGIN
 

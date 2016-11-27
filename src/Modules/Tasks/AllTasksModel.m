@@ -89,6 +89,13 @@
     return updateInfoSignal;
 }
 
+- (RACSignal*) applyFilters
+{
+    
+    
+    return nil;
+}
+
 - (NSUInteger) countOfSections
 {
     return self.projectsInfoArray.count;

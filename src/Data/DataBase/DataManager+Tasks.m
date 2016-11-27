@@ -428,47 +428,15 @@
         responsible = [ProjectTaskResponsible MR_createEntityInContext: context];
     }
     
-    if ( info.responsibleID )
-    {
-        responsible.responsibleID = info.responsibleID;
-    }
-    
-    if ( info.isBlocked )
-    {
-        responsible.isBlocked = info.isBlocked;
-    }
-    
-    if ( info.projectPermission )
-    {
-        responsible.projectPermission = info.projectPermission;
-    }
-    
-    if ( info.firstName )
-    {
-        responsible.firstName = info.firstName;
-    }
-    
-    if ( info.lastName )
-    {
-        responsible.lastName = info.lastName;
-    }
-    
-    if ( info.displayName )
-    {
-        responsible.displayName = info.displayName;
-    }
-    
-    if ( info.avatarSrc )
-    {
-        responsible.avatarSrc = info.avatarSrc;
-    }
-    
-    if ( info.isActiveUser )
-    {
-        responsible.isActiveUser = info.isActiveUser;
-    }
-    
-    responsible.task = task;
+    responsible.responsibleID     = info.responsibleID;
+    responsible.isBlocked         = info.isBlocked;
+    responsible.projectPermission = info.projectPermission;
+    responsible.firstName         = info.firstName;
+    responsible.lastName          = info.lastName;
+    responsible.displayName       = info.displayName;
+    responsible.avatarSrc         = info.avatarSrc;
+    responsible.task              = task;
+    responsible.isActiveUser      = info.isActiveUser;
     
     // Store responsible assignee
     if ( info.assignee )
