@@ -43,7 +43,7 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 
 - (NSArray*) getFilterSystemsForCurrentProject;
 
-- (NSArray*) getFilterWorkAreasForCurrentProject;
+- (NSArray*) getFilterRoomsForCurrentProject;
 
 // Save filter configuration
 - (void) storeFilterConfiguration: (TaskFilterConfiguration*) config

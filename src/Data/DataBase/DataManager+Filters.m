@@ -163,25 +163,26 @@
     return project.systems.allObjects;
 }
 
-- (NSArray*) getFilterWorkAreasForCurrentProject
+- (NSArray*) getFilterRoomsForCurrentProject
 {
     ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
     
-    NSDictionary* filterWorkAreasDic = (NSDictionary*)project.filters.workAreas;
-    NSArray* filterWorkAreasIDs      = filterWorkAreasDic.allKeys;
-    
-    __block NSMutableArray* workAreas = [NSMutableArray array];
+    __block NSMutableArray* rooms = [NSMutableArray array];
     
     [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
        
-        if ( [filterWorkAreasIDs containsObject: obj.workArea.workAreaID] )
-        {
-            [workAreas addObject: obj.workArea];
-        }
+        [obj.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+           
+            if ( [rooms containsObject: obj] == NO )
+            {
+                [rooms addObject: obj];
+            }
+            
+        }];
         
     }];
     
-    return workAreas;
+    return rooms;
 }
 
 - (void) storeFilterConfiguration: (TaskFilterConfiguration*) config
