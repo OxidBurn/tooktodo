@@ -15,6 +15,7 @@
 #import "FilterByAssigneeViewController.h"
 #import "FilterByStatusViewController.h"
 #import "OSSwitchTableCell.h"
+#import "FilterByTypesViewController.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
@@ -263,16 +264,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark - AddTaskType delegate methods -
 
-- (void) didSelectedTaskType: (TaskType)  type
-             withDescription: (NSString*) typeDescription
-                   withColor: (UIColor*)  typeColor
+- (void) returnSelectedTypesArray: (NSArray*) selectedTypes
 {
-    [self.model fillTaskType: type];
+    [self.model fillTaskType: selectedTypes];
     
     if ( self.reloadTableView )
         self.reloadTableView();
 }
-
 
 #pragma mark - SelectSystem delegate methods -
 
