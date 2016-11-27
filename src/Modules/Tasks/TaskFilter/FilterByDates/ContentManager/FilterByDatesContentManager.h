@@ -19,4 +19,6 @@
 - (NSArray*) updateDateLabelContentWithDate: (NSDate*)    date
                            forPickerWithTag: (NSUInteger) pickerTag;
 
+- (TermsData*) getTermsData;
+
 @end

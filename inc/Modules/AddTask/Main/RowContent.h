@@ -23,6 +23,8 @@
 
 @property (assign, nonatomic) AddTaskTableViewCellType cellIndex;
 
+@property (assign, nonatomic) FilterByDatesCellId filterByDatesIndex;
+
 @property (strong, nonatomic) NSString* segueId;
 
 @property (assign, nonatomic) BOOL      isHidden;

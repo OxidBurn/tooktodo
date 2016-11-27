@@ -43,6 +43,8 @@
 
 - (void) fillSystemInfo: (ProjectSystem*) system;
 
+- (void) fillTermsInfo: (TermsData*)                     terms
+     forControllerType: (FilterByDateViewControllerType) controllerType;
 // helpers for test
 
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;

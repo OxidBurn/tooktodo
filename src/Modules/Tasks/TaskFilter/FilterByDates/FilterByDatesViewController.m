@@ -78,7 +78,13 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
-    
+    if ( [self.delegate respondsToSelector:@selector(updateConfigWithTerms:forControllerType:)] )
+    {
+        [self.delegate updateConfigWithTerms: [self.viewModel getTermsData]
+                           forControllerType: self.controllerType];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 
 - (IBAction) onBeforeCurrentDate: (UIButton*) sender
@@ -121,8 +127,10 @@
 
 - (void) fillControllerType: (FilterByDateViewControllerType) controllerType
            withFilterConfig: (TaskFilterConfiguration*)       filterConfig
+               withDelegate: (id)                             delegate
 {
     self.controllerType = controllerType;
+    self.delegate       = delegate;
     
     [self.viewModel fillFilterConfig: filterConfig
                   withControllerType: controllerType];

@@ -21,7 +21,8 @@
 // methods
 
 - (void) fillCellWithTitle: (NSString*)             titleText
-                withDetail: (NSString*)             detailText
+            withStartTerms: (NSString*)             startTerms
+              withEndTerms: (NSString*)             endTerms
               withCellType: (FilterByTermsCellType) cellType
               withDelegate: (id)                    delegate;
 

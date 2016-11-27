@@ -32,8 +32,8 @@ typedef NS_ENUM(NSUInteger, TermsCellsId) {
 
 typedef NS_ENUM(NSUInteger, DatePickerTag) {
     
-    StartDatePicker,
-    EndDatePicker,
+    StartDatePicker = 1,
+    EndDatePicker = 2,
 };
 
 typedef NS_ENUM(NSUInteger, SwitchTag) {

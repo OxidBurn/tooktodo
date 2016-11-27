@@ -17,6 +17,8 @@
 // methods
 - (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath;
 
+- (NSUInteger) getNumberOfRows;
+
 - (void) setDefaultStartDayIfNotSetByPicker;
 
 - (void)updateDateLabelWithDate: (NSDate*)    date
@@ -24,5 +26,7 @@
 
 - (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
        withControllerType: (FilterByDateViewControllerType) controllerType;
+
+- (TermsData*) getTermsData;
 
 @end

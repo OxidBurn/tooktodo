@@ -85,13 +85,14 @@
 #pragma mark - Public -
 
 - (void) fillCellWithTitle: (NSString*)             titleText
-                withDetail: (NSString*)             detailText
+            withStartTerms: (NSString*)             startTerms
+              withEndTerms: (NSString*)             endTerms
               withCellType: (FilterByTermsCellType) cellType
               withDelegate: (id)                    delegate
 {
     self.titleLabel.text     = titleText;
-    self.endDateLabel.text   = detailText;
-    self.startDateLabel.text = detailText;
+    self.endDateLabel.text   = endTerms;
+    self.startDateLabel.text = startTerms;
     
     self.cellType = cellType;
     

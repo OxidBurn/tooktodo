@@ -19,7 +19,8 @@
 // methods
 
 - (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)             title
-                                           withDetail: (NSString*)             detail
+                                       withStartTerms: (NSString*)             startTerms
+                                         withEndTerms: (NSString*)             endTerms
                                          forTableView: (UITableView*)          tableView
                                          withCellType: (FilterByTermsCellType) cellType
                                          withDelegate: (id)                    delegate;
