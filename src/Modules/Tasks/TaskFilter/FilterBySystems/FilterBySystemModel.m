@@ -66,7 +66,7 @@
     return self.selectedSystemsIndexesArray;
 }
 
-- (NSArray*) getSelectedRooms
+- (NSArray*) getSelectedSystems
 {
     return self.selectedSystemsArray;
 }

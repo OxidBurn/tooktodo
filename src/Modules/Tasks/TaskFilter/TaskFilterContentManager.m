@@ -526,7 +526,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
                 {
                     __block NSMutableString* tmpSystemTitles = [NSMutableString string];
                     
-                    [filterConfig.byRooms enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [filterConfig.bySystem enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
                         
                         NSString* systemTytle = [NSString stringWithFormat: @"%@, ", [self getSystemTitleForFilterConfig: filterConfig
                                                                                                                 forIndex: idx]];
@@ -547,8 +547,8 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             }
             else
             {
-                filterByWorkRoomRow.detail           = @"Не выбрано";
-                filterByWorkRoomRow.detailIsSelected = NO;
+                filterBySystemRow.detail           = @"Не выбрано";
+                filterBySystemRow.detailIsSelected = NO;
             }
 
             
