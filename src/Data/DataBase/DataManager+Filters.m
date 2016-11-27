@@ -277,7 +277,16 @@
         tasks = [self applyApproversFilters: tasks
                           withApproversList: approvers];
         
-        // 
+        // Filtered isDone, isExpired and isCanceled
+        if ( content.isDone.boolValue )
+            tasks = [self applyisDoneFilter: tasks];
+        else
+            if ( content.isCanceled.boolValue )
+                tasks = [self applyisCanceledFilter: tasks];
+        
+        // Filtering expired state
+        tasks = [self applyisExpiredFilter: tasks
+                                 withValue: content.isExpired.boolValue];
         
         
         return tasks;
@@ -541,6 +550,34 @@
         
         tmpTasksArray = nil;
     }
+    
+    return tasks;
+}
+
+- (NSArray*) applyisDoneFilter: (NSArray*) tasks
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"status == 2"];
+    
+    tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyisExpiredFilter: (NSArray*) tasks
+                        withValue: (BOOL)     isExpired
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"isExpired == %@", isExpired ? @1 : @0];
+    
+    tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyisCanceledFilter: (NSArray*) tasks
+{
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"status == 3"];
+    
+    tasks = [tasks filteredArrayUsingPredicate: predicate];
     
     return tasks;
 }
