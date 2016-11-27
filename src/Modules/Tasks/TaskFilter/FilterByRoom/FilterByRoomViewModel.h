@@ -10,4 +10,8 @@
 
 @interface FilterByRoomViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+- (NSArray*) getSelectedRooms;
+
+- (NSArray*) getSelectedRoomIndexes;
+
 @end

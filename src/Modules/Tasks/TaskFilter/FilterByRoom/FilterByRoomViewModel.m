@@ -24,6 +24,18 @@
 @implementation FilterByRoomViewModel
 
 
+#pragma mark - Public -
+
+- (NSArray*) getSelectedRooms
+{
+    return nil;
+}
+
+- (NSArray*) getSelectedRoomIndexes
+{
+    return nil;
+}
+
 #pragma mark - UITableViewDatasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView

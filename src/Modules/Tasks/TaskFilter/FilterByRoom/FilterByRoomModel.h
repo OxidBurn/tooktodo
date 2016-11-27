@@ -10,4 +10,8 @@
 
 @interface FilterByRoomModel : NSObject
 
+- (NSArray*) getSelectedRooms;
+
+- (NSArray*) getSelectedRoomIndexes;
+
 @end

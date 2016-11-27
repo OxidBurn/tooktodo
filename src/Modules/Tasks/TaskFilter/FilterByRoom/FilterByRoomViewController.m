@@ -12,14 +12,35 @@
 #import "FilterByRoomViewModel.h"
 
 @interface FilterByRoomViewController ()
-
-@property (nonatomic, weak) IBOutlet UITableView* roomsTableView;
+// Properties
+@property (weak, nonatomic) IBOutlet UITableView *filterByRoomTableView;
 
 @property (nonatomic, strong) FilterByRoomViewModel* viewModel;
+
+// Methods
+- (IBAction) onSaveBtn: (UIButton*) sender;
+- (IBAction) onSelectAllBtn: (UIButton*) sender;
+
+- (IBAction) onCanceledBtn: (UIBarButtonItem*) sender;
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender;
 
 @end
 
 @implementation FilterByRoomViewController
+
+
+#pragma mark - Life cycle -
+
+- (void) loadView
+{
+    [super loadView];
+    
+    self.filterByRoomTableView.delegate   = self.viewModel;
+    self.filterByRoomTableView.dataSource = self.viewModel;
+}
+
+
+#pragma mark - Properties -
 
 - (FilterByRoomViewModel*) viewModel
 {
@@ -31,12 +52,50 @@
     return _viewModel;
 }
 
-- (void) loadView
+
+#pragma mark - Public -
+
+- (void) fillSelectedRoomsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-    [super loadView];
     
-    self.roomsTableView.delegate   = self.viewModel;
-    self.roomsTableView.dataSource = self.viewModel;
+}
+
+#pragma mark - Actions -
+
+- (IBAction) onSaveBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onSelectAllBtn: (UIButton*) sender
+{
+    
+}
+- (IBAction) onResetBtn: (UIButton*) sender
+{
+    
+}
+
+- (IBAction) onCanceledBtn: (UIBarButtonItem*) sender
+{
+    
+}
+
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
+{
+    
+}
+
+
+#pragma mark - Internal -
+
+- (void) saveData
+{
+    if ([self.delegate respondsToSelector: @selector(returnSelectedRoomsArray:withIndexes:)])
+    {
+        [self.delegate returnSelectedRoomsArray: [self.viewModel getSelectedRooms]
+                                    withIndexes: [self.viewModel getSelectedRoomIndexes]];
+    }
 }
 
 @end
