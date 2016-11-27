@@ -288,6 +288,10 @@
         tasks = [self applyisExpiredFilter: tasks
                                  withValue: content.isExpired.boolValue];
         
+        // Filtering by status
+        tasks = [self applyStatusesFilter: tasks
+                               withFilter: (NSArray*)content.statuses];
+        
         
         return tasks;
     }
@@ -578,6 +582,19 @@
     NSPredicate* predicate = [NSPredicate predicateWithFormat: @"status == 3"];
     
     tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyStatusesFilter: (NSArray*) tasks
+                      withFilter: (NSArray*) filter
+{
+    if ( filter.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"status IN %@", filter];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
     
     return tasks;
 }
