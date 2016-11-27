@@ -150,7 +150,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
             self.endDatePickerShowed = !self.endDatePickerShowed;
             
             [self checkIfAnyPickerShowed];
-
+            
             [self reloadDatePickerCellsForTableView: tableView];
             
             break;
@@ -197,6 +197,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         self.startDatePickerShowed = NO;
         
         [self.model setDefaultStartDayIfNotSetByPicker];
+        
+        if ( self.reloadTableView)
+        {
+            self.reloadTableView();
+        }
         
         [self reloadDatePickerCellsForTableView: tableView];
     }
