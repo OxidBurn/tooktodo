@@ -70,7 +70,7 @@
 
 - (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
 {
-    [DataManagerShared resetFilterConfigurationForCurrentProject: completion];
+    [DataManagerShared resetFilterConfigurationWithCompletion: completion];
 }
 
 

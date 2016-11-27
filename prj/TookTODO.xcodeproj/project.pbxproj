@@ -79,6 +79,8 @@
 		5664A03D1DA3C4C600344879 /* WelcomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5664A0281DA3C4C600344879 /* WelcomeScreen.storyboard */; };
 		5664A03E1DA3C4C600344879 /* WelcomeTour.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5664A02A1DA3C4C600344879 /* WelcomeTour.storyboard */; };
 		566819881DBF696A00C7DD7E /* TabBarForIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566819871DBF696A00C7DD7E /* TabBarForIPad.xib */; };
+		56699DB81DEB724B00E705F9 /* AppliedFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56699DB51DEB724B00E705F9 /* AppliedFilterModel.m */; };
+		56699DB91DEB724B00E705F9 /* AppliedFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56699DB71DEB724B00E705F9 /* AppliedFilterView.m */; };
 		56955F561DE60B9C00601D03 /* ProjectTaskRoleAssignment+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 56955F541DE60B9C00601D03 /* ProjectTaskRoleAssignment+CoreDataClass.m */; };
 		56955F571DE60B9C00601D03 /* ProjectTaskRoleAssignments+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 56955F551DE60B9C00601D03 /* ProjectTaskRoleAssignments+CoreDataClass.m */; };
 		56955F5C1DE727DE00601D03 /* DataManager+Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = 56955F5B1DE727DE00601D03 /* DataManager+Filters.m */; };
@@ -611,6 +613,10 @@
 		5664A0291DA3C4C600344879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WelcomeScreen.storyboard; sourceTree = "<group>"; };
 		5664A02B1DA3C4C600344879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WelcomeTour.storyboard; sourceTree = "<group>"; };
 		566819871DBF696A00C7DD7E /* TabBarForIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarForIPad.xib; sourceTree = "<group>"; };
+		56699DB41DEB724B00E705F9 /* AppliedFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppliedFilterModel.h; sourceTree = "<group>"; };
+		56699DB51DEB724B00E705F9 /* AppliedFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppliedFilterModel.m; sourceTree = "<group>"; };
+		56699DB61DEB724B00E705F9 /* AppliedFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppliedFilterView.h; sourceTree = "<group>"; };
+		56699DB71DEB724B00E705F9 /* AppliedFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppliedFilterView.m; sourceTree = "<group>"; };
 		566EB1291DE9BCF900F92E5F /* TaskFilterViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskFilterViewControllerDelegate.h; sourceTree = "<group>"; };
 		56955F541DE60B9C00601D03 /* ProjectTaskRoleAssignment+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectTaskRoleAssignment+CoreDataClass.m"; sourceTree = "<group>"; };
 		56955F551DE60B9C00601D03 /* ProjectTaskRoleAssignments+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectTaskRoleAssignments+CoreDataClass.m"; sourceTree = "<group>"; };
@@ -1513,6 +1519,17 @@
 				564DE3C41DB15AD200BF9817 /* RowContent.m */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		56699DB31DEB724B00E705F9 /* AppliedFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				56699DB41DEB724B00E705F9 /* AppliedFilterModel.h */,
+				56699DB51DEB724B00E705F9 /* AppliedFilterModel.m */,
+				56699DB61DEB724B00E705F9 /* AppliedFilterView.h */,
+				56699DB71DEB724B00E705F9 /* AppliedFilterView.m */,
+			);
+			path = AppliedFilterView;
 			sourceTree = "<group>";
 		};
 		56D06B651DAFBDBF008E9AC0 /* inc */ = {
@@ -3733,6 +3750,7 @@
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				56699DB31DEB724B00E705F9 /* AppliedFilterView */,
 				CF77792F1DEB425A003B2818 /* FilterByRoom */,
 				CF0486041DEAE49B00BB573C /* FilterByTypes */,
 				F7E7657E1DE8A78C00E8F10F /* FilterByStatus */,
@@ -3995,6 +4013,7 @@
 				56D06E851DAFBDC0008E9AC0 /* DataManager+Room.m in Sources */,
 				F7E765841DE8A7C600E8F10F /* FilterByStatusViewModel.m in Sources */,
 				56D06EC61DAFBDC0008E9AC0 /* ProjectRoleAssignmentsModel.m in Sources */,
+				56699DB81DEB724B00E705F9 /* AppliedFilterModel.m in Sources */,
 				56D06F411DAFBDC0008E9AC0 /* OnRevisionModel.m in Sources */,
 				56D06FAC1DAFBDC0008E9AC0 /* OSFlexibleTextFieldCellFactory.m in Sources */,
 				56D06EC51DAFBDC0008E9AC0 /* ProjectRegionModel.m in Sources */,
@@ -4325,6 +4344,7 @@
 				564DE3991DB100A600BF9817 /* TaskAvailableAction+CoreDataProperties.m in Sources */,
 				5643A2E21DDC9B2B00038414 /* TaskComment+CoreDataClass.m in Sources */,
 				56D06E971DAFBDC0008E9AC0 /* ProjectRoles+CoreDataProperties.m in Sources */,
+				56699DB91DEB724B00E705F9 /* AppliedFilterView.m in Sources */,
 				56D06E8A1DAFBDC0008E9AC0 /* DataManager.m in Sources */,
 				56D06F281DAFBDC0008E9AC0 /* MainMenuViewController.m in Sources */,
 				56D06FC01DAFBDC0008E9AC0 /* PopoverModel.m in Sources */,
