@@ -239,7 +239,7 @@
 }
 
 - (void) fillSelectedSystemData: (NSArray*) selectedSystems
-                   withIndexes: (NSArray*) selectedIndexes
+                    withIndexes: (NSArray*) selectedIndexes
 {
     self.filterConfig.bySystem        = selectedSystems;
     self.filterConfig.bySystemIndexes = selectedIndexes;

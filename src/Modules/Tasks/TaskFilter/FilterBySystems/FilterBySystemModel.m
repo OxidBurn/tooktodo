@@ -88,18 +88,18 @@
     self.selectedSystemsIndexesArray = tmp.copy;
     
     // adding to array selected assignees
-    NSMutableArray* tmpRooms = self.selectedSystemsArray.mutableCopy;
+    NSMutableArray* tmpSystems = self.selectedSystemsArray.mutableCopy;
     
     ProjectSystem* selectedSystem = self.systemsArray[indexPath.row];
     
     if ( [self.selectedSystemsArray containsObject: selectedSystem] )
     {
-        [tmpRooms removeObject: selectedSystem];
+        [tmpSystems removeObject: selectedSystem];
     }
     else
-        [tmpRooms addObject: selectedSystem];
+        [tmpSystems addObject: selectedSystem];
     
-    self.selectedSystemsArray = tmpRooms.copy;
+    self.selectedSystemsArray = tmpSystems.copy;
     
 }
 
@@ -137,9 +137,8 @@
     self.selectedSystemsArray       = nil;
 }
 
-- (void) fillSelectedRoomsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
+- (void) fillSelectedSystemsInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
-    
     self.selectedSystemsArray        = filterConfig.bySystem;
     self.selectedSystemsIndexesArray = filterConfig.bySystemIndexes;
     

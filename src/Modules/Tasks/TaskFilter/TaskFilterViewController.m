@@ -119,6 +119,8 @@
     {
         FilterBySystemsViewController* controller = [segue destinationViewController];
         
+        [controller fillSelectedSystemsInfoFromConfig: filterConfig];
+        
         controller.delegate = self.viewModel;
     }
 }
