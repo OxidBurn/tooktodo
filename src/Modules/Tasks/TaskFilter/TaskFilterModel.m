@@ -410,6 +410,8 @@
         configuraiton.isDone               = filterContent.isDone.boolValue;
         configuraiton.isOverdue            = filterContent.isExpired.boolValue;
         configuraiton.isCanceled           = filterContent.isCanceled.boolValue;
+        configuraiton.byRooms              = filterContent.rooms.allObjects;
+        configuraiton.byRoomIndexes        = (NSArray*)filterContent.roomsSelectedIndexes;
     }
     
     return configuraiton;
