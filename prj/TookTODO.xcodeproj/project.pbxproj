@@ -436,6 +436,9 @@
 		CF3455EE1DE87F1E0090421D /* ParentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455ED1DE87F1E0090421D /* ParentCollectionCell.m */; };
 		CF3455F11DE897A10090421D /* ApproverViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455F01DE897A10090421D /* ApproverViewModel.m */; };
 		CF3455F41DE897B50090421D /* ApproverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3455F31DE897B50090421D /* ApproverModel.m */; };
+		CF7779321DEB42C2003B2818 /* FilterByRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779311DEB42C2003B2818 /* FilterByRoomViewController.m */; };
+		CF7779351DEB42E2003B2818 /* FilterByRoomViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779341DEB42E2003B2818 /* FilterByRoomViewModel.m */; };
+		CF7779381DEB42F2003B2818 /* FilterByRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779371DEB42F2003B2818 /* FilterByRoomModel.m */; };
 		CFCAA3D21DCA580A00B8EF16 /* RolesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */; };
 		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
@@ -1322,6 +1325,12 @@
 		CF3455F01DE897A10090421D /* ApproverViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverViewModel.m; sourceTree = "<group>"; };
 		CF3455F21DE897B50090421D /* ApproverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproverModel.h; sourceTree = "<group>"; };
 		CF3455F31DE897B50090421D /* ApproverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproverModel.m; sourceTree = "<group>"; };
+		CF7779301DEB42C2003B2818 /* FilterByRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByRoomViewController.h; sourceTree = "<group>"; };
+		CF7779311DEB42C2003B2818 /* FilterByRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByRoomViewController.m; sourceTree = "<group>"; };
+		CF7779331DEB42E2003B2818 /* FilterByRoomViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByRoomViewModel.h; sourceTree = "<group>"; };
+		CF7779341DEB42E2003B2818 /* FilterByRoomViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByRoomViewModel.m; sourceTree = "<group>"; };
+		CF7779361DEB42F2003B2818 /* FilterByRoomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByRoomModel.h; sourceTree = "<group>"; };
+		CF7779371DEB42F2003B2818 /* FilterByRoomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByRoomModel.m; sourceTree = "<group>"; };
 		CFCAA3D01DCA580A00B8EF16 /* RolesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesModel.h; sourceTree = "<group>"; };
 		CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RolesModel.m; sourceTree = "<group>"; };
 		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
@@ -3619,6 +3628,19 @@
 			path = ../../../src/Modules/TaskDetailInfo/MembersFromCollection;
 			sourceTree = "<group>";
 		};
+		CF77792F1DEB425A003B2818 /* FilterByRoom */ = {
+			isa = PBXGroup;
+			children = (
+				CF7779301DEB42C2003B2818 /* FilterByRoomViewController.h */,
+				CF7779311DEB42C2003B2818 /* FilterByRoomViewController.m */,
+				CF7779331DEB42E2003B2818 /* FilterByRoomViewModel.h */,
+				CF7779341DEB42E2003B2818 /* FilterByRoomViewModel.m */,
+				CF7779361DEB42F2003B2818 /* FilterByRoomModel.h */,
+				CF7779371DEB42F2003B2818 /* FilterByRoomModel.m */,
+			);
+			path = FilterByRoom;
+			sourceTree = "<group>";
+		};
 		F725FBD11DC365A500793EA3 /* infoiPad */ = {
 			isa = PBXGroup;
 			children = (
@@ -3708,6 +3730,7 @@
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				CF77792F1DEB425A003B2818 /* FilterByRoom */,
 				CF0486041DEAE49B00BB573C /* FilterByTypes */,
 				F7E7657E1DE8A78C00E8F10F /* FilterByStatus */,
 				F72F3BC71DE76930009648A6 /* FilterByAssignee */,
@@ -4134,6 +4157,7 @@
 				56D06EA01DAFBDC0008E9AC0 /* ProjectTaskAssignee+CoreDataProperties.m in Sources */,
 				56D06EB41DAFBDC0008E9AC0 /* ProjectTaskStage+CoreDataProperties.m in Sources */,
 				56D06F5C1DAFBDC0008E9AC0 /* TaskDescriptionFactory.m in Sources */,
+				CF7779321DEB42C2003B2818 /* FilterByRoomViewController.m in Sources */,
 				F7EB67031DE35D6100F44CDF /* TaskFilterViewModel.m in Sources */,
 				56D06F7C1DAFBDC0008E9AC0 /* RolesViewController.m in Sources */,
 				F775C1881DD201EB002FB201 /* FlexibleViewsContainer.m in Sources */,
@@ -4172,6 +4196,7 @@
 				560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */,
 				56D06FA31DAFBDC0008E9AC0 /* OSAlertDesignateAdminController.m in Sources */,
 				56D06F1C1DAFBDC0008E9AC0 /* LoginModel.m in Sources */,
+				CF7779381DEB42F2003B2818 /* FilterByRoomModel.m in Sources */,
 				56D06F431DAFBDC0008E9AC0 /* OnRevisionViewModel.m in Sources */,
 				5663BB501DE4D97C00F82E5B /* DataManager+TaskApprovements.m in Sources */,
 				56D06ED51DAFBDC0008E9AC0 /* TaskRoleAssignmentsModel.m in Sources */,
@@ -4335,6 +4360,7 @@
 				56D06F311DAFBDC0008E9AC0 /* AllProjectsViewController.m in Sources */,
 				56D06FBF1DAFBDC0008E9AC0 /* PopoverCell.m in Sources */,
 				5663BB5D1DE5D99200F82E5B /* TaskLogDataContent+CoreDataProperties.m in Sources */,
+				CF7779351DEB42E2003B2818 /* FilterByRoomViewModel.m in Sources */,
 				F7BB2CD81DE613F9002CFAAE /* LogsChangeTermsFactory.m in Sources */,
 				56D06F1F1DAFBDC0008E9AC0 /* RecoveryModel.m in Sources */,
 				F775C18B1DD20206002FB201 /* AttachmentView.m in Sources */,
