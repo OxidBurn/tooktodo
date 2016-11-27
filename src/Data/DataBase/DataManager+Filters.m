@@ -23,6 +23,7 @@
 
 // Categories
 #import "DataManager+ProjectInfo.h"
+#import "NSDate-Utilities.h"
 
 @implementation DataManager (Filters)
 
@@ -215,6 +216,9 @@
         [self saveFilterStatusesFromConfig: taskFilterContent
                                    withSet: config.statusesList];
         
+        // Dates
+        [self saveFiltersDateFromConfig: taskFilterContent
+                             withConfig: config];
         
         
         // Is Done
@@ -291,6 +295,28 @@
         // Filtering by status
         tasks = [self applyStatusesFilter: tasks
                                withFilter: (NSArray*)content.statuses];
+        
+        // ---- Filtering by dates ----
+        // start two dates
+        tasks = [self applyFilterByStartDates: tasks
+                           withStartDateValue: content.startBeginDate
+                             withEndDateValue: content.startEndDate];
+        
+        // Close two dates
+        tasks = [self applyFilterByCloseDates: tasks
+                           withStartDateValue: content.closeBeginDate
+                             withEndDateValue: content.closeEndDate];
+        
+        // Factual start dates
+        tasks = [self applyFilterByFactualStartDates: tasks
+                                  withStartDateValue: content.factualStartBeginDate
+                                    withEndDateValue: content.factualStartEndDate];
+        
+        // Factual end two dates
+        tasks = [self applyFilterByFactualEndDates: tasks
+                                withStartDateValue: content.factualCloseBeginDate
+                                  withEndDateValue: content.factualCloseEndDate];
+        
         
         
         return tasks;
@@ -472,6 +498,26 @@
     filterConfig.statuses = statuses;
 }
 
+- (void) saveFiltersDateFromConfig: (ProjectTaskFilterContent*) filterConfig
+                        withConfig: (TaskFilterConfiguration*)  config
+{
+    // Start two dates
+    filterConfig.startBeginDate = config.byTermsStart.startDate;
+    filterConfig.startEndDate   = config.byTermsStart.endDate;
+    
+    // Close two dates
+    filterConfig.closeBeginDate = config.byTermsEnd.startDate;
+    filterConfig.closeEndDate   = config.byTermsEnd.endDate;
+    
+    // Factual start two dates
+    filterConfig.factualStartBeginDate = config.byFactTermsStart.startDate;
+    filterConfig.factualStartEndDate   = config.byFactTermsStart.endDate;
+    
+    // Factual close two dates
+    filterConfig.factualCloseBeginDate = config.byFactTermsEnd.startDate;
+    filterConfig.factualCloseEndDate   = config.byFactTermsEnd.endDate;
+}
+
 
 // MARK: Apply filters
 
@@ -595,6 +641,162 @@
         
         tasks = [tasks filteredArrayUsingPredicate: predicate];
     }
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByStartDates: (NSArray*) tasks
+                  withStartDateValue: (NSDate*)  startDate
+                    withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+           
+            return ( [task.startDay isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.startDay isEarlierThanDate: endDate] );
+                
+            }];
+        }
+    else
+        if ( startDate && endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.startDay isLaterThanDate: startDate] && [task.startDay isEarlierThanDate: endDate] );
+                
+            }];
+        }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByCloseDates: (NSArray*) tasks
+                  withStartDateValue: (NSDate*)  startDate
+                    withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.endDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.endDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.endDate isLaterThanDate: startDate] && [task.endDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByFactualStartDates: (NSArray*) tasks
+                         withStartDateValue: (NSDate*)  startDate
+                           withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.factualStartDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.factualStartDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.factualStartDate isLaterThanDate: startDate] && [task.factualStartDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByFactualEndDates: (NSArray*) tasks
+                       withStartDateValue: (NSDate*)  startDate
+                         withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.factualEndDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.factualEndDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.factualEndDate isLaterThanDate: startDate] && [task.factualEndDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
     
     return tasks;
 }

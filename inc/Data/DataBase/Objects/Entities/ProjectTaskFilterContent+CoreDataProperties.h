@@ -15,15 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<ProjectTaskFilterContent *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSDate *endDate;
-@property (nullable, nonatomic, copy) NSDate *factualEndDate;
-@property (nullable, nonatomic, copy) NSDate *factualStartDate;
+@property (nullable, nonatomic, copy) NSDate *startEndDate;
+@property (nullable, nonatomic, copy) NSDate *factualStartEndDate;
+@property (nullable, nonatomic, copy) NSDate *factualStartBeginDate;
 @property (nullable, nonatomic, copy) NSNumber *isCanceled;
 @property (nullable, nonatomic, copy) NSNumber *isDone;
 @property (nullable, nonatomic, copy) NSNumber *isExpired;
-@property (nullable, nonatomic, copy) NSDate *startDate;
+@property (nullable, nonatomic, copy) NSDate *startBeginDate;
 @property (nullable, nonatomic, retain) NSObject *statuses;
 @property (nullable, nonatomic, retain) NSObject *types;
+@property (nullable, nonatomic, copy) NSDate *closeBeginDate;
+@property (nullable, nonatomic, copy) NSDate *closeEndDate;
+@property (nullable, nonatomic, copy) NSDate *factualCloseBeginDate;
+@property (nullable, nonatomic, copy) NSDate *factualCloseEndDate;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *creators;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *responsibles;
