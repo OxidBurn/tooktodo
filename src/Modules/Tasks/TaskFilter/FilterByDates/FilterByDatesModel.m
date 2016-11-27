@@ -104,6 +104,10 @@
     self.controllerType = controllerType;
 }
 
+- (NSUInteger) getNumberOfRows
+{
+    return self.tableViewContent.count;
+}
 
 - (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
 {
@@ -124,6 +128,11 @@
 {
     self.tableViewContent = [self.contentManager updateDateLabelContentWithDate: date
                                                                forPickerWithTag: pickerTag];
+}
+
+- (TermsData*) getTermsData
+{
+    return [self.contentManager getTermsData];
 }
 
 @end

@@ -68,7 +68,7 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return 4;
+    return [self.model getNumberOfRows];
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -169,6 +169,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [self.model fillFilterConfig: filterConfig
               withControllerType: controllerType];
+}
+
+- (TermsData*) getTermsData
+{
+   return [self.model getTermsData];
 }
 
 

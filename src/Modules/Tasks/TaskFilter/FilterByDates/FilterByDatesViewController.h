@@ -11,11 +11,25 @@
 // Classes
 #import "ProjectsEnumerations.h"
 #import "TaskFilterConfiguration.h"
+#import "TermsData.h"
+
+@protocol FilterByDatesControllerDelegate;
 
 @interface FilterByDatesViewController : BaseMainViewController
 
+// properties
+@property (weak, nonatomic) id <FilterByDatesControllerDelegate> delegate;
+
 // methods
 - (void) fillControllerType: (FilterByDateViewControllerType) controllerType
-           withFilterConfig: (TaskFilterConfiguration*)       filterConfig;
+           withFilterConfig: (TaskFilterConfiguration*)       filterConfig
+               withDelegate: (id)                             delegate;
+
+@end
+
+@protocol FilterByDatesControllerDelegate <NSObject>
+
+- (void) updateConfigWithTerms: (TermsData*)                     terms
+             forControllerType: (FilterByDateViewControllerType) controllerType;
 
 @end

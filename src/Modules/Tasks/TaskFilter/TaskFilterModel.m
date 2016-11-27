@@ -196,6 +196,8 @@
             break;
     }
     
+    
+    
     [self updateContent];
 }
 
@@ -248,6 +250,42 @@
     self.filterConfig.bySystem = @[ system ];
 }
 
+- (void) fillTermsInfo: (TermsData*)                     terms
+     forControllerType: (FilterByDateViewControllerType) controllerType
+{
+    switch ( controllerType )
+    {
+        case ByTermsBeginning:
+        {
+            self.filterConfig.byTermsStart = terms;
+        }
+            break;
+          
+        case ByTermsEnding:
+        {
+            self.filterConfig.byTermsEnd = terms;
+        }
+            break;
+            
+        case ByFactTermsBeginning:
+        {
+            self.filterConfig.byFactTermsStart = terms;
+        }
+            break;
+            
+        case ByFactTermsEnding:
+        {
+            self.filterConfig.byFactTermsEnd = terms;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self updateContent];
+}
+
 // helpers for test
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
 {
@@ -272,6 +310,63 @@
 {
     self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
                                                                       withFilterType: self.taskFilterType];
+}
+
+
+//- (void) updateDateLabelWithTerms: (TermsData*)                     terms
+//                 forLabelWithType: (FilterByDateViewControllerType) type
+//{
+//    switch ( type )
+//    {
+//        case ByTermsBeginning:
+//        {
+//            TaskFilterRowContent* row = self.tableViewContent[SectionTwo][0];
+//            
+//            row.startTermsString = [NSString stringWithFormat: @"%@ - %@", terms.startDateString,
+//                                                                           terms.endDateString];
+//        }
+//            break;
+//            
+//        case ByTermsEnding:
+//        {
+//            
+//        }
+//            break;
+//            
+//        case ByFactTermsBeginning:
+//        {
+//            
+//        }
+//            break;
+//            
+//        case ByFactTermsEnding:
+//        {
+//            
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
+
+- (void) updateContentWithRow: (TaskFilterRowContent*) newRow
+                    inSection: (NSUInteger)            section
+                        inRow: (NSUInteger)            row
+{
+    NSArray* sectionContent = self.tableViewContent[section];
+    
+    NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.tableViewContent];
+    
+    NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
+    
+    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    
+    sectionContent = [sectionCopy copy];
+    
+    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    
+    self.tableViewContent = [contentCopy copy];
 }
 
 @end

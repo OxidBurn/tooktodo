@@ -12,16 +12,16 @@
 @import UIKit;
 
 // Classes
-#import "RowContent.h"
+#import "FilterByTermsContent.h"
 
 
 @interface FilterByDatesFactory : NSObject
 
 // methods
 
-- (UITableViewCell*) returnCellForTableView: (UITableView*) tableView
-                              withIndexPath: (NSIndexPath*) indexPath
-                                withContent: (RowContent*)  rowContent
-                               withDelegate: (id)           delegate;
+- (UITableViewCell*) returnCellForTableView: (UITableView*)          tableView
+                              withIndexPath: (NSIndexPath*)          indexPath
+                                withContent: (FilterByTermsContent*) rowContent
+                               withDelegate: (id)                    delegate;
 
 @end

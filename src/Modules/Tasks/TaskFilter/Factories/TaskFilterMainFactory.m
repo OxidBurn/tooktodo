@@ -95,7 +95,8 @@
             FilterByTermsCellFactory* factory = [FilterByTermsCellFactory new];
             
             cell = [factory returnFilterByTermsCellWithTitle: content.title
-                                                  withDetail: content.detail
+                                              withStartTerms: content.startTermsString
+                                                withEndTerms: content.endTermsString
                                                 forTableView: tableView
                                                 withCellType: content.termsType
                                                 withDelegate: delegate];

@@ -46,7 +46,7 @@
     
     if ( minimumDate )
     {
-        if ( tag == 1 )
+        if ( tag == 2 )
         {
             minimumDate = [minimumDate dateByAddingDays: 1];
         }

@@ -32,14 +32,14 @@
 #pragma mark - Public -
 
 
-- (UITableViewCell*) returnCellForTableView: (UITableView*) tableView
-                              withIndexPath: (NSIndexPath*) indexPath
-                                withContent: (RowContent*)  rowContent
-                               withDelegate: (id)           delegate
+- (UITableViewCell*) returnCellForTableView: (UITableView*)          tableView
+                              withIndexPath: (NSIndexPath*)          indexPath
+                                withContent: (FilterByTermsContent*) rowContent
+                               withDelegate: (id)                    delegate
 {
     UITableViewCell* cell = [UITableViewCell new];
     
-    NSUInteger cellTypeIndex = rowContent.cellIndex;
+    NSUInteger cellTypeIndex = rowContent.cellIdIndex;
     
     switch ( cellTypeIndex )
     {
