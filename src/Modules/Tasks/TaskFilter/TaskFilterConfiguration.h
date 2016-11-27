@@ -36,6 +36,8 @@
 
 @property (strong, nonatomic) TermsData* byFactTermsEnd;
 
+@property (strong, nonatomic) NSNumber* byMyRoleInProject;
+
 @property (strong, nonatomic) NSArray* byWorkArea;
 
 @property (strong, nonatomic) NSArray* bySystem;
