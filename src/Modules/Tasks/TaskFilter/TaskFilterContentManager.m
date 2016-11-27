@@ -13,6 +13,7 @@
 #import "TaskStatusDefaultValues.h"
 #import "NSDate+Helper.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "ProjectSystem+CoreDataProperties.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRow)
 {
@@ -253,28 +254,27 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
         
         case FilterByAllProjects:
         {
-            TaskFilterRowContent* filterByMemberRow = [TaskFilterRowContent new];
-            
-            NSString* filterByMemberRowCellId = [self determineCellIdForContent: filterConfig.byResponsible];
-            
-            filterByMemberRow.title            = self.allTitlesArray[SectionOne][FilterByMemberRow];
-            filterByMemberRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByMemberRowCellId];
-            filterByMemberRow.cellId           = filterByMemberRowCellId;
-            filterByMemberRow.detail           = @"Не выбрано";
-            filterByMemberRow.detailIsSelected = NO;
+//            TaskFilterRowContent* filterByMemberRow = [TaskFilterRowContent new];
+//            
+//            NSString* filterByMemberRowCellId = [self determineCellIdForContent: filterConfig.byResponsible];
+//            
+//            filterByMemberRow.title            = self.allTitlesArray[SectionOne][FilterByMemberRow];
+//            filterByMemberRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByMemberRowCellId];
+//            filterByMemberRow.cellId           = filterByMemberRowCellId;
+//            filterByMemberRow.detail           = @"Не выбрано";
+//            filterByMemberRow.detailIsSelected = NO;
             
             TaskFilterRowContent* filterByRoleRow = [TaskFilterRowContent new];
             
-            NSString* filterByRoleRowCellId = [self determineCellIdForContent: filterConfig.byResponsible];
+            NSString* filterByRoleRowCellId = self.cellsIdArray[TaskFilterRightDetailCell];
             
             filterByRoleRow.title            = self.allTitlesArray[SectionOne][FilterByRoleRow];
             filterByRoleRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByRoleRowCellId];
             filterByRoleRow.cellId           = filterByRoleRowCellId;
-            filterByRoleRow.detail           = @"Не выбрано";
-            filterByRoleRow.detailIsSelected = NO;
+            filterByRoleRow.detail           = [self getRoleDecriptionForType: filterConfig.byMyRoleInProject.integerValue];
+            filterByRoleRow.detailIsSelected = YES;
             
-            sectionOneContent = @[ filterByMemberRow,
-                                   filterByRoleRow ];
+            sectionOneContent = @[ filterByRoleRow ];
         }
             break;
             
@@ -378,7 +378,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             
             TaskFilterRowContent* filterByWorkRoomRow = [TaskFilterRowContent new];
             
-            filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByWorkRoomRow];
+            filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByProjectRow];
             filterByWorkRoomRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             filterByWorkRoomRow.detail           = @"Не выбрано";
@@ -387,7 +387,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             
             TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
             
-            filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterBySystemRow];
+            filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterByStatusRow];
             filterBySystemRow.cellTypeId       = TaskFilterRightDetailCell;
             filterBySystemRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             filterBySystemRow.detail           = @"Не выбрана";
@@ -596,6 +596,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     return index;
 }
 
+
 - (NSString*) getTaskTypeDescriptionForIndex: (NSUInteger) index
 {
     NSString* description = [NSString new];
@@ -606,7 +607,25 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
         case TaskAgreementType:   description = @"Согласование"; break;
         case TaskRemarkType:      description = @"Замечание"; break;
         case TaskObservationType: description = @"Наблюдение"; break;
-        
+            
+        default:
+            break;
+    }
+    
+    return description;
+}
+
+- (NSString*) getRoleDecriptionForType: (TaskFilterByMyRoleInProject) roleType
+{
+    NSString* description = [NSString new];
+    
+    switch ( roleType )
+    {
+        case Participant: description = @"Я участник"; break;
+        case Responsible: description = @"Я ответственный"; break;
+        case Claiming:    description = @"Я утверждающий"; break;
+        case Creator:     description = @"Я создатель"; break;
+            
         default:
             break;
     }

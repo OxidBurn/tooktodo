@@ -10,6 +10,16 @@
 
 @implementation TaskFilterConfiguration
 
-
+- (instancetype) init
+{
+    self = [super init];
+    
+    if ( self )
+    {
+        self.byMyRoleInProject = @(0);
+    }
+    
+    return self;
+}
 
 @end

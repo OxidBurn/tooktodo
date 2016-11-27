@@ -60,6 +60,12 @@
             }
                 break;
                 
+            case FilterByAllMembers:
+            {
+//                _assigneeArray = [DataManagerShared getfilter]
+            }
+                break;
+                
             default:
             {
                 _assigneeArray = [NSArray new];

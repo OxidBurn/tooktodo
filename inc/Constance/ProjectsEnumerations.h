@@ -207,7 +207,7 @@ typedef NS_ENUM(NSUInteger, FilterByAssigneeType)
     FilterByCreator,
     FilterByResponsible,
     FilterByApprovers,
-
+    FilterByAllMembers,
 };
 
 
@@ -216,6 +216,14 @@ typedef NS_ENUM(NSUInteger, TaskFilterAditionalOptionsTags)
     FilterByDoneTasksTag     = 11,
     FilterByCanceledTasksTag = 12,
     FilterByOverdueTasksTag  = 13,
+};
+
+typedef NS_ENUM(NSUInteger, TaskFilterByMyRoleInProject)
+{
+    Participant,
+    Responsible,
+    Claiming,
+    Creator,
 };
 
 

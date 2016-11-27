@@ -21,7 +21,9 @@
 // properties
 @property (strong, nonatomic) NSArray* tableViewContent;
 
-@property (strong, nonatomic) NSArray* seguesId;
+@property (strong, nonatomic) NSArray* seguesIdSingleProject;
+
+@property (strong, nonatomic) NSArray* seguesIdAllProjects;
 
 @property (strong, nonatomic) ProjectInfo* projectInfo;
 
@@ -51,22 +53,37 @@
     return _contentManager;
 }
 
-- (NSArray*) seguesId
+- (NSArray*) seguesIdSingleProject
 {
-    if ( _seguesId == nil )
+    if ( _seguesIdSingleProject == nil )
     {
-        _seguesId = @[ @[@"FilterByCreatorSegueId",
-                         @"FilterByResponsibleSegueId",
-                         @"FilterByApproversSegueId",
-                         @"FilterByStatusSegueId"],
-                       @[@"ShowFilterByDatesSegueId",
-                         @"ShowFilterByDatesSegueId"],
-                       @[@"ShowFilterByRoomsSegueID",
-                         @"ShowSystemsSegueId",
-                         @"ShowFilterByTypesSegueID"]];
+        _seguesIdSingleProject = @[ @[@"FilterByCreatorSegueId",
+                                      @"FilterByResponsibleSegueId",
+                                      @"FilterByApproversSegueId",
+                                      @"FilterByStatusSegueId"],
+                                    @[@"ShowFilterByDatesSegueId",
+                                      @"ShowFilterByDatesSegueId"],
+                                    @[@"ShowWorkAreaSegueId",
+                                      @"ShowSystemsSegueId",
+                                      @"ShowFilterByTypesSegueID"]];
     }
     
-    return _seguesId;
+    return _seguesIdSingleProject;
+}
+
+- (NSArray*) seguesIdAllProjects
+{
+    if ( _seguesIdAllProjects)
+    {
+        _seguesIdAllProjects = @[ @[@"ShowFilterByTypesSegueID"],
+                                  @[@"ShowFilterByDatesSegueId",
+                                    @"ShowFilterByDatesSegueId"],
+                                  @[@"ShowWorkAreaSegueId",
+                                    @"FilterByStatusSegueId",
+                                    @"ShowFilterByTypesSegueID"]];
+    }
+    
+    return _seguesIdAllProjects;
 }
 
 - (ProjectInfo*) projectInfo
@@ -131,7 +148,26 @@
 
 - (NSString*) getSegueIdForIndexPath: (NSIndexPath*) indexPath
 {
-    return self.seguesId[indexPath.section][indexPath.row];
+    NSString* segueId = [NSString new];
+    
+    switch ( self.taskFilterType )
+    {
+        case FilterByAllProjects:
+        {
+            segueId = self.seguesIdAllProjects[indexPath.section][indexPath.row];
+        }
+            break;
+            
+        case FilterBySingleProject:
+        {
+            segueId = self.seguesIdSingleProject[indexPath.section][indexPath.row];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return segueId;
 }
 
 - (CGFloat) getRowHeightForRowAtIndexPath: (NSIndexPath*) indexPath
