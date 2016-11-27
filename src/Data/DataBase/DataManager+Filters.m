@@ -221,6 +221,10 @@
         [self saveFiltersDateFromConfig: taskFilterContent
                              withConfig: config];
         
+        // Types
+        [self saveFiltersTypesFromConfig: taskFilterContent
+                                 withSet: config.byTaskType];
+        
         
         // Is Done
         [self saveFilterisDoneOptionFromConfig: taskFilterContent
@@ -317,6 +321,10 @@
         tasks = [self applyFilterByFactualEndDates: tasks
                                 withStartDateValue: content.factualCloseBeginDate
                                   withEndDateValue: content.factualCloseEndDate];
+        
+        // Filtering by type
+        tasks = [self applyFilterByType: tasks
+                              withTypes: (NSArray*)content.types];
         
         
         
@@ -517,6 +525,12 @@
     // Factual close two dates
     filterConfig.factualCloseBeginDate = config.byFactTermsEnd.startDate;
     filterConfig.factualCloseEndDate   = config.byFactTermsEnd.endDate;
+}
+
+- (void) saveFiltersTypesFromConfig: (ProjectTaskFilterContent*) filterConfig
+                            withSet: (NSArray*)                  types
+{
+    filterConfig.types = types;
 }
 
 
@@ -798,6 +812,19 @@
     
     if ( predicate )
         tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByType: (NSArray*) tasks
+                     withTypes: (NSArray*) types
+{
+    if ( types.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"taskType IN %@", types];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
     
     return tasks;
 }
