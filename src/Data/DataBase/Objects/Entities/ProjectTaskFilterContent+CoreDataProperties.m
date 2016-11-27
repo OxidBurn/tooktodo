@@ -14,15 +14,19 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskFilterContent"];
 }
 
-@dynamic endDate;
-@dynamic factualEndDate;
-@dynamic factualStartDate;
+@dynamic startEndDate;
+@dynamic factualStartEndDate;
+@dynamic factualStartBeginDate;
 @dynamic isCanceled;
 @dynamic isDone;
 @dynamic isExpired;
-@dynamic startDate;
+@dynamic startBeginDate;
 @dynamic statuses;
 @dynamic types;
+@dynamic closeBeginDate;
+@dynamic closeEndDate;
+@dynamic factualCloseBeginDate;
+@dynamic factualCloseEndDate;
 @dynamic creators;
 @dynamic project;
 @dynamic responsibles;
