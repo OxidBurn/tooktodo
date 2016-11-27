@@ -20,6 +20,7 @@
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "TeamMember+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
+#import "ProjectTaskRoom+CoreDataClass.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -233,6 +234,11 @@
         // Dates
         [self saveFiltersDateFromConfig: taskFilterContent
                              withConfig: config];
+        
+        // Rooms
+        [self saveFiltersRoomsForConfig: taskFilterContent
+                                withSet: config.byRooms
+                            withIndexes: config.byRoomIndexes];
         
         // Types
         [self saveFiltersTypesFromConfig: taskFilterContent
@@ -544,6 +550,16 @@
     // Factual close two dates
     filterConfig.factualCloseBeginDate = config.byFactTermsEnd.startDate;
     filterConfig.factualCloseEndDate   = config.byFactTermsEnd.endDate;
+}
+
+- (void) saveFiltersRoomsForConfig: (ProjectTaskFilterContent*) filterConfig
+                           withSet: (NSArray*)                  rooms
+                       withIndexes: (NSArray*)                  roomIndexes
+{
+    filterConfig.rooms                = nil;
+    filterConfig.roomsSelectedIndexes = roomIndexes;
+    
+    [filterConfig addRooms: [NSSet setWithArray: rooms]];
 }
 
 - (void) saveFiltersTypesFromConfig: (ProjectTaskFilterContent*) filterConfig

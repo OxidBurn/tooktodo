@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSObject, ProjectInfo, ProjectInviteInfo, ProjectSystem, ProjectTaskAssignee, ProjectTaskWorkArea;
+@class NSObject, ProjectInfo, ProjectInviteInfo, ProjectSystem, ProjectTaskAssignee, ProjectTaskRoom;
 
 NS_ASSUME_NONNULL_BEGIN
 

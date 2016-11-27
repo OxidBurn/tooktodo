@@ -15,33 +15,44 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<ProjectTaskFilterContent *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSDate *startEndDate;
-@property (nullable, nonatomic, copy) NSDate *factualStartEndDate;
+@property (nullable, nonatomic, retain) NSObject *approvementsSelectedIndexes;
+@property (nullable, nonatomic, copy) NSDate *closeBeginDate;
+@property (nullable, nonatomic, copy) NSDate *closeEndDate;
+@property (nullable, nonatomic, retain) NSObject *creatorsSelectedIndexes;
+@property (nullable, nonatomic, copy) NSDate *factualCloseBeginDate;
+@property (nullable, nonatomic, copy) NSDate *factualCloseEndDate;
 @property (nullable, nonatomic, copy) NSDate *factualStartBeginDate;
+@property (nullable, nonatomic, copy) NSDate *factualStartEndDate;
 @property (nullable, nonatomic, copy) NSNumber *isCanceled;
 @property (nullable, nonatomic, copy) NSNumber *isDone;
 @property (nullable, nonatomic, copy) NSNumber *isExpired;
+@property (nullable, nonatomic, retain) NSObject *responsiblesSelectedIndexes;
 @property (nullable, nonatomic, copy) NSDate *startBeginDate;
+@property (nullable, nonatomic, copy) NSDate *startEndDate;
 @property (nullable, nonatomic, retain) NSObject *statuses;
 @property (nullable, nonatomic, retain) NSObject *types;
-@property (nullable, nonatomic, copy) NSDate *closeBeginDate;
-@property (nullable, nonatomic, copy) NSDate *closeEndDate;
-@property (nullable, nonatomic, copy) NSDate *factualCloseBeginDate;
-@property (nullable, nonatomic, copy) NSDate *factualCloseEndDate;
-@property (nullable, nonatomic, retain) NSObject *creatorsSelectedIndexes;
-@property (nullable, nonatomic, retain) NSObject *responsiblesSelectedIndexes;
-@property (nullable, nonatomic, retain) NSObject *approvementsSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *roomsSelectedIndexes;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *approvementsAssignee;
+@property (nullable, nonatomic, retain) NSSet<ProjectInviteInfo *> *approvementsInvite;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *creators;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *responsibles;
 @property (nullable, nonatomic, retain) NSSet<ProjectSystem *> *systems;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskWorkArea *> *workArea;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *approvementsAssignee;
-@property (nullable, nonatomic, retain) NSSet<ProjectInviteInfo *> *approvementsInvite;
+@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
 
 @end
 
 @interface ProjectTaskFilterContent (CoreDataGeneratedAccessors)
+
+- (void)addApprovementsAssigneeObject:(ProjectTaskAssignee *)value;
+- (void)removeApprovementsAssigneeObject:(ProjectTaskAssignee *)value;
+- (void)addApprovementsAssignee:(NSSet<ProjectTaskAssignee *> *)values;
+- (void)removeApprovementsAssignee:(NSSet<ProjectTaskAssignee *> *)values;
+
+- (void)addApprovementsInviteObject:(ProjectInviteInfo *)value;
+- (void)removeApprovementsInviteObject:(ProjectInviteInfo *)value;
+- (void)addApprovementsInvite:(NSSet<ProjectInviteInfo *> *)values;
+- (void)removeApprovementsInvite:(NSSet<ProjectInviteInfo *> *)values;
 
 - (void)addCreatorsObject:(ProjectTaskAssignee *)value;
 - (void)removeCreatorsObject:(ProjectTaskAssignee *)value;
@@ -58,20 +69,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addSystems:(NSSet<ProjectSystem *> *)values;
 - (void)removeSystems:(NSSet<ProjectSystem *> *)values;
 
-- (void)addWorkAreaObject:(ProjectTaskWorkArea *)value;
-- (void)removeWorkAreaObject:(ProjectTaskWorkArea *)value;
-- (void)addWorkArea:(NSSet<ProjectTaskWorkArea *> *)values;
-- (void)removeWorkArea:(NSSet<ProjectTaskWorkArea *> *)values;
-
-- (void)addApprovementsAssigneeObject:(ProjectTaskAssignee *)value;
-- (void)removeApprovementsAssigneeObject:(ProjectTaskAssignee *)value;
-- (void)addApprovementsAssignee:(NSSet<ProjectTaskAssignee *> *)values;
-- (void)removeApprovementsAssignee:(NSSet<ProjectTaskAssignee *> *)values;
-
-- (void)addApprovementsInviteObject:(ProjectInviteInfo *)value;
-- (void)removeApprovementsInviteObject:(ProjectInviteInfo *)value;
-- (void)addApprovementsInvite:(NSSet<ProjectInviteInfo *> *)values;
-- (void)removeApprovementsInvite:(NSSet<ProjectInviteInfo *> *)values;
+- (void)addRoomsObject:(ProjectTaskRoom *)value;
+- (void)removeRoomsObject:(ProjectTaskRoom *)value;
+- (void)addRooms:(NSSet<ProjectTaskRoom *> *)values;
+- (void)removeRooms:(NSSet<ProjectTaskRoom *> *)values;
 
 @end
 

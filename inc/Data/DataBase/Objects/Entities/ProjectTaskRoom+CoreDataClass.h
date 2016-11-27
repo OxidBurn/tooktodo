@@ -2,14 +2,14 @@
 //  ProjectTaskRoom+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 05.10.16.
+//  Created by Nikolay Chaban on 11/27/16.
 //
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ProjectTask, ProjectTaskMapContour, ProjectTaskRoomLevel;
+@class ProjectTask, ProjectTaskFilterContent, ProjectTaskMapContour, ProjectTaskRoomLevel;
 
 NS_ASSUME_NONNULL_BEGIN
 

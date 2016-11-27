@@ -2,7 +2,7 @@
 //  ProjectTaskRoom+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 05.10.16.
+//  Created by Nikolay Chaban on 11/27/16.
 //
 //
 
@@ -14,16 +14,17 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"ProjectTaskRoom"];
 }
 
+@dynamic isSelected;
 @dynamic number;
 @dynamic roomID;
 @dynamic roomLevelId;
 @dynamic tasksCount;
 @dynamic tasksWithoutMarkers;
 @dynamic title;
-@dynamic isSelected;
 @dynamic mapContour;
 @dynamic roomLevel;
 @dynamic roomTask;
 @dynamic task;
+@dynamic taskFilterContent;
 
 @end
