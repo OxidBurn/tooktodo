@@ -517,6 +517,43 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterBySystemRow.detail           = @"Не выбрано";
             filterBySystemRow.detailIsSelected = NO;
             
+            
+            if ( filterConfig.bySystem.count > 0)
+            {
+                filterBySystemRow.detailIsSelected = YES;
+                
+                if (filterConfig.bySystem.count > 1)
+                {
+                    __block NSMutableString* tmpSystemTitles = [NSMutableString string];
+                    
+                    [filterConfig.byRooms enumerateObjectsUsingBlock: ^(ProjectSystem* system, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        NSString* systemTytle = [NSString stringWithFormat: @"%@, ", [self getSystemTitleForFilterConfig: filterConfig
+                                                                                                                forIndex: idx]];
+                        
+                        [tmpSystemTitles appendString: systemTytle];
+                        
+                    }];
+                    
+                    filterBySystemRow.detail = tmpSystemTitles.copy;
+                    
+                    tmpSystemTitles = nil;
+                }
+                else
+                {
+                    filterBySystemRow.detail = [self getSystemTitleForFilterConfig: filterConfig
+                                                                          forIndex: 0];
+                }
+            }
+            else
+            {
+                filterByWorkRoomRow.detail           = @"Не выбрано";
+                filterByWorkRoomRow.detailIsSelected = NO;
+            }
+
+            
+            
+            
             TaskFilterRowContent* filterByTaskTypeRow = [TaskFilterRowContent new];
             
             filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
@@ -722,6 +759,14 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
    ProjectTaskRoom* room  = filterConfig.byRooms[index];
 
     return room.title;
+}
+
+- (NSString*) getSystemTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
+                                   forIndex: (NSUInteger)               index
+{
+    ProjectSystem* system  = filterConfig.bySystem[index];
+    
+    return system.title;
 }
 
 @end

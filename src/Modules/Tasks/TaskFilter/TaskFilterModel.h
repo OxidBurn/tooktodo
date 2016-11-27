@@ -56,4 +56,7 @@
 - (void) fillSelectedRoomsData: (NSArray*) selectedRooms
                    withIndexes: (NSArray*) selRoomIndexes;
 
+- (void) fillSelectedSystemData: (NSArray*) selectedSystems
+                    withIndexes: (NSArray*) selectedIndexes;
+
 @end

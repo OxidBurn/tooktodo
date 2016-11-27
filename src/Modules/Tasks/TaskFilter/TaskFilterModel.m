@@ -238,6 +238,15 @@
     [self updateContent];
 }
 
+- (void) fillSelectedSystemData: (NSArray*) selectedSystems
+                   withIndexes: (NSArray*) selectedIndexes
+{
+    self.filterConfig.bySystem        = selectedSystems;
+    self.filterConfig.bySystemIndexes = selectedIndexes;
+    
+    [self updateContent];
+}
+
 - (void) fillSelectedStatusesData: (NSArray*) selectedStatuses
 {
     self.filterConfig.statusesList = selectedStatuses;

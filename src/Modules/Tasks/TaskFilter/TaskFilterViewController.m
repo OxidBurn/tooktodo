@@ -119,7 +119,7 @@
     {
         FilterBySystemsViewController* controller = [segue destinationViewController];
         
-        
+        controller.delegate = self.viewModel;
     }
 }
 
