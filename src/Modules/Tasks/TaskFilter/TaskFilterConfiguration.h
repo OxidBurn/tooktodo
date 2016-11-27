@@ -42,6 +42,8 @@
 
 @property (strong, nonatomic) NSArray* bySystem;
 
+@property (strong, nonatomic) NSArray* bySystemIndexes;
+
 @property (strong, nonatomic) NSArray* byTaskType;
 
 @property (nonatomic, strong) NSArray* byRooms;
