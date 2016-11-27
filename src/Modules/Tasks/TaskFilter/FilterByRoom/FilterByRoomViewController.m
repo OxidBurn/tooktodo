@@ -8,16 +8,35 @@
 
 #import "FilterByRoomViewController.h"
 
+//Classes
+#import "FilterByRoomViewModel.h"
+
 @interface FilterByRoomViewController ()
+
+@property (nonatomic, weak) IBOutlet UITableView* roomsTableView;
+
+@property (nonatomic, strong) FilterByRoomViewModel* viewModel;
 
 @end
 
 @implementation FilterByRoomViewController
 
+- (FilterByRoomViewModel*) viewModel
+{
+    if (_viewModel == nil)
+    {
+        _viewModel = [FilterByRoomViewModel new];
+    }
+    
+    return _viewModel;
+}
+
 - (void) loadView
 {
     [super loadView];
     
+    self.roomsTableView.delegate   = self.viewModel;
+    self.roomsTableView.dataSource = self.viewModel;
 }
 
 @end

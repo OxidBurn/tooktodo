@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FilterByRoomViewModel : NSObject
+@interface FilterByRoomViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 @end

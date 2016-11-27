@@ -8,6 +8,34 @@
 
 #import "FilterByRoomViewModel.h"
 
+//Classes
+#import "FilterByRoomModel.h"
+
+@interface FilterByRoomViewModel()
+
+// properties
+@property (nonatomic, strong) FilterByRoomModel* model;
+
+// methods
+
+
+@end
+
 @implementation FilterByRoomViewModel
+
+
+#pragma mark - UITableViewDatasource methods -
+
+- (UITableViewCell*) tableView: (UITableView*) tableView
+         cellForRowAtIndexPath: (NSIndexPath*) indexPath
+{
+    return nil;
+}
+
+- (NSInteger)tableView: (UITableView*) tableView
+ numberOfRowsInSection: (NSInteger)    section
+{
+    return 0;
+}
 
 @end
