@@ -52,6 +52,20 @@
     [self.model fillSelectedTypesInfoFromConfig: filterConfig];
 }
 
+- (void) selectAll
+{
+    [self.model selectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) deselectAll
+{
+    [self.model deselectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
 #pragma mark - Table view datasource metods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView

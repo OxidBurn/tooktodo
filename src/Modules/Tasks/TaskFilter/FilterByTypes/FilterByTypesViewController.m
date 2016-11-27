@@ -25,6 +25,11 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender;
 
+- (IBAction) onReset: (UIButton*) sender;
+
+- (IBAction) onSave: (UIButton*) sender;
+
+
 @end
 
 @implementation FilterByTypesViewController
@@ -38,6 +43,14 @@
     
     self.typesTableView.dataSource = self.viewModel;
     self.typesTableView.delegate   = self.viewModel;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    self.viewModel.reloadTableView = ^(){
+        
+        [blockSelf.typesTableView reloadData];
+        
+    };
 }
 
 #pragma mark - Properties -
@@ -69,13 +82,39 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
+    [self saveData];
+}
+
+- (IBAction) onReset: (UIButton*) sender
+{
+    if ( sender.selected )
+    {
+        [self.viewModel deselectAll];
+    }
+    else
+    {
+        [self.viewModel selectAll];
+    }
+        
+    sender.selected = !sender.selected;
+}
+
+- (IBAction) onSave: (UIButton*) sender
+{
+    [self saveData];
+}
+
+
+#pragma mark - Internal -
+
+- (void) saveData
+{
     if ([self.delegate respondsToSelector: @selector(returnSelectedTypesArray:)])
     {
         [self.delegate returnSelectedTypesArray: [self.viewModel getSelectedTypesArray]];
     }
     
     [self.navigationController popViewControllerAnimated: YES];
-
 }
 
 @end

@@ -12,8 +12,14 @@
 
 @interface FilterByTypesViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, copy) void(^reloadTableView)();
+
 - (NSArray*) getSelectedTypesArray;
 
 - (void) fillSelectedTypesInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
+
+- (void) selectAll;
+
+- (void) deselectAll;
 
 @end

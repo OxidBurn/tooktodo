@@ -127,4 +127,23 @@
     self.selectedTypesIndexes = filterConfig.byTaskType;
 }
 
+- (void) selectAll
+{
+    __block NSMutableArray* tmp = [NSMutableArray new];
+    NSArray* typesArr = @[@(TaskWorkType), @(TaskAgreementType), @(TaskObservationType), @(TaskRemarkType)];
+    
+    [typesArr enumerateObjectsUsingBlock: ^(NSNumber* type, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [tmp addObject: @(idx)];
+        
+    }];
+    
+    self.selectedTypesIndexes = tmp.copy;
+}
+
+- (void) deselectAll
+{
+    self.selectedTypesIndexes = nil;
+}
+
 @end

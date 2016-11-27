@@ -25,4 +25,8 @@
 
 - (void) fillSelectedTypesInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
+- (void) selectAll;
+
+- (void) deselectAll;
+
 @end
