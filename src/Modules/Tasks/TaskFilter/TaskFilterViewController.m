@@ -19,6 +19,7 @@
 #import "SelectSystemViewController.h"
 #import "SelectRoomViewController.h"
 #import "ProjectSystem+CoreDataProperties.h"
+#import "FilterByTypesViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -71,7 +72,8 @@
     {
         FilterByDatesViewController* controller = [segue destinationViewController];
         
-        [controller fillControllerType: self.controllerType];
+        [controller fillControllerType: self.controllerType
+                      withFilterConfig: filterConfig];
     }
     
     if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"]     ||
@@ -93,21 +95,19 @@
         [controller fillDelegate: self.viewModel];
     }
     
-    if ( [segue.identifier isEqualToString: @"ShowTaskTypeSegueId"] )
+    if ( [segue.identifier isEqualToString: @"ShowFilterByTypesSegueID"] )
     {
-        AddTaskTypeViewController* controller = [segue destinationViewController];
+        FilterByTypesViewController* controller = [segue destinationViewController];
         
-        NSNumber* taskType = filterConfig.byTaskType.firstObject;
+        [controller fillSelectedTypesInfoFromConfig: filterConfig];
         
-        [controller fillSelectedTaskType: taskType.integerValue
-                            withDelegate: self.viewModel];
+        controller.delegate = self.viewModel;
     }
     
     if ( [segue.identifier isEqualToString: @"ShowWorkAreaSegueId"] )
     {
         SelectRoomViewController* controller = [segue destinationViewController];
-        
-        
+
     }
     
     if ( [segue.identifier isEqualToString: @"ShowSystemsSegueId"] )

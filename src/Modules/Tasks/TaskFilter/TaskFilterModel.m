@@ -61,7 +61,7 @@
                          @"ShowFilterByDatesSegueId"],
                        @[@"ShowWorkAreaSegueId",
                          @"ShowSystemsSegueId",
-                         @"ShowTaskTypeSegueId"]];
+                         @"ShowFilterByTypesSegueID"]];
     }
     
     return _seguesId;
@@ -236,9 +236,9 @@
     [self updateContent];
 }
 
-- (void) fillTaskType: (NSUInteger) taskType
+- (void) fillTaskType: (NSArray*) taskTypes
 {
-    self.filterConfig.byTaskType = @[ @(taskType) ];
+    self.filterConfig.byTaskType = taskTypes;
     
     [self updateContent];
 }

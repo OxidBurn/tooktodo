@@ -21,6 +21,10 @@
 
 @property (strong, nonatomic) TermsData* terms;
 
+@property (strong, nonatomic) TaskFilterConfiguration* filterConfig;
+
+@property (assign, nonatomic) FilterByDateViewControllerType controllerType;
+
 // methods
 
 
@@ -45,7 +49,35 @@
 {
     if ( _tableViewContent == nil )
     {
-        _tableViewContent = [self.contentManager getFilterByDatesContent];
+        switch ( self.controllerType )
+        {
+            case ByTermsBeginning:
+            {
+                _tableViewContent = [self.contentManager getFilterByDatesContentForTerms: self.filterConfig.byTermsStart];
+            }
+                break;
+                
+            case ByTermsEnding:
+            {
+                _tableViewContent = [self.contentManager getFilterByDatesContentForTerms: self.filterConfig.byTermsEnd];
+            }
+                break;
+                
+            case ByFactTermsBeginning:
+            {
+                _tableViewContent = [self.contentManager getFilterByDatesContentForTerms: self.filterConfig.byFactTermsStart];
+            }
+                break;
+                
+            case ByFactTermsEnding:
+            {
+                _tableViewContent = [self.contentManager getFilterByDatesContentForTerms: self.filterConfig.byFactTermsEnd];
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
     
     return _tableViewContent;
@@ -61,7 +93,16 @@
     return _terms;
 }
 
+
 #pragma mark - Public -
+
+- (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
+       withControllerType: (FilterByDateViewControllerType) controllerType
+{
+    self.filterConfig = filterConfig;
+    
+    self.controllerType = controllerType;
+}
 
 
 - (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
@@ -81,7 +122,8 @@
 - (void) updateDateLabelWithDate: (NSDate*)    date
                 forPickerWithTag: (NSUInteger) pickerTag
 {
-       
+    self.tableViewContent = [self.contentManager updateDateLabelContentWithDate: date
+                                                               forPickerWithTag: pickerTag];
 }
 
 @end

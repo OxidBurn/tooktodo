@@ -317,22 +317,34 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
             
-            
-            NSString* byTypeDetail = [NSString new];
-            
-            if ( filterConfig.byTaskType.count > 0 )
+            if ( filterConfig.byTaskType.count > 0)
             {
-                NSNumber* taskType = filterConfig.byTaskType.firstObject;
                 
-                byTypeDetail = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+                NSNumber* taskType = filterConfig.byTaskType.firstObject;
+                filterByTaskTypeRow.detailIsSelected = YES;
+            
+                __block NSString* types = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+                
+                if (filterConfig.byTaskType.count >=2)
+                {
+                    [filterConfig.byTaskType enumerateObjectsUsingBlock: ^(NSNumber* type, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( idx > 0)
+                        {
+                            types = [types stringByAppendingString: [NSString stringWithFormat: @" ,%@", [self getTaskTypeDescriptionForIndex: type.integerValue]]];
+                        }
+                        
+                    }];
+                }
+                
+                filterByTaskTypeRow.detail = types;
             }
             else
             {
-                byTypeDetail = @"Не выбран";
+                filterByTaskTypeRow.detail           = @"Не выбрано";
+                filterByTaskTypeRow.detailIsSelected = NO;
             }
-            
-            filterByTaskTypeRow.detail           = byTypeDetail;
-            filterByTaskTypeRow.detailIsSelected = NO;
+
             
             sectionThree = @[ filterByWorkRoomRow,
                               filterBySystemRow,
@@ -364,23 +376,35 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByTaskTypeRow.title            = self.allTitlesArray[SectionThree][FilterByTaskTypeRow];
             filterByTaskTypeRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByTaskTypeRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-
-            NSString* byTypeDetail = [NSString new];
             
-            if ( filterConfig.byTaskType.count > 0 )
+            if ( filterConfig.byTaskType.count > 0)
             {
-                NSNumber* taskType = filterConfig.byTaskType.firstObject;
                 
-                byTypeDetail = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+                NSNumber* taskType = filterConfig.byTaskType.firstObject;
                 filterByTaskTypeRow.detailIsSelected = YES;
+                
+                __block NSString* types = [self getTaskTypeDescriptionForIndex: taskType.integerValue];
+                
+                if (filterConfig.byTaskType.count >=2)
+                {
+                    [filterConfig.byTaskType enumerateObjectsUsingBlock: ^(NSNumber* type, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( idx > 0)
+                        {
+                            types = [types stringByAppendingString: [NSString stringWithFormat: @" ,%@", [self getTaskTypeDescriptionForIndex: type.integerValue]]];
+                        }
+                        
+                    }];
+                }
+                
+                filterByTaskTypeRow.detail = types;
             }
             else
             {
-                byTypeDetail = @"Не выбран";
+                filterByTaskTypeRow.detail           = @"Не выбрано";
                 filterByTaskTypeRow.detailIsSelected = NO;
             }
-            
-            filterByTaskTypeRow.detail           = byTypeDetail;
+
             
             sectionThree = @[ filterByWorkRoomRow,
                               filterBySystemRow,

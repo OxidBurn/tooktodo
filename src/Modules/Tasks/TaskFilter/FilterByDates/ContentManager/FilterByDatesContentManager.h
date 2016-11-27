@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "TermsData.h"
+
 @interface FilterByDatesContentManager : NSObject
 
 // methods
-- (NSArray*) getFilterByDatesContent;
+- (NSArray*) getFilterByDatesContentForTerms: (TermsData*) terms;
+
+- (NSArray*) updateDateLabelContentWithDate: (NSDate*)    date
+                           forPickerWithTag: (NSUInteger) pickerTag;
 
 @end

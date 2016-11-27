@@ -39,7 +39,7 @@
 - (void) fillSelectedAditionalTermsOptionsWithValue: (BOOL)                           isOn
                                              forTag: (TaskFilterAditionalOptionsTags) tag;
 
-- (void) fillTaskType: (NSUInteger) taskType;
+- (void) fillTaskType: (NSArray*) taskTypes;
 
 - (void) fillSystemInfo: (ProjectSystem*) system;
 

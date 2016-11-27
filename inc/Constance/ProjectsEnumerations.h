@@ -192,8 +192,8 @@ typedef NS_ENUM(NSUInteger, FilterByDatesCellId)
 
 typedef NS_ENUM(NSUInteger, FilterByDatesPickerTag)
 {
-    FromDate,
-    BeforeDate,
+    StartDate,
+    EndDate,
 };
 
 typedef NS_ENUM(NSUInteger, TasksFilterType)

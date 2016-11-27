@@ -46,8 +46,4 @@
 
 - (void) convertTaskResponsibleToTeamInfo: (ProjectTaskResponsible*) taskResponsible;
 
-- (void) convertAssigneeToFilledInfo: (ProjectTaskAssignee*) assignee;
-
-- (void) convertInviteInfoToFilledInfo: (ProjectInviteInfo*) invite;
-
 @end

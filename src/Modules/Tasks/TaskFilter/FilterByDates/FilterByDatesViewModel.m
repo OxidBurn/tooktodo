@@ -162,6 +162,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
+#pragma mark - Public -
+
+- (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
+       withControllerType: (FilterByDateViewControllerType) controllerType
+{
+    [self.model fillFilterConfig: filterConfig
+              withControllerType: controllerType];
+}
+
+
 #pragma mark - Helpers -
 
 
@@ -214,10 +224,14 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 #pragma mark - OSDatePickerCellDelegate methods -
 
-- (void)updateDateLabelWithDate: (NSDate*)    date
-               forPickerWithTag: (NSUInteger) pickerTag
+- (void) updateDateLabelWithDate: (NSDate*)    date
+                forPickerWithTag: (NSUInteger) pickerTag
 {
+    [self.model updateDateLabelWithDate: date
+                       forPickerWithTag: pickerTag];
     
+    if (self.reloadTableView)
+        self.reloadTableView();
 }
 
 
