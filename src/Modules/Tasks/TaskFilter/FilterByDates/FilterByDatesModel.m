@@ -119,7 +119,7 @@
     if ( self.terms.startDate == nil )
     {
         [self updateDateLabelWithDate: [NSDate date]
-                     forPickerWithTag: 0];
+                     forPickerWithTag: 1];
     }
 }
 

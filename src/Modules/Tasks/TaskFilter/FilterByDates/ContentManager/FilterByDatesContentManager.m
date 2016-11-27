@@ -118,7 +118,7 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
             startPickerRow.dateToShow = date;
             
             [self updateContentWithNewRow: startPickerRow
-                                 forIndex: 1];
+                                 forIndex: TermsStartDatePickerRow];
             
             // updating minimum date for second picker
             // it can not be less than date to show in first picker
