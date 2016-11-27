@@ -178,7 +178,7 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
-    [formatter setDateFormat: @"yyyy dd MM"];
+    [formatter setDateFormat: @"yyyy.dd.MM"];
     
     NSString* dateFromString = date ? [formatter stringFromDate: date] : @"Не выбрано";
     

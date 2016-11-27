@@ -8,6 +8,9 @@
 
 #import "TermsData.h"
 
+// Classes
+#import "NSDate+Helper.h"
+
 @implementation TermsData
 
 - (instancetype) initWithStartDate: (NSDate*) startDate
@@ -15,8 +18,12 @@
 {
     if ( self = [super init] )
     {
-        self.startDate = startDate;
-        self.endDate   = endDate;
+        self.startDate       = startDate;
+        self.startDateString = [NSDate stringFromDate: startDate
+                                           withFormat: @"yyyy.dd.MM"];
+        self.endDate         = endDate;
+        self.endDateString   = [NSDate stringFromDate: endDate
+                                         withFormat: @"yyyy.dd.MM"];
     }
     
     return self;

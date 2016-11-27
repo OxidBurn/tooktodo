@@ -339,14 +339,14 @@
         
         
         // --- Dates ---
-        TermsData* startDates = [[TermsData alloc] initWithStartDate: filterContent.startBeginDate
-                                                         withEndDate: filterContent.startEndDate];
-        TermsData* endDates = [[TermsData alloc] initWithStartDate: filterContent.closeBeginDate
-                                                       withEndDate: filterContent.closeEndDate];
+        TermsData* startDates        = [[TermsData alloc] initWithStartDate: filterContent.startBeginDate
+                                                                withEndDate: filterContent.startEndDate];
+        TermsData* endDates          = [[TermsData alloc] initWithStartDate: filterContent.closeBeginDate
+                                                                withEndDate: filterContent.closeEndDate];
         TermsData* factualStartDates = [[TermsData alloc] initWithStartDate: filterContent.factualStartBeginDate
                                                                 withEndDate: filterContent.factualStartEndDate];
-        TermsData* factualEndDates = [[TermsData alloc] initWithStartDate: filterContent.factualCloseBeginDate
-                                                              withEndDate: filterContent.factualCloseEndDate];
+        TermsData* factualEndDates   = [[TermsData alloc] initWithStartDate: filterContent.factualCloseBeginDate
+                                                                withEndDate: filterContent.factualCloseEndDate];
         
         
         // Filling info
