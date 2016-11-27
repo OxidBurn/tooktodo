@@ -64,7 +64,7 @@
                                     @[@"ShowFilterByDatesSegueId",
                                       @"ShowFilterByDatesSegueId"],
                                     @[@"ShowFilterByRoomsSegueID",
-                                      @"ShowSystemsSegueId",
+                                      @"ShowFilterBySystems",
                                       @"ShowFilterByTypesSegueID"]];
     }
     

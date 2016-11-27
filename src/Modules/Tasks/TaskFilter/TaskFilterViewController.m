@@ -20,6 +20,7 @@
 #import "ProjectSystem+CoreDataProperties.h"
 #import "FilterByTypesViewController.h"
 #import "FilterByRoomViewController.h"
+#import "FilterBySystemsViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -114,14 +115,11 @@
         controller.delegate = self.viewModel;
     }
     
-    if ( [segue.identifier isEqualToString: @"ShowSystemsSegueId"] )
+    if ( [segue.identifier isEqualToString: @"ShowFilterBySystems"] )
     {
-        SelectSystemViewController* controller = [segue destinationViewController];
+        FilterBySystemsViewController* controller = [segue destinationViewController];
         
-        ProjectSystem* system = filterConfig.bySystem.firstObject;
         
-        [controller fillSelectedSystem: system
-                          withDelegate: self.viewModel];
     }
 }
 
