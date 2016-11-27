@@ -9,7 +9,17 @@
 #import "FilterByRoomViewController.h"
 
 @interface FilterByRoomViewController ()
+// Properties
+@property (weak, nonatomic) IBOutlet UITableView *filterByRoomTableView;
 
+
+// Methods
+- (IBAction)onSaveBtn:(UIButton *)sender;
+- (IBAction)onSelectAllBtn:(UIButton *)sender;
+
+- (IBAction)onResetBtn:(UIButton *)sender;
+- (IBAction)onCanceledBtn:(UIBarButtonItem *)sender;
+- (IBAction)onDoneBtn:(UIBarButtonItem *)sender;
 @end
 
 @implementation FilterByRoomViewController
@@ -20,4 +30,17 @@
     
 }
 
+- (IBAction)onSaveBtn:(UIButton *)sender {
+}
+
+- (IBAction)onSelectAllBtn:(UIButton *)sender {
+}
+- (IBAction)onResetBtn:(UIButton *)sender {
+}
+
+- (IBAction)onCanceledBtn:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)onDoneBtn:(UIBarButtonItem *)sender {
+}
 @end
