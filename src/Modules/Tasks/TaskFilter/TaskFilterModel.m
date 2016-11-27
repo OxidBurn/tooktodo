@@ -75,7 +75,7 @@
 {
     if ( _seguesIdAllProjects == nil )
     {
-        _seguesIdAllProjects = @[ @[@"ShowFilterByTypesSegueID"],
+        _seguesIdAllProjects = @[ @[@"SelectMyRolesInProjectSegueId"],
                                   @[@"ShowFilterByDatesSegueId",
                                     @"ShowFilterByDatesSegueId"],
                                   @[@"ShowWorkAreaSegueId",
