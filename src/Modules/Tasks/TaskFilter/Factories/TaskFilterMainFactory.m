@@ -94,12 +94,9 @@
         {
             FilterByTermsCellFactory* factory = [FilterByTermsCellFactory new];
             
-            cell = [factory returnFilterByTermsCellWithTitle: content.title
-                                              withStartTerms: content.startTermsString
-                                                withEndTerms: content.endTermsString
-                                                forTableView: tableView
-                                                withCellType: content.termsType
-                                                withDelegate: delegate];
+            cell = [factory returnFilterByTermsCellWithContent: content
+                                                  forTableView: tableView
+                                                  withDelegate: delegate];
         }
             break;
             

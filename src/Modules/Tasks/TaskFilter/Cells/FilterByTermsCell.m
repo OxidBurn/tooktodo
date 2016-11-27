@@ -84,19 +84,40 @@
 
 #pragma mark - Public -
 
-- (void) fillCellWithTitle: (NSString*)             titleText
-            withStartTerms: (NSString*)             startTerms
-              withEndTerms: (NSString*)             endTerms
-              withCellType: (FilterByTermsCellType) cellType
-              withDelegate: (id)                    delegate
+- (void) fillCellWithWithContent: (TaskFilterRowContent*) rowContent
+                    forTableView: (UITableView*)          tableView
+                    withDelegate: (id)                    delegate
+
 {
-    self.titleLabel.text     = titleText;
-    self.endDateLabel.text   = endTerms;
-    self.startDateLabel.text = startTerms;
+    self.titleLabel.text     = rowContent.title;
+    self.endDateLabel.text   = rowContent.endTermsString;
+    self.startDateLabel.text = rowContent.startTermsString;
     
-    self.cellType = cellType;
+    self.cellType = rowContent.termsType;
     
     self.delegate = delegate;
+    
+    self.startDateLabel.textColor = [self getTextColorForSelectedState: rowContent.isStartTermSelected];
+    self.endDateLabel.textColor   = [self getTextColorForSelectedState: rowContent.isEndTermsSelected];
+}
+
+
+#pragma mark - Helpers -
+
+- (UIColor*) getTextColorForSelectedState: (BOOL) isSelected
+{
+    UIColor* color = [UIColor new];
+    
+    if ( isSelected )
+    {
+        color = [UIColor blackColor];
+    }
+    else
+    {
+        color = [UIColor lightGrayColor];
+    }
+    
+    return color;
 }
 
 @end

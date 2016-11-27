@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 
 // Classes
-#import "RowContent.h"
+#import "FilterByTermsContent.h"
 #import "TaskFilterConfiguration.h"
 
 @interface FilterByDatesModel : NSObject
 
 // methods
-- (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath;
+- (FilterByTermsContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath;
 
 - (NSUInteger) getNumberOfRows;
 

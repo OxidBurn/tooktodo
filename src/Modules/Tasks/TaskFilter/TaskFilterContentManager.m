@@ -54,6 +54,10 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 
 @property (strong, nonatomic) NSArray* seguesIdArray;
 
+@property (assign, nonatomic) BOOL isTermsRowExpanded;
+
+@property (assign, nonatomic) BOOL isFactTermsRowExpanded;
+
 // methods
 
 
@@ -133,6 +137,27 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     NSArray* content = @[ sectionOne, sectionTwo, sectionThree, sectionFour ];
     
     return content;
+}
+
+- (void) updateExpandedStateWithIndexPath: (NSIndexPath*) indexPath
+{
+    switch ( indexPath.row )
+    {
+        case 0:
+            
+            self.isTermsRowExpanded = !self.isTermsRowExpanded;
+            
+            break;
+            
+        case 1:
+        {
+            self.isFactTermsRowExpanded = !self.isFactTermsRowExpanded;
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark - Internal -
@@ -264,44 +289,76 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     TaskFilterRowContent* filterByTermsRow = [TaskFilterRowContent new];
     
     filterByTermsRow.title            = self.allTitlesArray[SectionTwo][FilterByTermsRow];
-    filterByTermsRow.cellTypeId       = TaskFilterCustomDisclosureCell;
-    filterByTermsRow.cellId           = self.cellsIdArray[TaskFilterCustomDisclosureCell];
-    filterByTermsRow.detail           = @"Не выбрано";
-    filterByTermsRow.detailIsSelected = NO;
-    filterByTermsRow.rowHeight        = 50.f;
+    
+    BOOL isExpanded = self.isTermsRowExpanded;
+    
+    filterByTermsRow.isExpanded = isExpanded;
+    
+    NSString* newCellId = isExpanded ? @"FilterByTermsCellID" : @"CustomDisclosureIconCellID";
+    
+    CGFloat newRowHeight = isExpanded ? 110 : 50;
+    
+    NSUInteger cellIdType = isExpanded? TaskFilterFilterByTermsCell : TaskFilterCustomDisclosureCell;
+    
+    filterByTermsRow.rowHeight  = newRowHeight;
+    filterByTermsRow.cellId     = newCellId;
+    filterByTermsRow.cellTypeId = cellIdType;
+    
+    filterByTermsRow.detail           = [self getDetailForStartTerms: filterConfig.byTermsStart
+                                                         andEndTerms: filterConfig.byTermsEnd];
+    
+    filterByTermsRow.detailIsSelected = [filterByTermsRow.detail isEqualToString: @"Не выбрано"] ? NO : YES;
+    
     filterByTermsRow.termsType        = FilterByTermsType;
 
-    NSString* startTermsString = [NSString stringWithFormat: @"%@ - %@",
-                                  filterConfig.byTermsStart.startDateString,
-                                  filterConfig.byTermsStart.endDateString];
+    NSString* startTermsString = [self getTermsLabelForTerms: filterConfig.byTermsStart];
     
-    NSString* endTermsString   = [NSString stringWithFormat: @"%@ - %@",
-                                  filterConfig.byTermsEnd.startDateString,
-                                  filterConfig.byTermsEnd.endDateString];
+    NSString* endTermsString   = [self getTermsLabelForTerms: filterConfig.byTermsEnd];
     
     filterByTermsRow.startTermsString = startTermsString;
     filterByTermsRow.endTermsString   = endTermsString;
     
+    filterByTermsRow.isStartTermSelected = [startTermsString isEqualToString: @"Не выбрано"] ? NO : YES;
+    
+    filterByTermsRow.isEndTermsSelected = [endTermsString isEqualToString: @"Не выбрано"] ? NO : YES;
+    
+    // Second Row
     TaskFilterRowContent* filterByFactTermsRow = [TaskFilterRowContent new];
     
     filterByFactTermsRow.title            = self.allTitlesArray[SectionTwo][FilterByFactTermsRow];
-    filterByFactTermsRow.cellTypeId       = TaskFilterCustomDisclosureCell;
-    filterByFactTermsRow.cellId           = self.cellsIdArray[TaskFilterCustomDisclosureCell];
-    filterByFactTermsRow.detail           = @"Не выбрано";
+    
+    BOOL isExpandedFactTerms = self.isFactTermsRowExpanded;
+    
+    filterByFactTermsRow.isExpanded = isExpandedFactTerms;
+    
+    NSString* cellId = isExpandedFactTerms ? @"FilterByTermsCellID" : @"CustomDisclosureIconCellID";
+    
+    CGFloat rowHeight = isExpandedFactTerms ? 110 : 50;
+    
+    NSUInteger cellIdTypeFactTerms = isExpandedFactTerms? TaskFilterFilterByTermsCell : TaskFilterCustomDisclosureCell;
+    
+    filterByFactTermsRow.rowHeight  = rowHeight;
+    filterByFactTermsRow.cellId     = cellId;
+    filterByFactTermsRow.cellTypeId = cellIdTypeFactTerms;
+    
+    filterByFactTermsRow.detail           = [self getDetailForStartTerms: filterConfig.byTermsStart
+                                                         andEndTerms: filterConfig.byTermsEnd];
     filterByFactTermsRow.detailIsSelected = NO;
-    filterByFactTermsRow.rowHeight        = 50.f;
+    filterByFactTermsRow.termsType        = FilterByTermsType;
+    
+    filterByFactTermsRow.detailIsSelected = [filterByFactTermsRow.detail isEqualToString: @"Не выбрано"] ? NO : YES;
     filterByFactTermsRow.termsType        = FilterByFactTermsType;
     
-    NSString* startFactTermsString = [NSString stringWithFormat: @"%@ - %@",
-                                      filterConfig.byFactTermsStart.startDateString,
-                                      filterConfig.byFactTermsStart.endDateString];
+    NSString* startFactTermsString = [self getTermsLabelForTerms: filterConfig.byFactTermsStart];
     
-    NSString* endFactTermsString   = [NSString stringWithFormat: @"%@ - %@",
-                                      filterConfig.byFactTermsEnd.startDateString,
-                                      filterConfig.byFactTermsEnd.endDateString];
+    NSString* endFactTermsString   = [self getTermsLabelForTerms: filterConfig.byFactTermsEnd];
     
     filterByFactTermsRow.startTermsString = startFactTermsString;
     filterByFactTermsRow.endTermsString   = endFactTermsString;
+    
+    filterByFactTermsRow.isStartTermSelected = [startFactTermsString isEqualToString: @"Не выбрано"] ? NO : YES;
+    
+    filterByFactTermsRow.isEndTermsSelected = [endFactTermsString isEqualToString: @"Не выбрано"] ? NO : YES;
     
     NSArray* sectionTwoContent = @[ filterByTermsRow, filterByFactTermsRow ];
     
@@ -518,6 +575,60 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     }
     
     return description;
+}
+
+
+#pragma mark - Helpers for task terms -
+
+- (NSString*) getDetailForStartTerms: (TermsData*) startTerms
+                         andEndTerms: (TermsData*) endTerms
+{
+    NSString* detail = [NSString new];
+    
+    if ( (startTerms.startDateString) ||
+         (startTerms.endDateString)   ||
+         (endTerms.startDateString)   ||
+         (endTerms.endDateString) )
+    {
+        detail = @"Выбраны";
+    }
+    else
+    {
+        detail = @"Не выбраны";
+    }
+    
+    return detail;
+}
+
+- (NSString*) getTermsLabelForTerms: (TermsData*) terms
+{
+    NSString* startDateString = terms.startDateString;
+    NSString* endDateString   = terms.endDateString;
+    
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ - %@",
+                            terms.startDateString,
+                            terms.endDateString];
+        }
+        else
+            detailString = startDateString;
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = endDateString;
+        }
+        else
+            detailString = @"Не выбрано";
+    }
+
+    return detailString;
 }
 
 @end

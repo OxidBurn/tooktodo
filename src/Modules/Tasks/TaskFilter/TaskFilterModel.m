@@ -130,33 +130,10 @@
 
 - (void) didSelectTermsCellForIndexPath: (NSIndexPath*) indexPath
 {
-    NSArray* sectionContent = self.tableViewContent[indexPath.section];
+    [self.contentManager updateExpandedStateWithIndexPath: indexPath];
     
-    TaskFilterRowContent* content = sectionContent[indexPath.row];
-    
-    BOOL isExpanded = [content.cellId isEqualToString: @"FilterByTermsCellID"];
-    
-    NSString* newCellId = isExpanded ? @"CustomDisclosureIconCellID" : @"FilterByTermsCellID";
-    
-    CGFloat newRowHeight = isExpanded ? 50 : 110;
-    
-    NSUInteger cellIdType = isExpanded? TaskFilterCustomDisclosureCell : TaskFilterFilterByTermsCell;
-    
-    content.rowHeight  = newRowHeight;
-    content.cellId     = newCellId;
-    content.cellTypeId = cellIdType;
-    
-    NSMutableArray* newContentArray = self.tableViewContent.mutableCopy;
-    
-    NSMutableArray* newSectionContent = sectionContent.mutableCopy;
-    
-    [newSectionContent replaceObjectAtIndex: indexPath.row
-                                 withObject: content];
-    
-    [newContentArray replaceObjectAtIndex: indexPath.section
-                               withObject: newSectionContent];
-    
-    self.tableViewContent = newContentArray.copy;
+    self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
+                                                                      withFilterType: self.taskFilterType];
 }
 
 - (void) fillFilterType: (TasksFilterType) filterType
@@ -311,44 +288,6 @@
     self.tableViewContent = [self.contentManager getTableViewContentForConfiguration: self.filterConfig
                                                                       withFilterType: self.taskFilterType];
 }
-
-
-//- (void) updateDateLabelWithTerms: (TermsData*)                     terms
-//                 forLabelWithType: (FilterByDateViewControllerType) type
-//{
-//    switch ( type )
-//    {
-//        case ByTermsBeginning:
-//        {
-//            TaskFilterRowContent* row = self.tableViewContent[SectionTwo][0];
-//            
-//            row.startTermsString = [NSString stringWithFormat: @"%@ - %@", terms.startDateString,
-//                                                                           terms.endDateString];
-//        }
-//            break;
-//            
-//        case ByTermsEnding:
-//        {
-//            
-//        }
-//            break;
-//            
-//        case ByFactTermsBeginning:
-//        {
-//            
-//        }
-//            break;
-//            
-//        case ByFactTermsEnding:
-//        {
-//            
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
 
 - (void) updateContentWithRow: (TaskFilterRowContent*) newRow
                     inSection: (NSUInteger)            section

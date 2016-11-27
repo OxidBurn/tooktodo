@@ -18,7 +18,6 @@
 - (NSArray*) getTableViewContentForConfiguration: (TaskFilterConfiguration*) filterConfig
                                   withFilterType: (TasksFilterType)          filterType;
 
-//- (void) updateDateLabelWithTerms: (TermsData*)                     terms
-//                 forLabelWithType: (FilterByDateViewControllerType) type;
+- (void) updateExpandedStateWithIndexPath: (NSIndexPath*) indexPath;
 
 @end

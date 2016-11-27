@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "TaskFilterRowContent.h"
 
 @protocol FilterByTermsCellDelegate;
 
@@ -20,12 +21,9 @@
 
 // methods
 
-- (void) fillCellWithTitle: (NSString*)             titleText
-            withStartTerms: (NSString*)             startTerms
-              withEndTerms: (NSString*)             endTerms
-              withCellType: (FilterByTermsCellType) cellType
-              withDelegate: (id)                    delegate;
-
+- (void) fillCellWithWithContent: (TaskFilterRowContent*) rowContent
+                    forTableView: (UITableView*)          tableView
+                    withDelegate: (id)                    delegate;
 @end
 
 @protocol FilterByTermsCellDelegate <NSObject>

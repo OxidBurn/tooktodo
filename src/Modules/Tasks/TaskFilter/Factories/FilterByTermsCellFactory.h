@@ -13,16 +13,13 @@
 
 // Classes
 #import "FilterByTermsCell.h"
+#import "TaskFilterRowContent.h"
 
 @interface FilterByTermsCellFactory : NSObject
 
 // methods
 
-- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)             title
-                                       withStartTerms: (NSString*)             startTerms
-                                         withEndTerms: (NSString*)             endTerms
-                                         forTableView: (UITableView*)          tableView
-                                         withCellType: (FilterByTermsCellType) cellType
-                                         withDelegate: (id)                    delegate;
-
+- (UITableViewCell*) returnFilterByTermsCellWithContent: (TaskFilterRowContent*) rowContent
+                                           forTableView: (UITableView*)          tableView
+                                           withDelegate: (id)                    delegate;
 @end

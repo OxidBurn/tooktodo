@@ -109,7 +109,7 @@
     return self.tableViewContent.count;
 }
 
-- (RowContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
+- (FilterByTermsContent*) getRowContentForIndexPath: (NSIndexPath*) indexPath
 {
     return self.tableViewContent[indexPath.row];
 }

@@ -76,7 +76,7 @@
 {
     FilterByDatesFactory* factory = [FilterByDatesFactory new];
     
-    RowContent* content = [self.model getRowContentForIndexPath: indexPath];
+    FilterByTermsContent* content = [self.model getRowContentForIndexPath: indexPath];
     
     UITableViewCell* cell = [factory returnCellForTableView: tableView
                                               withIndexPath: indexPath

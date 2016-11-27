@@ -13,20 +13,15 @@
 
 #pragma mark - Public -
 
-- (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)             title
-                                       withStartTerms: (NSString*)             startTerms
-                                         withEndTerms: (NSString*)             endTerms
-                                         forTableView: (UITableView*)          tableView
-                                         withCellType: (FilterByTermsCellType) cellType
-                                         withDelegate: (id)                    delegate
+- (UITableViewCell*) returnFilterByTermsCellWithContent: (TaskFilterRowContent*) rowContent
+                                           forTableView: (UITableView*)          tableView
+                                           withDelegate: (id)                    delegate
 {
     FilterByTermsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FilterByTermsCellID"];
     
-    [cell fillCellWithTitle: title
-             withStartTerms: startTerms
-               withEndTerms: endTerms
-               withCellType: cellType
-               withDelegate: delegate];
+    [cell fillCellWithWithContent: rowContent
+                     forTableView: tableView
+                     withDelegate: delegate];
     
     return cell;
 }
