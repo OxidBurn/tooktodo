@@ -41,4 +41,8 @@
 
 @property (assign, nonatomic) BOOL detailIsSelected;
 
+@property (strong, nonatomic) NSString* startTermsString;
+
+@property (strong, nonatomic) NSString* endTermsString;
+
 @end

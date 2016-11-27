@@ -9,7 +9,7 @@
 #import "FilterByDatesContentManager.h"
 
 // Classes
-#import "RowContent.h"
+#import "FilterByTermsContent.h"
 #import "ProjectsEnumerations.h"
 
 typedef NS_ENUM(NSUInteger, FilterByDatesRow)
@@ -41,17 +41,15 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
 
 #pragma mark - Properties -
 
-- (NSArray*) cellsIdArray
+- (TermsData*) terms
 {
-    if ( _cellsIdArray == nil )
+    if ( _terms == nil )
     {
-        _cellsIdArray = @[ @"RightDetailCellID",
-                           @"DatePickerCellID" ];
+        _terms = [TermsData new];
     }
     
-    return _cellsIdArray;
+    return _terms;
 }
-
 
 #pragma mark - Public -
 
@@ -59,37 +57,32 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
 {
     self.terms = terms;
     
-    RowContent* rowOne = [RowContent new];
+    FilterByTermsContent* rowOne = [FilterByTermsContent new];
     
-    rowOne.cellId    = self.cellsIdArray[FilterByDatesRightDetailCell];
-    rowOne.cellIndex = FilterByDatesRightDetailCell;
-    rowOne.detail    = terms.startDateString ? terms.startDateString : @"Не выбрано";
-    rowOne.title     = @"Начало";
+    rowOne.cellIdIndex = FilterByDatesRightDetailCell;
+    rowOne.detail      = terms.startDateString ? terms.startDateString : @"Не выбрано";
+    rowOne.title       = @"Начало";
     
-    RowContent* rowTwo = [RowContent new];
+    FilterByTermsContent* rowTwo = [FilterByTermsContent new];
     
-    rowTwo.cellId      = self.cellsIdArray[FilterByDatesDatePickerCell];
-    rowTwo.cellIndex   = FilterByDatesDatePickerCell;
-    rowTwo.pickerTag   = StartDate;
-    rowTwo.dateToShow  = terms.startDate ? terms.startDate : [NSDate date];
-    rowTwo.minimumDate = [NSDate date];
-    rowTwo.maximumDate = terms.endDate;
+    rowTwo.cellIdIndex   = FilterByDatesDatePickerCell;
+    rowTwo.pickerTag     = StartDate;
+    rowTwo.dateToShow    = terms.startDate ? terms.startDate : [NSDate date];
+    if (terms.endDate)
+        rowTwo.maximumDate   = terms.endDate;
     
-    RowContent* rowThree = [RowContent new];
+    FilterByTermsContent* rowThree = [FilterByTermsContent new];
     
-    rowThree.cellId    = self.cellsIdArray[FilterByDatesRightDetailCell];
-    rowThree.cellIndex = FilterByDatesRightDetailCell;
-    rowThree.detail    = terms.endDateString ? terms.endDateString : @"Не выбрано";
-    rowThree.title     = @"Конец";
+    rowThree.cellIdIndex = FilterByDatesRightDetailCell;
+    rowThree.detail      = terms.endDateString ? terms.endDateString : @"Не выбрано";
+    rowThree.title       = @"Конец";
     
-    RowContent* rowFour = [RowContent new];
+    FilterByTermsContent* rowFour = [FilterByTermsContent new];
     
-    rowFour.cellId       = self.cellsIdArray[FilterByDatesDatePickerCell];
-    rowFour.cellIndex    = FilterByDatesDatePickerCell;
-    rowFour.pickerTag    = EndDate;
-    rowFour.dateToShow   = [NSDate date];
-    rowFour.detail       = terms.endDateString;
-     rowFour.minimumDate = [NSDate date];
+    rowFour.cellIdIndex    = FilterByDatesDatePickerCell;
+    rowFour.pickerTag      = EndDate;
+    rowFour.dateToShow     = terms.endDate? terms.endDate : terms.startDate;
+    rowFour.minimumDate    = rowTwo.dateToShow;
     
     NSArray* content = @[ rowOne, rowTwo, rowThree, rowFour ];
     
@@ -105,18 +98,31 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
     {
         case StartDate:
         {
+            FilterByTermsContent* row = self.content[0];
+            
+            // updating right detail cell for start date
             self.terms.startDate = date;
             
-            RowContent* newRow = [self createRowForDate: date
-                                              withTitle: @"Начало"];
+            NSString* newDetailText = [self getStringFromDate: date];
             
-            self.terms.startDateString = newRow.detail;
-            newRow.pickerTag           = StartDate;
+            row.detail = newDetailText;
             
-            [self updateContentWithNewRow: newRow
+            self.terms.startDateString = newDetailText;
+            
+            [self updateContentWithNewRow: row
                                  forIndex: TermsStartDateInfoRow];
             
-            RowContent* updatedEndRowMinimumDate = self.content[3];
+            // updating start picker dateToShow
+            FilterByTermsContent* startPickerRow = self.content[1];
+            
+            startPickerRow.dateToShow = date;
+            
+            [self updateContentWithNewRow: startPickerRow
+                                 forIndex: 1];
+            
+            // updating minimum date for second picker
+            // it can not be less than date to show in first picker
+            FilterByTermsContent* updatedEndRowMinimumDate = self.content[3];
             
             updatedEndRowMinimumDate.minimumDate = date;
             
@@ -131,14 +137,15 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
             
             date = [date dateByAddingTimeInterval: 2];
             
-            RowContent* newRow = [self createRowForDate: date
-                                              withTitle: @"Конец"];
+            FilterByTermsContent* newRow = self.content[2];
             
             newRow.dateToShow = date;
-            newRow.pickerTag  = EndDate;
             
+            NSString* newDetailText = [self getStringFromDate: date];
             
-            self.terms.endDateString = newRow.detail;
+            newRow.detail = newDetailText;
+            
+            self.terms.endDateString = newDetailText;
             
             [self updateContentWithNewRow: newRow
                                  forIndex: TermsEndDateInfoRow];
@@ -151,9 +158,13 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
     return self.content;
 }
 
+- (TermsData*) getTermsData
+{
+    return self.terms;
+}
 
-- (void) updateContentWithNewRow: (RowContent*) newRow
-                        forIndex: (NSUInteger)  index
+- (void) updateContentWithNewRow: (FilterByTermsContent*) newRow
+                        forIndex: (NSUInteger)            index
 {
     NSMutableArray* contentCopy = [NSMutableArray arrayWithArray: self.content];
     
@@ -161,19 +172,6 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
                            withObject: newRow];
     
     self.content = [contentCopy copy];
-}
-
-- (RowContent*) createRowForDate: (NSDate*)   date
-                       withTitle: (NSString*) title
-{
-    RowContent* newRow = [RowContent new];
-    
-    newRow.detail    = [self getStringFromDate: date];
-    newRow.title     = title;
-    newRow.cellId    = self.cellsIdArray[FilterByDatesRightDetailCell];
-    newRow.cellIndex = FilterByDatesRightDetailCell;
-    
-    return newRow;
 }
 
 - (NSString*) getStringFromDate: (NSDate*) date

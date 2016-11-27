@@ -14,7 +14,8 @@
 #pragma mark - Public -
 
 - (UITableViewCell*) returnFilterByTermsCellWithTitle: (NSString*)             title
-                                           withDetail: (NSString*)             detail
+                                       withStartTerms: (NSString*)             startTerms
+                                         withEndTerms: (NSString*)             endTerms
                                          forTableView: (UITableView*)          tableView
                                          withCellType: (FilterByTermsCellType) cellType
                                          withDelegate: (id)                    delegate
@@ -22,7 +23,8 @@
     FilterByTermsCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FilterByTermsCellID"];
     
     [cell fillCellWithTitle: title
-                 withDetail: detail
+             withStartTerms: startTerms
+               withEndTerms: endTerms
                withCellType: cellType
                withDelegate: delegate];
     

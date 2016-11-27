@@ -25,4 +25,6 @@
 - (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
        withControllerType: (FilterByDateViewControllerType) controllerType;
 
+- (TermsData*) getTermsData;
+
 @end

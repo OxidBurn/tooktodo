@@ -11,6 +11,7 @@
 // Classes
 #import "TaskFilterRowContent.h"
 #import "TaskStatusDefaultValues.h"
+#import "NSDate+Helper.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRow)
 {
@@ -133,7 +134,6 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     
     return content;
 }
-
 
 #pragma mark - Internal -
 
@@ -270,6 +270,17 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     filterByTermsRow.detailIsSelected = NO;
     filterByTermsRow.rowHeight        = 50.f;
     filterByTermsRow.termsType        = FilterByTermsType;
+
+    NSString* startTermsString = [NSString stringWithFormat: @"%@ - %@",
+                                  filterConfig.byTermsStart.startDateString,
+                                  filterConfig.byTermsStart.endDateString];
+    
+    NSString* endTermsString   = [NSString stringWithFormat: @"%@ - %@",
+                                  filterConfig.byTermsEnd.startDateString,
+                                  filterConfig.byTermsEnd.endDateString];
+    
+    filterByTermsRow.startTermsString = startTermsString;
+    filterByTermsRow.endTermsString   = endTermsString;
     
     TaskFilterRowContent* filterByFactTermsRow = [TaskFilterRowContent new];
     
@@ -280,6 +291,17 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
     filterByFactTermsRow.detailIsSelected = NO;
     filterByFactTermsRow.rowHeight        = 50.f;
     filterByFactTermsRow.termsType        = FilterByFactTermsType;
+    
+    NSString* startFactTermsString = [NSString stringWithFormat: @"%@ - %@",
+                                      filterConfig.byFactTermsStart.startDateString,
+                                      filterConfig.byFactTermsStart.endDateString];
+    
+    NSString* endFactTermsString   = [NSString stringWithFormat: @"%@ - %@",
+                                      filterConfig.byFactTermsEnd.startDateString,
+                                      filterConfig.byFactTermsEnd.endDateString];
+    
+    filterByFactTermsRow.startTermsString = startFactTermsString;
+    filterByFactTermsRow.endTermsString   = endFactTermsString;
     
     NSArray* sectionTwoContent = @[ filterByTermsRow, filterByFactTermsRow ];
     

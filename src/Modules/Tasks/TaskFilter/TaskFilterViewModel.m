@@ -16,6 +16,7 @@
 #import "FilterByStatusViewController.h"
 #import "OSSwitchTableCell.h"
 #import "FilterByTypesViewController.h"
+#import "FilterByDatesViewController.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRows)
 {
@@ -25,7 +26,7 @@ typedef NS_ENUM(NSUInteger, SectionOneRows)
     FilterByStatuses,
 };
 
-@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate, FilterByStatusControllerDelegate, OSSwitchTableCellDelegate>
+@interface TaskFilterViewModel() <FilterByTermsCellDelegate, FilterByAssigneeViewControllerDelegate, FilterByStatusControllerDelegate, OSSwitchTableCellDelegate, FilterByDatesControllerDelegate>
 
 // properties
 @property (strong, nonatomic) TaskFilterModel* model;
@@ -286,5 +287,19 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     
 }
+
+
+#pragma mark - FilterByDatesControllerDelegate methods -
+
+- (void) updateConfigWithTerms: (TermsData*)                     terms
+             forControllerType: (FilterByDateViewControllerType) controllerType
+{
+    [self.model fillTermsInfo: terms
+            forControllerType: controllerType];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
 
 @end
