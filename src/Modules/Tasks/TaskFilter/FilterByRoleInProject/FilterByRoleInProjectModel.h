@@ -11,10 +11,18 @@
 @interface FilterByRoleInProjectModel : NSObject
 
 // methods
+- (void) fillSelectedRoleType: (NSNumber*) roleType;
+
+- (NSNumber*) getSelectedRoleType;
+
 - (NSString*) getTitleForIndexPath: (NSIndexPath*) indexPath;
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
 
 - (BOOL) getSelectedStateForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSIndexPath*) getPreviousIndexPath;
+
+- (void) updatePreviousCellIndexPath: (NSIndexPath*) indexPath;
 
 @end

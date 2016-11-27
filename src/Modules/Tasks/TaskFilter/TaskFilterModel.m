@@ -332,6 +332,13 @@
     [self updateContent];
 }
 
+- (void) fillSelectedRoleType: (NSNumber*) selectedRole
+{
+    self.filterConfig.byMyRoleInProject = selectedRole;
+    
+    [self updateContent];
+}
+
 // helpers for test
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
 {
