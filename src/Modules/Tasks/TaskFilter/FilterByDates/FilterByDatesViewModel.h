@@ -10,9 +10,19 @@
 
 // Frameworks
 
+// Classes
+#import "TaskFilterConfiguration.h"
+#import "ProjectsEnumerations.h"
+
 @interface FilterByDatesViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 // properties
 @property (nonatomic, copy) void(^handleTableViewHeight)(BOOL didExpanded);
+
+@property (nonatomic, copy) void (^reloadTableView)();
+
+// methods
+- (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
+       withControllerType: (FilterByDateViewControllerType) controllerType;
 
 @end

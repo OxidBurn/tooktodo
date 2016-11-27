@@ -120,8 +120,12 @@
 #pragma mark - Public -
 
 - (void) fillControllerType: (FilterByDateViewControllerType) controllerType
+           withFilterConfig: (TaskFilterConfiguration*)       filterConfig
 {
     self.controllerType = controllerType;
+    
+    [self.viewModel fillFilterConfig: filterConfig
+                  withControllerType: controllerType];
 }
 
 
@@ -156,6 +160,11 @@
                                  self.quickFilterView.hidden = NO;
                              }];
         }
+    };
+    
+    blockSelf.viewModel.reloadTableView = ^(){
+        
+        [self.filterByDatesTableView reloadData];
     };
 }
 

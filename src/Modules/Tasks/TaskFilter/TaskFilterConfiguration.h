@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+// Classes
+#import "TermsData.h"
+
 @interface TaskFilterConfiguration : NSObject
 
 // properties
@@ -25,9 +28,13 @@
 
 @property (strong, nonatomic) NSArray* statusesList;
 
-@property (strong, nonatomic) NSDictionary* byTerms;
+@property (strong, nonatomic) TermsData* byTermsStart;
 
-@property (strong, nonatomic) NSDictionary* byFactTerms;
+@property (strong, nonatomic) TermsData* byTermsEnd;
+
+@property (strong, nonatomic) TermsData* byFactTermsStart;
+
+@property (strong, nonatomic) TermsData* byFactTermsEnd;
 
 @property (strong, nonatomic) NSArray* byWorkArea;
 

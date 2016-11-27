@@ -10,6 +10,7 @@
 
 // Classes
 #import "RowContent.h"
+#import "TaskFilterConfiguration.h"
 
 @interface FilterByDatesModel : NSObject
 
@@ -20,4 +21,8 @@
 
 - (void)updateDateLabelWithDate: (NSDate*)    date
                forPickerWithTag: (NSUInteger) pickerTag;
+
+- (void) fillFilterConfig: (TaskFilterConfiguration*)       filterConfig
+       withControllerType: (FilterByDateViewControllerType) controllerType;
+
 @end

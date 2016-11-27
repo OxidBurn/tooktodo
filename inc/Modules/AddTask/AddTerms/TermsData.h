@@ -12,7 +12,11 @@
 
 @property (strong, nonatomic) NSDate* startDate;
 
+@property (strong, nonatomic) NSString* startDateString;
+
 @property (strong, nonatomic) NSDate* endDate;
+
+@property (strong, nonatomic) NSString* endDateString;
 
 @property (assign, nonatomic) NSUInteger duration;
 

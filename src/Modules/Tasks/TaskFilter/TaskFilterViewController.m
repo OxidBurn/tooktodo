@@ -71,7 +71,8 @@
     {
         FilterByDatesViewController* controller = [segue destinationViewController];
         
-        [controller fillControllerType: self.controllerType];
+        [controller fillControllerType: self.controllerType
+                      withFilterConfig: filterConfig];
     }
     
     if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"]     ||

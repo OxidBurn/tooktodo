@@ -10,10 +10,12 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "TaskFilterConfiguration.h"
 
 @interface FilterByDatesViewController : BaseMainViewController
 
 // methods
-- (void) fillControllerType: (FilterByDateViewControllerType) controllerType;
+- (void) fillControllerType: (FilterByDateViewControllerType) controllerType
+           withFilterConfig: (TaskFilterConfiguration*)       filterConfig;
 
 @end
