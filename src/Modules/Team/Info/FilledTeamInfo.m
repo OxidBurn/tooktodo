@@ -113,15 +113,4 @@
     self.isObserver            = self.isObserver ? self.isObserver : NO;
 }
 
-- (void) convertAssigneeToFilledInfo: (ProjectTaskAssignee*) assignee
-{
-
-}
-
-- (void) convertInviteInfo: (ProjectInviteInfo*) invite
-              toFilledUser: (FilledTeamInfo*)    user
-{
-    
-}
-
 @end

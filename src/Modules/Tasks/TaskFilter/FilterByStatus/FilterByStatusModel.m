@@ -55,7 +55,7 @@
 - (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath
 {
     BOOL isSelected;
-    
+        
     if ( [self.selectedStatusesIndexes containsObject: @(indexPath.row)] )
         isSelected = YES;
     

@@ -210,6 +210,8 @@
         [self saveFilterStatusesFromConfig: taskFilterContent
                                    withSet: config.statusesList];
         
+        
+        
         // Is Done
         [self saveFilterisDoneOptionFromConfig: taskFilterContent
                                      withValue: config.isDone];
@@ -310,6 +312,8 @@
     }];
 }
 
+
+
 - (void) saveFilterisDoneOptionFromConfig: (ProjectTaskFilterContent*) filterConfig
                                 withValue: (BOOL)                      isDone
 {
@@ -333,5 +337,7 @@
 {
     filterConfig.statuses = statuses;
 }
+
+
 
 @end

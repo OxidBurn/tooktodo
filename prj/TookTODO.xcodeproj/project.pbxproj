@@ -424,6 +424,9 @@
 		59D9BD0E1D586960009DFBA8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D9BD0C1D586960009DFBA8 /* main.m */; };
 		59D9BD161D586974009DFBA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD101D586974009DFBA8 /* Assets.xcassets */; };
 		59D9BD171D586974009DFBA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9BD121D586974009DFBA8 /* LaunchScreen.storyboard */; };
+		CF0486071DEAE55700BB573C /* FilterByTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0486061DEAE55700BB573C /* FilterByTypesViewController.m */; };
+		CF04860A1DEAE57500BB573C /* FilterByTypesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF0486091DEAE57500BB573C /* FilterByTypesViewModel.m */; };
+		CF04860D1DEAE58600BB573C /* FilterByTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF04860C1DEAE58600BB573C /* FilterByTypeModel.m */; };
 		CF05378B1DCCB906002AD056 /* NSObject+Sorting.m in Sources */ = {isa = PBXBuildFile; fileRef = CF05378A1DCCB906002AD056 /* NSObject+Sorting.m */; };
 		CF1D5E011DD1E11A00CEB8DA /* SystemDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5DFE1DD1E11A00CEB8DA /* SystemDetailModel.m */; };
 		CF1D5E021DD1E11A00CEB8DA /* SystemDetailPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1D5DFF1DD1E11A00CEB8DA /* SystemDetailPopoverController.m */; };
@@ -1295,6 +1298,12 @@
 		8543B55F1807C1A8A44F5155 /* Pods-TookTODO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.release.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.release.xcconfig"; sourceTree = "<group>"; };
 		C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TookTODO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7419A793C9579902282E22 /* Pods-TookTODO.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.adhoc.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CF0486051DEAE55700BB573C /* FilterByTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByTypesViewController.h; sourceTree = "<group>"; };
+		CF0486061DEAE55700BB573C /* FilterByTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByTypesViewController.m; sourceTree = "<group>"; };
+		CF0486081DEAE57500BB573C /* FilterByTypesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByTypesViewModel.h; sourceTree = "<group>"; };
+		CF0486091DEAE57500BB573C /* FilterByTypesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByTypesViewModel.m; sourceTree = "<group>"; };
+		CF04860B1DEAE58600BB573C /* FilterByTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByTypeModel.h; sourceTree = "<group>"; };
+		CF04860C1DEAE58600BB573C /* FilterByTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByTypeModel.m; sourceTree = "<group>"; };
 		CF0537891DCCB906002AD056 /* NSObject+Sorting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Sorting.h"; sourceTree = "<group>"; };
 		CF05378A1DCCB906002AD056 /* NSObject+Sorting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Sorting.m"; sourceTree = "<group>"; };
 		CF1D5DFE1DD1E11A00CEB8DA /* SystemDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemDetailModel.m; sourceTree = "<group>"; };
@@ -3554,6 +3563,19 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CF0486041DEAE49B00BB573C /* FilterByTypes */ = {
+			isa = PBXGroup;
+			children = (
+				CF0486051DEAE55700BB573C /* FilterByTypesViewController.h */,
+				CF0486061DEAE55700BB573C /* FilterByTypesViewController.m */,
+				CF0486081DEAE57500BB573C /* FilterByTypesViewModel.h */,
+				CF0486091DEAE57500BB573C /* FilterByTypesViewModel.m */,
+				CF04860B1DEAE58600BB573C /* FilterByTypeModel.h */,
+				CF04860C1DEAE58600BB573C /* FilterByTypeModel.m */,
+			);
+			path = FilterByTypes;
+			sourceTree = "<group>";
+		};
 		CF1D5DFD1DD1E11A00CEB8DA /* DetailPopover */ = {
 			isa = PBXGroup;
 			children = (
@@ -3686,6 +3708,7 @@
 		F7EB66CE1DE35D6100F44CDF /* TaskFilter */ = {
 			isa = PBXGroup;
 			children = (
+				CF0486041DEAE49B00BB573C /* FilterByTypes */,
 				F7E7657E1DE8A78C00E8F10F /* FilterByStatus */,
 				F72F3BC71DE76930009648A6 /* FilterByAssignee */,
 				F7EB66CF1DE35D6100F44CDF /* Cells */,
@@ -3969,6 +3992,7 @@
 				56D06F141DAFBDC0008E9AC0 /* SelectRoomViewController.m in Sources */,
 				F725FBE11DC3728A00793EA3 /* AboutProjectTableViewCell.m in Sources */,
 				56D06E841DAFBDC0008E9AC0 /* DataManager+Roles.m in Sources */,
+				CF04860A1DEAE57500BB573C /* FilterByTypesViewModel.m in Sources */,
 				56D06F681DAFBDC0008E9AC0 /* StatusMarkerComponent.m in Sources */,
 				56D06FA21DAFBDC0008E9AC0 /* OSAlertDeleteTaskViewModel.m in Sources */,
 				56D06F7B1DAFBDC0008E9AC0 /* TeamProfileInfoViewModel.m in Sources */,
@@ -3989,6 +4013,7 @@
 				56D06F851DAFBDC0008E9AC0 /* UserInfoViewModel.m in Sources */,
 				564DE3861DB0F60800BF9817 /* TaskAvailableActionsModel.m in Sources */,
 				56D06F8F1DAFBDC0008E9AC0 /* WelcomeTourModel.m in Sources */,
+				CF04860D1DEAE58600BB573C /* FilterByTypeModel.m in Sources */,
 				56D06F211DAFBDC0008E9AC0 /* RecoveryViewController.m in Sources */,
 				CF3455EE1DE87F1E0090421D /* ParentCollectionCell.m in Sources */,
 				56D06E8C1DAFBDC0008E9AC0 /* OfflineSettings.m in Sources */,
@@ -4316,6 +4341,7 @@
 				56D06F9F1DAFBDC0008E9AC0 /* AlertView.m in Sources */,
 				56D06E901DAFBDC0008E9AC0 /* ProjectInfo+CoreDataProperties.m in Sources */,
 				F7ED84421DAFCEA400CF76D7 /* CommentsCellFactory.m in Sources */,
+				CF0486071DEAE55700BB573C /* FilterByTypesViewController.m in Sources */,
 				56D06E8F1DAFBDC0008E9AC0 /* ProjectInfo+CoreDataClass.m in Sources */,
 				56D06F991DAFBDC0008E9AC0 /* UserAPIService.m in Sources */,
 				F72DC5451DDB545500E0AC3A /* AddTaskContentManager.m in Sources */,
