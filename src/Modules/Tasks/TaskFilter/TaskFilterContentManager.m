@@ -385,13 +385,43 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByWorkRoomRow.detailIsSelected = NO;
             
             
-            TaskFilterRowContent* filterBySystemRow = [TaskFilterRowContent new];
+            TaskFilterRowContent* filterByStatusRow = [TaskFilterRowContent new];
             
-            filterBySystemRow.title            = self.allTitlesArray[SectionThree][FilterByStatusRow];
-            filterBySystemRow.cellTypeId       = TaskFilterRightDetailCell;
-            filterBySystemRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterBySystemRow.detail           = @"Не выбрана";
-            filterBySystemRow.detailIsSelected = NO;
+            filterByStatusRow.title            = self.allTitlesArray[SectionThree][FilterByStatusRow];
+            filterByStatusRow.cellTypeId       = TaskFilterRightDetailCell;
+            filterByStatusRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            
+            if ( filterConfig.statusesList.count > 0)
+            {
+                NSNumber* status = filterConfig.statusesList.firstObject;
+                filterByStatusRow.detailIsSelected = YES;
+                
+                __block NSString* statuses = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue];
+                
+                if ( filterConfig.statusesList.count == 1)
+                {
+                    NSNumber* status = filterConfig.statusesList.firstObject;
+                    statuses = [[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue];
+                }
+                else
+                {
+                    [filterConfig.statusesList enumerateObjectsUsingBlock: ^(NSNumber* status, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( idx > 0)
+                        {
+                            statuses = [statuses stringByAppendingString: [NSString stringWithFormat: @" ,%@",[[TaskStatusDefaultValues sharedInstance] returnTitleForTaskStatus: status.integerValue]]];
+                        }
+                        
+                    }];
+                }
+                
+                filterByStatusRow.detail           = statuses;
+            }
+            else
+            {
+                filterByStatusRow.detail           = @"Не выбрано";
+                filterByStatusRow.detailIsSelected = NO;
+            }
             
             TaskFilterRowContent* filterByTaskTypeRow = [TaskFilterRowContent new];
             
@@ -429,7 +459,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
 
             
             sectionThree = @[ filterByWorkRoomRow,
-                              filterBySystemRow,
+                              filterByStatusRow,
                               filterByTaskTypeRow ];
         }
             

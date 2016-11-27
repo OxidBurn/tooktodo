@@ -73,7 +73,7 @@
 
 - (NSArray*) seguesIdAllProjects
 {
-    if ( _seguesIdAllProjects)
+    if ( _seguesIdAllProjects == nil )
     {
         _seguesIdAllProjects = @[ @[@"ShowFilterByTypesSegueID"],
                                   @[@"ShowFilterByDatesSegueId",
