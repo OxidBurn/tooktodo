@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 
 // Classes
 #import "TaskFilterConfiguration.h"
+#import "ProjectTaskFilterContent+CoreDataClass.h"
 
 @interface DataManager (Filters)
 
@@ -44,6 +45,8 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 - (NSArray*) getFilterSystemsForCurrentProject;
 
 - (NSArray*) getFilterRoomsForCurrentProject;
+
+- (ProjectTaskFilterContent*) getFilterContentForSelectedProject;
 
 // Save filter configuration
 - (void) storeFilterConfiguration: (TaskFilterConfiguration*) config

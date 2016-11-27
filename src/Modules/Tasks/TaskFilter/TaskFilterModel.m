@@ -13,6 +13,8 @@
 #import "DataManager+ProjectInfo.h"
 #import "TaskFilterConfiguration.h"
 #import "TaskFiltersService.h"
+#import "DataManager+Filters.h"
+#import "ProjectTaskFilterContent+CoreDataClass.h"
 
 @interface TaskFilterModel()
 
@@ -91,7 +93,20 @@
 {
     if ( _filterConfig == nil )
     {
-        _filterConfig = [TaskFilterConfiguration new];
+        switch (self.taskFilterType)
+        {
+            case FilterBySingleProject:
+            {
+                _filterConfig = [self fillFilterConfigurationForProject];
+            }
+                break;
+                
+            case FilterByAllProjects:
+            {
+                _filterConfig = [TaskFilterConfiguration new];
+            }
+                break;
+        }
     }
     
     return _filterConfig;
@@ -306,6 +321,53 @@
     [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
     
     self.tableViewContent = [contentCopy copy];
+}
+
+- (TaskFilterConfiguration*) fillFilterConfigurationForProject
+{
+    TaskFilterConfiguration* configuraiton = [TaskFilterConfiguration new];
+    
+    ProjectTaskFilterContent* filterContent = [DataManagerShared getFilterContentForSelectedProject];
+    
+    if ( filterContent )
+    {
+        // --- Approvements ---
+        NSMutableArray* approvements = [NSMutableArray arrayWithArray: filterContent.approvementsAssignee.allObjects];
+        
+        [approvements addObjectsFromArray: filterContent.approvementsInvite.allObjects];
+        
+        
+        
+        // --- Dates ---
+        TermsData* startDates = [[TermsData alloc] initWithStartDate: filterContent.startBeginDate
+                                                         withEndDate: filterContent.startEndDate];
+        TermsData* endDates = [[TermsData alloc] initWithStartDate: filterContent.closeBeginDate
+                                                       withEndDate: filterContent.closeEndDate];
+        TermsData* factualStartDates = [[TermsData alloc] initWithStartDate: filterContent.factualStartBeginDate
+                                                                withEndDate: filterContent.factualStartEndDate];
+        TermsData* factualEndDates = [[TermsData alloc] initWithStartDate: filterContent.factualCloseBeginDate
+                                                              withEndDate: filterContent.factualCloseEndDate];
+        
+        
+        // Filling info
+        configuraiton.byCreator            = filterContent.creators.allObjects;
+        configuraiton.byCreatorIndexes     = (NSArray*)filterContent.creatorsSelectedIndexes;
+        configuraiton.byResponsible        = filterContent.responsibles.allObjects;
+        configuraiton.byResponsibleIndexes = (NSArray*)filterContent.responsiblesSelectedIndexes;
+        configuraiton.byApprovers          = approvements;
+        configuraiton.byApproversIndexes   = (NSArray*)filterContent.approvementsSelectedIndexes;
+        configuraiton.statusesList         = (NSArray*)filterContent.statuses;
+        configuraiton.byTermsStart         = startDates;
+        configuraiton.byTermsEnd           = endDates;
+        configuraiton.byFactTermsStart     = factualStartDates;
+        configuraiton.byFactTermsEnd       = factualEndDates;
+        configuraiton.byTaskType           = (NSArray*)filterContent.types;
+        configuraiton.isDone               = filterContent.isDone.boolValue;
+        configuraiton.isOverdue            = filterContent.isExpired.boolValue;
+        configuraiton.isCanceled           = filterContent.isCanceled.boolValue;
+    }
+    
+    return configuraiton;
 }
 
 @end

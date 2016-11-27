@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *closeEndDate;
 @property (nullable, nonatomic, copy) NSDate *factualCloseBeginDate;
 @property (nullable, nonatomic, copy) NSDate *factualCloseEndDate;
+@property (nullable, nonatomic, retain) NSObject *creatorsSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *responsiblesSelectedIndexes;
+@property (nullable, nonatomic, retain) NSObject *approvementsSelectedIndexes;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *creators;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) NSSet<ProjectTaskAssignee *> *responsibles;

@@ -10,4 +10,16 @@
 
 @implementation TermsData
 
+- (instancetype) initWithStartDate: (NSDate*) startDate
+                       withEndDate: (NSDate*) endDate
+{
+    if ( self = [super init] )
+    {
+        self.startDate = startDate;
+        self.endDate   = endDate;
+    }
+    
+    return self;
+}
+
 @end

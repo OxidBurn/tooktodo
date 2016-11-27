@@ -27,6 +27,9 @@
 @dynamic closeEndDate;
 @dynamic factualCloseBeginDate;
 @dynamic factualCloseEndDate;
+@dynamic creatorsSelectedIndexes;
+@dynamic responsiblesSelectedIndexes;
+@dynamic approvementsSelectedIndexes;
 @dynamic creators;
 @dynamic project;
 @dynamic responsibles;

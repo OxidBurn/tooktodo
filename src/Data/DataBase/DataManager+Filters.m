@@ -185,6 +185,16 @@
     return rooms;
 }
 
+- (ProjectTaskFilterContent*) getFilterContentForSelectedProject
+{
+    ProjectTaskFilterContent* content = [self getTaskFilterContentForCurrentProject];
+    
+    return content;
+}
+
+
+#pragma mark - Internal methods -
+
 - (void) storeFilterConfiguration: (TaskFilterConfiguration*) config
                    withCompletion: (CompletionWithSuccess)    completion
 {
@@ -201,16 +211,19 @@
         // Creators
         [self saveFilterCreatorsForConfig: taskFilterContent
                                   withSet: config.byCreator
+                              withIndexes: config.byCreatorIndexes
                                 inContext: localContext];
         
         // Responsibles
         [self saveFilterResponsiblesFromConfig: taskFilterContent
                                        withSet: config.byResponsible
+                                   withIndexes: config.byResponsibleIndexes
                                      inContext: localContext];
         
         // Approvers
         [self saveFilterApproversFromConfig: taskFilterContent
                                     withSet: config.byApprovers
+                                withIndexes: config.byApproversIndexes
                                   inContext: localContext];
         
         // Statuses
@@ -436,9 +449,11 @@
 // MARK: saving filter configuration items to database
 - (void) saveFilterCreatorsForConfig: (ProjectTaskFilterContent*) filterConfig
                              withSet: (NSArray*)                  creators
+                         withIndexes: (NSArray*)                  indexes
                            inContext: (NSManagedObjectContext*)   context
 {
-    filterConfig.creators = nil;
+    filterConfig.creators                = nil;
+    filterConfig.creatorsSelectedIndexes = indexes;
     
     [creators enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
        
@@ -449,9 +464,11 @@
 
 - (void) saveFilterResponsiblesFromConfig: (ProjectTaskFilterContent*) filterConfig
                                   withSet: (NSArray*)                  responsibles
+                              withIndexes: (NSArray*)                  indexes
                                 inContext: (NSManagedObjectContext*)   context
 {
-    filterConfig.responsibles = nil;
+    filterConfig.responsibles                = nil;
+    filterConfig.responsiblesSelectedIndexes = indexes;
     
     [responsibles enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -462,10 +479,12 @@
 
 - (void) saveFilterApproversFromConfig: (ProjectTaskFilterContent*) filterConfig
                                withSet: (NSArray*)                  approvers
+                           withIndexes: (NSArray*)                  indexes
                              inContext: (NSManagedObjectContext*)   context
 {
-    filterConfig.approvementsInvite   = nil;
-    filterConfig.approvementsAssignee = nil;
+    filterConfig.approvementsInvite          = nil;
+    filterConfig.approvementsAssignee        = nil;
+    filterConfig.approvementsSelectedIndexes = indexes;
     
     [approvers enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
        

@@ -24,4 +24,7 @@
 
 @property (assign, nonatomic) BOOL isUrgent;
 
+- (instancetype)initWithStartDate: (NSDate*) startDate
+                      withEndDate: (NSDate*) endDate;
+
 @end
