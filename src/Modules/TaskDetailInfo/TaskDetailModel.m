@@ -131,6 +131,10 @@
     [self updateContentWithRow: row
                      inSection: 0
                          inRow: 0];
+    
+    [DataManagerShared updateStatusType: @(row.status)
+                  withStatusDescription: row.statusDescription
+                         withCompletion: nil];
 
 }
 
