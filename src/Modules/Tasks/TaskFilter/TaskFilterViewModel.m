@@ -320,4 +320,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
+#pragma mark - FilterByRoleInProjectController delegate methods -
+
+- (void) returnSelectedRoleType: (NSNumber*) selectedRoleType
+{
+    [self.model fillSelectedRoleType: selectedRoleType];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
+
+
 @end

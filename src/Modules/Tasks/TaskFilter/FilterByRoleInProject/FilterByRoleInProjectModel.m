@@ -18,7 +18,7 @@
 
 @property (strong, nonatomic) NSNumber* selectedRole;
 
-@property (strong, nonatomic) NSIndexPath* previousesSelectedIndexPath;
+@property (strong, nonatomic) NSIndexPath* previousSelectedIndexPath;
 
 
 // methods
@@ -36,9 +36,9 @@
     if ( _rolesTitlesArray == nil )
     {
         _rolesTitlesArray = @[ @"Я участник",
-                         @"Я ответственный",
-                         @"Я утверждающий",
-                         @"Я создатель" ];
+                               @"Я ответственный",
+                               @"Я утверждающий",
+                               @"Я создатель" ];
     }
     
     return _rolesTitlesArray;
@@ -47,6 +47,19 @@
 
 #pragma mark - Public -
 
+- (void) fillSelectedRoleType: (NSNumber*) roleType
+{
+    self.selectedRole = roleType;
+    
+    self.previousSelectedIndexPath = [NSIndexPath indexPathForRow: roleType.integerValue
+                                                        inSection: 0];
+}
+
+- (NSNumber*) getSelectedRoleType
+{
+    return self.selectedRole;
+}
+
 - (NSString*) getTitleForIndexPath: (NSIndexPath*) indexPath
 {
     return self.rolesTitlesArray[indexPath.row];
@@ -54,12 +67,12 @@
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath
 {
-    if ( [indexPath isEqual: self.previousesSelectedIndexPath] )
+    if ( [indexPath isEqual: self.previousSelectedIndexPath] )
     {
-        self.previousesSelectedIndexPath = nil;
+        self.previousSelectedIndexPath = nil;
     }
     
-    if ( [indexPath isEqual: self.previousesSelectedIndexPath] == NO )
+    if ( [indexPath isEqual: self.previousSelectedIndexPath] == NO )
     {
         self.selectedRole = @(indexPath.row);
     }
@@ -80,6 +93,16 @@
     }
     
     return isSelected;
+}
+
+- (NSIndexPath*) getPreviousIndexPath
+{
+    return self.previousSelectedIndexPath;
+}
+
+- (void) updatePreviousCellIndexPath: (NSIndexPath*) indexPath
+{
+    self.previousSelectedIndexPath = indexPath;
 }
 
 @end

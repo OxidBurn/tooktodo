@@ -67,7 +67,7 @@
 
 - (void) fillSelectedRoleType: (NSNumber*) roleType
 {
-    
+    [self.viewModel fillSelectedRoleType: roleType];
 }
 
 
@@ -95,7 +95,7 @@
 {
     if ([self.delegate respondsToSelector: @selector(returnSelectedRoleType:)])
     {
-//        [self.delegate returnSelectedRoleType: [self.viewModel getSelectedTypesArray]];
+        [self.delegate returnSelectedRoleType: [self.viewModel getSelectedRoleType]];
     }
     
     [self.navigationController popViewControllerAnimated: YES];

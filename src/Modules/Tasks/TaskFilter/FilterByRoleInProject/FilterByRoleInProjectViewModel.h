@@ -17,6 +17,8 @@
 @property (nonatomic, copy) void(^reloadTableView)();
 
 // methods
+- (void) fillSelectedRoleType: (NSNumber*) roleType;
 
+- (NSNumber*) getSelectedRoleType;
 
 @end

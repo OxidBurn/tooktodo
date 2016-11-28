@@ -40,6 +40,16 @@
 
 #pragma mark - Public -
 
+- (void) fillSelectedRoleType: (NSNumber*) roleType
+{
+    [self.model fillSelectedRoleType: roleType];
+}
+
+- (NSNumber*) getSelectedRoleType
+{
+    return [self.model getSelectedRoleType];
+}
+
 
 #pragma mark - Table view datasource metods -
 
@@ -77,6 +87,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model handleCheckmarkForIndexPath: indexPath];
     
     [cell changeCheckmarkState: [self.model getSelectedStateForIndexPath: indexPath]];
+    
+    [cell changeCheckmarkState: YES];
+
+    if ( [self.model getPreviousIndexPath] &&
+         [self.model getPreviousIndexPath] != indexPath )
+    {
+        OSCellWithCheckmark* prevSelectedCell = [tableView cellForRowAtIndexPath: [self.model getPreviousIndexPath]];
+        
+        [prevSelectedCell changeCheckmarkState: NO];
+    }
+    
+    [self.model updatePreviousCellIndexPath: indexPath];
 }
 
 @end

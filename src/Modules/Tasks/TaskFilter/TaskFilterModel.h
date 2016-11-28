@@ -45,6 +45,9 @@
 
 - (void) fillTermsInfo: (TermsData*)                     terms
      forControllerType: (FilterByDateViewControllerType) controllerType;
+
+- (void) fillSelectedRoleType: (NSNumber*) selectedRole;
+
 // helpers for test
 
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;

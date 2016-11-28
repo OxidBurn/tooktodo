@@ -269,7 +269,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             NSString* filterByRoleRowCellId = self.cellsIdArray[TaskFilterRightDetailCell];
             
             filterByRoleRow.title            = self.allTitlesArray[SectionOne][FilterByRoleRow];
-            filterByRoleRow.cellTypeId       = [self determineCellTypeIdForCellId: filterByRoleRowCellId];
+            filterByRoleRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByRoleRow.cellId           = filterByRoleRowCellId;
             filterByRoleRow.detail           = [self getRoleDecriptionForType: filterConfig.byMyRoleInProject.integerValue];
             filterByRoleRow.detailIsSelected = YES;
