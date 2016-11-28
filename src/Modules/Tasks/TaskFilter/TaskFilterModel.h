@@ -48,6 +48,8 @@
 
 - (void) fillSelectedRoleType: (NSNumber*) selectedRole;
 
+- (void) fillSelectedProjects: (NSArray*) selectedProjects
+                  withIndexes: (NSArray*) selectedProjectsIndexes;
 // helpers for test
 
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;

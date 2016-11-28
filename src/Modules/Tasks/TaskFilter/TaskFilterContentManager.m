@@ -14,6 +14,7 @@
 #import "NSDate+Helper.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectSystem+CoreDataProperties.h"
+#import "ProjectInfo+CoreDataProperties.h"
 
 typedef NS_ENUM(NSUInteger, SectionOneRow)
 {
@@ -376,13 +377,45 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
         case FilterByAllProjects:
         {
             
-            TaskFilterRowContent* filterByWorkRoomRow = [TaskFilterRowContent new];
+            TaskFilterRowContent* filterByProjectRow = [TaskFilterRowContent new];
             
-            filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByProjectRow];
-            filterByWorkRoomRow.cellTypeId       = TaskFilterRightDetailCell;
-            filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByWorkRoomRow.detail           = @"Не выбрано";
-            filterByWorkRoomRow.detailIsSelected = NO;
+            filterByProjectRow.title            = self.allTitlesArray[SectionThree][FilterByProjectRow];
+            filterByProjectRow.cellTypeId       = TaskFilterRightDetailCell;
+            filterByProjectRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
+            
+            if ( filterConfig.byProjects.count > 0)
+            {
+                filterByProjectRow.detailIsSelected = YES;
+                
+                if (filterConfig.byProjects.count > 1)
+                {
+                    __block NSMutableString* tmpProjectsTitles = [NSMutableString string];
+                    
+                    [filterConfig.byProjects enumerateObjectsUsingBlock: ^(ProjectInfo* project, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        NSString* projectTitle = [NSString stringWithFormat: @"%@, ", [self getProjectTitleForFilterConfig: filterConfig
+                                                                                                               forIndex: idx]];
+                        
+                        [tmpProjectsTitles appendString: projectTitle];
+                        
+                    }];
+                    
+                    filterByProjectRow.detail = tmpProjectsTitles.copy;
+                    
+                    tmpProjectsTitles = nil;
+                }
+                else
+                {
+                    filterByProjectRow.detail = [self getProjectTitleForFilterConfig: filterConfig
+                                                                            forIndex: 0];
+                }
+            }
+            else
+            {
+                filterByProjectRow.detail           = @"Не выбрано";
+                filterByProjectRow.detailIsSelected = NO;
+            }
+
             
             
             TaskFilterRowContent* filterByStatusRow = [TaskFilterRowContent new];
@@ -458,7 +491,7 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             }
 
             
-            sectionThree = @[ filterByWorkRoomRow,
+            sectionThree = @[ filterByProjectRow,
                               filterByStatusRow,
                               filterByTaskTypeRow ];
         }
@@ -472,9 +505,6 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
             filterByWorkRoomRow.title            = self.allTitlesArray[SectionThree][FilterByWorkRoomRow];
             filterByWorkRoomRow.cellTypeId       = TaskFilterRightDetailCell;
             filterByWorkRoomRow.cellId           = self.cellsIdArray[TaskFilterRightDetailCell];
-            filterByWorkRoomRow.detail           = @"Не выбрано";
-            filterByWorkRoomRow.detailIsSelected = NO;
-            
             
             if ( filterConfig.byRooms.count > 0)
             {
@@ -759,6 +789,14 @@ typedef NS_ENUM(NSUInteger, SectionFourRow)
    ProjectTaskRoom* room  = filterConfig.byRooms[index];
 
     return room.title;
+}
+
+- (NSString*) getProjectTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
+                                    forIndex: (NSUInteger)               index
+{
+    ProjectInfo* project  = filterConfig.byProjects[index];
+    
+    return project.title;
 }
 
 - (NSString*) getWorkAreaTitleForFilterConfig: (TaskFilterConfiguration*) filterConfig
