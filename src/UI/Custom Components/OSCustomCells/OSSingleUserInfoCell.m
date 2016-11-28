@@ -37,7 +37,18 @@
 {
     self.userNameLabel.text        = userFullName;
     self.infoTitleLabel.text       = titleText;
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userAvatarSrc]];
+    
+    // Setup image
+    
+    if ( userAvatarSrc.length > 0 )
+    {
+        [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userAvatarSrc]];
+    }
+    else
+    {
+        self.userAvatarImageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+    }
+    
     self.userAvatarImageView.layer.cornerRadius = 10;
     self.userAvatarImageView.clipsToBounds = YES;
 

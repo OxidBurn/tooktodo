@@ -64,14 +64,25 @@
             
             ProjectTaskAssignee* assignee = content.selectedUsers.firstObject;
             
-            NSString* userFullName  = assignee.displayName;
+            NSString* userFullName = @"";
+            NSString* urlString    = @"";
             
-            NSString* urlString = assignee.avatarSrc;
-            
-            if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+            if ( [assignee isKindOfClass: [ProjectTaskAssignee class]] )
             {
-                urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                userFullName = assignee.displayName;
+                
+                urlString = assignee.avatarSrc;
+                
+                if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+                {
+                    urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                }
             }
+            else
+            {
+                userFullName = [NSString stringWithFormat: @"%@ %@", assignee.firstName, assignee.lastName];
+            }
+            
             
             cell = [factory returnSingleUserCellWithTitle: content.title
                                          withUserFullName: userFullName

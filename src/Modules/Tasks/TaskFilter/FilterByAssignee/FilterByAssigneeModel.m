@@ -10,11 +10,14 @@
 
 // Classes
 #import "DataManager+Filters.h"
+#import "NSString+APUtils.h"
 
 @interface FilterByAssigneeModel()
 
 // properties
 @property (strong, nonatomic) NSArray* assigneeArray;
+
+@property (strong, nonatomic) NSArray* filteredAssigneesContent;
 
 @property (strong, nonatomic) NSArray* selectedAssigneeIndexes;
 
@@ -25,6 +28,8 @@
 @property (assign, nonatomic) BOOL hasAnySelectedMembers;
 
 @property (assign, nonatomic) FilterByAssigneeType filterType;
+
+@property (assign, nonatomic) SearchTableState tableState;
 
 // methods
 
@@ -57,12 +62,6 @@
             case FilterByApprovers:
             {
                 _assigneeArray = [DataManagerShared getFilterApprovesForCurrentProject];
-            }
-                break;
-                
-            case FilterByAllMembers:
-            {
-//                _assigneeArray = [DataManagerShared getfilter]
             }
                 break;
                 
@@ -107,7 +106,19 @@
 
 - (NSUInteger) getNumberOfRows
 {
-    return self.assigneeArray.count;
+    switch (self.tableState)
+    {
+        case TableSearchState:
+        {
+            return self.filteredAssigneesContent.count;
+        }
+            break;
+        case TableNormalState:
+        {
+            return self.assigneeArray.count;
+        }
+            break;
+    }
 }
 
 - (void) handleAssigneeSelectionForIndexPath: (NSIndexPath*) indexPath
@@ -129,14 +140,24 @@
     // adding to array selected assignees
     NSMutableArray* tmpAssignees = self.selectedAssignee.mutableCopy;
     
-    ProjectTaskAssignee* selectedAssignee = self.assigneeArray[indexPath.row];
+    ProjectTaskAssignee* selectedItem = nil;
     
-    if ( [self.selectedAssignee containsObject: selectedAssignee] )
+    switch (self.tableState)
     {
-        [tmpAssignees removeObject: selectedAssignee];
+        case TableSearchState:
+            selectedItem = self.filteredAssigneesContent[indexPath.row];
+            break;
+        case TableNormalState:
+            selectedItem = self.assigneeArray[indexPath.row];
+            break;
+    }
+    
+    if ( [self.selectedAssignee containsObject: selectedItem] )
+    {
+        [tmpAssignees removeObject: selectedItem];
     }
     else
-        [tmpAssignees addObject: selectedAssignee];
+        [tmpAssignees addObject: selectedItem];
     
     self.selectedAssignee = tmpAssignees.copy;
 }
@@ -144,22 +165,23 @@
 
 - (ProjectTaskAssignee*) getAssigneeForIndexPath: (NSIndexPath*) indexPath
 {
-    ProjectTaskAssignee* assignee = self.assigneeArray[indexPath.row];
+    ProjectTaskAssignee* assignee = nil;
+    
+    switch (self.tableState)
+    {
+        case TableSearchState:
+        {
+            assignee = self.filteredAssigneesContent[indexPath.row];
+        }
+            break;
+        case TableNormalState:
+        {
+            assignee = self.assigneeArray[indexPath.row];
+        }
+            break;
+    }
     
     return assignee;
-}
-
-- (void) saveSelectedAssignees
-{
-    NSLog(@"selected assingnees indexes %@", self.selectedAssigneeIndexes);
-    
-    [self.selectedAssigneeIndexes enumerateObjectsUsingBlock: ^(NSNumber* index, NSUInteger idx, BOOL * _Nonnull stop) {
-       
-        ProjectTaskAssignee* assingee = self.assigneeArray[index.integerValue];
-        
-        NSLog(@"selected assingee %@", assingee );
-        
-    }];
 }
 
 - (BOOL) getCheckmarkStateForIndexPath: (NSIndexPath*) indexPath
@@ -175,15 +197,38 @@
 - (void) selectAll
 {
     self.selectedAssigneeIndexes = nil;
-    self.selectedAssignee        = self.assigneeArray;
     
     __block NSMutableArray* tmp = [NSMutableArray new];
     
-    [self.assigneeArray enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+    switch (self.tableState)
+    {
+        case TableSearchState:
+        {
+            self.selectedAssignee = self.filteredAssigneesContent;
         
-        [tmp addObject: @(idx)];
-        
-    }];
+            [self.filteredAssigneesContent enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                [tmp addObject: @(idx)];
+                
+            }];
+        }
+            break;
+            
+        case TableNormalState:
+        {
+            self.selectedAssignee = self.assigneeArray;
+            
+            [self.assigneeArray enumerateObjectsUsingBlock: ^(ProjectTaskAssignee* assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                [tmp addObject: @(idx)];
+                
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     self.selectedAssigneeIndexes = tmp.copy;
 }
@@ -199,8 +244,31 @@
     return self.selectedAssignee;
 }
 
+- (void) updateSelectedIndexesAfterApplyingSearch
+{
+  __block NSMutableArray* updatedSelectedIndexes = [NSMutableArray array];
+        
+    [self.assigneeArray enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( [self.selectedAssignee containsObject: assignee] )
+        {
+            [updatedSelectedIndexes addObject: @(idx)];
+        }
+        
+    }];
+        
+    self.selectedAssigneeIndexes = updatedSelectedIndexes.copy;
+    
+    updatedSelectedIndexes = nil;
+}
+
 - (NSArray*) getSelectedAssingeesIndexes
 {
+    if ( self.tableState == TableSearchState )
+    {
+        [self updateSelectedIndexesAfterApplyingSearch];
+    }
+    
     return self.selectedAssigneeIndexes;
 }
 
@@ -232,6 +300,76 @@
         default:
             break;
     }
+}
+
+- (void) updateSelectedIndexesAfterSearchFiltering
+{
+  __block NSMutableArray* updatedSelectedIndexes = [NSMutableArray array];
+    
+    [self.filteredAssigneesContent enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( [self.selectedAssignee containsObject: assignee] )
+        {
+            [updatedSelectedIndexes addObject: @(idx)];
+        }
+        
+    }];
+    
+    self.selectedAssigneeIndexes = updatedSelectedIndexes.copy;
+    
+    updatedSelectedIndexes = nil;
+}
+
+- (void) applyFilteringByText: (NSString*) searchText
+{
+    if ( searchText.length > 0 )
+    {
+        __block NSMutableArray* updatedFilteredContent = [NSMutableArray array];
+        
+        [self.filteredAssigneesContent enumerateObjectsUsingBlock: ^(ProjectTaskAssignee*  _Nonnull assignee, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [assignee.firstName containsString: searchText caseSensitive: NO] || [assignee.lastName containsString: searchText caseSensitive: NO] )
+            {
+                [updatedFilteredContent addObject: assignee];
+                
+                
+            }
+        }];
+        
+        self.filteredAssigneesContent = updatedFilteredContent.copy;
+        
+        updatedFilteredContent = nil;
+    }
+    else
+    {
+        self.filteredAssigneesContent = self.assigneeArray;
+    }
+    
+    [self updateSelectedIndexesAfterSearchFiltering];
+}
+
+- (void) setTableSearchState: (SearchTableState) state
+{
+    self.tableState = state;
+    
+    switch (state)
+    {
+        case TableSearchState:
+        {
+            self.filteredAssigneesContent = self.assigneeArray;
+        }
+            break;
+        case TableNormalState:
+        {
+            self.filteredAssigneesContent = nil;
+        }
+            break;
+    }
+}
+
+- (SearchTableState) getSearchTableState
+{
+    return self.tableState;
 }
 
 @end

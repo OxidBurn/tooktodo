@@ -17,6 +17,8 @@
 // properties
 @property (strong, nonatomic) FilterByAssigneeModel* model;
 
+@property (assign, nonatomic) BOOL isCanceledSearch;
+
 // methods
 
 
@@ -117,6 +119,57 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig
 {
     [self.model fillSelectedUsersInfoFromConfig: filterConfig];
+}
+
+#pragma mark - Search bar delegate methods -
+
+- (void) searchBar: (UISearchBar*) searchBar
+     textDidChange: (NSString*)    searchText
+{
+    if ( self.isCanceledSearch == NO )
+    {
+        [self.model applyFilteringByText: searchText];
+        
+        if ( self.reloadTableView )
+            self.reloadTableView();
+    }
+}
+
+- (BOOL) searchBarShouldBeginEditing: (UISearchBar*) searchBar
+{
+    return !self.isCanceledSearch;
+}
+
+- (void) searchBarTextDidBeginEditing: (UISearchBar*) searchBar
+{
+    [self.model setTableSearchState: TableSearchState];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
+- (void) searchBarTextDidEndEditing: (UISearchBar*) searchBar
+{
+    [self.model setTableSearchState: TableNormalState];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
+- (void) searchBarClearButtonClicked: (id) sender
+{
+    if ( self.endSearching )
+        self.endSearching();
+    
+    [self.model setTableSearchState: TableNormalState];
+    
+    self.isCanceledSearch = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        self.isCanceledSearch = NO;
+        
+    });
 }
 
 @end

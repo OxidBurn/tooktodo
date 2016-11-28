@@ -40,8 +40,8 @@
     {
         case 0:
         {
-            self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.allObjects.count];
-            countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.allObjects];
+            self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.array.count];
+            countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.array];
             
             [self updateExpandedState: info.isExpanded.boolValue];
         }
@@ -55,8 +55,8 @@
             }
             else
             {
-                self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.allObjects.count];
-                countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.allObjects];
+                self.countOfTasksLabel.text = [NSString stringWithFormat: @"%lu", info.tasks.array.count];
+                countOfExpiredTasks         = [self getCountOfExpiredTasks: info.tasks.array];
             }
             
             [self updateExpandedState: info.isExpanded.boolValue];

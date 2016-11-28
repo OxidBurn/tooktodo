@@ -293,7 +293,7 @@
 {
     NSMutableArray* content = [NSMutableArray new];
     
-    NSArray* allLogs = task.logs.allObjects;
+    NSArray* allLogs = task.logs.array;
     
     [allLogs enumerateObjectsUsingBlock: ^(TaskLogInfo* log, NSUInteger idx, BOOL * _Nonnull stop) {
         

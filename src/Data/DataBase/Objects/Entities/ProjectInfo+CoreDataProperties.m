@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/25/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 
@@ -49,8 +49,8 @@
 @dynamic roomLevel;
 @dynamic stage;
 @dynamic systems;
+@dynamic taskFilterConfig;
 @dynamic tasks;
 @dynamic team;
-@dynamic taskFilterConfig;
 
 @end

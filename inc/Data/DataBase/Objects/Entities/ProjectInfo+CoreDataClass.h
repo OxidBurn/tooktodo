@@ -2,7 +2,7 @@
 //  ProjectInfo+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 11/25/16.
+//  Created by Nikolay Chaban on 11/28/16.
 //
 //
 

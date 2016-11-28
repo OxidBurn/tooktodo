@@ -797,7 +797,7 @@
 {
     ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
     
-    NSArray* stages = currentProject.stage.allObjects;
+    NSArray* stages = currentProject.stage.array;
     
     return stages;
 }

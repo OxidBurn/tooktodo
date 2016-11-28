@@ -131,18 +131,26 @@
                 
                 imageView.hidden = NO;
                 
-                NSString* urlString = assignee.avatarSrc;
-                
-                if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+                if ( [assignee isKindOfClass: [ProjectTaskAssignee class]] )
                 {
-                    urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                    NSString* urlString = assignee.avatarSrc;
+                    
+                    if ( [assignee.avatarSrc containsString: @"http://api.taketowork.com"] == NO )
+                    {
+                        urlString = [NSString stringWithFormat: @"http://api.taketowork.com%@", assignee.avatarSrc];
+                    }
+                    
+                    [imageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
                 }
-                
-                [imageView sd_setImageWithURL: [NSURL URLWithString: urlString]];
+                else
+                {
+                    imageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+                }
             }
             
         }];
-    } else
+    }
+    else
     {
         NSUInteger assigneesLeft = assignees.count - 5;
         

@@ -14,10 +14,12 @@
 // Classes
 #import "FilterByAssigneeModel.h"
 
-@interface FilterByAssigneeViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
+@interface FilterByAssigneeViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 // properties
 @property (nonatomic, copy) void(^reloadTableView)();
+
+@property (copy, nonatomic) void(^endSearching)();
 
 // methods
 - (void) fillFilterType: (FilterByAssigneeType) filterType;

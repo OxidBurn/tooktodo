@@ -93,7 +93,7 @@
     NSSortDescriptor* alphabeticalSort = [NSSortDescriptor sortDescriptorWithKey: @"title"
                                                                        ascending: YES];
     
-    NSArray* roles = [currentProject.roles.allObjects sortedArrayUsingDescriptors: @[alphabeticalSort]];
+    NSArray* roles = [currentProject.roles.array sortedArrayUsingDescriptors: @[alphabeticalSort]];
     
     return roles;
 }

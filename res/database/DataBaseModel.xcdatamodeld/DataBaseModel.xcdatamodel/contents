@@ -52,15 +52,15 @@
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
         <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectFilterInfo" inverseName="project" inverseEntity="ProjectFilterInfo" syncable="YES"/>
         <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
-        <relationship name="projectRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoleAssignments" inverseName="project" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
+        <relationship name="projectRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectRoleAssignments" inverseName="project" inverseEntity="ProjectRoleAssignments" syncable="YES"/>
         <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectRegion" inverseName="project" inverseEntity="ProjectRegion" syncable="YES"/>
-        <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectRoles" inverseName="project" inverseEntity="ProjectRoles" syncable="YES"/>
+        <relationship name="roles" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectRoles" inverseName="project" inverseEntity="ProjectRoles" syncable="YES"/>
         <relationship name="roomLevel" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoomLevel" inverseName="project" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
-        <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
-        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectSystem" inverseName="project" inverseEntity="ProjectSystem" syncable="YES"/>
+        <relationship name="stage" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskStage" inverseName="project" inverseEntity="ProjectTaskStage" syncable="YES"/>
+        <relationship name="systems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectSystem" inverseName="project" inverseEntity="ProjectSystem" syncable="YES"/>
         <relationship name="taskFilterConfig" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskFilterContent" inverseName="project" inverseEntity="ProjectTaskFilterContent" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
-        <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamMember" inverseName="project" inverseEntity="TeamMember" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTask" inverseName="project" inverseEntity="ProjectTask" syncable="YES"/>
+        <relationship name="team" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TeamMember" inverseName="project" inverseEntity="TeamMember" syncable="YES"/>
     </entity>
     <entity name="ProjectInviteInfo" representedClassName="ProjectInviteInfo" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -160,10 +160,10 @@
         <relationship name="responsible" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskResponsible" inverseName="task" inverseEntity="ProjectTaskResponsible" syncable="YES"/>
         <relationship name="room" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="roomTask" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="task" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
-        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="tasks" inverseEntity="ProjectTaskStage" syncable="YES"/>
         <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
-        <relationship name="taskRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignments" inverseName="task" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
+        <relationship name="taskRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoleAssignments" inverseName="task" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
         <relationship name="workArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="task" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskAssignee" representedClassName="ProjectTaskAssignee" syncable="YES">
@@ -209,13 +209,13 @@
         <attribute name="statuses" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="workAreasSelectedIndexes" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <relationship name="approvementsAssignee" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskApprovementsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="approvementsInvite" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="filterInfo" inverseEntity="ProjectInviteInfo" syncable="YES"/>
-        <relationship name="creators" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskCreatorsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="approvementsAssignee" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskAssignee" inverseName="taskApprovementsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="approvementsInvite" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectInviteInfo" inverseName="filterInfo" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="creators" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskAssignee" inverseName="taskCreatorsFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectInfo" inverseName="taskFilterConfig" inverseEntity="ProjectInfo" syncable="YES"/>
-        <relationship name="responsibles" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="taskResponsiblesFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoom" inverseName="taskFilterContent" inverseEntity="ProjectTaskRoom" syncable="YES"/>
-        <relationship name="workAreas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="taskFilterContent" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
+        <relationship name="responsibles" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskAssignee" inverseName="taskResponsiblesFilterContent" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoom" inverseName="taskFilterContent" inverseEntity="ProjectTaskRoom" syncable="YES"/>
+        <relationship name="workAreas" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskWorkArea" inverseName="taskFilterContent" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskMapContour" representedClassName="ProjectTaskMapContour" syncable="YES">
         <attribute name="geoJson" optional="YES" attributeType="String" syncable="YES"/>
@@ -268,8 +268,8 @@
         <attribute name="isBlocked" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="projectPermission" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskRoleAssignmnetID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="assignee" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskAssignee" inverseName="roleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
-        <relationship name="invite" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectInviteInfo" inverseName="projectTaskAssignment" inverseEntity="ProjectInviteInfo" syncable="YES"/>
+        <relationship name="assignee" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskAssignee" inverseName="roleAssignment" inverseEntity="ProjectTaskAssignee" syncable="YES"/>
+        <relationship name="invite" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectInviteInfo" inverseName="projectTaskAssignment" inverseEntity="ProjectInviteInfo" syncable="YES"/>
         <relationship name="projectRoleAssignments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignments" inverseName="projectRoleAssignment" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
         <relationship name="projectRoleType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoleType" inverseName="roleAssignment" inverseEntity="ProjectTaskRoleType" syncable="YES"/>
     </entity>
@@ -277,7 +277,7 @@
         <attribute name="roleAssignmentsID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskRoleType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskRoleTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="projectRoleAssignment" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTaskRoleAssignment" inverseName="projectRoleAssignments" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
+        <relationship name="projectRoleAssignment" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoleAssignment" inverseName="projectRoleAssignments" inverseEntity="ProjectTaskRoleAssignment" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="taskRoleAssignments" inverseEntity="ProjectTask" syncable="YES"/>
     </entity>
     <entity name="ProjectTaskRoleType" representedClassName="ProjectTaskRoleType" syncable="YES">

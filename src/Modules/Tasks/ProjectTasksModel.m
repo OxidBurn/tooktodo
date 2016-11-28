@@ -197,7 +197,7 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             section
                          withCompletion: (CompletionWithSuccess) completion
 {
-    ProjectTaskStage* stage = (ProjectTaskStage*)self.currentProjectInfo.stage.allObjects[section];
+    ProjectTaskStage* stage = (ProjectTaskStage*)self.currentProjectInfo.stage.array[section];
     
     __weak typeof(self) blockSelf = self;
     
@@ -260,7 +260,7 @@ static NSString* contentKey = @"contentInfoKey";
         
         if ( obj.isExpanded.boolValue )
         {
-            NSArray* stageTasks = [DataManagerShared applyFiltersToTasks: obj.tasks.allObjects];
+            NSArray* stageTasks = [DataManagerShared applyFiltersToTasks: obj.tasks.array];
             
             [stageTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
@@ -347,9 +347,9 @@ static NSString* contentKey = @"contentInfoKey";
         __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
         __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
         
-        [self.currentProjectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, BOOL * _Nonnull stop) {
+        [self.currentProjectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+            [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ( [obj.title containsString: text] )
                     [tmpRowsInfo addObject: obj];

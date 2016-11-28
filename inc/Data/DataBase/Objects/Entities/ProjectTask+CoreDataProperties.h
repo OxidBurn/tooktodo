@@ -2,7 +2,9 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 11/28/16.
+//
+//
 
 #import "ProjectTask+CoreDataClass.h"
 
@@ -48,18 +50,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<TaskApprovments *> *approvments;
 @property (nullable, nonatomic, retain) TaskAvailableActionsList *availableActions;
 @property (nullable, nonatomic, retain) NSOrderedSet<TaskComment *> *comments;
+@property (nullable, nonatomic, retain) NSOrderedSet<TaskLogInfo *> *logs;
 @property (nullable, nonatomic, retain) ProjectTaskMarker *marker;
 @property (nullable, nonatomic, retain) ProjectTaskOwner *ownerUser;
 @property (nullable, nonatomic, retain) ProjectInfo *project;
 @property (nullable, nonatomic, retain) ProjectTaskResponsible *responsible;
 @property (nullable, nonatomic, retain) ProjectTaskRoom *room;
 @property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoom *> *rooms;
+@property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoom *> *rooms;
 @property (nullable, nonatomic, retain) ProjectTaskStage *stage;
 @property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
-@property (nullable, nonatomic, retain) NSSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
+@property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
-@property (nullable, nonatomic, retain) NSSet<TaskLogInfo *> *logs;
 
 @end
 
@@ -81,25 +83,43 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addComments:(NSOrderedSet<TaskComment *> *)values;
 - (void)removeComments:(NSOrderedSet<TaskComment *> *)values;
 
+- (void)insertObject:(TaskLogInfo *)value inLogsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromLogsAtIndex:(NSUInteger)idx;
+- (void)insertLogs:(NSArray<TaskLogInfo *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeLogsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInLogsAtIndex:(NSUInteger)idx withObject:(TaskLogInfo *)value;
+- (void)replaceLogsAtIndexes:(NSIndexSet *)indexes withLogs:(NSArray<TaskLogInfo *> *)values;
+- (void)addLogsObject:(TaskLogInfo *)value;
+- (void)removeLogsObject:(TaskLogInfo *)value;
+- (void)addLogs:(NSOrderedSet<TaskLogInfo *> *)values;
+- (void)removeLogs:(NSOrderedSet<TaskLogInfo *> *)values;
+
+- (void)insertObject:(ProjectTaskRoom *)value inRoomsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromRoomsAtIndex:(NSUInteger)idx;
+- (void)insertRooms:(NSArray<ProjectTaskRoom *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeRoomsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInRoomsAtIndex:(NSUInteger)idx withObject:(ProjectTaskRoom *)value;
+- (void)replaceRoomsAtIndexes:(NSIndexSet *)indexes withRooms:(NSArray<ProjectTaskRoom *> *)values;
 - (void)addRoomsObject:(ProjectTaskRoom *)value;
 - (void)removeRoomsObject:(ProjectTaskRoom *)value;
-- (void)addRooms:(NSSet<ProjectTaskRoom *> *)values;
-- (void)removeRooms:(NSSet<ProjectTaskRoom *> *)values;
+- (void)addRooms:(NSOrderedSet<ProjectTaskRoom *> *)values;
+- (void)removeRooms:(NSOrderedSet<ProjectTaskRoom *> *)values;
 
 - (void)addSubTasksObject:(ProjectTask *)value;
 - (void)removeSubTasksObject:(ProjectTask *)value;
 - (void)addSubTasks:(NSSet<ProjectTask *> *)values;
 - (void)removeSubTasks:(NSSet<ProjectTask *> *)values;
 
+- (void)insertObject:(ProjectTaskRoleAssignments *)value inTaskRoleAssignmentsAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromTaskRoleAssignmentsAtIndex:(NSUInteger)idx;
+- (void)insertTaskRoleAssignments:(NSArray<ProjectTaskRoleAssignments *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeTaskRoleAssignmentsAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInTaskRoleAssignmentsAtIndex:(NSUInteger)idx withObject:(ProjectTaskRoleAssignments *)value;
+- (void)replaceTaskRoleAssignmentsAtIndexes:(NSIndexSet *)indexes withTaskRoleAssignments:(NSArray<ProjectTaskRoleAssignments *> *)values;
 - (void)addTaskRoleAssignmentsObject:(ProjectTaskRoleAssignments *)value;
 - (void)removeTaskRoleAssignmentsObject:(ProjectTaskRoleAssignments *)value;
-- (void)addTaskRoleAssignments:(NSSet<ProjectTaskRoleAssignments *> *)values;
-- (void)removeTaskRoleAssignments:(NSSet<ProjectTaskRoleAssignments *> *)values;
-
-- (void)addLogsObject:(TaskLogInfo *)value;
-- (void)removeLogsObject:(TaskLogInfo *)value;
-- (void)addLogs:(NSSet<TaskLogInfo *> *)values;
-- (void)removeLogs:(NSSet<TaskLogInfo *> *)values;
+- (void)addTaskRoleAssignments:(NSOrderedSet<ProjectTaskRoleAssignments *> *)values;
+- (void)removeTaskRoleAssignments:(NSOrderedSet<ProjectTaskRoleAssignments *> *)values;
 
 @end
 

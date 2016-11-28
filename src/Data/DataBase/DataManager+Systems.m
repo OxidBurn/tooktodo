@@ -53,7 +53,7 @@
     NSSortDescriptor* alphabeticalShortTitleSort = [NSSortDescriptor sortDescriptorWithKey: @"shortTitle"
                                                                                  ascending: YES];
     
-    NSArray* systems = [currentProject.systems.allObjects sortedArrayUsingDescriptors: @[alphabeticalTitleSort, alphabeticalShortTitleSort]];
+    NSArray* systems = [currentProject.systems.array sortedArrayUsingDescriptors: @[alphabeticalTitleSort, alphabeticalShortTitleSort]];
     
     return systems;
 }

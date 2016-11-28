@@ -386,9 +386,9 @@
     if ( filterContent )
     {
         // --- Approvements ---
-        NSMutableArray* approvements = [NSMutableArray arrayWithArray: filterContent.approvementsAssignee.allObjects];
+        NSMutableArray* approvements = [NSMutableArray arrayWithArray: filterContent.approvementsAssignee.array];
         
-        [approvements addObjectsFromArray: filterContent.approvementsInvite.allObjects];
+        [approvements addObjectsFromArray: filterContent.approvementsInvite.array];
         
         
         
@@ -404,9 +404,9 @@
         
         
         // Filling info
-        configuraiton.byCreator            = filterContent.creators.allObjects;
+        configuraiton.byCreator            = filterContent.creators.array;
         configuraiton.byCreatorIndexes     = (NSArray*)filterContent.creatorsSelectedIndexes;
-        configuraiton.byResponsible        = filterContent.responsibles.allObjects;
+        configuraiton.byResponsible        = filterContent.responsibles.array;
         configuraiton.byResponsibleIndexes = (NSArray*)filterContent.responsiblesSelectedIndexes;
         configuraiton.byApprovers          = approvements;
         configuraiton.byApproversIndexes   = (NSArray*)filterContent.approvementsSelectedIndexes;
@@ -419,9 +419,9 @@
         configuraiton.isDone               = filterContent.isDone.boolValue;
         configuraiton.isOverdue            = filterContent.isExpired.boolValue;
         configuraiton.isCanceled           = filterContent.isCanceled.boolValue;
-        configuraiton.byRooms              = filterContent.rooms.allObjects;
+        configuraiton.byRooms              = filterContent.rooms.array;
         configuraiton.byRoomIndexes        = (NSArray*)filterContent.roomsSelectedIndexes;
-        configuraiton.byWorkAreas          = filterContent.workAreas.allObjects;
+        configuraiton.byWorkAreas          = filterContent.workAreas.array;
         configuraiton.byWorkAreasIndexes   = (NSArray*)filterContent.workAreasSelectedIndexes;
     }
     

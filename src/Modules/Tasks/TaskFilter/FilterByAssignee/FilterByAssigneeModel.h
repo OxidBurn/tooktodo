@@ -13,6 +13,12 @@
 #import "ProjectTaskAssignee+CoreDataProperties.h"
 #import "TaskFilterConfiguration.h"
 
+typedef NS_ENUM(NSUInteger, SearchTableState)
+{
+    TableNormalState = 0,
+    TableSearchState = 1,
+};
+
 @interface FilterByAssigneeModel : NSObject
 
 // methods
@@ -35,5 +41,11 @@
 - (NSArray*) getSelectedAssingeesIndexes;
 
 - (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
+
+- (void) setTableSearchState: (SearchTableState) state;
+
+- (void) applyFilteringByText: (NSString*) text;
+
+- (SearchTableState) getSearchTableState;
 
 @end

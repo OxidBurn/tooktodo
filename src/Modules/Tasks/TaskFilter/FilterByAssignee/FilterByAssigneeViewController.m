@@ -48,11 +48,11 @@
     [self setupDefaults];
 }
 
-- (void) viewDidLoad
+- (void) viewWillAppear: (BOOL) animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear: animated];
     
-//    self.controllerTypeSelection = [self.viewModel returnControllerType];
+    [self setupTableView];
 }
 
 
@@ -124,6 +124,7 @@
 {
     self.filterByAssigneeTableView.dataSource = self.viewModel;
     self.filterByAssigneeTableView.delegate   = self.viewModel;
+    self.searchBar.delegate                   = self.viewModel;
         
     __weak typeof(self) blockSelf = self;
     
@@ -132,6 +133,18 @@
         [blockSelf.filterByAssigneeTableView reloadData];
         
     };
+    
+    self.viewModel.endSearching = ^(){
+        
+        [blockSelf.searchBar resignFirstResponder];
+        [blockSelf.view endEditing: YES];
+        
+    };
+}
+
+- (void) setupTableView
+{
+    [self.filterByAssigneeTableView setContentOffset: CGPointMake(0, self.searchBar.height)];
 }
 
 

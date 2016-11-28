@@ -348,7 +348,7 @@
     NSSortDescriptor* roleDescriptor = [NSSortDescriptor sortDescriptorWithKey: @"roleID"
                                                                      ascending: YES];
     
-    NSArray* teamList = [project.projectRoleAssignments.allObjects sortedArrayUsingDescriptors: @[roleDescriptor]];
+    NSArray* teamList = [project.projectRoleAssignments.array sortedArrayUsingDescriptors: @[roleDescriptor]];
     
     return teamList;
 }

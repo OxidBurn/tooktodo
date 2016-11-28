@@ -174,9 +174,9 @@
     
     __block NSMutableArray* rooms = [NSMutableArray array];
     
-    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        [obj.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+        [obj.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
            
             if ( [rooms containsObject: obj] == NO )
             {
@@ -302,16 +302,16 @@
     {
         // Creators
         tasks = [self applyCreatorsFilter: tasks
-                         withCreatorsList: content.creators.allObjects];
+                         withCreatorsList: content.creators.array];
         
         // Responsibles
         tasks = [self applyResponsiblesFilter: tasks
-                         withResponsiblesList: content.responsibles.allObjects];
+                         withResponsiblesList: content.responsibles.array];
         
         // Approvements
-        NSMutableArray* approvers = [NSMutableArray arrayWithArray: content.approvementsAssignee.allObjects];
+        NSMutableArray* approvers = [NSMutableArray arrayWithArray: content.approvementsAssignee.array];
         
-        [approvers addObjectsFromArray: content.approvementsInvite.allObjects];
+        [approvers addObjectsFromArray: content.approvementsInvite.array];
         
         tasks = [self applyApproversFilters: tasks
                           withApproversList: approvers];
@@ -358,11 +358,11 @@
         
         // Filtering by Rooms
         tasks = [self applyFiltersByRooms: tasks
-                                withRooms: content.rooms.allObjects];
+                                withRooms: content.rooms.array];
         
         // Filtering by systems
         tasks = [self applyFiltersByWorkAreas: tasks
-                                withWorkAreas: content.workAreas.allObjects];
+                                withWorkAreas: content.workAreas.array];
     }
     
     return tasks;
@@ -376,7 +376,7 @@
     
     __block NSMutableArray* creators = [NSMutableArray array];
     
-    [project.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments * _Nonnull obj, BOOL * _Nonnull stop) {
+    [project.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( [filter containsObject: obj.assignee.assigneeID.stringValue] )
         {
@@ -395,7 +395,7 @@
     __block NSMutableArray* responsiblesList = [NSMutableArray array];
     __block NSMutableArray* addedIDs         = [NSMutableArray array];
     
-    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( [filter containsObject: obj.responsible.responsibleID.stringValue] &&
              [addedIDs containsObject: obj.responsible.responsibleID] == NO )
@@ -423,20 +423,20 @@
     __block NSMutableArray* approversList = [NSMutableArray array];
     __block NSMutableArray* tmpFilter = filter.mutableCopy;
     
-    [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, BOOL * _Nonnull stop) {
+    [project.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        [task.taskRoleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments * _Nonnull roleAssignments, BOOL * _Nonnull stop) {
+        [task.taskRoleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments * _Nonnull roleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
            
-            [roleAssignments.projectRoleAssignment enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment * _Nonnull assignment, BOOL * _Nonnull stop) {
+            [roleAssignments.projectRoleAssignment enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment * _Nonnull assignment, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 if ( [tmpFilter containsObject: assignment.taskRoleAssignmnetID.stringValue] &&
                     roleAssignments.taskRoleType.integerValue == 1 )
                 {   
                     [tmpFilter removeObject: assignment.taskRoleAssignmnetID.stringValue];
                     
-                    ProjectTaskAssignee* assignee = assignment.assignee.anyObject;
+                    ProjectTaskAssignee* assignee = assignment.assignee.firstObject;
                     
-                    ProjectInviteInfo* invite = assignment.invite.anyObject;
+                    ProjectInviteInfo* invite = assignment.invite.firstObject;
                     
                     if ( assignee )
                         [approversList addObject: assignee];
@@ -462,7 +462,7 @@
     __block NSMutableArray* workAreasList = [NSMutableArray array];
     __block NSMutableArray* tmpFilter     = filter.mutableCopy;
     
-    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, BOOL * _Nonnull stop) {
+    [project.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( [tmpFilter containsObject: obj.workArea.workAreaID.stringValue] )
         {
@@ -687,7 +687,7 @@
         
         [tasks enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [task.taskRoleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments * _Nonnull obj, BOOL * _Nonnull stop) {
+            [task.taskRoleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                
                 if ( [approversIDs containsObject: obj.roleAssignmentsID] &&
                     [tmpTasksArray containsObject: task] == NO )

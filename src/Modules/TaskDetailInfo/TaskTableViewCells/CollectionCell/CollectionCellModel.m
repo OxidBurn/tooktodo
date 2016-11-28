@@ -319,7 +319,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
            withClaimingsArray: (TaskCollectionCellsContent*) contentClaimings
            withObserversArray: (TaskCollectionCellsContent*) contentObservers
 {
-    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
+    NSArray* roleAssignments = self.task.taskRoleAssignments.array;
     
     contentResponsible.responsible = [NSArray array];
     contentClaimings.claiming      = [NSArray array];
@@ -335,14 +335,14 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         {
             case ResponsibleType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
                 [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
-                        NSArray* assigneeArr = obj.assignee.allObjects;
-                        NSArray* inviteArr = obj.invite.allObjects;
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr = obj.invite.array;
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
@@ -354,14 +354,14 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                 
             case ClaimingsType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
                 [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
-                        NSArray* assigneeArr = obj.assignee.allObjects;
-                        NSArray* inviteArr = obj.invite.allObjects;
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr = obj.invite.array;
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
@@ -373,14 +373,14 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                 
             case ObserverType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
                 [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
-                        NSArray* assigneeArr = obj.assignee.allObjects;
-                        NSArray* inviteArr   = obj.invite.allObjects;
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr   = obj.invite.array;
                         
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];

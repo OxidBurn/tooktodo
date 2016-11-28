@@ -88,7 +88,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 
 - (NSArray*) getTaskApprovers
 {
-    NSArray* roleAssignments = self.task.taskRoleAssignments.allObjects;
+    NSArray* roleAssignments = self.task.taskRoleAssignments.array;
     
     NSMutableArray* tmpClaimingsArr = [NSMutableArray array];
     
@@ -98,14 +98,14 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         {
         case ClaimingsType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.allObjects;
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
                 [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
-                        NSArray* assigneeArr = obj.assignee.allObjects;
-                        NSArray* inviteArr   = obj.invite.allObjects;
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr   = obj.invite.array;
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];

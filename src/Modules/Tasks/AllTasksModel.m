@@ -218,7 +218,7 @@
         if (projectInfo.isExpanded.boolValue)
         {
            
-            [projectInfo.stage enumerateObjectsUsingBlock:^(ProjectTaskStage * _Nonnull stage, BOOL * _Nonnull stop) {
+            [projectInfo.stage enumerateObjectsUsingBlock:^(ProjectTaskStage * _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 [tmpSectionContent addObject: stage];
                 
@@ -226,7 +226,7 @@
                 {
                     __block NSMutableArray* tasksArray = [NSMutableArray array];
                     
-                    [stage.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, BOOL * _Nonnull stop) {
+                    [stage.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                         [tasksArray addObject: task];
                     }];

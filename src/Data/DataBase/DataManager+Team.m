@@ -50,7 +50,7 @@
 {
     ProjectInfo* selectedProject = [DataManagerShared getSelectedProjectInfoInContext: [NSManagedObjectContext MR_defaultContext]];
     
-    return selectedProject.projectRoleAssignments.allObjects;
+    return selectedProject.projectRoleAssignments.array;
 }
 
 - (void) updateTeamMemberPermission: (NSInteger)             permission
