@@ -14,7 +14,9 @@
 #import "TaskFilterConfiguration.h"
 #import "TaskFiltersService.h"
 #import "DataManager+Filters.h"
+#import "DataManager+AllProjectsFilter.h"
 #import "ProjectTaskFilterContent+CoreDataClass.h"
+#import "AllProjectTasksFilterContent+CoreDataClass.h"
 
 @interface TaskFilterModel()
 
@@ -120,7 +122,7 @@
                 
             case FilterByAllProjects:
             {
-                _filterConfig = [TaskFilterConfiguration new];
+                _filterConfig = [self fillAllProjectFilterConfiguration];
             }
                 break;
         }
@@ -351,13 +353,28 @@
 // helpers for test
 - (void) saveFilterConfigurationWithCompletion: (CompletionWithSuccess) completion
 {
-    [[TaskFiltersService sharedInstance] saveFilterConfiguration: self.filterConfig
-                                                  withCompletion: completion];
+    if ( self.taskFilterType == FilterBySingleProject )
+    {
+        [[TaskFiltersService sharedInstance] saveFilterConfiguration: self.filterConfig
+                                                      withCompletion: completion];
+    }
+    else
+    {
+        [[TaskFiltersService sharedInstance] saveAllProjectsFilterConfiguration: self.filterConfig
+                                                                 withCompletion: completion];
+    }
 }
 
 - (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
 {
-    [[TaskFiltersService sharedInstance] resetFilterConfigurationForCurrentProject: completion];
+    if ( self.taskFilterType == FilterBySingleProject )
+    {
+        [[TaskFiltersService sharedInstance] resetFilterConfigurationForCurrentProject: completion];
+    }
+    else
+    {
+        [[TaskFiltersService sharedInstance] resetAllProjectsFilterConfigurationForCurrentProject: completion];
+    }
 }
 
 - (TaskFilterConfiguration*) getFilterConfig
@@ -439,6 +456,40 @@
         configuraiton.byRoomIndexes        = (NSArray*)filterContent.roomsSelectedIndexes;
         configuraiton.byWorkAreas          = filterContent.workAreas.array;
         configuraiton.byWorkAreasIndexes   = (NSArray*)filterContent.workAreasSelectedIndexes;
+    }
+    
+    return configuraiton;
+}
+
+- (TaskFilterConfiguration*) fillAllProjectFilterConfiguration
+{
+    TaskFilterConfiguration* configuraiton = [TaskFilterConfiguration new];
+    
+    AllProjectTasksFilterContent* filterContent = [DataManagerShared getAllProjectsTaskFilterContent];
+    
+    if ( filterContent )
+    {
+        // --- Dates ---
+        TermsData* startDates        = [[TermsData alloc] initWithStartDate: filterContent.startBeginDate
+                                                                withEndDate: filterContent.startEndDate];
+        TermsData* endDates          = [[TermsData alloc] initWithStartDate: filterContent.closeBeginDate
+                                                                withEndDate: filterContent.closeEndDate];
+        TermsData* factualStartDates = [[TermsData alloc] initWithStartDate: filterContent.factualStartBeginDate
+                                                                withEndDate: filterContent.factualStartEndDate];
+        TermsData* factualEndDates   = [[TermsData alloc] initWithStartDate: filterContent.factualCloseBeginDate
+                                                                withEndDate: filterContent.factualCloseEndDate];
+        
+        configuraiton.statusesList     = (NSArray*)filterContent.statuses;
+        configuraiton.byTermsStart     = startDates;
+        configuraiton.byTermsEnd       = endDates;
+        configuraiton.byFactTermsStart = factualStartDates;
+        configuraiton.byFactTermsEnd   = factualEndDates;
+        configuraiton.byTaskType       = (NSArray*)filterContent.types;
+        configuraiton.isDone           = filterContent.isDone.boolValue;
+        configuraiton.isOverdue        = filterContent.isExpired.boolValue;
+        configuraiton.isCanceled       = filterContent.isCanceled.boolValue;
+        configuraiton.byProjects       = filterContent.projects.array;
+        configuraiton.projectsList     = (NSArray*)filterContent.projectSelectedIndexes;
     }
     
     return configuraiton;

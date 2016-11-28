@@ -24,6 +24,11 @@
 - (void) saveFilterConfiguration: (TaskFilterConfiguration*) config
                   withCompletion: (CompletionWithSuccess)    completion;
 
+- (void) saveAllProjectsFilterConfiguration: (TaskFilterConfiguration*) config
+                             withCompletion: (CompletionWithSuccess)    completion;
+
 - (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion;
+
+- (void) resetAllProjectsFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion;
 
 @end

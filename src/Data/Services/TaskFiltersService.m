@@ -13,6 +13,7 @@
 
 // Categories
 #import "DataManager+Filters.h"
+#import "DataManager+AllProjectsFilter.h"
 
 @interface TaskFiltersService()
 
@@ -68,9 +69,21 @@
                                  withCompletion: completion];
 }
 
+- (void) saveAllProjectsFilterConfiguration: (TaskFilterConfiguration*) config
+                             withCompletion: (CompletionWithSuccess)    completion
+{
+    [DataManagerShared saveAllProjectTasksFilterContent: config
+                                         withCompletion: completion];
+}
+
 - (void) resetFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
 {
     [DataManagerShared resetFilterConfigurationWithCompletion: completion];
+}
+
+- (void) resetAllProjectsFilterConfigurationForCurrentProject: (CompletionWithSuccess) completion
+{
+    [DataManagerShared resetAllProjectsTasksFilterContentWithCompletion: completion];
 }
 
 

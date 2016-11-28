@@ -79,7 +79,7 @@
                       withFilterConfig: filterConfig
                           withDelegate: self.viewModel];
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"FilterByCreatorSegueId"]     ||
          [segue.identifier isEqualToString: @"FilterByResponsibleSegueId"] ||
          [segue.identifier isEqualToString: @"FilterByApproversSegueId"]   )
@@ -91,7 +91,7 @@
         
         [controller fillSelectedUsersInfoFromConfig: filterConfig];
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"FilterByStatusSegueId"] )
     {
         FilterByStatusViewController* controller = [segue destinationViewController];
@@ -99,7 +99,7 @@
         [controller fillSelectedStatuses: filterConfig.statusesList
                             withDelegate: self.viewModel];
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"ShowFilterByTypesSegueID"] )
     {
         FilterByTypesViewController* controller = [segue destinationViewController];
@@ -108,7 +108,7 @@
         
         controller.delegate = self.viewModel;
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"ShowFilterByRoomsSegueID"] )
     {
         FilterByRoomViewController* controller = [segue destinationViewController];
@@ -117,7 +117,7 @@
         
         controller.delegate = self.viewModel;
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"ShowFilterBySystems"] )
     {
         FilterBySystemsViewController* controller = [segue destinationViewController];
@@ -126,7 +126,7 @@
         
         controller.delegate = self.viewModel;
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"SelectMyRolesInProjectSegueId"] )
     {
         FilterByRoleInProjectViewController* controller = [segue destinationViewController];
@@ -135,7 +135,7 @@
         
         controller.delegate = self.viewModel;
     }
-    
+    else
     if ( [segue.identifier isEqualToString: @"FilterByProjectSegueId"] )
     {
         FilterByProjectViewController* controller = [segue destinationViewController];

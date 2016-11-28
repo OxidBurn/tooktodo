@@ -9,10 +9,16 @@
 #import "DataManager.h"
 
 // Classes
-
+#import "TaskFilterConfiguration.h"
+#import "AllProjectTasksFilterContent+CoreDataClass.h"
 
 @interface DataManager (AllProjectsFilter)
 
-//- (void) persistAllProjectsFilter
+- (void) saveAllProjectTasksFilterContent: (TaskFilterConfiguration*) config
+                           withCompletion: (CompletionWithSuccess)    completion;
+
+- (void) resetAllProjectsTasksFilterContentWithCompletion: (CompletionWithSuccess) completion;
+
+- (AllProjectTasksFilterContent*) getAllProjectsTaskFilterContent;
 
 @end
