@@ -142,12 +142,20 @@
 
 - (void) setBeforeCurrentDate
 {
+    self.terms.endDate = [NSDate date];
     
+    self.terms.endDateString = [self.contentManager getStringFromDate: [NSDate date]];
+    
+    [self.contentManager fillTerms: self.terms];
 }
 
 - (void) setAfterCurrentDate
 {
+    self.terms.startDate = [NSDate date];
     
+    self.terms.startDateString = [self.contentManager getStringFromDate: [NSDate date]];
+    
+    [self.contentManager fillTerms: self.terms];
 }
 
 - (void) setLastWeek
@@ -155,24 +163,58 @@
     NSDate* firstDateOfCurrentWeek = [Utils getFirstDateOfPrevWeek];
     NSDate* lastDateOfCurrentWeek  = [Utils getLastDayOfPrevWeek];
     
+    self.terms.startDate = firstDateOfCurrentWeek;
+    self.terms.endDate   = lastDateOfCurrentWeek;
+    
+    self.terms.startDateString = [self.contentManager getStringFromDate: firstDateOfCurrentWeek];
+    self.terms.endDateString   = [self.contentManager getStringFromDate: lastDateOfCurrentWeek];
+    
+    [self.contentManager fillTerms: self.terms];
 }
 
 - (void) setCurrentWeek
 {
     NSDate* firstDateOfCurrentWeek = [Utils getFistDayOfCurrentWeeak];
     NSDate* lastDateOfCurrentWeek  = [Utils getLastDayOfCurrentWeek];
+    
+    self.terms.startDate = firstDateOfCurrentWeek;
+    self.terms.endDate   = lastDateOfCurrentWeek;
+    
+    self.terms.startDateString = [self.contentManager getStringFromDate: firstDateOfCurrentWeek];
+    self.terms.endDateString   = [self.contentManager getStringFromDate: lastDateOfCurrentWeek];
+    
+    [self.contentManager fillTerms: self.terms];
 }
 
 - (void) setLastMonth
 {
     NSDate* firstDateOfCurrentMonth = [Utils getFirstDateOfPrevMonth];
     NSDate* lastDateOfCurrentMonth  = [Utils getLastDateOFPrevMonth];
+    
+    self.terms.startDate = firstDateOfCurrentMonth;
+    self.terms.endDate   = lastDateOfCurrentMonth;
+    
+    self.terms.startDateString = [self.contentManager getStringFromDate: firstDateOfCurrentMonth];
+    self.terms.endDateString   = [self.contentManager getStringFromDate: lastDateOfCurrentMonth];
+    
+    [self.contentManager fillTerms: self.terms];
 }
 
 - (void) setCurrentMonth
 {
     NSDate* firstDateOfCurrentMonth = [Utils getFirstDateOfCurrentMonth];
     NSDate* lastDateOfCurrentMonth  = [Utils getLastDateOFCurrentMonth];
+    
+    self.terms.startDate = firstDateOfCurrentMonth;
+    self.terms.endDate   = lastDateOfCurrentMonth;
+    
+    self.terms.startDateString = [self.contentManager getStringFromDate: firstDateOfCurrentMonth];
+    self.terms.endDateString   = [self.contentManager getStringFromDate: lastDateOfCurrentMonth];
+    
+    [self.contentManager fillTerms: self.terms];
 }
+
+
+
 
 @end

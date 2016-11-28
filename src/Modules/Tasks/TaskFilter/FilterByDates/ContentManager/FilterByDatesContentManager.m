@@ -185,4 +185,9 @@ typedef NS_ENUM(NSUInteger, FilterByDatesRow)
     return dateFromString;
 }
 
+- (void) fillTerms: (TermsData*) terms
+{
+    self.terms = terms;
+}
+
 @end

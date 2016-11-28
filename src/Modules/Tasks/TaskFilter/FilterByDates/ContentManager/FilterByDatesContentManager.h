@@ -21,4 +21,8 @@
 
 - (TermsData*) getTermsData;
 
+- (NSString*) getStringFromDate: (NSDate*) date;
+
+- (void) fillTerms: (TermsData*) terms;
+
 @end
