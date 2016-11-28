@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="AllProjectTasksFilterContent" syncable="YES">
+        <attribute name="closeBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="closeEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="factualCloseBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="factualCloseEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="factualStartBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="factualStartEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isCanceled" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isExpired" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="rolesInProject" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="startEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="statuses" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="types" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectInfo" inverseName="allProjectTasksFilterContent" inverseEntity="ProjectInfo" syncable="YES"/>
+    </entity>
     <entity name="OfflineSettings" representedClassName="OfflineSettings" syncable="YES">
         <attribute name="isEnable" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,6 +66,7 @@
         <attribute name="residentialObjectTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="allProjectTasksFilterContent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AllProjectTasksFilterContent" inverseName="projects" inverseEntity="AllProjectTasksFilterContent" syncable="YES"/>
         <relationship name="country" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectCountry" inverseName="project" inverseEntity="ProjectCountry" syncable="YES"/>
         <relationship name="filters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectFilterInfo" inverseName="project" inverseEntity="ProjectFilterInfo" syncable="YES"/>
         <relationship name="offlineSettings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OfflineSettings" inverseName="project" inverseEntity="OfflineSettings" syncable="YES"/>
@@ -454,7 +472,7 @@
         <element name="OfflineSettings" positionX="124" positionY="203" width="128" height="120"/>
         <element name="ProjectCountry" positionX="-36" positionY="201" width="128" height="90"/>
         <element name="ProjectFilterInfo" positionX="-45" positionY="99" width="128" height="165"/>
-        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="615"/>
+        <element name="ProjectInfo" positionX="-243" positionY="189" width="128" height="630"/>
         <element name="ProjectInviteInfo" positionX="-36" positionY="108" width="128" height="270"/>
         <element name="ProjectRegion" positionX="-45" positionY="-54" width="128" height="60"/>
         <element name="ProjectRoleAssignments" positionX="-45" positionY="99" width="128" height="165"/>
@@ -489,5 +507,6 @@
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>
         <element name="UserInfo" positionX="-243" positionY="-54" width="128" height="240"/>
         <element name="UserNotifications" positionX="126" positionY="-54" width="128" height="195"/>
+        <element name="AllProjectTasksFilterContent" positionX="-45" positionY="99" width="128" height="270"/>
     </elements>
 </model>
