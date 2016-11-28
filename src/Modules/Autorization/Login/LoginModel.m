@@ -147,7 +147,13 @@
     
     [loadUserDataSignal subscribeCompleted: ^{
         
-        [DataManagerShared markFirstProjectAsSelected];
+        [DataManagerShared markFirstProjectAsSelectedWithCompletion:^(BOOL isSuccess) {
+            
+            ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+            
+            [[ProjectsService sharedInstance] loadProjectData: project];
+            
+        }];
         
     }];
 }

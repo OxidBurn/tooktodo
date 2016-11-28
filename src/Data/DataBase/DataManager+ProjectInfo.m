@@ -355,16 +355,22 @@
 
 #pragma mark - Updating methods -
 
-- (void) markFirstProjectAsSelected
+- (void) markFirstProjectAsSelectedWithCompletion: (CompletionWithSuccess) completion
 {
-    [MagicalRecord saveWithBlockAndWait: ^(NSManagedObjectContext * _Nonnull localContext) {
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
         ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
         
         firstProject.isSelected = @(YES);
         firstProject.lastVisit  = [NSDate date];
         
-    }];
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if (completion)
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 - (void) markProjectAsSelected: (ProjectInfo*)            project

@@ -29,7 +29,7 @@
 
 - (BOOL) deleteAllProjects;
 
-- (void) markFirstProjectAsSelected;
+- (void) markFirstProjectAsSelectedWithCompletion: (CompletionWithSuccess) completion;
 
 - (ProjectInfo*) getSelectedProjectInfo;
 
