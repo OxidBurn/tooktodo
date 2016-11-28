@@ -121,6 +121,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     [self.model fillSelectedUsersInfoFromConfig: filterConfig];
 }
 
+- (BOOL) checkIfAllSelected
+{
+    return [self.model checkIfAllSelected];
+}
+
+
 #pragma mark - Search bar delegate methods -
 
 - (void) searchBar: (UISearchBar*) searchBar

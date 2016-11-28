@@ -31,4 +31,6 @@
 
 - (NSString*) getWorkAreaTitleForIndexPath: (NSIndexPath*) indexPath;
 
+- (BOOL) checkIfAllSelected;
+
 @end

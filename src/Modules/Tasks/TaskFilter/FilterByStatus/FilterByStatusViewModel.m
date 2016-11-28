@@ -92,5 +92,28 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return [self.model getSelectedStatusesArray];
 }
 
+- (void) selectAll
+{
+    [self.model selectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) deselectAll
+{
+    [self.model deselectAll];
+    if (self.reloadTableView)
+        self.reloadTableView();
+}
+
+- (void) fillSelectedStatuses: (NSArray*) statuses
+{
+    [self.model fillSelectedStatuses: statuses];
+}
+
+- (BOOL) checkIfAllSelected
+{
+    return [self.model checkIfAllSelected];
+}
 
 @end

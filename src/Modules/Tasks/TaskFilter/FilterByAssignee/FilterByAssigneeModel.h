@@ -48,4 +48,7 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 
 - (SearchTableState) getSearchTableState;
 
+- (BOOL) checkIfAllSelected;
+
+
 @end

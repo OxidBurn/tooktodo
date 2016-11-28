@@ -16,6 +16,8 @@
 // Properties
 @property (weak, nonatomic) IBOutlet UITableView *systemsTableView;
 
+@property (weak, nonatomic) IBOutlet UIButton* selectAllBtn;
+
 @property (nonatomic, strong) FilterBySystemViewModel* viewModel;
 
 // Methods
@@ -43,6 +45,8 @@
         [blockSelf.systemsTableView reloadData];
         
     };
+    
+    self.selectAllBtn.selected = [self.viewModel checkIfAllSelected] ? UIControlStateSelected : UIControlStateNormal;
 }
 
 

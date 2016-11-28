@@ -17,4 +17,12 @@
 
 - (NSArray*) getSelectedStatusesArray;
 
+- (void) selectAll;
+
+- (void) deselectAll;
+
+- (void) fillSelectedStatuses: (NSArray*) statuses;
+
+- (BOOL) checkIfAllSelected;
+
 @end

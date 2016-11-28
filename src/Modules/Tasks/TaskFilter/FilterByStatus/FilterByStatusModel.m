@@ -67,4 +67,24 @@
     return self.selectedStatusesIndexes;
 }
 
+- (void) selectAll
+{
+    self.selectedStatusesIndexes = @[ @(0), @(1), @(2), @(3), @(4), @(5) ];
+}
+
+- (void) deselectAll
+{
+    self.selectedStatusesIndexes = nil;
+}
+
+- (void) fillSelectedStatuses: (NSArray*) statuses
+{
+    self.selectedStatusesIndexes = statuses;
+}
+
+- (BOOL) checkIfAllSelected
+{
+    return self.selectedStatusesIndexes.count == 6;
+}
+
 @end

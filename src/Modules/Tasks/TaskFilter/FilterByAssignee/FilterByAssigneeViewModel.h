@@ -34,4 +34,6 @@
 
 - (void) fillSelectedUsersInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
+- (BOOL) checkIfAllSelected;
+
 @end

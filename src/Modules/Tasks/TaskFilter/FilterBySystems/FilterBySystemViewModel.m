@@ -68,6 +68,11 @@
     [self.model fillSelectedWorkAreasInfoFromConfig: filterConfig];
 }
 
+- (BOOL) checkIfAllSelected
+{
+    return [self.model checkIfAllSelected];
+}
+
 
 #pragma mark - UITableViewDatasource methods -
 
