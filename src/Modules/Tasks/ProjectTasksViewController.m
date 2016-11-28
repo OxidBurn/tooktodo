@@ -248,7 +248,7 @@
 
 - (void) resetFilterForTasks
 {
-    
+    [self updateContent];
 }
 
 

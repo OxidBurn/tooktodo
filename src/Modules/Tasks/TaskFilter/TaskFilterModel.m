@@ -479,17 +479,18 @@
         TermsData* factualEndDates   = [[TermsData alloc] initWithStartDate: filterContent.factualCloseBeginDate
                                                                 withEndDate: filterContent.factualCloseEndDate];
         
-        configuraiton.statusesList     = (NSArray*)filterContent.statuses;
-        configuraiton.byTermsStart     = startDates;
-        configuraiton.byTermsEnd       = endDates;
-        configuraiton.byFactTermsStart = factualStartDates;
-        configuraiton.byFactTermsEnd   = factualEndDates;
-        configuraiton.byTaskType       = (NSArray*)filterContent.types;
-        configuraiton.isDone           = filterContent.isDone.boolValue;
-        configuraiton.isOverdue        = filterContent.isExpired.boolValue;
-        configuraiton.isCanceled       = filterContent.isCanceled.boolValue;
-        configuraiton.byProjects       = filterContent.projects.array;
-        configuraiton.projectsList     = (NSArray*)filterContent.projectSelectedIndexes;
+        configuraiton.statusesList      = (NSArray*)filterContent.statuses;
+        configuraiton.byTermsStart      = startDates;
+        configuraiton.byTermsEnd        = endDates;
+        configuraiton.byFactTermsStart  = factualStartDates;
+        configuraiton.byFactTermsEnd    = factualEndDates;
+        configuraiton.byTaskType        = (NSArray*)filterContent.types;
+        configuraiton.isDone            = filterContent.isDone.boolValue;
+        configuraiton.isOverdue         = filterContent.isExpired.boolValue;
+        configuraiton.isCanceled        = filterContent.isCanceled.boolValue;
+        configuraiton.byProjects        = filterContent.projects.array;
+        configuraiton.projectsList      = (NSArray*)filterContent.projectSelectedIndexes;
+        configuraiton.byMyRoleInProject = filterContent.rolesInProject;
     }
     
     return configuraiton;

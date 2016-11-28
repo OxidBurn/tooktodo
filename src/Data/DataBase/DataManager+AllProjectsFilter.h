@@ -21,4 +21,8 @@
 
 - (AllProjectTasksFilterContent*) getAllProjectsTaskFilterContent;
 
+- (NSArray*) applyAllProjectsFiltersToTasks: (NSArray*) tasks;
+
+- (NSArray*) applyFiltersToProject: (NSArray*) projects;
+
 @end

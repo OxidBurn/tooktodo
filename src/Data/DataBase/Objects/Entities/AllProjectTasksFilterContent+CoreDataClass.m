@@ -7,7 +7,7 @@
 //
 
 #import "AllProjectTasksFilterContent+CoreDataClass.h"
-#import "ProjectInfo.h"
+#import "ProjectInfo+CoreDataClass.h"
 @implementation AllProjectTasksFilterContent
 
 @end

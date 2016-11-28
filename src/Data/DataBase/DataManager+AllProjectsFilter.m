@@ -10,6 +10,13 @@
 
 // Classes
 #import "ProjectInfo+CoreDataClass.h"
+#import "ProjectTask+CoreDataClass.h"
+#import "DataManager+Filters.h"
+#import "ProjectsEnumerations.h"
+#import "DataManager+UserInfo.h"
+
+// Categories
+#import "NSDate-Utilities.h"
 
 @implementation DataManager (AllProjectsFilter)
 
@@ -21,7 +28,12 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        AllProjectTasksFilterContent* filterContent = [self getAllProjectTaskFilterContentInContext: localContext];
+        AllProjectTasksFilterContent* filterContent = [AllProjectTasksFilterContent MR_findFirstInContext: localContext];
+        
+        if ( filterContent == nil )
+        {
+            filterContent = [AllProjectTasksFilterContent MR_createEntityInContext: localContext];
+        }
         
         // Role in project
         [self saveFilerRoleInProject: filterContent
@@ -74,7 +86,8 @@
         
         AllProjectTasksFilterContent* filterContent = [self getAllProjectTaskFilterContentInContext: localContext];
         
-        [filterContent MR_deleteEntityInContext: localContext];
+        if ( filterContent )
+            [filterContent MR_deleteEntityInContext: localContext];
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -90,17 +103,68 @@
     return [self getAllProjectTaskFilterContentInContext: [NSManagedObjectContext MR_defaultContext]];
 }
 
+- (NSArray*) applyAllProjectsFiltersToTasks: (NSArray*) tasks
+{
+    AllProjectTasksFilterContent* content = [self getAllProjectsTaskFilterContent];
+    
+    if ( content )
+    {
+        // ---- Filtering by dates ----
+        // start two dates
+        tasks = [self applyFilterByStartDates: tasks
+                           withStartDateValue: content.startBeginDate
+                             withEndDateValue: content.startEndDate];
+        
+        // Close two dates
+        tasks = [self applyFilterByCloseDates: tasks
+                           withStartDateValue: content.closeBeginDate
+                             withEndDateValue: content.closeEndDate];
+        
+        // Factual start dates
+        tasks = [self applyFilterByFactualStartDates: tasks
+                                  withStartDateValue: content.factualStartBeginDate
+                                    withEndDateValue: content.factualStartEndDate];
+        
+        // Factual end two dates
+        tasks = [self applyFilterByFactualEndDates: tasks
+                                withStartDateValue: content.factualCloseBeginDate
+                                  withEndDateValue: content.factualCloseEndDate];
+        
+        // Filtering by type
+        tasks = [self applyFilterByType: tasks
+                              withTypes: (NSArray*)content.types];
+        
+        // Filtering by status
+        tasks = [self applyStatusesFilter: tasks
+                               withFilter: (NSArray*)content.statuses];
+        
+        // Role in task
+        tasks = [self applyFilterByCurrentUserRole: tasks
+                                          userRole: content.rolesInProject.integerValue];
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyFiltersToProject: (NSArray*) projects
+{
+    AllProjectTasksFilterContent* content = [self getAllProjectsTaskFilterContent];
+    
+    if ( content &&
+        content.projects.count > 0 )
+    {
+        return content.projects.array;
+    }
+    
+    return projects;
+}
+
 
 #pragma mark - Internal methods -
 
 - (AllProjectTasksFilterContent*) getAllProjectTaskFilterContentInContext: (NSManagedObjectContext*) context
 {
     AllProjectTasksFilterContent* filterContent = [AllProjectTasksFilterContent MR_findFirstInContext: context];
-    
-    if ( filterContent == nil )
-    {
-        filterContent = [AllProjectTasksFilterContent MR_createEntityInContext: context];
-    }
     
     return filterContent;
 }
@@ -174,6 +238,227 @@
         [filterContent addProjectsObject: [project MR_inContext: context]];
         
     }];
+}
+
+
+#pragma mark - Applying filters -
+
+- (NSArray*) applyFilterByStartDates: (NSArray*) tasks
+                  withStartDateValue: (NSDate*)  startDate
+                    withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.startDay isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.startDay isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.startDay isLaterThanDate: startDate] && [task.startDay isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByCloseDates: (NSArray*) tasks
+                  withStartDateValue: (NSDate*)  startDate
+                    withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.endDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.endDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.endDate isLaterThanDate: startDate] && [task.endDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByFactualStartDates: (NSArray*) tasks
+                         withStartDateValue: (NSDate*)  startDate
+                           withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.factualStartDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.factualStartDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.factualStartDate isLaterThanDate: startDate] && [task.factualStartDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByFactualEndDates: (NSArray*) tasks
+                       withStartDateValue: (NSDate*)  startDate
+                         withEndDateValue: (NSDate*)  endDate
+{
+    NSPredicate* predicate = nil;
+    
+    if ( startDate )
+    {
+        predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+            
+            return ( [task.factualEndDate isLaterThanDate: startDate] );
+            
+        }];
+    }
+    else
+        if ( endDate )
+        {
+            predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                
+                return ( [task.factualEndDate isEarlierThanDate: endDate] );
+                
+            }];
+        }
+        else
+            if ( startDate && endDate )
+            {
+                predicate = [NSPredicate predicateWithBlock: ^BOOL(ProjectTask*  _Nullable task, NSDictionary<NSString *,id> * _Nullable bindings) {
+                    
+                    return ( [task.factualEndDate isLaterThanDate: startDate] && [task.factualEndDate isEarlierThanDate: endDate] );
+                    
+                }];
+            }
+    
+    if ( predicate )
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
+}
+
+- (NSArray*) applyFilterByType: (NSArray*) tasks
+                     withTypes: (NSArray*) types
+{
+    if ( types.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"taskType IN %@", types];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
+    
+    return tasks;
+}
+
+- (NSArray*) applyStatusesFilter: (NSArray*) tasks
+                      withFilter: (NSArray*) filter
+{
+    if ( filter.count > 0 )
+    {
+        NSPredicate* predicate = [NSPredicate predicateWithFormat: @"status IN %@", filter];
+        
+        tasks = [tasks filteredArrayUsingPredicate: predicate];
+    }
+    
+    return tasks;
+}
+
+
+- (NSArray*) applyFilterByCurrentUserRole: (NSArray*)                    tasks
+                                 userRole: (TaskFilterByMyRoleInProject) role
+{
+    NSPredicate* predicate = nil;
+    
+    switch (role)
+    {
+        case Participant:
+        {
+            predicate = [NSPredicate predicateWithFormat: @"ANY taskRoleAssignments.taskRoleType == %@", @2];
+        }
+            break;
+        case Responsible:
+        {
+            predicate = [NSPredicate predicateWithFormat: @"ANY taskRoleAssignments.taskRoleType == %@", @1];
+        }
+            break;
+        case Claiming:
+        {
+            predicate = [NSPredicate predicateWithFormat: @"ANY taskRoleAssignments.taskRoleType == %@", @0];
+        }
+            break;
+        case Creator:
+        {
+            NSNumber* currentUserID = [DataManagerShared getCurrentUserID];
+            predicate = [NSPredicate predicateWithFormat: @"ownerUserId == %@", currentUserID];
+        }
+            break;
+    }
+    
+    tasks = [tasks filteredArrayUsingPredicate: predicate];
+    
+    return tasks;
 }
 
 @end

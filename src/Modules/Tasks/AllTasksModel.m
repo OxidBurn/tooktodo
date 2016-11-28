@@ -16,6 +16,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "DataManager+Tasks.h"
 #import "NSObject+Sorting.h"
+#import "DataManager+AllProjectsFilter.h"
 
 //static NSString* projectKey = @"projectInfoKey";
 //static NSString* contentKey = @"contentInfoKey";
@@ -209,16 +210,16 @@
     //array which contains all info about projects, stages, tasks
     __block NSMutableArray* tmpContent = [NSMutableArray array];
     
-    [self.projectsInfoArray enumerateObjectsUsingBlock:^(ProjectInfo*  _Nonnull projectInfo, NSUInteger idx, BOOL * _Nonnull stop) {
+    self.projectsInfoArray = [DataManagerShared applyFiltersToProject: [DataManagerShared getAllProjects]];
+    
+    [self.projectsInfoArray enumerateObjectsUsingBlock: ^(ProjectInfo*  _Nonnull projectInfo, NSUInteger idx, BOOL * _Nonnull stop) {
         
         //Storing stages and tasks as rows in one section
         NSMutableArray* tmpSectionContent = [NSMutableArray array];
         
-        
         if (projectInfo.isExpanded.boolValue)
         {
-           
-            [projectInfo.stage enumerateObjectsUsingBlock:^(ProjectTaskStage * _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
+            [projectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 [tmpSectionContent addObject: stage];
                 
@@ -226,7 +227,10 @@
                 {
                     __block NSMutableArray* tasksArray = [NSMutableArray array];
                     
-                    [stage.tasks enumerateObjectsUsingBlock:^(ProjectTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
+                    // Apply sorting
+                    NSArray* allTasks = [DataManagerShared applyAllProjectsFiltersToTasks: stage.tasks.array];
+                    
+                    [allTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                         [tasksArray addObject: task];
                     }];

@@ -55,7 +55,7 @@
                  beginingFromPoint: currentPointToAddView];
             
             currentPointToAddView.x += view.frame.size.width + 10;
-            widthLeftToEdge -= view.frame.size.width + 10;
+            widthLeftToEdge         -= view.frame.size.width + 10;
         }
         else
         {
@@ -68,7 +68,7 @@
                  beginingFromPoint: currentPointToAddView];
             
             currentPointToAddView.x += view.frame.size.width + 10;
-            widthLeftToEdge -= currentPointToAddView.x;
+            widthLeftToEdge         -= currentPointToAddView.x;
         }
     }];
     
