@@ -78,43 +78,43 @@
 
 - (IBAction) onSaveBtn: (UIButton*) sender
 {
-    if ( [self.delegate respondsToSelector:@selector(updateConfigWithTerms:forControllerType:)] )
-    {
-        [self.delegate updateConfigWithTerms: [self.viewModel getTermsData]
-                           forControllerType: self.controllerType];
-        
-        [self.navigationController popViewControllerAnimated: YES];
-    }
+    [self saveData];
 }
 
 - (IBAction) onBeforeCurrentDate: (UIButton*) sender
 {
     [self.viewModel setBeforeCurrentDate];
+    [self saveData];
 }
 
 - (IBAction) onAfterCurrentDate: (UIButton*) sender
 {
     [self.viewModel setAfterCurrentDate];
+    [self saveData];
 }
 
 - (IBAction) onLastWeek: (UIButton*) sender
 {
     [self.viewModel setLastWeek];
+    [self saveData];
 }
 
 - (IBAction) onCurrentWeek: (UIButton*) sender
 {
     [self.viewModel setCurrentWeek];
+    [self saveData];
 }
 
 - (IBAction) onLastMonth: (UIButton*) sender
 {
     [self.viewModel setLastMonth];
+    [self saveData];
 }
 
 - (IBAction) onCurrentMonth: (UIButton*) sender
 {
     [self.viewModel setCurrentMonth];
+    [self saveData];
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender
@@ -176,5 +176,15 @@
     };
 }
 
+- (void) saveData
+{
+    if ( [self.delegate respondsToSelector:@selector(updateConfigWithTerms:forControllerType:)] )
+    {
+        [self.delegate updateConfigWithTerms: [self.viewModel getTermsData]
+                           forControllerType: self.controllerType];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+}
 
 @end
