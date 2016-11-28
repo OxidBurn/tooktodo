@@ -22,6 +22,7 @@
 #import "FilterByRoomViewController.h"
 #import "FilterBySystemsViewController.h"
 #import "FilterByRoleInProjectViewController.h"
+#import "FilterByProjectViewController.h"
 
 @interface TaskFilterViewController ()
 
@@ -133,6 +134,15 @@
         [controller fillSelectedRoleType: filterConfig.byMyRoleInProject];
         
         controller.delegate = self.viewModel;
+    }
+    
+    if ( [segue.identifier isEqualToString: @"FilterByProjectSegueId"] )
+    {
+        FilterByProjectViewController* controller = [segue destinationViewController];
+        
+        [controller fillSelectedProjects: filterConfig.byProjects
+                             withIndexes: filterConfig.projectsList
+                            withDelegate: self.viewModel];
     }
 }
 

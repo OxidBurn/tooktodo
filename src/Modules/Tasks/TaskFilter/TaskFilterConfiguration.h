@@ -48,6 +48,10 @@
 
 @property (nonatomic, strong) NSArray* byRoomIndexes;
 
+@property (strong, nonatomic) NSArray* byProjects;
+
+@property (strong, nonatomic) NSArray* projectsList;
+
 @property (assign, nonatomic) BOOL isDone;
 
 @property (assign, nonatomic) BOOL isCanceled;

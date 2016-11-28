@@ -331,5 +331,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 }
 
 
+#pragma mark - FilterByProjects delegate methods -
+
+- (void) returnSelectedProjects: (NSArray*) selectedProjects
+                    withIndexes: (NSArray*) selectedProjectsIndexes
+{
+    [self.model fillSelectedProjects: selectedProjects
+                         withIndexes: selectedProjectsIndexes];
+    
+    if ( self.reloadTableView )
+        self.reloadTableView();
+}
+
+
 
 @end

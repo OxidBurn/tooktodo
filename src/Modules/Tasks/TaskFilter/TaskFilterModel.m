@@ -78,7 +78,7 @@
         _seguesIdAllProjects = @[ @[@"SelectMyRolesInProjectSegueId"],
                                   @[@"ShowFilterByDatesSegueId",
                                     @"ShowFilterByDatesSegueId"],
-                                  @[@"ShowWorkAreaSegueId",
+                                  @[@"FilterByProjectSegueId",
                                     @"FilterByStatusSegueId",
                                     @"ShowFilterByTypesSegueID"]];
     }
@@ -335,6 +335,15 @@
 - (void) fillSelectedRoleType: (NSNumber*) selectedRole
 {
     self.filterConfig.byMyRoleInProject = selectedRole;
+    
+    [self updateContent];
+}
+
+- (void) fillSelectedProjects: (NSArray*) selectedProjects
+                  withIndexes: (NSArray*) selectedProjectsIndexes
+{
+    self.filterConfig.byProjects   = selectedProjects;
+    self.filterConfig.projectsList = selectedProjectsIndexes;
     
     [self updateContent];
 }

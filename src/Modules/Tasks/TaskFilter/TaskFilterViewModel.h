@@ -20,8 +20,9 @@
 #import "FilterByTypesViewController.h"
 #import "FilterBySystemsViewController.h"
 #import "FilterByRoleInProjectViewController.h"
+#import "FilterByProjectViewController.h"
 
-@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, SelectSystemViewControllerDelegate, FilterByTypesViewControllerDelegate, FilterByRoomViewControllerDelegate, FilterBySystemsViewControllerDelegate, FilterByRoleInProjectControllerDelegate>
+@interface TaskFilterViewModel : NSObject <UITableViewDataSource, UITableViewDelegate, SelectSystemViewControllerDelegate, FilterByTypesViewControllerDelegate, FilterByRoomViewControllerDelegate, FilterBySystemsViewControllerDelegate, FilterByRoleInProjectControllerDelegate, FilterByProjectControllerDelegate>
 
 // properties
 @property (nonatomic, copy) void (^showFilterByTermsWithType)(FilterByDateViewControllerType controllerType);
