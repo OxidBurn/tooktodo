@@ -2,7 +2,7 @@
 //  ApproverViewModel.h
 //  TookTODO
 //
-//  Created by Lera on 25.11.16.
+//  Created by Nikolay Chaban on 25.11.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 

@@ -209,7 +209,7 @@
      }];
     
     // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ ПО ПРОЕКТАМ"
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
