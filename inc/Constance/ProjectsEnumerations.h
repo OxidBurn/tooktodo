@@ -227,4 +227,33 @@ typedef NS_ENUM(NSUInteger, TaskFilterByMyRoleInProject)
 };
 
 
+typedef NS_ENUM(NSUInteger, FilterTagParameterType)
+{
+    CreatorsFilterParameter,
+    CreatorsAllFilterParameter,
+    ResponsiblesFilterParamter,
+    ResponsiblesAllFilterParamter,
+    ApprovesFilterParameter,
+    ApprovesAllFilterParameter,
+    StatusesFilterParameter,
+    StatusesAllFilterParameter,
+    StartDateFilterParameter,
+    EndDateFilterParameter,
+    FactualStartDateFilterParameter,
+    FactualEndDateFilterParameter,
+    RoomsFilterParameter,
+    RoomsAllFilterParameter,
+    WorkAreasFilterParameter,
+    WorkAreasAllFilterParameter,
+    TypeFilterParameter,
+    TypeAllFilterParameter,
+    DoneFilterParameter,
+    ExpiredFilterParameter,
+    CanceledFilterParameter,
+    ProjectRoleFilterParameter,
+    ProjectsFilterParameter,
+    ProjectsAllFilterParameter,
+};
+
+
 #endif /* ProjectsEnumerations_h */

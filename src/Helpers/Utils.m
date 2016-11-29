@@ -377,6 +377,26 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return size;
 }
 
++ (CGSize) getTextSizeForText: (NSString*) text
+                 havingHeight: (CGFloat)   heightValue
+                 withMaxWidth: (CGFloat)   maxWidth
+                     withFont: (UIFont*)   font
+{
+    CGSize textSize = CGSizeZero;
+    
+    if ( text.length > 0 )
+    {
+        CGRect frame = [text boundingRectWithSize: CGSizeMake(maxWidth, heightValue)
+                                          options: NSStringDrawingUsesLineFragmentOrigin
+                                       attributes: @{ NSFontAttributeName: font }
+                                          context: nil];
+        
+        textSize = CGSizeMake(frame.size.width, frame.size.height);
+    }
+    
+    return textSize;
+}
+
 + (NSString*) getNameAbbreviation: (NSString*) name
 {
     NSMutableString* abbreviation = [NSMutableString stringWithString: [name substringToIndex: 1]];
