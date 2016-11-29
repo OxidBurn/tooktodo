@@ -105,6 +105,8 @@
 
 @property (strong, nonatomic) NSNumber* commentID;
 
+@property (assign, nonatomic) BOOL isAuthor;
+
 // properties for logs
 
 @property (strong, nonatomic) NSAttributedString* logText;

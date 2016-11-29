@@ -25,6 +25,8 @@
                    withWidth: (CGFloat)              width
                 withDelegate: (id)                   delegate;
 
+- (void) handleEditButtons: (BOOL) enabled;
+
 @end
 
 @protocol CommentCellDelegate <NSObject>
