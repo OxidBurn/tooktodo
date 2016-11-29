@@ -184,15 +184,33 @@
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* labelText;
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
-    NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
-        
-    NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
-        
-    labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
-
-    return labelText;
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ - %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = startDateString;
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = endDateString;
+        }
+        else
+            detailString = @"";
+    }
+    
+    return detailString;
 }
 
 - (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
