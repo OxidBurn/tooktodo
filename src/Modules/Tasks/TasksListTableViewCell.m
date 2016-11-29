@@ -151,8 +151,7 @@
 
 - (IBAction) onShowTaskDetail: (UIButton*) sender
 {
-    if ( self.didSelectedTaskAtIndex )
-        self.didSelectedTaskAtIndex(self.cellIndexPath);
+    
 }
 
 @end

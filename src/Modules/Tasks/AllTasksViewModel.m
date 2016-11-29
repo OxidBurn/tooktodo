@@ -126,19 +126,6 @@
     
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
-    __weak typeof(self) blockSelf = self;
-    
-    cell.didSelectedTaskAtIndex = ^( NSIndexPath* index ){
-        
-        [blockSelf.model markTaskAsSelected: index
-                             withCompletion: ^(BOOL isSuccess) {
-                                 
-                                 if ( blockSelf.didShowTaskInfo )
-                                     blockSelf.didShowTaskInfo();
-                                 
-                             }];
-    };
-    
     return cell;
 }
 
@@ -170,7 +157,13 @@
             
         case AllTasksTaskCellType:
         {
-
+            [self.model markTaskAsSelected: cell.cellIndexPath
+                            withCompletion: ^(BOOL isSuccess) {
+                                     
+                                     if ( self.didShowTaskInfo )
+                                          self.didShowTaskInfo();
+                                     
+                                 }];
         }
             break;
     }
