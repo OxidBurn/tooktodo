@@ -157,6 +157,10 @@
     [self.model fillTaskToEdit: taskToEdit];
 }
 
+- (AddTaskControllerType) getControllerType
+{
+    return [self.model getControllerType];
+}
 
 - (BOOL) checkSubtasks
 {

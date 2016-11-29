@@ -82,6 +82,8 @@
 
 - (void) deselectAllRoomsInfo;
 
+- (AddTaskControllerType) getControllerType;
+
 @end
 
 
