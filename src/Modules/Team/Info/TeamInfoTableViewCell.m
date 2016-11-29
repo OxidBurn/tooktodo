@@ -93,10 +93,24 @@ typedef NS_ENUM(NSInteger, PermissionType)
                                             self.teamMemberAvatar.image = image;
                                         }
                                     }];
-
+    
     self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
+    
+    ProjectRoleAssignments* assignments = teamInfo.assignments;
+    
+    if (assignments.isBlocked.boolValue == YES || assignments.invite != nil)
+    {
+        self.teamMemberName.textColor       = [UIColor grayColor];
+        self.teamMemberPermission.textColor = [UIColor grayColor];
+    }
+    
+    else
+    {
+        self.teamMemberName.textColor       = [UIColor blackColor];
+        self.teamMemberPermission.textColor = [UIColor blackColor];
+    }
     
 }
 

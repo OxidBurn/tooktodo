@@ -79,7 +79,7 @@ static CGFloat sectionHeaderHeight = 30;
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
+    TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID" forIndexPath: indexPath];
     
     FilledTeamInfo* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
