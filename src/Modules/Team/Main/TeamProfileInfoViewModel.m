@@ -17,6 +17,7 @@
 #import "DataManager+Team.h"
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
+#import <SVProgressHUD.h>
 
 
 // Categories
@@ -277,6 +278,8 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
 
 - (void) didSelectRole: (ProjectRoles*) value
 {
+    if ( value )
+    {
     [self.model updateMemberRole: value];
     
     self.cell.detailTextLabel.text = value.title;
@@ -288,6 +291,11 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     
     if (self.dismissViewController)
         self.dismissViewController();
+    }
+    else
+    {
+        [SVProgressHUD showErrorWithStatus: @"Роль не выбрана"];
+    }
 }
 
 #pragma mark - Model delegate methods -

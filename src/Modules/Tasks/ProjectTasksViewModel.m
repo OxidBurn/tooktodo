@@ -136,19 +136,6 @@
     
     [cell fillInfoForCell: [self.model getInfoForCellAtIndexPath: indexPath]];
     
-    __weak typeof(self) blockSelf = self;
-    
-    cell.didSelectedTaskAtIndex = ^( NSIndexPath* index){
-        
-        [blockSelf.model markTaskAsSelected: index
-                             withCompletion: ^(BOOL isSuccess) {
-                                 
-                                 if ( blockSelf.performSegue )
-                                     blockSelf.performSegue(@"ShowTaskDetailSegueId");
-                                 
-                             }];
-    };
-    
     return cell;
 }
 
@@ -160,6 +147,16 @@
 {
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
+    
+    AllTaskBaseTableViewCell* cell = (AllTaskBaseTableViewCell*)[tableView cellForRowAtIndexPath: indexPath];
+    
+    [self.model markTaskAsSelected: cell.cellIndexPath
+                    withCompletion: ^(BOOL isSuccess) {
+                             
+                        if ( self.performSegue )
+                             self.performSegue(@"ShowTaskDetailSegueId");
+                             
+                    }];
     
 }
 
