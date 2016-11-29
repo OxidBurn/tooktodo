@@ -86,6 +86,16 @@
     }
 }
 
+- (void) handleEditButtons: (BOOL) enabled
+{
+    if ( enabled == NO )
+    {
+        self.editBtn.hidden   = YES;
+        self.cancelBtn.hidden = YES;
+    }
+}
+
+
 #pragma mark - Action -
 
 - (IBAction)onCancelBtn:(UIButton *)sender

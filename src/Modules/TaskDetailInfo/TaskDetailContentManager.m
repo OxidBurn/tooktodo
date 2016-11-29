@@ -24,6 +24,7 @@
 #import "TaskComment+CoreDataProperties.h"
 #import "TaskLogInfo+CoreDataProperties.h"
 #import "TaskLogDataContent+CoreDataProperties.h"
+#import "DataManager+UserInfo.h"
 
 #import "Utils.h"
 #import "NSDate+Helper.h"
@@ -272,6 +273,8 @@
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
                 
+                newRow.isAuthor = [self checkIfIsAuthorOfComment: comment.authorId.integerValue];
+                
                 newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 28;
     
                 [commentsTmp addObject: newRow];
@@ -496,6 +499,15 @@
     height = size.height;
     
     return height;
+}
+
+- (BOOL) checkIfIsAuthorOfComment: (NSUInteger) commentAuthorId
+{
+    NSNumber* userId = [DataManagerShared getCurrentUserID];
+    
+    BOOL isAuthor = (commentAuthorId == userId.integerValue);
+    
+    return isAuthor;
 }
 
 
