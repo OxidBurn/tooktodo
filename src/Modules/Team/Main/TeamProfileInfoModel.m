@@ -227,7 +227,11 @@ typedef NS_ENUM(NSInteger, Permission)
      completed: ^{
          
          [DataManagerShared updateTeamMemberPermission: permission
-                                        withCompletion: nil];
+                                        withCompletion:^(BOOL isSuccess) {
+                                            
+                                            self.memberInfo.projectPermission = @(permission);
+                                            
+                                        }];
      }];
     
     self.memberInfo.projectPermission = @(permission);

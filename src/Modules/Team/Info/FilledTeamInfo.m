@@ -37,7 +37,9 @@
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
         self.memberID               = assignee.assigneeID;
-        self.hasApprovedTask        = self.hasApprovedTask ? self.hasApprovedTask : NO;
+        self.isBlocked              = assignment.isBlocked ? assignment.isBlocked : NO;
+        self.assignments            = assignment;
+        
     }
     else if (assignment.invite != nil)
     {
@@ -59,7 +61,8 @@
         self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
         self.isObserver             = self.isObserver ? self.isObserver : NO;
         self.memberID               = invite.inviteID;
-        self.hasApprovedTask        = self.hasApprovedTask ? self.hasApprovedTask : NO;
+        self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
+        self.assignments            = assignment;
     }
     
     self.roleID    = assignment.roleID;

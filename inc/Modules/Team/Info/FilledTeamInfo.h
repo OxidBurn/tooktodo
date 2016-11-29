@@ -37,6 +37,8 @@
 @property (strong, nonatomic) NSNumber* memberID;
 @property (strong, nonatomic) NSNumber* projectID;
 @property (nonatomic, assign) BOOL hasApprovedTask;
+@property (nonatomic, assign) BOOL isBlocked;
+@property (nonatomic, strong) ProjectRoleAssignments* assignments;
 
 - (void) fillTeamInfo: (ProjectRoleAssignments*) assignment;
 
