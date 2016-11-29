@@ -286,6 +286,11 @@
      }];
 }
 
+- (AddTaskControllerType) getControllerType
+{
+    return self.controllerType;
+}
+
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 

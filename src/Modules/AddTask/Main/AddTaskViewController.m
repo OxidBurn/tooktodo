@@ -319,7 +319,7 @@
 
 - (AddTaskControllerType) getControllerType
 {
-    return self.controllerType;
+    return [self.viewModel getControllerType];
 }
 
 
@@ -338,7 +338,24 @@
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
-    titleLabel.text            = @"НОВАЯ ЗАДАЧА";
+    
+    
+    switch ([self getControllerType])
+    {
+        case AddNewTaskControllerType: titleLabel.text = @"НОВАЯ ЗАДАЧА";
+            break;
+            
+        case AddSubtaskControllerType: titleLabel.text = @"НОВАЯ ПОДЗАДАЧА";
+            break;
+            
+        case EditTaskControllerType: titleLabel.text = @"РЕДАКТИРОВАТЬ ЗАДАЧУ";
+            break;
+            
+        default:
+            break;
+    }
+    
+    
     
     [titleLabel sizeToFit];
     

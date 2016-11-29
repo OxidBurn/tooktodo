@@ -68,6 +68,7 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+- (AddTaskControllerType) getControllerType;
 
 - (BOOL) checkSubtasks;
 
