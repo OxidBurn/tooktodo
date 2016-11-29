@@ -62,17 +62,20 @@
 #pragma mark - Actions -
 
 - (IBAction) onBack: (UIBarButtonItem*) sender
-{
+{    
     [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onReady: (id) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(setTaskDescription:)] )
-         [self.delegate setTaskDescription: [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text]];
-    
-    [self.navigationController popViewControllerAnimated: YES];
-   
+    [self dissmissKeyboardWithCompletion: ^(BOOL isSuccess) {
+        
+        if ( [self.delegate respondsToSelector: @selector(setTaskDescription:)] )
+            [self.delegate setTaskDescription: [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text]];
+        
+        [self.navigationController popViewControllerAnimated: YES];
+        
+    }];
 }
 
 #pragma mark - Public -
@@ -135,6 +138,14 @@ shouldChangeTextInRange: (NSRange)     range
         
         self.textView.textColor = [UIColor blackColor];
     }
+}
+
+- (void) dissmissKeyboardWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.textView endEditing: YES];
+    
+    if (completion)
+        completion(YES);
 }
 
 @end
