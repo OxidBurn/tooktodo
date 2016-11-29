@@ -43,7 +43,7 @@
 
 - (NSArray*) indexesArray
 {
-    if (_indexesArray == nil)
+    if ( _indexesArray == nil || _indexesArray.count == 0 )
     {
         NSUInteger numberOfRows = [self.model countOfRows];
         

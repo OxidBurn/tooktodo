@@ -83,16 +83,16 @@
 {
     if ([self.lastIndexPath isEqual: indexPath])
     {
-        return YES;
+        return NO;
     }
     
     else
-        return NO;
+        return YES;
 }
 
 - (ProjectRoles*) getSelectedItem
 {
-    if ( self.lastIndexPath.row < self.rolesArray.count )
+    if ( self.lastIndexPath )
         return self.rolesArray[self.lastIndexPath.row];
     else
         return nil;
