@@ -216,7 +216,7 @@ typedef NS_ENUM(NSInteger, Permission)
                                                      withUserID: self.memberInfo.memberID]
      subscribeNext: ^(id x) {
          
-         
+        
          
      }
      error: ^(NSError *error) {
@@ -226,7 +226,8 @@ typedef NS_ENUM(NSInteger, Permission)
      }
      completed: ^{
          
-         
+         [DataManagerShared updateTeamMemberPermission: permission
+                                        withCompletion: nil];
      }];
     
     self.memberInfo.projectPermission = @(permission);

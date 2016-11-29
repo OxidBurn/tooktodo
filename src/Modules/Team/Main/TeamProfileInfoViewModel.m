@@ -277,6 +277,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
 #pragma mark - RolesViewControllerDelegate methods -
 
 - (void) didSelectRole: (ProjectRoles*) value
+        withCompletion: (CompletionWithSuccess) completion
 {
     if ( value )
     {
@@ -291,7 +292,11 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     
     if (self.dismissViewController)
         self.dismissViewController();
+        
+        if (completion)
+            completion(YES);
     }
+    
     else
     {
         [SVProgressHUD showErrorWithStatus: @"Роль не выбрана"];

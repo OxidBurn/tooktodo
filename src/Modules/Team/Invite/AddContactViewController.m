@@ -230,10 +230,13 @@
 #pragma mark - RolesViewControllerDelegate methods -
 
 - (void) didSelectRole: (ProjectRoles*) value
+        withCompletion: (CompletionWithSuccess) completion
 {
     self.roleLabel.text             = value.title;
     self.addContactViewModel.roleID = value.sort;
     
+    if (completion)
+        completion(YES);
 }
 
 #pragma mark - UITableViewDelegate methods -
