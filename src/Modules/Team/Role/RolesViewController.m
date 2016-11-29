@@ -108,16 +108,21 @@
  
     if (self.delegate )
     {
-        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]];
-    }
-    
-    if (IS_PHONE)
-    {
-        [self.navigationController popViewControllerAnimated: YES];
-    }
-    else
-    {
-        [self.navigationController popViewControllerAnimated: YES];
+        [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]
+                      withCompletion: ^(BOOL isSuccess) {
+             
+             if (isSuccess)
+             {
+                 if (IS_PHONE)
+                 {
+                     [self.navigationController popViewControllerAnimated: YES];
+                 }
+                 else
+                 {
+                     [self.navigationController popViewControllerAnimated: YES];
+                 }
+             }
+         }];
     }
 }
 

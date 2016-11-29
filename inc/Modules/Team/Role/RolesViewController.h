@@ -20,6 +20,7 @@
 
 @protocol RolesViewControllerDelegate
 
-- (void) didSelectRole: (ProjectRoles*) value;
+- (void) didSelectRole: (ProjectRoles*) value
+        withCompletion: (CompletionWithSuccess) completion;
 
 @end
