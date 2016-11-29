@@ -11,6 +11,7 @@
 // Classes
 #import "TaskFilterConfiguration.h"
 #import "AllProjectTasksFilterContent+CoreDataClass.h"
+#import "FilterTagParameterInfo.h"
 
 @interface DataManager (AllProjectsFilter)
 
@@ -24,5 +25,8 @@
 - (NSArray*) applyAllProjectsFiltersToTasks: (NSArray*) tasks;
 
 - (NSArray*) applyFiltersToProject: (NSArray*) projects;
+
+- (void) deleteAllProjectsTasksFilterItem: (FilterTagParameterInfo*) info
+                           withCompletion: (CompletionWithSuccess)   completion;
 
 @end

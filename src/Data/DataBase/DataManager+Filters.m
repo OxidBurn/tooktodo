@@ -368,6 +368,110 @@
     return tasks;
 }
 
+- (void) deleteProjectTasksFilterItem: (FilterTagParameterInfo*) info
+                       withCompletion: (CompletionWithSuccess)   completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectTaskFilterContent* filterContent = [[self getTaskFilterContentForCurrentProject] MR_inContext: localContext];
+        
+        switch (info.parameterType)
+        {
+            case CreatorsFilterParameter:
+            case CreatorsAllFilterParameter:
+            {
+                [self deleteFilterCreatorsParameter: filterContent
+                                           withInfo: info];
+            }
+                break;
+            case ResponsiblesFilterParamter:
+            case ResponsiblesAllFilterParamter:
+            {
+                [self deleteFilterResponsiblesParameter: filterContent
+                                               withInfo: info];
+            }
+                break;
+            case ApprovesFilterParameter:
+            case ApprovesAllFilterParameter:
+            {
+                [self deleteFilterApprovementsParameter: filterContent
+                                               withInfo: info];
+            }
+                break;
+            case StatusesFilterParameter:
+            case StatusesAllFilterParameter:
+            {
+                [self deleteFilterStatusesParameter: filterContent
+                                           withInfo: info];
+            }
+                break;
+            case StartDateFilterParameter:
+            {
+                [self deleteStartDateParameter: filterContent
+                                      withInfo: info];
+            }
+                break;
+            case EndDateFilterParameter:
+            {
+                [self deleteCloseDateParameter: filterContent
+                                      withInfo: info];
+            }
+                break;
+            case FactualStartDateFilterParameter:
+            {
+                [self deleteFactualStartDateParameter: filterContent
+                                             withInfo: info];
+            }
+                break;
+            case FactualEndDateFilterParameter:
+            {
+                [self deleteFactualEndDateParameter: filterContent
+                                           withInfo: info];
+            }
+                break;
+            case TypeFilterParameter:
+            case TypeAllFilterParameter:
+            {
+                [self deleteFilterTypesParameter: filterContent
+                                        withInfo: info];
+            }
+                break;
+            case WorkAreasFilterParameter:
+            case WorkAreasAllFilterParameter:
+            {
+                [self deleteWorkAreasParameter: filterContent
+                                      withInfo: info];
+            }
+                break;
+            case RoomsFilterParameter:
+            case RoomsAllFilterParameter:
+            {
+                [self deleteRoomsParameter: filterContent
+                                  withInfo: info];
+            }
+                break;
+            case DoneFilterParameter:
+            case ExpiredFilterParameter:
+            case CanceledFilterParameter:
+            {
+                [self resetBooleanParameters: filterContent
+                                    withInfo: info];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 #pragma mark - Internal methods -
 
 - (NSArray*) getCreatorsListWithFilter: (NSArray*) filter
@@ -940,6 +1044,289 @@
     }
     
     return tasks;
+}
+
+
+#pragma mark - Delete items -
+
+- (void) deleteFilterCreatorsParameter: (ProjectTaskFilterContent*) filterContent
+                              withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == CreatorsAllFilterParameter )
+    {
+        filterContent.creators                = nil;
+        filterContent.creatorsSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectTaskAssignee* assignee = nil;
+        __block NSUInteger assigneeIndex      = 0;
+        
+        [filterContent.creators enumerateObjectsUsingBlock:^(ProjectTaskAssignee * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [obj.assigneeID isEqual: info.parameterValue] )
+            {
+                assignee      = obj;
+                assigneeIndex = idx;
+                *stop         = YES;
+            }
+            
+        }];
+        
+        [filterContent removeCreatorsObject: assignee];
+        
+        NSMutableArray* selectedIndexes = [NSMutableArray arrayWithArray: (NSArray*)filterContent.creatorsSelectedIndexes];
+        
+        [selectedIndexes removeObjectAtIndex: assigneeIndex];
+        
+        filterContent.creatorsSelectedIndexes = selectedIndexes;
+    }
+}
+
+- (void) deleteFilterResponsiblesParameter: (ProjectTaskFilterContent*) filterContent
+                                  withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == ResponsiblesAllFilterParamter )
+    {
+        filterContent.responsibles                = nil;
+        filterContent.responsiblesSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectTaskAssignee* assignee = nil;
+        
+        [filterContent.responsibles enumerateObjectsUsingBlock: ^(ProjectTaskAssignee * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [obj.assigneeID isEqual: info.parameterValue] )
+            {
+                assignee = obj;
+                *stop    = YES;
+            }
+            
+        }];
+        
+        NSUInteger assigneeIndex = [filterContent.responsibles indexOfObject: assignee];
+        
+        [filterContent removeResponsiblesObject: assignee];
+        
+        NSMutableArray* selectedIndexes = [NSMutableArray arrayWithArray: (NSArray*)filterContent.responsiblesSelectedIndexes];
+        
+        if ( assigneeIndex < selectedIndexes.count )
+            [selectedIndexes removeObjectAtIndex: assigneeIndex];
+        
+        filterContent.responsiblesSelectedIndexes = selectedIndexes;
+    }
+}
+
+- (void) deleteFilterApprovementsParameter: (ProjectTaskFilterContent*) filterContent
+                                  withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == ApprovesAllFilterParameter )
+    {
+        filterContent.approvementsAssignee        = nil;
+        filterContent.approvementsInvite          = nil;
+        filterContent.approvementsSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectTaskAssignee* assignee = nil;
+        __block ProjectInviteInfo* inviteInfo = nil;
+        __block NSUInteger assigneeIndex      = 0;
+        
+        [filterContent.approvementsAssignee enumerateObjectsUsingBlock: ^(ProjectTaskAssignee * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [obj.assigneeID isEqual: info.parameterValue] )
+            {
+                assignee = obj;
+                
+                assigneeIndex++;
+                
+                *stop    = YES;
+            }
+            
+        }];
+        
+        if ( assignee )
+        {
+            assigneeIndex = [filterContent.approvementsAssignee indexOfObject: assignee];
+            
+            [filterContent removeApprovementsAssigneeObject: assignee];
+        }
+        else
+        {
+            [filterContent.approvementsInvite enumerateObjectsUsingBlock: ^(ProjectInviteInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ( [obj.inviteID isEqual: info.parameterValue] )
+                {
+                    inviteInfo = obj;
+                    
+                    assigneeIndex++;
+                    
+                    *stop = YES;
+                }
+                
+            }];
+            
+            [filterContent removeApprovementsInviteObject: inviteInfo];
+        }
+        
+        NSMutableArray* selectedIndexes = [NSMutableArray arrayWithArray: (NSArray*)filterContent.approvementsSelectedIndexes];
+        
+        if ( selectedIndexes.count > assigneeIndex )
+            [selectedIndexes removeObjectAtIndex: assigneeIndex];
+        
+        filterContent.approvementsSelectedIndexes = selectedIndexes;
+    }
+
+}
+
+- (void) deleteFilterTypesParameter: (ProjectTaskFilterContent*) content
+                           withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == TypeAllFilterParameter )
+    {
+        content.types = nil;
+    }
+    else
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.types];
+        
+        [tmpArr removeObject: info.parameterValue];
+        
+        content.types = tmpArr;
+    }
+}
+
+- (void) deleteStartDateParameter: (ProjectTaskFilterContent*) content
+                         withInfo: (FilterTagParameterInfo*)   info
+{
+    content.startBeginDate = nil;
+    content.startEndDate   = nil;
+}
+
+- (void) deleteCloseDateParameter: (ProjectTaskFilterContent*) content
+                         withInfo: (FilterTagParameterInfo*)   info
+{
+    content.closeBeginDate = nil;
+    content.closeEndDate   = nil;
+}
+
+- (void) deleteFactualStartDateParameter: (ProjectTaskFilterContent*) content
+                                withInfo: (FilterTagParameterInfo*)   info
+{
+    content.factualStartBeginDate = nil;
+    content.factualStartEndDate   = nil;
+}
+
+- (void) deleteFactualEndDateParameter: (ProjectTaskFilterContent*) content
+                              withInfo: (FilterTagParameterInfo*)   info
+{
+    content.factualCloseBeginDate = nil;
+    content.factualCloseEndDate   = nil;
+}
+
+- (void) deleteRoomsParameter: (ProjectTaskFilterContent*) content
+                     withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == RoomsAllFilterParameter )
+    {
+        content.rooms                = nil;
+        content.roomsSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectTaskRoom* room    = nil;
+        __block NSUInteger selectedIndex = 0;
+        
+        [content.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [info.parameterValue isEqual: obj.roomID] )
+            {
+                room          = obj;
+                selectedIndex = idx;
+                *stop         = YES;
+            }
+            
+        }];
+        
+        [content removeRoomsObject: room];
+        
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.roomsSelectedIndexes];
+        
+        [tmpArr removeObjectAtIndex: selectedIndex];
+        
+        content.roomsSelectedIndexes = tmpArr;
+    }
+}
+
+- (void) deleteWorkAreasParameter: (ProjectTaskFilterContent*) content
+                         withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == WorkAreasAllFilterParameter )
+    {
+        content.workAreas                = nil;
+        content.workAreasSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectTaskWorkArea* workArea = nil;
+        __block NSUInteger selectedIndex      = 0;
+        
+        [content.workAreas enumerateObjectsUsingBlock: ^(ProjectTaskWorkArea * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [info.parameterValue isEqual: obj.workAreaID] )
+            {
+                workArea      = obj;
+                selectedIndex = idx;
+                *stop         = YES;
+            }
+            
+        }];
+        
+        [content removeWorkAreasObject: workArea];
+        
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.workAreasSelectedIndexes];
+        
+        [tmpArr removeObjectAtIndex: selectedIndex];
+        
+        content.workAreasSelectedIndexes = tmpArr;
+    }
+}
+
+- (void) deleteFilterStatusesParameter: (ProjectTaskFilterContent*) content
+                              withInfo: (FilterTagParameterInfo*)   info
+{
+    if ( info.parameterType == StatusesAllFilterParameter )
+    {
+        content.types = nil;
+    }
+    else
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.statuses];
+        
+        [tmpArr removeObject: info.parameterValue];
+        
+        content.statuses = tmpArr;
+    }
+}
+
+- (void) resetBooleanParameters: (ProjectTaskFilterContent*) content
+                       withInfo: (FilterTagParameterInfo*)   info
+{
+    switch (info.parameterType)
+    {
+        case DoneFilterParameter:
+            content.isDone = @NO;
+            break;
+        case ExpiredFilterParameter:
+            content.isExpired = @NO;
+            break;
+        case CanceledFilterParameter:
+            content.isCanceled = @NO;
+            break;
+        default:
+            break;
+    }
 }
 
 @end

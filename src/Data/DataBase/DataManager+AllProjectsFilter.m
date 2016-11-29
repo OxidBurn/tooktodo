@@ -17,6 +17,7 @@
 
 // Categories
 #import "NSDate-Utilities.h"
+#import "NSMutableArray+Safe.h"
 
 @implementation DataManager (AllProjectsFilter)
 
@@ -157,6 +158,87 @@
     }
     
     return projects;
+}
+
+- (void) deleteAllProjectsTasksFilterItem: (FilterTagParameterInfo*) info
+                           withCompletion: (CompletionWithSuccess)   completion;
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        AllProjectTasksFilterContent* filterContent = [[self getAllProjectsTaskFilterContent] MR_inContext: localContext];
+        
+        switch (info.parameterType)
+        {
+            case ProjectRoleFilterParameter:
+            {
+                filterContent.rolesInProject = nil;
+            }
+                break;
+            case ProjectsFilterParameter:
+            case ProjectsAllFilterParameter:
+            {
+                [self deleteAllProjectsFilterContentParameters: filterContent
+                                                      withInfo: info];
+            }
+                break;
+            case StatusesFilterParameter:
+            case StatusesAllFilterParameter:
+            {
+                [self deleteAllProjectsFilterStatusesParameter: filterContent
+                                                      withInfo: info];
+            }
+                break;
+            case StartDateFilterParameter:
+            {
+                [self deleteAllProjectsStartDateParameter: filterContent
+                                                 withInfo: info];
+            }
+                break;
+            case EndDateFilterParameter:
+            {
+                [self deleteAllProjectsCloseDateParameter: filterContent
+                                                 withInfo: info];
+            }
+                break;
+            case FactualStartDateFilterParameter:
+            {
+                [self deleteAllProjectsFactualStartDateParameter: filterContent
+                                                        withInfo: info];
+            }
+                break;
+            case FactualEndDateFilterParameter:
+            {
+                [self deleteAllProjectsFactualEndDateParameter: filterContent
+                                                      withInfo: info];
+            }
+                break;
+            case TypeFilterParameter:
+            case TypeAllFilterParameter:
+            {
+                [self deleteAllProjectsFilterTypesParameter: filterContent
+                                                   withInfo: info];
+            }
+                break;
+            case DoneFilterParameter:
+            case ExpiredFilterParameter:
+            case CanceledFilterParameter:
+            {
+                [self resetAllProjectsBooleanParameters: filterContent
+                                               withInfo: info];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 
@@ -460,5 +542,139 @@
     
     return tasks;
 }
+
+
+#pragma mark - Delete filter parameters -
+
+- (void) deleteAllFilterStatusesParameter: (AllProjectTasksFilterContent*) content
+                                 withInfo: (FilterTagParameterInfo*)       info
+{
+    if ( info.parameterType == StatusesAllFilterParameter )
+    {
+        content.types = nil;
+    }
+    else
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.statuses];
+        
+        [tmpArr removeObject: info.parameterValue];
+        
+        content.statuses = tmpArr;
+    }
+}
+
+- (void) resetAllProjectsBooleanParameters: (AllProjectTasksFilterContent*) content
+                                  withInfo: (FilterTagParameterInfo*)       info
+{
+    switch (info.parameterType)
+    {
+        case DoneFilterParameter:
+            content.isDone = @NO;
+            break;
+        case ExpiredFilterParameter:
+            content.isExpired = @NO;
+            break;
+        case CanceledFilterParameter:
+            content.isCanceled = @NO;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void) deleteAllProjectsStartDateParameter: (AllProjectTasksFilterContent*) content
+                                    withInfo: (FilterTagParameterInfo*)   info
+{
+    content.startBeginDate = nil;
+    content.startEndDate   = nil;
+}
+
+- (void) deleteAllProjectsCloseDateParameter: (AllProjectTasksFilterContent*) content
+                                    withInfo: (FilterTagParameterInfo*)       info
+{
+    content.closeBeginDate = nil;
+    content.closeEndDate   = nil;
+}
+
+- (void) deleteAllProjectsFactualStartDateParameter: (AllProjectTasksFilterContent*) content
+                                           withInfo: (FilterTagParameterInfo*)       info
+{
+    content.factualStartBeginDate = nil;
+    content.factualStartEndDate   = nil;
+}
+
+- (void) deleteAllProjectsFactualEndDateParameter: (AllProjectTasksFilterContent*) content
+                                         withInfo: (FilterTagParameterInfo*)       info
+{
+    content.factualCloseBeginDate = nil;
+    content.factualCloseEndDate   = nil;
+}
+
+- (void) deleteAllProjectsFilterTypesParameter: (AllProjectTasksFilterContent*) content
+                                      withInfo: (FilterTagParameterInfo*)       info
+{
+    if ( info.parameterType == TypeAllFilterParameter )
+    {
+        content.types = nil;
+    }
+    else
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.types];
+        
+        [tmpArr removeObject: info.parameterValue];
+        
+        content.types = tmpArr;
+    }
+}
+
+- (void) deleteAllProjectsFilterStatusesParameter: (AllProjectTasksFilterContent*) content
+                                         withInfo: (FilterTagParameterInfo*)       info
+{
+    if ( info.parameterType == StatusesAllFilterParameter )
+    {
+        content.types = nil;
+    }
+    else
+    {
+        NSMutableArray* tmpArr = [NSMutableArray arrayWithArray: (NSArray*)content.statuses];
+        
+        [tmpArr removeObject: info.parameterValue];
+        
+        content.statuses = tmpArr;
+    }
+}
+
+- (void) deleteAllProjectsFilterContentParameters: (AllProjectTasksFilterContent*) content
+                                         withInfo: (FilterTagParameterInfo*) info
+{
+    if ( info.parameterType == ProjectsAllFilterParameter )
+    {
+        content.projects               = nil;
+        content.projectSelectedIndexes = nil;
+    }
+    else
+    {
+        __block ProjectInfo* project            = nil;
+        __block NSUInteger selectedProjectIndex = 0;
+        
+        [content.projects enumerateObjectsUsingBlock: ^(ProjectInfo * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [obj.projectID isEqual: info.parameterValue] )
+            {
+                project              = obj;
+                selectedProjectIndex = idx;
+                *stop                = YES;
+            }
+            
+        }];
+        
+        [content removeProjectsObject: project];
+        
+        NSMutableArray* selectedProjectsList = [NSMutableArray arrayWithArray: (NSArray*)content.projectSelectedIndexes];
+        
+        [selectedProjectsList safeRemoveObjectAtIndex: selectedProjectIndex];
+    }
+}
+
 
 @end
