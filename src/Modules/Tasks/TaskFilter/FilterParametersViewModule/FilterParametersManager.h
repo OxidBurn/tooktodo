@@ -9,8 +9,10 @@
 // Classes
 #import "DataManager+AllProjectsFilter.h"
 #import "AllProjectTasksFilterContent+CoreDataClass.h"
+#import "FilterParametersViewDataSource.h"
+#import "FilterParameterViewDelegate.h"
 
-typedef void(^FilterUpdateCompletion)(CGFloat tagsViewHeight, NSUInteger parametersCount);
+typedef void(^FilterUpdateCompletion)(NSUInteger parametersCount);
 
 typedef NS_ENUM(NSUInteger, ScreenTypeForFiltering)
 {
@@ -18,9 +20,11 @@ typedef NS_ENUM(NSUInteger, ScreenTypeForFiltering)
     AllProjectTasksScreenType,
 };
 
-@interface FilterParametersManager : NSObject
+@interface FilterParametersManager : NSObject <FilterParametersViewDataSource, FilterParameterViewDelegate>
 
 // properties
+
+@property (copy, nonatomic) void(^didUpdateFilter)(NSUInteger count);
 
 // methods
 

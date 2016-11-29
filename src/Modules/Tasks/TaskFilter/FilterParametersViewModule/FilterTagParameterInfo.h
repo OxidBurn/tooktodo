@@ -29,4 +29,6 @@
               withParameterTag: (NSUInteger)             tag
                      withValue: (NSNumber*)              value;
 
+- (void) updatedTagIndex: (NSUInteger) tag;
+
 @end

@@ -12,7 +12,7 @@
 #import "Utils.h"
 
 static CGFloat kTagViewHeight = 20.0f;
-static CGFloat kPaddingValue  = 19.0f;
+static CGFloat kPaddingValue  = 20.0f;
 static CGFloat kMaxWidthValue = 200.0f;
 
 @implementation FilterTagParameterInfo
@@ -48,6 +48,14 @@ static CGFloat kMaxWidthValue = 200.0f;
 }
 
 
+#pragma mark - Public methods -
+
+- (void) updatedTagIndex: (NSUInteger) tag
+{
+    self.parameterTag = tag;
+}
+
+
 #pragma mark - Internal methods -
 
 - (void) calculateTagSize
@@ -58,6 +66,14 @@ static CGFloat kMaxWidthValue = 200.0f;
                                        withFont: [self titleFont]];
     
     self.tagParamterFrame = CGRectMake(0, 0, textSize.width + kTagViewHeight + kPaddingValue, kTagViewHeight);
+}
+
+
+#pragma mark - Description -
+
+- (NSString*) description
+{
+    return [NSString stringWithFormat: @"Title: %@, type: %lu, value: %@", self.title, self.parameterTag, self.parameterValue];
 }
 
 @end

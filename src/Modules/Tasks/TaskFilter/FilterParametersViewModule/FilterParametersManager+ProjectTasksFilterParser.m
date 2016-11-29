@@ -25,7 +25,7 @@
 {
     ProjectTaskFilterContent* filterContent = [DataManagerShared getFilterContentForSelectedProject];
     
-    __block NSMutableArray* tmpFilterParametersContent = [NSMutableArray array];
+    NSMutableArray* tmpFilterParametersContent = [NSMutableArray array];
     
     // Creators
     NSArray* creators = [self getCreatorsInfo: filterContent
@@ -239,7 +239,7 @@
             FilterTagParameterInfo* statuseInfo = [[FilterTagParameterInfo alloc] initWithTitle: statusDicInfo[@"title"]
                                                                                withParameterType: StatusesFilterParameter
                                                                                 withParameterTag: tag + idx
-                                                                                       withValue: @(idx)];
+                                                                                       withValue: obj];
             
             [statuses addObject: statuseInfo];
             
@@ -287,7 +287,7 @@
     if ( content.factualCloseBeginDate || content.factualCloseEndDate )
     {
         FilterTagParameterInfo* factEndDateInfo = [[FilterTagParameterInfo alloc] initWithTitle: @"Факт. окончание"
-                                                                              withParameterType: FactualStartDateFilterParameter
+                                                                              withParameterType: FactualEndDateFilterParameter
                                                                                withParameterTag: tag + dates.count
                                                                                       withValue: nil];
         
@@ -388,7 +388,7 @@
             FilterTagParameterInfo* typeInfo = [[FilterTagParameterInfo alloc] initWithTitle: typeDicInfo[@"title"]
                                                                            withParameterType: TypeFilterParameter
                                                                             withParameterTag: tag + idx
-                                                                                   withValue: @(idx)];
+                                                                                   withValue: obj];
             
             [types addObject: typeInfo];
             
@@ -403,7 +403,7 @@
 {
     __block NSMutableArray* booleanValues = [NSMutableArray array];
     
-    if ( content.isDone )
+    if ( content.isDone.boolValue )
     {
         FilterTagParameterInfo* doneInfo = [[FilterTagParameterInfo alloc] initWithTitle: @"Выполненные"
                                                                        withParameterType: DoneFilterParameter
@@ -413,7 +413,7 @@
         [booleanValues addObject: doneInfo];
     }
     
-    if ( content.isExpired )
+    if ( content.isExpired.boolValue )
     {
         FilterTagParameterInfo* expiredInfo = [[FilterTagParameterInfo alloc] initWithTitle: @"Только просроченные"
                                                                           withParameterType: ExpiredFilterParameter
@@ -423,7 +423,7 @@
         [booleanValues addObject: expiredInfo];
     }
     
-    if ( content.isCanceled )
+    if ( content.isCanceled.boolValue )
     {
         FilterTagParameterInfo* canceledInfo = [[FilterTagParameterInfo alloc] initWithTitle: @"Отмененные"
                                                                            withParameterType: CanceledFilterParameter

@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
+@property (weak, nonatomic) id<FilterParameterViewDelegate> delegate;
+
 // methods
 
 - (IBAction) onDeleteTag: (UIButton*) sender;
@@ -27,10 +29,18 @@
 
 #pragma mark - Public methods -
 
-- (void) setParameterInfo: (FilterTagParameterInfo*) info
+- (void) setParameterInfo: (FilterTagParameterInfo*)         info
+             withDelegate: (id<FilterParameterViewDelegate>) delegate
 {
-    self.filterTagTitleLabel.text = info.title;
-    self.deleteBtn.tag            = info.parameterTag;
+    self.filterTagTitleLabel.text                  = info.title;
+    self.deleteBtn.tag                             = info.parameterTag;
+    self.frame                                     = info.tagParamterFrame;
+    self.delegate                                  = delegate;
+}
+
+- (void) updateTagValue: (NSUInteger) tag
+{
+    self.deleteBtn.tag = tag;
 }
 
 
@@ -38,8 +48,8 @@
 
 - (IBAction) onDeleteTag: (UIButton*) sender
 {
-    if ( self.didDeleteParameter )
-        self.didDeleteParameter(self.tag);
+    if ( [self.delegate respondsToSelector: @selector(didDeleteFilterParameterWithTag:)] )
+        [self.delegate didDeleteFilterParameterWithTag: sender.tag];
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import "FilterParametersManager.h"
 
+// Classes
+
 @interface FilterParametersManager (ProjectTasksFilterParser)
 
 - (NSArray*) parseContentForProjectTasks;

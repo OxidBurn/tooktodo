@@ -18,11 +18,14 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FilterTagView">
             <rect key="frame" x="0.0" y="0.0" width="128" height="20"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отв: И. Иванов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1z-4K-Vgg">
                     <rect key="frame" x="10" y="0.0" width="89" height="20"/>
                     <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="WY8-tK-C5W"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -31,6 +34,7 @@
                     <rect key="frame" x="108" y="0.0" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="Qcl-he-1OC"/>
+                        <constraint firstAttribute="height" constant="20" id="zo6-zb-tGR"/>
                     </constraints>
                     <state key="normal" image="ClosedFilterObjectBtn"/>
                     <connections>
@@ -41,11 +45,9 @@
             <color key="backgroundColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="V1z-4K-Vgg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="9ya-5p-iUH"/>
-                <constraint firstAttribute="bottom" secondItem="V1z-4K-Vgg" secondAttribute="bottom" id="I5O-bq-ydh"/>
                 <constraint firstAttribute="trailing" secondItem="0qz-z7-Lrf" secondAttribute="trailing" id="KAq-Jo-ODg"/>
                 <constraint firstItem="0qz-z7-Lrf" firstAttribute="leading" secondItem="V1z-4K-Vgg" secondAttribute="trailing" constant="9" id="MV2-tp-5Qb"/>
                 <constraint firstItem="V1z-4K-Vgg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="e4I-MQ-ltn"/>
-                <constraint firstAttribute="bottom" secondItem="0qz-z7-Lrf" secondAttribute="bottom" id="r1k-5U-FX1"/>
                 <constraint firstItem="0qz-z7-Lrf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uEn-KK-AP8"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

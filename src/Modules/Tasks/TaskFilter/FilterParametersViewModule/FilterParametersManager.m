@@ -10,6 +10,8 @@
 
 // Classes
 #import "FilterParametersManager+ProjectTasksFilterParser.h"
+#import "FilterParametersManager+UpdatingProjectTaskFilter.h"
+#import "FilterParametersManager+AllProjectsTasksParser.h"
 
 @interface FilterParametersManager()
 
@@ -34,6 +36,11 @@
                        withCompletion: (FilterUpdateCompletion) completion
 {
     self.screenType = type;
+    
+    [self parsingFilterParametersContent];
+    
+    if ( completion )
+        completion(self.filterParametersContent.count);
 }
 
 - (NSUInteger) countOfFilterParameters
@@ -56,20 +63,67 @@
             
         case AllProjectTasksScreenType:
         {
-            [self parseContentForAllProjectsTasks];
+            self.filterParametersContent = [self parseContentForAllProjectsTasks];
         }
             break;
     }
 }
 
-
-
-- (void) parseContentForAllProjectsTasks
+- (void) udateIndexes
 {
-    
+    [self.filterParametersContent enumerateObjectsUsingBlock: ^(FilterTagParameterInfo*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        [obj updatedTagIndex: idx];
+        
+    }];
 }
 
+#pragma mark - Filter parameter view data source methods -
 
+- (NSArray*) getFilterParameterContent
+{
+    return self.filterParametersContent;
+}
+
+#pragma mark - Filter parameter view delegate methods -
+
+- (void) didDeleteFilterParameterWithTag: (NSUInteger) tag
+{
+    __block NSMutableArray* tmpFilterParametersContent = self.filterParametersContent.mutableCopy;
+    
+    FilterTagParameterInfo* parameterInfo = tmpFilterParametersContent[tag];
+    
+    __weak typeof(self) blockSelf = self;
+    
+    if ( self.screenType == ProjectTaskScreenType )
+    {
+        [self deleteFilterParameterWithInfo: parameterInfo
+                             withCompletion: ^(BOOL isSuccess) {
+                                 
+                                 if ( blockSelf.didUpdateFilter )
+                                     blockSelf.didUpdateFilter(blockSelf.filterParametersContent.count);
+                                 
+                             }];
+    }
+    else
+    {
+        [self deleteAllProjectsFilterParameterWithInfo: parameterInfo
+                                        withCompletion: ^(BOOL isSuccess) {
+                                           
+                                            if ( blockSelf.didUpdateFilter )
+                                                blockSelf.didUpdateFilter(blockSelf.filterParametersContent.count);
+                                            
+                                        }];
+    }
+    
+    [tmpFilterParametersContent removeObjectAtIndex: tag];
+    
+    self.filterParametersContent = tmpFilterParametersContent.copy;
+    
+    tmpFilterParametersContent = nil;
+    
+    [self udateIndexes];
+}
 
 
 @end

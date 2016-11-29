@@ -20,6 +20,9 @@
 #import "ChangeStatusViewController.h"
 #import "TaskFilterViewController.h"
 #import "TaskFilterViewControllerDelegate.h"
+#import "FilterParametersManager.h"
+#import "FilterParametersTagsView.h"
+#import "FilterBarButton.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -36,15 +39,20 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
+@property (weak, nonatomic) IBOutlet FilterParametersTagsView *filterParametersView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterParameterTagsViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet FilterBarButton *showFilterBtn;
+
+@property (strong, nonatomic) FilterParametersManager* filterParameterManager;
+
 
 // Methods
 
 - (void) bindingUI;
 
 // Actions
-- (IBAction) onFilterBtn: (UIBarButtonItem*) sender;
+- (IBAction) onFilterBtn: (UIButton*) sender;
 
 - (IBAction) onSortTasks: (UIBarButtonItem*) sender;
 
@@ -69,6 +77,10 @@
 
     // handling splitVC
     self.splitViewController.delegate = self;
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -114,8 +126,6 @@
         
         [vc fillFilterType: FilterBySingleProject
               withDelegate: self];
-        
-        
     }
 }
 
@@ -132,6 +142,16 @@
     return _viewModel;
 }
 
+- (FilterParametersManager*) filterParameterManager
+{
+    if ( _filterParameterManager == nil )
+    {
+        _filterParameterManager = [FilterParametersManager new];
+    }
+    
+    return _filterParameterManager;
+}
+
 
 #pragma mark - Internal methods -
 
@@ -140,6 +160,9 @@
     self.tasksByProjectTableView.dataSource = self.viewModel;
     self.tasksByProjectTableView.delegate   = self.viewModel;
     self.searchBar.delegate                 = self.viewModel;
+    
+    self.filterParametersView.dataSource     = self.filterParameterManager;
+    self.filterParametersView.filterDelegate = self.filterParameterManager;
     
     __weak typeof(self) blockSelf = self;
        
@@ -161,6 +184,34 @@
         
         [blockSelf.searchBar resignFirstResponder];
         [blockSelf.view endEditing: YES];
+        
+    };
+    
+    self.filterParametersView.updateHeight = ^( CGFloat height ){
+        
+        // Filters parameters tags view height should be not bigger than
+        // 20% of the screen height
+        CGFloat maxHeight = (blockSelf.view.height / 5);
+        
+        if ( height < maxHeight )
+            blockSelf.filterParameterTagsViewHeightConstraint.constant = height;
+        else
+            blockSelf.filterParameterTagsViewHeightConstraint.constant = maxHeight;
+        
+        [blockSelf setupTableView];
+        
+    };
+    
+    self.filterParameterManager.didUpdateFilter = ^(NSUInteger count){
+        
+        [[blockSelf.viewModel updateContent]
+         subscribeNext: ^(id x) {
+             
+             [blockSelf.tasksByProjectTableView reloadData];
+             
+         }];
+        
+        [blockSelf.showFilterBtn updateFilterParametersCount: count];
         
     };
     
@@ -208,9 +259,17 @@
          
      }];
     
-    // Setup navigation title view
-    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
-                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
+    // Filter parameters
+    __weak typeof(self) blockSelf = self;
+    
+    [self.filterParameterManager updateFilterContentForScreen: ProjectTaskScreenType
+                                               withCompletion: ^(NSUInteger parametersCount) {
+                                                   
+                                                   [blockSelf.filterParametersView reloadContent];
+                                                   
+                                                   [blockSelf.showFilterBtn updateFilterParametersCount: parametersCount];
+                                                   
+                                               }];
 }
 
 - (void) needToUpdateContent

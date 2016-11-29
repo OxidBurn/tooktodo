@@ -6,8 +6,22 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+// Classes
+#import "FilterParametersViewDataSource.h"
+#import "FilterParameterViewDelegate.h"
 
 @interface FilterParametersTagsView : UIScrollView
+
+// Properties
+
+@property (weak, nonatomic) id<FilterParametersViewDataSource> dataSource;
+
+@property (weak, nonatomic) id<FilterParameterViewDelegate> filterDelegate;
+
+@property (copy, nonatomic) void(^updateHeight)(CGFloat height);
+
+// methods
+
+- (void) reloadContent;
 
 @end

@@ -8,14 +8,17 @@
 
 // Classes
 #import "FilterTagParameterInfo.h"
+#import "FilterParameterViewDelegate.h"
 
 @interface FilterTagView : UIView
 
 // properties
-@property (copy, nonatomic) void(^didDeleteParameter)(NSUInteger parameterTag);
 
 // methods
 
-- (void) setParameterInfo: (FilterTagParameterInfo*) info;
+- (void) setParameterInfo: (FilterTagParameterInfo*)         info
+             withDelegate: (id<FilterParameterViewDelegate>) delegate;
+
+- (void) updateTagValue: (NSUInteger) tag;
 
 @end

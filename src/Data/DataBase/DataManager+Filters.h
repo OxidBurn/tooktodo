@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 // Classes
 #import "TaskFilterConfiguration.h"
 #import "ProjectTaskFilterContent+CoreDataClass.h"
+#import "FilterTagParameterInfo.h"
 
 @interface DataManager (Filters)
 
@@ -55,5 +56,8 @@ typedef NS_ENUM(NSUInteger, ProjectFilterType)
 - (void) resetFilterConfigurationWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSArray*) applyFiltersToTasks: (NSArray*) tasks;
+
+- (void) deleteProjectTasksFilterItem: (FilterTagParameterInfo*) info
+                       withCompletion: (CompletionWithSuccess)   completion;
 
 @end

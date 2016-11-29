@@ -15,6 +15,9 @@
 #import "ProjectTask+CoreDataClass.h"
 #import "TaskFilterViewController.h"
 #import "TaskFilterViewControllerDelegate.h"
+#import "FilterBarButton.h"
+#import "FilterParametersTagsView.h"
+#import "FilterParametersManager.h"
 
 // Categories
 #import "BaseMainViewController+NavigationTitle.h"
@@ -30,9 +33,14 @@
 @property (strong, nonatomic) AllTasksViewModel* viewModel;
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* sortTasksBtn;
+@property (weak, nonatomic) IBOutlet FilterBarButton *showFilterBtn;
+@property (weak, nonatomic) IBOutlet FilterParametersTagsView *filterParametersView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterParameterTagsViewHeightConstraint;
+
+@property (strong, nonatomic) FilterParametersManager* filterParameterManager;
 
 // Methods
-- (IBAction) onShowTasksFilter: (UIBarButtonItem*) sender;
+- (IBAction) onShowTasksFilter: (UIButton*) sender;
 
 - (void) bindingUI;
 
@@ -67,16 +75,7 @@
 {
     [super viewWillAppear: animated];
     
-    @weakify(self)
-    
-    [[self.viewModel updateContent]
-     subscribeCompleted: ^{
-     
-         @strongify(self)
-         
-         [self.tasksByProjectTableView reloadData];
-         
-    }];
+    [self updateContent];
 }
 
 
@@ -129,6 +128,16 @@
     return _viewModel;
 }
 
+- (FilterParametersManager*) filterParameterManager
+{
+    if ( _filterParameterManager == nil )
+    {
+        _filterParameterManager = [FilterParametersManager new];
+    }
+    
+    return _filterParameterManager;
+}
+
 
 #pragma mark - Internal methods -
 
@@ -136,6 +145,9 @@
 {
     self.tasksByProjectTableView.dataSource = self.viewModel;
     self.tasksByProjectTableView.delegate   = self.viewModel;
+    
+    self.filterParametersView.dataSource     = self.filterParameterManager;
+    self.filterParametersView.filterDelegate = self.filterParameterManager;
     
     __weak typeof(self) blockSelf = self;
     
@@ -149,6 +161,32 @@
     self.viewModel.reloadTable = ^(){
         
         [blockSelf.tasksByProjectTableView reloadData];
+    };
+    
+    self.filterParametersView.updateHeight = ^( CGFloat height ){
+        
+        // Filters parameters tags view height should be not bigger than
+        // 20% of the screen height
+        CGFloat maxHeight = (blockSelf.view.height / 5);
+        
+        if ( height < maxHeight )
+            blockSelf.filterParameterTagsViewHeightConstraint.constant = height;
+        else
+            blockSelf.filterParameterTagsViewHeightConstraint.constant = maxHeight;
+        
+    };
+    
+    self.filterParameterManager.didUpdateFilter = ^(NSUInteger count){
+        
+        [[blockSelf.viewModel updateContent]
+         subscribeCompleted: ^{
+             
+             [blockSelf.tasksByProjectTableView reloadData];
+             
+         }];
+        
+        [blockSelf.showFilterBtn updateFilterParametersCount: count];
+        
     };
 }
 
@@ -168,6 +206,32 @@
                                  barButtonFrame.size.height);
     
     return newFrame;
+}
+
+- (void) updateContent
+{
+    @weakify(self)
+    
+    [[self.viewModel updateContent]
+     subscribeCompleted: ^{
+         
+         @strongify(self)
+         
+         [self.tasksByProjectTableView reloadData];
+         
+     }];
+    
+    // Filter parameters
+    __weak typeof(self) blockSelf = self;
+    
+    [self.filterParameterManager updateFilterContentForScreen: AllProjectTasksScreenType
+                                               withCompletion: ^(NSUInteger parametersCount) {
+                                                   
+                                                   [blockSelf.filterParametersView reloadContent];
+                                                   
+                                                   [blockSelf.showFilterBtn updateFilterParametersCount: parametersCount];
+                                                   
+                                               }];
 }
 
 
