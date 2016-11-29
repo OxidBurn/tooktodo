@@ -181,7 +181,7 @@
             detailString = endDateString;
         }
         else
-            detailString = @"Cроки не выбраны";
+            detailString = @"Cроки не определены";
     }
     
     return detailString;
