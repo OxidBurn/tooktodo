@@ -112,10 +112,8 @@
 
 - (NSString*) executionDateString: (ProjectTask*) task
 {
-    NSString* startDayString = [task.startDay stringWithFormat: @"dd.mm.yyyy"];
-    NSString* closeDayString = [task.closedDate stringWithFormat: @"dd.mm.yyyy"];
-    
-    NSString* executionDateValue = [NSString stringWithFormat: @"%@ - %@", startDayString, closeDayString];
+    NSString* executionDateValue = [self createTermsLabelTextForStartDate: task.startDay
+                                                           withFinishDate: task.closedDate];
     
     return executionDateValue;
 }
@@ -152,6 +150,41 @@
 - (IBAction) onShowTaskDetail: (UIButton*) sender
 {
     
+}
+
+
+#pragma mark - Helpers -
+
+- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
+                                withFinishDate: (NSDate*) finishDate
+{
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.mm.yyyy"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.mm.yyyy"];
+    
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ - %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = startDateString;
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = endDateString;
+        }
+        else
+            detailString = @"Cроки не определены";
+    }
+    
+    return detailString;
 }
 
 @end

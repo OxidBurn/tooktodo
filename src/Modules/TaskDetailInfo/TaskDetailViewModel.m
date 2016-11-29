@@ -228,6 +228,8 @@
     if ([cell isKindOfClass: [CommentsCell class]])
     {
         ((CommentsCell *)cell).commentID = content.commentID;
+        
+        [(CommentsCell* )cell handleEditButtons: content.isAuthor];
     }
 
     return cell;
