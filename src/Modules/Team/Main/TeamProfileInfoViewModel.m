@@ -139,6 +139,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
                     if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
                     {
                         self.cell.accessoryType = UITableViewCellAccessoryNone;
+                        self.cell.userInteractionEnabled = NO;
                     }
                 }
             }
@@ -151,6 +152,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
                 if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
                 {
                     self.cell.accessoryType = UITableViewCellAccessoryNone;
+                    self.cell.userInteractionEnabled = NO;
                 }
             }
                 

@@ -87,18 +87,32 @@
                                         }
                                     }];
     
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    ProjectRoleAssignments* assignments = teamInfo.assignments;
+    
+    if (assignments.assignee != nil || (assignments.invite != nil && [teamInfo.fullname isEqualToString: @" "] == NO))
+    {
+        self.teamMemberName.text = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    }
+    
+    else if ([teamInfo.fullname isEqualToString: @" "] && assignments.invite != nil)
+    {
+        self.teamMemberName.text = teamInfo.email;
+    }
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
     
-    ProjectRoleAssignments* assignments = teamInfo.assignments;
-    
-    if (assignments.isBlocked.boolValue == YES || assignments.invite != nil)
+    if (assignments.isBlocked.boolValue == YES)
     {
         self.teamMemberName.textColor       = [UIColor grayColor];
         self.teamMemberPermission.textColor = [UIColor grayColor];
-    }
-    
+    } else
+        if ( assignments.invite != nil )
+        {
+            self.teamMemberName.textColor       = [UIColor grayColor];
+            self.teamMemberPermission.textColor = [UIColor grayColor];
+            
+            self.teamMemberPermission.text = @"Приглашение выслано";
+        }
     else
     {
         self.teamMemberName.textColor       = [UIColor blackColor];
