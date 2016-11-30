@@ -124,7 +124,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
         [self.model reloadContent];
-        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
+        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath: indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
         
@@ -135,6 +135,11 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
                 if ( indexPath.row == 0 )
                 {
                     self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    
+                    if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
+                    {
+                        self.cell.accessoryType = UITableViewCellAccessoryNone;
+                    }
                 }
             }
                 break;
@@ -142,13 +147,17 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
             case OwnerPermission:
             {
                 self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
+                {
+                    self.cell.accessoryType = UITableViewCellAccessoryNone;
+                }
             }
                 
             default:
                 break;
         }
 
-        
         
         return self.cell;
     }
@@ -163,7 +172,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     }
     
     else
-        return 2;
+        return [self.model secondSectionRowCount];
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView

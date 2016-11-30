@@ -63,7 +63,8 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     if (_detailLabelsContent == nil)
     {
-        _detailLabelsContent = @[self.memberInfo.role ? self.memberInfo.role : @"", [self setPermission: self.memberInfo.projectPermission.integerValue]];
+        _detailLabelsContent = @[ self.memberInfo.role ? self.memberInfo.role : @"",
+                                 [self setPermission: self.memberInfo.projectPermission.integerValue]];
     }
     
     return _detailLabelsContent;
@@ -125,6 +126,16 @@ typedef NS_ENUM(NSUInteger, ContactType)
 - (NSInteger) countOfContactsContent
 {
     return self.contactsContent.count;
+}
+
+- (NSInteger) secondSectionRowCount
+{
+    if ([self checkIfTeamMemberBlockedOrInvited] == YES)
+    {
+        return 1;
+    }
+   
+    else return 2;
 }
 
 - (NSString*) getEmail
@@ -301,6 +312,15 @@ typedef NS_ENUM(NSUInteger, ContactType)
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath
 {
+    if ([self checkIfTeamMemberBlockedOrInvited] == YES)
+    {
+        NSMutableArray* tmpCellContentArray = self.roleCellsContent.mutableCopy;
+        
+        [tmpCellContentArray removeObject: @"Права доступа"];
+        
+        self.roleCellsContent = tmpCellContentArray.copy;
+    }
+    
     return self.roleCellsContent[indexPath.row];
 }
 
@@ -337,4 +357,15 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     self.memberInfo = teamMember;
 }
+
+- (BOOL) checkIfTeamMemberBlockedOrInvited
+{
+    BOOL isBlocked = self.assignment.isBlocked.boolValue;
+    BOOL isInvited = self.assignment.invite != nil;
+    
+    BOOL disabled = (isBlocked == YES || isInvited);
+    
+    return disabled;
+}
+
 @end
