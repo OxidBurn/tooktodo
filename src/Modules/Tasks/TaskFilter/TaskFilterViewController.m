@@ -95,7 +95,8 @@
     {
         FilterByStatusViewController* controller = [segue destinationViewController];
         
-        [controller fillDelegate: self.viewModel];
+        [controller fillSelectedStatuses: filterConfig.statusesList
+                            withDelegate: self.viewModel];
     }
     
     if ( [segue.identifier isEqualToString: @"ShowFilterByTypesSegueID"] )

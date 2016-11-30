@@ -160,5 +160,10 @@
     return self.workAreasArray.count;
 }
 
+- (BOOL) checkIfAllSelected
+{
+    return (self.selectedWorkAreasArray.count == self.workAreasArray.count);
+}
+
 
 @end

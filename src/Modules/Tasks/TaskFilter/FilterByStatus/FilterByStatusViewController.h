@@ -16,7 +16,8 @@
 @property (weak, nonatomic) id <FilterByStatusControllerDelegate> delegate;
 
 // methods
-- (void) fillDelegate: (id) deletate;
+- (void) fillSelectedStatuses: (NSArray*) statuses
+                 withDelegate: (id)       deletate;
 
 @end
 

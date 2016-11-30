@@ -26,4 +26,6 @@
 
 - (void) fillSelectedSystemsInfoFromConfig: (TaskFilterConfiguration*) filterConfig;
 
+- (BOOL) checkIfAllSelected;
+
 @end

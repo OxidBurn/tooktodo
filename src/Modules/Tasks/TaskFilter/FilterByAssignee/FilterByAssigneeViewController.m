@@ -140,6 +140,8 @@
         [blockSelf.view endEditing: YES];
         
     };
+    
+    self.selectAllBtn.selected =  [self.viewModel checkIfAllSelected] ? UIControlStateSelected : UIControlStateNormal;
 }
 
 - (void) setupTableView

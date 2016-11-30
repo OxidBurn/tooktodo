@@ -372,4 +372,9 @@
     return self.tableState;
 }
 
+- (BOOL) checkIfAllSelected
+{
+    return (self.assigneeArray.count == self.selectedAssigneeIndexes.count);
+}
+
 @end

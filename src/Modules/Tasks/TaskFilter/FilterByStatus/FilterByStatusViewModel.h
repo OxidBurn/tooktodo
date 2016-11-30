@@ -13,7 +13,18 @@
 
 @interface FilterByStatusViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
+// properties
+@property (nonatomic, copy) void(^reloadTableView)();
+
 // methods
 - (NSArray*) getSelectedStatusesArray;
+
+- (void) selectAll;
+
+- (void) deselectAll;
+
+- (void) fillSelectedStatuses: (NSArray*) statuses;
+
+- (BOOL) checkIfAllSelected;
 
 @end
