@@ -87,11 +87,19 @@
                                         }
                                     }];
     
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    ProjectRoleAssignments* assignments = teamInfo.assignments;
+    
+    if (assignments.assignee != nil || (assignments.invite != nil && [teamInfo.fullname isEqualToString: @" "] == NO))
+    {
+        self.teamMemberName.text = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    }
+    
+    else if ([teamInfo.fullname isEqualToString: @" "] && assignments.invite != nil)
+    {
+        self.teamMemberName.text = teamInfo.email;
+    }
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
-    
-    ProjectRoleAssignments* assignments = teamInfo.assignments;
     
     if (assignments.isBlocked.boolValue == YES || assignments.invite != nil)
     {
