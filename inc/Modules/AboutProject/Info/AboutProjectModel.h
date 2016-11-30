@@ -19,6 +19,6 @@
 
 - (NSString*) getCellDetailForIndexPath: (NSIndexPath*) indexPath;
 
-- (void) updateProjectInfo;
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion;
 
 @end

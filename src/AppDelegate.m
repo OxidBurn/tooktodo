@@ -10,6 +10,9 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <MagicalRecord/MagicalRecord.h>
+#import "LoginViewController.h"
+#import "MainTabBarController.h"
+#import "KeyChainManager.h"
 
 
 @interface AppDelegate ()
@@ -24,6 +27,11 @@
 {
     [Fabric with: @[[Crashlytics class]]];
     [SVProgressHUD setDefaultMaskType: SVProgressHUDMaskTypeClear];
+    
+    if ( [self shouldShowLogin] )
+    {
+        [self presentLoginController];
+    }
     
     return YES;
 }
@@ -70,6 +78,36 @@
     {
         return UIInterfaceOrientationMaskLandscape;
     }
+}
+
+
+#pragma mark - Internal methods -
+
+- (BOOL) shouldShowLogin
+{
+    return ![KeyChain isExistTokenForCurrentUser];
+}
+
+- (void) presentLoginController
+{
+    NSString* controllerId   = @"LoginScreenID";
+    NSString* storyboardName = @"LoginScreen";
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName: storyboardName
+                                                         bundle: nil];
+    
+    LoginViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier: controllerId];
+    
+    self.window.rootViewController = loginViewController;
+    
+    __weak typeof(self) blockSelf = self;
+    
+    loginViewController.dismissLoginView = ^(){
+        
+        blockSelf.window.rootViewController = [[UIStoryboard storyboardWithName: @"MainScreen"
+                                                                         bundle: MainBundle] instantiateInitialViewController];
+        
+    };
 }
 
 @end

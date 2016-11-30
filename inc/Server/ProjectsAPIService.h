@@ -21,4 +21,6 @@
 
 - (RACSignal*) getProjectPermission: (NSString*) requestURL;
 
+- (RACSignal*) loadProjectInfo: (NSString*) requestURL;
+
 @end

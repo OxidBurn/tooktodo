@@ -8,9 +8,13 @@
 
 #import "AboutProjectModel.h"
 
+// Frameworks
+#import "ReactiveCocoa.h"
+
 // Classes
 #import "DataManager+ProjectInfo.h"
 #import "Macroses.h"
+#import "ProjectsService.h"
 
 @interface AboutProjectModel()
 
@@ -40,13 +44,35 @@
     return _projectInfo;
 }
 
-- (void) updateProjectInfo
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion
 {
     ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
     
     self.projectInfo = projectInfo;
     
     self.sectionDetailArray = [self createSectionDetailContent];
+    
+    if ( completion )
+        completion(YES);
+    
+    @weakify(self)
+    
+    [[[ProjectsService sharedInstance] updatedProjectInfo: projectInfo]
+     subscribeNext: ^(id x) {
+         
+         @strongify(self)
+         
+         self.sectionDetailArray = [self createSectionDetailContent];
+         
+         if ( completion )
+             completion(YES);
+         
+     }
+     error:^(NSError *error) {
+         
+         NSLog(@"<ERROR> Problem with updating project info %@", error.debugDescription);
+         
+     }];
 }
 
 - (NSArray*) sectionDetailArray

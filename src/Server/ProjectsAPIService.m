@@ -47,6 +47,13 @@ static bool isFirstAccess = YES;
     return [[[requestManager rac_GET: requestURL parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) loadProjectInfo: (NSString*) requestURL
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return [[[requestManager rac_GET: requestURL parameters: nil] logError] replayLazily];
+}
+
 #pragma mark - Life Cycle
 
 + (id) allocWithZone:(NSZone *)zone

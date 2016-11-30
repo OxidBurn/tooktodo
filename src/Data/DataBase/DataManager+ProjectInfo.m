@@ -263,6 +263,23 @@
                       }];
 }
 
+- (void) updateSelectedProjectInfo: (ProjectInfoModel*)     info
+                    withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock :^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        [self persistNewProjectWithInfo: info
+                              inContext: localContext];
+        
+    }
+                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                           
+                           if ( completion )
+                               completion(contextDidSave);
+                           
+                       }];
+}
+
 #pragma mark - Get methods -
 
 - (ProjectInfo*) getIfExistProjectWithID: (NSUInteger) projectID

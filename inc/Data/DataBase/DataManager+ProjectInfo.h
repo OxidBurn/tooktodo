@@ -23,6 +23,9 @@
 - (void) persistSelectedProjectRoomLevels: (NSArray*)              roomLevels
                            withCompletion: (CompletionWithSuccess) completion;
 
+- (void) updateSelectedProjectInfo: (ProjectInfoModel*)     info
+                    withCompletion: (CompletionWithSuccess) completion;
+
 - (NSArray*) getAllProjects;
 
 - (NSArray*) getProjectsForMenu;

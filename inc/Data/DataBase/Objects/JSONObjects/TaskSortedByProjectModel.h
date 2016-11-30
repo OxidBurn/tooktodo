@@ -52,7 +52,7 @@
 @property (strong, nonatomic) NSArray<TaskRoleAssignmentsModel, Optional> * taskRoleAssignments;
 @property (strong, nonatomic) NSNumber<Optional> * taskType;
 @property (strong, nonatomic) NSString<Optional> * taskTypeDescription;
-@property (strong, nonatomic) NSString * title;
+@property (strong, nonatomic) NSString<Optional> * title;
 @property (strong, nonatomic) NSNumber<Optional>* commentsCount;
 @property (strong, nonatomic) TaskWorkAreaModel<Optional> * workArea;
 

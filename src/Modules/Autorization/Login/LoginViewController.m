@@ -307,21 +307,21 @@
                 self.emailWarningLable.text                = emailWarning;
                 self.emailWarningLable.hidden              = (emailWarning.length == 0);
                 
-                self.emailWarningTopConstraintiPad.constant          = (emailWarning.length == 0) ? 0  : 5;
+                self.emailWarningTopConstraintiPad.constant    = (emailWarning.length == 0) ? 0  : 5;
                 self.emailWarningHeightConstraintiPad.constant = (emailWarning.length == 0) ? 5  : 12;
-                self.passwordViewTopConstraintiPad.constant       = (emailWarning.length == 0) ? 0  : 0;
-                self.forgotBtnTopConstraint.constant       = (emailWarning.length == 0) ? 40 : 25;
+                self.passwordViewTopConstraintiPad.constant    = (emailWarning.length == 0) ? 0  : 0;
+                self.forgotBtnTopConstraint.constant           = (emailWarning.length == 0) ? 40 : 25;
                 
             }];
             
             [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
                 
-                self.passwordWarningLabel.text                = passWarning;
-                self.passwordWarningLabel.hidden              = (passWarning.length == 0);
-                
+                self.passwordWarningLabel.text                    = passWarning;
+                self.passwordWarningLabel.hidden                  = (passWarning.length == 0);
+
                 self.passwordWarningHeightConstraintiPad.constant = (passWarning.length == 0) ? 5  : 12;
                 self.passwordWarningTopConstraintiPad.constant    = (passWarning.length == 0) ? 0  : 5;
-                self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
+                self.forgotBtnTopConstraint.constant              = (passWarning.length == 0) ? 40 : 25;
                 
             }];
         }

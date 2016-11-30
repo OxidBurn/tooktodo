@@ -11,6 +11,6 @@
 @interface InformationViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 // methods
-- (void) updateProjectInfo;
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion;
 
 @end
