@@ -20,12 +20,38 @@
 
 @property (assign, nonatomic) BOOL isEnableHandlingWarnings;
 
+@property (strong, nonatomic) RACSignal* validLoginCommandSignal;
+
 // methods
 
 
 @end
 
 @implementation LoginViewModel
+
+
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        [self initialize];
+    }
+    
+    return self;
+}
+
+- (void) initialize
+{
+    self.validLoginCommandSignal = [RACObserve(self, passwordValue) map: ^id(NSString* text) {
+        
+        return @(text.length > 0);
+        
+    }];
+}
 
 
 #pragma mark - Properties -
@@ -158,7 +184,7 @@
             }
             else
             {
-                [subscriber sendNext: nil];
+                [subscriber sendCompleted];
             }
         
         return nil;

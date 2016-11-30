@@ -26,7 +26,7 @@
 @property (nonatomic) NSUInteger                        projectID;
 @property (nonatomic) NSUInteger                        ownerUserId;
 @property (nonatomic) NSString<Optional>                * region;
-@property (nonatomic) NSString                          * title;
+@property (nonatomic) NSString<Optional>                * title;
 @property (nonatomic) NSArray<TaskSortedByProjectModel> * tasks;
 
 @end
