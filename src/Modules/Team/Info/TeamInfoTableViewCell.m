@@ -101,12 +101,18 @@
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
     
-    if (assignments.isBlocked.boolValue == YES || assignments.invite != nil)
+    if (assignments.isBlocked.boolValue == YES)
     {
         self.teamMemberName.textColor       = [UIColor grayColor];
         self.teamMemberPermission.textColor = [UIColor grayColor];
-    }
-    
+    } else
+        if ( assignments.invite != nil )
+        {
+            self.teamMemberName.textColor       = [UIColor grayColor];
+            self.teamMemberPermission.textColor = [UIColor grayColor];
+            
+            self.teamMemberPermission.text = @"Приглашение выслано";
+        }
     else
     {
         self.teamMemberName.textColor       = [UIColor blackColor];

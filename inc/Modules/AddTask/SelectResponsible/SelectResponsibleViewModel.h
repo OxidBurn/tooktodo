@@ -22,9 +22,8 @@
 
 
 // methods
-- (void) updateInfoWithCompletion: (CompletionWithSuccess) completion;
-
-- (void) fillContollerTypeSelection: (FilterByAssigneeType) controllerType;
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                     withAllMembers: (NSArray*)                allMembers;
 
 - (ControllerTypeSelection) returnControllerType;
 
@@ -35,6 +34,8 @@
 - (NSArray*) returnSelectedClaimingArray;
 
 - (NSArray*) returnSelectedObserversArray;
+
+- (NSArray*) returnAllMembersArray;
 
 - (void) selectAll;
 

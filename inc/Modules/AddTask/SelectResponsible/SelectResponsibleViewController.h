@@ -20,6 +20,7 @@
 
 // methods
 - (void) updateControllerType: (ControllerTypeSelection) controllerType
+                  withMembers: (NSArray*)                allMembers
                  withDelegate: (id)                      delegate;
 
 - (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
@@ -29,10 +30,13 @@
 
 @protocol SelectResponsibleViewControllerDelegate <NSObject>
 
-- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray;
+- (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
+                        withAllMembers: (NSArray*) allMembers;
 
-- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming;
+- (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
+                     withAllMembers: (NSArray*) allMembers;
 
-- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers;
+- (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
+                      withAllMembers: (NSArray*) allMembers;
 
 @end

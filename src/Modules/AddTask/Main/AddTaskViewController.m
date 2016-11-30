@@ -115,17 +115,23 @@
         case ShowResponsibleSegue:
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
-            [controller updateControllerType: SelectResponsibleController
-                                withDelegate: [self.viewModel returnModel]];
+            
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
+
+            [controller updateControllerType: SelectResponsibleController
+                                 withMembers: [self.viewModel getAllMembersArray]
+                                withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowClaimingSegue:
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
+            
             [controller updateControllerType: SelectClaimingController
+                                 withMembers: [self.viewModel getAllMembersArray]
                                 withDelegate: [self.viewModel returnModel]];
+            
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedClaimingArray]];
         }
             break;
@@ -134,6 +140,7 @@
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
+                                 withMembers: [self.viewModel getAllMembersArray]
                                 withDelegate: [self.viewModel returnModel]];
             
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedObserversArray]];
@@ -400,6 +407,12 @@
     
     self.addTaskTableView.rowHeight          = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
+    
+    [self.viewModel updateTeamInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [self.addTaskTableView reloadData];
+        
+    }];
     
     __weak typeof(self) blockSelf = self;
     

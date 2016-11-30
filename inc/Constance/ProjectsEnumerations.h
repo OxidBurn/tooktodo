@@ -53,6 +53,13 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskCancelRequestType      = 6,
 };
 
+typedef NS_ENUM(NSUInteger, AssignmentRoleType)
+{
+    ResponsibleRoleType,
+    ClaimingsRoleType,
+    ObserverRoleType,
+};
+
 typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
     
     SelectResponsibleController,

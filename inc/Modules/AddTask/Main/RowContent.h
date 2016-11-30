@@ -47,6 +47,9 @@
 
 @property (strong, nonatomic) NSDate*   maximumDate;
 
+@property (assign, nonatomic) NSUInteger taskRoleType;
+
+// methods
 - (instancetype) initWithUserInteractionEnabled;
 
 @end
