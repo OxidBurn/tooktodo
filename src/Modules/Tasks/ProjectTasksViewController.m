@@ -185,6 +185,9 @@
         [blockSelf.searchBar resignFirstResponder];
         [blockSelf.view endEditing: YES];
         
+        [blockSelf.tasksByProjectTableView setContentOffset: CGPointMake(0, blockSelf.searchBar.height)
+                                                   animated: YES];
+        
     };
     
     self.filterParametersView.updateHeight = ^( CGFloat height ){
@@ -198,8 +201,9 @@
         else
             blockSelf.filterParameterTagsViewHeightConstraint.constant = maxHeight;
         
-        [blockSelf setupTableView];
-        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [blockSelf setupTableView];
+        });
     };
     
     self.filterParameterManager.didUpdateFilter = ^(NSUInteger count){
@@ -219,7 +223,8 @@
 
 - (void) setupTableView
 {
-    [self.tasksByProjectTableView setContentOffset: CGPointMake(0, self.searchBar.height)];
+    [self.tasksByProjectTableView setContentOffset: CGPointMake(0, self.searchBar.height)
+                                          animated: NO];
 }
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender

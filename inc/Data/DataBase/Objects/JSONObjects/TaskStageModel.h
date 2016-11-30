@@ -12,6 +12,6 @@
 
 @property (assign, nonatomic) NSUInteger stageID;
 @property (assign, nonatomic) BOOL isCommon;
-@property (strong, nonatomic) NSString* title;
+@property (strong, nonatomic) NSString<Optional>* title;
 
 @end

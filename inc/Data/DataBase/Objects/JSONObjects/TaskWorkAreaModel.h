@@ -13,6 +13,6 @@
 @property (strong, nonatomic) NSNumber<Optional>* hasTasks;
 @property (assign, nonatomic) NSUInteger workAreaID;
 @property (strong, nonatomic) NSString   * shortTitle;
-@property (strong, nonatomic) NSString   * title;
+@property (strong, nonatomic) NSString<Optional>   * title;
 
 @end

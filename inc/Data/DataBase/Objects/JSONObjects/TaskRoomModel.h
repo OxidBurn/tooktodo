@@ -15,7 +15,7 @@
 
 @property (assign, nonatomic) NSUInteger roomID;
 @property (strong, nonatomic) NSNumber* number;
-@property (strong, nonatomic) NSString* title;
+@property (strong, nonatomic) NSString<Optional>* title;
 @property (strong, nonatomic) TaskMapContourModel<Optional>* mapContour;
 @property (strong, nonatomic) NSNumber<Optional>* roomLevelId;
 @property (strong, nonatomic) NSNumber<Optional>* tasksCount;

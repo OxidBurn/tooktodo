@@ -265,12 +265,12 @@
 
 - (void) applyFilterForTasks
 {
-    
+    [self updateContent];
 }
 
 - (void) resetFilterForTasks
 {
-    
+    [self updateContent];
 }
 
 #pragma mark - UISplitViewControllerDelegate methods -
