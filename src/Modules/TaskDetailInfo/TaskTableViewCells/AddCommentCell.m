@@ -38,7 +38,8 @@
 
 - (BOOL)        textView: (UITextView*)textView
  shouldChangeTextInRange: (NSRange)range
-         replacementText: (NSString *)text {
+         replacementText: (NSString *)text
+{
     if ([text isEqualToString:@"\n"])
     {
         if ([self.delegate respondsToSelector:@selector( addCommentCell:
@@ -50,7 +51,17 @@
         [textView resignFirstResponder];
         return NO;
     }
-    return YES;
+    
+    BOOL shouldReturn = YES;
+    
+    if ( textView.text.length > 1999 && text.length > 0)
+    {
+        text = @"";
+        
+        shouldReturn = NO;
+    }
+    
+    return shouldReturn;
 }
 
 - (void) textViewDidChange:(UITextView *)textView
