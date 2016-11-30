@@ -62,7 +62,7 @@
 {
     NSString* cellID = [NSString new];
     
-    if ( membersGroup.count == 0 )
+    if ( membersGroup.count == 0 || membersGroup == nil )
     {
         cellID = self.addTaskTableViewCellsInfo[RightDetailCell];
     } else
@@ -86,8 +86,6 @@
     FilledTeamInfo* teamInfo = [FilledTeamInfo new];
     
     [teamInfo convertUserToTeamInfo: userInfo];
-    
-    teamInfo.isResponsible = YES;
     
     return teamInfo? @[teamInfo] : nil;
 }

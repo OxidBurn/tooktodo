@@ -37,12 +37,15 @@
 
 
 //methods
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
 
 - (NewTask*) getNewTask;
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSArray*) returnAllSeguesArray;
+
+- (NSArray*) getAllMembersArray;
 
 - (id) returnModel;
 

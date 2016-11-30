@@ -30,12 +30,10 @@
 @property (nonatomic, strong) NSString* avatarSrc;
 @property (nonatomic, strong) NSString* fullname;
 @property (nonatomic, assign) NSNumber* projectPermission;
-@property (assign, nonatomic) BOOL isResponsible;
-@property (assign, nonatomic) BOOL isClaiming;
-@property (assign, nonatomic) BOOL isObserver;
 @property (strong, nonatomic) NSNumber* roleID;
 @property (strong, nonatomic) NSNumber* memberID;
 @property (strong, nonatomic) NSNumber* projectID;
+@property (strong, nonatomic) NSNumber* taskRoleAssinment;
 @property (nonatomic, assign) BOOL hasApprovedTask;
 @property (nonatomic, assign) BOOL isBlocked;
 @property (nonatomic, strong) ProjectRoleAssignments* assignments;

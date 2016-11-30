@@ -16,17 +16,16 @@
 
 // methods
 
-- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
-
 - (NSUInteger) getNumberOfRows;
 
 - (FilledTeamInfo*) returnFilledUserInfoForIndex: (NSUInteger) index;
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) indexPath;
 
-- (BOOL) getStateForMemberAtIndex: (NSUInteger) index;
+- (NSNumber*) getMemberTaskRoleTypeAtIndex: (NSUInteger) index;
 
-- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType;
+- (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                     withAllMembers: (NSArray*)                allMembers;
 
 - (ControllerTypeSelection) returnControllerType;
 
@@ -43,6 +42,8 @@
 - (NSArray*) returnSelectedClaimingArray;
 
 - (NSArray*) returnSelectedObserversArray;
+
+- (NSArray*) returnAllMembersArray;
 
 - (void) selectAll;
 

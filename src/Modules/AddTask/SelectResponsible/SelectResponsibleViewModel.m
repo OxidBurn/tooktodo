@@ -68,19 +68,19 @@
     {
         case SelectObserversController:
             
-            isSelected = user.isObserver;
+            isSelected = [user.taskRoleAssinment isEqual: @(ObserverRoleType)];
             
             break;
             
         case SelectClaimingController:
             
-            isSelected = user.isClaiming;
+            isSelected = [user.taskRoleAssinment isEqual: @(ClaimingsRoleType)];
             
             break;
             
         case SelectResponsibleController:
             
-            isSelected = user.isResponsible;
+            isSelected = [user.taskRoleAssinment isEqual: @(ResponsibleRoleType)];
             
             break;
             
@@ -149,16 +149,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 }
 
+
 #pragma mark - Public -
 
-- (void) updateInfoWithCompletion: (CompletionWithSuccess) completion
-{
-    [self.model updateTeamInfoWithCompletion: completion];
-}
-
 - (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                     withAllMembers: (NSArray*)                allMembers
+
 {
-    [self.model fillContollerTypeSelection: controllerType];
+    [self.model fillContollerTypeSelection: controllerType
+                            withAllMembers: allMembers];
 }
 
 - (ControllerTypeSelection) returnControllerType
@@ -184,6 +183,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (NSArray*) returnSelectedObserversArray
 {
     return [self.model returnSelectedObserversArray];
+}
+
+- (NSArray*) returnAllMembersArray
+{
+    return [self.model returnAllMembersArray];
 }
 
 - (void) selectAll

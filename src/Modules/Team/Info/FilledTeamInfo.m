@@ -13,6 +13,8 @@
 #import "TeamProfileInfoModel.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataProperties.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataProperties.h"
 #import "ProjectsEnumerations.h"
 
 @implementation FilledTeamInfo
@@ -34,9 +36,7 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
-        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
-        self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
-        self.isObserver             = self.isObserver ? self.isObserver : NO;
+        self.taskRoleAssinment      = assignee.roleAssignment.projectRoleAssignments.taskRoleType;
         self.memberID               = assignee.assigneeID;
         self.isBlocked              = assignment.isBlocked ? assignment.isBlocked : NO;
         self.assignments            = assignment;
@@ -58,9 +58,6 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
-        self.isResponsible          = self.isResponsible ? self.isResponsible : NO;
-        self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
-        self.isObserver             = self.isObserver ? self.isObserver : NO;
         self.memberID               = invite.inviteID;
         self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
         self.assignments            = assignment;
@@ -82,9 +79,6 @@
     self.role                  = @"";
     self.avatarSrc             = user.avatarSrc     ? user.avatarSrc   : @"";
     self.projectPermission     = @(-2);
-    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
-    self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
-    self.isObserver             = self.isObserver ? self.isObserver : NO;
 }
 
 - (void) convertTaskOwnerToTeamInfo: (ProjectTaskOwner*) projectOwner
@@ -99,9 +93,6 @@
     self.role                  = @"";
     self.avatarSrc             = projectOwner.avatarSrc     ? projectOwner.avatarSrc   : @"";
     self.projectPermission     = @(-2);
-    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
-    self.isClaiming             = self.isClaiming ? self.isClaiming : NO;
-    self.isObserver             = self.isObserver ? self.isObserver : NO;
 }
 
 - (void) convertTaskResponsibleToTeamInfo: (ProjectTaskResponsible*) taskResponsible
@@ -112,9 +103,6 @@
     self.fullname              = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
     self.avatarSrc             = taskResponsible.avatarSrc     ? taskResponsible.avatarSrc   : @"";
     self.projectPermission     = @(-2);
-    self.isResponsible         = self.isResponsible ? self.isResponsible : NO;
-    self.isClaiming            = self.isClaiming ? self.isClaiming : NO;
-    self.isObserver            = self.isObserver ? self.isObserver : NO;
 }
 
 @end
