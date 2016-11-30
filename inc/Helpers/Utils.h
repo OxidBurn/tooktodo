@@ -126,4 +126,20 @@
 
 + (NSString*) generateStringOfDaysCount: (NSUInteger) count;
 
++ (NSDate*) getFistDayOfCurrentWeeak;
+
++ (NSDate*) getLastDayOfCurrentWeek;
+
++ (NSDate*) getFirstDateOfPrevWeek;
+
++ (NSDate*) getLastDayOfPrevWeek;
+
++ (NSDate*) getFirstDateOfCurrentMonth;
+
++ (NSDate*) getLastDateOFCurrentMonth;
+
++ (NSDate*) getFirstDateOfPrevMonth;
+
++ (NSDate*) getLastDateOFPrevMonth;
+
 @end

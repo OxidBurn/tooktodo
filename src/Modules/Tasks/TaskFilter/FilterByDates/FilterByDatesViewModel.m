@@ -176,9 +176,38 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
    return [self.model getTermsData];
 }
 
+- (void) setBeforeCurrentDate
+{
+    [self.model setBeforeCurrentDate];
+}
+
+- (void) setAfterCurrentDate
+{
+    [self.model setAfterCurrentDate];
+}
+
+- (void) setLastWeek
+{
+    [self.model setLastWeek];
+}
+
+- (void) setCurrentWeek
+{
+    [self.model setCurrentWeek];
+}
+
+- (void) setLastMonth
+{
+    [self.model setLastMonth];
+}
+
+- (void) setCurrentMonth
+{
+    [self.model setCurrentMonth];
+}
+
 
 #pragma mark - Helpers -
-
 
 - (void) checkIfEndPickerIsExpandedForTableView: (UITableView*) tableView
 {

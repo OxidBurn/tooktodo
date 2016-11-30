@@ -89,32 +89,32 @@
 
 - (IBAction) onBeforeCurrentDate: (UIButton*) sender
 {
-    
+    [self.viewModel setBeforeCurrentDate];
 }
 
 - (IBAction) onAfterCurrentDate: (UIButton*) sender
 {
-    
+    [self.viewModel setAfterCurrentDate];
 }
 
 - (IBAction) onLastWeek: (UIButton*) sender
 {
-    
+    [self.viewModel setLastWeek];
 }
 
 - (IBAction) onCurrentWeek: (UIButton*) sender
 {
-    
+    [self.viewModel setCurrentWeek];
 }
 
 - (IBAction) onLastMonth: (UIButton*) sender
 {
-    
+    [self.viewModel setLastMonth];
 }
 
 - (IBAction) onCurrentMonth: (UIButton*) sender
 {
-    
+    [self.viewModel setCurrentMonth];
 }
 
 - (IBAction) onBackBtn: (UIBarButtonItem*) sender

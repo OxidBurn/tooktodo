@@ -209,13 +209,55 @@
 	return outputString;
 }
 
+- (NSDate*) beginningOfMonth
+{
+    // largely borrowed from "Date and Time Programming Guide for Cocoa"
+    // we'll use the default calendar and hope for the best
+    NSCalendar *calendar     = [NSCalendar currentCalendar];
+    NSDate *beginningOfMonth = nil;
+    
+    BOOL ok = [calendar rangeOfUnit: NSCalendarUnitMonth
+                          startDate: &beginningOfMonth
+                           interval: NULL
+                            forDate: self];
+    if (ok)
+    {
+        return beginningOfMonth;
+    }
+    
+    // couldn't calc via range, so try to grab Sunday, assuming gregorian style
+    // Get the weekday component of the current date
+    NSDateComponents* monthComponents = [calendar components: NSCalendarUnitMonth
+                                                    fromDate: self];
+    
+    /*
+     Create a date components to represent the number of days to subtract from the current date.
+     The weekday value for Sunday in the Gregorian calendar is 1, so subtract 1 from the number of days to subtract from the date in question.  (If today's Sunday, subtract 0 days.)
+     */
+    NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+    [componentsToSubtract setDay: 0 - [monthComponents weekday]];
+    monthComponents = nil;
+    monthComponents = [calendar dateByAddingComponents: componentsToSubtract
+                                                toDate: self
+                                               options: 0];
+    [componentsToSubtract release];
+    
+    //normalize to midnight, extract the year, month, and day components and create a new date from those components.
+    NSDateComponents *components = [calendar components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                               fromDate: monthComponents];
+    return [calendar dateFromComponents: components];
+}
+
 - (NSDate *)beginningOfWeek {
 	// largely borrowed from "Date and Time Programming Guide for Cocoa"
 	// we'll use the default calendar and hope for the best
 	NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDate *beginningOfWeek = nil;
-	BOOL ok = [calendar rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek
-						   interval:NULL forDate:self];
+    
+	BOOL ok = [calendar rangeOfUnit: NSWeekCalendarUnit
+                          startDate: &beginningOfWeek
+						   interval: NULL
+                            forDate: self];
 	if (ok) {
 		return beginningOfWeek;
 	} 
@@ -229,9 +271,11 @@
 	 The weekday value for Sunday in the Gregorian calendar is 1, so subtract 1 from the number of days to subtract from the date in question.  (If today's Sunday, subtract 0 days.)
 	 */
 	NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
-	[componentsToSubtract setDay: 0 - ([weekdayComponents weekday] - 1)];
+	[componentsToSubtract setDay: 0 - [weekdayComponents weekday]];
 	beginningOfWeek = nil;
-	beginningOfWeek = [calendar dateByAddingComponents:componentsToSubtract toDate:self options:0];
+	beginningOfWeek = [calendar dateByAddingComponents: componentsToSubtract
+                                                toDate: self
+                                               options: 0];
 	[componentsToSubtract release];
 	
 	//normalize to midnight, extract the year, month, and day components and create a new date from those components.
@@ -259,6 +303,20 @@
 	[componentsToAdd release];
 	
 	return endOfWeek;
+}
+
+- (NSDate*) endOfMonth
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    // Get the weekday component of the current date
+    NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitMonth fromDate:self];
+    NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
+    // to get the end of week for a particular date, add (7 - weekday) days
+//    [componentsToAdd setDay:(7 - [weekdayComponents weekday])];
+    NSDate *endOfMonth = [calendar dateByAddingComponents:componentsToAdd toDate:self options:0];
+    [componentsToAdd release];
+    
+    return endOfMonth;
 }
 
 + (NSString *)dateFormatString {

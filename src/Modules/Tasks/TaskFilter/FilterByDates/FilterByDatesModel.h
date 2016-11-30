@@ -29,4 +29,16 @@
 
 - (TermsData*) getTermsData;
 
+- (void) setBeforeCurrentDate;
+
+- (void) setAfterCurrentDate;
+
+- (void) setLastWeek;
+
+- (void) setCurrentWeek;
+
+- (void) setLastMonth;
+
+- (void) setCurrentMonth;
+
 @end

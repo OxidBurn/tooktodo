@@ -11,6 +11,11 @@
 // Classes
 #import "FilterByDatesContentManager.h"
 #import "TermsData.h"
+#import "Utils.h"
+
+// Categories
+#import "NSDate+Helper.h"
+#import "NSDate-Utilities.h"
 
 @interface FilterByDatesModel()
 
@@ -133,6 +138,41 @@
 - (TermsData*) getTermsData
 {
     return [self.contentManager getTermsData];
+}
+
+- (void) setBeforeCurrentDate
+{
+    
+}
+
+- (void) setAfterCurrentDate
+{
+    
+}
+
+- (void) setLastWeek
+{
+    NSDate* firstDateOfCurrentWeek = [Utils getFirstDateOfPrevWeek];
+    NSDate* lastDateOfCurrentWeek  = [Utils getLastDayOfPrevWeek];
+    
+}
+
+- (void) setCurrentWeek
+{
+    NSDate* firstDateOfCurrentWeek = [Utils getFistDayOfCurrentWeeak];
+    NSDate* lastDateOfCurrentWeek  = [Utils getLastDayOfCurrentWeek];
+}
+
+- (void) setLastMonth
+{
+    NSDate* firstDateOfCurrentMonth = [Utils getFirstDateOfPrevMonth];
+    NSDate* lastDateOfCurrentMonth  = [Utils getLastDateOFPrevMonth];
+}
+
+- (void) setCurrentMonth
+{
+    NSDate* firstDateOfCurrentMonth = [Utils getFirstDateOfCurrentMonth];
+    NSDate* lastDateOfCurrentMonth  = [Utils getLastDateOFCurrentMonth];
 }
 
 @end

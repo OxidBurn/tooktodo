@@ -54,6 +54,9 @@
 - (NSDate *)beginningOfDay;
 - (NSDate *)endOfWeek;
 
+- (NSDate*) beginningOfMonth;
+- (NSDate*) endOfMonth;
+
 + (NSString *)dateFormatString;
 + (NSString *)timeFormatString;
 + (NSString *)timestampFormatString;

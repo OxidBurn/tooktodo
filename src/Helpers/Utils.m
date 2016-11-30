@@ -12,6 +12,7 @@
 #import <Reachability/Reachability.h>
 #import "NSString+APUtils.h"
 #import "NSDate+Helper.h"
+#import "NSDate-Utilities.h"
 
 //! Default date formatter
 static NSDateFormatter* defaultDateFormatter = nil;
@@ -461,6 +462,92 @@ static NSDateFormatter* defaultDateFormatter = nil;
     daysCountString = [daysCountString stringByAppendingString: sufixString];
     
     return daysCountString;
+}
+
++ (NSDate*) getFistDayOfCurrentWeeak
+{
+    NSDate* currentWeek = [NSDate date];
+    
+    NSDate* firstDateOfWeek = [[currentWeek beginningOfWeek] dateByAddingDays: 1];
+    
+    return firstDateOfWeek;
+}
+
++ (NSDate*) getLastDayOfCurrentWeek
+{
+    NSDate* currentWeek = [NSDate date];
+    
+    NSDate* lastDate = [[currentWeek endOfWeek] dateByAddingDays: 1];
+    
+    return lastDate;
+}
+
++ (NSDate*) getFirstDateOfPrevWeek
+{
+    NSDate* weekAgoDate = [[NSDate date] dateBySubtractingDays: 7];
+    
+    NSDate* firstDateOfWeek = [[weekAgoDate beginningOfWeek] dateByAddingDays: 1];
+    
+    return firstDateOfWeek;
+}
+
++ (NSDate*) getLastDayOfPrevWeek
+{
+    NSDate* weekAgoDate = [[NSDate date] dateBySubtractingDays: 7];
+    
+    NSDate* lastDate = [[weekAgoDate endOfWeek] dateByAddingDays: 1];
+    
+    return lastDate;
+}
+
++ (NSDate*) getFirstDateOfCurrentMonth
+{
+    NSDate* currentDate = [NSDate date];
+    
+    NSDate* firstDateOfMonth = [[currentDate beginningOfMonth] dateByAddingHours: 2];
+    
+    return firstDateOfMonth;
+}
+
++ (NSDate*) getLastDateOFCurrentMonth
+{
+    NSDate* currentDate = [NSDate date];
+    
+    NSDate* lastDayOfCurrentMonth = [[currentDate endOfMonth] dateByAddingHours: 2];
+    
+    return lastDayOfCurrentMonth;
+}
+
++ (NSDate*) getFirstDateOfPrevMonth
+{
+    NSDate* monthAgoDate = [Utils getDateOfMonthAgo];
+    
+    NSDate* firstDateOfMonth = [[monthAgoDate beginningOfMonth] dateByAddingHours: 3];
+    
+    return firstDateOfMonth;
+}
+
++ (NSDate*) getLastDateOFPrevMonth
+{
+    NSDate* monthAgoDate = [Utils getDateOfMonthAgo];
+    
+    NSDate* lastDayOfCurrentMonth = [monthAgoDate endOfMonth];
+    
+    return lastDayOfCurrentMonth;
+}
+
++ (NSDate*) getDateOfMonthAgo
+{
+    NSDate *date                     = [NSDate date];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    
+    [dateComponents setMonth: -1];
+    
+    date = [[NSCalendar currentCalendar] dateByAddingComponents: dateComponents
+                                                         toDate: date
+                                                        options: 0];
+    
+    return date;
 }
 
 @end
