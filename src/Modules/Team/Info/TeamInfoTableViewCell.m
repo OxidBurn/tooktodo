@@ -16,14 +16,7 @@
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "FilledTeamInfo.h"
-
-typedef NS_ENUM(NSInteger, PermissionType)
-{
-    SystemAdministrator = -1,
-    Participant = 0,
-    Owner = 1,
-    Administrator = 2,
-};
+#import "ProjectsEnumerations.h"
 
 @interface TeamInfoTableViewCell()
 
@@ -138,16 +131,16 @@ typedef NS_ENUM(NSInteger, PermissionType)
 {
     switch (permission)
     {
-        case SystemAdministrator:
+        case SystemAdminPermission:
             return @"Системный администратор";
             break;
-        case Participant:
+        case ParticipantPermission:
             return @"Участник проекта";
             break;
-        case Owner:
+        case OwnerPermission:
             return @"Владелец";
             break;
-        case Administrator:
+        case AdminPermission:
             return @"Адмиистратор";
             break;
             

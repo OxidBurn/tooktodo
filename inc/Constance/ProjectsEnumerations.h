@@ -226,5 +226,13 @@ typedef NS_ENUM(NSUInteger, TaskFilterByMyRoleInProject)
     Creator,
 };
 
+typedef NS_ENUM(NSInteger, PermissionTypeList) {
+    
+    SystemAdminPermission = -1,
+    ParticipantPermission = 0,
+    OwnerPermission       = 1,
+    AdminPermission       = 2,
+};
+
 
 #endif /* ProjectsEnumerations_h */

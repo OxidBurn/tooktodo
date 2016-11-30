@@ -13,6 +13,7 @@
 #import "TeamProfileInfoModel.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskResponsible+CoreDataProperties.h"
+#import "ProjectsEnumerations.h"
 
 @implementation FilledTeamInfo
 

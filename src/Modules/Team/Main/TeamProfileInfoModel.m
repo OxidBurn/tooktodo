@@ -15,6 +15,7 @@
 #import "FilledTeamInfo.h"
 #import "Utils.h"
 #import "TeamService.h"
+#import "ProjectsEnumerations.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -26,14 +27,6 @@ typedef NS_ENUM(NSUInteger, ContactType)
     ContactPhoneNumberType,
     ContactAdditionalPhoneNumberType,
     ContactEmailType,
-};
-
-typedef NS_ENUM(NSInteger, Permission)
-{
-    SystemAdministrator = -1,
-    Participant         = 0,
-    Owner               = 1,
-    Administrator       = 2,
 };
 
 @interface TeamProfileInfoModel ()
@@ -316,20 +309,20 @@ typedef NS_ENUM(NSInteger, Permission)
     return self.detailLabelsContent[indexPath.row];
 }
 
-- (NSString*) setPermission: (Permission) permission
+- (NSString*) setPermission: (PermissionTypeList) permission
 {
     switch (permission)
     {
-        case SystemAdministrator:
+        case SystemAdminPermission:
             return @"Системный администратор";
             break;
-        case Participant:
+        case ParticipantPermission:
             return @"Участник проекта";
             break;
-        case Owner:
+        case OwnerPermission:
             return @"Владелец";
             break;
-        case Administrator:
+        case AdminPermission:
             return @"Администратор";
             break;
             

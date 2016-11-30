@@ -18,6 +18,7 @@
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
 #import <SVProgressHUD.h>
+#import "ProjectsEnumerations.h"
 
 
 // Categories
@@ -35,13 +36,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     Ready,
 };
 
-typedef NS_ENUM(NSInteger, PermissionTypeList) {
-    
-    SystemAdmin = -1,
-    Participant = 0,
-    Owner       = 1,
-    Admin       = 2,
-};
+
 
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
@@ -135,7 +130,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
         
         switch ( currentUserPermission )
         {
-            case Admin:
+            case AdminPermission:
             {
                 if ( indexPath.row == 0 )
                 {
@@ -144,7 +139,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
             }
                 break;
                 
-            case Owner:
+            case OwnerPermission:
             {
                 self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
@@ -215,7 +210,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
         else
             if (self.cell.tag == PermissionType)
             {
-                if ([self.model getPermissions].integerValue != Admin)
+                if ([self.model getPermissions].integerValue != AdminPermission)
                 {
                     [self designateAdmin];
                 }
@@ -322,18 +317,18 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     
     switch (currentPermission)
     {
-        case Admin:
+        case AdminPermission:
         {
-            [self.model updateMemberPermission: Participant];
+            [self.model updateMemberPermission: ParticipantPermission];
          
             if (self.reloadTableView)
                 self.reloadTableView();
         }
             break;
             
-        case Participant:
+        case ParticipantPermission:
         {
-            [self.model updateMemberPermission: Admin];
+            [self.model updateMemberPermission: AdminPermission];
             
             if (self.reloadTableView)
                 self.reloadTableView();
