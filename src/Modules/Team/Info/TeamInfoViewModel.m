@@ -85,11 +85,26 @@ static CGFloat sectionHeaderHeight = 30;
     
     cell.delegate = self;
     
+    if ( memberInfo.assignments.invite )
+    {
+//        memberInfo.
+    }
+    
     [cell fillCellWithInfo: memberInfo
               forIndexPath: indexPath];
     
     return cell;
 }
+
+//- (BOOL) checkIfTeamMemberBlockedOrInvited
+//{
+//    BOOL isBlocked = self.assignment.isBlocked.boolValue;
+//    BOOL isInvited = self.assignment.invite != nil;
+//    
+//    BOOL disabled = (isBlocked == YES || isInvited);
+//    
+//    return disabled;
+//}
 
 - (CGFloat)     tableView: (UITableView*) tableView
  heightForHeaderInSection: (NSInteger)    section
