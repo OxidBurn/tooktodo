@@ -65,6 +65,16 @@
 
 #pragma mark - Public -
 
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model updateTeamInfoWithCompletion: completion];
+}
+
+- (NSArray*) getAllMembersArray
+{
+    return [self.model getAllMembersArray];
+}
+
 - (NewTask*) getNewTask
 {
     return [self.model returnNewTask];

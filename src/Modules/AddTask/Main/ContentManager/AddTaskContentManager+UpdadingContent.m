@@ -110,6 +110,7 @@
     row.membersArray = selectedClaiming;
     
     row.cellId = [self determineCellIdForContent: selectedClaiming];
+    row.cellIndex = [self determintCellIndexForCellId: row.cellId];
     
     if ( selectedClaiming.count == 0 )
         row.detail = @"Не выбраны";

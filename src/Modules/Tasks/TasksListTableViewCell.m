@@ -158,8 +158,8 @@
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.mm.yyyy"];
-    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.mm.yyyy"];
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
     NSString* detailString = [NSString string];
     
@@ -167,21 +167,21 @@
     {
         if ( endDateString )
         {
-            detailString = [NSString stringWithFormat: @"%@ - %@",
+            detailString = [NSString stringWithFormat: @"%@ — %@",
                             startDateString,
                             endDateString];
         }
         else
-            detailString = startDateString;
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
     }
     else
     {
         if ( endDateString)
         {
-            detailString = endDateString;
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
         }
         else
-            detailString = @"Cроки не определены";
+            detailString = @"";
     }
     
     return detailString;

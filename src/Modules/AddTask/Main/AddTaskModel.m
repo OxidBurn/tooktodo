@@ -40,6 +40,8 @@
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
 
+@property (strong, nonatomic) NSArray* allMembersArray;
+
 @property (nonatomic, strong) NewTask* task;
 
 @property (strong, nonatomic) NSArray* allSeguesInfoArray;
@@ -156,6 +158,11 @@
 - (NSArray*) returnSelectedClaimingArray
 {
     return self.task.claiming;
+}
+
+- (NSArray*) getAllMembersArray
+{
+    return self.allMembersArray;
 }
 
 - (NSArray*) returnSelectedObserversArray
@@ -291,6 +298,47 @@
     return self.controllerType;
 }
 
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    @weakify(self)
+    
+    [[[[TeamService sharedInstance] getTeamInfo] deliverOn: [RACScheduler mainThreadScheduler]]
+     subscribeNext: ^(NSArray* teamInfo)
+     {
+         @strongify(self)
+         
+         __block NSMutableArray* tmpTeamList = [NSMutableArray array];
+         
+         [teamInfo enumerateObjectsUsingBlock: ^(ProjectRoleAssignments* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+             
+             FilledTeamInfo* teamMemberInfo = [FilledTeamInfo new];
+             
+             [teamMemberInfo fillTeamInfo: obj];
+             
+             [tmpTeamList addObject: teamMemberInfo];
+             
+         }];
+         
+         self.allMembersArray = tmpTeamList.copy;
+         
+         tmpTeamList = nil;
+         
+         if ( completion )
+             completion (YES);
+         
+     }
+     error: ^(NSError* error) {
+         
+         if ( completion )
+             completion (NO);
+     }
+     completed: ^{
+         
+         if ( completion )
+             completion (YES);
+     }];
+}
+
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -303,18 +351,36 @@
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
 
 - (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
+                        withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedResponsibleInfo: selectedUsersArray];
+    if ( selectedUsersArray )
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedResponsibleInfo: selectedUsersArray];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 - (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
+                     withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedClaimingInfo: selectedClaiming];
+    if ( selectedClaiming)
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedClaimingInfo: selectedClaiming];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 - (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
+                      withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedObserversInfo: selectedObservers];
+    if ( selectedObservers)
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedObserversInfo: selectedObservers];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 
@@ -389,5 +455,20 @@
 {
     return taskName.length > 0;
 }
+
+- (void) updateMembersRoleTypes: (NSArray*) changedMembers
+{
+    [self.allMembersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* oldMember, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        [changedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* newMember, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( [oldMember.userId isEqual: newMember.userId] )
+            {
+                oldMember.taskRoleAssinment = newMember.taskRoleAssinment;
+            }
+        }];
+    }];
+}
+
 
 @end

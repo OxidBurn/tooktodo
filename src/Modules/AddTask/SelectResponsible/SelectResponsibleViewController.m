@@ -101,9 +101,11 @@
 #pragma mark - Pulbic -
 
 - (void) updateControllerType: (ControllerTypeSelection) controllerType
+                  withMembers: (NSArray*)                allMembers
                  withDelegate: (id)                      delegate
 {
-    [self.viewModel fillContollerTypeSelection: controllerType];
+    [self.viewModel fillContollerTypeSelection: controllerType
+                                withAllMembers: allMembers];
 
     self.delegate = delegate;
 }
@@ -126,15 +128,6 @@
     // made for immediate update team info after
     // switching between projects or adding new member to the team
     __weak typeof(self) blockSelf = self;
-
-    [self.viewModel updateInfoWithCompletion: ^(BOOL isSuccess) {
-        
-        if ( isSuccess )
-        {
-            [blockSelf.selectResponsibleTableView reloadData];
-        }
-        
-    }];
     
     self.viewModel.reloadTableView = ^(){
         
@@ -198,15 +191,18 @@
 
 - (void) saveData
 {
+    NSArray* allMembers = [self.viewModel returnAllMembersArray];
+    
     switch ( self.controllerTypeSelection )
     {
         case SelectResponsibleController:
         {
             NSArray* selectedUsers = [self.viewModel returnSelectedResponsibleArray];
             
-            if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo:)] )
+            if ( selectedUsers && [self.delegate respondsToSelector: @selector(returnSelectedResponsibleInfo: withAllMembers:)] )
             {
-                [self.delegate returnSelectedResponsibleInfo: selectedUsers];
+                [self.delegate returnSelectedResponsibleInfo: selectedUsers
+                                              withAllMembers: allMembers];
                 
                 [self.navigationController popViewControllerAnimated: YES];
             }
@@ -217,9 +213,10 @@
         {
             NSArray* selectedUsers = [self.viewModel returnSelectedClaimingArray];
             
-            if ( [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo:)] )
+            if ( [self.delegate respondsToSelector: @selector( returnSelectedClaimingInfo: withAllMembers:)] )
             {
-                [self.delegate returnSelectedClaimingInfo: selectedUsers];
+                [self.delegate returnSelectedClaimingInfo: selectedUsers
+                                           withAllMembers: allMembers];
             }
             
             [self.navigationController popViewControllerAnimated: YES];
@@ -230,9 +227,10 @@
         {
             NSArray* selectedUsers = [self.viewModel returnSelectedObserversArray];
             
-            if ( [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo:)] )
+            if ( [self.delegate respondsToSelector: @selector( returnSelectedObserversInfo: withAllMembers:)] )
             {
-                [self.delegate returnSelectedObserversInfo: selectedUsers];
+                [self.delegate returnSelectedObserversInfo: selectedUsers
+                                            withAllMembers: allMembers];
             }
             
             [self.navigationController popViewControllerAnimated: YES];
