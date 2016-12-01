@@ -351,9 +351,14 @@ static NSString* contentKey = @"contentInfoKey";
             
             [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                if ( [obj.title containsString: text] )
-                    [tmpRowsInfo addObject: obj];
+                NSRange range = [obj.title rangeOfString: text
+                                                 options: NSCaseInsensitiveSearch];
                 
+                if (range.location != NSNotFound)
+                {
+                    [tmpRowsInfo addObject: obj];
+                }
+    
             }];
             
             if ( tmpRowsInfo.count > 0 )
