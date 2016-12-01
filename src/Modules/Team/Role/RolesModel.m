@@ -83,11 +83,11 @@
 {
     if ([self.lastIndexPath isEqual: indexPath])
     {
-        return NO;
+        return YES;
     }
     
     else
-        return YES;
+        return NO;
 }
 
 - (ProjectRoles*) getSelectedItem
