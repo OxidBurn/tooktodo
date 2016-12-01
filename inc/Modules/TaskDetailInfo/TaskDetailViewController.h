@@ -32,4 +32,6 @@
 
 - (void) fillSelectedTask: (ProjectTask*) selectedTask;
 
+- (void) addNotifications;
+
 @end
