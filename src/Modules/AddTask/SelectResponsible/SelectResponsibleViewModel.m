@@ -88,7 +88,8 @@
             break;
     }
     
-    [cell fillCellWithFilledMemberInfo: user withCheckmark: isSelected];
+    [cell fillCellWithFilledMemberInfo: user
+                         withCheckmark: isSelected];
     
     return cell;
 }

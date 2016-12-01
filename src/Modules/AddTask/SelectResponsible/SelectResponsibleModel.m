@@ -307,12 +307,11 @@
     {
         case SelectResponsibleController:
         {
-            
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
                     
-                    if ( [userInList.userId isEqual: selectedUser.userId] )
+                    if ( userInList.userId.integerValue == selectedUser.userId.integerValue )
                     {
                         userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
                         
@@ -320,6 +319,7 @@
                         
                         self.previousesSelectedIndexPath = temp;
                     }
+                    
                 }];
                 
             }];

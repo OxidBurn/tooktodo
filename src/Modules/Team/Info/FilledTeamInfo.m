@@ -38,7 +38,7 @@
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         self.taskRoleAssinment      = assignee.roleAssignment.projectRoleAssignments.taskRoleType;
         self.memberID               = assignee.assigneeID;
-        self.isBlocked              = assignment.isBlocked ? assignment.isBlocked : NO;
+        self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
         self.assignments            = assignment;
         
     }

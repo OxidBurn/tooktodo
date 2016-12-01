@@ -408,13 +408,13 @@
     self.addTaskTableView.rowHeight          = UITableViewAutomaticDimension;
     self.addTaskTableView.estimatedRowHeight = 42;
     
+    __weak typeof(self) blockSelf = self;
+    
     [self.viewModel updateTeamInfoWithCompletion: ^(BOOL isSuccess) {
         
-        [self.addTaskTableView reloadData];
+        [blockSelf.addTaskTableView reloadData];
         
     }];
-    
-    __weak typeof(self) blockSelf = self;
     
     self.viewModel.reloadTableView = ^(){
         

@@ -302,7 +302,7 @@
 {
     @weakify(self)
     
-    [[[[TeamService sharedInstance] getTeamInfo] deliverOn: [RACScheduler mainThreadScheduler]]
+    [[[TeamService sharedInstance] getTeamInfo]
      subscribeNext: ^(NSArray* teamInfo)
      {
          @strongify(self)
@@ -462,7 +462,7 @@
        
         [changedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* newMember, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ( [oldMember.userId isEqual: newMember.userId] )
+            if ( oldMember.userId.integerValue == newMember.userId.integerValue )
             {
                 oldMember.taskRoleAssinment = newMember.taskRoleAssinment;
             }

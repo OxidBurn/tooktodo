@@ -20,7 +20,7 @@
 
 @interface FilledTeamInfo : NSObject
 
-@property (assign, nonatomic) NSNumber* userId;
+@property (nonatomic, strong) NSNumber* userId;
 @property (nonatomic, strong) NSString* firstName;
 @property (nonatomic, strong) NSString* lastName;
 @property (nonatomic, strong) NSString* email;

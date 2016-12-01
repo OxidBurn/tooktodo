@@ -46,11 +46,9 @@
     {
         _task = [NewTask new];
         
-        _task.defaultResponsible = [self getCurrentUserInfoArray];
-        
         if ( _task.responsible == nil )
         {
-            _task.responsible = _task.defaultResponsible;
+            _task.responsible = [self getCurrentUserInfoArray];
         }
         
     }

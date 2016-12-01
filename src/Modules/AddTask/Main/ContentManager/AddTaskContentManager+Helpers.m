@@ -79,15 +79,13 @@
 
 - (NSArray*) getCurrentUserInfoArray
 {
-    NSArray* allUsers = [[DataManager sharedInstance] getAllUserInfo];
-    
-    UserInfo* userInfo = [allUsers firstObject];
+    UserInfo* userInfo = [DataManagerShared getCurrentUserInfo];
     
     FilledTeamInfo* teamInfo = [FilledTeamInfo new];
     
     [teamInfo convertUserToTeamInfo: userInfo];
     
-    return teamInfo? @[teamInfo] : nil;
+    return teamInfo ? [@[teamInfo] copy] : nil;
 }
 
 // Helpers for case when we create new subtask besed on main task
