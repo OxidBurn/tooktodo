@@ -11,6 +11,7 @@
 // Classes
 #import "AboutProjectModel.h"
 #import "AboutProjectCellsFactory.h"
+#import "NSString+Utils.h"
 
 typedef NS_ENUM(NSUInteger, SectionNumber) {
     
@@ -109,26 +110,10 @@ heightForHeaderInSection: (NSInteger)    section
     return height;
 }
 
-- (CGFloat) tableView: (UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)            tableView: (UITableView*) tableView
+estimatedHeightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    CGFloat height = 0;
-    
-    switch (indexPath.section)
-    {
-        case SectionOne:
-        case SectionTwo:
-        {
-            height = 44;
-        }
-            break;
-        case SectionThree:
-        {
-            height = 160;
-        }
-            break;
-    }
-    
-    return height;
+    return UITableViewAutomaticDimension;
 }
 
 - (UIView*)  tableView: (UITableView*) tableView
