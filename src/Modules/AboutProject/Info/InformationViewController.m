@@ -48,6 +48,9 @@
     
     self.informationTableView.dataSource = self.viewModel;
     self.informationTableView.delegate   = self.viewModel;
+
+    self.informationTableView.estimatedRowHeight = 300.f;
+    self.informationTableView.rowHeight          = UITableViewAutomaticDimension;
 }
 
 - (void) viewWillAppear: (BOOL) animated
