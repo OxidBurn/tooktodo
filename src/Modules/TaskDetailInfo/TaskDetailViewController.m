@@ -24,7 +24,7 @@
 //Extentions
 #import "BaseMainViewController+Popover.h"
 
-@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate, AddTaskControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet OSTableView* taskTableView;
@@ -161,6 +161,8 @@
         
         [vc fillDefaultStage: [self.viewModel getTaskStage]
               andHiddenState: [self.viewModel getTaskState]];
+        
+        [self removeNotifications];
     }
     
     if ( [segue.identifier isEqualToString: @"ShowEditTaskController"] )
@@ -172,8 +174,9 @@
         [vc fillControllerType: EditTaskControllerType];
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
+        
+        [self removeNotifications];
     }
-    
 }
 
 #pragma mark - Actions -
@@ -240,6 +243,15 @@
 {
     return UIModalPresentationNone;
 }
+
+
+#pragma mark - AddTaskControllerDelegate methods -
+
+- (void) subscribeNotifications
+{
+    [self addNotifications];
+}
+
 
 #pragma mark - Helpers -
 
