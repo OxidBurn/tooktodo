@@ -141,7 +141,7 @@
         
         if ( error.code == -1011 )
         {
-            [SVProgressHUD showErrorWithStatus: @"Логин (электронная почта) не зарегистрирован"];
+            [Utils showErrorAlertWithMessage: @"Логин (электронная почта) не зарегистрирован"];
         }
         
         [[self.viewModel emailWarningMessage] subscribeNext: ^(NSString* emailWarning) {
@@ -175,7 +175,7 @@
         
         if ( [reach isReachable] == NO )
         {
-            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету.\nПроверьте пожалуйста подключение."];
+            [Utils showErrorAlertWithMessage: @"Обранужена проблема с соединением к интернету.\nПроверьте пожалуйста подключение."];
         }
         
     }];

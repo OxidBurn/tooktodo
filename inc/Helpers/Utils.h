@@ -142,4 +142,6 @@
 
 + (NSDate*) getLastDateOFPrevMonth;
 
++ (void) showErrorAlertWithMessage: (NSString*) message;
+
 @end

@@ -92,7 +92,7 @@
     
     [self.createNewRoleBtn.rac_command.errors subscribeNext: ^(NSError* error) {
        
-        [SVProgressHUD showErrorWithStatus: @"Возникла проблема при создании новой роли в проекте."];
+        [Utils showErrorAlertWithMessage: @"Возникла проблема при создании новой роли в проекте."];
         
     }];
 }

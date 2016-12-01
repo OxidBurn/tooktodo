@@ -331,7 +331,7 @@
     {
         NSLog(@"<ERROR> Error with parsing tasks response %@", parsingError.localizedDescription);
         
-        [SVProgressHUD showErrorWithStatus: @"Возникла ошибка при попытке загрузки доступных действий над задачей."];
+        [Utils showErrorAlertWithMessage: @"Возникла ошибка при попытке загрузки доступных действий над задачей."];
     }
     else
     {

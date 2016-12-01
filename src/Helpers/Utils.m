@@ -13,6 +13,7 @@
 #import "NSString+APUtils.h"
 #import "NSDate+Helper.h"
 #import "NSDate-Utilities.h"
+#import "AlertViewBlocks.h"
 
 //! Default date formatter
 static NSDateFormatter* defaultDateFormatter = nil;
@@ -548,6 +549,15 @@ static NSDateFormatter* defaultDateFormatter = nil;
                                                         options: 0];
     
     return date;
+}
+
++ (void) showErrorAlertWithMessage: (NSString*) message
+{
+    [AlertViewBlocks alertWithTitle: @"Ошибка"
+                            message: message
+                            confirm: nil
+                             cancel: nil
+                  otherButtonTitles: @"Ok", nil];
 }
 
 @end

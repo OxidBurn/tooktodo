@@ -117,7 +117,7 @@ static bool isFirstAccess = YES;
             message = [message stringByReplacingOccurrencesOfString: @"'Last Name'"
                                                          withString: @"Поле 'Фамилия'"];
             
-            [SVProgressHUD showErrorWithStatus: message];
+            [Utils showErrorAlertWithMessage: message];
             
             if ( completion )
                 completion(NO);
@@ -128,7 +128,7 @@ static bool isFirstAccess = YES;
     }
                                                               error: ^(NSError *error) {
                                                                   
-                                                                  [SVProgressHUD showErrorWithStatus: error.localizedDescription];
+                                                                  [Utils showErrorAlertWithMessage: error.localizedDescription];
                                                                   
                                                                   if ( completion )
                                                                       completion(NO);

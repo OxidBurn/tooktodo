@@ -224,7 +224,7 @@
          
          NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
          
-         [SVProgressHUD showErrorWithStatus: @"Произошла ошибка при создании задачи!"];
+         [Utils showErrorAlertWithMessage: @"Произошла ошибка при создании задачи!"];
          
      }];
 }

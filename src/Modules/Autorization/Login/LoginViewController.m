@@ -377,7 +377,7 @@
         
         if ( [reach isReachable] == NO )
         {
-            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."];
+            [Utils showErrorAlertWithMessage: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."];
         }
         
     }];

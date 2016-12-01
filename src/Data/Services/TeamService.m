@@ -119,7 +119,7 @@ static bool isFirstAccess = YES;
              {
                  NSString* errorMessage = [NSString stringWithFormat: @"%@\n%@", response[0][@"errors"][0][@"email"], response[0][@"errors"][0][@"message"]];
                  
-                 [SVProgressHUD showErrorWithStatus: errorMessage];
+                 [Utils showErrorAlertWithMessage: errorMessage];
                  
                  [subscriber sendNext: nil];
              }

@@ -124,7 +124,7 @@
     
     [self.userLogOut.rac_command.errors subscribeNext: ^(NSError* error) {
         
-        [SVProgressHUD showErrorWithStatus: @"Во время отправки запроса возникла ошибка\nПопробуйте еще раз"];
+        [Utils showErrorAlertWithMessage: @"Во время отправки запроса возникла ошибка\nПопробуйте еще раз"];
         
     }];
 }

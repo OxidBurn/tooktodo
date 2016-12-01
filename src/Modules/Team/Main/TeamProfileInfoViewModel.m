@@ -305,7 +305,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     
     else
     {
-        [SVProgressHUD showErrorWithStatus: @"Роль не выбрана"];
+        [Utils showErrorAlertWithMessage: @"Роль не выбрана"];
     }
 }
 
