@@ -18,6 +18,7 @@
 // Categories
 #import "DataManager+Team.h"
 #import "DataManager+ProjectInfo.h"
+//#import "UIAl"
 
 
 
@@ -116,7 +117,7 @@ static bool isFirstAccess = YES;
              }
              else
              {
-                 NSString* errorMessage = response[0][@"errors"][0];
+                 NSString* errorMessage = [NSString stringWithFormat: @"%@\n%@", response[0][@"errors"][0][@"email"], response[0][@"errors"][0][@"message"]];
                  
                  [SVProgressHUD showErrorWithStatus: errorMessage];
                  
