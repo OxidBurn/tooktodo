@@ -36,6 +36,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
+@property (weak, nonatomic) IBOutlet UILabel* countOfFoundTasksLabel;
+@property (weak, nonatomic) IBOutlet UIView *searchBackgroundView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 
@@ -161,6 +163,8 @@
         
         [blockSelf.searchBar resignFirstResponder];
         [blockSelf.view endEditing: YES];
+        
+        [blockSelf.tasksByProjectTableView reloadData];
         
     };
     

@@ -21,7 +21,10 @@
 #import "NSObject+Sorting.h"
 #import "TasksListTableViewCell.h"
 
-@interface ProjectTasksViewModel() <TaskListTableViewCellDelegate>
+// Categories
+#import "UISearchBar+TextFieldControl.h"
+
+@interface ProjectTasksViewModel() <TaskListTableViewCellDelegate, UISearchBarWithClearButtonDelegate>
 
 // properties
 
@@ -223,6 +226,11 @@
     }
 }
 
+- (void) searchBarSearchButtonClicked: (UISearchBar*) searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
 - (BOOL) searchBarShouldBeginEditing: (UISearchBar*) searchBar
 {
     return !self.isCanceledSearch;
@@ -236,16 +244,10 @@
         self.reloadTable();
 }
 
-- (void) searchBarTextDidEndEditing: (UISearchBar*) searchBar
+- (void) searchBarClearButtonClicked: (id) sender
 {
     [self.model setTableSearchState: TableNormalState];
     
-    if ( self.reloadTable )
-        self.reloadTable();
-}
-
-- (void) searchBarClearButtonClicked: (id) sender
-{
     if ( self.endSearching )
         self.endSearching();
     

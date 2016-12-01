@@ -762,7 +762,9 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        stageInfo.isExpanded = @(!stageInfo.isExpanded.boolValue);
+        ProjectTaskStage* stage = [stageInfo MR_inContext: localContext];
+        
+        stage.isExpanded = @(!stage.isExpanded.boolValue);
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
