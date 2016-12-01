@@ -26,9 +26,13 @@
 {
     self.nameLabel.text = title;
     
-    self.checkmarkImg.hidden = isHide ? YES : NO;
+    self.checkmarkImg.hidden = isHide ? NO : YES;
 }
 
+- (void) changeCheckmarkState: (BOOL) state
+{
+    self.checkmarkImg.hidden = !state;
+}
 
 - (BOOL) currentCheckMarkState
 {

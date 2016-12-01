@@ -54,9 +54,13 @@
 {
     [super viewWillAppear: animated];
     
-    [self.viewModel updateProjectInfo];
+    __weak typeof(self) blockSelf = self;
     
-    [self.informationTableView reloadData];
+    [self.viewModel updateProjectInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf.informationTableView reloadData];
+        
+    }];
 }
 
 
@@ -64,9 +68,13 @@
 
 - (void) needToUpdateContent
 {
-    [self.viewModel updateProjectInfo];
+    __weak typeof(self) blockSelf = self;
     
-    [self.informationTableView reloadData];
+    [self.viewModel updateProjectInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf.informationTableView reloadData];
+        
+    }];
 }
 
 @end

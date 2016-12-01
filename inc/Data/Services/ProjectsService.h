@@ -28,4 +28,6 @@ typedef void(^GetProjectsCompletion)(NSArray* projectsList);
 
 - (void) loadProjectData: (ProjectInfo*) project;
 
+- (RACSignal*) updatedProjectInfo: (ProjectInfo*) project;
+
 @end

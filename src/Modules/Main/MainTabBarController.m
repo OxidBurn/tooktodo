@@ -45,30 +45,15 @@
                             selector: @selector(showLogin)
                                 name: @"ShowLoginScreen"
                               object: nil];
-    
-    
-
 }
 
-- (void)viewWillLayoutSubviews
+- (void) viewWillAppear: (BOOL) animated
 {
-    [super viewWillLayoutSubviews];
+    [super viewWillAppear: animated];
     
-    // Hack for showing login screen before will load feed screen
-    // If will find any better solution, please remove this chunk of code
-    if ( self.isCheckedLogin == NO )
+    if ( [self isFirstSetup] )
     {
-        if ( [self shouldShowLogin] )
-        {
-            [self presentLoginController];
-        }
-        else
-            if ( [self isFirstSetup] )
-            {
-                [self showWelcomeTour];
-            }
-        
-        self.isCheckedLogin = YES;
+        [self showWelcomeTour];
     }
 }
 
@@ -91,11 +76,6 @@
 
 #pragma mark - Internal methods -
 
-- (BOOL) shouldShowLogin
-{
-    return ![KeyChain isExistTokenForCurrentUser];
-}
-
 - (BOOL) isFirstSetup
 {
     return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
@@ -111,9 +91,8 @@
     
     LoginViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier: controllerId];
     
-    // always assumes token is valid - should probably check in a real app
     [self presentViewController: loginViewController
-                       animated: NO
+                       animated: YES
                      completion: nil];
 }
 

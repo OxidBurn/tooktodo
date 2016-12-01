@@ -23,6 +23,7 @@ static NSString* updatePasswordURL              = @"api/Account/ChangePassword";
 static NSString* logoutURL                      = @"api/Account/Logout";
 static NSString* updateUserInfoURL              = @"api/v2/account/info/common";
 static NSString* userProjectsListURL            = @"api/project/list";
+static NSString* loadProjectInfoURL             = @"/api/project/{id}";
 static NSString* fileInfoURL                    = @"api/file";
 static NSString* updateAvatarURL                = @"api/Account/avatar";
 static NSString* projectTeamInfoURL             = @"api/v2/project/{projectID}/contacts";

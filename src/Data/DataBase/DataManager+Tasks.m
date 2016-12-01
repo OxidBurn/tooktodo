@@ -300,10 +300,10 @@
     // Store task stage
     if ( info.stage )
     {
-        [self persistTaskStage: info.stage
-                       forTask: task
-                     inProject: project
-                     inContext: context];
+        task.stage = [self persistTaskStage: info.stage
+                                    forTask: task
+                                  inProject: project
+                                  inContext: context];
     }
     
     // Store task work area
@@ -650,21 +650,28 @@
     roleType.title = info.title;
 }
 
-- (void) persistTaskStage: (TaskStageModel*)         info
-                  forTask: (ProjectTask*)            task
-                inProject: (ProjectInfo*)            project
-                inContext: (NSManagedObjectContext*) context
+- (ProjectTaskStage*) persistTaskStage: (TaskStageModel*)         info
+                               forTask: (ProjectTask*)            task
+                             inProject: (ProjectInfo*)            project
+                             inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstOrCreateByAttribute: @"stageID"
-                                                                      withValue: @(info.stageID)
-                                                                      inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"stageID == %@ AND project == %@", @(info.stageID), project];
     
-    stage.stageID  = @(info.stageID);
+    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstWithPredicate: predicate
+                                                                inContext: context];
+    
+    if ( stage == nil )
+    {
+        stage = [ProjectTaskStage MR_createEntityInContext: context];
+        
+        stage.stageID = @(info.stageID);
+        stage.project = project;
+    }
+    
     stage.isCommon = @(info.isCommon);
     stage.title    = info.title;
-    stage.project  = project;
     
-    [stage addTasksObject: task];
+    return stage;
 }
 
 - (void) persistTaskWorkArea: (TaskWorkAreaModel*)      info

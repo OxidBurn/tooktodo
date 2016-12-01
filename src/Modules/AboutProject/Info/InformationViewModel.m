@@ -150,9 +150,9 @@ viewForHeaderInSection: (NSInteger)    section
 
 #pragma mark - Public -
 
-- (void) updateProjectInfo
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion
 {
-    [self.model updateProjectInfo];
+    [self.model updateProjectInfoWithCompletion: completion];
 }
 
 @end
