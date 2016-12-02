@@ -41,12 +41,14 @@ static NSString* contentKey = @"contentInfoKey";
 
 @property (assign, nonatomic) BOOL isSortingAcceding;
 
+@property (nonatomic, assign) NSUInteger countOfFoundTasks;
 // methods
 
 
 @end
 
 @implementation ProjectTasksModel
+
 
 #pragma mark - Public methods -
 
@@ -111,6 +113,8 @@ static NSString* contentKey = @"contentInfoKey";
         
         // Apply filters
         rowsContent = [DataManagerShared applyFiltersToTasks: rowsContent];
+        
+        self.countOfFoundTasks = rowsContent.count;
         
         return rowsContent;
     }
@@ -182,6 +186,11 @@ static NSString* contentKey = @"contentInfoKey";
         self.searchFilteredPredicate = [NSPredicate predicateWithFormat: @"title CONTAINS[cd] %@", text];
     else
         self.searchFilteredPredicate = nil;
+}
+
+- (NSUInteger) getCountOfFoundTaks
+{
+    return self.countOfFoundTasks;
 }
 
 @end

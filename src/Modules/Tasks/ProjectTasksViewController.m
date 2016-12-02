@@ -41,6 +41,10 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *countOfTasksHeightConstraint;
+@property (nonatomic, strong) NSValue* val;
+
+
 // Methods
 
 - (void) bindingUI;
@@ -143,6 +147,10 @@
     self.tasksByProjectTableView.delegate   = self.viewModel;
     self.searchBar.delegate                 = self.viewModel;
     
+    //bind label and its text in viewModel
+    RAC(self, countOfFoundTasksLabel.text) = RACObserve(self.viewModel, countOfFoundTasksText);
+    RAC(self, countOfTasksHeightConstraint.constant) = RACObserve(self.viewModel, foundedTasksHeigthConstraintConstant);
+    
     __weak typeof(self) blockSelf = self;
        
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -168,6 +176,7 @@
         
     };
     
+
 }
 
 - (void) setupTableView
@@ -209,6 +218,7 @@
          @strongify(self)
          
          [self.tasksByProjectTableView reloadData];
+         
          
      }];
     

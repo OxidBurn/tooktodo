@@ -9,7 +9,6 @@
 #import "ProjectTasksViewModel.h"
 
 // Classes
-#import "ProjectTasksModel.h"
 #import "StageTitleView.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
@@ -70,6 +69,15 @@
     return [self.model getSelectedProjectTask];
 }
 
+- (SearchTableState) getSearchTableState
+{
+    return [self.model getSearchTableState];
+}
+
+- (NSUInteger) getCountOfFoundTaks
+{
+    return [self.model getCountOfFoundTaks];
+}
 
 #pragma mark - UITable view data source -
 
@@ -81,7 +89,9 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return [self.model countOfRowsInSection: section];
+    NSUInteger countOfRows = [self.model countOfRowsInSection: section];
+    
+    return countOfRows;
 }
 
 - (CGFloat)     tableView: (UITableView*) tableView
@@ -217,12 +227,24 @@
 - (void) searchBar: (UISearchBar*) searchBar
      textDidChange: (NSString*)    searchText
 {
+    
     if ( self.isCanceledSearch == NO )
     {
         [self.model applyFilteringByText: searchText];
         
+        self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self.model getCountOfFoundTaks]];
+        
+        self.foundedTasksHeigthConstraintConstant = 24;
+        
+        
+        
         if ( self.reloadTable )
             self.reloadTable();
+    }
+    
+    else
+    {
+        self.foundedTasksHeigthConstraintConstant = 0;
     }
 }
 

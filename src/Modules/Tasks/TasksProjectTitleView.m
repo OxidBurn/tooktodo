@@ -37,7 +37,7 @@
 {
     self.projectNameLabel.text    = info.title;
     self.projectAddressLabel.text = info.address;
-    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%u", info.tasks.count];
+    self.countOfTasksLabel.text   = [NSString stringWithFormat: @"%lu", info.tasks.count];
     
     NSUInteger countOfExpiredTasks = [self getCountOfExpiredTasks: info.tasks.array];
     
