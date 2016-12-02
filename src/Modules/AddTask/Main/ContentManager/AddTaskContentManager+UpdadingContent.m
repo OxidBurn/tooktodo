@@ -270,7 +270,7 @@
     
     newRow.title = taskDescription;
     
-    if ( [taskDescription isEqualToString: @"Введите описание задачи"] )
+    if ( [taskDescription isEqualToString: @"Описание задачи"] )
     {
         taskDescription = @"";
     }

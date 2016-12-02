@@ -17,9 +17,8 @@
 @property (weak, nonatomic) id <OSFlexibleTextFieldCellDelegate> delegate;
 
 // methods
-- (void) fillCellWithText: (NSString*) textContent;
-
-- (void) editTextLabel;
+- (void) fillCellWithText: (NSString*) textContent
+             withDelegate: (id)        delegate;
 
 - (void) resetCellContent;
 
@@ -28,6 +27,8 @@
 @protocol OSFlexibleTextFieldCellDelegate <NSObject>
 
 - (void) updateFlexibleTextFieldCellWithText: (NSString*) newTaskNameString;
+
+- (void) updateFlexibleTextFieldCellFrame;
 
 - (AddTaskViewModel*) getViewModel;
 

@@ -15,10 +15,12 @@
 
 - (UITableViewCell*) returnFlexibleTextFieldCellWithTextContent: (NSString*)    textContent
                                                    forTableView: (UITableView*) tableView
+                                                   withDelegate: (id)           delegate
 {
     OSFlexibleTextFieldCell* cell = [tableView dequeueReusableCellWithIdentifier: @"FlexibleTextFieldCellID"];
     
-    [cell fillCellWithText: textContent];
+    [cell fillCellWithText: textContent
+              withDelegate: delegate];
     
     return cell;
 }

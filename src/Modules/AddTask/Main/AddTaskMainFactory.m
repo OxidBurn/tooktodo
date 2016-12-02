@@ -52,7 +52,8 @@
             OSFlexibleTextFieldCellFactory* factory = [OSFlexibleTextFieldCellFactory new];
             
             cell = [factory returnFlexibleTextFieldCellWithTextContent: content.title
-                                                          forTableView: tableView];
+                                                          forTableView: tableView
+                                                          withDelegate: delegate];
         }
             break;
             

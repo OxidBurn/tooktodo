@@ -11,17 +11,15 @@
 // Classes
 #import "AddTaskViewModel.h"
 #import "NSString+Utils.h"
+#import "UITextView+PlaceHolder.h"
 
-@interface OSFlexibleTextFieldCell() <UITextFieldDelegate>
+@interface OSFlexibleTextFieldCell() <UITextViewDelegate>
 
 // properties
 
-@property (weak, nonatomic) IBOutlet UILabel*     taskNameLabel;
-@property (weak, nonatomic) IBOutlet UITextField* taskNamtTextField;
+@property (weak, nonatomic) IBOutlet UITextView* textView;
 
 @property (strong, nonatomic) UIColor* steelColor;
-
-@property (assign, nonatomic) BOOL isEditedByUser;
 
 // methods
 
@@ -51,106 +49,73 @@
 #pragma mark - Public -
 
 - (void) fillCellWithText: (NSString*) textContent
+             withDelegate: (id)        delegate
 {
     if ( textContent.length > 0 )
-        self.taskNameLabel.text      = textContent;
+        self.textView.text = textContent;
     
-    if ( [textContent isEqualToString: @"Название задачи"] == NO )
-        self.taskNameLabel.textColor = [UIColor blackColor];
-}
-
-- (void) editTextLabel
-{
-    if ( !self.isEditedByUser )
-    {
-        self.taskNameLabel.text = @"";
-        self.isEditedByUser = YES;
-    }
-    self.taskNameLabel.textColor = [UIColor blackColor];
+    self.textView.delegate = self;
     
-    self.taskNameLabel.hidden = YES;
-    self.taskNamtTextField.hidden = NO;
+    self.delegate = delegate;
     
-    self.taskNamtTextField.text = self.taskNameLabel.text;
+    self.textView.placeHolder = @"Название задачи";
     
-    [self.taskNamtTextField becomeFirstResponder];
+    self.textView.placeHolderColor = self.steelColor;
 }
 
 - (void) resetCellContent
 {
-    self.isEditedByUser = NO;
-    
-    [self editTextLabel];
+    self.textView.text = @"";
 }
 
 
-#pragma mark - UITextFieldDelegate methods -
+#pragma mark - UITextViewDelegate methods -
 
-- (void) textFieldDidBeginEditing:(UITextField *)textField
+- (void) textViewDidBeginEditing: (UITextView*) textView
 {
     if ([self.delegate respondsToSelector:@selector(getViewModel)])
     {
         AddTaskViewModel* viewModel = [self.delegate getViewModel];
         
-        RAC(viewModel, taskNameText) = [self.taskNamtTextField.rac_textSignal takeUntil: self.rac_prepareForReuseSignal];
-        
-        self.taskNameLabel.text = self.taskNamtTextField.text;
+        RAC(viewModel, taskNameText) = [self.textView.rac_textSignal takeUntil: self.rac_prepareForReuseSignal];
     }
 }
 
-- (void) textFieldDidEndEditing:(UITextField *)textField
+- (void) textViewDidEndEditing: (UITextView*) textView
 {
-    self.isEditedByUser = YES;
-    
-    self.taskNameLabel.hidden = NO;
-    self.taskNamtTextField.hidden = YES;
-    
-    self.taskNameLabel.text = self.taskNamtTextField.text;
-    
-    if ( [self.taskNameLabel.text isEqualToString: @"Название задачи"]  ||
-         [self.taskNameLabel.text isEqualToString: @""] )
-    {
-        self.taskNameLabel.textColor = self.steelColor;
-        
-        self.isEditedByUser = NO;
-    }
-    
     if ( [self.delegate respondsToSelector: @selector(updateFlexibleTextFieldCellWithText:)] )
     {
-         [self.delegate updateFlexibleTextFieldCellWithText: [NSString getStringWithoutWhiteSpacesAndNewLines: self.taskNamtTextField.text]];
+        [self.delegate updateFlexibleTextFieldCellWithText: [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text]];
     }
-    
-  
 }
 
-- (BOOL) textFieldShouldReturn: (UITextField*) textField
+- (BOOL)       textView: (UITextView*) textView
+shouldChangeTextInRange: (NSRange)     range
+        replacementText: (NSString*)   text
 {
-    self.taskNameLabel.hidden = NO;
-    self.taskNamtTextField.hidden = YES;
-    
-    self.taskNameLabel.text = self.taskNamtTextField.text;
-    
-    if ( [self.delegate respondsToSelector: @selector(updateFlexibleTextFieldCellWithText:)] )
+    if ( [text isEqualToString: @"\n"])
     {
-         [self.delegate updateFlexibleTextFieldCellWithText: self.taskNamtTextField.text];
+        [textView resignFirstResponder];
+        
+        return NO;
     }
-    return YES;
-}
-
-- (BOOL)            textField: (UITextField*) textField
-shouldChangeCharactersInRange: (NSRange)      range
-            replacementString: (NSString*)    string
-{
-    BOOL shouldReturn = YES;
-    
-    if ( textField.text.length > 149 && string.length > 0)
+    else
     {
-        string = @"";
+        BOOL shouldReturn = YES;
         
-        shouldReturn = NO;
+        if ( textView.text.length > 149 && text.length > 0)
+        {
+            text = @"";
+            
+            shouldReturn = NO;
+        } else
+        {
+            if ( [self.delegate respondsToSelector: @selector(updateFlexibleTextFieldCellFrame)] )
+                [self.delegate updateFlexibleTextFieldCellFrame];
+        }
+        
+        return shouldReturn;
     }
-        
-    return shouldReturn;
 }
 
 @end
