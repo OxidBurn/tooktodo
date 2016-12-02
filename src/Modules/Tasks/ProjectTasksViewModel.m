@@ -9,7 +9,6 @@
 #import "ProjectTasksViewModel.h"
 
 // Classes
-#import "ProjectTasksModel.h"
 #import "StageTitleView.h"
 #import "ProjectInfo+CoreDataClass.h"
 #import "AllTaskBaseTableViewCell.h"
@@ -32,6 +31,8 @@
 
 @property (assign, nonatomic) BOOL isCanceledSearch;
 
+@property (nonatomic, assign) CGRect searchBarBackgroundRect;
+
 // methods
 
 
@@ -39,7 +40,18 @@
 
 @implementation ProjectTasksViewModel
 
+
 #pragma mark - Properties -
+
+- (NSValue*) searchBarBackgroungRectValue
+{
+    if (_searchBarBackgroungRectValue == nil)
+    {
+        _searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake(0, 0, 375, 44))];
+    }
+    
+    return _searchBarBackgroungRectValue;
+}
 
 - (ProjectTasksModel*) model
 {
@@ -70,6 +82,15 @@
     return [self.model getSelectedProjectTask];
 }
 
+- (SearchTableState) getSearchTableState
+{
+    return [self.model getSearchTableState];
+}
+
+- (NSUInteger) getCountOfFoundTaks
+{
+    return [self.model getCountOfFoundTaks];
+}
 
 #pragma mark - UITable view data source -
 
@@ -81,7 +102,9 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return [self.model countOfRowsInSection: section];
+    NSUInteger countOfRows = [self.model countOfRowsInSection: section];
+    
+    return countOfRows;
 }
 
 - (CGFloat)     tableView: (UITableView*) tableView
@@ -110,6 +133,8 @@
     [stageInfoView fillInfo: stage
         withStagesTasksList: [self.model rowsContentForSection: section]
             withSearchState: [self.model getSearchTableState]];
+    
+    self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self getCountOfFoundTaks]];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
@@ -217,10 +242,26 @@
 - (void) searchBar: (UISearchBar*) searchBar
      textDidChange: (NSString*)    searchText
 {
+    
     if ( self.isCanceledSearch == NO )
     {
         [self.model applyFilteringByText: searchText];
         
+        self.foundedTasksHeigthConstraintConstant = 24;
+        
+        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 68);
+        
+        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+        
+        if ( self.reloadTable )
+            self.reloadTable();
+    }
+    
+    else
+    {
+        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 44);
+        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+     
         if ( self.reloadTable )
             self.reloadTable();
     }
@@ -253,6 +294,12 @@
     
     self.isCanceledSearch = YES;
     
+    self.foundedTasksHeigthConstraintConstant = 0;
+    self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake( 0, 0, 375, 44))];
+    
+    if (self.reloadTable)
+        self.reloadTable();
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         self.isCanceledSearch = NO;

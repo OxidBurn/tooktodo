@@ -13,6 +13,7 @@
 //Classes
 #import "PopoverViewController.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "ProjectTasksModel.h"
 
 @interface ProjectTasksViewModel : NSObject <UITableViewDelegate, UITableViewDataSource, PopoverModelDelegate, PopoverModelDataSource, UISearchBarDelegate>
 
@@ -24,6 +25,12 @@
 
 @property (copy, nonatomic) void(^endSearching)();
 
+@property (nonatomic, strong) NSString* countOfFoundTasksText;
+
+@property (nonatomic, assign) NSUInteger foundedTasksHeigthConstraintConstant;
+
+@property (nonatomic, strong) NSValue* searchBarBackgroungRectValue;
+
 // methods
 
 - (RACSignal*) updateContent;
@@ -31,5 +38,9 @@
 - (RACSignal*) applyFilters;
 
 - (ProjectTask*) getSelectedProjectTask;
+
+- (SearchTableState) getSearchTableState;
+
+- (NSUInteger) getCountOfFoundTaks;
 
 @end
