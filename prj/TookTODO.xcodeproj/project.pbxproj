@@ -419,6 +419,8 @@
 		56E1B9881D6E750D003E46DA /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */; };
 		56E1B9891D6E750D003E46DA /* SF-UI-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */; };
 		56E1B98E1D6F0FA1003E46DA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */; };
+		56E8D40F1DF1E4AF007CFB28 /* ProjectTaskStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */; };
+		56E8D4121DF1E531007CFB28 /* ProjectStageTasksListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8D4111DF1E531007CFB28 /* ProjectStageTasksListModel.m */; };
 		59088A041DD2022D007B33EA /* AttachmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59088A031DD2022D007B33EA /* AttachmentView.xib */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -1308,6 +1310,10 @@
 		56E1B9861D6E750D003E46DA /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		56E1B9871D6E750D003E46DA /* SF-UI-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Medium.otf"; sourceTree = "<group>"; };
 		56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Text-Light.otf"; sourceTree = "<group>"; };
+		56E8D40D1DF1E4AF007CFB28 /* ProjectTaskStageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTaskStageModel.h; sourceTree = "<group>"; };
+		56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTaskStageModel.m; sourceTree = "<group>"; };
+		56E8D4101DF1E531007CFB28 /* ProjectStageTasksListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStageTasksListModel.h; sourceTree = "<group>"; };
+		56E8D4111DF1E531007CFB28 /* ProjectStageTasksListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTasksListModel.m; sourceTree = "<group>"; };
 		59088A031DD2022D007B33EA /* AttachmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentView.xib; sourceTree = "<group>"; };
 		5913440B1D5EFDBD0027889F /* DataBaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBaseModel.xcdatamodel; sourceTree = "<group>"; };
 		5913440E1D5F03290027889F /* UserNotificationSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserNotificationSettings.plist; path = ../res/settings/UserNotificationSettings.plist; sourceTree = "<group>"; };
@@ -1736,6 +1742,10 @@
 		56D06BAF1DAFBDBF008E9AC0 /* JSONObjects */ = {
 			isa = PBXGroup;
 			children = (
+				56E8D40D1DF1E4AF007CFB28 /* ProjectTaskStageModel.h */,
+				56E8D4101DF1E531007CFB28 /* ProjectStageTasksListModel.h */,
+				56E8D4111DF1E531007CFB28 /* ProjectStageTasksListModel.m */,
+				56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */,
 				59CDAAB81DE5D377007E9D97 /* TaskApprovmentsModel.h */,
 				59CDAAB91DE5D377007E9D97 /* TaskFilterExpiredInfoModel.h */,
 				59CDAABA1DE5D377007E9D97 /* TaskFilterInfoModel.h */,
@@ -4322,6 +4332,7 @@
 				56D06FA31DAFBDC0008E9AC0 /* OSAlertDesignateAdminController.m in Sources */,
 				56D06F1C1DAFBDC0008E9AC0 /* LoginModel.m in Sources */,
 				CF7779381DEB42F2003B2818 /* FilterByRoomModel.m in Sources */,
+				56E8D4121DF1E531007CFB28 /* ProjectStageTasksListModel.m in Sources */,
 				56D06F431DAFBDC0008E9AC0 /* OnRevisionViewModel.m in Sources */,
 				5663BB501DE4D97C00F82E5B /* DataManager+TaskApprovements.m in Sources */,
 				56D06ED51DAFBDC0008E9AC0 /* TaskRoleAssignmentsModel.m in Sources */,
@@ -4387,6 +4398,7 @@
 				56D06EA91DAFBDC0008E9AC0 /* ProjectTaskRoleAssignment+CoreDataProperties.m in Sources */,
 				5663BB661DE5D9FB00F82E5B /* DataManager+TaskLogs.m in Sources */,
 				F7EB66FE1DE35D6100F44CDF /* TaskFilterConfiguration.m in Sources */,
+				56E8D40F1DF1E4AF007CFB28 /* ProjectTaskStageModel.m in Sources */,
 				564DE3B11DB1476F00BF9817 /* NewProjectRoleTypeModel.m in Sources */,
 				56D06EDF1DAFBDC0008E9AC0 /* RolesService.m in Sources */,
 				CF1D5E021DD1E11A00CEB8DA /* SystemDetailPopoverController.m in Sources */,

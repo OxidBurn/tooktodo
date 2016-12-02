@@ -283,7 +283,7 @@
         objc_setAssociatedObject(self, k_text_view_place_holder_color, placeHolderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
         if ([self placeHolderExist]) {
-            self.placeHolderLabel.textColor = _placeHolderColor;
+            self.placeHolderLabel.textColor = placeHolderColor;
         }
     }
 }

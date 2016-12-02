@@ -15,6 +15,7 @@
 
 // Categories
 #import "DataManager+Systems.h"
+#import "DataManager+ProjectInfo.h"
 
 @implementation SystemsService
 
@@ -37,6 +38,13 @@ static bool isFirstAccess = YES;
 
 
 #pragma mark - Public methods -
+
+- (RACSignal*) loadSelectedProjectSystems
+{
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    return [self loadCurrentProjectSystems: project.projectID];
+}
 
 - (RACSignal*) loadCurrentProjectSystems: (NSNumber*) projectID
 {

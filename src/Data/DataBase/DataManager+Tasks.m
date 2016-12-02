@@ -43,6 +43,8 @@
 #import "ProjectRoleType+CoreDataClass.h"
 #import "TaskApprovementsModel.h"
 #import "ProjectTaskRoleAssignment+CoreDataProperties.h"
+#import "ProjectTaskStageModel.h"
+#import "ProjectStageTasksListModel.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -63,11 +65,11 @@
         // For storing
         ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
         
-        [tasks enumerateObjectsUsingBlock: ^(ProjectTaskModel* taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        [tasks enumerateObjectsUsingBlock: ^(ProjectTaskStageModel* stageModel, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [self persistTaskWithInfo: taskModel
-                           forProject: project
-                            inContext: localContext];
+            [self persistStageWithInfo: stageModel
+                            forProject: project
+                             inContext: localContext];
             
         }];
         
@@ -191,6 +193,30 @@
 
 #pragma mark - Internal methods -
 
+- (void) persistStageWithInfo: (ProjectTaskStageModel*)  info
+                   forProject: (ProjectInfo*)            project
+                    inContext: (NSManagedObjectContext*) context
+{
+    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstOrCreateByAttribute: @"stageID"
+                                                                      withValue: info.stageID
+                                                                      inContext: context];
+    
+    stage.project  = project;
+    stage.stageID  = info.stageID;
+    stage.isCommon = info.isCommon;
+    stage.title    = info.title;
+    
+    [info.tasks.list enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        ProjectTask* task = [self persistTaskWithInfo: obj
+                                           forProject: project
+                                            inContext: context];
+        
+        [stage addTasksObject: task];
+        
+    }];
+}
+
 - (ProjectTask*) persistTaskWithInfo: (ProjectTaskModel*)       info
                           forProject: (ProjectInfo*)            project
                            inContext: (NSManagedObjectContext*) context
@@ -295,15 +321,6 @@
         [self persistTaskResponsible: info.responsible
                              forTask: task
                            inContext: context];
-    }
-    
-    // Store task stage
-    if ( info.stage )
-    {
-        task.stage = [self persistTaskStage: info.stage
-                                    forTask: task
-                                  inProject: project
-                                  inContext: context];
     }
     
     // Store task work area
@@ -655,17 +672,20 @@
                              inProject: (ProjectInfo*)            project
                              inContext: (NSManagedObjectContext*) context
 {
-    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"stageID == %@ AND project == %@", @(info.stageID), project];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"stageID == %@", @(info.stageID)];
     
     ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstWithPredicate: predicate
                                                                 inContext: context];
     
-    if ( stage == nil )
+    if ( stage == nil && stage.project != project )
     {
         stage = [ProjectTaskStage MR_createEntityInContext: context];
         
         stage.stageID = @(info.stageID);
         stage.project = project;
+        
+        NSLog(@"Stage with id: %lu", (unsigned long)info.stageID);
+        NSLog(@"<INFO> In project %@", project.title);
     }
     
     stage.isCommon = @(info.isCommon);
