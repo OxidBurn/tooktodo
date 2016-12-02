@@ -112,11 +112,6 @@
 {
     self.task.taskName = newTaskName;
     
-    if ( [newTaskName isEqualToString: @""] )
-    {
-        newTaskName = @"Название задачи ";
-    }
-    
     RowContent* newRow = self.addTaskContentArray[SectionOne][TaskNameRow];
     
     newRow.title  = newTaskName;
@@ -146,7 +141,7 @@
     
     rowOne.cellId    = self.addTaskTableViewCellsInfo[FlexibleTextFieldCell];
     rowOne.cellIndex = FlexibleTextFieldCell;
-    rowOne.title     = self.task.taskName ? self.task.taskName : @"Название задачи";
+    rowOne.title     = self.task.taskName ? self.task.taskName : @"";
     
     RowContent* rowTwo = [[RowContent alloc] initWithUserInteractionEnabled];
     

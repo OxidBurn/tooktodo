@@ -410,9 +410,9 @@
 {
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
-    
+   
+    self.addTaskTableView.estimatedRowHeight = 100;
     self.addTaskTableView.rowHeight          = UITableViewAutomaticDimension;
-    self.addTaskTableView.estimatedRowHeight = 42;
     
     __weak typeof(self) blockSelf = self;
     

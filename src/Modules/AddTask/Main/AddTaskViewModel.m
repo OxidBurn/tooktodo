@@ -30,7 +30,7 @@
 @end
 
 
-@implementation AddTaskViewModel
+@implementation AddTaskViewModel 
 
 
 #pragma mark - Initialization -
@@ -210,13 +210,22 @@
         self.tableView = tableView;
     }
     
+    id delegate;
+    
+    if ( indexPath.section == 0 && indexPath.row == 0 )
+    {
+        delegate = self;
+    }
+    else
+        delegate = self.model;
+    
     RowContent* content = [self.model getContentForIndexPath: indexPath];
     
     AddTaskMainFactory* factory = [AddTaskMainFactory new];
     
     UITableViewCell* cell = [factory createCellForTableView: tableView
                                                 withContent: content
-                                               withDelegate: self.model];
+                                               withDelegate: delegate];
 
     return cell;
 }
@@ -296,8 +305,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                 cell = (OSFlexibleTextFieldCell*)cell;
             
                 cell.delegate = self;
-            
-                [cell editTextLabel];
             }
                 break;
             
@@ -321,6 +328,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (AddTaskViewModel*) getViewModel
 {
     return self;
+}
+
+- (void) updateFlexibleTextFieldCellFrame
+{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 #pragma mark - AddTaskModelDelegate methods -
