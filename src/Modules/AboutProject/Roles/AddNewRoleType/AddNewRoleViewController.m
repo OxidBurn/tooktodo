@@ -92,7 +92,21 @@
     
     [self.createNewRoleBtn.rac_command.errors subscribeNext: ^(NSError* error) {
        
-        [Utils showErrorAlertWithMessage: @"Возникла проблема при создании новой роли в проекте."];
+        NSDictionary* errorInfo = error.userInfo;
+        NSString* errorMessage  = @"";
+        
+        if ( [errorInfo.allKeys containsObject: @"Message"] )
+        {
+            errorMessage = errorInfo[@"Message"];
+        }
+        else
+        {
+            NSDictionary* errorDescription = [errorInfo[@"modelErrors"] lastObject];
+            
+            errorMessage = errorDescription[@"message"];
+        }
+        
+        [Utils showErrorAlertWithMessage: errorMessage];
         
     }];
 }
