@@ -17,6 +17,7 @@
 // Helpers
 #import "NSDate+Helper.h"
 #import "TaskStatusDefaultValues.h"
+#import "Macroses.h"
 
 
 @interface TaskDetailInfoCell()
@@ -43,6 +44,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint*    taskTermsLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint*    temsHorizontalToStatusConstraint;
 
+// varialbe constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusBtnWidthConstraint;
+
+
 // properties
 
 
@@ -56,6 +61,20 @@
 @end
 
 @implementation TaskDetailInfoCell
+
+
+#pragma mark - Initialization -
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        self.taskStatusBtnWidthConstraint.constant = 164;
+    }
+}
+
 
 #pragma mark - Actions -
 
@@ -230,5 +249,6 @@
     self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
                                              returnFontColorForTaskStatus: taskStatusType];
 }
+
 
 @end

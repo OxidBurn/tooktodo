@@ -40,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
 @property (nonatomic, weak) IBOutlet AvatarImageView*       avatarImage;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* dateToTypeHorizontalConstraint;
+
 // properties
 
 
@@ -52,6 +54,28 @@
 @end
 
 @implementation SubtaskInfoCell
+
+
+#pragma mark - Initialization -
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        [self.accessBtn removeFromSuperview];
+        
+        [self.roomNumberLabel removeFromSuperview];
+        
+        [self.roomNumberMarkImageView removeFromSuperview];
+        
+        self.dateToTypeHorizontalConstraint.constant = 10;
+        
+        self.dateToTypeHorizontalConstraint.priority = 1000;
+    }
+}
+
 
 #pragma mark - Actions -
 

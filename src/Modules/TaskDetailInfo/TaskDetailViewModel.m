@@ -29,7 +29,7 @@
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoHeaderDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate, UIScrollViewDelegate>
 
 // properties
 
@@ -44,6 +44,8 @@
 @property (strong, nonatomic) NSNumber* commentID;
 
 @property (strong, nonatomic) AddCommentCell* addCommentCell;
+
+@property (assign, nonatomic) CGPoint scrollViewOffset;
 
 @end
 
@@ -298,7 +300,26 @@ viewForHeaderInSection: (NSInteger)    section
 {
     if ( section == 1 )
     {
-        return self.headerView;
+        if ( IS_IPHONE_4_OR_LESS || IS_IPHONE_5 )
+        {
+            UIScrollView* scroll = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.tableView.frame.size.width, 43)];
+            
+            scroll.contentSize = self.headerView.size;
+            
+            scroll.showsHorizontalScrollIndicator = NO;
+            
+            scroll.bounces = NO;
+            
+            scroll.delegate = self;
+            
+            scroll.contentOffset = self.scrollViewOffset;
+            
+            [scroll addSubview: self.headerView];
+
+            return scroll;
+        }
+        else
+            return self.headerView;
     }
     
     return nil;
@@ -687,6 +708,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         }];
      } error: ^(NSError *error) {
      }];
+}
+
+
+#pragma mark - ScrollViewDelegate methods -
+
+- (void) scrollViewDidEndDragging: (UIScrollView*) scrollView
+                   willDecelerate: (BOOL)          decelerate
+{
+    self.scrollViewOffset = scrollView.contentOffset;
 }
 
 @end

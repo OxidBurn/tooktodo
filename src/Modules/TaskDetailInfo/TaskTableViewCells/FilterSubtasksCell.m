@@ -26,6 +26,10 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* canceledTasksCheckbox;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* addSubtaskBtnWidthConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView*        addPlusImageView;
+@property (weak, nonatomic) IBOutlet UILabel*            addLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* addPlusImageViewWidthConstraint;
 // properties
 
 
@@ -42,6 +46,26 @@
 @end
 
 @implementation FilterSubtasksCell
+
+
+#pragma mark - Initialization -
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        self.addSubtaskBtnWidthConstraint.constant = 28;
+        
+        self.addPlusImageView.image                   = [UIImage imageNamed: @"AddSubTask"];
+        self.addPlusImageViewWidthConstraint.constant = 28;
+        
+        [self.addLabel removeFromSuperview];
+        self.addLabel         = nil;
+    }
+}
+
 
 
 #pragma mark - Actions -

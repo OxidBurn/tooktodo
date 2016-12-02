@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol TaskInfoFooterDelegate;
+@protocol TaskInfoHeaderDelegate;
 
 @interface TaskInfoHeaderView : UIView
 
 // properties
-@property (weak, nonatomic) id <TaskInfoFooterDelegate> delegate;
+@property (weak, nonatomic) id <TaskInfoHeaderDelegate> delegate;
 
 // methods
 - (void) fillViewWithInfo: (NSArray*) infoArray
@@ -21,7 +21,7 @@
 
 @end
 
-@protocol TaskInfoFooterDelegate <NSObject>
+@protocol TaskInfoHeaderDelegate <NSObject>
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 
