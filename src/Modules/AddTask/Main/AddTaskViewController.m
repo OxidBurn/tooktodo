@@ -49,6 +49,7 @@
 @property (nonatomic, assign) AddTaskControllerType controllerType;
 
 // methods
+- (IBAction)onDoneBtn:(UIBarButtonItem *)sender;
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
@@ -243,6 +244,11 @@
 
 
 #pragma mark - Actions -
+
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
+{
+    
+}
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
 {
