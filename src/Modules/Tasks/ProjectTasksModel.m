@@ -120,7 +120,6 @@ static NSString* contentKey = @"contentInfoKey";
     }
     else
     {
-        self.countOfFoundTasks = 0;
         return 0;
     }
 }
