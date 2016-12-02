@@ -119,7 +119,10 @@ static NSString* contentKey = @"contentInfoKey";
         return rowsContent;
     }
     else
+    {
+        self.countOfFoundTasks = 0;
         return 0;
+    }
 }
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section
