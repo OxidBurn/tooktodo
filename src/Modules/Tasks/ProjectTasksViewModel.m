@@ -31,7 +31,7 @@
 
 @property (assign, nonatomic) BOOL isCanceledSearch;
 
-@property (nonatomic, assign) NSUInteger count;
+@property (nonatomic, assign) CGRect searchBarBackgroundRect;
 
 // methods
 
@@ -40,16 +40,17 @@
 
 @implementation ProjectTasksViewModel
 
+
 #pragma mark - Properties -
 
-- (NSValue *)val
+- (NSValue*) searchBarBackgroungRectValue
 {
-    if (_val == nil)
+    if (_searchBarBackgroungRectValue == nil)
     {
-        _val = [NSValue valueWithCGRect: (CGRectMake(0, 0, 375, 44))];
+        _searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake(0, 0, 375, 44))];
     }
     
-    return _val;
+    return _searchBarBackgroungRectValue;
 }
 
 - (ProjectTasksModel*) model
@@ -146,8 +147,6 @@
                                              [tableView reloadData];
                                              
                                          }];
-        
-      
         
     };
     
@@ -252,7 +251,7 @@
         
         self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 68);
         
-        self.val = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
         
         if ( self.reloadTable )
             self.reloadTable();
@@ -261,7 +260,7 @@
     else
     {
         self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 44);
-        self.val = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
      
         if ( self.reloadTable )
             self.reloadTable();
@@ -296,7 +295,7 @@
     self.isCanceledSearch = YES;
     
     self.foundedTasksHeigthConstraintConstant = 0;
-    self.val = [NSValue valueWithCGRect: (CGRectMake( 0, 0, 375, 44))];
+    self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake( 0, 0, 375, 44))];
     
     if (self.reloadTable)
         self.reloadTable();

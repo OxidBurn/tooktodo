@@ -152,7 +152,7 @@
     
     RAC(self, countOfTasksHeightConstraint.constant) = RACObserve(self.viewModel, foundedTasksHeigthConstraintConstant);
 
-    RAC(self, searchBackgroundView.frame) = RACObserve(self.viewModel, val);
+    RAC(self, searchBackgroundView.frame) = RACObserve(self.viewModel, searchBarBackgroungRectValue);
     
     __weak typeof(self) blockSelf = self;
        
