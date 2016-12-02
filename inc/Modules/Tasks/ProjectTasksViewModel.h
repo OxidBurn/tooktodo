@@ -29,7 +29,9 @@
 
 @property (nonatomic, assign) NSUInteger foundedTasksHeigthConstraintConstant;
 
-@property (nonatomic, assign) CGFloat searchBarBackgroundViewHeight;
+@property (nonatomic, assign) CGRect searchBarBackgroundRect;
+
+@property (nonatomic, strong) NSValue* val;
 
 // methods
 

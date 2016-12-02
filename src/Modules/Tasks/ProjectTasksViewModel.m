@@ -31,6 +31,8 @@
 
 @property (assign, nonatomic) BOOL isCanceledSearch;
 
+@property (nonatomic, assign) NSUInteger count;
+
 // methods
 
 
@@ -39,6 +41,16 @@
 @implementation ProjectTasksViewModel
 
 #pragma mark - Properties -
+
+- (NSValue *)val
+{
+    if (_val == nil)
+    {
+        _val = [NSValue valueWithCGRect: (CGRectMake(0, 0, 375, 44))];
+    }
+    
+    return _val;
+}
 
 - (ProjectTasksModel*) model
 {
@@ -121,6 +133,8 @@
         withStagesTasksList: [self.model rowsContentForSection: section]
             withSearchState: [self.model getSearchTableState]];
     
+    self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self getCountOfFoundTaks]];
+    
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
     
@@ -132,6 +146,8 @@
                                              [tableView reloadData];
                                              
                                          }];
+        
+      
         
     };
     
@@ -232,11 +248,11 @@
     {
         [self.model applyFilteringByText: searchText];
         
-        self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self.model getCountOfFoundTaks]];
-        
         self.foundedTasksHeigthConstraintConstant = 24;
         
+        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 68);
         
+        self.val = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
         
         if ( self.reloadTable )
             self.reloadTable();
@@ -244,7 +260,11 @@
     
     else
     {
-        self.foundedTasksHeigthConstraintConstant = 0;
+        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 44);
+        self.val = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+     
+        if ( self.reloadTable )
+            self.reloadTable();
     }
 }
 
@@ -275,6 +295,12 @@
     
     self.isCanceledSearch = YES;
     
+    self.foundedTasksHeigthConstraintConstant = 0;
+    self.val = [NSValue valueWithCGRect: (CGRectMake( 0, 0, 375, 44))];
+    
+    if (self.reloadTable)
+        self.reloadTable();
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         self.isCanceledSearch = NO;
