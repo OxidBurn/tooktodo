@@ -19,6 +19,7 @@
 #import "TaskCommentsService.h"
 #import "UserInfoService.h"
 #import "TaskLogsModel.h"
+#import "ProjectTaskStageModel.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -52,8 +53,8 @@
 
 - (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID
 {
-    NSString* requestURL = [projectTasksURL stringByReplacingOccurrencesOfString: @"{id}"
-                                                                      withString: projectID.stringValue];
+    NSString* requestURL = [projectTasksByStagesURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                              withString: projectID.stringValue];
     
     @weakify(self)
     
@@ -65,7 +66,7 @@
              
              @strongify(self)
              
-             [self parseTasksForProjectFromResponse: response[0]
+             [self parseTasksForProjectFromResponse: response[0][@"stages"]
                                      withCompletion: ^(BOOL isSuccess) {
                                          
                                          [subscriber sendNext: nil];
@@ -324,8 +325,8 @@
                            withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parsingError = nil;
-    NSArray* tasks        = [ProjectTaskModel arrayOfModelsFromDictionaries: response
-                                                                      error: &parsingError];
+    NSArray* tasks        = [ProjectTaskStageModel arrayOfModelsFromDictionaries: response
+                                                                           error: &parsingError];
     
     if ( parsingError )
     {

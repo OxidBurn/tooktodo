@@ -25,7 +25,11 @@
 
 @property (strong, nonatomic) SystemsInfoViewModel* viewModel;
 
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
+
 // methods
+
+- (void) setupUI;
 
 - (void) bindingUI;
 
@@ -41,6 +45,9 @@
 - (void) loadView
 {
     [super loadView];
+    
+    // Setup UI components
+    [self setupUI];
     
     // Binding UI with model
     [self bindingUI];
@@ -79,9 +86,22 @@
 
 #pragma mark - Internal methods -
 
+- (void) setupUI
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString: @"Обновить"];
+    
+    [self.refreshControl addTarget: self
+                            action: @selector(updateContent)
+                  forControlEvents: UIControlEventValueChanged];
+    
+    [self.systemInfoTableView addSubview: self.refreshControl];
+}
+
 - (void) bindingUI
 {
-    self.systemInfoTableView.dataSource = self.viewModel;
+    self.systemInfoTableView.dataSource     = self.viewModel;
 }
 
 - (void) needToUpdateContent
@@ -100,6 +120,13 @@
         [self.systemInfoTableView reloadData];
         
     }];
+}
+
+- (void) updateContent
+{
+    [self updateInfo];
+    
+    [self.refreshControl endRefreshing];
 }
 
 @end

@@ -147,9 +147,12 @@
     self.tasksByProjectTableView.delegate   = self.viewModel;
     self.searchBar.delegate                 = self.viewModel;
     
-    //bind label and its text in viewModel
+    //bind oulets and viewModel properties
     RAC(self, countOfFoundTasksLabel.text) = RACObserve(self.viewModel, countOfFoundTasksText);
+    
     RAC(self, countOfTasksHeightConstraint.constant) = RACObserve(self.viewModel, foundedTasksHeigthConstraintConstant);
+
+    RAC(self, searchBackgroundView.frame) = RACObserve(self.viewModel, searchBarBackgroungRectValue);
     
     __weak typeof(self) blockSelf = self;
        

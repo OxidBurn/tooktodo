@@ -85,7 +85,9 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (NSUInteger) countOfSections
 {
-    return self.currentProjectInfo.stage.count;
+    NSArray* projectTasksStages = self.currentProjectInfo.stage.array;
+    
+    return projectTasksStages.count;
 }
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
@@ -119,7 +121,9 @@ static NSString* contentKey = @"contentInfoKey";
         return rowsContent;
     }
     else
+    {
         return 0;
+    }
 }
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section

@@ -20,4 +20,6 @@
 
 - (RACSignal*) loadCurrentProjectSystems: (NSNumber*) projectID;
 
+- (RACSignal*) loadSelectedProjectSystems;
+
 @end
