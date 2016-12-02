@@ -15,6 +15,8 @@
 // properties
 @property (strong, nonatomic) RACCommand* logoutCommand;
 
+@property (copy, nonatomic) void(^updateUserAvatar)(UIImage* image);
+
 // methods
 
 - (RACSignal*) updateInfo;
@@ -25,7 +27,10 @@
 
 - (CGFloat) contactTableHeight;
 
-- (void) saveNewImage: (UIImage*) image;
+- (void) saveNewImage: (UIImage*)                image
+       withCompletion: (void(^)(UIImage* image)) newAvatar;
+
+- (void) updateCurrentUserInfoWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSURL*) getUserAvatarURL;
 

@@ -78,6 +78,11 @@
     return updateUserInfoSignal;
 }
 
+- (void) updateCurrentUserInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    self.currentUserInfo = [DataManagerShared getCurrentUserInfo];
+}
+
 - (NSString*) getFullUserName
 {
     NSString* fullName = self.currentUserInfo.fullName;
@@ -147,14 +152,21 @@
     return [[UserInfoService sharedInstance] logoutUser: self.currentUserInfo];
 }
 
-- (void) saveNewAvatar: (UIImage*) image
+- (void) saveNewAvatar: (UIImage*)                image
+        withCompletion: (void(^)(UIImage* image)) completion
 {
     NSData* imageData = UIImagePNGRepresentation(image);
     
     [imageData writeToFile: [self getAvatarImagePath]
                 atomically: YES];
     
-    [[UserInfoService sharedInstance] updateAvatarWithFile: [self getAvatarImagePath]];
+    [[UserInfoService sharedInstance] updateAvatarWithFile: [self getAvatarImagePath]
+                                            withCompletion:^(BOOL isSuccess) {
+                                                
+                                                if ( completion )
+                                                    completion(image);
+                                                
+                                            }];
 }
 
 

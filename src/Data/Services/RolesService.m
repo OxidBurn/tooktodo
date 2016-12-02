@@ -43,37 +43,43 @@ static bool isFirstAccess = YES;
 
 - (RACSignal*) loadAllRolesForProject: (ProjectInfo*) project
 {
-    NSString* buildRequestURL = [projectRolesURL stringByReplacingOccurrencesOfString: @"{projectID}"
-                                                                           withString: project.projectID.stringValue];
-    
-    @weakify(self)
-    
-    RACSignal* loadingRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+    if ( project && project.projectID )
+    {
+        NSString* buildRequestURL = [projectRolesURL stringByReplacingOccurrencesOfString: @"{projectID}"
+                                                                               withString: project.projectID.stringValue];
         
-        [[[RolesAPIService sharedInstance] loadProjectsRoles: buildRequestURL]
-         subscribeNext: ^(RACTuple* response) {
-             
-             @strongify(self)
-             
-             [self parseRolesRequestResponse: response[0]
-                              withCompletion: ^(BOOL isSuccess) {
-                                  
-                                  [subscriber sendNext: nil];
-                                  [subscriber sendCompleted];
-                                  
-                              }];
-             
-         }
-         error: ^(NSError* error) {
-             
-             [subscriber sendError: error];
-             
-         }];
+        @weakify(self)
         
-        return nil;
-    }];
-    
-    return loadingRolesSignal;
+        RACSignal* loadingRolesSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            [[[RolesAPIService sharedInstance] loadProjectsRoles: buildRequestURL]
+             subscribeNext: ^(RACTuple* response) {
+                 
+                 @strongify(self)
+                 
+                 [self parseRolesRequestResponse: response[0]
+                                  withCompletion: ^(BOOL isSuccess) {
+                                      
+                                      [subscriber sendNext: nil];
+                                      [subscriber sendCompleted];
+                                      
+                                  }];
+                 
+             }
+             error: ^(NSError* error) {
+                 
+                 [subscriber sendError: error];
+                 
+             }];
+            
+            return nil;
+        }];
+        
+        return loadingRolesSignal;
+
+    }
+
+    return nil;
 }
 
 - (RACSignal*) getRolesOfTheSelectedProject

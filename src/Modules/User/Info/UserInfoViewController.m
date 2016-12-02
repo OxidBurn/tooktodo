@@ -60,6 +60,8 @@
     [super loadView];
     
     [self bindingUI];
+    
+    [self updateInfo];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -68,7 +70,7 @@
     
     // Update all contact info on appearing screen
     // for case, when user update info in another screen
-    [self updateInfo];
+    [self updateContactInfo];
 }
 
 #pragma mark - Memory managment -
@@ -91,6 +93,7 @@
     
     return _viewModel;
 }
+
 
 #pragma mark - Internal methods -
 
@@ -192,6 +195,22 @@
     }];
 }
 
+- (void) updateContactInfo
+{
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel updateCurrentUserInfoWithCompletion: ^(BOOL isSuccess) {
+       
+        blockSelf.fullNameLabel.text                   = [self.viewModel fullUserName];
+        blockSelf.phoneInfoTable.dataSource            = self.viewModel;
+        blockSelf.phoneTableHeightConstraint.constant  = [self.viewModel contactTableHeight];
+        blockSelf.phonesTableHeightConstraint.constant = [self.viewModel contactTableHeight];
+        
+        [blockSelf.phoneInfoTable reloadData];
+        
+    }];
+}
+
 
 #pragma mark - RSKImageCropperDataSourse methods-
 
@@ -274,7 +293,14 @@
 {
     self.avatarImageView.image = croppedImage;
     
-    [self.viewModel saveNewImage: croppedImage];
+    __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel saveNewImage: croppedImage
+                  withCompletion: ^(UIImage *image) {
+                      
+                      blockSelf.avatarImageView.image = image;
+                      
+                  }];
     
     [controller dismissViewControllerAnimated: YES
                                    completion: nil];

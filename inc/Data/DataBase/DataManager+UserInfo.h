@@ -29,4 +29,7 @@
 
 - (NSArray*) getAllUserInfo;
 
+- (void) updateAvatarURLPathForCurrentUser: (NSString*)             path
+                            withCompletion: (CompletionWithSuccess) completion;
+
 @end
