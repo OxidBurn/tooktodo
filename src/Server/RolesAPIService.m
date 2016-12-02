@@ -49,7 +49,31 @@ static bool isFirstAccess = YES;
 {
     AFHTTPRequestOperationManager* requestManager = [self getRawManager];
     
-    return [[[requestManager rac_POST: requestURL parameters: parameter] logError] replayLazily];
+    RACSignal* postSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [requestManager POST: requestURL
+                  parameters: parameter
+                     success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+                         
+                         [subscriber sendNext: responseObject];
+                         [subscriber sendCompleted];
+                         
+                     }
+                     failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+                         
+                         NSError* responseError = [NSError errorWithDomain: error.domain
+                                                                      code: error.code
+                                                                  userInfo: operation.responseObject];
+                         
+                         [subscriber sendError: responseError];
+                         
+                     }];
+        
+        
+        return nil;
+    }];
+    
+    return postSignal;
 }
 
 
