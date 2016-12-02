@@ -7,6 +7,8 @@
 //
 
 #import "InviteInfo.h"
+#import "DataManager+Roles.h"
+#import "ProjectRoles.h"
 
 @interface InviteInfo()
 
@@ -39,7 +41,9 @@
 
 - (void) setupDefaults
 {
-    self.projectId = @5;
+    ProjectRoles* role = [[DataManagerShared getAllRolesInCurrentProject] firstObject];
+    
+    self.projectRoleTypeId = role.roleID;
 }
 
 @end

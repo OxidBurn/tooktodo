@@ -93,10 +93,12 @@ typedef NS_ENUM(NSUInteger, InviteTextFieldType)
     info.firstName         = self.nameText;
     info.lastName          = self.lastnameText;
     info.email             = self.emailText;
-    info.projectRoleTypeId = self.roleID;
     info.message           = self.messageText;
     info.userId            = @0;
     info.contactId         = @0;
+    
+    if ( self.roleID )
+        info.projectRoleTypeId = self.roleID;
     
     return [self.model sendInvite: info];
 }
