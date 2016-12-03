@@ -319,6 +319,64 @@
     return deleteTaskSignal;
 }
 
+- (RACSignal*) updateStatusForSelectedTask: (TaskStatusType) status
+{
+    NSString* requestURL           = [self buildUpdateTaskStatusURL];
+    NSDictionary* requestParameter = [self getUpdateTaskStatusParameter: status];
+    
+    RACSignal* updateStatusSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TasksAPIService sharedInstance] updateTaskStatus: requestURL
+                                             withParameter: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             NSLog(@"<INFO> Update status response: %@", response[0]);
+             
+             [subscriber sendNext: nil];
+             [subscriber sendCompleted];
+             
+         }
+         error: ^(NSError *error) {
+            
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return updateStatusSignal;
+}
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*) message
+{
+    NSString* requestURL           = [self buildSendReworkStatusMessageURL];
+    NSDictionary* requestParameter = [self buildSendReworkStatusMessageParameter: message];
+    
+    RACSignal* sendReworkStatusMessage = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] sendReworkStatusMessage: requestURL
+                                                   withParameters: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             NSLog(@"<INFO> Send rework status message: %@", response[0]);
+             
+             [subscriber sendNext: nil];
+             [subscriber sendCompleted];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return sendReworkStatusMessage;
+}
+
 #pragma mark - Data base methods -
 
 - (void) parseTasksForProjectFromResponse: (NSArray*)               response
@@ -579,5 +637,46 @@
                               withSubtask: withSubtask
                            withCompletion: completion];
 }
+
+- (NSString*) buildUpdateTaskStatusURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [updateTaskStatusURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                          withString: currentTask.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSDictionary*) getUpdateTaskStatusParameter: (TaskStatusType) status
+{
+    NSDictionary* requestParameter = @{@"status" : [NSString stringWithFormat: @"%lu", status]};
+    
+    return requestParameter;
+}
+
+- (NSString*) buildSendReworkStatusMessageURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [sendReworkMessageURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                           withString: currentTask.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSDictionary*) buildSendReworkStatusMessageParameter: (NSString*) message
+{
+    NSDictionary* requestParameter = @{@"message" : message};
+    
+    return requestParameter;
+}
+
 
 @end

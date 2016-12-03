@@ -6,8 +6,13 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
+
 
 @interface OnRevisionViewModel : NSObject
+
+@property (strong, nonatomic) NSString* commentText;
+
+- (RACCommand*) sendReworkCommand;
 
 @end

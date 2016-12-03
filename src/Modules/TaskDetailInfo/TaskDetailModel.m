@@ -132,6 +132,12 @@
                      inSection: 0
                          inRow: 0];
     
+    [[[TasksService sharedInstance] updateStatusForSelectedTask: row.status] subscribeCompleted: ^{
+        
+        NSLog(@"<INFO> Task status updated successful");
+        
+    }];
+    
     [DataManagerShared updateStatusType: @(row.status)
                   withStatusDescription: row.statusDescription
                          withCompletion: nil];

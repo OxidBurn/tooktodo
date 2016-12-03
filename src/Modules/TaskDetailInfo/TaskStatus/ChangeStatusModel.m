@@ -139,7 +139,7 @@
 {
     if ([self checkIfUserCanCancelTask] == TaskCancelRequestType)
     {
-        NSUInteger index = [self.statusesArray indexOfObject: @(TaskCancelRequestType)];
+        NSUInteger index = [self.statusesArray indexOfObject: @(TaskCanceledStatusType)];
         
         return index;
     }

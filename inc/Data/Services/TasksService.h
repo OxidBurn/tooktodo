@@ -42,4 +42,8 @@
 - (RACSignal*) deleteTask: (ProjectTask*) task
              withSubtasks: (BOOL)         subtasks;
 
+- (RACSignal*) updateStatusForSelectedTask: (TaskStatusType) status;
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*) message;
+
 @end

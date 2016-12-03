@@ -28,4 +28,10 @@
 
 - (RACSignal*) loadTaskLogs: (NSString*) url;
 
+- (RACSignal*) updateTaskStatus: (NSString*)     requestURL
+                  withParameter: (NSDictionary*) parameter;
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*)     requestURL
+                        withParameters: (NSDictionary*) parameter;
+
 @end

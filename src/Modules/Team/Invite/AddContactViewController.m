@@ -89,7 +89,7 @@
 - (void) setupMessageTextView
 {
     self.messageTextView.placeHolder      = @"Личное сообщение";
-    self.messageTextView.placeHolderColor = [UIColor redColor];
+    self.messageTextView.placeHolderColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1.00];
     self.messageTextView.placeHolderFont  = [UIFont fontWithName: @"SFUIText-Regular"
                                                             size: 15];
 }

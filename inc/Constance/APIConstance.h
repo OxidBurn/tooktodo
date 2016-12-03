@@ -44,6 +44,8 @@ static NSString* taskCommentsURL                = @"/api/task/p{projectId}-t{tas
 static NSString* postCommentURL                 = @"/api/task/p{projectId}-t{taskId}/comment";
 static NSString* deleteTaskURL                  = @"/api/task/p{projectId}-t{taskId}";
 static NSString* logsTaskURL                    = @"/api/task/p{projectId}-t{taskId}/logs";
+static NSString* updateTaskStatusURL            = @"/api/task/p{projectId}-t{taskId}/status";
+static NSString* sendReworkMessageURL           = @"/api/task/p{projectId}-t{taskId}/rework";
 
 // Grab filters info
 static NSString* getFiltersStatusesURL     = @"/api/tasksFilter/project/{projectId}/counters/statuses";

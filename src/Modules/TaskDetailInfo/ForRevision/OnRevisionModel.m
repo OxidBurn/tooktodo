@@ -8,6 +8,14 @@
 
 #import "OnRevisionModel.h"
 
+// Classes
+#import "TasksService.h"
+
 @implementation OnRevisionModel
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*) message
+{
+    return [[TasksService sharedInstance] sendReworkStatusMessage: message];
+}
 
 @end
