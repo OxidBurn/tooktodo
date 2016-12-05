@@ -92,7 +92,7 @@
     
     // Setting avatar url
     // first time it will be loaded from web and then grab from cache
-    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.ownerUser.avatarSrc]];
+    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
     
     // Room info
     ProjectTaskRoom* room = (ProjectTaskRoom*)taskInfo.room;

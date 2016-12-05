@@ -22,6 +22,7 @@
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ParentCollectionCell.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -260,6 +261,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
     
     itemSix.cellId    = self.collectionViewCellsIdArray[CellectionSingleUserCell];
     itemSix.cellTitle = @"Ответственный";
+    itemSix.responsible = [self createResponsibleArray];
     
     itemSeven.cellTitle = @"Утверждающие";
     
@@ -308,6 +310,20 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
     
     return @[ owner ];
 }
+
+- (NSArray*) createResponsibleArray
+{
+    ProjectTaskResponsible* responsible = self.task.responsible;
+    
+    if (responsible != nil)
+    {
+        return @[ responsible ];
+    }
+    
+    else
+        return nil;
+}
+
 
 - (void) fillResponsibleArray: (TaskCollectionCellsContent*) contentResponsible
            withClaimingsArray: (TaskCollectionCellsContent*) contentClaimings
