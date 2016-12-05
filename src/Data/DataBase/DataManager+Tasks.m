@@ -225,6 +225,8 @@
                                                            withValue: info.taskID
                                                            inContext: context];
     
+    task.isSelected = @NO;
+    
     [self fillTaskInfoForTask: task
                     inProject: project
                      withInfo: info
@@ -765,8 +767,6 @@
                     withInfo: (ProjectTaskModel*)       info
                    inContext: (NSManagedObjectContext*) context
 {
-    task.isSelected = @NO;
-    
     if ( info.taskID )
         task.taskID = info.taskID;
     
