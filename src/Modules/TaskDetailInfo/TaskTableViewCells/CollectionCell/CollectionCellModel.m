@@ -271,15 +271,13 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
             withClaimingsArray: itemSeven
             withObserversArray: itemEight];
     
-    itemSix.responsible = [self createResponsibleArray];
-
     NSString* responsibleCellId = [self determineCollectionCellIdForContent: itemSix.responsible];
     
     NSString* claimingCellId = [self determineCollectionCellIdForContent: itemSeven.claiming];
     
     NSString* observersCellId = [self determineCollectionCellIdForContent: itemEight.observers];
     
-    NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбран" : @"";
+    NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указан" : @"";
     
     NSString* claimingDetailText  = [claimingCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбраны" : @"";
     
