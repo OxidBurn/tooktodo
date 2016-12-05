@@ -20,7 +20,7 @@
 @interface CollectionCellFactory : NSObject
 
 // methods
-- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView
+- (UITableViewCell*) returnCollectionCellForTableView: (UITableView*) tableView
                                          withDelegate: (id<ParentCollectionCellDelegate>) delegate;
 
 @end
