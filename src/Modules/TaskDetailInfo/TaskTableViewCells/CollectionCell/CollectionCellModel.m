@@ -313,15 +313,33 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* labelText;
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
-    NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* detailString = [NSString string];
     
-    NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ — %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
+        }
+        else
+            detailString = @"";
+    }
     
-    labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
-    
-    return labelText;
+    return detailString;
 }
 
 - (NSArray*) createOwnerTaskArray
