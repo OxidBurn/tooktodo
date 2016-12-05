@@ -30,6 +30,7 @@
 #import "OnPlanCollectionCellFactory.h"
 #import "SingleUserCollectionCellFactory.h"
 #import "GroupOfUsersCollectionFactory.h"
+#import "DefaultCollectionCellFactory.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -47,14 +48,14 @@ typedef NS_ENUM(NSUInteger, CollectionItemsList)
     
 };
 
-typedef NS_ENUM(NSUInteger, CellectionItemCellId)
+typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 {
-    CellectionTermsCell,
-    CellectionDetailCell,
-    CellectionOnPlanCell,
-    CellectionSingleUserCell,
-    CellectionGroupOfUsersCell,
-    
+    CollectionTermsCell,
+    CollectionDetailCell,
+    CollectionOnPlanCell,
+    CollectionSingleUserCell,
+    CollectionGroupOfUsersCell,
+    CollectionDefaultCell,
 };
 
 @interface CollectionCellModel()
@@ -93,7 +94,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
 {
     if ( _collectionViewCellsIdArray == nil )
     {
-        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId" ];
+        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId", @"DefaultCollectionCellId" ];
     }
     
     return _collectionViewCellsIdArray;
@@ -145,7 +146,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
     
     switch ( cellTypeIndex )
     {
-        case CellectionTermsCell:
+        case CollectionTermsCell:
         {
             TermsInfoCollectionCellFactory* factory = [TermsInfoCollectionCellFactory new];
             
@@ -156,7 +157,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
         }
             break;
             
-        case CellectionDetailCell:
+        case CollectionDetailCell:
         {
             DetailCollectionCellFactory* factory = [DetailCollectionCellFactory new];
             
@@ -167,7 +168,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
         }
             break;
             
-        case CellectionOnPlanCell:
+        case CollectionOnPlanCell:
         {
             OnPlanCollectionCellFactory* factory = [OnPlanCollectionCellFactory new];
             
@@ -178,7 +179,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
         }
             break;
             
-        case CellectionSingleUserCell:
+        case CollectionSingleUserCell:
         {
             SingleUserCollectionCellFactory* factory = [SingleUserCollectionCellFactory new];
             
@@ -189,7 +190,7 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
         }
             break;
             
-        case CellectionGroupOfUsersCell:
+        case CollectionGroupOfUsersCell:
         {
             GroupOfUsersCollectionFactory* factory = [GroupOfUsersCollectionFactory new];
             
@@ -197,6 +198,17 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
                                             forCollectionView: collection
                                                 withIndexPath: indexPath
                                                  withDelegate: delegate];
+        }
+            break;
+            
+        case CollectionDefaultCell:
+        {
+            DefaultCollectionCellFactory* factory = [DefaultCollectionCellFactory new];
+            
+            cell = [factory returnDefaultCellWithContent: content
+                                       forCollectionView: collection
+                                           withIndexPath: indexPath
+                                            withDelegate: delegate];
         }
             break;
     }
@@ -221,33 +233,33 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
 {
     TaskCollectionCellsContent* itemOne = [TaskCollectionCellsContent new];
     
-    itemOne.cellId     = self.collectionViewCellsIdArray[CellectionTermsCell];
+    itemOne.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemOne.cellTitle  = @"Сроки";
     itemOne.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
                                                  withFinishDate: self.task.endDate];
 
     TaskCollectionCellsContent* itemTwo = [TaskCollectionCellsContent new];
     
-    itemTwo.cellId     = self.collectionViewCellsIdArray[CellectionTermsCell];
+    itemTwo.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemTwo.cellTitle  = @"Фактическая дата";
     itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
                                                  withFinishDate: self.task.closedDate];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
-    itemThree.cellId     = self.collectionViewCellsIdArray[CellectionDetailCell];
+    itemThree.cellId     = self.collectionViewCellsIdArray[CollectionDetailCell];
     itemThree.cellTitle  = @"Помещение";
     itemThree.cellDetail = self.task.room.title;
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     
-    itemFour.cellId    = self.collectionViewCellsIdArray[CellectionOnPlanCell];
+    itemFour.cellId    = self.collectionViewCellsIdArray[CollectionOnPlanCell];
     itemFour.cellTitle = @"На плане";
     itemFour.roomNumber = self.task.room.number.integerValue;
     
     TaskCollectionCellsContent* itemFive = [TaskCollectionCellsContent new];
     
-    itemFive.cellId    = self.collectionViewCellsIdArray[CellectionSingleUserCell];
+    itemFive.cellId    = self.collectionViewCellsIdArray[CollectionSingleUserCell];
     itemFive.cellTitle = @"Создатель";
     itemFive.taskOwner = [self createOwnerTaskArray];
     
@@ -259,28 +271,31 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
             withClaimingsArray: itemSeven
             withObserversArray: itemEight];
     
-    itemSix.cellId    = self.collectionViewCellsIdArray[CellectionSingleUserCell];
-    itemSix.cellTitle = @"Ответственный";
     itemSix.responsible = [self createResponsibleArray];
+
+    NSString* responsibleCellId = [self determineCollectionCellIdForContent: itemSix.responsible];
     
-    itemSeven.cellTitle = @"Утверждающие";
+    NSString* claimingCellId = [self determineCollectionCellIdForContent: itemSeven.claiming];
     
-    if (itemSeven.claiming.count > 1)
-        itemSeven.cellId  = self.collectionViewCellsIdArray[CellectionGroupOfUsersCell];
+    NSString* observersCellId = [self determineCollectionCellIdForContent: itemEight.observers];
     
-    else
-        itemSeven.cellId  = self.collectionViewCellsIdArray[CellectionSingleUserCell];
+    NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбран" : @"";
     
-   
+    NSString* claimingDetailText  = [claimingCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбраны" : @"";
     
-    itemEight.cellTitle = @"Наблюдатели";
+    NSString* observersDetailText  = [observersCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбраны" : @"";
     
-    if (itemEight.observers.count > 1)
-        itemEight.cellId  = self.collectionViewCellsIdArray[CellectionGroupOfUsersCell];
+    itemSix.cellTitle  = @"Ответственный";
+    itemSix.cellId     = responsibleCellId;
+    itemSix.cellDetail = responsibleDetailText;
     
-    else
-        itemEight.cellId  = self.collectionViewCellsIdArray[CellectionSingleUserCell];
+    itemSeven.cellTitle  = @"Утверждающие";
+    itemSeven.cellId     = claimingCellId;
+    itemSeven.cellDetail = claimingDetailText;
     
+    itemEight.cellTitle  = @"Наблюдатели";
+    itemEight.cellId     = observersCellId;
+    itemEight.cellDetail = observersDetailText;
 
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
@@ -463,13 +478,13 @@ typedef NS_ENUM(NSUInteger, CellectionItemCellId)
     
     if ( arrayToCheck == nil || arrayToCheck.count == 0 )
     {
-        cellId = self.collectionViewCellsIdArray[CellectionDetailCell];
+        cellId = self.collectionViewCellsIdArray[CollectionDefaultCell];
     } else
         if ( arrayToCheck.count == 1 )
         {
-            cellId = self.collectionViewCellsIdArray[CellectionSingleUserCell];
+            cellId = self.collectionViewCellsIdArray[CollectionSingleUserCell];
         } else
-            cellId = self.collectionViewCellsIdArray[CellectionGroupOfUsersCell];
+            cellId = self.collectionViewCellsIdArray[CollectionGroupOfUsersCell];
     
     return cellId;
 }

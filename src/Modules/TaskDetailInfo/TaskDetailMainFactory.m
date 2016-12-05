@@ -60,7 +60,7 @@
         {
             CollectionCellFactory* factory = [CollectionCellFactory new];
             
-            cell = [factory returnCellectionCellForTableView: tableView
+            cell = [factory returnCollectionCellForTableView: tableView
                                                 withDelegate: delegate];
             
             
