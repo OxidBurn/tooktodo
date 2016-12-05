@@ -676,14 +676,12 @@
             [self deselectAllSelectedTasksInContext: localContext];
         }
         
-        ProjectTask* selectedTask = [ProjectTask MR_findFirstByAttribute: @"taskID"
-                                                               withValue: task.taskID
-                                                               inContext: localContext];
+        ProjectTask* selectedTask = [task MR_inContext: localContext];
         
         selectedTask.isSelected = @(isSelected);
         
     }
-                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
                           if ( completion )
                               completion(contextDidSave);

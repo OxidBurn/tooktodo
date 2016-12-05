@@ -14,9 +14,20 @@
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
+    string = [string substringToIndex: 10];
+    
     formatter.dateFormat = @"dd.mm.yyyy";
     
-    return [formatter dateFromString:string];
+    NSDate* date = [formatter dateFromString: string];
+    
+    if ( date == nil )
+    {
+        formatter.dateFormat = @"yyyy-MM-dd";
+        
+        date = [formatter dateFromString: string];
+    }
+    
+    return date;
 }
 
 @end
