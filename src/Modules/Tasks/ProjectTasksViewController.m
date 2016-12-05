@@ -75,6 +75,8 @@
 
     // handling splitVC
     self.splitViewController.delegate = self;
+    
+    [self needToUpdateContent];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -232,7 +234,15 @@
 
 - (void) needToUpdateContent
 {
-    [self updateContent];
+    @weakify(self)
+    
+    [[self.viewModel loadUpdatedContentFromServer] subscribeCompleted:^{
+        
+        @strongify(self)
+        
+        [self.tasksByProjectTableView reloadData];
+        
+    }];
 }
 
 - (CGRect) getFrameForSortingPopover

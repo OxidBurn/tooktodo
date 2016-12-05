@@ -34,6 +34,13 @@
     return [[[requestManager rac_GET: url parameters: nil] logError] replayLazily];
 }
 
+- (RACSignal*) loadTaskInfoWithURL: (NSString*) url
+{
+    AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];
+    
+    return  [[[requestManager rac_GET: url parameters: nil] logError] replayLazily];
+}
+
 - (RACSignal*) loadAllUserTasks
 {
     AFHTTPRequestOperationManager* requestManager = [self getDefaultManager];

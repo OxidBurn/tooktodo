@@ -46,4 +46,6 @@
 
 - (RACSignal*) sendReworkStatusMessage: (NSString*) message;
 
+- (void) loadSelectedTaskInfoWithCompletion: (CompletionWithSuccess) completion;
+
 @end

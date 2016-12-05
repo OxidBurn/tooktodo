@@ -194,7 +194,7 @@
                      withCompletion: (CompletionWithSuccess) completion
 {
     if ( isSelected )
-        [SVProgressHUD show];
+        SharedApplication.networkActivityIndicatorVisible = YES;
     
     [DataManagerShared updateSelectedStateForTask: task
                                 withSelectedState: isSelected
@@ -202,7 +202,8 @@
                                        
                                        if ( isSelected )
                                        {
-                                           NSArray* signals = @[[self loadSelectedTaskAvailableActionsForTask: task],
+                                           NSArray* signals = @[[self loadSelectedTaskInfoWithCompletion],
+                                                                [self loadSelectedTaskAvailableActionsForTask: task],
                                                                 [[TaskCommentsService sharedInstance] getCommentsForSelectedTask],
                                                                 [self loadSelectedTaskLogs: task]];
                                            
@@ -213,7 +214,7 @@
                                                if ( completion )
                                                    completion(isSuccess);
                                                
-                                               [SVProgressHUD dismiss];
+                                               SharedApplication.networkActivityIndicatorVisible = NO;
                                                
                                            }];
                                        }
@@ -359,8 +360,6 @@
                                                    withParameters: requestParameter]
          subscribeNext: ^(RACTuple* response) {
              
-             NSLog(@"<INFO> Send rework status message: %@", response[0]);
-             
              [subscriber sendNext: nil];
              [subscriber sendCompleted];
              
@@ -375,6 +374,44 @@
     }];
     
     return sendReworkStatusMessage;
+}
+
+- (RACSignal*) loadSelectedTaskInfoWithCompletion
+{
+    ProjectTask* task    = [self getUpdatedSelectedTask];
+    NSString* requestURL = [self buildGetTaskInfoURL: task];
+    
+    @weakify(self)
+    
+    RACSignal* loadTaskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TasksAPIService sharedInstance] loadTaskInfoWithURL: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseSelectedTaskInfo: response[0]
+                                withTask: task
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             NSLog(@"<ERROR> with loading task info %@", error.localizedDescription);
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadTaskInfo;
 }
 
 #pragma mark - Data base methods -
@@ -414,6 +451,26 @@
     {
         [DataManagerShared persistTasksForProjects: parsedInfo
                                     withCompletion: completion];
+    }
+}
+
+- (void) parseSelectedTaskInfo: (NSDictionary*)         response
+                      withTask: (ProjectTask*)          task
+                withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parsingError      = nil;
+    ProjectTaskModel* taskInfo = [[ProjectTaskModel alloc] initWithDictionary: response
+                                                                        error: &parsingError];
+    
+    if ( parsingError )
+    {
+        NSLog(@"<ERROR> with parsing selected task info: %@", parsingError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared updateSelectedTaskInfo: task
+                                      withNewInfo: taskInfo
+                                   withCompletion: completion];
     }
 }
 
@@ -460,6 +517,9 @@
     
     return task;
 }
+
+
+#pragma mark - Parsing responses from server -
 
 - (void) parseTaskLogsResponse: (NSDictionary*)         response
                 withCompletion: (CompletionWithSuccess) completion
@@ -676,6 +736,17 @@
     NSDictionary* requestParameter = @{@"message" : message};
     
     return requestParameter;
+}
+
+- (NSString*) buildGetTaskInfoURL: (ProjectTask*) task
+{
+    NSString* requestURL = [getTaskInfoURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                     withString: task.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: task.taskID.stringValue];
+    
+    return requestURL;
 }
 
 

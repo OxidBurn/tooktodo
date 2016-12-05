@@ -35,6 +35,8 @@
 
 - (RACSignal*) updateContent;
 
+- (RACSignal*) loadUpdatedContentFromServer;
+
 - (RACSignal*) applyFilters;
 
 - (ProjectTask*) getSelectedProjectTask;

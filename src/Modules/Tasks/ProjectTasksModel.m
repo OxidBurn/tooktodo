@@ -71,6 +71,13 @@ static NSString* contentKey = @"contentInfoKey";
     return updateInfoSignal;
 }
 
+- (RACSignal*) loadUpdatedContentFromServer
+{
+    self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return [[TasksService sharedInstance] loadAllTasksForProjectWithID: self.currentProjectInfo.projectID];
+}
+
 - (RACSignal*) applyFilters
 {
     return nil;

@@ -72,6 +72,11 @@
     return updateSignal;
 }
 
+- (RACSignal*) loadUpdatedContentFromServer
+{
+    return [self.model loadUpdatedContentFromServer];
+}
+
 - (RACSignal*) applyFilters
 {
     return [self.model applyFilters];
