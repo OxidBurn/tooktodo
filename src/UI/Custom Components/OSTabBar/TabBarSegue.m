@@ -13,8 +13,8 @@
 
 - (void) perform
 {
-    MainTabBarController* sourceController = (MainTabBarController*)self.sourceViewController;
-    UIViewController* destinationController                   = self.destinationViewController;
+    MainTabBarController* sourceController  = (MainTabBarController*)self.sourceViewController;
+    UIViewController* destinationController = self.destinationViewController;
     
     if ( sourceController.containerController )
     {

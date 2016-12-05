@@ -106,7 +106,11 @@
 
 - (void) hideMainMenu
 {
-    [self.slidingViewController resetTopViewAnimated: YES];
+    [self.slidingViewController resetTopViewAnimated: YES
+                                          onComplete: ^{
+        
+                                              
+    }];
 }
 
 - (void) dismissTopController: (UIViewController*) controller
@@ -157,7 +161,14 @@
     UINavigationController* controller = (UINavigationController*)self.containerController;
     
     if ( [controller isKindOfClass: [UINavigationController class]] && [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
+    {
         [controller.visibleViewController needToUpdateContent];
+    }
+    else
+        if ( [controller respondsToSelector: @selector(needToUpdateContent)] )
+        {
+            [controller needToUpdateContent];
+        }
 
 }
 
