@@ -221,9 +221,15 @@
                           forProject: (ProjectInfo*)            project
                            inContext: (NSManagedObjectContext*) context
 {
-    ProjectTask* task = [ProjectTask MR_findFirstOrCreateByAttribute: @"taskID"
-                                                           withValue: info.taskID
-                                                           inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"taskID == %@ AND projectId == %@", info.taskID, info.projectId];
+    
+    ProjectTask* task = [ProjectTask MR_findFirstWithPredicate: predicate
+                                                     inContext: context];
+    
+    if ( task == nil )
+    {
+        task = [ProjectTask MR_createEntityInContext: context];
+    }
     
     task.isSelected = @NO;
     

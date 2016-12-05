@@ -56,9 +56,15 @@
 - (void) persistNewProjectWithInfo: (ProjectInfoModel*)        data
                          inContext: (NSManagedObjectContext*) context
 {
-    ProjectInfo* projectInfo = [ProjectInfo MR_findFirstOrCreateByAttribute: @"projectID"
-                                                                  withValue: @(data.projectID)
-                                                                  inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"projectID == %@ OR title == %@", @(data.projectID), data.title];
+    
+    ProjectInfo* projectInfo = [ProjectInfo MR_findFirstWithPredicate: predicate
+                                                            inContext: context];
+    
+    if ( projectInfo == nil )
+    {
+        projectInfo = [ProjectInfo MR_createEntityInContext: context];
+    }
     
     if ( data.lastVisit )
     {
