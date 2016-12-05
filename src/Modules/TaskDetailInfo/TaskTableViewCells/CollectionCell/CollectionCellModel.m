@@ -242,14 +242,23 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     itemTwo.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemTwo.cellTitle  = @"Фактическая дата";
-    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
-                                                 withFinishDate: self.task.closedDate];
+    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.factualStartDate
+                                                 withFinishDate: self.task.factualEndDate];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
     itemThree.cellId     = self.collectionViewCellsIdArray[CollectionDetailCell];
     itemThree.cellTitle  = @"Помещение";
-    itemThree.cellDetail = self.task.room.title;
+    
+    NSArray* rooms = self.task.rooms.array;
+    
+    [rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        itemThree.cellDetail = obj.title;
+        itemThree.roomNumber = obj.number.integerValue;
+    }];
+    
+    
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     
