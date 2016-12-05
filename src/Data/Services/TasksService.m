@@ -194,7 +194,10 @@
                      withCompletion: (CompletionWithSuccess) completion
 {
     if ( isSelected )
+    {
+        [SVProgressHUD show];
         SharedApplication.networkActivityIndicatorVisible = YES;
+    }
     
     [DataManagerShared updateSelectedStateForTask: task
                                 withSelectedState: isSelected
@@ -215,6 +218,7 @@
                                                    completion(isSuccess);
                                                
                                                SharedApplication.networkActivityIndicatorVisible = NO;
+                                               [SVProgressHUD dismiss];
                                                
                                            }];
                                        }
