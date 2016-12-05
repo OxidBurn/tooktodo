@@ -25,6 +25,7 @@
 // methods
 - (IBAction) onBack: (UIBarButtonItem*) sender;
 
+- (IBAction)onEmptySpaceGesture: (UITapGestureRecognizer*) sender;
 @end
 
 @implementation ChangeStatusViewController
@@ -64,6 +65,12 @@
     [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
+
+- (IBAction) onEmptySpaceGesture: (UITapGestureRecognizer*) sender
+{
+    [self dismissViewControllerAnimated: YES completion: nil];
+}
+
 
 #pragma mark - Helpers -
 
