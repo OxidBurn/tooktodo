@@ -173,8 +173,7 @@
     
     if (notification.userInfo[UIKeyboardFrameBeginUserInfoKey])
     {
-        [self setViewMovedUp: YES
-              withCompletion: nil];
+        [self setViewMovedUp: YES];
     }
 }
 
@@ -182,13 +181,11 @@
 {
     if (notification.userInfo[UIKeyboardFrameEndUserInfoKey])
     {
-        [self setViewMovedUp: NO
-              withCompletion: nil];
+        [self setViewMovedUp: NO];
     }
 }
 
 -(void) setViewMovedUp: (BOOL)                  movedUp
-        withCompletion: (CompletionWithSuccess) completion
 {
     [UIView beginAnimations: nil
                     context: NULL];
@@ -224,9 +221,6 @@
                      }];
     
     [UIView commitAnimations];
-    
-    if ( completion )
-        completion(YES);
 }
 
 
@@ -367,28 +361,13 @@
             
             self.recoveryModel = x;
             
-            __weak typeof(self) blockSelf = self;
-            
             if (self.isKeyboard == YES)
             {
-                [self setViewMovedUp: NO
-                      withCompletion: ^(BOOL isSuccess) {
-                          
-                          [blockSelf textFieldDidEndEditing: blockSelf.emailTextField];
-                          [blockSelf textFieldDidEndEditing: blockSelf.passwordTextField];
-                          
-                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                              
-                              [blockSelf performSegueWithIdentifier: @"ShowResetingPassScreenID"
-                                                             sender: blockSelf];
-                          });
-                }];
+                [self setViewMovedUp: NO];
             }
-            else
-            {
-                [blockSelf performSegueWithIdentifier: @"ShowResetingPassScreenID"
-                                               sender: blockSelf];
-            }
+            
+            [self performSegueWithIdentifier: @"ShowResetingPassScreenID"
+                                      sender: self];
         }];
         
         [signal subscribeCompleted:^{
@@ -555,8 +534,7 @@
         //move the main view, so that the keyboard does not hide it.
         if  (self.view.frame.origin.y >= 0)
         {
-            [self setViewMovedUp: YES
-                  withCompletion: nil];
+            [self setViewMovedUp: YES];
         }
     }
 }
