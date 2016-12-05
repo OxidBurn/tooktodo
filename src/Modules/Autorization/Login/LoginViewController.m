@@ -118,11 +118,6 @@
     
     // unregister for keyboard notifications while not visible.
     
-    if (self.isKeyboard == YES)
-    {
-        [self setViewMovedUp: NO];
-    }
-    
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIKeyboardWillShowNotification
                                                   object: nil];
@@ -178,7 +173,8 @@
     
     if (notification.userInfo[UIKeyboardFrameBeginUserInfoKey])
     {
-        [self setViewMovedUp: YES];
+        [self setViewMovedUp: YES
+              withCompletion: nil];
     }
 }
 
@@ -186,13 +182,17 @@
 {
     if (notification.userInfo[UIKeyboardFrameEndUserInfoKey])
     {
-        [self setViewMovedUp: NO];
+        [self setViewMovedUp: NO
+              withCompletion: nil];
     }
 }
 
--(void) setViewMovedUp: (BOOL) movedUp
+-(void) setViewMovedUp: (BOOL)                  movedUp
+        withCompletion: (CompletionWithSuccess) completion
 {
-    [UIView beginAnimations: nil context: NULL];
+    [UIView beginAnimations: nil
+                    context: NULL];
+    
     [UIView setAnimationDuration: 0.3]; // if you want to slide up the view
     
     CGRect rect = self.view.frame;
@@ -201,6 +201,7 @@
         if (self.isKeyboard == NO)
         {
             self.isKeyboard = YES;
+            
             rect.origin.y = -kOFFSET_FOR_KEYBOARD;
             rect.size.height += kOFFSET_FOR_KEYBOARD;
         }
@@ -208,14 +209,24 @@
     }
     else
     {
-        // revert back to the normal state.
-        rect.origin.y    += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-        self.isKeyboard = NO;
+        if ( self.isKeyboard == YES)
+        {
+            rect.origin.y    += kOFFSET_FOR_KEYBOARD;
+            rect.size.height -= kOFFSET_FOR_KEYBOARD;
+            self.isKeyboard = NO;
+        }
     }
-    self.view.frame = rect;
+    
+    [UIView animateWithDuration: 0.3
+                     animations: ^{
+                         
+                         self.view.frame = rect;
+                     }];
     
     [UIView commitAnimations];
+    
+    if ( completion )
+        completion(YES);
 }
 
 
@@ -356,9 +367,28 @@
             
             self.recoveryModel = x;
             
-            [self performSegueWithIdentifier: @"ShowResetingPassScreenID"
-                                      sender: self];
+            __weak typeof(self) blockSelf = self;
             
+            if (self.isKeyboard == YES)
+            {
+                [self setViewMovedUp: NO
+                      withCompletion: ^(BOOL isSuccess) {
+                          
+                          [blockSelf textFieldDidEndEditing: blockSelf.emailTextField];
+                          [blockSelf textFieldDidEndEditing: blockSelf.passwordTextField];
+                          
+                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                              
+                              [blockSelf performSegueWithIdentifier: @"ShowResetingPassScreenID"
+                                                             sender: blockSelf];
+                          });
+                }];
+            }
+            else
+            {
+                [blockSelf performSegueWithIdentifier: @"ShowResetingPassScreenID"
+                                               sender: blockSelf];
+            }
         }];
         
         [signal subscribeCompleted:^{
@@ -525,9 +555,15 @@
         //move the main view, so that the keyboard does not hide it.
         if  (self.view.frame.origin.y >= 0)
         {
-            [self setViewMovedUp:YES];
+            [self setViewMovedUp: YES
+                  withCompletion: nil];
         }
     }
+}
+
+- (void) textFieldDidEndEditing: (UITextField*) textField
+{
+    [textField resignFirstResponder];
 }
 
 
