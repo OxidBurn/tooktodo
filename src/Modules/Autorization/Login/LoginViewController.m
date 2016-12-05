@@ -102,21 +102,27 @@
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(keyboardWillShow)
+                                             selector: @selector(keyboardWillShow:)
                                                  name: UIKeyboardWillShowNotification
                                                object: nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(keyboardWillHide)
+                                             selector: @selector(keyboardWillHide:)
                                                  name: UIKeyboardWillHideNotification
                                                object: nil];
 }
 
 - (void) viewWillDisappear: (BOOL) animated
 {
-    [super viewWillDisappear:animated];
+    [super viewWillDisappear: animated];
     
     // unregister for keyboard notifications while not visible.
+    
+    if (self.isKeyboard == YES)
+    {
+        [self setViewMovedUp: NO];
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIKeyboardWillShowNotification
                                                   object: nil];
@@ -166,26 +172,19 @@
 
 #pragma mark - Internal methods -
 
--(void) keyboardWillShow
+-(void) keyboardWillShow: (NSNotification*) notification
 {
     // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
+    
+    if (notification.userInfo[UIKeyboardFrameBeginUserInfoKey])
     {
         [self setViewMovedUp: YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp: NO];
     }
 }
 
--(void) keyboardWillHide
+-(void) keyboardWillHide: (NSNotification*) notification
 {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp: YES];
-    }
-    else if (self.view.frame.origin.y < 0)
+    if (notification.userInfo[UIKeyboardFrameEndUserInfoKey])
     {
         [self setViewMovedUp: NO];
     }
@@ -199,11 +198,13 @@
     CGRect rect = self.view.frame;
     if (movedUp)
     {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
-        self.isKeyboard = YES;
+        if (self.isKeyboard == NO)
+        {
+            self.isKeyboard = YES;
+            rect.origin.y = -kOFFSET_FOR_KEYBOARD;
+            rect.size.height += kOFFSET_FOR_KEYBOARD;
+        }
+        
     }
     else
     {

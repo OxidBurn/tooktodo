@@ -144,6 +144,7 @@
     taskDetailCellContent.roomNumber          = task.room.number.integerValue;
     taskDetailCellContent.commentsNumber      = task.commentsCount.integerValue;
     taskDetailCellContent.taskType            = task.taskType.integerValue;
+    taskDetailCellContent.isHiddenTask        = task.access.integerValue;
     
     TaskRowContent* taskDescriptionCellContent = [TaskRowContent new];
     
