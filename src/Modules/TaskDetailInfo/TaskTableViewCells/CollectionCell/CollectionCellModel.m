@@ -264,7 +264,11 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     itemFour.cellId    = self.collectionViewCellsIdArray[CollectionOnPlanCell];
     itemFour.cellTitle = @"На плане";
-    itemFour.roomNumber = self.task.room.number.integerValue;
+    
+    ProjectTaskRoom* room = self.task.rooms.firstObject;
+    
+    itemFour.roomNumber = room.roomID.integerValue;
+    itemFour.roomTitle  = room.title;
     
     TaskCollectionCellsContent* itemFive = [TaskCollectionCellsContent new];
     
@@ -288,9 +292,9 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указан" : @"";
     
-    NSString* claimingDetailText  = [claimingCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбраны" : @"";
+    NSString* claimingDetailText  = [claimingCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указаны" : @"";
     
-    NSString* observersDetailText  = [observersCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не выбраны" : @"";
+    NSString* observersDetailText  = [observersCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указаны" : @"";
     
     itemSix.cellTitle  = @"Ответственный";
     itemSix.cellId     = responsibleCellId;
@@ -313,7 +317,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
     NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
     NSString* detailString = [NSString string];
@@ -336,7 +340,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
             detailString = [NSString stringWithFormat: @"— %@", endDateString];
         }
         else
-            detailString = @"";
+            detailString = @"Не указано";
     }
     
     return detailString;

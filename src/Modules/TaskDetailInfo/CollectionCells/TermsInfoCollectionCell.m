@@ -29,6 +29,8 @@
 
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content
 {
-    self.termsLabel.text = content.cellDetail;
+    self.termsTypeLabel.text = content.cellTitle;
+    
+    self.termsLabel.text     = content.cellDetail;
 }
 @end
