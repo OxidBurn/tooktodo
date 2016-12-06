@@ -91,6 +91,11 @@ static CGFloat const MEZoomAnimationScaleFactor = 1.0f;
     
 }
 
+- (void) needToUpdateContent
+{
+    
+}
+
 
 #pragma mark - ECSlidingViewControllerDelegate -
 

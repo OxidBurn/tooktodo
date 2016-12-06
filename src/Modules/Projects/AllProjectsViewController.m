@@ -95,7 +95,7 @@
 
 - (void) needToUpdateContent
 {
-    
+    [self.viewModel updateProjectsContent];
 }
 
 - (IBAction) onShowMenu: (UIBarButtonItem*) sender

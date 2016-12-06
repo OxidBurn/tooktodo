@@ -111,11 +111,16 @@
     
     self.viewModel.hideMenu = ^(){
         
-        [blockSelf.slidingViewController resetTopViewAnimated: YES];
+        [blockSelf.slidingViewController resetTopViewAnimated: YES
+                                                   onComplete: ^{
+            
+                                                       MainTabBarController* topViewController = ((MainTabBarController*)blockSelf.slidingViewController.topViewController);
+                                                       
+                                                       [topViewController needToUpdateContent];                          
+                                                       
+        }];
         
-        MainTabBarController* topViewController = ((MainTabBarController*)blockSelf.slidingViewController.topViewController);
         
-        [topViewController needToUpdateContent];
         
     };
 }
