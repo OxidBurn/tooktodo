@@ -95,9 +95,9 @@
     [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
     
     // Room info
-    ProjectTaskRoom* room = (ProjectTaskRoom*)taskInfo.room;
+    ProjectTaskRoom* room = taskInfo.rooms.firstObject;
     
-    self.roomNumbersLabel.text = room.number.stringValue;
+    self.roomNumbersLabel.text = room.roomID.stringValue;
     
     // Type of subtask
     [self.typeTaskMarkerView setStatusString: taskInfo.taskTypeDescription
