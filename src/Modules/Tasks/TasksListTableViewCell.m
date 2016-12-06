@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* amountTaskMarkerComponent;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* attachmantsMarkerComponent;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* commentsMarkerComponent;
+@property (weak, nonatomic) IBOutlet UIImageView* roomMarkImage;
 
 // Task status UI
 @property (weak, nonatomic) IBOutlet UIButton *taskStatusBtn;
@@ -98,6 +99,8 @@
     ProjectTaskRoom* room = taskInfo.rooms.firstObject;
     
     self.roomNumbersLabel.text = room.roomID.stringValue;
+    
+    self.roomMarkImage.hidden = room.roomID ? NO : YES;
     
     // Type of subtask
     [self.typeTaskMarkerView setStatusString: taskInfo.taskTypeDescription
