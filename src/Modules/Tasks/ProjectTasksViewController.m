@@ -77,6 +77,12 @@
     self.splitViewController.delegate = self;
     
     [self needToUpdateContent];
+    
+    // Add observer for updating selected project content
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(needToUpdateContent)
+                                name: @"NeedToUpdateContent"
+                              object: nil];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -86,6 +92,16 @@
     [self setupTableView];
     
     [self updateContent];
+}
+
+
+#pragma mark - Memory managment -
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"NeedToUpdateContent"
+                                 object: nil];
 }
 
 #pragma mark - Segue -
@@ -243,6 +259,10 @@
         [self.tasksByProjectTableView reloadData];
         
     }];
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
 - (CGRect) getFrameForSortingPopover
