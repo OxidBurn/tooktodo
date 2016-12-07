@@ -120,7 +120,8 @@
                                                        
         }];
         
-        
+        [DefaultNotifyCenter postNotificationName: @"NeedToUpdateContent"
+                                           object: nil];
         
     };
 }
