@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* attachmantsMarkerComponent;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* commentsMarkerComponent;
 @property (weak, nonatomic) IBOutlet UIImageView* roomMarkImage;
+@property (weak, nonatomic) IBOutlet UIButton* taskAccess;
 
 // Task status UI
 @property (weak, nonatomic) IBOutlet UIButton *taskStatusBtn;
@@ -93,14 +94,30 @@
     
     // Setting avatar url
     // first time it will be loaded from web and then grab from cache
-    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
+    if (taskInfo.responsible.avatarSrc)
+        [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
+    
+    else if (taskInfo.responsible.assignee.avatarSrc)
+        [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.assignee.avatarSrc]];
+    
+    else
+        self.avatarImage.image = [UIImage imageNamed: @"emptyAvatarIcon"];
     
     // Room info
     ProjectTaskRoom* room = taskInfo.rooms.firstObject;
     
-    self.roomNumbersLabel.text = room.roomID.stringValue;
+    self.roomNumbersLabel.text = room.number.stringValue;
     
     self.roomMarkImage.hidden = room.roomID ? NO : YES;
+    
+    if ([taskInfo.access isEqual: @(0)])
+    {
+        [self.taskAccess setImage: [UIImage imageNamed: @"closedEyes"] forState: UIControlStateNormal];
+    }
+    
+    else if ([taskInfo.access isEqual: @(1)])
+        [self.taskAccess setImage: [UIImage imageNamed: @"Eye"] forState: UIControlStateNormal];
+   
     
     // Type of subtask
     [self.typeTaskMarkerView setStatusString: taskInfo.taskTypeDescription
