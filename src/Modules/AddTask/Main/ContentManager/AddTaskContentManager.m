@@ -163,7 +163,9 @@
     rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
     rowFour.cellIndex    = SingleUserInfoCell;
     rowFour.title        = @"Ответственный";
-    rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
+//    rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
+    
+    rowFour.responsibleArray = self.task.responsible ? self.task.responsible : self.task.defaultResponsible;
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
     
     
@@ -179,7 +181,8 @@
     rowFive.cellIndex    = cellIndexRowFive;
     rowFive.title        = @"Утверждающие";
     rowFive.detail       = cellFiveDetailText;
-    rowFive.membersArray = self.task.claiming;
+//    rowFive.membersArray = self.task.claiming;
+    rowFive.claimingsArray = self.task.claiming;
     rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
     
     RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
@@ -194,7 +197,8 @@
     rowSix.cellIndex    = cellIndexRowSix;
     rowSix.title        = @"Наблюдатели";
     rowSix.detail       = cellSixDetailText;
-    rowSix.membersArray = self.task.observers;
+//    rowSix.membersArray = self.task.observers;
+    rowSix.observersArray = self.task.observers;
     rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];

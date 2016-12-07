@@ -86,7 +86,8 @@
     
     RowContent* row = self.addTaskContentArray[SectionOne][TaskResponsibleRow];
     
-    row.membersArray = selectedUsersArray;
+    row.membersArray     = selectedUsersArray;
+    row.responsibleArray = selectedUsersArray;
     
     [self updateContentWithRow: row
                      inSection: SectionOne
@@ -108,6 +109,7 @@
     }
     
     row.membersArray = selectedClaiming;
+    row.claimingsArray = selectedClaiming;
     
     row.cellId = [self determineCellIdForContent: selectedClaiming];
     row.cellIndex = [self determintCellIndexForCellId: row.cellId];
@@ -127,6 +129,7 @@
     RowContent* row = self.addTaskContentArray[SectionOne][TaskObserversRow];
     
     row.membersArray = selectedObservers;
+    row.observersArray = selectedObservers;
     
     if ( selectedObservers )
     {

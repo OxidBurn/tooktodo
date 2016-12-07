@@ -87,7 +87,13 @@
                 
                 imageView.hidden = NO;
                 
-                [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                 if ([user respondsToSelector:@selector(avatarSrc)])
+                {
+                    [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                }
+                
+                else
+                    imageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
             }
             
         }];
@@ -109,7 +115,13 @@
                 
                 imageView.hidden = NO;
                 
-                [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                 if ([user respondsToSelector:@selector(avatarSrc)])
+                 {
+                     [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
+                 }
+                 
+                 else
+                 imageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
             }
             
         }];
