@@ -11,6 +11,7 @@
 #import "AddTaskContentManager+Helpers.h"
 #import "TermsData.h"
 #import "ProjectTaskWorkArea+CoreDataProperties.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 
 @implementation AddTaskContentManager (ProjectTask)
 
@@ -43,7 +44,7 @@
     
     rowTwo.cellId    = self.addTaskTableViewCellsInfo[FlexibleCell];
     rowTwo.cellIndex = FlexibleCell;
-    rowTwo.title     = task.taskDescription ? task.taskDescription : @"Описание отсутствует";
+    rowTwo.title     = task.descriptionValue ? task.descriptionValue : @"Описание отсутствует";
     rowTwo.segueId   = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
     
     RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
@@ -57,13 +58,12 @@
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
     NSUInteger rowFourIndex = task.responsible? RightDetailCell : SingleUserInfoCell;
-    NSString* rowFourDetail = task.responsible? @"" : @"Не выбран";
+    NSString* rowFourDetail = task.responsible ? [NSString stringWithFormat: @"%@ %@", task.responsible.firstName, task.responsible.lastName] : @"Не выбран";
     
     rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
     rowFour.detail       = rowFourDetail;
     rowFour.cellIndex    = rowFourIndex;
     rowFour.title        = @"Ответственный";
-    //rowFour.membersArray = task.responsible? @[ task.responsible ] : @[ task.ownerUser ];
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
     
     
@@ -180,5 +180,6 @@
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
+
 
 @end

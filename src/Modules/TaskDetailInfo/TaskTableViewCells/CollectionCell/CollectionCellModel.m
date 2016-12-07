@@ -391,12 +391,12 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
             {
                 NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
-                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
                         NSArray* assigneeArr = obj.assignee.array;
-                        NSArray* inviteArr = obj.invite.array;
+                        NSArray* inviteArr   = obj.invite.array;
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
