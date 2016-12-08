@@ -300,7 +300,14 @@ static NSDateFormatter* defaultDateFormatter = nil;
 + (NSString*) getAbbreviationWithName: (NSString*) name
                           withSurname: (NSString*) surname
 {
-    return [NSString stringWithFormat: @"%@%@", [name substringToIndex: 1], [surname substringToIndex: 1]];
+    NSString* abbreviationOfName = @"";
+    
+    if ( name.length > 0 )
+        abbreviationOfName = [abbreviationOfName stringByAppendingString: [name substringToIndex: 1]];
+    if ( surname.length > 0 )
+        abbreviationOfName = [abbreviationOfName stringByAppendingString: [surname substringToIndex: 1]];
+    
+    return abbreviationOfName;
 }
 
 + (NSString*) getAvatarsDirectoryPath
