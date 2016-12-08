@@ -149,7 +149,10 @@
     RowContent* rowOne = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowOne.title     = @"Помещение";
-    rowOne.detail    = task.room.title;
+    
+    if (task.rooms)
+        rowOne.detail = task.rooms.firstObject.title;
+    
     rowOne.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowOne.cellIndex = RightDetailCell;
     rowOne.segueId   = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
@@ -176,7 +179,6 @@
     rowFour.title   = @"Система";
     rowFour.detail  = rowFourDetail;
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
-    // ToDo: uncomment when systems will be implemented
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     rowFour.cellIndex = RightDetailCell;
     
@@ -184,7 +186,7 @@
     
     rowFive.title     = @"Тип задачи";
     rowFive.detail    = task.taskTypeDescription;
-    rowFive.markImage = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
+    rowFive.markImage = [self getColorForTaskType: task.taskType.integerValue];
     rowFive.cellId    = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
     rowFive.segueId   = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
     rowFive.cellIndex = MarkedRightDetailCell;
@@ -292,5 +294,31 @@
     tmpObserversArr = nil;
     tmpClaimingsArr = nil;
     tmpResponsibleArr = nil;
+}
+
+- (UIColor*) getColorForTaskType: (TaskType) taskType
+{
+    UIColor* typeColor = [UIColor clearColor];
+    
+    switch (taskType)
+    {
+        case TaskWorkType:
+            typeColor = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
+            break;
+            
+        case TaskAgreementType:
+            typeColor = [UIColor colorWithRed:0.424 green:0.663 blue:0.792 alpha:1.000];
+            break;
+            
+        case TaskObservationType:
+            typeColor = [UIColor colorWithRed:1.00 green:0.89 blue:0.27 alpha:1.00];
+            break;
+            
+        case TaskRemarkType:
+            typeColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1.000];
+            break;
+    }
+    
+    return typeColor;
 }
 @end

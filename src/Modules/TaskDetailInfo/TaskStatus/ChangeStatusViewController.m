@@ -71,6 +71,16 @@
     [self dismissViewControllerAnimated: YES completion: nil];
 }
 
+- (BOOL) gestureRecognizer: (UIGestureRecognizer*) gestureRecognizer
+        shouldReceiveTouch: (UITouch*)             touch
+{
+    if ([touch.view isDescendantOfView: self.statusesTableView])
+        return NO;
+    
+    else
+        return YES;
+}
+
 
 #pragma mark - Helpers -
 

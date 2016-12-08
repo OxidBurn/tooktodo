@@ -458,6 +458,8 @@
 
 - (void) updateMembersRoleTypes: (NSArray*) changedMembers
 {
+    [self excludeInvitedUsers];
+    
     [self.allMembersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* oldMember, NSUInteger idx, BOOL * _Nonnull stop) {
        
         [changedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* newMember, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -470,5 +472,21 @@
     }];
 }
 
+
+- (void) excludeInvitedUsers
+{
+    __block NSMutableArray* tmpMembersArray = self.allMembersArray.mutableCopy;
+    
+    [self.allMembersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( member.assignments.invite )
+        {
+            [tmpMembersArray removeObject: member];
+        }
+        
+    }];
+    
+    self.allMembersArray = tmpMembersArray.copy;
+}
 
 @end
