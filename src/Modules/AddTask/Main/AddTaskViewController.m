@@ -49,7 +49,7 @@
 @property (nonatomic, assign) AddTaskControllerType controllerType;
 
 // methods
-- (IBAction)onDoneBtn:(UIBarButtonItem *)sender;
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender;
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
@@ -247,7 +247,11 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    
+    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+        
+        [self dismissViewControllerAnimated: YES
+                                 completion: nil];
+    }];
 }
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender

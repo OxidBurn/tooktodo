@@ -16,6 +16,7 @@
 #import "TaskStatusDefaultValues.h"
 #import "TaskAvailableActionsList+CoreDataClass.h"
 #import "TaskAvailableStatusAction+CoreDataClass.h"
+#import "TaskAvailableAction+CoreDataClass.h"
 
 @interface ChangeStatusModel() <TaskDetailModelDelegate>
 
@@ -100,6 +101,17 @@
     
 }
 
+- (NSArray*) getAvailableActions
+{
+    self.task = [DataManagerShared getSelectedTask];
+    
+    TaskAvailableActionsList* availableActions = self.task.availableActions;
+    
+    NSArray* availableActionsForTask = availableActions.actions.allObjects;
+    
+    return availableActionsForTask;
+}
+
 
 - (TaskStatusType) checkIfUserCanCancelTask
 {
@@ -110,6 +122,8 @@
     if (self.availableStatusActions != nil)
     {
         [self.availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSLog(@"///// %@", obj.stautsActionDescription);
             
             if ([obj.stautsActionDescription isEqualToString: @"Отменить"])
             {
@@ -150,6 +164,7 @@
 - (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
                         withCompletion: (CompletionWithSuccess) completion
 {
+    
     NSNumber* statusValue = self.statusesArray[status];
     
     [DataManagerShared updateStatusType: statusValue

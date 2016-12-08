@@ -119,7 +119,16 @@
 
                 userFullName  = [NSString stringWithFormat: @"%@ %@", invite.firstName, invite.lastName];
             }
+            
+            else if ([user isKindOfClass: [FilledTeamInfo class]])
            
+            {
+                FilledTeamInfo* filledUser = (FilledTeamInfo*) user;
+                
+                userFullName  = filledUser.fullname;
+                
+                userAvatarSrc = filledUser.avatarSrc;
+            }
             
             cell = [factory returnSingleUserCellWithTitle: content.title
                                          withUserFullName: userFullName

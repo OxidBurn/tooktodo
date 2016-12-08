@@ -127,10 +127,6 @@
     row.status            = self.task.status.integerValue;
     row.statusDescription = self.task.statusDescription;
     
-    // updating content with new status value
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 0];
     
     [[[TasksService sharedInstance] updateStatusForSelectedTask: row.status] subscribeCompleted: ^{
         
@@ -142,6 +138,10 @@
                   withStatusDescription: row.statusDescription
                          withCompletion: nil];
 
+    // updating content with new status value
+    [self updateContentWithRow: row
+                     inSection: 0
+                         inRow: 0];
 }
 
 - (ProjectTaskStage*) getTaskStage
