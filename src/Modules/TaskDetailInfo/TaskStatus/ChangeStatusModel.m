@@ -170,9 +170,9 @@
 {
     NSArray* defaultArr = @[@(TaskWaitingStatusType),
                             @(TaskInProgressStatusType),
-                            @(TaskOnApprovingStatusType),
                             @(TaskCompletedStatusType),
                             @(TaskCanceledStatusType),
+                            @(TaskOnApprovingStatusType),
                             @(TaskOnCompletionStatusType)];
     
     NSNumber* currStatus = self.task.status;
