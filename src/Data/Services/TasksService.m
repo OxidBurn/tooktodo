@@ -329,13 +329,11 @@
     NSString* requestURL           = [self buildUpdateTaskStatusURL];
     NSDictionary* requestParameter = [self getUpdateTaskStatusParameter: status];
     
-    RACSignal* updateStatusSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* updateStatusSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
        
         [[[TasksAPIService sharedInstance] updateTaskStatus: requestURL
                                              withParameter: requestParameter]
          subscribeNext: ^(RACTuple* response) {
-             
-             NSLog(@"<INFO> Update status response: %@", response[0]);
              
              [subscriber sendNext: nil];
              [subscriber sendCompleted];

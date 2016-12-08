@@ -25,7 +25,7 @@
 // methods
 - (IBAction) onBack: (UIBarButtonItem*) sender;
 
-- (IBAction)onEmptySpaceGesture: (UITapGestureRecognizer*) sender;
+- (IBAction) onEmptySpaceGesture: (UITapGestureRecognizer*) sender;
 @end
 
 @implementation ChangeStatusViewController
