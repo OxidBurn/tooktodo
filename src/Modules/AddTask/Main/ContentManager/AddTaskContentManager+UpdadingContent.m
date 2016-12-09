@@ -22,6 +22,7 @@
 
 // Categories
 #import "AddTaskContentManager+Helpers.h"
+#import "AddTaskContentManager+ProjectTask.h"
 
 @interface AddTaskContentManager() 
 
@@ -89,6 +90,12 @@
     row.membersArray     = selectedUsersArray;
     row.responsibleArray = selectedUsersArray;
     
+   
+    if (self.controllerType == EditTaskControllerType)
+    {
+        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
+    }
+    
     [self updateContentWithRow: row
                      inSection: SectionOne
                          inRow: TaskResponsibleRow];
@@ -117,6 +124,11 @@
     if ( selectedClaiming.count == 0 )
         row.detail = @"Не выбраны";
     
+    if (self.controllerType == EditTaskControllerType)
+    {
+        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
+    }
+    
     [self updateContentWithRow: row inSection: SectionOne inRow: TaskClaimingRow];
     
     return self.addTaskContentArray;
@@ -135,6 +147,11 @@
     {
         row.cellId    = [self determineCellIdForGroupOfMembers: selectedObservers];
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
+    }
+    
+    if (self.controllerType == EditTaskControllerType)
+    {
+        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
     }
     
     [self updateContentWithRow: row inSection: SectionOne inRow: TaskObserversRow];
@@ -159,7 +176,6 @@
         row.detail = @"Не выбрано";
     }
     
-    
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskSystemRow];
@@ -181,7 +197,6 @@
     {
         row.detail = @"Не выбрано";
     }
-    
     
     [self updateContentWithRow: row
                      inSection: SectionThree
@@ -225,7 +240,7 @@
         row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
         row.detail = info;
     }
-    
+
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskPremisesRow];
@@ -278,6 +293,8 @@
         taskDescription = @"";
     }
     
+  
+    
     [self updateContentWithRow: newRow
                      inSection: SectionOne
                          inRow: TaskDescriptionRow];
@@ -324,5 +341,7 @@
             break;
     }
 }
+
+
 
 @end

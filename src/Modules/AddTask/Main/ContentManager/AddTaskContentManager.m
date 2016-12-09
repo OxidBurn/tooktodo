@@ -11,6 +11,7 @@
 // Categories
 #import "AddTaskContentManager+Helpers.h"
 #import "AddTaskContentManager+UpdadingContent.h"
+#import "AddTaskContentManager+ProjectTask.h"
 
 // Helpers
 #import "ProjectsEnumerations.h"
@@ -18,7 +19,7 @@
 @interface AddTaskContentManager()
 
 // properties
-@property (assign, nonatomic) AddTaskControllerType controllerType;
+
 
 // methods
 
@@ -38,6 +39,16 @@
     }
     
     return _addTaskContentArray;
+}
+
+- (ProjectTask*) projectTask
+{
+    if (_projectTask == nil)
+    {
+        _projectTask = [DataManagerShared getSelectedTask];
+    }
+    
+    return _projectTask;
 }
 
 - (NewTask*) task
@@ -71,7 +82,6 @@
     
     return _addTaskTableViewCellsInfo;
 }
-
 
 - (NSArray*) addTaskTableViewSeguesInfo
 {

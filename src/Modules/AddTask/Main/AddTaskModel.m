@@ -111,7 +111,6 @@
 }
 
 
-
 #pragma mark - Public -
 
 - (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath
@@ -388,7 +387,7 @@
 
 - (void) returnSelectedSystem: (ProjectSystem*) system
 {
-    [self.contentManager updateSelectedSystem: system];
+   [self.contentManager updateSelectedSystem: system];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];

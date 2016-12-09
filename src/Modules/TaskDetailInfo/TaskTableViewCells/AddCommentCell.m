@@ -26,12 +26,12 @@
 
 #pragma mark - UITextViewDelegate -
 
-- (void)textViewDidBeginEditing: (UITextView*)textView
+- (void) textViewDidBeginEditing: (UITextView*) textView
 {
     self.addCommentLabel.alpha = 0;
 }
 
-- (void)textViewDidEndEditing: (UITextView*)textView
+- (void) textViewDidEndEditing: (UITextView*) textView
 {
     self.addCommentLabel.alpha = textView.text.length == 0;
 }
@@ -40,7 +40,7 @@
  shouldChangeTextInRange: (NSRange)range
          replacementText: (NSString *)text
 {
-    if ([text isEqualToString:@"\n"])
+    if ([text isEqualToString: @"\n"])
     {
         if ([self.delegate respondsToSelector:@selector( addCommentCell:
                                                             onSendClick: )])
@@ -66,7 +66,7 @@
 
 - (void) textViewDidChange:(UITextView *)textView
 {
-    if ([self.delegate respondsToSelector:@selector( addCommentCell:
+    if ([self.delegate respondsToSelector: @selector( addCommentCell:
                                             newCommentTextDidChange: )])
     {
         [self.delegate addCommentCell: self

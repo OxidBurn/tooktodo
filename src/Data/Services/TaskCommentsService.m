@@ -152,19 +152,21 @@
 
 - (RACSignal*) deleteCommentForSelectedTaskWithID: (NSNumber*) commentID
 {
-    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
         NSString* requestURL = [self.buildPostCommentURL stringByAppendingFormat: @"/%@", commentID];
+        
         [[[TaskCommentsAPIService sharedInstance] deleteCommentForTask: requestURL]
-         subscribeNext: ^(RACTuple* response) {
-             [DataManagerShared deleteCommentWithID: commentID
-                                             inTask: [DataManagerShared getSelectedTask]
-                                         completion:^{
-                                             [subscriber sendNext: nil];
-                                             [subscriber sendCompleted];
+            subscribeNext: ^(RACTuple* response) {
+                [DataManagerShared deleteCommentWithID: commentID
+                                                inTask: [DataManagerShared getSelectedTask]
+                                            completion: ^{
+                                                [subscriber sendNext: nil];
+                                                [subscriber sendCompleted];
                                          }];
          }
-         error: ^(NSError *error) {
-             [subscriber sendError: error];
+                    error: ^(NSError *error) {
+                        [subscriber sendError: error];
          }];
         return nil;
     }];
