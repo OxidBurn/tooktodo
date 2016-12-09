@@ -155,7 +155,7 @@
             return @"Владелец";
             break;
         case AdminPermission:
-            return @"Адмиистратор";
+            return @"Администратор";
             break;
             
         default:
