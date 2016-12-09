@@ -250,7 +250,7 @@
     {
         case SelectResponsibleController:
         {
-            title = @"ОТВЕТСТВЕННЫЕ";
+            title = @"ОТВЕТСТВЕННЫЙ";
         }
             break;
             
