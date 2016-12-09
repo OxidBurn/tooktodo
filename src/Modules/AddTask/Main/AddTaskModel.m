@@ -398,7 +398,7 @@
 
 - (void) returnSelectedStage: (ProjectTaskStage*) stage
 {
-    [self.contentManager updateSelectedStage: stage];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedStage: stage];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];

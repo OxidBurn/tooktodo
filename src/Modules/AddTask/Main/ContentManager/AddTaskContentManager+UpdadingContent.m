@@ -90,12 +90,6 @@
     row.membersArray     = selectedUsersArray;
     row.responsibleArray = selectedUsersArray;
     
-   
-    if (self.controllerType == EditTaskControllerType)
-    {
-        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
-    }
-    
     [self updateContentWithRow: row
                      inSection: SectionOne
                          inRow: TaskResponsibleRow];
@@ -118,18 +112,15 @@
     row.membersArray = selectedClaiming;
     row.claimingsArray = selectedClaiming;
     
-    row.cellId = [self determineCellIdForContent: selectedClaiming];
+    row.cellId    = [self determineCellIdForContent: selectedClaiming];
     row.cellIndex = [self determintCellIndexForCellId: row.cellId];
     
     if ( selectedClaiming.count == 0 )
         row.detail = @"Не выбраны";
     
-    if (self.controllerType == EditTaskControllerType)
-    {
-        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
-    }
-    
-    [self updateContentWithRow: row inSection: SectionOne inRow: TaskClaimingRow];
+    [self updateContentWithRow: row
+                     inSection: SectionOne
+                         inRow: TaskClaimingRow];
     
     return self.addTaskContentArray;
 }
@@ -149,12 +140,9 @@
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
     }
     
-    if (self.controllerType == EditTaskControllerType)
-    {
-        self.addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
-    }
-    
-    [self updateContentWithRow: row inSection: SectionOne inRow: TaskObserversRow];
+    [self updateContentWithRow: row
+                     inSection: SectionOne
+                         inRow: TaskObserversRow];
     
     return self.addTaskContentArray;
 }
@@ -181,7 +169,7 @@
                          inRow: TaskSystemRow];
 }
 
-- (void) updateSelectedStage: (ProjectTaskStage*) stage
+- (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage
 {
     self.task.stage = stage;
     
@@ -201,6 +189,8 @@
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskStageRow];
+    
+    return self.addTaskContentArray;
 }
 
 - (void) updateSelectedInfo: (id) info
@@ -270,8 +260,6 @@
     self.task.terms.startDate  = terms.startDate;
     self.task.terms.endDate    = terms.endDate;
     self.task.terms.duration   = terms.duration;
-    
-    
     
     RowContent* row = self.addTaskContentArray[SectionTwo][TaskTermsRow];
     

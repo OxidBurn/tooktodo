@@ -35,7 +35,14 @@
 {
     if ( _addTaskContentArray == nil )
     {
-        _addTaskContentArray = [self createTableViewContent];
+        if (self.controllerType == EditTaskControllerType)
+        {
+            _addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
+        }
+        else
+        {
+            _addTaskContentArray = [self createTableViewContent];
+        }
     }
     
     return _addTaskContentArray;

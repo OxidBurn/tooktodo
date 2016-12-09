@@ -28,11 +28,13 @@
     
     NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
     
-    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    [sectionCopy replaceObjectAtIndex: row
+                           withObject: newRow];
     
     sectionContent = [sectionCopy copy];
     
-    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    [contentCopy replaceObjectAtIndex: section
+                           withObject: sectionContent];
     
     self.addTaskContentArray = [contentCopy copy];
 }

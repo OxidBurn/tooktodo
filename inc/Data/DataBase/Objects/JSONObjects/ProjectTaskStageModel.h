@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) NSString<Optional>* title;
 
-@property (strong, nonatomic) NSNumber* isCommon;
+@property (strong, nonatomic) NSNumber<Optional>* isCommon;
 
 @property (strong, nonatomic) ProjectStageTasksListModel <Optional>* tasks;
 

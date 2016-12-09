@@ -26,7 +26,7 @@
 
 - (void) updateSelectedSystem: (ProjectSystem*) system;
 
-- (void) updateSelectedStage: (ProjectTaskStage*) stage;
+- (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage;
 
 - (void) updateSelectedInfo: (id) info;
 
