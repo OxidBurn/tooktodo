@@ -387,7 +387,7 @@
 
 - (void) returnSelectedSystem: (ProjectSystem*) system
 {
-   [self.contentManager updateSelectedSystem: system];
+  self.addTaskTableViewContent = [self.contentManager updateSelectedSystem: system];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -407,10 +407,9 @@
 
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
-
 - (void) returnSelectedInfo: (id) info
 {
-    [self.contentManager updateSelectedInfo: info];
+   self.addTaskTableViewContent = [self.contentManager updateSelectedInfo: info];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -423,9 +422,9 @@
              withDescription: (NSString*) typeDescription
                    withColor: (UIColor*)  typeColor
 {
-    [self.contentManager updateSelectedTaskType: type
-                                withDescription: typeDescription
-                                      withColor: typeColor];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedTaskType: type
+                                                               withDescription: typeDescription
+                                                                     withColor: typeColor];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -436,7 +435,7 @@
 
 - (void) updateTerms: (TermsData*) terms
 {
-    [self.contentManager updateTerms: terms];
+    self.addTaskTableViewContent = [self.contentManager updateTerms: terms];
 }
 
 
@@ -444,7 +443,7 @@
 
 - (void) setTaskDescription: (NSString*) taskDescription
 {
-    [self.contentManager updateTaskDescription: taskDescription];
+    self.addTaskTableViewContent = [self.contentManager updateTaskDescription: taskDescription];
 }
 
 

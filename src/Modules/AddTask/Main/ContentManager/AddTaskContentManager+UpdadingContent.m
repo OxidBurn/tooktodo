@@ -148,7 +148,7 @@
 }
 
 
-- (void) updateSelectedSystem: (ProjectSystem*) system
+- (NSArray*) updateSelectedSystem: (ProjectSystem*) system
 {
     self.task.system = system;
     
@@ -167,6 +167,8 @@
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskSystemRow];
+    
+     return self.addTaskContentArray;
 }
 
 - (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage
@@ -193,7 +195,7 @@
     return self.addTaskContentArray;
 }
 
-- (void) updateSelectedInfo: (id) info
+- (NSArray*) updateSelectedInfo: (id) info
 {
     ProjectTaskRoomLevel* levelItem = nil;
     ProjectTaskRoom*      roomItem = nil;
@@ -234,9 +236,11 @@
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskPremisesRow];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateSelectedTaskType: (TaskType)  type
+- (NSArray*) updateSelectedTaskType: (TaskType)  type
                 withDescription: (NSString*) typeDescription
                       withColor: (UIColor*)  typeColor
 {
@@ -253,9 +257,11 @@
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskTypeRow];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateTerms: (TermsData*) terms
+- (NSArray*) updateTerms: (TermsData*) terms
 {
     self.task.terms.startDate  = terms.startDate;
     self.task.terms.endDate    = terms.endDate;
@@ -266,9 +272,11 @@
     row.detail = [self createTermsLabelTextForStartDate: terms.startDate
                                          withFinishDate: terms.endDate
                                            withDuration: terms.duration];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateTaskDescription: (NSString*) taskDescription
+- (NSArray*) updateTaskDescription: (NSString*) taskDescription
 {
     self.task.taskDescription = taskDescription;
     
@@ -281,11 +289,11 @@
         taskDescription = @"";
     }
     
-  
-    
     [self updateContentWithRow: newRow
                      inSection: SectionOne
                          inRow: TaskDescriptionRow];
+    
+    return self.addTaskContentArray;
 }
 
 #pragma mark - Internal -

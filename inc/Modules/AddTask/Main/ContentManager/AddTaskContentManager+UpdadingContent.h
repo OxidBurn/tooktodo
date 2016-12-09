@@ -24,18 +24,18 @@
 
 - (NSArray*) updateSelectedObserversInfo: (NSArray*) selectedObservers;
 
-- (void) updateSelectedSystem: (ProjectSystem*) system;
+- (NSArray*) updateSelectedSystem: (ProjectSystem*) system;
 
 - (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage;
 
-- (void) updateSelectedInfo: (id) info;
+- (NSArray*) updateSelectedInfo: (id) info;
 
-- (void) updateSelectedTaskType: (TaskType)  type
+- (NSArray*) updateSelectedTaskType: (TaskType)  type
                 withDescription: (NSString*) typeDescription
                       withColor: (UIColor*)  typeColor;
 
-- (void) updateTerms: (TermsData*) terms;
+- (NSArray*) updateTerms: (TermsData*) terms;
 
-- (void) updateTaskDescription: (NSString*) taskDescription;
+- (NSArray*) updateTaskDescription: (NSString*) taskDescription;
 
 @end
