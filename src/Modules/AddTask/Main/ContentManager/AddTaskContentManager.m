@@ -272,11 +272,11 @@
     RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFive.title     = @"Тип задачи";
-    rowFive.detail    = @"Не выбран";
+    rowFive.detail    = @"Работа";
     rowFive.markImage = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
-    rowFive.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowFive.cellId    = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
     rowFive.segueId   = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
-    rowFive.cellIndex = RightDetailCell;
+    rowFive.cellIndex = MarkedRightDetailCell;
     
     RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
     

@@ -26,6 +26,9 @@
                  withDetail: detailText
            detailIsSelected: isSelected];
     
+    cell.userInteractionEnabled = YES;
+    cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
