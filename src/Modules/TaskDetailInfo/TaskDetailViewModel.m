@@ -425,12 +425,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                              completion: nil];
 }
 
+
 #pragma mark - TaskDetailCellDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
 {
-    if (self.performSegue)
-        self.performSegue(segueID);
+    if ( [self.model hasAvailableStatusesActions] )
+    {
+        if (self.performSegue)
+            self.performSegue(segueID);
+    }
 }
 
 - (void) showPopover: (CGRect) senderFrame
@@ -438,6 +442,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
+
 
 #pragma mark - FilterSubtasksCellDelegate  methods -
 
