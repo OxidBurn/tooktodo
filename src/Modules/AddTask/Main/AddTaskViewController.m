@@ -459,22 +459,39 @@
                 @strongify(self)
                 
                 [self showTaskCreatedMessage];
-            
-                NewTask* t = [self.viewModel getNewTask];
-                NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
                 
-          
-            
             }];
          }];
-
     
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeNext: ^(NewTask* task) {
+        [signal subscribeNext: ^(NSString* taskName) {
             
-            NewTask* t = task;
-            NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
+            @strongify(self)
+            
+            switch ([self getControllerType])
+            {
+                case AddNewTaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
+                }
+                    break;
+                
+                case AddSubtaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Подзадача %@ создана",taskName];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }];
+        
+        [signal subscribeCompleted: ^{
+            
+            [self showTaskCreatedMessage];
         }];
         
     }];

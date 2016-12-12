@@ -359,9 +359,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               //Передать заполненную задачу
+                                                               NSString* taskName = [self.model returnTaskName];
                                                                
-                                                               return [RACSignal empty];
+                                                               
+                                                               return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                                                                   
+                                                                   [subscriber sendNext: taskName];
+                                                                   [subscriber sendCompleted];
+                                                                   
+                                                                   
+                                                                   return nil;
+                                                               }];
+                                                               
                                                            }];
     
     self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
