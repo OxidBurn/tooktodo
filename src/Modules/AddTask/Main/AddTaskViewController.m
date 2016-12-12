@@ -484,6 +484,12 @@
         [signal subscribeCompleted: ^{
             
             [self showTaskCreatedMessage];
+            
+            [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                
+                [self dismissViewControllerAnimated: YES
+                                         completion: nil];
+            }];
         }];
         
     }];
