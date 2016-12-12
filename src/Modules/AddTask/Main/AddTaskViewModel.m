@@ -187,7 +187,10 @@
     [self.model deselectAllRoomsInfo];
 }
 
-
+- (ProjectTask*) getSelectedTask
+{
+  return  [self.model getSelectedTask];
+}
 
 #pragma mark - UITableView data source -
 
@@ -389,11 +392,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                        [subscriber sendNext: taskName];
                                                                        [subscriber sendCompleted];
                                                                        
-                                                                    
                                                                        return nil;
                                                                    }];
                                                                    
                                                                }];
+    
+    self.createOnExistingTaskBaseCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+                
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            [subscriber sendNext: nil];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
     
 };
 
@@ -416,7 +429,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
                                                                                               inSection: 0]];
     
-     [cell endTaskTitleEditingWithCompletion: completion];
+    [cell endTaskTitleEditingWithCompletion: completion];
 
 }
 
