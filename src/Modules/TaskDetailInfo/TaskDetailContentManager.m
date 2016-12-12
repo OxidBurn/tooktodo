@@ -150,7 +150,9 @@
     
     taskDescriptionCellContent.cellId          = self.tableViewCellsIdArray[TaskDescriptionCellType];
     taskDescriptionCellContent.cellTypeIndex   = TaskDescriptionCellType;
-    taskDescriptionCellContent.taskDescription = task.descriptionValue;
+    
+    NSString* description = task.descriptionValue.length > 0 ? task.descriptionValue : @"Описание отсутствует";
+    taskDescriptionCellContent.taskDescription = description;
     
     TaskRowContent* collectionCellContent = [TaskRowContent new];
     
