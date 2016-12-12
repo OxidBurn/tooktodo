@@ -73,6 +73,14 @@
     [self.textView becomeFirstResponder];
 }
 
+- (void) endTaskTitleEditingWithCompletion: (CompletionWithSuccess) completion
+{
+    [self textViewDidEndEditing: self.textView];
+    
+    if (completion)
+        completion(YES);
+}
+
 #pragma mark - UITextViewDelegate methods -
 
 - (void) textViewDidBeginEditing: (UITextView*) textView
@@ -91,6 +99,8 @@
     {
         [self.delegate updateFlexibleTextFieldCellWithText: [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text]];
     }
+
+    [self.textView resignFirstResponder];
 }
 
 - (BOOL)       textView: (UITextView*) textView

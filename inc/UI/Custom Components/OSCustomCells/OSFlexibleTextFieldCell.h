@@ -25,6 +25,8 @@
 
 - (void) makeTextViewFirstResponder;
 
+- (void) endTaskTitleEditingWithCompletion: (CompletionWithSuccess) completion;
+
 @end
 
 @protocol OSFlexibleTextFieldCellDelegate <NSObject>

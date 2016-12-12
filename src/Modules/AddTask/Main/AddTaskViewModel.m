@@ -359,14 +359,18 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               NSString* taskName = [self.model returnTaskName];
+                                                               __block NSString* taskName = @"";
                                                                
+                                                               [self endEnteringTitleWithCompletion:^(BOOL isSuccess) {
+                                                                   
+                                                                    taskName = [self.model returnTaskName];
+                                                               }];
+                                                              
                                                                
                                                                return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
                                                                    
                                                                    [subscriber sendNext: taskName];
                                                                    [subscriber sendCompleted];
-                                                                   
                                                                    
                                                                    return nil;
                                                                }];
@@ -391,7 +395,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                    
                                                                }];
     
-    
 };
 
 
@@ -406,6 +409,15 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
     [switchCell resetValue];
+}
+
+- (void) endEnteringTitleWithCompletion: (CompletionWithSuccess) completion
+{
+    OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
+                                                                                              inSection: 0]];
+    
+     [cell endTaskTitleEditingWithCompletion: completion];
+
 }
 
 

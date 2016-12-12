@@ -483,13 +483,35 @@
         
         [signal subscribeCompleted: ^{
             
-            [self showTaskCreatedMessage];
             
-            [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+            switch ([self getControllerType])
+            {
+                case AddSubtaskControllerType:
+                case AddNewTaskControllerType:
+                {
+                    [self showTaskCreatedMessage];
+                    
+                    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                        
+                        [self dismissViewControllerAnimated: YES
+                                                 completion: nil];
+                    }];
+                }
+                    break;
                 
-                [self dismissViewControllerAnimated: YES
-                                         completion: nil];
-            }];
+                case EditTaskControllerType:
+                {
+                   //TODO: implement updating task according to changed task properties
+                    
+                    [self dismissViewControllerAnimated: YES
+                                             completion: nil];
+                }
+                    
+                default:
+                    break;
+            }
+            
+            
         }];
         
     }];
