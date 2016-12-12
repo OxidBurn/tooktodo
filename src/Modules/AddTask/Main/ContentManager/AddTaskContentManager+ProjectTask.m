@@ -46,7 +46,7 @@
     
     rowTwo.cellId    = self.addTaskTableViewCellsInfo[FlexibleCell];
     rowTwo.cellIndex = FlexibleCell;
-    rowTwo.title     = task.descriptionValue ? task.descriptionValue : @"Описание отсутствует";
+    rowTwo.title     = task.descriptionValue.length > 0 ? task.descriptionValue : @"Описание отсутствует";
     rowTwo.segueId   = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
     
     RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
