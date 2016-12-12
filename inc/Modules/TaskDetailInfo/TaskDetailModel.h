@@ -70,6 +70,10 @@
 
 - (NSArray*) getSubtasks;
 
+- (NSString*) getTaskNumberTitle;
+
+- (NSString*) getProjectTitle;
+
 // methods for sorting subtasks
 
 - (void) sortArrayForType: (TasksSortingType)           type

@@ -442,7 +442,7 @@
     
     @weakify(self)
     
-        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
+        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext: ^(RACSignal* signal)
          {
             [signal subscribeNext: ^(NSString* taskName) {
                 

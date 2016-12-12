@@ -223,6 +223,20 @@
     return self.task;
 }
 
+- (NSString*) getTaskNumberTitle
+{
+    NSUInteger taskNumber = self.task.taskID.integerValue;
+    
+    return [NSString stringWithFormat: @"Задача #%lu", (unsigned long)taskNumber];
+}
+
+- (NSString*) getProjectTitle
+{
+    ProjectInfo* projInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return projInfo.title;
+}
+
 - (NSArray*) getSubtasks
 {
     return self.task.subTasks.allObjects;

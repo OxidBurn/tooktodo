@@ -178,6 +178,16 @@
     + CGRectGetHeight(self.addCommentCell.frame);
 }
 
+- (NSString*) getTaskNumberTitle
+{
+    return [self.model getTaskNumberTitle];
+}
+
+- (NSString*) getProjectTitle
+{
+    return [self.model getProjectTitle];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
