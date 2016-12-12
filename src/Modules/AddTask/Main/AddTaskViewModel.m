@@ -401,6 +401,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                                               inSection: 0]];
     [cell resetCellContent];
     
+    [cell makeTextViewFirstResponder];
+    
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
     [switchCell resetValue];

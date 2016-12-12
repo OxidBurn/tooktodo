@@ -68,6 +68,10 @@
     self.textView.text = @"";
 }
 
+- (void) makeTextViewFirstResponder
+{
+    [self.textView becomeFirstResponder];
+}
 
 #pragma mark - UITextViewDelegate methods -
 

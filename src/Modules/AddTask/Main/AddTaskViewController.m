@@ -256,11 +256,7 @@
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+    [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -307,11 +303,7 @@
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+    [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 

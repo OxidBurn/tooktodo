@@ -14,6 +14,7 @@
 @interface OSFlexibleTextFieldCell : UITableViewCell
 
 // properties
+
 @property (weak, nonatomic) id <OSFlexibleTextFieldCellDelegate> delegate;
 
 // methods
@@ -21,6 +22,8 @@
              withDelegate: (id)        delegate;
 
 - (void) resetCellContent;
+
+- (void) makeTextViewFirstResponder;
 
 @end
 
