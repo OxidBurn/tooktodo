@@ -303,7 +303,7 @@
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: nil];
+   // [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 
@@ -423,6 +423,12 @@
         [blockSelf.addTaskTableView reloadData];
         
     };
+    
+    self.viewModel.performSegueWithID = ^(NSString* segueID) {
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
 }
 
 - (void) bindUI
@@ -430,19 +436,17 @@
     self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
     self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
     self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableCreteOnBaseBtnCommand;
-    
+    self.createOnBaseBtn.rac_command        = self.viewModel.createOnExistingTaskBaseCommand;
     
     @weakify(self)
     
         [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext: ^(RACSignal* signal)
          {
             [signal subscribeNext: ^(NSString* taskName) {
-                
             
                 @strongify(self)
                 
                 self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
-            
                 
             }];
              
@@ -454,6 +458,40 @@
                 
             }];
          }];
+
+    
+    [self.viewModel.createOnExistingTaskBaseCommand.executionSignals subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                             bundle: nil];
+        
+        AddTaskViewController* addTaskController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskControllerID"];
+        
+        addTaskController.controllerType = AddNewTaskControllerType;
+        
+        [addTaskController fillTaskToEdit: [self.viewModel getSelectedTask]];
+        
+        addTaskController.addTaskBtn.hidden = NO;
+        addTaskController.addTaskAndCreateNewBtn.hidden = NO;
+        addTaskController.deleteTask.hidden = YES;
+        addTaskController.createOnBaseBtn.hidden = YES;
+        
+
+        //actions for implementing completion after push
+        [CATransaction begin];
+        
+        [self.navigationController pushViewController: addTaskController
+                                             animated: YES];
+        
+        [CATransaction setCompletionBlock:^{
+           
+            [addTaskController.viewModel resetCellsContent];
+        }];
+        
+        
+    }];
     
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
@@ -571,5 +609,6 @@
     self.createOnBaseBtn.hidden           = NO;
     
 }
+
 
 @end

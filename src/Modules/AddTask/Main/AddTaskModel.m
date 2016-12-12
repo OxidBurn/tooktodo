@@ -207,6 +207,11 @@
     return self.task.taskName;
 }
 
+- (ProjectTask*) getSelectedTask
+{
+    return [DataManagerShared getSelectedTask];
+}
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
     BOOL isSubtask = (self.controllerType == AddSubtaskControllerType);
