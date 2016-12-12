@@ -47,6 +47,8 @@
 
 @property (assign, nonatomic) CGPoint scrollViewOffset;
 
+@property (strong, nonatomic) NSNumber* neededOffsetY;
+
 @end
 
 @implementation TaskDetailViewModel
@@ -150,6 +152,15 @@
     [self.model updateSecondSectionContentType: typeIndex];
     
     CGPoint offset = self.tableView.contentOffset;
+        
+    CGFloat neededOffset = [self countHeightForTaskDetailCellForTableView: self.tableView] +
+                           [self countHeightForTaskDescrioptionCellForTableView: self.tableView] +
+                           235;
+    
+    if ( offset.y > neededOffset )
+    {
+        offset.y = neededOffset;
+    }
     
     [self.tableView reloadData];
     [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
@@ -223,20 +234,20 @@
         
         detailCell.delegate   = self;
     }
-    
+    else
     if ([cell isKindOfClass: [FilterSubtasksCell class]])
     {
         FilterSubtasksCell* subtaskCell  = (FilterSubtasksCell*)cell;
         
         subtaskCell.delegate = self;
     }
-
+    else
     if ([cell isKindOfClass: AddCommentCell.class])
     {
         self.addCommentCell             = (AddCommentCell*)cell;
         self.addCommentCell.delegate    = self;
     }
-
+    else
     if ([cell isKindOfClass: [CommentsCell class]])
     {
         ((CommentsCell *)cell).commentID = content.commentID;
@@ -329,7 +340,9 @@ viewForHeaderInSection: (NSInteger)    section
             return scroll;
         }
         else
+        {
             return self.headerView;
+        }
     }
     
     return nil;
