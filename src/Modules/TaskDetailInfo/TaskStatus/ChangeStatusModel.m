@@ -170,7 +170,7 @@
                         withCompletion: (CompletionWithSuccess) completion
 {
     
-    NSNumber* statusValue = self.statusesArray[status];
+    NSNumber* statusValue = @(status);
     
     [DataManagerShared updateStatusType: statusValue
                   withStatusDescription: [[TaskStatusDefaultValues sharedInstance]
@@ -183,6 +183,12 @@
     return [[TaskStatusDefaultValues sharedInstance]
             returnExpandedArrowImageForTaskStatus: self.task.status.integerValue];
 }
+
+- (NSNumber*) getSelectedStatusAtIndex: (NSUInteger) index
+{
+    return self.statusesArray[index];
+}
+
 
 #pragma mark - Internal -
 

@@ -31,4 +31,6 @@
 
 - (CGFloat) countTableViewHeight;
 
+- (NSNumber*) getSelectedStatusAtIndex: (NSUInteger) index;
+
 @end
