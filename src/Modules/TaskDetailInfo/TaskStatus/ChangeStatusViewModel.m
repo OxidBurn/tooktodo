@@ -49,6 +49,11 @@
     return [self.model getExpandedArrowMarkImage];
 }
 
+- (CGFloat) countTableViewHeight
+{
+    return [self.model countTableViewHeight];
+}
+
 #pragma mark - TableViewDatasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView

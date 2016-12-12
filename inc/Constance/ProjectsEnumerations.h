@@ -42,6 +42,8 @@ typedef NS_ENUM(NSUInteger, AllTasksCellType)
     AllTasksTaskCellType,
 };
 
+// Task statuses and available actions
+
 typedef NS_ENUM(NSUInteger, TaskStatusType)
 {
     TaskWaitingStatusType      = 0,
@@ -52,6 +54,8 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskOnCompletionStatusType = 5,
     TaskCancelRequestType      = 6,
 };
+
+
 
 typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 {

@@ -62,6 +62,11 @@
 
 #pragma mark - Public -
 
+- (CGFloat) countTableViewHeight
+{
+    return self.statusesArray.count * 44.f;
+}
+
 - (NSInteger) numberOfRows
 {
     return self.statusesArray.count;
@@ -183,20 +188,47 @@
 
 - (NSArray*) orderStatusesArray
 {
-    NSArray* defaultArr = @[@(TaskWaitingStatusType),
-                            @(TaskInProgressStatusType),
-                            @(TaskCompletedStatusType),
-                            @(TaskCanceledStatusType),
-                            @(TaskOnApprovingStatusType),
-                            @(TaskOnCompletionStatusType)];
+    // getting all available status actions
+    NSArray* availableStatusActions = self.task.availableActions.statusActions.allObjects;
     
+    // creating array with IDs of available actions
+    NSMutableArray* tmpDefaultArray = [NSMutableArray new];
+    
+    [availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* action, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        if ( action.statusActionID.integerValue <= 6 )
+        {
+            [tmpDefaultArray addObject: action.statusActionID];
+        }
+        
+    }];
+    
+    NSArray* defaultArr = tmpDefaultArray.copy;
+    
+    // sorting array with statuses ascending
+    NSArray* sortedArray = [defaultArr sortedArrayUsingComparator: ^NSComparisonResult(id obj1, id obj2){
+                                return [obj1 compare:obj2];
+                            }];
+    
+    defaultArr = sortedArray;
+    
+    // checking current status for displaying it first in list
     NSNumber* currStatus = self.task.status;
     
+    // replacing Cancel action to last position if it exsists
     NSMutableArray* tmp = defaultArr.mutableCopy;
     
-    [tmp exchangeObjectAtIndex: TaskCanceledStatusType
-             withObjectAtIndex: TaskOnCompletionStatusType];
+    if ( [tmp containsObject: @(TaskCanceledStatusType)] )
+    {
+        NSUInteger indexOfCancel = [tmp indexOfObject: @(TaskCanceledStatusType)];
+        
+        NSUInteger indexOfLastAction = defaultArr.count - 1;
+        
+        [tmp exchangeObjectAtIndex: indexOfCancel
+                 withObjectAtIndex: indexOfLastAction ];
+    }
     
+    // moving current status to first position
     [tmp enumerateObjectsUsingBlock: ^(NSNumber* _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ([obj isEqual: currStatus])
@@ -205,6 +237,15 @@
                      withObjectAtIndex: 0];
         }
     }];
+    
+    // checking if array with statuses contains current task status
+    // if not adding this status to first position
+    
+    if ( [tmp containsObject: currStatus] == NO)
+    {
+        [tmp insertObject: currStatus
+                  atIndex: 0];
+    }
     
     return tmp.copy;
 }

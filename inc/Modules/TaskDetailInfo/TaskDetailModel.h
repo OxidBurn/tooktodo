@@ -21,6 +21,8 @@
 
 @property (nonatomic, weak) id<TaskDetailModelDelegate> delegate;
 
+// methods
+- (BOOL) hasAvailableStatusesActions;
 
 // methods for different counts
 - (NSUInteger) returnNumberOfRowsForIndexPath: (NSInteger) section;

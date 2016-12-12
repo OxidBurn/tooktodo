@@ -11,6 +11,7 @@
 
 @interface ChangeStatusModel : NSObject
 
+// methods
 - (NSInteger) numberOfRows;
 
 - (TaskStatusType) getCurrentStatus;
@@ -27,5 +28,7 @@
                         withCompletion: (CompletionWithSuccess) completion;
 
 - (UIImage*) getExpandedArrowMarkImage;
+
+- (CGFloat) countTableViewHeight;
 
 @end
