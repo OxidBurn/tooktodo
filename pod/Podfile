@@ -1,15 +1,32 @@
 xcodeproj '../prj/TookTODO.xcodeproj'
 
-platform :'ios', '7.0'
+platform :'ios', '8.0'
 
 inhibit_all_warnings!
 
 target 'TookTODO' do
 
 pod 'ReactiveCocoa'
-pod 'PromiseKit'
+#pod 'PromiseKit'
 pod 'AFNetworking'
 pod 'AFNetworking-RACExtensions'
-pod 'PromiseKit-AFNetworking'
+#pod 'PromiseKit-AFNetworking'
+pod 'ECSlidingViewController'
+pod 'Reachability-RACExtensions'
+pod 'SVProgressHUD'
+pod 'SAInfiniteScrollView'
+pod 'UICKeyChainStore'
+pod 'RSKImageCropper'
+pod 'AKNumericFormatter', :git => 'https://github.com/mirego/AKNumericFormatter.git'
+pod 'SDWebImage'
+pod 'Fabric'
+pod 'Crashlytics'
+pod 'JSONModel'
+pod 'JSONModel-RACExtensions'
+pod 'AppDevKit'
+pod 'SystemServices'
+pod 'MagicalRecord'
+pod 'FormatterKit'
+pod 'AlertViewBlocks'
 
 end

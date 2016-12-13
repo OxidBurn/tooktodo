@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nSa-t1-0eA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Change Status View Controller-->
+        <scene sceneID="7rH-bU-AtS">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Uco-LO-RJE" customClass="ChangeStatusViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l0X-MX-pea"/>
+                        <viewControllerLayoutGuide type="bottom" id="BSN-uy-9IP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tG1-Le-QQK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="uJu-DO-OSI">
+                                <rect key="frame" x="15" y="166" width="345" height="264"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="264" id="B7v-4r-bDJ"/>
+                                </constraints>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellWithBackgroundID" rowHeight="44" id="Wlp-nu-c2J" customClass="CellWithBackground">
+                                        <rect key="frame" x="0.0" y="1" width="345" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wlp-nu-c2J" id="VOs-Lg-Ako">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0A527845-23B3-4001-B3E5-53709E73943E" translatesAutoresizingMaskIntoConstraints="NO" id="ywZ-XB-Lge">
+                                                    <rect key="frame" x="13" y="14" width="12" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="38k-QN-f0Y"/>
+                                                        <constraint firstAttribute="width" constant="12" id="5fi-tH-sR7"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOC-Zn-uz0">
+                                                    <rect key="frame" x="32" y="15" width="36" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="nMd-xI-rxa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ywZ-XB-Lge" firstAttribute="leading" secondItem="VOs-Lg-Ako" secondAttribute="leading" constant="13" id="2An-WO-DJu"/>
+                                                <constraint firstItem="FOC-Zn-uz0" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="15" id="4eY-6e-NUZ"/>
+                                                <constraint firstItem="ywZ-XB-Lge" firstAttribute="top" secondItem="VOs-Lg-Ako" secondAttribute="top" constant="14" id="FNh-Bv-gZA"/>
+                                                <constraint firstItem="FOC-Zn-uz0" firstAttribute="leading" secondItem="ywZ-XB-Lge" secondAttribute="trailing" constant="7" id="Vdm-lF-0kQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="statusImageView" destination="ywZ-XB-Lge" id="94J-25-No6"/>
+                                            <outlet property="statusNameLabel" destination="FOC-Zn-uz0" id="PzJ-4e-gd7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TaskStatusExpandWhiteIconTurn" translatesAutoresizingMaskIntoConstraints="NO" id="KbI-x6-gfj">
+                                <rect key="frame" x="330" y="166" width="30" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="fHB-7s-05f"/>
+                                    <constraint firstAttribute="height" constant="44" id="hMz-6P-dgI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="uJu-DO-OSI" firstAttribute="top" secondItem="l0X-MX-pea" secondAttribute="bottom" constant="102" id="8ev-xn-F5F"/>
+                            <constraint firstAttribute="trailing" secondItem="uJu-DO-OSI" secondAttribute="trailing" constant="15" id="Cq0-QI-Mk9"/>
+                            <constraint firstItem="KbI-x6-gfj" firstAttribute="trailing" secondItem="uJu-DO-OSI" secondAttribute="trailing" id="VDa-n7-vOF"/>
+                            <constraint firstItem="uJu-DO-OSI" firstAttribute="leading" secondItem="tG1-Le-QQK" secondAttribute="leading" constant="15" id="W1P-Cj-NhU"/>
+                            <constraint firstItem="KbI-x6-gfj" firstAttribute="top" secondItem="uJu-DO-OSI" secondAttribute="top" id="bAt-cL-bQB"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="bPB-Ee-gM1" appends="YES" id="Gpb-9k-pTy"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="gWX-99-yK6">
+                        <barButtonItem key="backBarButtonItem" title="Назад" id="xI5-zr-Bei"/>
+                        <barButtonItem key="leftBarButtonItem" image="Back" id="rj1-B2-fcl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="onBack:" destination="Uco-LO-RJE" id="WxZ-Es-2xr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backBtn" destination="rj1-B2-fcl" id="D6E-Km-WX3"/>
+                        <outlet property="expandedArrowMarkImageView" destination="KbI-x6-gfj" id="DLE-LG-ghW"/>
+                        <outlet property="statusesTableView" destination="uJu-DO-OSI" id="Z6d-r8-C5a"/>
+                        <outlet property="tableViewHeightConstraint" destination="B7v-4r-bDJ" id="aSH-gO-BFn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ihj-Bq-4TP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="bPB-Ee-gM1">
+                    <connections>
+                        <action selector="onEmptySpaceGesture:" destination="Uco-LO-RJE" id="Fxe-R5-9Ax"/>
+                        <outlet property="delegate" destination="Uco-LO-RJE" id="aRL-Tw-W7I"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="8154" y="-161"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UDO-so-Ja5">
+            <objects>
+                <navigationController storyboardIdentifier="TaskStatusNav" automaticallyAdjustsScrollViewInsets="NO" id="nSa-t1-0eA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sFJ-cT-jGW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.22352941179999999" green="0.74117647060000003" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Uco-LO-RJE" kind="relationship" relationship="rootViewController" id="bnW-Ac-P42"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o24-TM-BDj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7215" y="-161"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="0A527845-23B3-4001-B3E5-53709E73943E" width="9" height="12">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
+GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
+c1dOU0NvbG9ygAKADRIgwAAAgAOAC1d7OSwgMTJ90hUKFhhaTlMub2JqZWN0c6EXgASACtIVChodohsc
+gAWABoAJEADSIAohIl8QFE5TVElGRlJlcHJlc2VudGF0aW9ugAeACE8RCk5NTQAqAAABuAAAAAAAAAAF
+Cg0PYRQYHr0WGiHLERMZnQMEBSYAAAAAAAAAAAAAAAUOEBWBCw4RbQIDBBwBAgINBgcIOhEUGJsGBwg6
+AAAAAAoMD18MDhJuAAAAAAAAAAAAAAAAAAAAAAMDBB0QExiWAQEBCxQYH74CAgQaAAAAAAAAAAAAAAAA
+AAAAAAAAAAANDxN5BgcJNxYaIcwBAQIPAAAAAAAAAAAAAAAAAAAAAAAAAAALDRFsBwgKQRETGZ4FBwk4
+AAAAAAAAAAAAAAAAAAAAAAAAAAAOERWLAwQFIwQFBikQExiUAAEBCQAAAAAAAAAAAAAAAAgJDEoNDxR7
+AAAAAAAAAAAMDRFqCgsOWwAAAAAAAAAAAQEBChETGZgCAgMUAAAAAAAAAAACAgISEhUbpQkLDloJCw1V
+DxEVhAsNEGgAAAAAAAAAAAAAAAAAAAABExYcrw8RFosOEBWDExccsggKDVQAAAAAAAAAAAAAAAAAAAAC
+ExccsA4SFo0MDxN6FBcduQkKDVIAAAAAAAAAAAAAAAAAAAAACw0QZhgbItQXGyHMFBcetwIDAxcAAAAA
+AAAAAAAOAQAAAwAAAAEACQAAAQEAAwAAAAEADAAAAQIAAwAAAAQAAAJmAQMAAwAAAAEAAQAAAQYAAwAA
+AAEAAgAAAREABAAAAAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEABAAAARYAAwAAAAEADAAAARcABAAA
+AAEAAAGwARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAQAAAJuh3MABwAAB9gAAAJ2AAAAAAAI
+AAgACAAIAAEAAQABAAEAAAfYYXBwbAIgAABtbnRyUkdCIFhZWiAH2QACABkACwAaAAthY3NwQVBQTAAA
+AABhcHBsAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWFwcGwAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtkZXNjAAABCAAAAG9kc2NtAAABeAAABZxjcHJ0AAAHFAAA
+ADh3dHB0AAAHTAAAABRyWFlaAAAHYAAAABRnWFlaAAAHdAAAABRiWFlaAAAHiAAAABRyVFJDAAAHnAAA
+AA5jaGFkAAAHrAAAACxiVFJDAAAHnAAAAA5nVFJDAAAHnAAAAA5kZXNjAAAAAAAAABRHZW5lcmljIFJH
+QiBQcm9maWxlAAAAAAAAAAAAAAAUR2VuZXJpYyBSR0IgUHJvZmlsZQAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAAAAAfAAAADHNrU0sAAAAoAAABhGRh
+REsAAAAuAAABrGNhRVMAAAAkAAAB2nZpVk4AAAAkAAAB/nB0QlIAAAAmAAACInVrVUEAAAAqAAACSGZy
+RlUAAAAoAAACcmh1SFUAAAAoAAACmnpoVFcAAAAWAAACwm5iTk8AAAAmAAAC2GNzQ1oAAAAiAAAC/mhl
+SUwAAAAeAAADIGl0SVQAAAAoAAADPnJvUk8AAAAkAAADZmRlREUAAAAsAAADimtvS1IAAAAWAAADtnN2
+U0UAAAAmAAAC2HpoQ04AAAAWAAADzGphSlAAAAAaAAAD4mVsR1IAAAAiAAAD/HB0UE8AAAAmAAAEHm5s
+TkwAAAAoAAAERGVzRVMAAAAmAAAEHnRoVEgAAAAkAAAEbHRyVFIAAAAiAAAEkGZpRkkAAAAoAAAEsmhy
+SFIAAAAoAAAE2nBsUEwAAAAsAAAFAnJ1UlUAAAAiAAAFLmFyRUcAAAAmAAAFUGVuVVMAAAAmAAAFdgBW
+AWEAZQBvAGIAZQBjAG4A/QAgAFIARwBCACAAcAByAG8AZgBpAGwARwBlAG4AZQByAGUAbAAgAFIARwBC
+AC0AYgBlAHMAawByAGkAdgBlAGwAcwBlAFAAZQByAGYAaQBsACAAUgBHAEIAIABnAGUAbgDoAHIAaQBj
+AEMepQB1ACAAaADsAG4AaAAgAFIARwBCACAAQwBoAHUAbgBnAFAAZQByAGYAaQBsACAAUgBHAEIAIABH
+AGUAbgDpAHIAaQBjAG8EFwQwBDMEMAQ7BEwEPQQ4BDkAIAQ/BEAEPgREBDAEOQQ7ACAAUgBHAEIAUABy
+AG8AZgBpAGwAIABnAOkAbgDpAHIAaQBxAHUAZQAgAFIAVgBCAMEAbAB0AGEAbADhAG4AbwBzACAAUgBH
+AEIAIABwAHIAbwBmAGkAbJAadSgAIABSAEcAQgAggnJfaWPPj/AARwBlAG4AZQByAGkAcwBrACAAUgBH
+AEIALQBwAHIAbwBmAGkAbABPAGIAZQBjAG4A/QAgAFIARwBCACAAcAByAG8AZgBpAGwF5AXoBdUF5AXZ
+BdwAIABSAEcAQgAgBdsF3AXcBdkAUAByAG8AZgBpAGwAbwAgAFIARwBCACAAZwBlAG4AZQByAGkAYwBv
+AFAAcgBvAGYAaQBsACAAUgBHAEIAIABnAGUAbgBlAHIAaQBjAEEAbABsAGcAZQBtAGUAaQBuAGUAcwAg
+AFIARwBCAC0AUAByAG8AZgBpAGzHfLwYACAAUgBHAEIAINUEuFzTDMd8Zm6QGgAgAFIARwBCACBjz4/w
+ZYdO9k4AgiwAIABSAEcAQgAgMNcw7TDVMKEwpDDrA5MDtQO9A7kDugPMACADwAPBA78DxgOvA7sAIABS
+AEcAQgBQAGUAcgBmAGkAbAAgAFIARwBCACAAZwBlAG4A6QByAGkAYwBvAEEAbABnAGUAbQBlAGUAbgAg
+AFIARwBCAC0AcAByAG8AZgBpAGUAbA5CDhsOIw5EDh8OJQ5MACAAUgBHAEIAIA4XDjEOSA4nDkQOGwBH
+AGUAbgBlAGwAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGkAWQBsAGUAaQBuAGUAbgAgAFIARwBCAC0AcABy
+AG8AZgBpAGkAbABpAEcAZQBuAGUAcgBpAQ0AawBpACAAUgBHAEIAIABwAHIAbwBmAGkAbABVAG4AaQB3
+AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAFIARwBCBB4EMQRJBDgEOQAgBD8EQAQ+BEQEOAQ7
+BEwAIABSAEcAQgZFBkQGQQAgBioGOQYxBkoGQQAgAFIARwBCACAGJwZEBjkGJwZFAEcAZQBuAGUAcgBp
+AGMAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGV0ZXh0AAAAAENvcHlyaWdodCAyMDA3IEFwcGxlIEluYy4s
+IGFsbCByaWdodHMgcmVzZXJ2ZWQuAFhZWiAAAAAAAADzUgABAAAAARbPWFlaIAAAAAAAAHRNAAA97gAA
+A9BYWVogAAAAAAAAWnUAAKxzAAAXNFhZWiAAAAAAAAAoGgAAFZ8AALg2Y3VydgAAAAAAAAABAc0AAHNm
+MzIAAAAAAAEMQgAABd7///MmAAAHkgAA/ZH///ui///9owAAA9wAAMBs0iUmJyhaJGNsYXNzbmFtZVgk
+Y2xhc3Nlc18QEE5TQml0bWFwSW1hZ2VSZXCjJykqWk5TSW1hZ2VSZXBYTlNPYmplY3TSJSYsLVdOU0Fy
+cmF5oiwq0iUmLzBeTlNNdXRhYmxlQXJyYXmjLywq0zIzCjQ1NldOU1doaXRlXE5TQ29sb3JTcGFjZUQw
+IDAAEAOADNIlJjg5V05TQ29sb3KiOCrSJSY7PFdOU0ltYWdlojsqXxAPTlNLZXllZEFyY2hpdmVy0T9A
+VHJvb3SAAQAIABEAGgAjAC0AMgA3AEYATABXAF4AZQByAHkAgQCDAIUAigCMAI4AlgCbAKYAqACqAKwA
+sQC0ALYAuAC6ALwAwQDYANoA3AsuCzMLPgtHC1oLXgtpC3ILdwt/C4ILhwuWC5oLoQupC7YLuwu9C78L
+xAvMC88L1AvcC98L8Qv0C/kAAAAAAAACAQAAAAAAAABBAAAAAAAAAAAAAAAAAAAL+w
+</mutableData>
+        </image>
+        <image name="Back" width="59" height="18"/>
+        <image name="TaskStatusExpandWhiteIconTurn" width="30" height="44"/>
+    </resources>
+</document>
