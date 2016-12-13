@@ -21,4 +21,6 @@
 
 - (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion;
 
+- (CGFloat) countHeightForCommentCellWithWidth: (CGFloat) width;
+
 @end

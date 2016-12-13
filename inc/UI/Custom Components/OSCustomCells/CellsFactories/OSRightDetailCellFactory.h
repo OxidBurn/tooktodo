@@ -11,6 +11,9 @@
 // Frameworks
 @import UIKit;
 
+// Classes
+#import "OSRightDetailCell.h"
+
 @interface OSRightDetailCellFactory : NSObject
 
 // methods
@@ -18,4 +21,9 @@
                                      withDetailText: (NSString*)    detailText
                                  withSelectedDetail: (BOOL)         isSelected
                                        forTableView: (UITableView*) tableView;
+
+- (UITableViewCell*) returnAboutProjectCommentCellWithComment: (NSString*)    comment
+                                            withSelectedState: (BOOL)         isSelected
+                                                 forTableView: (UITableView*) tableView;
+
 @end
