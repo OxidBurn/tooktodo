@@ -207,6 +207,11 @@ static NSString* contentKey = @"contentInfoKey";
         self.searchFilteredPredicate = nil;
 }
 
+- (NSUInteger) getCountOfFoundTaks
+{
+    return self.countOfFoundTasks;
+}
+
 - (void) countSearchResultsForString: (NSString*) enteredText
 {
    __block NSPredicate* predicate = [NSPredicate predicateWithFormat: @"title CONTAINS[cd] %@", enteredText];

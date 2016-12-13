@@ -92,6 +92,10 @@
     return [self.model getSearchTableState];
 }
 
+- (NSUInteger) getCountOfFoundTaks
+{
+    return [self.model getCountOfFoundTaks];
+}
 
 #pragma mark - UITable view data source -
 
@@ -134,7 +138,9 @@
     [stageInfoView fillInfo: stage
         withStagesTasksList: [self.model rowsContentForSection: section]
             withSearchState: [self.model getSearchTableState]];
-
+    
+    self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self getCountOfFoundTaks]];
+    
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
     
