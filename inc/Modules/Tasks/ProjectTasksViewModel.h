@@ -43,6 +43,4 @@
 
 - (SearchTableState) getSearchTableState;
 
-- (NSUInteger) getCountOfFoundTaks;
-
 @end
