@@ -87,6 +87,11 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     [self.model fillSelectedTeamMember: teamMember];
 }
 
+- (NSString*) getRoleTitle
+{
+    return [self.model getRole];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -119,7 +124,6 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         self.cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
         
         self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
-        
         
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];

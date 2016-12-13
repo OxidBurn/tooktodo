@@ -72,6 +72,15 @@
   return [self.model getSelectedItem];
 }
 
+- (void) fillSelectedRole: (NSString*) role
+{
+    [self.model fillSelectedRole: role];
+}
+
+- (void) updateSelectedRole
+{
+    [self.model updateSelectedRole];
+}
 
 #pragma mark - Table view data source
 

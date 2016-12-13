@@ -40,7 +40,7 @@
 - (void) loadView
 {
     [super loadView];
-    
+
     // Binding between UI and model
     [self bindingUI];
 }
@@ -56,8 +56,10 @@
         
         @strongify(self)
         
-        [self.rolesTableView reloadData];
+        [self.rolesViewModel updateSelectedRole];
         
+        [self.rolesTableView reloadData];
+    
     }];
 }
 
@@ -66,6 +68,11 @@
 - (void) setRolesViewControllerDelegate: (id<RolesViewControllerDelegate>) delegate
 {
     self.delegate = delegate;
+}
+
+- (void) fillSelectedRole: (NSString*) role
+{
+    [self.rolesViewModel fillSelectedRole: role];
 }
 
 #pragma mark - Internal methods -

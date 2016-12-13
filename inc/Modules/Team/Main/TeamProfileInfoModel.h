@@ -41,6 +41,8 @@
 
 - (NSString*) getAvatar;
 
+- (NSString*) getRole;
+
 - (NSNumber*) getPermissions;
 
 - (NSInteger) getCurrentUserPermission;

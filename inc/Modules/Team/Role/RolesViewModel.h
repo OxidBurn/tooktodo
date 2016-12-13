@@ -20,5 +20,8 @@
 
 - (RACSignal*) updateRolesInfo;
 
+- (void) fillSelectedRole: (NSString*) role;
+
+- (void) updateSelectedRole;
 
 @end

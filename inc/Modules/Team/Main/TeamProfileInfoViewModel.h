@@ -33,6 +33,8 @@
 
 - (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
 
+- (NSString*) getRoleTitle;
+
 @end
 
 @protocol TeamProfileViewModelDelegate <NSObject>

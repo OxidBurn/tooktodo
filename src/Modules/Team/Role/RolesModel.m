@@ -14,6 +14,8 @@
 
 @property (strong, nonatomic) NSIndexPath* lastIndexPath;
 
+@property (nonatomic, strong) NSString* selectedRoleTitle;
+
 @end
 
 @implementation RolesModel
@@ -96,6 +98,23 @@
         return self.rolesArray[self.lastIndexPath.row];
     else
         return nil;
+}
+
+- (void) fillSelectedRole: (NSString*) role
+{
+    self.selectedRoleTitle = role;
+}
+
+- (void) updateSelectedRole
+{
+        [self.rolesArray enumerateObjectsUsingBlock: ^(ProjectRoles*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    
+            if ([obj.title isEqualToString: self.selectedRoleTitle])
+            {
+                self.lastIndexPath = [NSIndexPath indexPathForRow: idx
+                                                        inSection: 0];
+            }
+        }];
 }
 
 #pragma mark - Internal -

@@ -112,6 +112,8 @@
             RolesViewController* controller = segue.destinationViewController;
         
             [controller setRolesViewControllerDelegate: self.viewModel];
+            
+            [controller fillSelectedRole: [self.viewModel getRoleTitle]];
         }
         
         else
