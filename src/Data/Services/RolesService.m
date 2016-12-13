@@ -163,11 +163,11 @@ static bool isFirstAccess = YES;
         [[[[RolesAPIService sharedInstance] createNewRoleTypeForProject: requestURL
                                                         withParameter: parameters]
          deliverOn: [RACScheduler mainThreadScheduler]]
-         subscribeNext: ^(RACTuple* response) {
+         subscribeNext: ^(NSDictionary* response) {
              
              @strongify(self)
              
-             [self parseCreationRoleTypeResponse: response[0]
+             [self parseCreationRoleTypeResponse: response
                                   withCompletion: ^(BOOL isSuccess) {
                                       
                                       [subscriber sendNext: nil];

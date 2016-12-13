@@ -291,20 +291,20 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
 {
     if ( value )
     {
-    [self.model updateMemberRole: value];
-    
-    self.cell.detailTextLabel.text = value.title;
-    
-    [self.model reloadContent];
-    
-    if ( self.reloadTableView )
-        self.reloadTableView();
-    
-    if (self.dismissViewController)
-        self.dismissViewController();
+        [self.model updateMemberRole: value];
         
-        if (completion)
-            completion(YES);
+        self.cell.detailTextLabel.text = value.title;
+        
+        [self.model reloadContent];
+        
+        if ( self.reloadTableView )
+            self.reloadTableView();
+        
+        if (self.dismissViewController)
+            self.dismissViewController();
+            
+            if (completion)
+                completion(YES);
     }
     
     else

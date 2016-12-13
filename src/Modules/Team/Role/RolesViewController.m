@@ -112,7 +112,6 @@
 
 - (void) saveSelectedRole
 {
- 
     if (self.delegate )
     {
         [self.delegate didSelectRole: [self.rolesViewModel getSelectedItem]

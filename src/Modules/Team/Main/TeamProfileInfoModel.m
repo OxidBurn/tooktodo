@@ -263,6 +263,8 @@ typedef NS_ENUM(NSUInteger, ContactType)
                                  
                                  self.memberInfo = teamMember;
                             }];
+    
+    
 }
 
 - (NSInteger) getCurrentUserPermission
