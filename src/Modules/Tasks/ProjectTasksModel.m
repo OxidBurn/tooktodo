@@ -108,7 +108,7 @@ static NSString* contentKey = @"contentInfoKey";
 {
     ProjectTaskStage* stage = [self getStageForSection: section];
     
-    if ( stage.isExpanded.boolValue )
+    if ( stage.isExpanded.boolValue || self.tableState == TableSearchState )
     {
         NSArray* rowsContent = stage.tasks.array;
         
@@ -129,7 +129,7 @@ static NSString* contentKey = @"contentInfoKey";
     }
     else
     {
-        return 0;
+        return nil;
     }
 }
 
