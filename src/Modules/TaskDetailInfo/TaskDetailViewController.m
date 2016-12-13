@@ -180,6 +180,8 @@
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
         
+        vc.delegate = self;
+        
         [self removeNotifications];
     }
 }
@@ -256,6 +258,11 @@
 - (void) subscribeNotifications
 {
     [self addNotifications];
+}
+
+- (void) dismissTaskDetailAfterDeleting
+{
+    [self.navigationController popViewControllerAnimated: NO];
 }
 
 
