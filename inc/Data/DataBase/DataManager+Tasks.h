@@ -14,6 +14,7 @@
 #import "ProjectRoleAssignments+CoreDataClass.h"
 #import "FilledTeamInfo.h"
 #import "TaskAvailableActionsModel.h"
+#import "ProjectTask+CoreDataClass.h"
 
 
 @interface DataManager (Tasks)
@@ -33,6 +34,10 @@
             withCompletion: (CompletionWithSuccess) completion;
 
 // update
+- (void) updateSelectedTaskInfo: (ProjectTask*)          task
+                    withNewInfo: (ProjectTaskModel*)     info
+                 withCompletion: (CompletionWithSuccess) completion;
+
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion;
 

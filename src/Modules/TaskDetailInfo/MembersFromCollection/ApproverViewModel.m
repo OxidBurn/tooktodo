@@ -49,6 +49,8 @@
     
     [cell fillCellWithApproverUser: [self.model getApproverUserForIndexPath: indexPath.row] withApprovedCheckmarkState: [self.model isApprovedAssignee: indexPath.row]];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     return cell;
 }
 
@@ -59,5 +61,6 @@
 }
 
 #pragma mark - UITableView delegate methods -
+
 
 @end

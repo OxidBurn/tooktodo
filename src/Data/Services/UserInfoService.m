@@ -117,7 +117,7 @@ static bool isFirstAccess = YES;
             message = [message stringByReplacingOccurrencesOfString: @"'Last Name'"
                                                          withString: @"Поле 'Фамилия'"];
             
-            [SVProgressHUD showErrorWithStatus: message];
+            [Utils showErrorAlertWithMessage: message];
             
             if ( completion )
                 completion(NO);
@@ -128,7 +128,7 @@ static bool isFirstAccess = YES;
     }
                                                               error: ^(NSError *error) {
                                                                   
-                                                                  [SVProgressHUD showErrorWithStatus: error.localizedDescription];
+                                                                  [Utils showErrorAlertWithMessage: error.localizedDescription];
                                                                   
                                                                   if ( completion )
                                                                       completion(NO);
@@ -173,7 +173,8 @@ static bool isFirstAccess = YES;
     return getUserInfoSignal;
 }
 
-- (void) updateAvatarWithFile: (NSString*) filePath
+- (void) updateAvatarWithFile: (NSString*)             filePath
+               withCompletion: (CompletionWithSuccess) completion
 {
     [[UserAPIService sharedInstance] getAvatarFileID: filePath
                                       withCompletion: ^(NSDictionary *response, NSError *error) {
@@ -190,10 +191,21 @@ static bool isFirstAccess = YES;
                                                   
                                                   NSLog(@"Response %@", tuple);
                                                   
+                                                  [DataManagerShared updateAvatarURLPathForCurrentUser: response[@"virtualPath"]
+                                                                                        withCompletion: ^(BOOL isSuccess) {
+                                                                               
+                                                                               if ( completion )
+                                                                                   completion(YES);
+                                                                               
+                                                                           }];
+                                                  
                                               }
                                                                           error:^(NSError *error) {
                                                                               
                                                                               NSLog(@"Error with getting file info: %@", error.localizedDescription);
+                                                                              
+                                                                              if ( completion )
+                                                                                  completion(NO);
                                                                               
                                                                           }];
                                           }

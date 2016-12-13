@@ -81,9 +81,9 @@
     {
         _titlesInfoArray = @[ @"Ожидание",
                               @"В работе",
-                              @"На утверждении",
-                              @"Выполнена",
+                              @"Завершена",
                               @"Отменена",
+                              @"На утверждении",
                               @"На доработке",
                               @"Запрос на отмену"];
     }
@@ -97,9 +97,9 @@
     {
         _colorsInfoArray = @[ self.yellowColor,
                               self.greenColor,
-                              self.yellowColor,
                               self.greenColor,
                               self.redColor,
+                              self.yellowColor,
                               self.yellowColor,
                               self.redColor ];
     }
@@ -113,11 +113,11 @@
     {
         _imagesInfoArray = @[ [UIImage imageNamed: @"TaskStatusWaitingIcon"],
                               [UIImage imageNamed: @"TaskStatusInProgressIcon"],
-                              [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
                               [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
+                              [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
                               [UIImage imageNamed: @"TaskStatusOnCompletion"],
-                              [UIImage imageNamed: @"TaskStatusCanceledIcon"] ];
+                              [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
     }
     
     return _imagesInfoArray;

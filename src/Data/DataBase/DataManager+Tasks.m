@@ -43,6 +43,8 @@
 #import "ProjectRoleType+CoreDataClass.h"
 #import "TaskApprovementsModel.h"
 #import "ProjectTaskRoleAssignment+CoreDataProperties.h"
+#import "ProjectTaskStageModel.h"
+#import "ProjectStageTasksListModel.h"
 
 // Categories
 #import "DataManager+ProjectInfo.h"
@@ -63,11 +65,11 @@
         // For storing
         ProjectInfo* project = [DataManagerShared getSelectedProjectInfoInContext: localContext];
         
-        [tasks enumerateObjectsUsingBlock: ^(ProjectTaskModel* taskModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        [tasks enumerateObjectsUsingBlock: ^(ProjectTaskStageModel* stageModel, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [self persistTaskWithInfo: taskModel
-                           forProject: project
-                            inContext: localContext];
+            [self persistStageWithInfo: stageModel
+                            forProject: project
+                             inContext: localContext];
             
         }];
         
@@ -191,225 +193,50 @@
 
 #pragma mark - Internal methods -
 
+- (void) persistStageWithInfo: (ProjectTaskStageModel*)  info
+                   forProject: (ProjectInfo*)            project
+                    inContext: (NSManagedObjectContext*) context
+{
+    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstOrCreateByAttribute: @"stageID"
+                                                                      withValue: info.stageID
+                                                                      inContext: context];
+    
+    stage.project  = project;
+    stage.stageID  = info.stageID;
+    stage.isCommon = info.isCommon;
+    stage.title    = info.title;
+    
+    [info.tasks.list enumerateObjectsUsingBlock: ^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        ProjectTask* task = [self persistTaskWithInfo: obj
+                                           forProject: project
+                                            inContext: context];
+        
+        task.stage = stage;
+        
+    }];
+}
+
 - (ProjectTask*) persistTaskWithInfo: (ProjectTaskModel*)       info
                           forProject: (ProjectInfo*)            project
                            inContext: (NSManagedObjectContext*) context
 {
-    ProjectTask* task = [ProjectTask MR_findFirstOrCreateByAttribute: @"taskID"
-                                                           withValue: info.taskID
-                                                           inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"taskID == %@ AND projectId == %@", info.taskID, info.projectId];
+    
+    ProjectTask* task = [ProjectTask MR_findFirstWithPredicate: predicate
+                                                     inContext: context];
+    
+    if ( task == nil )
+    {
+        task = [ProjectTask MR_createEntityInContext: context];
+    }
     
     task.isSelected = @NO;
     
-    if ( info.taskID )
-        task.taskID = info.taskID;
-    
-    if ( info.closedDate )
-        task.closedDate = info.closedDate;
-    
-    if ( info.taskDescription )
-        task.descriptionValue = info.taskDescription;
-    
-    if ( info.duration )
-        task.duration = info.duration;
-    
-    if ( info.endDate )
-        task.endDate = info.endDate;
-    
-    if ( info.extraId )
-        task.extraId = info.extraId;
-    
-    if ( info.isAllRooms )
-        task.isAllRooms = info.isAllRooms;
-    
-    if ( info.isExpired )
-        task.isExpired = info.isExpired;
-    
-    if ( info.isIncludedRestDays )
-        task.isIncludedRestDays = info.isIncludedRestDays;
-    
-    if ( info.isTaskStatusChanged )
-        task.isTaskStatusChanged = info.isTaskStatusChanged;
-    
-    if ( info.isUrgent )
-        task.isUrgent = info.isUrgent;
-    
-    if ( info.mapPreviewImage )
-        task.mapPreviewImage = info.mapPreviewImage;
-    
-    if ( info.ownerUserId )
-        task.ownerUserId = info.ownerUserId;
-    
-    if ( info.parentTaskId )
-        task.parentTaskId = info.parentTaskId;
-    
-    if ( info.projectId )
-        task.projectId = info.projectId;
-    
-    if ( info.projectRelatedId )
-        task.projectRelatedId = info.projectRelatedId;
-    
-    if ( info.status )
-        task.status = info.status;
-    
-    if ( info.statusDescription )
-        task.statusDescription = info.statusDescription;
-    
-    if ( info.storageDirectoryId )
-        task.storageDirectoryId = info.storageDirectoryId;
-    
-    if ( info.storageFilesCount )
-        task.storageFilesCount = info.storageFilesCount;
-    
-    if ( info.taskAccess )
-        task.taskAccess = info.taskAccess;
-    
-    if ( info.taskType )
-        task.taskType = info.taskType;
-    
-    if ( info.taskTypeDescription )
-        task.taskTypeDescription = info.taskTypeDescription;
-    
-    if ( info.title )
-        task.title = info.title;
-    
-    if ( project )
-        task.project = project;
-    
-    if ( info.startDate )
-        task.startDay = info.startDate;
-    
-    if ( info.access )
-        task.access = info.access;
-    
-    if ( info.attachments.count )
-        task.attachments = info.attachments.count;
-    
-    task.commentsCount    = info.commentsCount;
-    task.factualStartDate = info.factualStartDate;
-    task.factualEndDate   = info.factualEndDate;
-    
-    // Store task responsible
-    if ( info.responsible )
-    {
-        [self persistTaskResponsible: info.responsible
-                             forTask: task
-                           inContext: context];
-    }
-    
-    // Store task stage
-    if ( info.stage )
-    {
-        [self persistTaskStage: info.stage
-                       forTask: task
-                     inProject: project
-                     inContext: context];
-    }
-    
-    // Store task work area
-    if ( info.workArea )
-    {
-        [self persistTaskWorkArea: info.workArea
-                          forTask: task
-                        inContext: context];
-    }
-    
-    // Store task owner user info
-    if ( info.ownerUser )
-    {
-        [self persistTaskOwnerUser: info.ownerUser
-                           forTask: task
-                         inContext: context];
-    }
-    
-    // Store task marker info
-    if ( info.marker )
-    {
-        [self persistTaskMarker: info.marker
-                        forTask: task
-                      inContext: context];
-    }
-    
-    // Store task rool level
-    if ( info.roomLevel )
-    {
-        [self persistTaskRoomLevel: info.roomLevel
-                           forTask: task
-                         inContext: context];
-    }
-    
-    // Store room value
-    if ( info.room )
-    {
-        [self persistTaskRoom: info.room
-                      forTask: task
-                 isSingleRoom: YES
+    [self fillTaskInfoForTask: task
+                    inProject: project
+                     withInfo: info
                     inContext: context];
-    }
-    
-    // Store task rooms
-    if ( info.rooms )
-    {
-        [info.rooms enumerateObjectsUsingBlock: ^(TaskRoomModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [self persistTaskRoom: obj
-                          forTask: task
-                     isSingleRoom: NO
-                        inContext: context];
-            
-        }];
-    }
-    
-    // Store subtasks
-    if ( info.subTasks )
-    {
-        NSArray* subTasksList = @[];
-        
-        if ( [info.subTasks isKindOfClass: [NSArray class]] )
-        {
-            subTasksList = info.subTasks;
-        }
-        else
-        {
-            TaskSubTasksModel* subTasksModel = (TaskSubTasksModel*)info.subTasks;
-            
-            subTasksList = subTasksModel.list;
-        }
-        
-        [subTasksList enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            ProjectTask* subTask = [self persistTaskWithInfo: obj
-                                                  forProject: project
-                                                   inContext: context];
-            
-            [task addSubTasksObject: subTask];
-
-        }];
-    }
-    
-    // Store tasks role assignments
-    if ( info.taskRoleAssignments )
-    {
-        [info.taskRoleAssignments enumerateObjectsUsingBlock: ^(TaskRoleAssignmentsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           
-            [self persistTaskRoleAssignments: obj
-                                     forTask: task
-                                   inContext: context];
-            
-        }];
-    }
-    
-    // Task approvements
-    if ( info.approvments )
-    {
-        [info.approvments enumerateObjectsUsingBlock: ^(TaskApprovementsModel* approvementModel, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [self persistNewTaskApprovements: approvementModel
-                                     forTask: task
-                                   inContext: context];
-            
-        }];
-    }
     
     return task;
 }
@@ -650,21 +477,31 @@
     roleType.title = info.title;
 }
 
-- (void) persistTaskStage: (TaskStageModel*)         info
-                  forTask: (ProjectTask*)            task
-                inProject: (ProjectInfo*)            project
-                inContext: (NSManagedObjectContext*) context
+- (ProjectTaskStage*) persistTaskStage: (TaskStageModel*)         info
+                               forTask: (ProjectTask*)            task
+                             inProject: (ProjectInfo*)            project
+                             inContext: (NSManagedObjectContext*) context
 {
-    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstOrCreateByAttribute: @"stageID"
-                                                                      withValue: @(info.stageID)
-                                                                      inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"stageID == %@", @(info.stageID)];
     
-    stage.stageID  = @(info.stageID);
+    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstWithPredicate: predicate
+                                                                inContext: context];
+    
+    if ( stage == nil && stage.project != project )
+    {
+        stage = [ProjectTaskStage MR_createEntityInContext: context];
+        
+        stage.stageID = @(info.stageID);
+        stage.project = project;
+        
+        NSLog(@"Stage with id: %lu", (unsigned long)info.stageID);
+        NSLog(@"<INFO> In project %@", project.title);
+    }
+    
     stage.isCommon = @(info.isCommon);
     stage.title    = info.title;
-    stage.project  = project;
     
-    [stage addTasksObject: task];
+    return stage;
 }
 
 - (void) persistTaskWorkArea: (TaskWorkAreaModel*)      info
@@ -750,12 +587,38 @@
                       inContext: context];
 }
 
+- (void) updateSelectedTaskInfo: (ProjectTask*)          task
+                    withNewInfo: (ProjectTaskModel*)     info
+                 withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectTask* updatedTask = [task MR_inContext: localContext];
+        
+        [self fillTaskInfoForTask: updatedTask
+                        inProject: updatedTask.project
+                         withInfo: info
+                        inContext: localContext];
+        
+        NSLog(@"<INFO> Updated task info: %@", updatedTask);
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 - (void) updateExpandedStateOfStage: (ProjectTaskStage*)     stageInfo
                      withCompletion: (CompletionWithSuccess) completion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        stageInfo.isExpanded = @(!stageInfo.isExpanded.boolValue);
+        ProjectTaskStage* stage = [stageInfo MR_inContext: localContext];
+        
+        stage.isExpanded = @(!stage.isExpanded.boolValue);
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -813,14 +676,12 @@
             [self deselectAllSelectedTasksInContext: localContext];
         }
         
-        ProjectTask* selectedTask = [ProjectTask MR_findFirstByAttribute: @"taskID"
-                                                               withValue: task.taskID
-                                                               inContext: localContext];
+        ProjectTask* selectedTask = [task MR_inContext: localContext];
         
         selectedTask.isSelected = @(isSelected);
         
     }
-                      completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
                           if ( completion )
                               completion(contextDidSave);
@@ -903,6 +764,213 @@
                                                                          inContext: context];
     
     return roleType;
+}
+
+- (void) fillTaskInfoForTask: (ProjectTask*)            task
+                   inProject: (ProjectInfo*)            project
+                    withInfo: (ProjectTaskModel*)       info
+                   inContext: (NSManagedObjectContext*) context
+{
+    if ( info.taskID )
+        task.taskID = info.taskID;
+    
+    if ( info.closedDate )
+        task.closedDate = info.closedDate;
+    
+    if ( info.taskDescription )
+        task.descriptionValue = info.taskDescription;
+    
+    if ( info.duration )
+        task.duration = info.duration;
+    
+    if ( info.endDate )
+        task.endDate = info.endDate;
+    
+    if ( info.extraId )
+        task.extraId = info.extraId;
+    
+    if ( info.isAllRooms )
+        task.isAllRooms = info.isAllRooms;
+    
+    if ( info.isExpired )
+        task.isExpired = info.isExpired;
+    
+    if ( info.isIncludedRestDays )
+        task.isIncludedRestDays = info.isIncludedRestDays;
+    
+    if ( info.isTaskStatusChanged )
+        task.isTaskStatusChanged = info.isTaskStatusChanged;
+    
+    if ( info.isUrgent )
+        task.isUrgent = info.isUrgent;
+    
+    if ( info.mapPreviewImage )
+        task.mapPreviewImage = info.mapPreviewImage;
+    
+    if ( info.ownerUserId )
+        task.ownerUserId = info.ownerUserId;
+    
+    if ( info.parentTaskId )
+        task.parentTaskId = info.parentTaskId;
+    
+    if ( info.projectId )
+        task.projectId = info.projectId;
+    
+    if ( info.projectRelatedId )
+        task.projectRelatedId = info.projectRelatedId;
+    
+    if ( info.status )
+        task.status = info.status;
+    
+    if ( info.statusDescription )
+        task.statusDescription = info.statusDescription;
+    
+    if ( info.storageDirectoryId )
+        task.storageDirectoryId = info.storageDirectoryId;
+    
+    if ( info.storageFilesCount )
+        task.storageFilesCount = info.storageFilesCount;
+    
+    if ( info.taskAccess )
+        task.taskAccess = info.taskAccess;
+    
+    if ( info.taskType )
+        task.taskType = info.taskType;
+    
+    if ( info.taskTypeDescription )
+        task.taskTypeDescription = info.taskTypeDescription;
+    
+    if ( info.title )
+        task.title = info.title;
+    
+    if ( project )
+        task.project = project;
+    
+    if ( info.startDate )
+        task.startDay = info.startDate;
+    
+    if ( info.access )
+        task.access = info.access;
+    
+    if ( info.attachments.count )
+        task.attachments = info.attachments.count;
+    
+    task.commentsCount    = info.commentsCount;
+    task.factualStartDate = info.factualStartDate;
+    task.factualEndDate   = info.factualEndDate;
+    
+    // Store task responsible
+    if ( info.responsible )
+    {
+        [self persistTaskResponsible: info.responsible
+                             forTask: task
+                           inContext: context];
+    }
+    
+    // Store task work area
+    if ( info.workArea )
+    {
+        [self persistTaskWorkArea: info.workArea
+                          forTask: task
+                        inContext: context];
+    }
+    
+    // Store task owner user info
+    if ( info.ownerUser )
+    {
+        [self persistTaskOwnerUser: info.ownerUser
+                           forTask: task
+                         inContext: context];
+    }
+    
+    // Store task marker info
+    if ( info.marker )
+    {
+        [self persistTaskMarker: info.marker
+                        forTask: task
+                      inContext: context];
+    }
+    
+    // Store task rool level
+    if ( info.roomLevel )
+    {
+        [self persistTaskRoomLevel: info.roomLevel
+                           forTask: task
+                         inContext: context];
+    }
+    
+    // Store room value
+    if ( info.room )
+    {
+        [self persistTaskRoom: info.room
+                      forTask: task
+                 isSingleRoom: YES
+                    inContext: context];
+    }
+    
+    // Store task rooms
+    if ( info.rooms )
+    {
+        [info.rooms enumerateObjectsUsingBlock: ^(TaskRoomModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistTaskRoom: obj
+                          forTask: task
+                     isSingleRoom: NO
+                        inContext: context];
+            
+        }];
+    }
+    
+    // Store subtasks
+    if ( info.subTasks )
+    {
+        NSArray* subTasksList = @[];
+        
+        if ( [info.subTasks isKindOfClass: [NSArray class]] )
+        {
+            subTasksList = info.subTasks;
+        }
+        else
+        {
+            TaskSubTasksModel* subTasksModel = (TaskSubTasksModel*)info.subTasks;
+            
+            subTasksList = subTasksModel.list;
+        }
+        
+        [subTasksList enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            ProjectTask* subTask = [self persistTaskWithInfo: obj
+                                                  forProject: project
+                                                   inContext: context];
+            
+            [task addSubTasksObject: subTask];
+            
+        }];
+    }
+    
+    // Store tasks role assignments
+    if ( info.taskRoleAssignments )
+    {
+        [info.taskRoleAssignments enumerateObjectsUsingBlock: ^(TaskRoleAssignmentsModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistTaskRoleAssignments: obj
+                                     forTask: task
+                                   inContext: context];
+            
+        }];
+    }
+    
+    // Task approvements
+    if ( info.approvments )
+    {
+        [info.approvments enumerateObjectsUsingBlock: ^(TaskApprovementsModel* approvementModel, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistNewTaskApprovements: approvementModel
+                                     forTask: task
+                                   inContext: context];
+            
+        }];
+    }
 }
 
 @end

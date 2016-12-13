@@ -213,6 +213,8 @@
         RolesViewController* controller = segue.destinationViewController;
         
         [controller setRolesViewControllerDelegate: self];
+        
+        [controller fillSelectedRole: self.roleLabel.text];
     }
     
 }
@@ -229,12 +231,26 @@
 
 #pragma mark - RolesViewControllerDelegate methods -
 
-- (void) didSelectRole: (ProjectRoles*) value
+- (void) didSelectRole: (ProjectRoles*)         value
+        withCompletion: (CompletionWithSuccess) completion
 {
-    self.roleLabel.text             = value.title;
-    self.addContactViewModel.roleID = value.sort;
+    if (value)
+    {
+        self.roleLabel.text             = value.title;
+        self.addContactViewModel.roleID = value.roleID;
+    
+        if (completion)
+            completion(YES);
+    }
+    
+    else
+    {
+        [Utils showErrorAlertWithMessage: @"Роль не выбрана"];
+    }
     
 }
+
+
 
 #pragma mark - UITableViewDelegate methods -
 

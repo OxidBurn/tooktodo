@@ -15,9 +15,10 @@
 @interface ChangeStatusViewController ()
 
 // outlets
-@property (weak, nonatomic) IBOutlet UITableView*     statusesTableView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem* backBtn;
-@property (weak, nonatomic) IBOutlet UIImageView*     expandedArrowMarkImageView;
+@property (weak, nonatomic) IBOutlet UITableView*        statusesTableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem*    backBtn;
+@property (weak, nonatomic) IBOutlet UIImageView*        expandedArrowMarkImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* tableViewHeightConstraint;
 
 // properties
 @property (nonatomic, strong) ChangeStatusViewModel* viewModel;
@@ -25,6 +26,7 @@
 // methods
 - (IBAction) onBack: (UIBarButtonItem*) sender;
 
+- (IBAction) onEmptySpaceGesture: (UITapGestureRecognizer*) sender;
 @end
 
 @implementation ChangeStatusViewController
@@ -65,6 +67,22 @@
                              completion: nil];
 }
 
+- (IBAction) onEmptySpaceGesture: (UITapGestureRecognizer*) sender
+{
+    [self dismissViewControllerAnimated: YES completion: nil];
+}
+
+- (BOOL) gestureRecognizer: (UIGestureRecognizer*) gestureRecognizer
+        shouldReceiveTouch: (UITouch*)             touch
+{
+    if ([touch.view isDescendantOfView: self.statusesTableView])
+        return NO;
+    
+    else
+        return YES;
+}
+
+
 #pragma mark - Helpers -
 
 - (void) setupDefaults
@@ -73,6 +91,8 @@
     self.statusesTableView.delegate   = self.viewModel;
     
     self.navigationController.navigationBar.backItem.title = @"Назад";
+    
+    self.tableViewHeightConstraint.constant = [self.viewModel countTableViewHeight];
     
     [self updateArrowMarkImage];
     

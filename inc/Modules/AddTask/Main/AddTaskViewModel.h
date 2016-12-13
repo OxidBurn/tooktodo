@@ -29,20 +29,24 @@
 
 @property (nonatomic, copy) void(^reloadTableView)();
 @property (nonatomic, copy) void(^dismissTaskInfo)();
+@property (nonatomic, copy) void(^performSegueWithID)(NSString* segueID);
 
 @property (strong, nonatomic) RACCommand* enableAllButtonsCommand;
 @property (nonatomic, strong) RACCommand* enableCreteOnBaseBtnCommand;
 @property (nonatomic, strong) RACCommand* deleteTaskCommand;
 @property (strong, nonatomic) RACSignal*  enableConfirmButtons;
-
+@property (nonatomic, strong) RACCommand* createOnExistingTaskBaseCommand;
 
 //methods
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
 
 - (NewTask*) getNewTask;
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
 - (NSArray*) returnAllSeguesArray;
+
+- (NSArray*) getAllMembersArray;
 
 - (id) returnModel;
 
@@ -55,6 +59,8 @@
 - (TermsData*) returnTerms;
 
 - (ProjectSystem*) returnSelectedSystem;
+
+- (ProjectTask*) getSelectedTask;
 
 - (ProjectTaskStage*) returnSelectedStage;
 
@@ -81,6 +87,10 @@
 - (NSString*) returnTaskToEditTitle;
 
 - (void) deselectAllRoomsInfo;
+
+- (AddTaskControllerType) getControllerType;
+
+- (void) resetCellsContent;
 
 @end
 

@@ -12,6 +12,7 @@
 
 // methods
 - (UITableViewCell*) returnFlexibleTextFieldCellWithTextContent: (NSString*)    textContent
-                                                   forTableView: (UITableView*) tableView;
+                                                   forTableView: (UITableView*) tableView
+                                                   withDelegate: (id)           delegate;
 
 @end

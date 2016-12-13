@@ -94,6 +94,32 @@
     return userInfo.userID;
 }
 
+- (void) updateAvatarURLPathForCurrentUser: (NSString*)             path
+                            withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        UserInfo* currentUser = [[self getCurrentUserInfo] MR_inContext: localContext];
+        
+        currentUser.photoImagePath = path;
+        currentUser.avatarSrc      = path;
+        
+        [[AvatarHelper sharedInstance] loadAvatarFromWeb: path
+                                                withName: [Utils getEmailPrefix: currentUser.email]
+                                          withCompletion: ^(BOOL isSuccess) {
+                                              
+                                              if ( completion )
+                                                  completion(isSuccess);
+                                              
+                                          }];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          
+                      }];
+}
+
 - (void) updateUserInfo: (UpdatedUserInfo*)        newInfo
                 forUser: (UserInfo*)               user
          withCompletion: (void(^)(BOOL isSuccess)) completion

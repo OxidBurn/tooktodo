@@ -40,6 +40,8 @@
 // properties
 @property (strong, nonatomic) NSArray* addTaskTableViewContent;
 
+@property (strong, nonatomic) NSArray* allMembersArray;
+
 @property (nonatomic, strong) NewTask* task;
 
 @property (strong, nonatomic) NSArray* allSeguesInfoArray;
@@ -109,7 +111,6 @@
 }
 
 
-
 #pragma mark - Public -
 
 - (RowContent*) getContentForIndexPath: (NSIndexPath*) indexPath
@@ -158,6 +159,11 @@
     return self.task.claiming;
 }
 
+- (NSArray*) getAllMembersArray
+{
+    return self.allMembersArray;
+}
+
 - (NSArray*) returnSelectedObserversArray
 {
     return self.task.observers;
@@ -201,6 +207,11 @@
     return self.task.taskName;
 }
 
+- (ProjectTask*) getSelectedTask
+{
+    return [DataManagerShared getSelectedTask];
+}
+
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion
 {
     BOOL isSubtask = (self.controllerType == AddSubtaskControllerType);
@@ -217,7 +228,7 @@
          
          NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
          
-         [SVProgressHUD showErrorWithStatus: @"Произошла ошибка при создании задачи!"];
+         [Utils showErrorAlertWithMessage: @"Произошла ошибка при создании задачи!"];
          
      }];
 }
@@ -253,7 +264,7 @@
 
 - (NSString*) returnTaskToEditTitle
 {
-    return self.editedTask.title;
+    return [NSString stringWithFormat: @"\"%@\"", self.editedTask.title];
 }
 
 - (void) deselectAllRoomsInfo
@@ -286,6 +297,52 @@
      }];
 }
 
+- (AddTaskControllerType) getControllerType
+{
+    return self.controllerType;
+}
+
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    @weakify(self)
+    
+    [[[TeamService sharedInstance] getTeamInfo]
+     subscribeNext: ^(NSArray* teamInfo)
+     {
+         @strongify(self)
+         
+         __block NSMutableArray* tmpTeamList = [NSMutableArray array];
+         
+         [teamInfo enumerateObjectsUsingBlock: ^(ProjectRoleAssignments* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+             
+             FilledTeamInfo* teamMemberInfo = [FilledTeamInfo new];
+             
+             [teamMemberInfo fillTeamInfo: obj];
+             
+             [tmpTeamList addObject: teamMemberInfo];
+             
+         }];
+         
+         self.allMembersArray = tmpTeamList.copy;
+         
+         tmpTeamList = nil;
+         
+         if ( completion )
+             completion (YES);
+         
+     }
+     error: ^(NSError* error) {
+         
+         if ( completion )
+             completion (NO);
+     }
+     completed: ^{
+         
+         if ( completion )
+             completion (YES);
+     }];
+}
+
 
 #pragma mark - OSSwitchTableCellDelegate methods -
 
@@ -298,18 +355,36 @@
 #pragma mark - SelectResponsibleViewControllerDelegate methods -
 
 - (void) returnSelectedResponsibleInfo: (NSArray*) selectedUsersArray
+                        withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedResponsibleInfo: selectedUsersArray];
+    if ( selectedUsersArray )
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedResponsibleInfo: selectedUsersArray];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 - (void) returnSelectedClaimingInfo: (NSArray*) selectedClaiming
+                     withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedClaimingInfo: selectedClaiming];
+    if ( selectedClaiming)
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedClaimingInfo: selectedClaiming];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 - (void) returnSelectedObserversInfo: (NSArray*) selectedObservers
+                      withAllMembers: (NSArray*) allMembers
 {
-    self.addTaskTableViewContent = [self.contentManager updateSelectedObserversInfo: selectedObservers];
+    if ( selectedObservers)
+    {
+        self.addTaskTableViewContent = [self.contentManager updateSelectedObserversInfo: selectedObservers];
+    }
+    
+    [self updateMembersRoleTypes: allMembers];
 }
 
 
@@ -317,7 +392,7 @@
 
 - (void) returnSelectedSystem: (ProjectSystem*) system
 {
-    [self.contentManager updateSelectedSystem: system];
+  self.addTaskTableViewContent = [self.contentManager updateSelectedSystem: system];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -328,7 +403,7 @@
 
 - (void) returnSelectedStage: (ProjectTaskStage*) stage
 {
-    [self.contentManager updateSelectedStage: stage];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedStage: stage];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -337,10 +412,9 @@
 
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
-
 - (void) returnSelectedInfo: (id) info
 {
-    [self.contentManager updateSelectedInfo: info];
+   self.addTaskTableViewContent = [self.contentManager updateSelectedInfo: info];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -353,9 +427,9 @@
              withDescription: (NSString*) typeDescription
                    withColor: (UIColor*)  typeColor
 {
-    [self.contentManager updateSelectedTaskType: type
-                                withDescription: typeDescription
-                                      withColor: typeColor];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedTaskType: type
+                                                               withDescription: typeDescription
+                                                                     withColor: typeColor];
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -366,7 +440,7 @@
 
 - (void) updateTerms: (TermsData*) terms
 {
-    [self.contentManager updateTerms: terms];
+    self.addTaskTableViewContent = [self.contentManager updateTerms: terms];
 }
 
 
@@ -374,7 +448,7 @@
 
 - (void) setTaskDescription: (NSString*) taskDescription
 {
-    [self.contentManager updateTaskDescription: taskDescription];
+    self.addTaskTableViewContent = [self.contentManager updateTaskDescription: taskDescription];
 }
 
 
@@ -383,6 +457,39 @@
 - (BOOL) isValidTaskName: (NSString*) taskName
 {
     return taskName.length > 0;
+}
+
+- (void) updateMembersRoleTypes: (NSArray*) changedMembers
+{
+    [self excludeInvitedUsers];
+    
+    [self.allMembersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* oldMember, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        [changedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* newMember, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( oldMember.userId.integerValue == newMember.userId.integerValue )
+            {
+                oldMember.taskRoleAssinment = newMember.taskRoleAssinment;
+            }
+        }];
+    }];
+}
+
+
+- (void) excludeInvitedUsers
+{
+    __block NSMutableArray* tmpMembersArray = self.allMembersArray.mutableCopy;
+    
+    [self.allMembersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( member.assignments.invite )
+        {
+            [tmpMembersArray removeObject: member];
+        }
+        
+    }];
+    
+    self.allMembersArray = tmpMembersArray.copy;
 }
 
 @end

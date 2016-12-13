@@ -42,15 +42,26 @@ typedef NS_ENUM(NSUInteger, AllTasksCellType)
     AllTasksTaskCellType,
 };
 
+// Task statuses and available actions
+
 typedef NS_ENUM(NSUInteger, TaskStatusType)
 {
     TaskWaitingStatusType      = 0,
     TaskInProgressStatusType   = 1,
-    TaskOnApprovingStatusType  = 2,
-    TaskCompletedStatusType    = 3,
-    TaskCanceledStatusType     = 4,
+    TaskCompletedStatusType    = 2,
+    TaskCanceledStatusType     = 3,
+    TaskOnApprovingStatusType  = 4,
     TaskOnCompletionStatusType = 5,
     TaskCancelRequestType      = 6,
+};
+
+
+
+typedef NS_ENUM(NSUInteger, AssignmentRoleType)
+{
+    ResponsibleRoleType,
+    ClaimingsRoleType,
+    ObserverRoleType,
 };
 
 typedef NS_ENUM(NSUInteger, ControllerTypeSelection) {
@@ -224,6 +235,14 @@ typedef NS_ENUM(NSUInteger, TaskFilterByMyRoleInProject)
     Responsible,
     Claiming,
     Creator,
+};
+
+typedef NS_ENUM(NSInteger, PermissionTypeList) {
+    
+    SystemAdminPermission = -1,
+    ParticipantPermission = 0,
+    OwnerPermission       = 1,
+    AdminPermission       = 2,
 };
 
 

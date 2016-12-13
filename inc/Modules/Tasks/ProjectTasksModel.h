@@ -22,6 +22,8 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 
 - (RACSignal*) updateContent;
 
+- (RACSignal*) loadUpdatedContentFromServer;
+
 - (RACSignal*) applyFilters;
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section;
@@ -31,7 +33,7 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             indexPath
                          withCompletion: (CompletionWithSuccess) completion;
 
-- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path;
+- (ProjectTask*) getInfoForCellAtIndexPath: (NSIndexPath*) path;
 
 - (NSUInteger) countOfSections;
 
@@ -45,12 +47,14 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding;
 
-- (void) updateTaskStatusForIndexPath: (NSIndexPath*) path;
-
 - (void) setTableSearchState: (SearchTableState) state;
 
 - (void) applyFilteringByText: (NSString*) text;
 
 - (SearchTableState) getSearchTableState;
+
+- (NSUInteger) getCountOfFoundTaks;
+
+- (void) countSearchResultsForString: (NSString*) enteredText;
 
 @end

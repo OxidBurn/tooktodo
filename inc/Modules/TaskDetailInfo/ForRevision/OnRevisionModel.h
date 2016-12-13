@@ -6,8 +6,10 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ReactiveCocoa.h"
 
 @interface OnRevisionModel : NSObject
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*) message;
 
 @end

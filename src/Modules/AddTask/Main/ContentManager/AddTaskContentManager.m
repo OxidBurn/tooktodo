@@ -11,6 +11,7 @@
 // Categories
 #import "AddTaskContentManager+Helpers.h"
 #import "AddTaskContentManager+UpdadingContent.h"
+#import "AddTaskContentManager+ProjectTask.h"
 
 // Helpers
 #import "ProjectsEnumerations.h"
@@ -18,7 +19,7 @@
 @interface AddTaskContentManager()
 
 // properties
-@property (assign, nonatomic) AddTaskControllerType controllerType;
+
 
 // methods
 
@@ -34,10 +35,27 @@
 {
     if ( _addTaskContentArray == nil )
     {
-        _addTaskContentArray = [self createTableViewContent];
+        if (self.controllerType == EditTaskControllerType)
+        {
+            _addTaskContentArray = [self convertProjectTaskToContent: self.projectTask];
+        }
+        else
+        {
+            _addTaskContentArray = [self createTableViewContent];
+        }
     }
     
     return _addTaskContentArray;
+}
+
+- (ProjectTask*) projectTask
+{
+    if (_projectTask == nil)
+    {
+        _projectTask = [DataManagerShared getSelectedTask];
+    }
+    
+    return _projectTask;
 }
 
 - (NewTask*) task
@@ -46,11 +64,9 @@
     {
         _task = [NewTask new];
         
-        _task.defaultResponsible = [self getCurrentUserInfoArray];
-        
         if ( _task.responsible == nil )
         {
-            _task.responsible = _task.defaultResponsible;
+            _task.responsible = [self getCurrentUserInfoArray];
         }
         
     }
@@ -73,7 +89,6 @@
     
     return _addTaskTableViewCellsInfo;
 }
-
 
 - (NSArray*) addTaskTableViewSeguesInfo
 {
@@ -114,11 +129,6 @@
 {
     self.task.taskName = newTaskName;
     
-    if ( [newTaskName isEqualToString: @""] )
-    {
-        newTaskName = @"Название задачи ";
-    }
-    
     RowContent* newRow = self.addTaskContentArray[SectionOne][TaskNameRow];
     
     newRow.title  = newTaskName;
@@ -148,7 +158,7 @@
     
     rowOne.cellId    = self.addTaskTableViewCellsInfo[FlexibleTextFieldCell];
     rowOne.cellIndex = FlexibleTextFieldCell;
-    rowOne.title     = self.task.taskName ? self.task.taskName : @"Название задачи";
+    rowOne.title     = self.task.taskName ? self.task.taskName : @"";
     
     RowContent* rowTwo = [[RowContent alloc] initWithUserInteractionEnabled];
     
@@ -171,6 +181,7 @@
     rowFour.cellIndex    = SingleUserInfoCell;
     rowFour.title        = @"Ответственный";
     rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
+    rowFour.responsibleArray = self.task.responsible ? self.task.responsible : self.task.defaultResponsible;
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
     
     
@@ -187,6 +198,7 @@
     rowFive.title        = @"Утверждающие";
     rowFive.detail       = cellFiveDetailText;
     rowFive.membersArray = self.task.claiming;
+    rowFive.claimingsArray = self.task.claiming;
     rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
     
     RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
@@ -202,6 +214,7 @@
     rowSix.title        = @"Наблюдатели";
     rowSix.detail       = cellSixDetailText;
     rowSix.membersArray = self.task.observers;
+    rowSix.observersArray = self.task.observers;
     rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
@@ -253,18 +266,17 @@
     rowFour.title   = @"Система";
     rowFour.detail  = @"Не выбран";
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
-    // ToDo: uncomment when systems will be implemented
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     rowFour.cellIndex = RightDetailCell;
     
     RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFive.title     = @"Тип задачи";
-    rowFive.detail    = @"Не выбран";
+    rowFive.detail    = @"Работа";
     rowFive.markImage = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
-    rowFive.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
+    rowFive.cellId    = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
     rowFive.segueId   = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
-    rowFive.cellIndex = RightDetailCell;
+    rowFive.cellIndex = MarkedRightDetailCell;
     
     RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
     

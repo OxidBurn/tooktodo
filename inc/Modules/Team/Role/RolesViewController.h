@@ -16,10 +16,13 @@
 
 - (void) setRolesViewControllerDelegate: (id<RolesViewControllerDelegate>) delegate;
 
+- (void) fillSelectedRole: (NSString*) role;
+
 @end
 
 @protocol RolesViewControllerDelegate
 
-- (void) didSelectRole: (ProjectRoles*) value;
+- (void) didSelectRole: (ProjectRoles*) value
+        withCompletion: (CompletionWithSuccess) completion;
 
 @end

@@ -49,6 +49,11 @@
     return [self.model getExpandedArrowMarkImage];
 }
 
+- (CGFloat) countTableViewHeight
+{
+    return [self.model countTableViewHeight];
+}
+
 #pragma mark - TableViewDatasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -93,7 +98,9 @@
             self.showCancelRequestController();
     }
     
-    [self.model updateTaskStatusWithNewStatus: indexPath.row
+    NSUInteger newStatus = [self.model getSelectedStatusAtIndex: indexPath.row].integerValue;
+    
+    [self.model updateTaskStatusWithNewStatus: newStatus
                                withCompletion: ^(BOOL isSuccess) {
         
                                    if ( self.returnToTaskDetailController )

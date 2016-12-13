@@ -51,6 +51,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgotBtnTopConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* logoTopConstraint;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningTopConstraintiPad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningHeightConstraintiPad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraintiPad;
@@ -102,21 +104,22 @@
     
     // register for keyboard notifications
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(keyboardWillShow)
+                                             selector: @selector(keyboardWillShow:)
                                                  name: UIKeyboardWillShowNotification
                                                object: nil];
     
     [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(keyboardWillHide)
+                                             selector: @selector(keyboardWillHide:)
                                                  name: UIKeyboardWillHideNotification
                                                object: nil];
 }
 
 - (void) viewWillDisappear: (BOOL) animated
 {
-    [super viewWillDisappear:animated];
+    [super viewWillDisappear: animated];
     
     // unregister for keyboard notifications while not visible.
+    
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIKeyboardWillShowNotification
                                                   object: nil];
@@ -166,53 +169,64 @@
 
 #pragma mark - Internal methods -
 
--(void) keyboardWillShow
+-(void) keyboardWillShow: (NSNotification*) notification
 {
     // Animate the current view out of the way
-    if (self.view.frame.origin.y >= 0)
+    
+    if (notification.userInfo[UIKeyboardFrameBeginUserInfoKey])
     {
         [self setViewMovedUp: YES];
     }
-    else if (self.view.frame.origin.y < 0)
+}
+
+-(void) keyboardWillHide: (NSNotification*) notification
+{
+    if (notification.userInfo[UIKeyboardFrameEndUserInfoKey])
     {
         [self setViewMovedUp: NO];
     }
 }
 
--(void) keyboardWillHide
+-(void) setViewMovedUp: (BOOL)                  movedUp
 {
-    if (self.view.frame.origin.y >= 0)
-    {
-        [self setViewMovedUp: YES];
-    }
-    else if (self.view.frame.origin.y < 0)
-    {
-        [self setViewMovedUp: NO];
-    }
-}
-
--(void) setViewMovedUp: (BOOL) movedUp
-{
-    [UIView beginAnimations: nil context: NULL];
+    [UIView beginAnimations: nil
+                    context: NULL];
+    
     [UIView setAnimationDuration: 0.3]; // if you want to slide up the view
     
     CGRect rect = self.view.frame;
     if (movedUp)
     {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
-        rect.origin.y -= kOFFSET_FOR_KEYBOARD;
-        rect.size.height += kOFFSET_FOR_KEYBOARD;
-        self.isKeyboard = YES;
+        if (self.isKeyboard == NO)
+        {
+            self.isKeyboard = YES;
+            
+            rect.origin.y = -kOFFSET_FOR_KEYBOARD;
+            rect.size.height += kOFFSET_FOR_KEYBOARD;
+            
+                                 
+            self.logoTopConstraint.constant += kOFFSET_FOR_KEYBOARD;
+
+        }
+        
     }
     else
     {
-        // revert back to the normal state.
-        rect.origin.y    += kOFFSET_FOR_KEYBOARD;
-        rect.size.height -= kOFFSET_FOR_KEYBOARD;
-        self.isKeyboard = NO;
+        if ( self.isKeyboard == YES)
+        {
+            rect.origin.y    += kOFFSET_FOR_KEYBOARD;
+            rect.size.height -= kOFFSET_FOR_KEYBOARD;
+            self.isKeyboard = NO;
+
+            self.logoTopConstraint.constant -= kOFFSET_FOR_KEYBOARD;
+        }
     }
-    self.view.frame = rect;
+    
+    [UIView animateWithDuration: 0.3
+                     animations: ^{
+                         
+                         self.view.frame = rect;
+                     }];
     
     [UIView commitAnimations];
 }
@@ -307,21 +321,21 @@
                 self.emailWarningLable.text                = emailWarning;
                 self.emailWarningLable.hidden              = (emailWarning.length == 0);
                 
-                self.emailWarningTopConstraintiPad.constant          = (emailWarning.length == 0) ? 0  : 5;
+                self.emailWarningTopConstraintiPad.constant    = (emailWarning.length == 0) ? 0  : 5;
                 self.emailWarningHeightConstraintiPad.constant = (emailWarning.length == 0) ? 5  : 12;
-                self.passwordViewTopConstraintiPad.constant       = (emailWarning.length == 0) ? 0  : 0;
-                self.forgotBtnTopConstraint.constant       = (emailWarning.length == 0) ? 40 : 25;
+                self.passwordViewTopConstraintiPad.constant    = (emailWarning.length == 0) ? 0  : 0;
+                self.forgotBtnTopConstraint.constant           = (emailWarning.length == 0) ? 40 : 25;
                 
             }];
             
             [[self.viewModel passwordWarningMessage] subscribeNext: ^(NSString* passWarning) {
                 
-                self.passwordWarningLabel.text                = passWarning;
-                self.passwordWarningLabel.hidden              = (passWarning.length == 0);
-                
+                self.passwordWarningLabel.text                    = passWarning;
+                self.passwordWarningLabel.hidden                  = (passWarning.length == 0);
+
                 self.passwordWarningHeightConstraintiPad.constant = (passWarning.length == 0) ? 5  : 12;
                 self.passwordWarningTopConstraintiPad.constant    = (passWarning.length == 0) ? 0  : 5;
-                self.forgotBtnTopConstraint.constant          = (passWarning.length == 0) ? 40 : 25;
+                self.forgotBtnTopConstraint.constant              = (passWarning.length == 0) ? 40 : 25;
                 
             }];
         }
@@ -355,9 +369,13 @@
             
             self.recoveryModel = x;
             
+            if (self.isKeyboard == YES)
+            {
+                [self setViewMovedUp: NO];
+            }
+            
             [self performSegueWithIdentifier: @"ShowResetingPassScreenID"
                                       sender: self];
-            
         }];
         
         [signal subscribeCompleted:^{
@@ -377,7 +395,7 @@
         
         if ( [reach isReachable] == NO )
         {
-            [SVProgressHUD showErrorWithStatus: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."];
+            [Utils showErrorAlertWithMessage: @"Обранужена проблема с соединением к интернету. Проверьте пожалуйста подключение."];
         }
         
     }];
@@ -524,9 +542,14 @@
         //move the main view, so that the keyboard does not hide it.
         if  (self.view.frame.origin.y >= 0)
         {
-            [self setViewMovedUp:YES];
+            [self setViewMovedUp: YES];
         }
     }
+}
+
+- (void) textFieldDidEndEditing: (UITextField*) textField
+{
+    [textField resignFirstResponder];
 }
 
 

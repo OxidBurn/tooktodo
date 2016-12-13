@@ -37,7 +37,11 @@
 
 - (NSInteger) countOfContactsContent;
 
+- (NSInteger) secondSectionRowCount;
+
 - (NSString*) getAvatar;
+
+- (NSString*) getRole;
 
 - (NSNumber*) getPermissions;
 
@@ -60,6 +64,8 @@
 - (void) updateMemberRole: (ProjectRoles*) role;
 
 - (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
+
+- (BOOL) checkIfTeamMemberBlockedOrInvited;
 
 @end
 

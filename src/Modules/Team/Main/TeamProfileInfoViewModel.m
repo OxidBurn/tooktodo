@@ -17,6 +17,8 @@
 #import "DataManager+Team.h"
 #import "Utils.h"
 #import "TeamProfileInfoModel.h"
+#import <SVProgressHUD.h>
+#import "ProjectsEnumerations.h"
 
 
 // Categories
@@ -34,13 +36,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     Ready,
 };
 
-typedef NS_ENUM(NSInteger, PermissionTypeList) {
-    
-    SystemAdmin = -1,
-    Participant = 0,
-    Owner       = 1,
-    Admin       = 2,
-};
+
 
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
@@ -91,6 +87,11 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     [self.model fillSelectedTeamMember: teamMember];
 }
 
+- (NSString*) getRoleTitle
+{
+    return [self.model getRole];
+}
+
 #pragma mark - TableView datasource methods -
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -124,35 +125,45 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
         
         self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
         
-        
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
         [self.model reloadContent];
-        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath:indexPath];
+        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath: indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;
         
         switch ( currentUserPermission )
         {
-            case Admin:
+            case AdminPermission:
             {
                 if ( indexPath.row == 0 )
                 {
                     self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    
+                    if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
+                    {
+                        self.cell.accessoryType = UITableViewCellAccessoryNone;
+                        self.cell.userInteractionEnabled = NO;
+                    }
                 }
             }
                 break;
                 
-            case Owner:
+            case OwnerPermission:
             {
                 self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
+                {
+                    self.cell.accessoryType = UITableViewCellAccessoryNone;
+                    self.cell.userInteractionEnabled = NO;
+                }
             }
                 
             default:
                 break;
         }
 
-        
         
         return self.cell;
     }
@@ -167,7 +178,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     }
     
     else
-        return 2;
+        return [self.model secondSectionRowCount];
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -214,7 +225,7 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
         else
             if (self.cell.tag == PermissionType)
             {
-                if ([self.model getPermissions].integerValue != Admin)
+                if ([self.model getPermissions].integerValue != AdminPermission)
                 {
                     [self designateAdmin];
                 }
@@ -276,18 +287,30 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
 #pragma mark - RolesViewControllerDelegate methods -
 
 - (void) didSelectRole: (ProjectRoles*) value
+        withCompletion: (CompletionWithSuccess) completion
 {
-    [self.model updateMemberRole: value];
+    if ( value )
+    {
+        [self.model updateMemberRole: value];
+        
+        self.cell.detailTextLabel.text = value.title;
+        
+        [self.model reloadContent];
+        
+        if ( self.reloadTableView )
+            self.reloadTableView();
+        
+        if (self.dismissViewController)
+            self.dismissViewController();
+            
+            if (completion)
+                completion(YES);
+    }
     
-    self.cell.detailTextLabel.text = value.title;
-    
-    [self.model reloadContent];
-    
-    if ( self.reloadTableView )
-        self.reloadTableView();
-    
-    if (self.dismissViewController)
-        self.dismissViewController();
+    else
+    {
+        [Utils showErrorAlertWithMessage: @"Роль не выбрана"];
+    }
 }
 
 #pragma mark - Model delegate methods -
@@ -309,18 +332,18 @@ typedef NS_ENUM(NSInteger, PermissionTypeList) {
     
     switch (currentPermission)
     {
-        case Admin:
+        case AdminPermission:
         {
-            [self.model updateMemberPermission: Participant];
+            [self.model updateMemberPermission: ParticipantPermission];
          
             if (self.reloadTableView)
                 self.reloadTableView();
         }
             break;
             
-        case Participant:
+        case ParticipantPermission:
         {
-            [self.model updateMemberPermission: Admin];
+            [self.model updateMemberPermission: AdminPermission];
             
             if (self.reloadTableView)
                 self.reloadTableView();

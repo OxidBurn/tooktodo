@@ -24,9 +24,12 @@
 
 - (NSArray*) getUserContactInfo;
 
+- (void) updateCurrentUserInfoWithCompletion: (CompletionWithSuccess) completion;
+
 - (RACSignal*) logoutUser;
 
-- (void) saveNewAvatar: (UIImage*) image;
+- (void) saveNewAvatar: (UIImage*)                image
+        withCompletion: (void(^)(UIImage* image)) completion;
 
 - (NSURL*) getUserAvatarURL;
 

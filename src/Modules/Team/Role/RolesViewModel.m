@@ -43,7 +43,7 @@
 
 - (NSArray*) indexesArray
 {
-    if (_indexesArray == nil)
+    if ( _indexesArray == nil || _indexesArray.count == 0 )
     {
         NSUInteger numberOfRows = [self.model countOfRows];
         
@@ -72,6 +72,15 @@
   return [self.model getSelectedItem];
 }
 
+- (void) fillSelectedRole: (NSString*) role
+{
+    [self.model fillSelectedRole: role];
+}
+
+- (void) updateSelectedRole
+{
+    [self.model updateSelectedRole];
+}
 
 #pragma mark - Table view data source
 

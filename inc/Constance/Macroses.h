@@ -11,6 +11,13 @@
 
 // Device
 #define IS_PHONE    UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone
+#define IS_IPHONE_4_OR_LESS (IS_PHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_PHONE && SCREEN_MAX_LENGTH == 568.0)
+
+// Sizes
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
 
 // Color
 #define RGB(r, g, b)     [UIColor colorWithRed: r/255.0 green: g/255.0 blue: b/255.0 alpha: 1.0]

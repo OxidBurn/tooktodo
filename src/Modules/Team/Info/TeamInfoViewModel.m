@@ -79,17 +79,32 @@ static CGFloat sectionHeaderHeight = 30;
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID"];
+    TeamInfoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UserCellID" forIndexPath: indexPath];
     
     FilledTeamInfo* memberInfo = [self.model teamMemberByIndex: indexPath.row];
     
     cell.delegate = self;
+    
+    if ( memberInfo.assignments.invite )
+    {
+//        memberInfo.
+    }
     
     [cell fillCellWithInfo: memberInfo
               forIndexPath: indexPath];
     
     return cell;
 }
+
+//- (BOOL) checkIfTeamMemberBlockedOrInvited
+//{
+//    BOOL isBlocked = self.assignment.isBlocked.boolValue;
+//    BOOL isInvited = self.assignment.invite != nil;
+//    
+//    BOOL disabled = (isBlocked == YES || isInvited);
+//    
+//    return disabled;
+//}
 
 - (CGFloat)     tableView: (UITableView*) tableView
  heightForHeaderInSection: (NSInteger)    section

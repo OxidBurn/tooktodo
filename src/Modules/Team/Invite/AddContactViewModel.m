@@ -49,35 +49,11 @@ typedef NS_ENUM(NSUInteger, InviteTextFieldType)
         return @([Utils isValidEmail: text]);
         
     }];
-    
-    
-    
-    //returns not empty name
-    self.notEmptyLastnameSignal = [RACObserve(self, lastnameText) map: ^id(NSString* text) {
-        
-        return @([self.model isValidLastName: text]);
-        
-    }];
-    
-    
-    self.notEmptyNameSignal = [RACObserve(self, nameText) map: ^id(NSString* text) {
-        
-        return @([self.model isValidName: text]);
-        
-    }];
-    
-    RACSignal* activeReadySignal = [RACSignal combineLatest: @[self.validEmailSignal, self.notEmptyNameSignal, self.notEmptyLastnameSignal]
-                                                     reduce: ^id(NSNumber* emailValid, NSNumber* nameValid, NSNumber* lastnameValid) {
-                                                         
-                                                         return @([emailValid boolValue] && [nameValid boolValue] && [lastnameValid boolValue]);
-                                                         
-                      }];
-    
-    
+
     //Создает команду, которая активна тогда, когда activeReadySignal возвращает тру,
     @weakify(self)
     
-    self.readyCommand = [[RACCommand alloc] initWithEnabled: activeReadySignal
+    self.readyCommand = [[RACCommand alloc] initWithEnabled: self.validEmailSignal
                                                 signalBlock: ^RACSignal *(id input) {
                                                     
                                                     @strongify(self)
@@ -117,10 +93,12 @@ typedef NS_ENUM(NSUInteger, InviteTextFieldType)
     info.firstName         = self.nameText;
     info.lastName          = self.lastnameText;
     info.email             = self.emailText;
-    info.projectRoleTypeId = self.roleID;
     info.message           = self.messageText;
     info.userId            = @0;
     info.contactId         = @0;
+    
+    if ( self.roleID )
+        info.projectRoleTypeId = self.roleID;
     
     return [self.model sendInvite: info];
 }

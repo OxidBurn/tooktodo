@@ -30,7 +30,8 @@
                withNewInfo: (UpdatedUserInfo*)        newInfo
             withCompletion: (void(^)(BOOL isSuccess)) completion;
 
-- (void) updateAvatarWithFile: (NSString*) filePath;
+- (void) updateAvatarWithFile: (NSString*)             filePath
+               withCompletion: (CompletionWithSuccess) completion;
 
 - (RACSignal*) getNewUserInfo;
 

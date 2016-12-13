@@ -13,6 +13,7 @@
 #import "NSString+APUtils.h"
 #import "NSDate+Helper.h"
 #import "NSDate-Utilities.h"
+#import "AlertViewBlocks.h"
 
 //! Default date formatter
 static NSDateFormatter* defaultDateFormatter = nil;
@@ -299,7 +300,14 @@ static NSDateFormatter* defaultDateFormatter = nil;
 + (NSString*) getAbbreviationWithName: (NSString*) name
                           withSurname: (NSString*) surname
 {
-    return [NSString stringWithFormat: @"%@%@", [name substringToIndex: 1], [surname substringToIndex: 1]];
+    NSString* abbreviationOfName = @"";
+    
+    if ( name.length > 0 )
+        abbreviationOfName = [abbreviationOfName stringByAppendingString: [name substringToIndex: 1]];
+    if ( surname.length > 0 )
+        abbreviationOfName = [abbreviationOfName stringByAppendingString: [surname substringToIndex: 1]];
+    
+    return abbreviationOfName;
 }
 
 + (NSString*) getAvatarsDirectoryPath
@@ -438,25 +446,54 @@ static NSDateFormatter* defaultDateFormatter = nil;
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
                     withSearchedObjectName: (NSString*)  value
 {
+    NSString* fullSearchingPhrase = @"";
+    
     NSString* foundWordSufix      = @"";
     NSString* searchedObjectSufix = @"";
     
-    if ( count > 1 && count <= 4 )
+    if ([value isEqualToString: @"проект"])
     {
-        foundWordSufix      = @"o";
-        searchedObjectSufix = @"a";
-    }
-    else
-        if ( count > 4 || count == 0 )
+        if ( count > 1 && count <= 4 )
         {
             foundWordSufix      = @"o";
-            searchedObjectSufix = @"ов";
+            searchedObjectSufix = @"a";
         }
+        else
+            if ( count > 4 || count == 0 )
+            {
+                foundWordSufix      = @"o";
+                searchedObjectSufix = @"ов";
+            }
+        
+        fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+     }
     
-    NSString* fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+    else if ([value isEqualToString: @"задач"])
+    {
+        if ( count > 1 && count <= 4 )
+        {
+            foundWordSufix      = @"о";
+            searchedObjectSufix = @"и";
+        }
+        else
+            if ( count > 4 || count == 0 )
+            {
+                foundWordSufix      = @"о";
+                searchedObjectSufix = @"";
+            }
+        else
+            if (count == 1)
+            {
+                foundWordSufix      = @"а";
+                searchedObjectSufix = @"a";
+            }
+        
+        fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+    }
     
     return fullSearchingPhrase;
 }
+
 
 + (NSString*) generateStringOfDaysCount: (NSUInteger) count
 {
@@ -568,6 +605,15 @@ static NSDateFormatter* defaultDateFormatter = nil;
                                                         options: 0];
     
     return date;
+}
+
++ (void) showErrorAlertWithMessage: (NSString*) message
+{
+    [AlertViewBlocks alertWithTitle: @"Ошибка"
+                            message: message
+                            confirm: nil
+                             cancel: nil
+                  otherButtonTitles: @"Ok", nil];
 }
 
 @end

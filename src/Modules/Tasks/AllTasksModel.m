@@ -28,8 +28,6 @@
 
 @property (strong, nonatomic) NSArray* projectsInfoArray;
 
-@property (nonatomic, strong) NSArray* tableContentArray;
-
 @property (strong, nonatomic) NSArray* rowsInfo;
 
 @property (nonatomic, assign) ContentAccedingSortingType ascending;
@@ -104,9 +102,9 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
 {
-    NSArray* sectionInfo = self.tableContentArray[section];
+    ProjectInfo* project = self.projectsInfoArray[section];
     
-    return sectionInfo.count;
+    return project.stage.count;
 }
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section
@@ -135,7 +133,8 @@
 - (void) markStageAsExpandedAtIndexPath: (NSIndexPath*)          indexPath
                          withCompletion: (CompletionWithSuccess) completion
 {
-    ProjectTaskStage* stage = self.tableContentArray[indexPath.section][indexPath.row];
+    ProjectInfo* project    = self.projectsInfoArray[indexPath.section];
+    ProjectTaskStage* stage = project.stage[indexPath.row];
     
     __weak typeof(self) blockSelf = self;
     
@@ -168,8 +167,7 @@
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-
-    NSArray* sectionContent = self.tableContentArray[path.section];
+    NSArray* sectionContent = [[self.projectsInfoArray[path.section] stage] array];
     
     return sectionContent[path.row];
 }
@@ -207,58 +205,7 @@
 
 - (void) updateAllTasksData
 {
-    //array which contains all info about projects, stages, tasks
-    __block NSMutableArray* tmpContent = [NSMutableArray array];
-    
     self.projectsInfoArray = [DataManagerShared applyFiltersToProject: [DataManagerShared getAllProjects]];
-    
-    [self.projectsInfoArray enumerateObjectsUsingBlock: ^(ProjectInfo*  _Nonnull projectInfo, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        //Storing stages and tasks as rows in one section
-        NSMutableArray* tmpSectionContent = [NSMutableArray array];
-        
-        if (projectInfo.isExpanded.boolValue)
-        {
-            [projectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                [tmpSectionContent addObject: stage];
-                
-                if (stage.isExpanded.boolValue)
-                {
-                    __block NSMutableArray* tasksArray = [NSMutableArray array];
-                    
-                    // Apply sorting
-                    NSArray* allTasks = [DataManagerShared applyAllProjectsFiltersToTasks: stage.tasks.array];
-                    
-                    [allTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                        [tasksArray addObject: task];
-                    }];
-                    
-                    //applying sorting for tasks in expanded stages
-                    NSArray* sortedTasks = [self applyTasksSortingType: self.sortType
-                                                               toArray: tasksArray.copy
-                                                            isAcceding: self.ascending];
-                    
-                    [sortedTasks enumerateObjectsUsingBlock:^(ProjectTask*  _Nonnull sortedTask, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
-                        [tmpSectionContent addObject: sortedTask];
-                    }];
-                    
-                }
-             
-            }];
-        }
-        
-        [tmpContent addObject: tmpSectionContent.copy];
-        
-        tmpSectionContent = nil;
-        
-    }];
-    
-    self.tableContentArray = tmpContent.copy;
-    
-    tmpContent = nil;
 }
 
 

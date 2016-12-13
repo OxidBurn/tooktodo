@@ -39,9 +39,25 @@
             self.systemItems = [[SystemsService sharedInstance] getCurrentProjectSystems];
             
             [subscriber sendNext: nil];
-            [subscriber sendCompleted];
             
         }];
+        
+        [[[SystemsService sharedInstance] loadSelectedProjectSystems]
+         subscribeNext: ^(id x) {
+             
+             @strongify(self)
+             
+             self.systemItems = [[SystemsService sharedInstance] getCurrentProjectSystems];
+             
+             [subscriber sendNext: nil];
+             [subscriber sendCompleted];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
         
         return nil;
     }];

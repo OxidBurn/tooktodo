@@ -26,20 +26,21 @@
 
 #pragma mark - UITextViewDelegate -
 
-- (void)textViewDidBeginEditing: (UITextView*)textView
+- (void) textViewDidBeginEditing: (UITextView*) textView
 {
     self.addCommentLabel.alpha = 0;
 }
 
-- (void)textViewDidEndEditing: (UITextView*)textView
+- (void) textViewDidEndEditing: (UITextView*) textView
 {
     self.addCommentLabel.alpha = textView.text.length == 0;
 }
 
 - (BOOL)        textView: (UITextView*)textView
  shouldChangeTextInRange: (NSRange)range
-         replacementText: (NSString *)text {
-    if ([text isEqualToString:@"\n"])
+         replacementText: (NSString *)text
+{
+    if ([text isEqualToString: @"\n"])
     {
         if ([self.delegate respondsToSelector:@selector( addCommentCell:
                                                             onSendClick: )])
@@ -50,12 +51,22 @@
         [textView resignFirstResponder];
         return NO;
     }
-    return YES;
+    
+    BOOL shouldReturn = YES;
+    
+    if ( textView.text.length > 1999 && text.length > 0)
+    {
+        text = @"";
+        
+        shouldReturn = NO;
+    }
+    
+    return shouldReturn;
 }
 
-- (void) textViewDidChange:(UITextView *)textView
+- (void) textViewDidChange: (UITextView*) textView
 {
-    if ([self.delegate respondsToSelector:@selector( addCommentCell:
+    if ([self.delegate respondsToSelector: @selector( addCommentCell:
                                             newCommentTextDidChange: )])
     {
         [self.delegate addCommentCell: self

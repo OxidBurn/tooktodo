@@ -70,6 +70,9 @@ static NSString* MapViewCellID     = @"AboutProjectMapCellId";
     cell.textLabel.text       = title;
     cell.detailTextLabel.text = detail;
     
+    cell.detailTextLabel.numberOfLines = CGFLOAT_MAX;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
     if ([detail isEqualToString: @"нет"])
     {
         cell.detailTextLabel.textColor = [UIColor grayColor];

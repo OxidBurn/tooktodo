@@ -23,8 +23,10 @@
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
-@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate>
+
+@interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate, AddTaskControllerDelegate>
 
 // outlets
 @property (weak, nonatomic) IBOutlet OSTableView* taskTableView;
@@ -58,6 +60,9 @@
 {
     [super loadView];
     
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: [self.viewModel getTaskNumberTitle]
+                                               withSubTitle: [self.viewModel getProjectTitle]];
+    
     if ( IS_PHONE == NO)
         self.navigationItem.leftBarButtonItem = nil;
 }
@@ -71,46 +76,11 @@
     self.splitViewController.delegate = self;
 
     [self setKeyboardRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableClick:)]];
-
-    __weak typeof(self) weakSelf = self;
-    [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillShowNotification
-                                                    object: nil
-                                                     queue: nil
-                                                usingBlock:^(NSNotification* note) {
-                                                    [weakSelf.taskTableView addGestureRecognizer: weakSelf.keyboardRecognizer];
-                                                CGFloat height = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-                                                    weakSelf.taskTableViewBottom.constant = height - kToolBarHeight;
-                                                    weakSelf.viewModel.keyboardHeight = height;
-                                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                                        if (weakSelf.viewModel.model.getSecondSectionContentType != CommentsContentType) {
-                                                            return;
-                                                        }
-                                                        [weakSelf.viewModel scrollToCommentCell];
-                                                        weakSelf.taskTableView.scrollEnabled = false;
-                                                        weakSelf.taskTableView.blockScroll = true;
-                                                    });
-     }];
-    [NSNotificationCenter.defaultCenter addObserverForName: UIKeyboardWillHideNotification
-                                                    object: nil
-                                                     queue: nil
-                                                usingBlock: ^(NSNotification* note) {
-                                                    if (weakSelf.viewModel.model.getSecondSectionContentType != CommentsContentType) {
-                                                        return;
-                                                    }
-                                                    weakSelf.taskTableViewBottom.constant = 0;
-                                                    weakSelf.taskTableView.scrollEnabled = true;
-                                                    weakSelf.taskTableView.blockScroll = false;
-                                                }];
-}
-
-- (void) dealloc
-{
-    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void) didReceiveMemoryWarning
 {
-    [NSNotificationCenter.defaultCenter removeObserver:self];
+    [NSNotificationCenter.defaultCenter removeObserver: self];
 
     [super didReceiveMemoryWarning];
 }
@@ -126,8 +96,16 @@
         [blockSelf.taskTableView reloadData];
         
     }];
+    
+    [self addNotifications];
 }
 
+- (void) viewWillDisappear: (BOOL) animated
+{
+    [super viewWillDisappear: animated];
+    
+    [self removeNotifications];
+}
 
 #pragma mark - Properties -
 
@@ -188,19 +166,22 @@
         
         [vc fillDefaultStage: [self.viewModel getTaskStage]
               andHiddenState: [self.viewModel getTaskState]];
+        
+        [self removeNotifications];
     }
     
     if ( [segue.identifier isEqualToString: @"ShowEditTaskController"] )
     {
         UINavigationController* destinationNavController = segue.destinationViewController;
         
-        AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
+        AddTaskViewController* vc = (AddTaskViewController*) destinationNavController.topViewController;
         
         [vc fillControllerType: EditTaskControllerType];
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
+        
+        [self removeNotifications];
     }
-    
 }
 
 #pragma mark - Actions -
@@ -245,6 +226,7 @@
     [self.taskTableView removeGestureRecognizer:self.keyboardRecognizer];
 }
 
+
 #pragma mark - ChangeStatusControllerDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
@@ -266,6 +248,14 @@
 - (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController*) controller
 {
     return UIModalPresentationNone;
+}
+
+
+#pragma mark - AddTaskControllerDelegate methods -
+
+- (void) subscribeNotifications
+{
+    [self addNotifications];
 }
 
 #pragma mark - Helpers -
@@ -356,5 +346,60 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     };
 }
 
+- (void) handleKeyboardAppearing: (NSNotification*) notification
+{
+    [self.taskTableView addGestureRecognizer: self.keyboardRecognizer];
+    
+    CGFloat height = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    
+    self.taskTableViewBottom.constant = height - kToolBarHeight;
+    self.viewModel.keyboardHeight = height;
+    
+    dispatch_after (dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if (self.viewModel.model.getSecondSectionContentType != CommentsContentType) {
+            return;
+        }
+        
+        [self.viewModel scrollToCommentCell];
+        self.taskTableView.scrollEnabled = false;
+        self.taskTableView.blockScroll = true;
+    });
+
+}
+
+- (void) handleKeyboardDissappearing: (NSNotification*) notification
+{
+    if (self.viewModel.model.getSecondSectionContentType != CommentsContentType) {
+                                                                return;
+                                                            }
+                                                            self.taskTableViewBottom.constant = 0;
+                                                            self.taskTableView.scrollEnabled = true;
+                                                            self.taskTableView.blockScroll = false;
+}
+
+- (void) addNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(handleKeyboardAppearing:)
+                                                 name: UIKeyboardWillShowNotification
+                                               object: nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(handleKeyboardDissappearing:)
+                                                 name: UIKeyboardWillHideNotification
+                                               object: nil];
+}
+
+- (void) removeNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UIKeyboardWillShowNotification
+                                                  object: nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                    name: UIKeyboardWillHideNotification
+                                                  object: nil];
+}
 
 @end

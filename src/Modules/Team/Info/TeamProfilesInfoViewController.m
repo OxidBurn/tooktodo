@@ -112,6 +112,8 @@
             RolesViewController* controller = segue.destinationViewController;
         
             [controller setRolesViewControllerDelegate: self.viewModel];
+            
+            [controller fillSelectedRole: [self.viewModel getRoleTitle]];
         }
         
         else
@@ -119,6 +121,8 @@
             RolesViewController* controller = (RolesViewController*)[(UINavigationController*)segue.destinationViewController topViewController];
             
             [controller setRolesViewControllerDelegate: self.viewModel];
+            
+            [controller fillSelectedRole: [self.viewModel getRoleTitle]];
         }
     }
     

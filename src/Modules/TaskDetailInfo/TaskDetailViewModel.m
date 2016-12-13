@@ -24,12 +24,13 @@
 #import "OSTableView.h"
 #import "CollectionCell.h"
 #import "ParentCollectionCell.h"
+#import "AlertViewBlocks.h"
 
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
 
-@interface TaskDetailViewModel() <TaskInfoFooterDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate>
+@interface TaskDetailViewModel() <TaskInfoHeaderDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate, UIScrollViewDelegate>
 
 // properties
 
@@ -44,6 +45,10 @@
 @property (strong, nonatomic) NSNumber* commentID;
 
 @property (strong, nonatomic) AddCommentCell* addCommentCell;
+
+@property (assign, nonatomic) CGPoint scrollViewOffset;
+
+@property (strong, nonatomic) NSNumber* neededOffsetY;
 
 @end
 
@@ -120,6 +125,9 @@
 - (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
 {
     [self.model reloadDataWithCompletion: completion];
+    
+    [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                         withDelegate: self];
 }
 
 - (ProjectTaskStage*) getTaskStage
@@ -148,6 +156,15 @@
     [self.model updateSecondSectionContentType: typeIndex];
     
     CGPoint offset = self.tableView.contentOffset;
+        
+    CGFloat neededOffset = [self countHeightForTaskDetailCellForTableView: self.tableView] +
+                           [self countHeightForTaskDescrioptionCellForTableView: self.tableView] +
+                           235;
+    
+    if ( offset.y > neededOffset )
+    {
+        offset.y = neededOffset;
+    }
     
     [self.tableView reloadData];
     [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
@@ -174,6 +191,16 @@
     self.tableView.offsetShift = CGRectGetMinY(self.addCommentCell.frame)
     - (UIScreen.mainScreen.bounds.size.height - 64 - self.keyboardHeight)
     + CGRectGetHeight(self.addCommentCell.frame);
+}
+
+- (NSString*) getTaskNumberTitle
+{
+    return [self.model getTaskNumberTitle];
+}
+
+- (NSString*) getProjectTitle
+{
+    return [self.model getProjectTitle];
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -211,23 +238,25 @@
         
         detailCell.delegate   = self;
     }
-    
+    else
     if ([cell isKindOfClass: [FilterSubtasksCell class]])
     {
         FilterSubtasksCell* subtaskCell  = (FilterSubtasksCell*)cell;
         
         subtaskCell.delegate = self;
     }
-
+    else
     if ([cell isKindOfClass: AddCommentCell.class])
     {
         self.addCommentCell             = (AddCommentCell*)cell;
         self.addCommentCell.delegate    = self;
     }
-
+    else
     if ([cell isKindOfClass: [CommentsCell class]])
     {
         ((CommentsCell *)cell).commentID = content.commentID;
+        
+        [(CommentsCell* )cell handleEditButtons: content.isAuthor];
     }
 
     return cell;
@@ -296,7 +325,28 @@ viewForHeaderInSection: (NSInteger)    section
 {
     if ( section == 1 )
     {
-        return self.headerView;
+        if ( IS_IPHONE_4_OR_LESS || IS_IPHONE_5 )
+        {
+            UIScrollView* scroll = [[UIScrollView alloc] initWithFrame: CGRectMake(0, 0, self.tableView.frame.size.width, 43)];
+            
+            scroll.contentSize = self.headerView.size;
+            
+            scroll.showsHorizontalScrollIndicator = NO;
+            
+            scroll.bounces = NO;
+            
+            scroll.delegate = self;
+            
+            scroll.contentOffset = self.scrollViewOffset;
+            
+            [scroll addSubview: self.headerView];
+
+            return scroll;
+        }
+        else
+        {
+            return self.headerView;
+        }
     }
     
     return nil;
@@ -392,12 +442,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                              completion: nil];
 }
 
+
 #pragma mark - TaskDetailCellDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
 {
-    if (self.performSegue)
-        self.performSegue(segueID);
+    if ( [self.model hasAvailableStatusesActions] )
+    {
+        if (self.performSegue)
+            self.performSegue(segueID);
+    }
 }
 
 - (void) showPopover: (CGRect) senderFrame
@@ -405,6 +459,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
+
 
 #pragma mark - FilterSubtasksCellDelegate  methods -
 
@@ -561,6 +616,20 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return height;
 }
 
+- (BOOL) isCorrectMessageLenght: (NSString*) message
+{
+    if ( message.length < 2000 )
+    {
+        return YES;
+    }
+    
+    [AlertViewBlocks confirmWithTitle: @"Ошибка"
+                              message: @"Текст комментария превышает колличество допустимых символов"
+                              confirm: nil];
+    
+    return NO;
+}
+
 #pragma mark - PopoverModelDelegate methods -
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
@@ -649,10 +718,45 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) addCommentCell: (AddCommentCell *) addCommentCell
             onSendClick: (UIButton *)       sender
 {
-    if (self.commentID) {
+    if ( [self isCorrectMessageLenght: addCommentCell.addCommentTextView.text] )
+    {
+        if (self.commentID)
+        {
+            @weakify(self)
+            
+            RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
+                                                                                     commentID: self.commentID];
+            [signal subscribeNext: ^(id response) {
+                
+                @strongify(self)
+                
+                [self.model fillSelectedTask: self.model.getCurrentTask
+                              withCompletion: ^(BOOL isSuccess) {
+                                  
+                                  @strongify(self)
+                                  
+                                  [self.tableView reloadData];
+                                  [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                                       withDelegate: self];
+                                  
+                                  self.addCommentCell.addCommentTextView.text = @"";
+                                  self.addCommentCell.addCommentLabel.alpha   = 1;
+                                  
+                              }];
+            }
+                            error: ^(NSError *error) {
+            }];
+            
+            self.commentID = nil;
+            
+            return;
+        }
+        
         @weakify(self)
-        RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
-                                                                                 commentID: self.commentID];
+        
+        RACSignal* signal = [TaskCommentsService.sharedInstance
+                             postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
+        
         [signal subscribeNext: ^(id response) {
             @strongify(self)
             [self.model fillSelectedTask: self.model.getCurrentTask
@@ -663,28 +767,19 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                    withDelegate: self];
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
-                          }];
-        } error: ^(NSError *error) {
-        }];
-        self.commentID = nil;
-        return;
+            }];
+         } error: ^(NSError *error) {
+         }];
     }
-    @weakify(self)
-    RACSignal* signal = [TaskCommentsService.sharedInstance
-                         postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
-    [signal subscribeNext: ^(id response) {
-        @strongify(self)
-        [self.model fillSelectedTask: self.model.getCurrentTask
-                      withCompletion: ^(BOOL isSuccess) {
-                          @strongify(self)
-                          [self.tableView reloadData];
-                          [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
-                                               withDelegate: self];
-                          self.addCommentCell.addCommentTextView.text   = @"";
-                          self.addCommentCell.addCommentLabel.alpha     = 1;
-        }];
-     } error: ^(NSError *error) {
-     }];
+}
+
+
+#pragma mark - ScrollViewDelegate methods -
+
+- (void) scrollViewDidEndDragging: (UIScrollView*) scrollView
+                   willDecelerate: (BOOL)          decelerate
+{
+    self.scrollViewOffset = scrollView.contentOffset;
 }
 
 @end

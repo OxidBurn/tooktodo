@@ -31,18 +31,34 @@ static NSString* contentKey = @"contentInfoKey";
 
 @property (nonatomic, strong) NSArray* stages;
 
-@property (strong, nonatomic) NSArray* filteredStagesContent;
-
 @property (strong, nonatomic) ProjectTask* selectedTask;
 
 @property (assign, nonatomic) SearchTableState tableState;
 
+@property (strong, nonatomic) NSPredicate* searchFilteredPredicate;
+
+@property (assign, nonatomic) TasksSortingType sortType;
+
+@property (assign, nonatomic) BOOL isSortingAcceding;
+
+@property (nonatomic, assign) NSUInteger countOfFoundTasks;
 // methods
 
 
 @end
 
 @implementation ProjectTasksModel
+
+
+- (NSArray*) stages
+{
+    if (_stages == nil)
+    {
+        _stages = self.currentProjectInfo.stage.array;
+    }
+    
+    return _stages;
+}
 
 #pragma mark - Public methods -
 
@@ -65,85 +81,30 @@ static NSString* contentKey = @"contentInfoKey";
     return updateInfoSignal;
 }
 
+- (RACSignal*) loadUpdatedContentFromServer
+{
+    self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return [[TasksService sharedInstance] loadAllTasksForProjectWithID: self.currentProjectInfo.projectID];
+}
+
 - (RACSignal*) applyFilters
 {
-    
-    
     return nil;
 }
 
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding
 {
-    if ( self.tableState == TableNormalState )
-    {
-        NSMutableArray* newStages = self.stages.mutableCopy;
-        
-        [self.stages enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if (section[contentKey])
-            {
-                NSArray* newSectionContent =  [self applyTasksSortingType: type
-                                                                  toArray: section[contentKey]
-                                                               isAcceding: isAcceding];
-                
-                NSMutableDictionary* newSection = section.mutableCopy;
-                
-                [newSection setObject: newSectionContent
-                               forKey: contentKey];
-                
-                [newStages replaceObjectAtIndex: idx
-                                     withObject: newSection];
-            }
-            
-        }];
-        
-        self.stages = newStages.copy;
-    }
-    else
-    {
-        NSMutableArray* newStages = self.filteredStagesContent.mutableCopy;
-        
-        [self.filteredStagesContent enumerateObjectsUsingBlock: ^(NSDictionary* _Nonnull section, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            if (section[contentKey])
-            {
-                NSArray* newSectionContent =  [self applyTasksSortingType: type
-                                                                  toArray: section[contentKey]
-                                                               isAcceding: isAcceding];
-                
-                NSMutableDictionary* newSection = section.mutableCopy;
-                
-                [newSection setObject: newSectionContent
-                               forKey: contentKey];
-                
-                [newStages replaceObjectAtIndex: idx
-                                     withObject: newSection];
-            }
-            
-        }];
-        
-        self.filteredStagesContent = newStages.copy;
-    }
+    self.sortType          = type;
+    self.isSortingAcceding = isAcceding;
 }
 
 - (NSUInteger) countOfSections
 {
-    switch (self.tableState)
-    {
-        case TableNormalState:
-        {
-            return self.stages.count;
-        }
-            break;
-        case TableSearchState:
-        {
-            return self.filteredStagesContent.count;
-        }
-            break;
-    }
+    NSArray* projectTasksStages = self.currentProjectInfo.stage.array;
     
-    return 0;
+    return projectTasksStages.count;
 }
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
@@ -155,43 +116,34 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (NSArray*) rowsContentForSection: (NSUInteger) section
 {
-    NSArray* rowsContent = @[];
+    ProjectTaskStage* stage = [self getStageForSection: section];
     
-    switch (self.tableState)
+    if ( stage.isExpanded.boolValue || self.tableState == TableSearchState )
     {
-        case TableNormalState:
-        {
-            rowsContent = self.stages[section][contentKey];
-        }
-            break;
-        case TableSearchState:
-        {
-            rowsContent = self.filteredStagesContent[section][contentKey];
-        }
-            break;
+        NSArray* rowsContent = stage.tasks.array;
+        
+        if ( self.searchFilteredPredicate )
+            rowsContent = [rowsContent filteredArrayUsingPredicate: self.searchFilteredPredicate];
+        
+        // Apply sorting
+        rowsContent = [rowsContent applyTasksSortingType: self.sortType
+                                                 toArray: rowsContent
+                                              isAcceding: self.isSortingAcceding];
+        
+        // Apply filters
+        rowsContent = [DataManagerShared applyFiltersToTasks: rowsContent];
+    
+        return rowsContent;
     }
-
-    return rowsContent;
+    else
+    {
+        return nil;
+    }
 }
-
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section
 {
-    switch (self.tableState)
-    {
-        case TableNormalState:
-        {
-            return self.stages[section][stageKey];
-        }
-            break;
-        case TableSearchState:
-        {
-            return self.filteredStagesContent[section][stageKey];
-        }
-            break;
-    }
-    
-    return nil;
+    return [self.currentProjectInfo.stage objectAtIndex: section];
 }
 
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             section
@@ -212,27 +164,11 @@ static NSString* contentKey = @"contentInfoKey";
                                    }];
 }
 
-- (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
+- (ProjectTask*) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-    NSArray* cellsContentInfo = @[];
+    ProjectTask* cellsContentInfo = [[self rowsContentForSection: path.section] objectAtIndex: path.row];
     
-    switch (self.tableState)
-    {
-        case TableNormalState:
-        {
-            cellsContentInfo = self.stages[path.section][contentKey];
-        }
-            break;
-        case TableSearchState:
-        {
-            cellsContentInfo = self.filteredStagesContent[path.section][contentKey];
-        }
-            break;
-    }
-    
-    id cellInfo = cellsContentInfo[path.row];
-    
-    return cellInfo;
+    return cellsContentInfo;
 }
 
 - (void) markTaskAsSelected: (NSIndexPath*)          index
@@ -248,89 +184,14 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) updateAllTasksData
 {
     self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
-    
-    NSArray* allStages = [DataManagerShared getStagesForCurrentProject];
-    
-    __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
-    __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
-    
-    [allStages enumerateObjectsUsingBlock: ^(ProjectTaskStage*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSMutableDictionary* stagesInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{stageKey : obj}];
-        
-        if ( obj.isExpanded.boolValue )
-        {
-            NSArray* stageTasks = [DataManagerShared applyFiltersToTasks: obj.tasks.array];
-            
-            [stageTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                [tmpRowsInfo addObject: obj];
-                
-            }];
-        }
-        
-        if ( tmpRowsInfo.count > 0 )
-        {
-            [stagesInfoDic setObject: tmpRowsInfo.copy
-                              forKey: contentKey];
-            
-            [tmpRowsInfo removeAllObjects];
-        }
-        
-        [tmpStageInfo addObject: stagesInfoDic];
-        
-    }];
-    
-    
-    self.stages = tmpStageInfo.copy;
-    
-    tmpRowsInfo  = nil;
-    tmpStageInfo = nil;
-}
-
-- (void) updateTaskStatusForIndexPath: (NSIndexPath*) path
-{
-    self.selectedTask = [DataManagerShared getSelectedTask];
-    
-    NSArray* cellsContentInfo = @[];
-    
-    switch (self.tableState)
-    {
-        case TableNormalState:
-        {
-            cellsContentInfo = self.stages[path.section][contentKey];
-        }
-            break;
-        case TableSearchState:
-        {
-            cellsContentInfo = self.filteredStagesContent[path.section][contentKey];
-        }
-            break;
-    }
-    
-    ProjectTask* cellInfo = cellsContentInfo[path.row];
-    
-    cellInfo.status            = self.selectedTask.status;
-    cellInfo.statusDescription = self.selectedTask.statusDescription;
 }
 
 - (void) setTableSearchState: (SearchTableState) state
 {
     self.tableState = state;
     
-    switch (state)
-    {
-        case TableSearchState:
-        {
-            self.filteredStagesContent = self.stages;
-        }
-            break;
-        case TableNormalState:
-        {
-            self.filteredStagesContent = nil;
-        }
-            break;
-    }
+    if ( state == TableNormalState )
+        self.searchFilteredPredicate = nil;
 }
 
 - (SearchTableState) getSearchTableState
@@ -341,46 +202,31 @@ static NSString* contentKey = @"contentInfoKey";
 - (void) applyFilteringByText: (NSString*) text
 {
     if ( text.length > 0 )
-    {
-        self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
-        
-        __block NSMutableArray* tmpStageInfo = [NSMutableArray array];
-        __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
-        
-        [self.currentProjectInfo.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                if ( [obj.title containsString: text] )
-                    [tmpRowsInfo addObject: obj];
-                
-            }];
-            
-            if ( tmpRowsInfo.count > 0 )
-            {
-                obj.isExpanded = @YES;
-                
-                NSMutableDictionary* stagesInfoDic = [NSMutableDictionary dictionaryWithDictionary: @{stageKey : obj}];
-                
-                [stagesInfoDic setObject: tmpRowsInfo.copy
-                                  forKey: contentKey];
-                
-                [tmpRowsInfo removeAllObjects];
-                
-                [tmpStageInfo addObject: stagesInfoDic];
-            }
-        }];
-        
-        
-        self.filteredStagesContent = tmpStageInfo.copy;
-        
-        tmpRowsInfo  = nil;
-        tmpStageInfo = nil;
-    }
+        self.searchFilteredPredicate = [NSPredicate predicateWithFormat: @"title CONTAINS[cd] %@", text];
     else
-    {
-        self.filteredStagesContent = self.stages;
-    }
+        self.searchFilteredPredicate = nil;
+}
+
+- (NSUInteger) getCountOfFoundTaks
+{
+    return self.countOfFoundTasks;
+}
+
+- (void) countSearchResultsForString: (NSString*) enteredText
+{
+   __block NSPredicate* predicate = [NSPredicate predicateWithFormat: @"title CONTAINS[cd] %@", enteredText];
+    
+    __block NSUInteger counter = 0;
+    __block NSArray* allTasks = [NSArray array];
+    
+    [self.stages enumerateObjectsUsingBlock: ^(ProjectTaskStage*  _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        allTasks = [stage.tasks.array filteredArrayUsingPredicate: predicate];
+        
+        counter += allTasks.count;
+    }];
+    
+    self.countOfFoundTasks = counter;
 }
 
 @end

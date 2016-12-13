@@ -86,9 +86,19 @@
     }
 }
 
+- (void) handleEditButtons: (BOOL) enabled
+{
+    if ( enabled == NO )
+    {
+        self.editBtn.hidden   = YES;
+        self.cancelBtn.hidden = YES;
+    }
+}
+
+
 #pragma mark - Action -
 
-- (IBAction)onCancelBtn:(UIButton *)sender
+- (IBAction) onCancelBtn: (UIButton*) sender
 {
     if ( [self.delegate respondsToSelector:@selector(commentsCell: onCancelBtn:)] )
     {
@@ -96,7 +106,7 @@
     }
 }
 
-- (IBAction)onEditBtn:(UIButton *)sender
+- (IBAction) onEditBtn: (UIButton*) sender
 {
     if ( [self.delegate respondsToSelector:@selector(commentsCell: onEditBtn:)] )
     {

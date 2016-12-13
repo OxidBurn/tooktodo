@@ -14,7 +14,7 @@
 
 #pragma mark - Public -
 
-- (UITableViewCell*) returnCellectionCellForTableView: (UITableView*) tableView
+- (UITableViewCell*) returnCollectionCellForTableView: (UITableView*) tableView
                                          withDelegate: (id<ParentCollectionCellDelegate>) delegate
 {
     CollectionCell* cell = [tableView dequeueReusableCellWithIdentifier: @"CollectionCellId"];

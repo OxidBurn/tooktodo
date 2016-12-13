@@ -12,7 +12,7 @@
 @import Foundation;
 
 // URLS
-static NSString* registerPageURL = @"https://tooktodo.ru/login";
+static NSString* registerPageURL = @"https://tooktodo.ru";
 
 static NSString* serverURL = @"http://api.taketowork.com:80/";
 
@@ -23,6 +23,7 @@ static NSString* updatePasswordURL              = @"api/Account/ChangePassword";
 static NSString* logoutURL                      = @"api/Account/Logout";
 static NSString* updateUserInfoURL              = @"api/v2/account/info/common";
 static NSString* userProjectsListURL            = @"api/project/list";
+static NSString* loadProjectInfoURL             = @"/api/project/{id}";
 static NSString* fileInfoURL                    = @"api/file";
 static NSString* updateAvatarURL                = @"api/Account/avatar";
 static NSString* projectTeamInfoURL             = @"api/v2/project/{projectID}/contacts";
@@ -31,7 +32,7 @@ static NSString* projectRolesURL                = @"api/project/{projectID}/role
 static NSString* projectSystemsURL              = @"api/project/{projectID}/workAreas";
 static NSString* projectUserPermissionURL       = @"api/project/{projectId}/participant/currentUserPermission";
 static NSString* defaultRolesURL                = @"api/project/roleType/defaultList";
-static NSString* projectTasksURL                = @"/api/project/{id}/tasks";
+static NSString* projectTasksByStagesURL        = @"/api/v2/project/{projectId}/tasks/groupsByStage";
 static NSString* allUserTasksURL                = @"api/v2/tasks/groupsByProject";
 static NSString* projectRoleAssignmentsURL      = @"/api/project/{id}/projectRoleAssignments";
 static NSString* projectRolePermissionURL       = @"/api/project/{projectId}/participant/{userId}/permission/admin";
@@ -43,6 +44,9 @@ static NSString* taskCommentsURL                = @"/api/task/p{projectId}-t{tas
 static NSString* postCommentURL                 = @"/api/task/p{projectId}-t{taskId}/comment";
 static NSString* deleteTaskURL                  = @"/api/task/p{projectId}-t{taskId}";
 static NSString* logsTaskURL                    = @"/api/task/p{projectId}-t{taskId}/logs";
+static NSString* updateTaskStatusURL            = @"/api/task/p{projectId}-t{taskId}/status";
+static NSString* sendReworkMessageURL           = @"/api/task/p{projectId}-t{taskId}/rework";
+static NSString* getTaskInfoURL                 = @"/api/task/p{projectId}-t{taskId}";
 
 // Grab filters info
 static NSString* getFiltersStatusesURL     = @"/api/tasksFilter/project/{projectId}/counters/statuses";

@@ -126,7 +126,7 @@ shouldChangeCharactersInRange: (NSRange)      range
 {
     BOOL shouldReturn = YES;
     
-    if ( textField.text.length > 100 && string.length > 0)
+    if ( textField.text.length > 99 && string.length > 0)
     {
         string = @"";
         

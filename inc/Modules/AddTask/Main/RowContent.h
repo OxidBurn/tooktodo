@@ -19,6 +19,14 @@
 
 @property (strong, nonatomic) NSArray*  membersArray;
 
+
+@property (strong, nonatomic) NSArray*  responsibleArray;
+
+@property (strong, nonatomic) NSArray*  claimingsArray;
+
+@property (strong, nonatomic) NSArray*  observersArray;
+
+
 @property (strong, nonatomic) NSString* cellId;
 
 @property (assign, nonatomic) AddTaskTableViewCellType cellIndex;
@@ -47,6 +55,9 @@
 
 @property (strong, nonatomic) NSDate*   maximumDate;
 
+@property (assign, nonatomic) NSUInteger taskRoleType;
+
+// methods
 - (instancetype) initWithUserInteractionEnabled;
 
 @end

@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* amountTaskMarkerComponent;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* attachmantsMarkerComponent;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent* commentsMarkerComponent;
+@property (weak, nonatomic) IBOutlet UIImageView* roomMarkImage;
+@property (weak, nonatomic) IBOutlet UIButton* taskAccess;
 
 // Task status UI
 @property (weak, nonatomic) IBOutlet UIButton *taskStatusBtn;
@@ -92,12 +94,30 @@
     
     // Setting avatar url
     // first time it will be loaded from web and then grab from cache
-    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.ownerUser.avatarSrc]];
+    if (taskInfo.responsible.avatarSrc)
+        [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.avatarSrc]];
+    
+    else if (taskInfo.responsible.assignee.avatarSrc)
+        [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: taskInfo.responsible.assignee.avatarSrc]];
+    
+    else
+        self.avatarImage.image = [UIImage imageNamed: @"emptyAvatarIcon"];
     
     // Room info
-    ProjectTaskRoom* room = (ProjectTaskRoom*)taskInfo.room;
+    ProjectTaskRoom* room = taskInfo.rooms.firstObject;
     
     self.roomNumbersLabel.text = room.number.stringValue;
+    
+    self.roomMarkImage.hidden = room.roomID ? NO : YES;
+    
+    if ([taskInfo.access isEqual: @(0)])
+    {
+        [self.taskAccess setImage: [UIImage imageNamed: @"closedEyes"] forState: UIControlStateNormal];
+    }
+    
+    else if ([taskInfo.access isEqual: @(1)])
+        [self.taskAccess setImage: [UIImage imageNamed: @"Eye"] forState: UIControlStateNormal];
+   
     
     // Type of subtask
     [self.typeTaskMarkerView setStatusString: taskInfo.taskTypeDescription
@@ -112,10 +132,8 @@
 
 - (NSString*) executionDateString: (ProjectTask*) task
 {
-    NSString* startDayString = [task.startDay stringWithFormat: @"dd.mm.yyyy"];
-    NSString* closeDayString = [task.closedDate stringWithFormat: @"dd.mm.yyyy"];
-    
-    NSString* executionDateValue = [NSString stringWithFormat: @"%@ - %@", startDayString, closeDayString];
+    NSString* executionDateValue = [self createTermsLabelTextForStartDate: task.startDay
+                                                           withFinishDate: task.closedDate];
     
     return executionDateValue;
 }
@@ -151,8 +169,42 @@
 
 - (IBAction) onShowTaskDetail: (UIButton*) sender
 {
-    if ( self.didSelectedTaskAtIndex )
-        self.didSelectedTaskAtIndex(self.cellIndexPath);
+    
+}
+
+
+#pragma mark - Helpers -
+
+- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
+                                withFinishDate: (NSDate*) finishDate
+{
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+    
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ — %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
+        }
+        else
+            detailString = @"";
+    }
+    
+    return detailString;
 }
 
 @end

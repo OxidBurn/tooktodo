@@ -24,6 +24,8 @@
 #import "TaskComment+CoreDataProperties.h"
 #import "TaskLogInfo+CoreDataProperties.h"
 #import "TaskLogDataContent+CoreDataProperties.h"
+#import "DataManager+UserInfo.h"
+
 
 #import "Utils.h"
 #import "NSDate+Helper.h"
@@ -143,12 +145,15 @@
     taskDetailCellContent.roomNumber          = task.room.number.integerValue;
     taskDetailCellContent.commentsNumber      = task.commentsCount.integerValue;
     taskDetailCellContent.taskType            = task.taskType.integerValue;
+    taskDetailCellContent.isHiddenTask        = task.access.integerValue;
     
     TaskRowContent* taskDescriptionCellContent = [TaskRowContent new];
     
     taskDescriptionCellContent.cellId          = self.tableViewCellsIdArray[TaskDescriptionCellType];
     taskDescriptionCellContent.cellTypeIndex   = TaskDescriptionCellType;
-    taskDescriptionCellContent.taskDescription = task.descriptionValue;
+    
+    NSString* description = task.descriptionValue.length > 0 ? task.descriptionValue : @"Описание отсутствует";
+    taskDescriptionCellContent.taskDescription = description;
     
     TaskRowContent* collectionCellContent = [TaskRowContent new];
     
@@ -271,6 +276,8 @@
     
                 newRow.cellId    = self.tableViewCellsIdArray[CommentsCellType];
                 newRow.cellTypeIndex = CommentsCellType;
+                
+                newRow.isAuthor = [self checkIfIsAuthorOfComment: comment.authorId.integerValue];
                 
                 newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 28;
     
@@ -496,6 +503,15 @@
     height = size.height;
     
     return height;
+}
+
+- (BOOL) checkIfIsAuthorOfComment: (NSUInteger) commentAuthorId
+{
+    NSNumber* userId = [DataManagerShared getCurrentUserID];
+    
+    BOOL isAuthor = (commentAuthorId == userId.integerValue);
+    
+    return isAuthor;
 }
 
 

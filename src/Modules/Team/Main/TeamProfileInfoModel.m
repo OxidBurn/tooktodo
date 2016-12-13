@@ -15,6 +15,7 @@
 #import "FilledTeamInfo.h"
 #import "Utils.h"
 #import "TeamService.h"
+#import "ProjectsEnumerations.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -26,14 +27,6 @@ typedef NS_ENUM(NSUInteger, ContactType)
     ContactPhoneNumberType,
     ContactAdditionalPhoneNumberType,
     ContactEmailType,
-};
-
-typedef NS_ENUM(NSInteger, Permission)
-{
-    SystemAdministrator = -1,
-    Participant         = 0,
-    Owner               = 1,
-    Administrator       = 2,
 };
 
 @interface TeamProfileInfoModel ()
@@ -70,10 +63,18 @@ typedef NS_ENUM(NSInteger, Permission)
 {
     if (_detailLabelsContent == nil)
     {
-        _detailLabelsContent = @[self.memberInfo.role ? self.memberInfo.role : @"", [self setPermission: self.memberInfo.projectPermission.integerValue]];
+        _detailLabelsContent = @[ self.memberInfo.role ? self.memberInfo.role : @"",
+                                 [self setPermission: self.memberInfo.projectPermission.integerValue]];
     }
     
     return _detailLabelsContent;
+}
+
+- (ProjectRoles*) getCurrentMemberRoleForIndexPath: (NSIndexPath*) indexPath
+{
+    ProjectRoles* role = self.detailLabelsContent[1][0];
+    
+    return role;
 }
 
 - (void) reloadContent
@@ -132,6 +133,16 @@ typedef NS_ENUM(NSInteger, Permission)
 - (NSInteger) countOfContactsContent
 {
     return self.contactsContent.count;
+}
+
+- (NSInteger) secondSectionRowCount
+{
+    if ([self checkIfTeamMemberBlockedOrInvited] == YES)
+    {
+        return 1;
+    }
+   
+    else return 2;
 }
 
 - (NSString*) getEmail
@@ -216,7 +227,7 @@ typedef NS_ENUM(NSInteger, Permission)
                                                      withUserID: self.memberInfo.memberID]
      subscribeNext: ^(id x) {
          
-         
+        
          
      }
      error: ^(NSError *error) {
@@ -226,7 +237,12 @@ typedef NS_ENUM(NSInteger, Permission)
      }
      completed: ^{
          
-         
+         [DataManagerShared updateTeamMemberPermission: permission
+                                        withCompletion:^(BOOL isSuccess) {
+                                            
+                                            self.memberInfo.projectPermission = @(permission);
+                                            
+                                        }];
      }];
     
     self.memberInfo.projectPermission = @(permission);
@@ -247,6 +263,8 @@ typedef NS_ENUM(NSInteger, Permission)
                                  
                                  self.memberInfo = teamMember;
                             }];
+    
+    
 }
 
 - (NSInteger) getCurrentUserPermission
@@ -303,6 +321,15 @@ typedef NS_ENUM(NSInteger, Permission)
 
 - (NSString*) getRoleInfoCellLabelTextForIndexPath: (NSIndexPath*) indexPath
 {
+    if ([self checkIfTeamMemberBlockedOrInvited] == YES)
+    {
+        NSMutableArray* tmpCellContentArray = self.roleCellsContent.mutableCopy;
+        
+        [tmpCellContentArray removeObject: @"Права доступа"];
+        
+        self.roleCellsContent = tmpCellContentArray.copy;
+    }
+    
     return self.roleCellsContent[indexPath.row];
 }
 
@@ -311,20 +338,21 @@ typedef NS_ENUM(NSInteger, Permission)
     return self.detailLabelsContent[indexPath.row];
 }
 
-- (NSString*) setPermission: (Permission) permission
+
+- (NSString*) setPermission: (PermissionTypeList) permission
 {
     switch (permission)
     {
-        case SystemAdministrator:
+        case SystemAdminPermission:
             return @"Системный администратор";
             break;
-        case Participant:
+        case ParticipantPermission:
             return @"Участник проекта";
             break;
-        case Owner:
+        case OwnerPermission:
             return @"Владелец";
             break;
-        case Administrator:
+        case AdminPermission:
             return @"Администратор";
             break;
             
@@ -339,4 +367,15 @@ typedef NS_ENUM(NSInteger, Permission)
 {
     self.memberInfo = teamMember;
 }
+
+- (BOOL) checkIfTeamMemberBlockedOrInvited
+{
+    BOOL isBlocked = self.assignment.isBlocked.boolValue;
+    BOOL isInvited = self.assignment.invite != nil;
+    
+    BOOL disabled = (isBlocked == YES || isInvited);
+    
+    return disabled;
+}
+
 @end

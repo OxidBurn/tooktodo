@@ -22,6 +22,7 @@
 
 // Categories
 #import "AddTaskContentManager+Helpers.h"
+#import "AddTaskContentManager+ProjectTask.h"
 
 @interface AddTaskContentManager() 
 
@@ -86,7 +87,8 @@
     
     RowContent* row = self.addTaskContentArray[SectionOne][TaskResponsibleRow];
     
-    row.membersArray = selectedUsersArray;
+    row.membersArray     = selectedUsersArray;
+    row.responsibleArray = selectedUsersArray;
     
     [self updateContentWithRow: row
                      inSection: SectionOne
@@ -108,13 +110,17 @@
     }
     
     row.membersArray = selectedClaiming;
+    row.claimingsArray = selectedClaiming;
     
-    row.cellId = [self determineCellIdForContent: selectedClaiming];
+    row.cellId    = [self determineCellIdForContent: selectedClaiming];
+    row.cellIndex = [self determintCellIndexForCellId: row.cellId];
     
     if ( selectedClaiming.count == 0 )
         row.detail = @"Не выбраны";
     
-    [self updateContentWithRow: row inSection: SectionOne inRow: TaskClaimingRow];
+    [self updateContentWithRow: row
+                     inSection: SectionOne
+                         inRow: TaskClaimingRow];
     
     return self.addTaskContentArray;
 }
@@ -126,6 +132,7 @@
     RowContent* row = self.addTaskContentArray[SectionOne][TaskObserversRow];
     
     row.membersArray = selectedObservers;
+    row.observersArray = selectedObservers;
     
     if ( selectedObservers )
     {
@@ -133,13 +140,15 @@
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
     }
     
-    [self updateContentWithRow: row inSection: SectionOne inRow: TaskObserversRow];
+    [self updateContentWithRow: row
+                     inSection: SectionOne
+                         inRow: TaskObserversRow];
     
     return self.addTaskContentArray;
 }
 
 
-- (void) updateSelectedSystem: (ProjectSystem*) system
+- (NSArray*) updateSelectedSystem: (ProjectSystem*) system
 {
     self.task.system = system;
     
@@ -155,13 +164,14 @@
         row.detail = @"Не выбрано";
     }
     
-    
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskSystemRow];
+    
+     return self.addTaskContentArray;
 }
 
-- (void) updateSelectedStage: (ProjectTaskStage*) stage
+- (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage
 {
     self.task.stage = stage;
     
@@ -178,13 +188,14 @@
         row.detail = @"Не выбрано";
     }
     
-    
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskStageRow];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateSelectedInfo: (id) info
+- (NSArray*) updateSelectedInfo: (id) info
 {
     ProjectTaskRoomLevel* levelItem = nil;
     ProjectTaskRoom*      roomItem = nil;
@@ -221,13 +232,15 @@
         row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
         row.detail = info;
     }
-    
+
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskPremisesRow];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateSelectedTaskType: (TaskType)  type
+- (NSArray*) updateSelectedTaskType: (TaskType)  type
                 withDescription: (NSString*) typeDescription
                       withColor: (UIColor*)  typeColor
 {
@@ -244,24 +257,26 @@
     [self updateContentWithRow: row
                      inSection: SectionThree
                          inRow: TaskTypeRow];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateTerms: (TermsData*) terms
+- (NSArray*) updateTerms: (TermsData*) terms
 {
     self.task.terms.startDate  = terms.startDate;
     self.task.terms.endDate    = terms.endDate;
     self.task.terms.duration   = terms.duration;
-    
-    
     
     RowContent* row = self.addTaskContentArray[SectionTwo][TaskTermsRow];
     
     row.detail = [self createTermsLabelTextForStartDate: terms.startDate
                                          withFinishDate: terms.endDate
                                            withDuration: terms.duration];
+    
+    return self.addTaskContentArray;
 }
 
-- (void) updateTaskDescription: (NSString*) taskDescription
+- (NSArray*) updateTaskDescription: (NSString*) taskDescription
 {
     self.task.taskDescription = taskDescription;
     
@@ -269,7 +284,7 @@
     
     newRow.title = taskDescription;
     
-    if ( [taskDescription isEqualToString: @"Введите описание задачи"] )
+    if ( [taskDescription isEqualToString: @"Описание задачи"] )
     {
         taskDescription = @"";
     }
@@ -277,6 +292,8 @@
     [self updateContentWithRow: newRow
                      inSection: SectionOne
                          inRow: TaskDescriptionRow];
+    
+    return self.addTaskContentArray;
 }
 
 #pragma mark - Internal -
@@ -320,5 +337,7 @@
             break;
     }
 }
+
+
 
 @end

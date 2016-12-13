@@ -16,6 +16,9 @@
 #import "ChangeStatusViewController.h"
 #import "TaskDetailContentManager.h"
 #import "AddTaskContentManager+UpdadingContent.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
+#import "TaskAvailableStatusAction+CoreDataClass.h"
+
 // Helpers
 #import "ProjectsEnumerations.h"
 #import "NSObject+Sorting.h"
@@ -52,6 +55,26 @@
 
 
 #pragma mark - Public -
+
+- (BOOL) hasAvailableStatusesActions
+{
+    // getting all available status actions
+    NSArray* availableStatusActions = self.task.availableActions.statusActions.allObjects;
+    
+    // creating array with IDs of available actions
+    NSMutableArray* tmpDefaultArray = [NSMutableArray new];
+    
+    [availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* action, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( action.statusActionID.integerValue <= 6 )
+        {
+            [tmpDefaultArray addObject: action.statusActionID];
+        }
+        
+    }];
+    
+    return (tmpDefaultArray.count > 0);
+}
 
 - (TaskStatusType) getTaskStatus
 {
@@ -127,15 +150,21 @@
     row.status            = self.task.status.integerValue;
     row.statusDescription = self.task.statusDescription;
     
-    // updating content with new status value
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 0];
+    
+    [[[TasksService sharedInstance] updateStatusForSelectedTask: row.status] subscribeCompleted: ^{
+        
+        NSLog(@"<INFO> Task status updated successful");
+        
+    }];
     
     [DataManagerShared updateStatusType: @(row.status)
                   withStatusDescription: row.statusDescription
                          withCompletion: nil];
 
+    // updating content with new status value
+    [self updateContentWithRow: row
+                     inSection: 0
+                         inRow: 0];
 }
 
 - (ProjectTaskStage*) getTaskStage
@@ -215,6 +244,20 @@
 - (ProjectTask*) getCurrentTask
 {
     return self.task;
+}
+
+- (NSString*) getTaskNumberTitle
+{
+    NSUInteger taskNumber = self.task.taskID.integerValue;
+    
+    return [NSString stringWithFormat: @"Задача #%lu", (unsigned long)taskNumber];
+}
+
+- (NSString*) getProjectTitle
+{
+    ProjectInfo* projInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return projInfo.title;
 }
 
 - (NSArray*) getSubtasks

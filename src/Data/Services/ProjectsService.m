@@ -108,6 +108,41 @@ static bool isFirstAccess = YES;
     }];
 }
 
+- (RACSignal*) updatedProjectInfo: (ProjectInfo*) project
+{
+    NSString* requestURL = [loadProjectInfoURL stringByReplacingOccurrencesOfString: @"{id}"
+                                                                         withString: project.projectID.stringValue];
+    
+    @weakify(self)
+    
+    RACSignal* loadProjectInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[ProjectsAPIService sharedInstance] loadProjectInfo: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseProjectInfoResponse: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+                                
+                                 [subscriber sendNext: nil];
+                                 [subscriber sendCompleted];
+                                 
+                             }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadProjectInfoSignal;
+}
+
 #pragma mark - Internal methods -
 
 - (void) parseGettingProjectsResponse: (NSDictionary*) response
@@ -177,6 +212,24 @@ static bool isFirstAccess = YES;
     
     [DataManagerShared updateSelectedProjectPermission: projectPermissionValue
                                         withCompletion: completion];
+}
+
+- (void) parseProjectInfoResponse: (NSDictionary*)         response
+                   withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError           = nil;
+    ProjectInfoModel* projectInfo = [[ProjectInfoModel alloc] initWithDictionary: response
+                                                                           error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> with parsing project info: %@", parseError.debugDescription);
+    }
+    else
+    {
+        [DataManagerShared updateSelectedProjectInfo: projectInfo
+                                      withCompletion: completion];
+    }
 }
 
 

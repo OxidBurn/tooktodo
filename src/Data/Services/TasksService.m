@@ -19,6 +19,7 @@
 #import "TaskCommentsService.h"
 #import "UserInfoService.h"
 #import "TaskLogsModel.h"
+#import "ProjectTaskStageModel.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -52,12 +53,12 @@
 
 - (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID
 {
-    NSString* requestURL = [projectTasksURL stringByReplacingOccurrencesOfString: @"{id}"
-                                                                      withString: projectID.stringValue];
+    NSString* requestURL = [projectTasksByStagesURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                              withString: projectID.stringValue];
     
     @weakify(self)
     
-    RACSignal* loadTasksForProjectSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* loadTasksForProjectSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [[[[TasksAPIService sharedInstance] loadTasksForProjectWithURL: requestURL]
           deliverOn: [RACScheduler mainThreadScheduler]]
@@ -65,7 +66,7 @@
              
              @strongify(self)
              
-             [self parseTasksForProjectFromResponse: response[0]
+             [self parseTasksForProjectFromResponse: response[0][@"stages"]
                                      withCompletion: ^(BOOL isSuccess) {
                                          
                                          [subscriber sendNext: nil];
@@ -193,7 +194,10 @@
                      withCompletion: (CompletionWithSuccess) completion
 {
     if ( isSelected )
+    {
         [SVProgressHUD show];
+        SharedApplication.networkActivityIndicatorVisible = YES;
+    }
     
     [DataManagerShared updateSelectedStateForTask: task
                                 withSelectedState: isSelected
@@ -201,7 +205,8 @@
                                        
                                        if ( isSelected )
                                        {
-                                           NSArray* signals = @[[self loadSelectedTaskAvailableActionsForTask: task],
+                                           NSArray* signals = @[[self loadSelectedTaskInfoWithCompletion],
+                                                                [self loadSelectedTaskAvailableActionsForTask: task],
                                                                 [[TaskCommentsService sharedInstance] getCommentsForSelectedTask],
                                                                 [self loadSelectedTaskLogs: task]];
                                            
@@ -212,6 +217,7 @@
                                                if ( completion )
                                                    completion(isSuccess);
                                                
+                                               SharedApplication.networkActivityIndicatorVisible = NO;
                                                [SVProgressHUD dismiss];
                                                
                                            }];
@@ -318,20 +324,112 @@
     return deleteTaskSignal;
 }
 
+- (RACSignal*) updateStatusForSelectedTask: (TaskStatusType) status
+{
+    NSString* requestURL           = [self buildUpdateTaskStatusURL];
+    NSDictionary* requestParameter = [self getUpdateTaskStatusParameter: status];
+    
+    RACSignal* updateStatusSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TasksAPIService sharedInstance] updateTaskStatus: requestURL
+                                             withParameter: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             [subscriber sendNext: nil];
+             [subscriber sendCompleted];
+             
+         }
+         error: ^(NSError *error) {
+            
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return updateStatusSignal;
+}
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*) message
+{
+    NSString* requestURL           = [self buildSendReworkStatusMessageURL];
+    NSDictionary* requestParameter = [self buildSendReworkStatusMessageParameter: message];
+    
+    RACSignal* sendReworkStatusMessage = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] sendReworkStatusMessage: requestURL
+                                                   withParameters: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             [subscriber sendNext: nil];
+             [subscriber sendCompleted];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return sendReworkStatusMessage;
+}
+
+- (RACSignal*) loadSelectedTaskInfoWithCompletion
+{
+    ProjectTask* task    = [self getUpdatedSelectedTask];
+    NSString* requestURL = [self buildGetTaskInfoURL: task];
+    
+    @weakify(self)
+    
+    RACSignal* loadTaskInfo = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TasksAPIService sharedInstance] loadTaskInfoWithURL: requestURL]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             [self parseSelectedTaskInfo: response[0]
+                                withTask: task
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             NSLog(@"<ERROR> with loading task info %@", error.localizedDescription);
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return loadTaskInfo;
+}
+
 #pragma mark - Data base methods -
 
 - (void) parseTasksForProjectFromResponse: (NSArray*)               response
                            withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parsingError = nil;
-    NSArray* tasks        = [ProjectTaskModel arrayOfModelsFromDictionaries: response
-                                                                      error: &parsingError];
+    NSArray* tasks        = [ProjectTaskStageModel arrayOfModelsFromDictionaries: response
+                                                                           error: &parsingError];
     
     if ( parsingError )
     {
         NSLog(@"<ERROR> Error with parsing tasks response %@", parsingError.localizedDescription);
         
-        [SVProgressHUD showErrorWithStatus: @"Возникла ошибка при попытке загрузки доступных действий над задачей."];
+        [Utils showErrorAlertWithMessage: @"Возникла ошибка при попытке загрузки доступных действий над задачей."];
     }
     else
     {
@@ -355,6 +453,26 @@
     {
         [DataManagerShared persistTasksForProjects: parsedInfo
                                     withCompletion: completion];
+    }
+}
+
+- (void) parseSelectedTaskInfo: (NSDictionary*)         response
+                      withTask: (ProjectTask*)          task
+                withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parsingError      = nil;
+    ProjectTaskModel* taskInfo = [[ProjectTaskModel alloc] initWithDictionary: response
+                                                                        error: &parsingError];
+    
+    if ( parsingError )
+    {
+        NSLog(@"<ERROR> with parsing selected task info: %@", parsingError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared updateSelectedTaskInfo: task
+                                      withNewInfo: taskInfo
+                                   withCompletion: completion];
     }
 }
 
@@ -401,6 +519,9 @@
     
     return task;
 }
+
+
+#pragma mark - Parsing responses from server -
 
 - (void) parseTaskLogsResponse: (NSDictionary*)         response
                 withCompletion: (CompletionWithSuccess) completion
@@ -578,5 +699,57 @@
                               withSubtask: withSubtask
                            withCompletion: completion];
 }
+
+- (NSString*) buildUpdateTaskStatusURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [updateTaskStatusURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                          withString: currentTask.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSDictionary*) getUpdateTaskStatusParameter: (TaskStatusType) status
+{
+    NSDictionary* requestParameter = @{@"status" : [NSString stringWithFormat: @"%lu", status]};
+    
+    return requestParameter;
+}
+
+- (NSString*) buildSendReworkStatusMessageURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [sendReworkMessageURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                           withString: currentTask.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSDictionary*) buildSendReworkStatusMessageParameter: (NSString*) message
+{
+    NSDictionary* requestParameter = @{@"message" : message};
+    
+    return requestParameter;
+}
+
+- (NSString*) buildGetTaskInfoURL: (ProjectTask*) task
+{
+    NSString* requestURL = [getTaskInfoURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                     withString: task.projectId.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: task.taskID.stringValue];
+    
+    return requestURL;
+}
+
 
 @end

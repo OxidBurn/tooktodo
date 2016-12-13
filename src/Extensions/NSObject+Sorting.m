@@ -82,17 +82,16 @@
         }
         case SortByFactStartDay:
         {
-            return @"startDay";
+            return @"factualStartDate";
             break;
         }
         case SortByFactEndDay:
         {
-            return @"closedDate";
+            return @"factualEndDate";
             break;
         }
         case SortByResponsible:
         {
-            
             return @"responsible.lastName";
             break;
         }
@@ -114,6 +113,5 @@
         
     }
 }
-
 
 @end

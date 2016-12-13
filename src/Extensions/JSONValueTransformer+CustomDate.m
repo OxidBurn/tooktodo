@@ -14,9 +14,39 @@
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
-    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+    formatter.dateFormat = @"dd.mm.yyyy";
     
-    return [formatter dateFromString:string];
+    NSDate* date = [formatter dateFromString: string];
+    
+    if ( date == nil )
+    {
+        formatter.dateFormat = @"yyyy-MM-dd'T'hh:mm:ss";
+        
+        date = [formatter dateFromString: string];
+    }
+    
+    if ( date == nil )
+    {
+        formatter.dateFormat = @"dd.mm.yyyy'T'hh:mm:ss.SSS";
+        
+        date = [formatter dateFromString: string];
+    }
+    
+    if ( date == nil )
+    {
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+        
+        date = [formatter dateFromString: string];
+    }
+    
+    if ( date == nil )
+    {
+        formatter.dateFormat = @"yyyy-MM-dd";
+        
+        date = [formatter dateFromString: string];
+    }
+    
+    return date;
 }
 
 @end

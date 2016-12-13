@@ -11,6 +11,8 @@
 // Classes
 #import "AboutProjectModel.h"
 #import "AboutProjectCellsFactory.h"
+#import "NSString+Utils.h"
+#import "OSRightDetailCellFactory.h"
 
 typedef NS_ENUM(NSUInteger, SectionNumber) {
     
@@ -70,10 +72,23 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
         case SectionOne:
         case SectionTwo:
         {
-            cell = [factory returnRightDetailCellWithTitle: cellTitle
-                                                withDetail: cellDetail
-                                              forTableView: tableView
-                                             withIndexPath: indexPath];
+            if ( indexPath.row == 8)
+            {
+                cell = (OSRightDetailCell*)cell;
+
+                OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
+                
+                BOOL isSelected = [cellTitle isEqualToString: @"нет"] ? NO : YES;
+                
+                cell = [factory returnAboutProjectCommentCellWithComment: cellDetail
+                                                       withSelectedState: isSelected
+                                                            forTableView: tableView];
+            }
+            else
+                cell = [factory returnRightDetailCellWithTitle: cellTitle
+                                                    withDetail: cellDetail
+                                                  forTableView: tableView
+                                                 withIndexPath: indexPath];
         }
             
             break;
@@ -109,26 +124,24 @@ heightForHeaderInSection: (NSInteger)    section
     return height;
 }
 
-- (CGFloat) tableView: (UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)   tableView: (UITableView*) tableView
+heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    CGFloat height = 0;
-    
-    switch (indexPath.section)
+    if ( indexPath.section == 1 && indexPath.row == 8 )
     {
-        case SectionOne:
-        case SectionTwo:
-        {
-            height = 44;
-        }
-            break;
-        case SectionThree:
-        {
-            height = 160;
-        }
-            break;
+        return [self.model countHeightForCommentCellWithWidth: tableView.frame.size.width/2];
     }
-    
-    return height;
+    else
+        if (indexPath.section == 0 || indexPath.section == 1)
+        {
+            return 43;
+        }
+        else
+            if ( indexPath.section == 2)
+            {
+                return 160.f;
+            }
+    return 0;
 }
 
 - (UIView*)  tableView: (UITableView*) tableView
@@ -150,9 +163,9 @@ viewForHeaderInSection: (NSInteger)    section
 
 #pragma mark - Public -
 
-- (void) updateProjectInfo
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion
 {
-    [self.model updateProjectInfo];
+    [self.model updateProjectInfoWithCompletion: completion];
 }
 
 @end

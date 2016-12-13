@@ -48,6 +48,11 @@
     return [self.model updateInfo];
 }
 
+- (void) updateCurrentUserInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model updateCurrentUserInfoWithCompletion: completion];
+}
+
 - (UIImage*) userAvatar
 {
     return [self.model getUserAvatarImage];
@@ -82,9 +87,11 @@
     return _logoutCommand;
 }
 
-- (void) saveNewImage: (UIImage*) image
+- (void) saveNewImage: (UIImage*)                image
+       withCompletion: (void(^)(UIImage* image)) completion
 {
-    [self.model saveNewAvatar: image];
+    [self.model saveNewAvatar: image
+               withCompletion: completion];
 }
 
 #pragma mark - Internal methods -

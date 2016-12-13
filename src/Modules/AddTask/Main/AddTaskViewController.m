@@ -49,6 +49,7 @@
 @property (nonatomic, assign) AddTaskControllerType controllerType;
 
 // methods
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender;
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender;
 
@@ -85,7 +86,7 @@
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
-    
+        
     [self.addTaskTableView reloadData];
 }
 
@@ -115,17 +116,23 @@
         case ShowResponsibleSegue:
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
-            [controller updateControllerType: SelectResponsibleController
-                                withDelegate: [self.viewModel returnModel]];
+            
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
+
+            [controller updateControllerType: SelectResponsibleController
+                                 withMembers: [self.viewModel getAllMembersArray]
+                                withDelegate: [self.viewModel returnModel]];
         }
             break;
             
         case ShowClaimingSegue:
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
+            
             [controller updateControllerType: SelectClaimingController
+                                 withMembers: [self.viewModel getAllMembersArray]
                                 withDelegate: [self.viewModel returnModel]];
+            
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedClaimingArray]];
         }
             break;
@@ -134,6 +141,7 @@
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
+                                 withMembers: [self.viewModel getAllMembersArray]
                                 withDelegate: [self.viewModel returnModel]];
             
             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedObserversArray]];
@@ -237,13 +245,18 @@
 
 #pragma mark - Actions -
 
-- (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
     [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
         
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
     }];
+}
+
+- (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
+{
+    [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -290,11 +303,7 @@
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+   // [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 
@@ -319,7 +328,7 @@
 
 - (AddTaskControllerType) getControllerType
 {
-    return self.controllerType;
+    return [self.viewModel getControllerType];
 }
 
 
@@ -338,7 +347,24 @@
     titleLabel.textColor       = [UIColor whiteColor];
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
-    titleLabel.text            = @"НОВАЯ ЗАДАЧА";
+    
+    
+    switch ([self getControllerType])
+    {
+        case AddNewTaskControllerType: titleLabel.text = @"НОВАЯ ЗАДАЧА";
+            break;
+            
+        case AddSubtaskControllerType: titleLabel.text = @"НОВАЯ ПОДЗАДАЧА";
+            break;
+            
+        case EditTaskControllerType: titleLabel.text = @"РЕДАКТИРОВАТЬ ЗАДАЧУ";
+            break;
+            
+        default:
+            break;
+    }
+    
+    
     
     [titleLabel sizeToFit];
     
@@ -380,16 +406,28 @@
 {
     self.addTaskTableView.dataSource = self.viewModel;
     self.addTaskTableView.delegate   = self.viewModel;
-    
+   
+    self.addTaskTableView.estimatedRowHeight = 100;
     self.addTaskTableView.rowHeight          = UITableViewAutomaticDimension;
-    self.addTaskTableView.estimatedRowHeight = 42;
     
     __weak typeof(self) blockSelf = self;
+    
+    [self.viewModel updateTeamInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf.addTaskTableView reloadData];
+        
+    }];
     
     self.viewModel.reloadTableView = ^(){
         
         [blockSelf.addTaskTableView reloadData];
         
+    };
+    
+    self.viewModel.performSegueWithID = ^(NSString* segueID) {
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
     };
 }
 
@@ -398,19 +436,17 @@
     self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
     self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
     self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableCreteOnBaseBtnCommand;
-    
+    self.createOnBaseBtn.rac_command        = self.viewModel.createOnExistingTaskBaseCommand;
     
     @weakify(self)
     
-        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
+        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext: ^(RACSignal* signal)
          {
             [signal subscribeNext: ^(NSString* taskName) {
-                
             
                 @strongify(self)
                 
                 self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
-            
                 
             }];
              
@@ -419,22 +455,100 @@
                 @strongify(self)
                 
                 [self showTaskCreatedMessage];
-            
-                NewTask* t = [self.viewModel getNewTask];
-                NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
                 
-          
-            
             }];
          }];
 
     
+    [self.viewModel.createOnExistingTaskBaseCommand.executionSignals subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                             bundle: nil];
+        
+        AddTaskViewController* addTaskController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskControllerID"];
+        
+        addTaskController.controllerType = AddNewTaskControllerType;
+        
+        [addTaskController fillTaskToEdit: [self.viewModel getSelectedTask]];
+        
+        addTaskController.addTaskBtn.hidden = NO;
+        addTaskController.addTaskAndCreateNewBtn.hidden = NO;
+        addTaskController.deleteTask.hidden = YES;
+        addTaskController.createOnBaseBtn.hidden = YES;
+        
+
+        //actions for implementing completion after push
+        [CATransaction begin];
+        
+        [self.navigationController pushViewController: addTaskController
+                                             animated: YES];
+        
+        [CATransaction setCompletionBlock:^{
+           
+            [addTaskController.viewModel resetCellsContent];
+        }];
+        
+        
+    }];
+    
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeNext: ^(NewTask* task) {
+        [signal subscribeNext: ^(NSString* taskName) {
             
-            NewTask* t = task;
-            NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
+            @strongify(self)
+            
+            switch ([self getControllerType])
+            {
+                case AddNewTaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Задача \"%@\"  создана", taskName];
+                }
+                    break;
+                
+                case AddSubtaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Подзадача \"%@\" создана",taskName];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }];
+        
+        [signal subscribeCompleted: ^{
+            
+            switch ([self getControllerType])
+            {
+                case AddSubtaskControllerType:
+                case AddNewTaskControllerType:
+                {
+                    [self showTaskCreatedMessage];
+                    
+                    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                        
+                        [self dismissViewControllerAnimated: YES
+                                                 completion: nil];
+                    }];
+                }
+                    break;
+                
+                case EditTaskControllerType:
+                {
+                   //TODO: implement updating task according to changed task properties
+                    
+                    [self dismissViewControllerAnimated: YES
+                                             completion: nil];
+                }
+                    
+                default:
+                    break;
+            }
+            
+            
         }];
         
     }];
@@ -444,8 +558,11 @@
     self.viewModel.dismissTaskInfo = ^(){
         
         [blockSelf dismissViewControllerAnimated: YES
-                                      completion: nil];
-        
+                                      completion: ^{
+                                          
+                                          [DefaultNotifyCenter postNotificationName: @"ShowTaskScreen"
+                                                                             object: nil];
+                                      }];
     };
    
 }
@@ -494,5 +611,6 @@
     self.createOnBaseBtn.hidden           = NO;
     
 }
+
 
 @end

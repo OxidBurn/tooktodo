@@ -21,6 +21,8 @@
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "ParentCollectionCell.h"
+#import "ProjectsEnumerations.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -28,6 +30,7 @@
 #import "OnPlanCollectionCellFactory.h"
 #import "SingleUserCollectionCellFactory.h"
 #import "GroupOfUsersCollectionFactory.h"
+#import "DefaultCollectionCellFactory.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -45,21 +48,14 @@ typedef NS_ENUM(NSUInteger, CollectionItemsList)
     
 };
 
-typedef NS_ENUM(NSUInteger, CellectionItemCellId)
+typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 {
-    TermsCell,
-    DetailCell,
-    OnPlanCell,
-    SingleUserCell,
-    GroupOfUsersCell,
-    
-};
-
-typedef NS_ENUM(NSUInteger, AssignmentRoleType)
-{
-    ResponsibleType,
-    ClaimingsType,
-    ObserverType,
+    CollectionTermsCell,
+    CollectionDetailCell,
+    CollectionOnPlanCell,
+    CollectionSingleUserCell,
+    CollectionGroupOfUsersCell,
+    CollectionDefaultCell,
 };
 
 @interface CollectionCellModel()
@@ -98,7 +94,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 {
     if ( _collectionViewCellsIdArray == nil )
     {
-        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId" ];
+        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId", @"DefaultCollectionCellId" ];
     }
     
     return _collectionViewCellsIdArray;
@@ -150,7 +146,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     switch ( cellTypeIndex )
     {
-        case TermsCell:
+        case CollectionTermsCell:
         {
             TermsInfoCollectionCellFactory* factory = [TermsInfoCollectionCellFactory new];
             
@@ -161,7 +157,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         }
             break;
             
-        case DetailCell:
+        case CollectionDetailCell:
         {
             DetailCollectionCellFactory* factory = [DetailCollectionCellFactory new];
             
@@ -172,7 +168,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         }
             break;
             
-        case OnPlanCell:
+        case CollectionOnPlanCell:
         {
             OnPlanCollectionCellFactory* factory = [OnPlanCollectionCellFactory new];
             
@@ -183,7 +179,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         }
             break;
             
-        case SingleUserCell:
+        case CollectionSingleUserCell:
         {
             SingleUserCollectionCellFactory* factory = [SingleUserCollectionCellFactory new];
             
@@ -194,7 +190,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         }
             break;
             
-        case GroupOfUsersCell:
+        case CollectionGroupOfUsersCell:
         {
             GroupOfUsersCollectionFactory* factory = [GroupOfUsersCollectionFactory new];
             
@@ -202,6 +198,17 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
                                             forCollectionView: collection
                                                 withIndexPath: indexPath
                                                  withDelegate: delegate];
+        }
+            break;
+            
+        case CollectionDefaultCell:
+        {
+            DefaultCollectionCellFactory* factory = [DefaultCollectionCellFactory new];
+            
+            cell = [factory returnDefaultCellWithContent: content
+                                       forCollectionView: collection
+                                           withIndexPath: indexPath
+                                            withDelegate: delegate];
         }
             break;
     }
@@ -226,33 +233,46 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 {
     TaskCollectionCellsContent* itemOne = [TaskCollectionCellsContent new];
     
-    itemOne.cellId     = self.collectionViewCellsIdArray[TermsCell];
+    itemOne.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemOne.cellTitle  = @"Сроки";
     itemOne.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
                                                  withFinishDate: self.task.endDate];
 
     TaskCollectionCellsContent* itemTwo = [TaskCollectionCellsContent new];
     
-    itemTwo.cellId     = self.collectionViewCellsIdArray[TermsCell];
+    itemTwo.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemTwo.cellTitle  = @"Фактическая дата";
-    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
-                                                 withFinishDate: self.task.closedDate];
+    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.factualStartDate
+                                                 withFinishDate: self.task.factualEndDate];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
-    itemThree.cellId     = self.collectionViewCellsIdArray[DetailCell];
+    itemThree.cellId     = self.collectionViewCellsIdArray[CollectionDetailCell];
     itemThree.cellTitle  = @"Помещение";
-    itemThree.cellDetail = self.task.room.title;
+    
+    NSArray* rooms = self.task.rooms.array;
+    
+    [rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        itemThree.cellDetail = obj.title;
+        itemThree.roomNumber = obj.number.integerValue;
+    }];
+    
+    
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     
-    itemFour.cellId    = self.collectionViewCellsIdArray[OnPlanCell];
+    itemFour.cellId    = self.collectionViewCellsIdArray[CollectionOnPlanCell];
     itemFour.cellTitle = @"На плане";
-    itemFour.roomNumber = self.task.room.number.integerValue;
+    
+    ProjectTaskRoom* room = self.task.rooms.firstObject;
+    
+    itemFour.roomNumber = room.roomID.integerValue;
+    itemFour.roomTitle  = room.title;
     
     TaskCollectionCellsContent* itemFive = [TaskCollectionCellsContent new];
     
-    itemFive.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
+    itemFive.cellId    = self.collectionViewCellsIdArray[CollectionSingleUserCell];
     itemFive.cellTitle = @"Создатель";
     itemFive.taskOwner = [self createOwnerTaskArray];
     
@@ -264,27 +284,29 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             withClaimingsArray: itemSeven
             withObserversArray: itemEight];
     
-    itemSix.cellId    = self.collectionViewCellsIdArray[SingleUserCell];
-    itemSix.cellTitle = @"Ответственный";
+    NSString* responsibleCellId = [self determineCollectionCellIdForContent: itemSix.responsible];
     
-    itemSeven.cellTitle = @"Утверждающие";
+    NSString* claimingCellId = [self determineCollectionCellIdForContent: itemSeven.claiming];
     
-    if (itemSeven.claiming.count > 1)
-        itemSeven.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
+    NSString* observersCellId = [self determineCollectionCellIdForContent: itemEight.observers];
     
-    else
-        itemSeven.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указан" : @"";
     
-   
+    NSString* claimingDetailText  = [claimingCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указаны" : @"";
     
-    itemEight.cellTitle = @"Наблюдатели";
+    NSString* observersDetailText  = [observersCellId isEqualToString: self.collectionViewCellsIdArray[CollectionDefaultCell]] ? @"Не указаны" : @"";
     
-    if (itemEight.observers.count > 1)
-        itemEight.cellId  = self.collectionViewCellsIdArray[GroupOfUsersCell];
+    itemSix.cellTitle  = @"Ответственный";
+    itemSix.cellId     = responsibleCellId;
+    itemSix.cellDetail = responsibleDetailText;
     
-    else
-        itemEight.cellId  = self.collectionViewCellsIdArray[SingleUserCell];
+    itemSeven.cellTitle  = @"Утверждающие";
+    itemSeven.cellId     = claimingCellId;
+    itemSeven.cellDetail = claimingDetailText;
     
+    itemEight.cellTitle  = @"Наблюдатели";
+    itemEight.cellId     = observersCellId;
+    itemEight.cellDetail = observersDetailText;
 
     return @[ itemOne, itemTwo, itemThree, itemFour, itemFive, itemSix, itemSeven, itemEight];
 }
@@ -295,15 +317,33 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* labelText;
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
-    NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* detailString = [NSString string];
     
-    NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ — %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
+        }
+        else
+            detailString = @"Не указано";
+    }
     
-    labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
-    
-    return labelText;
+    return detailString;
 }
 
 - (NSArray*) createOwnerTaskArray
@@ -314,6 +354,20 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     return @[ owner ];
 }
+
+- (NSArray*) createResponsibleArray
+{
+    ProjectTaskResponsible* responsible = self.task.responsible;
+    
+    if (responsible != nil)
+    {
+        return @[ responsible ];
+    }
+    
+    else
+        return nil;
+}
+
 
 - (void) fillResponsibleArray: (TaskCollectionCellsContent*) contentResponsible
            withClaimingsArray: (TaskCollectionCellsContent*) contentClaimings
@@ -333,16 +387,16 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
         
         switch (taskRoleAssignments.taskRoleType.integerValue)
         {
-            case ResponsibleType:
+            case ResponsibleRoleType:
             {
                 NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
-                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if (obj.assignee || obj.invite)
                     {
                         NSArray* assigneeArr = obj.assignee.array;
-                        NSArray* inviteArr = obj.invite.array;
+                        NSArray* inviteArr   = obj.invite.array;
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
@@ -352,7 +406,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             }
                 break;
                 
-            case ClaimingsType:
+            case ClaimingsRoleType:
             {
                 NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
@@ -371,7 +425,7 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
             }
                 break;
                 
-            case ObserverType:
+            case ObserverRoleType:
             {
                 NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
                 
@@ -453,13 +507,13 @@ typedef NS_ENUM(NSUInteger, AssignmentRoleType)
     
     if ( arrayToCheck == nil || arrayToCheck.count == 0 )
     {
-        cellId = self.collectionViewCellsIdArray[DetailCell];
+        cellId = self.collectionViewCellsIdArray[CollectionDefaultCell];
     } else
         if ( arrayToCheck.count == 1 )
         {
-            cellId = self.collectionViewCellsIdArray[SingleUserCell];
+            cellId = self.collectionViewCellsIdArray[CollectionSingleUserCell];
         } else
-            cellId = self.collectionViewCellsIdArray[GroupOfUsersCell];
+            cellId = self.collectionViewCellsIdArray[CollectionGroupOfUsersCell];
     
     return cellId;
 }

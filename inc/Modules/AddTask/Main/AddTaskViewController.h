@@ -11,7 +11,12 @@
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
 
+@protocol AddTaskControllerDelegate;
+
 @interface AddTaskViewController : UIViewController
+
+// properties
+@property (weak, nonatomic) id <AddTaskControllerDelegate> delegate;
 
 // methods
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
@@ -23,3 +28,10 @@
 
 @end
 
+@protocol AddTaskControllerDelegate <NSObject>
+
+@optional
+
+- (void) subscribeNotifications;
+
+@end

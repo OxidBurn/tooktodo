@@ -13,6 +13,8 @@
 #import "NewTask.h"
 #import "ProjectsEnumerations.h"
 #import "RowContent.h"
+#import "TeamService.h"
+
 
 @protocol AddTaskModelDelegate;
 @protocol AddTaskModelDataSource;
@@ -24,6 +26,9 @@
 @property (nonatomic, weak) id <AddTaskModelDataSource> dataSource;
 
 // methods
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion;
+
+- (NSArray*) getAllMembersArray;
 
 - (NSUInteger) getNumberOfRowsForSection: (NSUInteger) section;
 
@@ -68,6 +73,7 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
+- (AddTaskControllerType) getControllerType;
 
 - (BOOL) checkSubtasks;
 
@@ -77,6 +83,8 @@
 
 - (void) deleteTaskWithSubtask: (BOOL)                  withSubtask
                 withCompletion: (CompletionWithSuccess) completion;
+
+- (ProjectTask*) getSelectedTask;
 
 
 @end

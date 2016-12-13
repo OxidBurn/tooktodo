@@ -39,12 +39,18 @@
 
 @property (weak, nonatomic) IBOutlet UITableView* tasksByProjectTableView;
 @property (weak, nonatomic) IBOutlet UISearchBar* searchBar;
+@property (weak, nonatomic) IBOutlet UILabel* countOfFoundTasksLabel;
+@property (weak, nonatomic) IBOutlet UIView *searchBackgroundView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem* onSortTasks;
 @property (weak, nonatomic) IBOutlet FilterParametersTagsView *filterParametersView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterParameterTagsViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet FilterBarButton *showFilterBtn;
 
 @property (strong, nonatomic) FilterParametersManager* filterParameterManager;
+
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *countOfTasksHeightConstraint;
+@property (nonatomic, strong) NSValue* val;
 
 
 // Methods
@@ -78,9 +84,18 @@
     // handling splitVC
     self.splitViewController.delegate = self;
     
+
     // Setup navigation title view
     [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
+
+    [self needToUpdateContent];
+    
+    // Add observer for updating selected project content
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(needToUpdateContent)
+                                name: @"NeedToUpdateContent"
+                              object: nil];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -90,6 +105,16 @@
     [self setupTableView];
     
     [self updateContent];
+}
+
+
+#pragma mark - Memory managment -
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"NeedToUpdateContent"
+                                 object: nil];
 }
 
 #pragma mark - Segue -
@@ -163,6 +188,13 @@
     
     self.filterParametersView.dataSource     = self.filterParameterManager;
     self.filterParametersView.filterDelegate = self.filterParameterManager;
+
+    //bind oulets and viewModel properties
+    RAC(self, countOfFoundTasksLabel.text) = RACObserve(self.viewModel, countOfFoundTasksText);
+    
+    RAC(self, countOfTasksHeightConstraint.constant) = RACObserve(self.viewModel, foundedTasksHeigthConstraintConstant);
+
+    RAC(self, searchBackgroundView.frame) = RACObserve(self.viewModel, searchBarBackgroungRectValue);
     
     __weak typeof(self) blockSelf = self;
        
@@ -217,8 +249,11 @@
         
         [blockSelf.showFilterBtn updateFilterParametersCount: count];
         
+        [blockSelf.tasksByProjectTableView reloadData];
+        
     };
     
+
 }
 
 - (void) setupTableView
@@ -262,6 +297,7 @@
          
          [self.tasksByProjectTableView reloadData];
          
+         
      }];
     
     // Filter parameters
@@ -279,7 +315,19 @@
 
 - (void) needToUpdateContent
 {
-    [self updateContent];
+    @weakify(self)
+    
+    [[self.viewModel loadUpdatedContentFromServer] subscribeCompleted:^{
+        
+        @strongify(self)
+        
+        [self.tasksByProjectTableView reloadData];
+        
+    }];
+    
+    // Setup navigation title view
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАДАЧИ"
+                                               withSubTitle: [DataManagerShared getSelectedProjectName]];
 }
 
 - (CGRect) getFrameForSortingPopover

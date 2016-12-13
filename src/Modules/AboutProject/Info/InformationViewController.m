@@ -48,15 +48,22 @@
     
     self.informationTableView.dataSource = self.viewModel;
     self.informationTableView.delegate   = self.viewModel;
+
+    self.informationTableView.estimatedRowHeight = 300.f;
+    self.informationTableView.rowHeight          = UITableViewAutomaticDimension;
 }
 
 - (void) viewWillAppear: (BOOL) animated
 {
     [super viewWillAppear: animated];
     
-    [self.viewModel updateProjectInfo];
+    __weak typeof(self) blockSelf = self;
     
-    [self.informationTableView reloadData];
+    [self.viewModel updateProjectInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf.informationTableView reloadData];
+        
+    }];
 }
 
 
@@ -64,9 +71,13 @@
 
 - (void) needToUpdateContent
 {
-    [self.viewModel updateProjectInfo];
+    __weak typeof(self) blockSelf = self;
     
-    [self.informationTableView reloadData];
+    [self.viewModel updateProjectInfoWithCompletion: ^(BOOL isSuccess) {
+        
+        [blockSelf.informationTableView reloadData];
+        
+    }];
 }
 
 @end

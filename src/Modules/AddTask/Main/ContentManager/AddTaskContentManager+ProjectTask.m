@@ -11,6 +11,9 @@
 #import "AddTaskContentManager+Helpers.h"
 #import "TermsData.h"
 #import "ProjectTaskWorkArea+CoreDataProperties.h"
+#import "ProjectTaskResponsible+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
 
 @implementation AddTaskContentManager (ProjectTask)
 
@@ -43,7 +46,7 @@
     
     rowTwo.cellId    = self.addTaskTableViewCellsInfo[FlexibleCell];
     rowTwo.cellIndex = FlexibleCell;
-    rowTwo.title     = task.taskDescription ? task.taskDescription : @"Описание отсутствует";
+    rowTwo.title     = task.descriptionValue.length > 0 ? task.descriptionValue : @"Описание отсутствует";
     rowTwo.segueId   = self.addTaskTableViewSeguesInfo[ShowAddCommentSegueId];
     
     RowContent* rowThree = [[RowContent alloc] initWithUserInteractionEnabled];
@@ -55,49 +58,64 @@
     rowThree.isSwitchEnabled = YES;
     
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
+    RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
+    RowContent* rowSix  = [[RowContent alloc] initWithUserInteractionEnabled];
     
-    NSUInteger rowFourIndex = task.responsible? RightDetailCell : SingleUserInfoCell;
-    NSString* rowFourDetail = task.responsible? @"" : @"Не выбран";
+    [self fillResponsibleArray: rowFour
+            withClaimingsArray: rowFive
+            withObserversArray: rowSix
+                       forTask: task];
+    
+    
+    NSString* responsibleCellId = [self determineCellIdForGroupOfMembers: rowFour.responsibleArray];
+    NSString* claimingCellId    = [self determineCellIdForGroupOfMembers: rowFive.claimingsArray];
+    NSString* observersCellId   = [self determineCellIdForGroupOfMembers: rowSix.observersArray];
+    
+    NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не указан" : @"";
+    
+    NSString* claimingDetailText  = [claimingCellId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не указаны" : @"";
+    
+    NSString* observersDetailText  = [observersCellId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не указаны" : @"";
+
+    AddTaskTableViewCellType rowFourIndex = [self.addTaskTableViewCellsInfo indexOfObject: responsibleCellId];
     
     rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
-    rowFour.detail       = rowFourDetail;
+    rowFour.detail       = responsibleDetailText;
     rowFour.cellIndex    = rowFourIndex;
     rowFour.title        = @"Ответственный";
-    //rowFour.membersArray = task.responsible? @[ task.responsible ] : @[ task.ownerUser ];
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
+   
+    if (rowFour.responsibleArray != nil && rowFour.responsibleArray.count > 0)
+    {
+        rowFour.membersArray = rowFour.responsibleArray;
+    }
     
+    if (rowFive.claimingsArray != nil && rowFive.claimingsArray.count>0)
+    {
+        rowFive.membersArray = rowFive.claimingsArray;
+    }
     
-    RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
+    AddTaskTableViewCellType cellIndexRowFive = [self.addTaskTableViewCellsInfo indexOfObject: claimingCellId];
     
-    NSString* cellForRowFiveId = [self determineCellIdForGroupOfMembers: self.task.claiming];
-    
-    NSString* cellFiveDetailText  = [cellForRowFiveId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"В разработке" : @"";
-    
-    AddTaskTableViewCellType cellIndexRowFive = [self.addTaskTableViewCellsInfo indexOfObject: cellForRowFiveId];
-    
-    rowFive.cellId       = cellForRowFiveId;
+    rowFive.cellId       = claimingCellId;
     rowFive.cellIndex    = cellIndexRowFive;
     rowFive.title        = @"Утверждающие";
-    rowFive.detail       = cellFiveDetailText;
-    // TODO: set claiming when it will be stored to data base
-    //    rowFive.membersArray = self.task.claiming;
     rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
+    rowFive.detail       = claimingDetailText;
     
-    RowContent* rowSix = [[RowContent alloc] initWithUserInteractionEnabled];
     
-    NSString* cellForRowSixId = [self determineCellIdForGroupOfMembers: self.task.observers];
+    AddTaskTableViewCellType cellIndexRowSix = [self.addTaskTableViewCellsInfo indexOfObject: observersCellId];
     
-    NSString* cellSixDetailText  = [cellForRowSixId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"В разработке" : @"";
+    if (rowSix.observersArray != nil && rowSix.observersArray.count > 0)
+    {
+        rowSix.membersArray = rowSix.observersArray;
+    }
     
-    AddTaskTableViewCellType cellIndexRowSix = [self.addTaskTableViewCellsInfo indexOfObject: cellForRowSixId];
-    
-    rowSix.cellId       = cellForRowSixId;
+    rowSix.cellId       = observersCellId;
     rowSix.cellIndex    = cellIndexRowSix;
     rowSix.title        = @"Наблюдатели";
-    rowSix.detail       = cellSixDetailText;
-    // TODO: set observers when it will be stored to data base
-//    rowSix.membersArray = self.task.observers;
     rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
+    rowSix.detail       = observersDetailText;
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
@@ -131,7 +149,10 @@
     RowContent* rowOne = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowOne.title     = @"Помещение";
-    rowOne.detail    = task.room.title;
+    
+    if (task.rooms)
+        rowOne.detail = task.rooms.firstObject.title;
+    
     rowOne.cellId    = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowOne.cellIndex = RightDetailCell;
     rowOne.segueId   = self.addTaskTableViewSeguesInfo[ShowSelectRoomSegueID];
@@ -158,7 +179,6 @@
     rowFour.title   = @"Система";
     rowFour.detail  = rowFourDetail;
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
-    // ToDo: uncomment when systems will be implemented
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     rowFour.cellIndex = RightDetailCell;
     
@@ -166,7 +186,7 @@
     
     rowFive.title     = @"Тип задачи";
     rowFive.detail    = task.taskTypeDescription;
-    rowFive.markImage = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
+    rowFive.markImage = [self getColorForTaskType: task.taskType.integerValue];
     rowFive.cellId    = self.addTaskTableViewCellsInfo[MarkedRightDetailCell];
     rowFive.segueId   = self.addTaskTableViewSeguesInfo[ShowAddTaskTypeSegueID];
     rowFive.cellIndex = MarkedRightDetailCell;
@@ -181,4 +201,124 @@
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
 
+
+- (void) fillResponsibleArray: (RowContent*) contentResponsible
+           withClaimingsArray: (RowContent*) contentClaimings
+           withObserversArray: (RowContent*) contentObservers
+                      forTask: (ProjectTask*) task;
+{
+    NSArray* roleAssignments = task.taskRoleAssignments.array;
+    
+    contentResponsible.responsibleArray = [NSArray array];
+    contentClaimings.claimingsArray     = [NSArray array];
+    contentObservers.observersArray     = [NSArray array];
+    
+    __block NSMutableArray* tmpResponsibleArr = contentResponsible.responsibleArray.mutableCopy;
+    __block NSMutableArray* tmpClaimingsArr   = contentClaimings.claimingsArray.mutableCopy;
+    __block NSMutableArray* tmpObserversArr   = contentObservers.observersArray.mutableCopy;
+    
+    [roleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        switch (taskRoleAssignments.taskRoleType.integerValue)
+        {
+            case ResponsibleRoleType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
+                
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr   = obj.invite.array;
+                        
+                        [tmpResponsibleArr addObjectsFromArray: assigneeArr];
+                        [tmpResponsibleArr addObjectsFromArray: inviteArr];
+                    }
+                    
+                }];
+            }
+                break;
+                
+            case ClaimingsRoleType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
+                
+                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr = obj.invite.array;
+                        
+                        [tmpClaimingsArr addObjectsFromArray: assigneeArr];
+                        [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                    }
+                    
+                }];
+            }
+                break;
+                
+            case ObserverRoleType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
+                
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr   = obj.invite.array;
+                        
+                        [tmpObserversArr addObjectsFromArray: assigneeArr];
+                        [tmpObserversArr addObjectsFromArray: inviteArr];
+                        
+                    }
+                    
+                }];
+                
+            }
+                
+                break;
+                
+            default:
+                break;
+                
+        }
+    }];
+    
+    contentResponsible.responsibleArray = tmpResponsibleArr.copy;
+    contentClaimings.claimingsArray     = tmpClaimingsArr.copy;
+    contentObservers.observersArray     = tmpObserversArr.copy;
+    
+    tmpObserversArr = nil;
+    tmpClaimingsArr = nil;
+    tmpResponsibleArr = nil;
+}
+
+- (UIColor*) getColorForTaskType: (TaskType) taskType
+{
+    UIColor* typeColor = [UIColor clearColor];
+    
+    switch (taskType)
+    {
+        case TaskWorkType:
+            typeColor = [UIColor colorWithRed:0.310 green:0.773 blue:0.176 alpha:1.000];
+            break;
+            
+        case TaskAgreementType:
+            typeColor = [UIColor colorWithRed:0.424 green:0.663 blue:0.792 alpha:1.000];
+            break;
+            
+        case TaskObservationType:
+            typeColor = [UIColor colorWithRed:1.00 green:0.89 blue:0.27 alpha:1.00];
+            break;
+            
+        case TaskRemarkType:
+            typeColor = [UIColor colorWithRed:0.961 green:0.651 blue:0.137 alpha:1.000];
+            break;
+    }
+    
+    return typeColor;
+}
 @end

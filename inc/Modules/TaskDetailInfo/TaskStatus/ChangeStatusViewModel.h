@@ -13,14 +13,18 @@
 
 @interface ChangeStatusViewModel : NSObject <UITableViewDataSource, UITableViewDelegate>
 
+// properties
 @property (nonatomic, copy) void(^showOnRevisionController)();
 
 @property (nonatomic, copy) void(^returnToTaskDetailController)();
 
 @property (nonatomic, copy) void(^showCancelRequestController)();
 
+// methods
 - (TaskStatusType) getCurrentStatusType;
 
 - (UIImage*) getExpandedArrowMarkImage;
+
+- (CGFloat) countTableViewHeight;
 
 @end

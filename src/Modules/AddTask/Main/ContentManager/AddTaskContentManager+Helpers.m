@@ -28,11 +28,13 @@
     
     NSMutableArray* sectionCopy = [NSMutableArray arrayWithArray: sectionContent];
     
-    [sectionCopy replaceObjectAtIndex: row withObject: newRow];
+    [sectionCopy replaceObjectAtIndex: row
+                           withObject: newRow];
     
     sectionContent = [sectionCopy copy];
     
-    [contentCopy replaceObjectAtIndex: section withObject: sectionContent];
+    [contentCopy replaceObjectAtIndex: section
+                           withObject: sectionContent];
     
     self.addTaskContentArray = [contentCopy copy];
 }
@@ -62,7 +64,7 @@
 {
     NSString* cellID = [NSString new];
     
-    if ( membersGroup.count == 0 )
+    if ( membersGroup.count == 0 || membersGroup == nil )
     {
         cellID = self.addTaskTableViewCellsInfo[RightDetailCell];
     } else
@@ -79,17 +81,13 @@
 
 - (NSArray*) getCurrentUserInfoArray
 {
-    NSArray* allUsers = [[DataManager sharedInstance] getAllUserInfo];
-    
-    UserInfo* userInfo = [allUsers firstObject];
+    UserInfo* userInfo = [DataManagerShared getCurrentUserInfo];
     
     FilledTeamInfo* teamInfo = [FilledTeamInfo new];
     
     [teamInfo convertUserToTeamInfo: userInfo];
     
-    teamInfo.isResponsible = YES;
-    
-    return teamInfo? @[teamInfo] : nil;
+    return teamInfo ? [@[teamInfo] copy] : nil;
 }
 
 // Helpers for case when we create new subtask besed on main task
@@ -148,5 +146,9 @@
     
     return index;
 }
+
+
+
+
 
 @end

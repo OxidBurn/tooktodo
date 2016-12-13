@@ -11,6 +11,7 @@
 // Classes
 #import "AddMessageModel.h"
 #import "NSString+Utils.h"
+#import "UITextView+PlaceHolder.h"
 
 @interface AddMessageViewController() <UITextFieldDelegate>
 
@@ -35,7 +36,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self checkIfDescriptionExists];
+    self.textView.text = [self.model getDescriptionText];
+    
+    self.textView.placeHolderColor = [self.model getPlacelderColor];
+    self.textView.placeHolder      = @"Описание задачи";
 }
 
 #pragma mark - Memory managment -
@@ -62,17 +66,27 @@
 #pragma mark - Actions -
 
 - (IBAction) onBack: (UIBarButtonItem*) sender
-{
+{    
     [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onReady: (id) sender
 {
-    if ( [self.delegate respondsToSelector: @selector(setTaskDescription:)] )
-         [self.delegate setTaskDescription: [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text]];
-    
-    [self.navigationController popViewControllerAnimated: YES];
-   
+    [self dissmissKeyboardWithCompletion: ^(BOOL isSuccess) {
+        
+        if ( [self.delegate respondsToSelector: @selector(setTaskDescription:)] )
+        {
+            NSString* description = [NSString getStringWithoutWhiteSpacesAndNewLines: self.textView.text];
+            
+            if ( [description isEqualToString: @""] )
+                description = @"Описание задачи";
+            
+            [self.delegate setTaskDescription: description];
+        }
+        
+        [self.navigationController popViewControllerAnimated: YES];
+        
+    }];
 }
 
 #pragma mark - Public -
@@ -80,6 +94,11 @@
 - (void) updateDescription: (NSString*) descriptionText
           andReturnToModel: (id)        model
 {
+    if ( [descriptionText isEqualToString: @"Описание задачи"] )
+    {
+        descriptionText = @"";
+    }
+    
     [self.model fillText: descriptionText];
     
     self.delegate = model;
@@ -89,23 +108,11 @@
 
 - (void) textViewDidBeginEditing: (UITextView*) textView
 {
-    if ( [textView.text isEqualToString: @"Введите описание задачи"] )
-    {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-    
     [textView becomeFirstResponder];
 }
 
 - (void) textViewDidEndEditing: (UITextView*) textView
 {
-    if ([textView.text isEqualToString:@""])
-    {
-        textView.text = @"Введите описание задачи";
-        textView.textColor = [self.model getPlacelderColor];
-    }
-    
     [textView resignFirstResponder];
 }
 
@@ -125,16 +132,15 @@ shouldChangeTextInRange: (NSRange)     range
     return shouldReturn;
 }
 
+
 #pragma mark - Helpers -
 
-- (void) checkIfDescriptionExists
+- (void) dissmissKeyboardWithCompletion: (CompletionWithSuccess) completion
 {
-    if ( [self.model getDescriptionText] )
-    {
-        self.textView.text = [self.model getDescriptionText];
-        
-        self.textView.textColor = [UIColor blackColor];
-    }
+    [self.textView endEditing: YES];
+    
+    if (completion)
+        completion(YES);
 }
 
 @end

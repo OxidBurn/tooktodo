@@ -8,9 +8,14 @@
 
 #import "AboutProjectModel.h"
 
+// Frameworks
+#import "ReactiveCocoa.h"
+
 // Classes
 #import "DataManager+ProjectInfo.h"
 #import "Macroses.h"
+#import "ProjectsService.h"
+#import "Utils.h"
 
 @interface AboutProjectModel()
 
@@ -40,13 +45,35 @@
     return _projectInfo;
 }
 
-- (void) updateProjectInfo
+- (void) updateProjectInfoWithCompletion: (CompletionWithSuccess) completion
 {
     ProjectInfo* projectInfo =  [DataManagerShared getSelectedProjectInfo];
     
     self.projectInfo = projectInfo;
     
     self.sectionDetailArray = [self createSectionDetailContent];
+    
+    if ( completion )
+        completion(YES);
+    
+    @weakify(self)
+    
+    [[[ProjectsService sharedInstance] updatedProjectInfo: projectInfo]
+     subscribeNext: ^(id x) {
+         
+         @strongify(self)
+         
+         self.sectionDetailArray = [self createSectionDetailContent];
+         
+         if ( completion )
+             completion(YES);
+         
+     }
+     error:^(NSError *error) {
+         
+         NSLog(@"<ERROR> Problem with updating project info %@", error.debugDescription);
+         
+     }];
 }
 
 - (NSArray*) sectionDetailArray
@@ -103,7 +130,27 @@
     return _sectionTitlesArray;
 }
 
+
 #pragma mark - Public -
+
+- (CGFloat) countHeightForCommentCellWithWidth: (CGFloat) width
+{
+    NSString* comment = self.sectionDetailArray[1][8];
+    
+    UIFont* font      = [UIFont fontWithName: @"SFUIText-Regular"
+                                        size: 13.f];
+    
+    CGSize size = [Utils findHeightForText: comment
+                               havingWidth: width
+                                   andFont: font];
+    
+    CGFloat height = size.height + 22;
+    
+    if ( height < 43 )
+        height = 43;
+    
+    return height;
+}
 
 - (NSUInteger) getNumberOfSections
 {

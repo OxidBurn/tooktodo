@@ -16,14 +16,7 @@
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
 #import "FilledTeamInfo.h"
-
-typedef NS_ENUM(NSInteger, PermissionType)
-{
-    SystemAdministrator = -1,
-    Participant = 0,
-    Owner = 1,
-    Administrator = 2,
-};
+#import "ProjectsEnumerations.h"
 
 @interface TeamInfoTableViewCell()
 
@@ -93,10 +86,38 @@ typedef NS_ENUM(NSInteger, PermissionType)
                                             self.teamMemberAvatar.image = image;
                                         }
                                     }];
-
-    self.teamMemberName.text       = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    
+    ProjectRoleAssignments* assignments = teamInfo.assignments;
+    
+    if (assignments.assignee != nil || (assignments.invite != nil && [teamInfo.fullname isEqualToString: @" "] == NO))
+    {
+        self.teamMemberName.text = [NSString stringWithFormat: @"%@, %@", teamInfo.fullname, teamInfo.role];
+    }
+    
+    else if ([teamInfo.fullname isEqualToString: @" "] && assignments.invite != nil)
+    {
+        self.teamMemberName.text = teamInfo.email;
+    }
     
     self.teamMemberPermission.text = [self setPermission: teamInfo.projectPermission.integerValue];
+    
+    if (assignments.isBlocked.boolValue == YES)
+    {
+        self.teamMemberName.textColor       = [UIColor grayColor];
+        self.teamMemberPermission.textColor = [UIColor grayColor];
+    } else
+        if ( assignments.invite != nil )
+        {
+            self.teamMemberName.textColor       = [UIColor grayColor];
+            self.teamMemberPermission.textColor = [UIColor grayColor];
+            
+            self.teamMemberPermission.text = @"Приглашение выслано";
+        }
+    else
+    {
+        self.teamMemberName.textColor       = [UIColor blackColor];
+        self.teamMemberPermission.textColor = [UIColor blackColor];
+    }
     
 }
 
@@ -124,17 +145,17 @@ typedef NS_ENUM(NSInteger, PermissionType)
 {
     switch (permission)
     {
-        case SystemAdministrator:
+        case SystemAdminPermission:
             return @"Системный администратор";
             break;
-        case Participant:
+        case ParticipantPermission:
             return @"Участник проекта";
             break;
-        case Owner:
+        case OwnerPermission:
             return @"Владелец";
             break;
-        case Administrator:
-            return @"Адмиистратор";
+        case AdminPermission:
+            return @"Администратор";
             break;
             
         default:

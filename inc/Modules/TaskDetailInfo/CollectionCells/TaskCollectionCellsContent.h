@@ -20,6 +20,8 @@
 
 @property (assign, nonatomic) NSUInteger roomNumber;
 
+@property (strong, nonatomic) NSString* roomTitle;
+
 @property (strong, nonatomic) NSArray* responsible;
 
 @property (strong, nonatomic) NSArray* claiming;

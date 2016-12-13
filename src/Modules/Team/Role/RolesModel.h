@@ -28,4 +28,8 @@
 
 - (ProjectRoles*) getSelectedItem;
 
+- (void) fillSelectedRole: (NSString*) role;
+
+- (void) updateSelectedRole;
+
 @end

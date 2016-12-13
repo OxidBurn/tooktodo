@@ -30,7 +30,7 @@
 @end
 
 
-@implementation AddTaskViewModel
+@implementation AddTaskViewModel 
 
 
 #pragma mark - Initialization -
@@ -64,6 +64,16 @@
 
 
 #pragma mark - Public -
+
+- (void) updateTeamInfoWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model updateTeamInfoWithCompletion: completion];
+}
+
+- (NSArray*) getAllMembersArray
+{
+    return [self.model getAllMembersArray];
+}
 
 - (NewTask*) getNewTask
 {
@@ -157,6 +167,10 @@
     [self.model fillTaskToEdit: taskToEdit];
 }
 
+- (AddTaskControllerType) getControllerType
+{
+    return [self.model getControllerType];
+}
 
 - (BOOL) checkSubtasks
 {
@@ -173,7 +187,10 @@
     [self.model deselectAllRoomsInfo];
 }
 
-
+- (ProjectTask*) getSelectedTask
+{
+  return  [self.model getSelectedTask];
+}
 
 #pragma mark - UITableView data source -
 
@@ -196,13 +213,22 @@
         self.tableView = tableView;
     }
     
+    id delegate;
+    
+    if ( indexPath.section == 0 && indexPath.row == 0 )
+    {
+        delegate = self;
+    }
+    else
+        delegate = self.model;
+    
     RowContent* content = [self.model getContentForIndexPath: indexPath];
     
     AddTaskMainFactory* factory = [AddTaskMainFactory new];
     
     UITableViewCell* cell = [factory createCellForTableView: tableView
                                                 withContent: content
-                                               withDelegate: self.model];
+                                               withDelegate: delegate];
 
     return cell;
 }
@@ -282,8 +308,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                 cell = (OSFlexibleTextFieldCell*)cell;
             
                 cell.delegate = self;
-            
-                [cell editTextLabel];
             }
                 break;
             
@@ -309,6 +333,12 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return self;
 }
 
+- (void) updateFlexibleTextFieldCellFrame
+{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
 #pragma mark - AddTaskModelDelegate methods -
 
 - (void) reloadData
@@ -332,9 +362,22 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               //Передать заполненную задачу
+                                                               __block NSString* taskName = @"";
                                                                
-                                                               return [RACSignal empty];
+                                                               [self endEnteringTitleWithCompletion:^(BOOL isSuccess) {
+                                                                   
+                                                                    taskName = [self.model returnTaskName];
+                                                               }];
+                                                              
+                                                               
+                                                               return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                                                                   
+                                                                   [subscriber sendNext: taskName];
+                                                                   [subscriber sendCompleted];
+                                                                   
+                                                                   return nil;
+                                                               }];
+                                                               
                                                            }];
     
     self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
@@ -349,12 +392,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                        [subscriber sendNext: taskName];
                                                                        [subscriber sendCompleted];
                                                                        
-                                                                    
                                                                        return nil;
                                                                    }];
                                                                    
                                                                }];
     
+    self.createOnExistingTaskBaseCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+                
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            [subscriber sendNext: nil];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
     
 };
 
@@ -365,9 +417,20 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                                               inSection: 0]];
     [cell resetCellContent];
     
+    [cell makeTextViewFirstResponder];
+    
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
     [switchCell resetValue];
+}
+
+- (void) endEnteringTitleWithCompletion: (CompletionWithSuccess) completion
+{
+    OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
+                                                                                              inSection: 0]];
+    
+    [cell endTaskTitleEditingWithCompletion: completion];
+
 }
 
 
@@ -382,6 +445,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                            
                            if ( blockSelf.dismissTaskInfo )
                                blockSelf.dismissTaskInfo();
+                           
+                           
                            
                        }];
 }

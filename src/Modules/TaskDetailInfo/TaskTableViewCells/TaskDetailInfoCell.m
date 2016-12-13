@@ -17,6 +17,7 @@
 // Helpers
 #import "NSDate+Helper.h"
 #import "TaskStatusDefaultValues.h"
+#import "Macroses.h"
 
 
 @interface TaskDetailInfoCell()
@@ -43,6 +44,10 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint*    taskTermsLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint*    temsHorizontalToStatusConstraint;
 
+// varialbe constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusBtnWidthConstraint;
+
+
 // properties
 
 
@@ -56,6 +61,20 @@
 @end
 
 @implementation TaskDetailInfoCell
+
+
+#pragma mark - Initialization -
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        self.taskStatusBtnWidthConstraint.constant = 164;
+    }
+}
+
 
 #pragma mark - Actions -
 
@@ -184,15 +203,33 @@
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* labelText;
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
-    NSString* firstDate = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
-        
-    NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
-        
-    labelText = [NSString stringWithFormat: @"%@ - %@", firstDate, secondDate];
-
-    return labelText;
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ — %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
+        }
+        else
+            detailString = @"";
+    }
+    
+    return detailString;
 }
 
 - (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType
@@ -212,5 +249,6 @@
     self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
                                              returnFontColorForTaskStatus: taskStatusType];
 }
+
 
 @end

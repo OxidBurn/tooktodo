@@ -46,29 +46,19 @@
                                 name: @"ShowLoginScreen"
                               object: nil];
     
-    
-
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(showTaskScreen)
+                                name: @"ShowTaskScreen"
+                              object: nil];
 }
 
-- (void)viewWillLayoutSubviews
+- (void) viewWillAppear: (BOOL) animated
 {
-    [super viewWillLayoutSubviews];
+    [super viewWillAppear: animated];
     
-    // Hack for showing login screen before will load feed screen
-    // If will find any better solution, please remove this chunk of code
-    if ( self.isCheckedLogin == NO )
+    if ( [self isFirstSetup] )
     {
-        if ( [self shouldShowLogin] )
-        {
-            [self presentLoginController];
-        }
-        else
-            if ( [self isFirstSetup] )
-            {
-                [self showWelcomeTour];
-            }
-        
-        self.isCheckedLogin = YES;
+        [self showWelcomeTour];
     }
 }
 
@@ -84,17 +74,16 @@
     [DefaultNotifyCenter removeObserver: self
                                    name: @"ShowLoginScreen"
                                  object: nil];
+    
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"ShowTaskScreen"
+                                 object: nil];
 }
 
 #pragma mark - Properties -
 
 
 #pragma mark - Internal methods -
-
-- (BOOL) shouldShowLogin
-{
-    return ![KeyChain isExistTokenForCurrentUser];
-}
 
 - (BOOL) isFirstSetup
 {
@@ -111,9 +100,8 @@
     
     LoginViewController* loginViewController = [storyboard instantiateViewControllerWithIdentifier: controllerId];
     
-    // always assumes token is valid - should probably check in a real app
     [self presentViewController: loginViewController
-                       animated: NO
+                       animated: YES
                      completion: nil];
 }
 
@@ -127,7 +115,11 @@
 
 - (void) hideMainMenu
 {
-    [self.slidingViewController resetTopViewAnimated: YES];
+    [self.slidingViewController resetTopViewAnimated: YES
+                                          onComplete: ^{
+        
+                                              
+    }];
 }
 
 - (void) dismissTopController: (UIViewController*) controller
@@ -178,8 +170,20 @@
     UINavigationController* controller = (UINavigationController*)self.containerController;
     
     if ( [controller isKindOfClass: [UINavigationController class]] && [controller.visibleViewController respondsToSelector: @selector(needToUpdateContent)] )
+    {
         [controller.visibleViewController needToUpdateContent];
+    }
+    else
+        if ( [controller respondsToSelector: @selector(needToUpdateContent)] )
+        {
+            [controller needToUpdateContent];
+        }
 
+}
+
+- (void) showTaskScreen
+{
+    [self showControllerWithSegueID: @"ShowTasks"];
 }
 
 #pragma mark - CustomTabBarDelegate methods -

@@ -13,4 +13,6 @@
 
 @interface UserInfoViewController : UIViewController
 
+- (void) updateInfo;
+
 @end

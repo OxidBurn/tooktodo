@@ -17,6 +17,8 @@
 
 - (RACSignal*) loadTasksForProjectWithURL: (NSString*) url;
 
+- (RACSignal*) loadTaskInfoWithURL: (NSString*) url;
+
 - (RACSignal*) loadAllUserTasks;
 
 - (RACSignal*) loadTaskAvailableActionsWithURL: (NSString*) url;
@@ -27,5 +29,11 @@
                   withParameters: (NSDictionary*) parameters;
 
 - (RACSignal*) loadTaskLogs: (NSString*) url;
+
+- (RACSignal*) updateTaskStatus: (NSString*)     requestURL
+                  withParameter: (NSDictionary*) parameter;
+
+- (RACSignal*) sendReworkStatusMessage: (NSString*)     requestURL
+                        withParameters: (NSDictionary*) parameter;
 
 @end

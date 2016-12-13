@@ -56,9 +56,15 @@
 - (void) persistNewProjectWithInfo: (ProjectInfoModel*)        data
                          inContext: (NSManagedObjectContext*) context
 {
-    ProjectInfo* projectInfo = [ProjectInfo MR_findFirstOrCreateByAttribute: @"projectID"
-                                                                  withValue: @(data.projectID)
-                                                                  inContext: context];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"projectID == %@ OR title == %@", @(data.projectID), data.title];
+    
+    ProjectInfo* projectInfo = [ProjectInfo MR_findFirstWithPredicate: predicate
+                                                            inContext: context];
+    
+    if ( projectInfo == nil )
+    {
+        projectInfo = [ProjectInfo MR_createEntityInContext: context];
+    }
     
     if ( data.lastVisit )
     {
@@ -261,6 +267,23 @@
                               completion(contextDidSave);
                           
                       }];
+}
+
+- (void) updateSelectedProjectInfo: (ProjectInfoModel*)     info
+                    withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock :^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        [self persistNewProjectWithInfo: info
+                              inContext: localContext];
+        
+    }
+                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                           
+                           if ( completion )
+                               completion(contextDidSave);
+                           
+                       }];
 }
 
 #pragma mark - Get methods -

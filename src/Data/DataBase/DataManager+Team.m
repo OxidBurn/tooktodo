@@ -75,27 +75,32 @@
 - (void) updateTeamMemberRole: (ProjectRoles*)         role
                withCompletion: (CompletionWithSuccess) completion
 {
-    ProjectRoleAssignments* assignee = [self getSelectedProjectRoleAssignment];
-    
-    if ( assignee.projectRoleType )
-    {
-        assignee.projectRoleType.roleTypeID = role.roleID;
-        assignee.projectRoleType.title      = role.title;
-    }
-    else
-    {
-        ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        roleType.roleTypeID = role.roleID;
-        roleType.title      = role.title;
+        ProjectRoleAssignments* assignee = [[self getSelectedProjectRoleAssignment] MR_inContext: localContext];
         
-        assignee.projectRoleType = roleType;
+        if ( assignee.projectRoleType )
+        {
+            assignee.projectRoleType.roleTypeID = role.roleID;
+            assignee.projectRoleType.title      = role.title;
+        }
+        else
+        {
+            ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+            
+            roleType.roleTypeID = role.roleID;
+            roleType.title      = role.title;
+            
+            assignee.projectRoleType = roleType;
+        }
+        
     }
-    
-    [[NSManagedObjectContext MR_rootSavingContext] MR_saveOnlySelfAndWait];
-    
-    if ( completion )
-        completion(YES);
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
 }
 
 - (TeamMember*) getSelectedItem
