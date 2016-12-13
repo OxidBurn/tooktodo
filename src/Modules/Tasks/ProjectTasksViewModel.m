@@ -19,6 +19,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "NSObject+Sorting.h"
 #import "TasksListTableViewCell.h"
+#import "Utils.h"
 
 // Categories
 #import "UISearchBar+TextFieldControl.h"
@@ -139,7 +140,8 @@
         withStagesTasksList: [self.model rowsContentForSection: section]
             withSearchState: [self.model getSearchTableState]];
     
-    self.countOfFoundTasksText = [NSString stringWithFormat: @"Найдено %lu задач", [self getCountOfFoundTaks]];
+    self.countOfFoundTasksText = [Utils getDeclensionStringWithValue: [self.model getCountOfFoundTaks]
+                                              withSearchedObjectName: @"задач"];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;
