@@ -446,6 +446,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                            if ( blockSelf.dismissTaskInfo )
                                blockSelf.dismissTaskInfo();
                            
+                           
+                           
                        }];
 }
 

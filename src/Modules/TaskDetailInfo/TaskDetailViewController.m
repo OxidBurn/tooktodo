@@ -174,12 +174,12 @@
     {
         UINavigationController* destinationNavController = segue.destinationViewController;
         
-        AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
+        AddTaskViewController* vc = (AddTaskViewController*) destinationNavController.topViewController;
         
         [vc fillControllerType: EditTaskControllerType];
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
-                
+        
         [self removeNotifications];
     }
 }
@@ -257,12 +257,6 @@
 {
     [self addNotifications];
 }
-
-- (void) dismissTaskDetailAfterDeleting
-{
-    [self.navigationController popViewControllerAnimated: NO];
-}
-
 
 #pragma mark - Helpers -
 

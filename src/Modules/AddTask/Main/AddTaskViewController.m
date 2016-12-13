@@ -558,12 +558,10 @@
     self.viewModel.dismissTaskInfo = ^(){
         
         [blockSelf dismissViewControllerAnimated: YES
-                                      completion:^{
+                                      completion: ^{
                                           
-                                          if ([blockSelf.delegate respondsToSelector: @selector(dismissTaskDetailAfterDeleting)])
-                                          {
-                                              [blockSelf.delegate dismissTaskDetailAfterDeleting];
-                                          }
+                                          [DefaultNotifyCenter postNotificationName: @"ShowTaskScreen"
+                                                                             object: nil];
                                       }];
     };
    
