@@ -51,6 +51,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *forgotBtnTopConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* logoTopConstraint;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningTopConstraintiPad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *emailWarningHeightConstraintiPad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordWarningTopConstraintiPad;
@@ -201,6 +203,10 @@
             
             rect.origin.y = -kOFFSET_FOR_KEYBOARD;
             rect.size.height += kOFFSET_FOR_KEYBOARD;
+            
+                                 
+            self.logoTopConstraint.constant += kOFFSET_FOR_KEYBOARD;
+
         }
         
     }
@@ -211,6 +217,8 @@
             rect.origin.y    += kOFFSET_FOR_KEYBOARD;
             rect.size.height -= kOFFSET_FOR_KEYBOARD;
             self.isKeyboard = NO;
+
+            self.logoTopConstraint.constant -= kOFFSET_FOR_KEYBOARD;
         }
     }
     

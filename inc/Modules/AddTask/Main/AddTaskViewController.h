@@ -34,6 +34,4 @@
 
 - (void) subscribeNotifications;
 
-- (void) dismissTaskDetailAfterDeleting;
-
 @end

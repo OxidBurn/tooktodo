@@ -503,13 +503,13 @@
             {
                 case AddNewTaskControllerType:
                 {
-                    self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
+                    self.messageLabel.text = [NSString stringWithFormat: @"Задача \"%@\"  создана", taskName];
                 }
                     break;
                 
                 case AddSubtaskControllerType:
                 {
-                    self.messageLabel.text = [NSString stringWithFormat: @"Подзадача %@ создана",taskName];
+                    self.messageLabel.text = [NSString stringWithFormat: @"Подзадача \"%@\" создана",taskName];
                 }
                     break;
                     
@@ -520,7 +520,6 @@
         }];
         
         [signal subscribeCompleted: ^{
-            
             
             switch ([self getControllerType])
             {
@@ -559,12 +558,10 @@
     self.viewModel.dismissTaskInfo = ^(){
         
         [blockSelf dismissViewControllerAnimated: YES
-                                      completion:^{
+                                      completion: ^{
                                           
-                                          if ([blockSelf.delegate respondsToSelector: @selector(dismissTaskDetailAfterDeleting)])
-                                          {
-                                              [blockSelf.delegate dismissTaskDetailAfterDeleting];
-                                          }
+                                          [DefaultNotifyCenter postNotificationName: @"ShowTaskScreen"
+                                                                             object: nil];
                                       }];
     };
    

@@ -45,6 +45,11 @@
                             selector: @selector(showLogin)
                                 name: @"ShowLoginScreen"
                               object: nil];
+    
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(showTaskScreen)
+                                name: @"ShowTaskScreen"
+                              object: nil];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -68,6 +73,10 @@
 {
     [DefaultNotifyCenter removeObserver: self
                                    name: @"ShowLoginScreen"
+                                 object: nil];
+    
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"ShowTaskScreen"
                                  object: nil];
 }
 
@@ -170,6 +179,11 @@
             [controller needToUpdateContent];
         }
 
+}
+
+- (void) showTaskScreen
+{
+    [self showControllerWithSegueID: @"ShowTasks"];
 }
 
 #pragma mark - CustomTabBarDelegate methods -

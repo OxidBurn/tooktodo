@@ -125,6 +125,9 @@
 - (void) reloadDataWithCompletion: (CompletionWithSuccess) completion
 {
     [self.model reloadDataWithCompletion: completion];
+    
+    [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                         withDelegate: self];
 }
 
 - (ProjectTaskStage*) getTaskStage
