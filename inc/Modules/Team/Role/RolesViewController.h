@@ -16,6 +16,8 @@
 
 - (void) setRolesViewControllerDelegate: (id<RolesViewControllerDelegate>) delegate;
 
+- (void) fillSelectedRole: (NSString*) role;
+
 @end
 
 @protocol RolesViewControllerDelegate

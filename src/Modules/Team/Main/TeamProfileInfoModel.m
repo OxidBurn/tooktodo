@@ -70,6 +70,13 @@ typedef NS_ENUM(NSUInteger, ContactType)
     return _detailLabelsContent;
 }
 
+- (ProjectRoles*) getCurrentMemberRoleForIndexPath: (NSIndexPath*) indexPath
+{
+    ProjectRoles* role = self.detailLabelsContent[1][0];
+    
+    return role;
+}
+
 - (void) reloadContent
 {
     self.detailLabelsContent = nil;
@@ -328,6 +335,7 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     return self.detailLabelsContent[indexPath.row];
 }
+
 
 - (NSString*) setPermission: (PermissionTypeList) permission
 {
