@@ -50,6 +50,16 @@ static NSString* contentKey = @"contentInfoKey";
 @implementation ProjectTasksModel
 
 
+- (NSArray*) stages
+{
+    if (_stages == nil)
+    {
+        _stages = self.currentProjectInfo.stage.array;
+    }
+    
+    return _stages;
+}
+
 #pragma mark - Public methods -
 
 - (ProjectTask*) getSelectedProjectTask
@@ -122,9 +132,7 @@ static NSString* contentKey = @"contentInfoKey";
         
         // Apply filters
         rowsContent = [DataManagerShared applyFiltersToTasks: rowsContent];
-        
-        self.countOfFoundTasks = rowsContent.count;
-        
+    
         return rowsContent;
     }
     else
@@ -202,6 +210,23 @@ static NSString* contentKey = @"contentInfoKey";
 - (NSUInteger) getCountOfFoundTaks
 {
     return self.countOfFoundTasks;
+}
+
+- (void) countSearchResultsForString: (NSString*) enteredText
+{
+   __block NSPredicate* predicate = [NSPredicate predicateWithFormat: @"title CONTAINS[cd] %@", enteredText];
+    
+    __block NSUInteger counter = 0;
+    __block NSArray* allTasks = [NSArray array];
+    
+    [self.stages enumerateObjectsUsingBlock: ^(ProjectTaskStage*  _Nonnull stage, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        allTasks = [stage.tasks.array filteredArrayUsingPredicate: predicate];
+        
+        counter += allTasks.count;
+    }];
+    
+    self.countOfFoundTasks = counter;
 }
 
 @end

@@ -264,7 +264,7 @@
 
 - (NSString*) returnTaskToEditTitle
 {
-    return self.editedTask.title;
+    return [NSString stringWithFormat: @"\"%@\"", self.editedTask.title];
 }
 
 - (void) deselectAllRoomsInfo

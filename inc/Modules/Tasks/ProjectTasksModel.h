@@ -55,4 +55,6 @@ typedef NS_ENUM(NSUInteger, SearchTableState)
 
 - (NSUInteger) getCountOfFoundTaks;
 
+- (void) countSearchResultsForString: (NSString*) enteredText;
+
 @end

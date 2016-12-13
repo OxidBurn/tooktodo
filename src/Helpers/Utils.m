@@ -426,25 +426,54 @@ static NSDateFormatter* defaultDateFormatter = nil;
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
                     withSearchedObjectName: (NSString*)  value
 {
+    NSString* fullSearchingPhrase = @"";
+    
     NSString* foundWordSufix      = @"";
     NSString* searchedObjectSufix = @"";
     
-    if ( count > 1 && count <= 4 )
+    if ([value isEqualToString: @"проект"])
     {
-        foundWordSufix      = @"o";
-        searchedObjectSufix = @"a";
-    }
-    else
-        if ( count > 4 || count == 0 )
+        if ( count > 1 && count <= 4 )
         {
             foundWordSufix      = @"o";
-            searchedObjectSufix = @"ов";
+            searchedObjectSufix = @"a";
         }
+        else
+            if ( count > 4 || count == 0 )
+            {
+                foundWordSufix      = @"o";
+                searchedObjectSufix = @"ов";
+            }
+        
+        fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+     }
     
-    NSString* fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+    else if ([value isEqualToString: @"задач"])
+    {
+        if ( count > 1 && count <= 4 )
+        {
+            foundWordSufix      = @"о";
+            searchedObjectSufix = @"и";
+        }
+        else
+            if ( count > 4 || count == 0 )
+            {
+                foundWordSufix      = @"о";
+                searchedObjectSufix = @"";
+            }
+        else
+            if (count == 1)
+            {
+                foundWordSufix      = @"а";
+                searchedObjectSufix = @"a";
+            }
+        
+        fullSearchingPhrase = [NSString stringWithFormat: @"найден%@ %ld %@%@", foundWordSufix, (unsigned long)count, value, searchedObjectSufix];
+    }
     
     return fullSearchingPhrase;
 }
+
 
 + (NSString*) generateStringOfDaysCount: (NSUInteger) count
 {
