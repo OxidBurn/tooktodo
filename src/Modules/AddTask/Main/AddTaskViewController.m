@@ -559,8 +559,13 @@
     self.viewModel.dismissTaskInfo = ^(){
         
         [blockSelf dismissViewControllerAnimated: YES
-                                      completion: nil];
-        
+                                      completion:^{
+                                          
+                                          if ([blockSelf.delegate respondsToSelector: @selector(dismissTaskDetailAfterDeleting)])
+                                          {
+                                              [blockSelf.delegate dismissTaskDetailAfterDeleting];
+                                          }
+                                      }];
     };
    
 }
