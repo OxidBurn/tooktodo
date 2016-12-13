@@ -179,9 +179,7 @@
         [vc fillControllerType: EditTaskControllerType];
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
-        
-        vc.delegate = self;
-        
+                
         [self removeNotifications];
     }
 }
