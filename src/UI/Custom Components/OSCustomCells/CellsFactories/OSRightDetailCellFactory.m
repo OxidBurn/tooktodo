@@ -8,9 +8,6 @@
 
 #import "OSRightDetailCellFactory.h"
 
-// Classes
-#import "OSRightDetailCell.h"
-
 @implementation OSRightDetailCellFactory
 
 #pragma mark - Public -
@@ -24,6 +21,22 @@
     
     [cell fillCellWithTitle: titleText
                  withDetail: detailText
+           detailIsSelected: isSelected];
+    
+    cell.userInteractionEnabled = YES;
+    cell.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+}
+
+- (UITableViewCell*) returnAboutProjectCommentCellWithComment: (NSString*)    comment
+                                            withSelectedState: (BOOL)         isSelected
+                                                 forTableView: (UITableView*) tableView
+{
+    OSRightDetailCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RightDetailCellID"];
+    
+    [cell fillCellWithTitle: @"Комментарий"
+                 withDetail: comment
            detailIsSelected: isSelected];
     
     return cell;

@@ -51,6 +51,10 @@
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion;
 
+- (NSString*) getTaskNumberTitle;
+
+- (NSString*) getProjectTitle;
+
 // Reloading task content info, after appearing on task info screen
 - (void) reloadDataWithCompletion: (CompletionWithSuccess) completion;
 

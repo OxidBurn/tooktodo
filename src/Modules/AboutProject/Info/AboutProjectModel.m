@@ -15,6 +15,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "Macroses.h"
 #import "ProjectsService.h"
+#import "Utils.h"
 
 @interface AboutProjectModel()
 
@@ -129,7 +130,27 @@
     return _sectionTitlesArray;
 }
 
+
 #pragma mark - Public -
+
+- (CGFloat) countHeightForCommentCellWithWidth: (CGFloat) width
+{
+    NSString* comment = self.sectionDetailArray[1][8];
+    
+    UIFont* font      = [UIFont fontWithName: @"SFUIText-Regular"
+                                        size: 13.f];
+    
+    CGSize size = [Utils findHeightForText: comment
+                               havingWidth: width
+                                   andFont: font];
+    
+    CGFloat height = size.height + 22;
+    
+    if ( height < 43 )
+        height = 43;
+    
+    return height;
+}
 
 - (NSUInteger) getNumberOfSections
 {

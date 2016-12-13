@@ -84,6 +84,8 @@
 - (void) deleteTaskWithSubtask: (BOOL)                  withSubtask
                 withCompletion: (CompletionWithSuccess) completion;
 
+- (ProjectTask*) getSelectedTask;
+
 
 @end
 

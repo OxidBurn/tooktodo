@@ -256,11 +256,7 @@
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+    [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 - (IBAction) onAddTaskBtn: (UIButton*) sender
@@ -307,11 +303,7 @@
 
 - (IBAction) onCreteOnBase: (UIButton*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-        
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+   // [self.viewModel storeNewTaskWithCompletion: nil];
 }
 
 
@@ -431,6 +423,12 @@
         [blockSelf.addTaskTableView reloadData];
         
     };
+    
+    self.viewModel.performSegueWithID = ^(NSString* segueID) {
+        
+        [blockSelf performSegueWithIdentifier: segueID
+                                       sender: blockSelf];
+    };
 }
 
 - (void) bindUI
@@ -438,19 +436,17 @@
     self.readyBtn.rac_command               = self.viewModel.enableAllButtonsCommand;
     self.addTaskBtn.rac_command             = self.viewModel.enableAllButtonsCommand;
     self.addTaskAndCreateNewBtn.rac_command = self.viewModel.enableCreteOnBaseBtnCommand;
-    
+    self.createOnBaseBtn.rac_command        = self.viewModel.createOnExistingTaskBaseCommand;
     
     @weakify(self)
     
-        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext:^(RACSignal* signal)
+        [self.viewModel.enableCreteOnBaseBtnCommand.executionSignals subscribeNext: ^(RACSignal* signal)
          {
             [signal subscribeNext: ^(NSString* taskName) {
-                
             
                 @strongify(self)
                 
                 self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
-            
                 
             }];
              
@@ -459,22 +455,101 @@
                 @strongify(self)
                 
                 [self showTaskCreatedMessage];
-            
-                NewTask* t = [self.viewModel getNewTask];
-                NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
                 
-          
-            
             }];
          }];
 
     
+    [self.viewModel.createOnExistingTaskBaseCommand.executionSignals subscribeNext: ^(id x) {
+        
+        @strongify(self)
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
+                                                             bundle: nil];
+        
+        AddTaskViewController* addTaskController = [storyboard instantiateViewControllerWithIdentifier: @"AddTaskControllerID"];
+        
+        addTaskController.controllerType = AddNewTaskControllerType;
+        
+        [addTaskController fillTaskToEdit: [self.viewModel getSelectedTask]];
+        
+        addTaskController.addTaskBtn.hidden = NO;
+        addTaskController.addTaskAndCreateNewBtn.hidden = NO;
+        addTaskController.deleteTask.hidden = YES;
+        addTaskController.createOnBaseBtn.hidden = YES;
+        
+
+        //actions for implementing completion after push
+        [CATransaction begin];
+        
+        [self.navigationController pushViewController: addTaskController
+                                             animated: YES];
+        
+        [CATransaction setCompletionBlock:^{
+           
+            [addTaskController.viewModel resetCellsContent];
+        }];
+        
+        
+    }];
+    
     [self.viewModel.enableAllButtonsCommand.executionSignals subscribeNext: ^(RACSignal* signal) {
         
-        [signal subscribeNext: ^(NewTask* task) {
+        [signal subscribeNext: ^(NSString* taskName) {
             
-            NewTask* t = task;
-            NSLog(@" %@ %@ %i", t.taskName, t.taskDescription, t.isHiddenTask);
+            @strongify(self)
+            
+            switch ([self getControllerType])
+            {
+                case AddNewTaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Задача %@ создана", taskName];
+                }
+                    break;
+                
+                case AddSubtaskControllerType:
+                {
+                    self.messageLabel.text = [NSString stringWithFormat: @"Подзадача %@ создана",taskName];
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+        }];
+        
+        [signal subscribeCompleted: ^{
+            
+            
+            switch ([self getControllerType])
+            {
+                case AddSubtaskControllerType:
+                case AddNewTaskControllerType:
+                {
+                    [self showTaskCreatedMessage];
+                    
+                    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                        
+                        [self dismissViewControllerAnimated: YES
+                                                 completion: nil];
+                    }];
+                }
+                    break;
+                
+                case EditTaskControllerType:
+                {
+                   //TODO: implement updating task according to changed task properties
+                    
+                    [self dismissViewControllerAnimated: YES
+                                             completion: nil];
+                }
+                    
+                default:
+                    break;
+            }
+            
+            
         }];
         
     }];
@@ -534,5 +609,6 @@
     self.createOnBaseBtn.hidden           = NO;
     
 }
+
 
 @end

@@ -12,7 +12,7 @@
 @import Foundation;
 
 // URLS
-static NSString* registerPageURL = @"https://tooktodo.ru/login";
+static NSString* registerPageURL = @"https://tooktodo.ru";
 
 static NSString* serverURL = @"http://api.taketowork.com:80/";
 

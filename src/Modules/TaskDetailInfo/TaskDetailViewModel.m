@@ -48,6 +48,8 @@
 
 @property (assign, nonatomic) CGPoint scrollViewOffset;
 
+@property (strong, nonatomic) NSNumber* neededOffsetY;
+
 @end
 
 @implementation TaskDetailViewModel
@@ -151,6 +153,15 @@
     [self.model updateSecondSectionContentType: typeIndex];
     
     CGPoint offset = self.tableView.contentOffset;
+        
+    CGFloat neededOffset = [self countHeightForTaskDetailCellForTableView: self.tableView] +
+                           [self countHeightForTaskDescrioptionCellForTableView: self.tableView] +
+                           235;
+    
+    if ( offset.y > neededOffset )
+    {
+        offset.y = neededOffset;
+    }
     
     [self.tableView reloadData];
     [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
@@ -177,6 +188,16 @@
     self.tableView.offsetShift = CGRectGetMinY(self.addCommentCell.frame)
     - (UIScreen.mainScreen.bounds.size.height - 64 - self.keyboardHeight)
     + CGRectGetHeight(self.addCommentCell.frame);
+}
+
+- (NSString*) getTaskNumberTitle
+{
+    return [self.model getTaskNumberTitle];
+}
+
+- (NSString*) getProjectTitle
+{
+    return [self.model getProjectTitle];
 }
 
 #pragma mark - UITableViewDataSourse methods -
@@ -214,20 +235,20 @@
         
         detailCell.delegate   = self;
     }
-    
+    else
     if ([cell isKindOfClass: [FilterSubtasksCell class]])
     {
         FilterSubtasksCell* subtaskCell  = (FilterSubtasksCell*)cell;
         
         subtaskCell.delegate = self;
     }
-
+    else
     if ([cell isKindOfClass: AddCommentCell.class])
     {
         self.addCommentCell             = (AddCommentCell*)cell;
         self.addCommentCell.delegate    = self;
     }
-
+    else
     if ([cell isKindOfClass: [CommentsCell class]])
     {
         ((CommentsCell *)cell).commentID = content.commentID;
@@ -320,7 +341,9 @@ viewForHeaderInSection: (NSInteger)    section
             return scroll;
         }
         else
+        {
             return self.headerView;
+        }
     }
     
     return nil;
@@ -416,12 +439,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                              completion: nil];
 }
 
+
 #pragma mark - TaskDetailCellDelegate methods -
 
 - (void) performSegueWithID: (NSString*) segueID
 {
-    if (self.performSegue)
-        self.performSegue(segueID);
+    if ( [self.model hasAvailableStatusesActions] )
+    {
+        if (self.performSegue)
+            self.performSegue(segueID);
+    }
 }
 
 - (void) showPopover: (CGRect) senderFrame
@@ -429,6 +456,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     if (self.presentControllerAsPopover)
         self.presentControllerAsPopover(senderFrame);
 }
+
 
 #pragma mark - FilterSubtasksCellDelegate  methods -
 

@@ -12,6 +12,7 @@
 #import "AboutProjectModel.h"
 #import "AboutProjectCellsFactory.h"
 #import "NSString+Utils.h"
+#import "OSRightDetailCellFactory.h"
 
 typedef NS_ENUM(NSUInteger, SectionNumber) {
     
@@ -71,10 +72,23 @@ typedef NS_ENUM(NSUInteger, SectionNumber) {
         case SectionOne:
         case SectionTwo:
         {
-            cell = [factory returnRightDetailCellWithTitle: cellTitle
-                                                withDetail: cellDetail
-                                              forTableView: tableView
-                                             withIndexPath: indexPath];
+            if ( indexPath.row == 8)
+            {
+                cell = (OSRightDetailCell*)cell;
+
+                OSRightDetailCellFactory* factory = [OSRightDetailCellFactory new];
+                
+                BOOL isSelected = [cellTitle isEqualToString: @"нет"] ? NO : YES;
+                
+                cell = [factory returnAboutProjectCommentCellWithComment: cellDetail
+                                                       withSelectedState: isSelected
+                                                            forTableView: tableView];
+            }
+            else
+                cell = [factory returnRightDetailCellWithTitle: cellTitle
+                                                    withDetail: cellDetail
+                                                  forTableView: tableView
+                                                 withIndexPath: indexPath];
         }
             
             break;
@@ -110,10 +124,24 @@ heightForHeaderInSection: (NSInteger)    section
     return height;
 }
 
-- (CGFloat)            tableView: (UITableView*) tableView
-estimatedHeightForRowAtIndexPath: (NSIndexPath*) indexPath
+- (CGFloat)   tableView: (UITableView*) tableView
+heightForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    return UITableViewAutomaticDimension;
+    if ( indexPath.section == 1 && indexPath.row == 8 )
+    {
+        return [self.model countHeightForCommentCellWithWidth: tableView.frame.size.width/2];
+    }
+    else
+        if (indexPath.section == 0 || indexPath.section == 1)
+        {
+            return 43;
+        }
+        else
+            if ( indexPath.section == 2)
+            {
+                return 160.f;
+            }
+    return 0;
 }
 
 - (UIView*)  tableView: (UITableView*) tableView

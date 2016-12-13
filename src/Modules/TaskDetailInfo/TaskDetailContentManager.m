@@ -26,6 +26,7 @@
 #import "TaskLogDataContent+CoreDataProperties.h"
 #import "DataManager+UserInfo.h"
 
+
 #import "Utils.h"
 #import "NSDate+Helper.h"
 
@@ -150,7 +151,9 @@
     
     taskDescriptionCellContent.cellId          = self.tableViewCellsIdArray[TaskDescriptionCellType];
     taskDescriptionCellContent.cellTypeIndex   = TaskDescriptionCellType;
-    taskDescriptionCellContent.taskDescription = task.descriptionValue;
+    
+    NSString* description = task.descriptionValue.length > 0 ? task.descriptionValue : @"Описание отсутствует";
+    taskDescriptionCellContent.taskDescription = description;
     
     TaskRowContent* collectionCellContent = [TaskRowContent new];
     

@@ -23,6 +23,8 @@
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
+#import "BaseMainViewController+NavigationTitle.h"
+
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate, AddTaskControllerDelegate>
 
@@ -57,6 +59,9 @@
 - (void) loadView
 {
     [super loadView];
+    
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: [self.viewModel getTaskNumberTitle]
+                                               withSubTitle: [self.viewModel getProjectTitle]];
     
     if ( IS_PHONE == NO)
         self.navigationItem.leftBarButtonItem = nil;

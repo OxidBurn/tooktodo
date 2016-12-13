@@ -187,7 +187,10 @@
     [self.model deselectAllRoomsInfo];
 }
 
-
+- (ProjectTask*) getSelectedTask
+{
+  return  [self.model getSelectedTask];
+}
 
 #pragma mark - UITableView data source -
 
@@ -359,9 +362,22 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     
-                                                               //Передать заполненную задачу
+                                                               __block NSString* taskName = @"";
                                                                
-                                                               return [RACSignal empty];
+                                                               [self endEnteringTitleWithCompletion:^(BOOL isSuccess) {
+                                                                   
+                                                                    taskName = [self.model returnTaskName];
+                                                               }];
+                                                              
+                                                               
+                                                               return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+                                                                   
+                                                                   [subscriber sendNext: taskName];
+                                                                   [subscriber sendCompleted];
+                                                                   
+                                                                   return nil;
+                                                               }];
+                                                               
                                                            }];
     
     self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
@@ -376,12 +392,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                        [subscriber sendNext: taskName];
                                                                        [subscriber sendCompleted];
                                                                        
-                                                                    
                                                                        return nil;
                                                                    }];
                                                                    
                                                                }];
     
+    self.createOnExistingTaskBaseCommand = [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
+                
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            [subscriber sendNext: nil];
+            [subscriber sendCompleted];
+            
+            return nil;
+        }];
+    }];
     
 };
 
@@ -392,9 +417,20 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                                                               inSection: 0]];
     [cell resetCellContent];
     
+    [cell makeTextViewFirstResponder];
+    
     OSSwitchTableCell* switchCell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 2
                                                                                               inSection: 0]];
     [switchCell resetValue];
+}
+
+- (void) endEnteringTitleWithCompletion: (CompletionWithSuccess) completion
+{
+    OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
+                                                                                              inSection: 0]];
+    
+    [cell endTaskTitleEditingWithCompletion: completion];
+
 }
 
 

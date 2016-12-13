@@ -16,6 +16,9 @@
 #import "ChangeStatusViewController.h"
 #import "TaskDetailContentManager.h"
 #import "AddTaskContentManager+UpdadingContent.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
+#import "TaskAvailableStatusAction+CoreDataClass.h"
+
 // Helpers
 #import "ProjectsEnumerations.h"
 #import "NSObject+Sorting.h"
@@ -52,6 +55,26 @@
 
 
 #pragma mark - Public -
+
+- (BOOL) hasAvailableStatusesActions
+{
+    // getting all available status actions
+    NSArray* availableStatusActions = self.task.availableActions.statusActions.allObjects;
+    
+    // creating array with IDs of available actions
+    NSMutableArray* tmpDefaultArray = [NSMutableArray new];
+    
+    [availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* action, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( action.statusActionID.integerValue <= 6 )
+        {
+            [tmpDefaultArray addObject: action.statusActionID];
+        }
+        
+    }];
+    
+    return (tmpDefaultArray.count > 0);
+}
 
 - (TaskStatusType) getTaskStatus
 {
@@ -221,6 +244,20 @@
 - (ProjectTask*) getCurrentTask
 {
     return self.task;
+}
+
+- (NSString*) getTaskNumberTitle
+{
+    NSUInteger taskNumber = self.task.taskID.integerValue;
+    
+    return [NSString stringWithFormat: @"Задача #%lu", (unsigned long)taskNumber];
+}
+
+- (NSString*) getProjectTitle
+{
+    ProjectInfo* projInfo = [DataManagerShared getSelectedProjectInfo];
+    
+    return projInfo.title;
 }
 
 - (NSArray*) getSubtasks
