@@ -13,6 +13,7 @@
 #import "APIConstance.h"
 #import "TaskCommentsAPIService.h"
 #import "CommentsModel.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -192,7 +193,7 @@
     ProjectTask* selectedTask = [DataManagerShared getSelectedTask];
 
     NSString* requestURL = [postCommentURL stringByReplacingOccurrencesOfString: @"{projectId}"
-                                                                      withString: selectedTask.projectId.stringValue];
+                                                                      withString: selectedTask.project.projectID.stringValue];
 
     requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
                                                        withString: selectedTask.taskID.stringValue];
