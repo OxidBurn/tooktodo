@@ -212,7 +212,7 @@
                                            forProject: project
                                             inContext: context];
         
-        [stage addTasksObject: task];
+        task.stage = stage;
         
     }];
 }

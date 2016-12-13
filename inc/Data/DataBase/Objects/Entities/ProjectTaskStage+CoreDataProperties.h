@@ -2,7 +2,7 @@
 //  ProjectTaskStage+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/30/16.
+//  Created by Nikolay Chaban on 12/13/16.
 //
 //
 
