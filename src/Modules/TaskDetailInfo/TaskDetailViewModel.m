@@ -24,6 +24,7 @@
 #import "OSTableView.h"
 #import "CollectionCell.h"
 #import "ParentCollectionCell.h"
+#import "AlertViewBlocks.h"
 
 // Helpers
 #import "Utils.h"
@@ -584,6 +585,20 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     return height;
 }
 
+- (BOOL) isCorrectMessageLenght: (NSString*) message
+{
+    if ( message.length < 2000 )
+    {
+        return YES;
+    }
+    
+    [AlertViewBlocks confirmWithTitle: @"Ошибка"
+                              message: @"Текст комментария превышает колличество допустимых символов"
+                              confirm: nil];
+    
+    return NO;
+}
+
 #pragma mark - PopoverModelDelegate methods -
 
 - (void) didDiminutionSortingAtIndex: (NSUInteger) index
@@ -672,10 +687,45 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) addCommentCell: (AddCommentCell *) addCommentCell
             onSendClick: (UIButton *)       sender
 {
-    if (self.commentID) {
+    if ( [self isCorrectMessageLenght: addCommentCell.addCommentTextView.text] )
+    {
+        if (self.commentID)
+        {
+            @weakify(self)
+            
+            RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
+                                                                                     commentID: self.commentID];
+            [signal subscribeNext: ^(id response) {
+                
+                @strongify(self)
+                
+                [self.model fillSelectedTask: self.model.getCurrentTask
+                              withCompletion: ^(BOOL isSuccess) {
+                                  
+                                  @strongify(self)
+                                  
+                                  [self.tableView reloadData];
+                                  [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
+                                                       withDelegate: self];
+                                  
+                                  self.addCommentCell.addCommentTextView.text = @"";
+                                  self.addCommentCell.addCommentLabel.alpha   = 1;
+                                  
+                              }];
+            }
+                            error: ^(NSError *error) {
+            }];
+            
+            self.commentID = nil;
+            
+            return;
+        }
+        
         @weakify(self)
-        RACSignal* signal = [TaskCommentsService.sharedInstance editCommentForSelectedTask: addCommentCell.addCommentTextView.text
-                                                                                 commentID: self.commentID];
+        
+        RACSignal* signal = [TaskCommentsService.sharedInstance
+                             postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
+        
         [signal subscribeNext: ^(id response) {
             @strongify(self)
             [self.model fillSelectedTask: self.model.getCurrentTask
@@ -686,28 +736,10 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                                                    withDelegate: self];
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
-                          }];
-        } error: ^(NSError *error) {
-        }];
-        self.commentID = nil;
-        return;
+            }];
+         } error: ^(NSError *error) {
+         }];
     }
-    @weakify(self)
-    RACSignal* signal = [TaskCommentsService.sharedInstance
-                         postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
-    [signal subscribeNext: ^(id response) {
-        @strongify(self)
-        [self.model fillSelectedTask: self.model.getCurrentTask
-                      withCompletion: ^(BOOL isSuccess) {
-                          @strongify(self)
-                          [self.tableView reloadData];
-                          [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
-                                               withDelegate: self];
-                          self.addCommentCell.addCommentTextView.text   = @"";
-                          self.addCommentCell.addCommentLabel.alpha     = 1;
-        }];
-     } error: ^(NSError *error) {
-     }];
 }
 
 

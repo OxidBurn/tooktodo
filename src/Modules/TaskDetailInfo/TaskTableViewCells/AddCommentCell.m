@@ -64,7 +64,7 @@
     return shouldReturn;
 }
 
-- (void) textViewDidChange:(UITextView *)textView
+- (void) textViewDidChange: (UITextView*) textView
 {
     if ([self.delegate respondsToSelector: @selector( addCommentCell:
                                             newCommentTextDidChange: )])
