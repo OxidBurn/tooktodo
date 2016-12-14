@@ -93,8 +93,24 @@
     }
     
     else
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
+    {
+        if ([self isModal])
+        {
+            [self dismissViewControllerAnimated: YES
+                                     completion: nil];
+        } else
+        {
+            [self.navigationController popViewControllerAnimated: YES];
+        }
+    }
+    
+}
+
+- (BOOL) isModal
+{
+    return self.presentingViewController.presentedViewController == self
+    || (self.navigationController != nil && self.navigationController.presentingViewController.presentedViewController == self.navigationController && self == self.navigationController.viewControllers[0])
+    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
 }
 
 - (IBAction) onReady: (UIBarButtonItem*) sender
