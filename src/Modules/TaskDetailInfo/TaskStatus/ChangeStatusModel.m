@@ -95,8 +95,6 @@
     
     self.availableStatusActions = availableActions.statusActions.allObjects;
     
-    
-    
     return  self.availableStatusActions;
 }
 

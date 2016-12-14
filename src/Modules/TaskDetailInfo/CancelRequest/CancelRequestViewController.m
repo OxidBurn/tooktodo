@@ -72,7 +72,11 @@
 
 - (IBAction) onReadyBtn: (UIBarButtonItem*) sender
 {
-    [self.viewModel sendRequestLetter: self.textView.text];
+    [self.viewModel sendRequestLetter: self.textView.text
+                       withCompletion: ^(BOOL isSuccess) {
+        
+                           [self.navigationController popViewControllerAnimated: YES];
+    }];
 }
 
 @end

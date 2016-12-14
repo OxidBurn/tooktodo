@@ -39,9 +39,11 @@
 
 #pragma mark - Public -
 
-- (void) sendRequestLetter: (NSString*) letterText
+- (void) sendRequestLetter: (NSString*)             letterText
+            withCompletion: (CompletionWithSuccess) completion
 {
-    [self.model sendRequestLetter: letterText];
+    [self.model sendRequestLetter: letterText
+                   withCompletion: completion];
 }
 
 @end

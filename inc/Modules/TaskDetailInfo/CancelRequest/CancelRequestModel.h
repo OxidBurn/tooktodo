@@ -11,6 +11,7 @@
 @interface CancelRequestModel : NSObject
 
 // methods
-- (void) sendRequestLetter: (NSString*) letterText;
+- (void) sendRequestLetter: (NSString*)             letterText
+            withCompletion: (CompletionWithSuccess) completion;
 
 @end

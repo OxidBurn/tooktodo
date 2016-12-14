@@ -33,7 +33,8 @@
 
 #pragma mark - Public -
 
--(void) sendRequestLetter: (NSString*) letterText
+- (void) sendRequestLetter: (NSString*)             letterText
+            withCompletion: (CompletionWithSuccess) completion
 {
     letterText = [NSString getStringWithoutWhiteSpacesAndNewLines: letterText];
     
@@ -44,6 +45,9 @@
         ProjectTaskOwner* owner = currentTask.ownerUser;
         
         NSString* email = owner.email;
+        
+        if ( completion )
+             completion (YES);
     }
     else
     {

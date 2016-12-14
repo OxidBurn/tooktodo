@@ -385,7 +385,7 @@
 - (void) editImageForAvatar: (UIImage*) chosenImage
 {
     RSKImageCropViewController* imageCropVC = [[RSKImageCropViewController alloc] initWithImage: chosenImage];
-    
+        
     imageCropVC.delegate = self;
     
     [self.parentViewController presentViewController: imageCropVC
