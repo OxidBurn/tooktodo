@@ -87,14 +87,7 @@
 
 - (IBAction) onDismiss: (UIBarButtonItem*) sender
 {
-    if (IS_PHONE)
-    {
-          [self.navigationController popViewControllerAnimated: YES];
-    }
-    
-    else
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 - (IBAction) onReady: (UIBarButtonItem*) sender
