@@ -84,8 +84,11 @@
                               @"Завершена",
                               @"Отменена",
                               @"На утверждении",
+                              @"",
+                              @"Запрос на отмену",
                               @"На доработке",
-                              @"Запрос на отмену"];
+                              @"Возобновить",
+                              @"Утвердить"];
     }
     
     return _titlesInfoArray;
@@ -94,14 +97,17 @@
 - (NSArray*) colorsInfoArray
 {
     if ( _colorsInfoArray == nil )
-    {
-        _colorsInfoArray = @[ self.yellowColor,
-                              self.greenColor,
-                              self.greenColor,
-                              self.redColor,
-                              self.yellowColor,
-                              self.yellowColor,
-                              self.redColor ];
+    {                                               // values of statuses and descriptions
+        _colorsInfoArray = @[ self.yellowColor,     //0 ToPause
+                              self.greenColor,      //1 ToInWork
+                              self.greenColor,      //2 Complete
+                              self.redColor,        //3 Cancel
+                              self.yellowColor,     //4 ToOnApproval
+                              self.greenColor,      //5 no data from server
+                              self.redColor,        //6 ToCancel
+                              self.yellowColor,     //7 ToRework
+                              self.greenColor,      //8 Renew
+                              self.greenColor];     //9 Approve
     }
     
     return _colorsInfoArray;
@@ -116,8 +122,11 @@
                               [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
+                              [UIImage imageNamed: @"TaskStatusInProgressIcon"],
+                              [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnCompletion"],
-                              [UIImage imageNamed: @"TaskStatusCanceledIcon"]];
+                              [UIImage imageNamed: @"TaskStatusInProgressIcon"],
+                              [UIImage imageNamed: @"TaskStatusOnCompletion"]];
     }
     
     return _imagesInfoArray;
@@ -157,18 +166,20 @@
 {
     switch ( statusType )
     {
-        case TaskWaitingStatusType:
-        case TaskOnApprovingStatusType:
-        case TaskOnCompletionStatusType:
+        case TaskToPauseStatusType:
+        case TaskToOnApprovalStatusType:
+        case TaskToReworkStatusType:
             
             return [UIColor blackColor];
             
             break;
             
-        case TaskCanceledStatusType:
-        case TaskCompletedStatusType:
-        case TaskInProgressStatusType:
-        case TaskCancelRequestType:
+        case TaskCancelStatusType:
+        case TaskCompleteStatusType:
+        case TaskToInWorkStatusType:
+        case TaskToCancelStatusType:
+        case TaskRenewStatusType:
+        case TaskApproveStatusType:
             
             return [UIColor whiteColor];
             
@@ -183,18 +194,20 @@
 {
     switch ( statusType )
     {
-        case TaskWaitingStatusType:
-        case TaskOnApprovingStatusType:
-        case TaskOnCompletionStatusType:
+        case TaskToPauseStatusType:
+        case TaskToOnApprovalStatusType:
+        case TaskToReworkStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
             
             break;
             
-        case TaskCanceledStatusType:
-        case TaskCompletedStatusType:
-        case TaskInProgressStatusType:
-        case TaskCancelRequestType:
+        case TaskCancelStatusType:
+        case TaskCompleteStatusType:
+        case TaskToInWorkStatusType:
+        case TaskToCancelStatusType:
+        case TaskApproveStatusType:
+        case TaskRenewStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandWhiteIcon"];
             
@@ -209,18 +222,20 @@
 {
     switch ( statusType )
     {
-        case TaskWaitingStatusType:
-        case TaskOnApprovingStatusType:
-        case TaskOnCompletionStatusType:
+        case TaskToPauseStatusType:
+        case TaskToOnApprovalStatusType:
+        case TaskToReworkStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandDarkIconTurn"];
             
             break;
             
-        case TaskCanceledStatusType:
-        case TaskCompletedStatusType:
-        case TaskInProgressStatusType:
-        case TaskCancelRequestType:
+        case TaskCancelStatusType:
+        case TaskCompleteStatusType:
+        case TaskToInWorkStatusType:
+        case TaskToCancelStatusType:
+        case TaskRenewStatusType:
+        case TaskApproveStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandWhiteIconTurn"];
             

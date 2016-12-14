@@ -83,7 +83,7 @@
     
     TaskStatusType statusType = statusNumberValue.integerValue;
     
-    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCanceledStatusType)];
+    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCancelStatusType)];
     
     if (row == currentCancelType)
     {
@@ -141,24 +141,24 @@
             
         }];
         
-        return canCancelTask ? TaskCanceledStatusType : TaskCancelRequestType;
+        return canCancelTask ? TaskCancelStatusType : TaskToCancelStatusType;
     }
     
-    return TaskCanceledStatusType;
+    return TaskCancelStatusType;
 }
 
 - (NSUInteger) returnOnComletionStatusIndex
 {
-    NSUInteger index = [self.statusesArray indexOfObject: @(TaskOnCompletionStatusType)];
+    NSUInteger index = [self.statusesArray indexOfObject: @(TaskToReworkStatusType)];
     
     return index;
 }
 
 - (NSUInteger) returnCancelRequestStatusIndex
 {
-    if ([self checkIfUserCanCancelTask] == TaskCancelRequestType)
+    if ([self checkIfUserCanCancelTask] == TaskToCancelStatusType)
     {
-        NSUInteger index = [self.statusesArray indexOfObject: @(TaskCanceledStatusType)];
+        NSUInteger index = [self.statusesArray indexOfObject: @(TaskCancelStatusType)];
         
         return index;
     }
@@ -202,11 +202,7 @@
     
     [availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* action, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        if ( action.statusActionID.integerValue <= 6 )
-        {
             [tmpDefaultArray addObject: action.statusActionID];
-        }
-        
     }];
     
     NSArray* defaultArr = tmpDefaultArray.copy;
@@ -224,9 +220,9 @@
     // replacing Cancel action to last position if it exsists
     NSMutableArray* tmp = defaultArr.mutableCopy;
     
-    if ( [tmp containsObject: @(TaskCanceledStatusType)] )
+    if ( [tmp containsObject: @(TaskCancelStatusType)] )
     {
-        NSUInteger indexOfCancel = [tmp indexOfObject: @(TaskCanceledStatusType)];
+        NSUInteger indexOfCancel = [tmp indexOfObject: @(TaskCancelStatusType)];
         
         NSUInteger indexOfLastAction = defaultArr.count - 1;
         

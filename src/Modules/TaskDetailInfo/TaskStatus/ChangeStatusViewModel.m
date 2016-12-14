@@ -83,7 +83,7 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    if ([self.model getCurrentStatus] == TaskOnApprovingStatusType)
+    if ([self.model getCurrentStatus] == TaskToOnApprovalStatusType)
     {
         if (indexPath.row == [self.model returnOnComletionStatusIndex])
         {
