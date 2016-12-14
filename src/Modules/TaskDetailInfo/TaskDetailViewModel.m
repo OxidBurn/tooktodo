@@ -193,6 +193,12 @@
     + CGRectGetHeight(self.addCommentCell.frame);
 }
 
+- (void) showCommentCell
+{
+    [self.tableView scrollRectToVisible: self.addCommentCell.frame
+                               animated: NO];
+}
+
 - (NSString*) getTaskNumberTitle
 {
     return [self.model getTaskNumberTitle];
