@@ -102,7 +102,7 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
 {
-    ProjectInfo* project           = self.projectsInfoArray[section];
+    ProjectInfo* project   = self.projectsInfoArray[section];
     __block NSUInteger countOfRows = 0;
     
     if ( project.isExpanded.boolValue )

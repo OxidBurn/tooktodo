@@ -64,6 +64,8 @@
     if ( projectInfo == nil )
     {
         projectInfo = [ProjectInfo MR_createEntityInContext: context];
+        
+        projectInfo.isExpanded = @NO;
     }
     
     if ( data.lastVisit )
@@ -272,7 +274,7 @@
 - (void) updateSelectedProjectInfo: (ProjectInfoModel*)     info
                     withCompletion: (CompletionWithSuccess) completion
 {
-    [MagicalRecord saveWithBlock :^(NSManagedObjectContext * _Nonnull localContext) {
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
         [self persistNewProjectWithInfo: info
                               inContext: localContext];

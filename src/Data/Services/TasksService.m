@@ -51,10 +51,10 @@
 
 #pragma mark - Public methods -
 
-- (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID
+- (RACSignal*) loadAllTasksForProject: (ProjectInfo*) project
 {
     NSString* requestURL = [projectTasksByStagesURL stringByReplacingOccurrencesOfString: @"{projectId}"
-                                                                              withString: projectID.stringValue];
+                                                                              withString: project.projectID.stringValue];
     
     @weakify(self)
     
@@ -67,6 +67,7 @@
              @strongify(self)
              
              [self parseTasksForProjectFromResponse: response[0][@"stages"]
+                                         forProject: project
                                      withCompletion: ^(BOOL isSuccess) {
                                          
                                          [subscriber sendNext: nil];
@@ -89,31 +90,19 @@
 
 - (RACSignal*) loadAllTasksForCurrentUser
 {
-    @weakify(self)
+    __block NSMutableArray* signalsArray = [NSMutableArray array];
     
-    RACSignal* loadAllUserTasksSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+    NSArray* allProjects = [DataManagerShared getAllProjects];
+    
+    [allProjects enumerateObjectsUsingBlock: ^(ProjectInfo*  _Nonnull project, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [[[TasksAPIService sharedInstance] loadAllUserTasks]
-         subscribeNext: ^(RACTuple* response) {
-            
-             @strongify(self)
-             
-             [self parseTasksForCurrentUser: response[0]
-                             withCompletion: ^(BOOL isSuccess) {
-                                
-                                 [subscriber sendCompleted];
-                                 
-                             }];
-             
-        }
-         error: ^(NSError *error) {
-             
-             [subscriber sendError: error];
-             
-         }];
+        RACSignal* loadProjectTasksSignal = [self loadAllTasksForProject: project];
         
-        return nil;
+        [signalsArray addObject: loadProjectTasksSignal];
+        
     }];
+    
+    RACSignal* loadAllUserTasksSignal = [RACSignal combineLatest: signalsArray];
     
     return loadAllUserTasksSignal;
 }
@@ -259,8 +248,11 @@
              }
              else
              {
+                 ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+                 
                  [self parseTasksForProjectFromResponse: @[response[0]]
-                                         withCompletion:^(BOOL isSuccess) {
+                                             forProject: project
+                                         withCompletion: ^(BOOL isSuccess) {
                                              
                                              [subscriber sendNext: nil];
                                              [subscriber sendCompleted];
@@ -419,6 +411,7 @@
 #pragma mark - Data base methods -
 
 - (void) parseTasksForProjectFromResponse: (NSArray*)               response
+                               forProject: (ProjectInfo*)          project
                            withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parsingError = nil;
@@ -434,6 +427,7 @@
     else
     {
         [DataManagerShared persistTasks: tasks
+                             forProject: project
                          withCompletion: completion];
     }
 }

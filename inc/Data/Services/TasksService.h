@@ -22,7 +22,7 @@
 
 + (instancetype) sharedInstance;
 
-- (RACSignal*) loadAllTasksForProjectWithID: (NSNumber*) projectID;
+- (RACSignal*) loadAllTasksForProject: (ProjectInfo*) project;
 
 - (RACSignal*) loadAllTasksForCurrentUser;
 

@@ -82,6 +82,31 @@
                       }];
 }
 
+- (void) persistTasks: (NSArray*)              tasks
+           forProject: (ProjectInfo*)          prj
+       withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* project = [prj MR_inContext: localContext];
+        
+        [tasks enumerateObjectsUsingBlock: ^(ProjectTaskStageModel* stageModel, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            [self persistStageWithInfo: stageModel
+                            forProject: project
+                             inContext: localContext];
+            
+        }];
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+                          
+                          if ( completion )
+                              completion(contextDidSave);
+                          
+                      }];
+}
+
 - (void) persistTasksForProjects: (TasksGroupedByProjects*) info
                   withCompletion: (CompletionWithSuccess)   completion
 {
@@ -92,11 +117,20 @@
             ProjectInfo* project = [DataManagerShared getProjectWithID: @(obj.projectID)
                                                               inCotext: localContext];
             
+            NSLog(@"<WARNING> Project id: %@", project.projectID);
+            NSLog(@"<VERBOSE> Count of tasks %lu", obj.tasks.count);
+            
             [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                [self persistTaskWithInfo: obj
-                               forProject: project
-                                inContext: localContext];
+                ProjectTask* task = [ProjectTask MR_createEntityInContext: localContext];
+             
+                task.isSelected = @NO;
+                task.projectId  = project.projectID;
+                 
+                 [self fillTaskInfoForTask: task
+                                 inProject: project
+                                  withInfo: obj
+                                 inContext: localContext];
                 
             }];
             
@@ -229,6 +263,8 @@
     if ( task == nil )
     {
         task = [ProjectTask MR_createEntityInContext: context];
+        
+        NSLog(@"<INFO> project id %@", info.projectId);
     }
     
     task.isSelected = @NO;

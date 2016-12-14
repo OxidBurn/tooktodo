@@ -23,6 +23,10 @@
 - (void) persistTasks: (NSArray*)              tasks
        withCompletion: (CompletionWithSuccess) completion;
 
+- (void) persistTasks: (NSArray*)              tasks
+           forProject: (ProjectInfo*)          prj
+       withCompletion: (CompletionWithSuccess) completion;
+
 - (void) persistTasksForProjects: (TasksGroupedByProjects*) info
                   withCompletion: (CompletionWithSuccess)   completion;
 

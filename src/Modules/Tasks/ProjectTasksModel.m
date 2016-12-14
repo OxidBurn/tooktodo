@@ -85,7 +85,7 @@ static NSString* contentKey = @"contentInfoKey";
 {
     self.currentProjectInfo = [DataManagerShared getSelectedProjectInfo];
     
-    return [[TasksService sharedInstance] loadAllTasksForProjectWithID: self.currentProjectInfo.projectID];
+    return [[TasksService sharedInstance] loadAllTasksForProject: self.currentProjectInfo];
 }
 
 - (RACSignal*) applyFilters
