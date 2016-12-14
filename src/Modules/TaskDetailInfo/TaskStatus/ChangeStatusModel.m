@@ -83,12 +83,13 @@
     
     TaskStatusType statusType = statusNumberValue.integerValue;
     
-    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCancelStatusType)];
-    
-    if (row == currentCancelType)
-    {
-        statusType =  [self checkIfUserCanCancelTask];
-    }
+    // Warning: delete after next test
+//    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCancelStatusType)];
+//    
+//    if (row == currentCancelType)
+//    {
+//        statusType =  [self checkIfUserCanCancelTask];
+//    }
     
     return statusType;
 }
@@ -106,18 +107,6 @@
     
 }
 
-- (NSArray*) getAvailableActions
-{
-    self.task = [DataManagerShared getSelectedTask];
-    
-    TaskAvailableActionsList* availableActions = self.task.availableActions;
-    
-    NSArray* availableActionsForTask = availableActions.actions.allObjects;
-    
-    return availableActionsForTask;
-}
-
-
 - (TaskStatusType) checkIfUserCanCancelTask
 {
     [self getAvailableStatusActions];
@@ -130,7 +119,7 @@
             
             NSLog(@"///// %@", obj.stautsActionDescription);
             
-            if ([obj.stautsActionDescription isEqualToString: @"Отменить"])
+            if ( [obj.statusActionID isEqual: @(3)] )
             {
                  canCancelTask = YES;
                 
@@ -243,7 +232,7 @@
     // checking if array with statuses contains current task status
     // if not adding this status to first position
     
-    if ( [tmp containsObject: currStatus] == NO)
+    if ( [tmp containsObject: currStatus] == NO )
     {
         [tmp insertObject: currStatus
                   atIndex: 0];
