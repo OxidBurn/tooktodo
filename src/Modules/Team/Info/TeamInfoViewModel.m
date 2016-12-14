@@ -96,16 +96,6 @@ static CGFloat sectionHeaderHeight = 30;
     return cell;
 }
 
-//- (BOOL) checkIfTeamMemberBlockedOrInvited
-//{
-//    BOOL isBlocked = self.assignment.isBlocked.boolValue;
-//    BOOL isInvited = self.assignment.invite != nil;
-//    
-//    BOOL disabled = (isBlocked == YES || isInvited);
-//    
-//    return disabled;
-//}
-
 - (CGFloat)     tableView: (UITableView*) tableView
  heightForHeaderInSection: (NSInteger)    section
 {

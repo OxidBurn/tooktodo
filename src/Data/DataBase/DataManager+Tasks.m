@@ -640,9 +640,9 @@
 - (void) changeItemSelectedState: (BOOL)                    isSelected
                          forItem: (ProjectRoleAssignments*) assignment
 {
-    ProjectRoleAssignments* selectedRoleAssignment = [self getSelectedProjectRoleAssignment];
-    
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectRoleAssignments* selectedRoleAssignment = [[self getSelectedProjectRoleAssignment] MR_inContext: localContext];
         
         selectedRoleAssignment.isSelected = @(NO);
         assignment.isSelected             = @(YES);

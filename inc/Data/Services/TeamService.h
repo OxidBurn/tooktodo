@@ -32,6 +32,7 @@
                               withProjectID: (NSNumber*)  projectID
                                  withUserID: (NSNumber*)  userID;
 
-- (RACSignal*) updateSelectedUserRole: (ProjectRoles*) role;
+- (RACSignal*) updateSelectedUserRole: (ProjectRoles*) role
+                           withUserID: (NSNumber*)     userID;
 
 @end

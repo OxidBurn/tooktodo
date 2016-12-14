@@ -14,11 +14,12 @@
 #import "TeamAPIService.h"
 #import "TeamMemberModel.h"
 #import "ProjectRoleAssignmentsModel.h"
+#import "TeamMember+CoreDataClass.h"
+#import "ProjectInfoModel.h"
 
 // Categories
 #import "DataManager+Team.h"
 #import "DataManager+ProjectInfo.h"
-//#import "UIAl"
 
 
 
@@ -210,11 +211,40 @@ static bool isFirstAccess = YES;
 }
 
 - (RACSignal*) updateSelectedUserRole: (ProjectRoles*) role
+                           withUserID: (NSNumber*)     userID
 {
-    return [RACSignal empty];
+    NSString* requestURL           = [self buildUpdateMemberRoleURL];
+    NSDictionary* requestParameter = [self buildUpdateMemberRoleParameters: role.roleID
+                                                                withUserID: userID];
+
+    RACSignal* updateRoleSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+        [[[TeamAPIService sharedInstance] updateUserRoleTypeByURL: requestURL
+                                                   withParameters: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             [self parseProjectInfoResponse: response[0]
+                             withCompletion: ^(BOOL isSuccess) {
+                                 
+                                 [subscriber sendNext: nil];
+                                 [subscriber sendCompleted];
+                                 
+                             }];
+             
+         }
+         error: ^(NSError* error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return updateRoleSignal;
 }
 
-#pragma mark - Internal methods -
+#pragma mark - Parse methods -
 
 - (void) parseGettingTeamResponse: (NSArray*)              response
                    withCompletion: (CompletionWithSuccess) completion
@@ -233,6 +263,41 @@ static bool isFirstAccess = YES;
                                                   withCompletion: completion];
     }
 }
+
+- (void) addNewTeamMember: (InviteInfo*)           info
+           withCompletion: (CompletionWithSuccess) completion
+{
+    TeamMemberModel* object = [[TeamMemberModel alloc] init];
+    
+    object.firstName = info.firstName;
+    object.lastName = info.lastName;
+    object.email = info.email;
+    
+    [DataManagerShared persistTeamMemebers: @[object]
+                                 inProject: [self getSelectedProject]
+                            withCompletion: completion];
+}
+
+- (void) parseProjectInfoResponse: (NSDictionary*)         response
+                   withCompletion: (CompletionWithSuccess) completion
+{
+    NSError* parseError           = nil;
+    ProjectInfoModel* projectInfo = [[ProjectInfoModel alloc] initWithDictionary: response
+                                                                           error: &parseError];
+    
+    if ( parseError )
+    {
+        NSLog(@"<ERROR> with parsing project info %@", parseError.localizedDescription);
+    }
+    else
+    {
+        [DataManagerShared updateSelectedProjectInfo: projectInfo
+                                      withCompletion: completion];
+    }
+}
+
+
+#pragma mark - Internal methods -
 
 - (NSString*) getProjectID
 {
@@ -261,18 +326,21 @@ static bool isFirstAccess = YES;
     }
 }
 
-- (void) addNewTeamMember: (InviteInfo*)           info
-           withCompletion: (CompletionWithSuccess) completion
+- (NSString*) buildUpdateMemberRoleURL
 {
-    TeamMemberModel* object = [[TeamMemberModel alloc] init];
+    NSString* requestURL = [updateTeamMemberRoleURL stringByReplacingOccurrencesOfString: @"{id}"
+                                                                              withString: [self getProjectID]];
     
-    object.firstName = info.firstName;
-    object.lastName = info.lastName;
-    object.email = info.email;
+    return requestURL;
+}
+
+- (NSDictionary*) buildUpdateMemberRoleParameters: (NSNumber*) roleID
+                                       withUserID: (NSNumber*) userID
+{
+    NSDictionary* requestParameters = @{@"projectRoleTypeId" : roleID,
+                                        @"userId"            : userID};
     
-    [DataManagerShared persistTeamMemebers: @[object]
-                                 inProject: [self getSelectedProject]
-                            withCompletion: completion];
+    return requestParameters;
 }
 
 #pragma mark - Life Cycle -

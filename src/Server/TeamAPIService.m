@@ -59,11 +59,12 @@ static bool isFirstAccess = YES;
     return [[[manager rac_DELETE: url parameters: nil] logError] replayLazily];
 }
 
-- (RACSignal*) updateUserRoleType: (NSDictionary*) parameter
+- (RACSignal*) updateUserRoleTypeByURL: (NSString*)     url
+                        withParameters: (NSDictionary*) parameter
 {
     AFHTTPRequestOperationManager* requestManager = [self getRawManager];
     
-    return [[[requestManager rac_POST: @"" parameters: parameter] logError] replayLazily];
+    return [[[requestManager rac_PUT: url parameters: parameter] logError] replayLazily];
 }
 
 #pragma mark - Life Cycle -

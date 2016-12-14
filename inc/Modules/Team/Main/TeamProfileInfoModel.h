@@ -61,7 +61,8 @@
 
 - (void) reloadContent;
 
-- (void) updateMemberRole: (ProjectRoles*) role;
+- (void) updateMemberRole: (ProjectRoles*)         role
+           withCompletion: (CompletionWithSuccess) completion;
 
 - (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
 

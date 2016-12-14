@@ -24,6 +24,7 @@
 
 - (RACSignal*) removeAdminRightFromUser: (NSString*) url;
 
-- (RACSignal*) updateUserRoleType: (NSDictionary*) parameter;
+- (RACSignal*) updateUserRoleTypeByURL: (NSString*)     url
+                        withParameters: (NSDictionary*) parameter;
 
 @end

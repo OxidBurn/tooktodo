@@ -248,23 +248,37 @@ typedef NS_ENUM(NSUInteger, ContactType)
     self.memberInfo.projectPermission = @(permission);
 }
 
-- (void) updateMemberRole: (ProjectRoles*) role
+- (void) updateMemberRole: (ProjectRoles*)         role
+           withCompletion: (CompletionWithSuccess) completion
 {
-    // TODO: Need to implement updating on the server side
+    @weakify(self)
     
-    [DataManagerShared updateTeamMemberRole: role
-                             withCompletion: ^(BOOL isSuccess) {
-                                 
-                                 FilledTeamInfo* teamMember = [FilledTeamInfo new];
-                                 
-                                 [teamMember fillTeamInfo: self.assignment];
-                                 
-                                 teamMember.role = role.title;
-                                 
-                                 self.memberInfo = teamMember;
-                            }];
-    
-    
+    [[[TeamService sharedInstance] updateSelectedUserRole: role
+                                               withUserID: self.memberInfo.userId]
+     subscribeNext: ^(id x) {
+         
+        @strongify(self)
+        
+        [DataManagerShared updateTeamMemberRole: role
+                                 withCompletion: ^(BOOL isSuccess) {
+                                     
+                                     FilledTeamInfo* teamMember = [FilledTeamInfo new];
+                                     
+                                     [teamMember fillTeamInfo: self.assignment];
+                                     
+                                     teamMember.role = role.title;
+                                     
+                                     self.memberInfo = teamMember;
+                                     
+                                     if ( completion )
+                                         completion(isSuccess);
+                                 }];
+        
+    }
+     
+     error: ^(NSError *error) {
+                                                                             
+     }];
 }
 
 - (NSInteger) getCurrentUserPermission
