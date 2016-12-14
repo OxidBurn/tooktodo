@@ -102,9 +102,24 @@
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
 {
-    ProjectInfo* project = self.projectsInfoArray[section];
+    ProjectInfo* project           = self.projectsInfoArray[section];
+    __block NSUInteger countOfRows = 0;
     
-    return project.stage.count;
+    if ( project.isExpanded.boolValue )
+    {
+        countOfRows = project.stage.count;
+        
+        [project.stage enumerateObjectsUsingBlock: ^(ProjectTaskStage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( obj.isExpanded.boolValue )
+            {
+                countOfRows += obj.tasks.count;
+            }
+            
+        }];
+    }
+    
+    return countOfRows;
 }
 
 - (ProjectInfo*) getProjectInfoForSection: (NSUInteger) section
@@ -167,9 +182,29 @@
 
 - (id) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-    NSArray* sectionContent = [[self.projectsInfoArray[path.section] stage] array];
+    __block NSMutableArray* sectionContent = [NSMutableArray array];
     
-    return sectionContent[path.row];
+    ProjectInfo* projectOfSection = [self getProjectInfoForSection: path.section];
+    
+    if ( projectOfSection.isExpanded.boolValue )
+    {
+        [projectOfSection.stage enumerateObjectsUsingBlock:^(ProjectTaskStage * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+            [sectionContent addObject: obj];
+            
+            if ( obj.isExpanded.boolValue )
+            {
+                [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    [sectionContent addObject: obj];
+                    
+                }];
+            }
+            
+        }];
+    }
+    
+    return [sectionContent objectAtIndex: path.row];
 }
 
 - (CGFloat) getCellHeightAtIndexPath: (NSIndexPath*) path
