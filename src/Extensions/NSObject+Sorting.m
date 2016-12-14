@@ -51,10 +51,20 @@
 - (NSArray*) applyDefaultSorting: (NSArray*) array
                      isAcsending: (BOOL)     isAcceding
 {
-    NSSortDescriptor* sortingDescriptor = [NSSortDescriptor sortDescriptorWithKey: [self getSortingKey]
-                                                                        ascending: isAcceding];
+    NSSortDescriptor* blockSortingDescriptor = [NSSortDescriptor sortDescriptorWithKey: [self getSortingKey]
+                                                                             ascending: isAcceding
+                                                                            comparator: ^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                                                                                
+                                                                                if ( obj1 == nil )
+                                                                                    return NSOrderedDescending;
+                                                                                if ( obj2 == nil )
+                                                                                    return NSOrderedAscending;
+                                                                                
+                                                                                return [obj1 compare: obj2];
+                                                                                
+                                                                            }];
     
-    NSArray* sortedArray = [array sortedArrayUsingDescriptors: @[sortingDescriptor]];
+    NSArray* sortedArray = [array sortedArrayUsingDescriptors: @[blockSortingDescriptor]];
     
     return sortedArray;
 }
