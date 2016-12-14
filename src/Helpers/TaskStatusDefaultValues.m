@@ -84,9 +84,9 @@
                               @"Завершена",
                               @"Отменена",
                               @"На утверждении",
-                              @"",
-                              @"Запрос на отмену",
                               @"На доработке",
+                              @"Запрос на отмену",
+                              @"На доработку",
                               @"Возобновить",
                               @"Утвердить"];
     }
@@ -103,7 +103,7 @@
                               self.greenColor,      //2 Complete
                               self.redColor,        //3 Cancel
                               self.yellowColor,     //4 ToOnApproval
-                              self.greenColor,      //5 no data from server
+                              self.yellowColor,     //5 OnRework
                               self.redColor,        //6 ToCancel
                               self.yellowColor,     //7 ToRework
                               self.greenColor,      //8 Renew
@@ -122,7 +122,7 @@
                               [UIImage imageNamed: @"TaskStatusDone"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnApproveIcon"],
-                              [UIImage imageNamed: @"TaskStatusInProgressIcon"],
+                              [UIImage imageNamed: @"TaskStatusOnCompletion"],
                               [UIImage imageNamed: @"TaskStatusCanceledIcon"],
                               [UIImage imageNamed: @"TaskStatusOnCompletion"],
                               [UIImage imageNamed: @"TaskStatusInProgressIcon"],
@@ -169,6 +169,7 @@
         case TaskToPauseStatusType:
         case TaskToOnApprovalStatusType:
         case TaskToReworkStatusType:
+        case TaskOnReworkStatusType:
             
             return [UIColor blackColor];
             
@@ -197,6 +198,7 @@
         case TaskToPauseStatusType:
         case TaskToOnApprovalStatusType:
         case TaskToReworkStatusType:
+        case TaskOnReworkStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandDarkIcon"];
             
@@ -225,6 +227,7 @@
         case TaskToPauseStatusType:
         case TaskToOnApprovalStatusType:
         case TaskToReworkStatusType:
+        case TaskOnReworkStatusType:
             
             return [UIImage imageNamed: @"TaskStatusExpandDarkIconTurn"];
             

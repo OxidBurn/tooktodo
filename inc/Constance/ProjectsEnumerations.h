@@ -51,6 +51,7 @@ typedef NS_ENUM(NSUInteger, TaskStatusType)
     TaskCompleteStatusType     = 2,
     TaskCancelStatusType       = 3,
     TaskToOnApprovalStatusType = 4,
+    TaskOnReworkStatusType     = 5,
     TaskToCancelStatusType     = 6,
     TaskToReworkStatusType     = 7,
     TaskRenewStatusType        = 8,

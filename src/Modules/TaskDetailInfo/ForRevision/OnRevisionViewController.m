@@ -13,6 +13,7 @@
 
 // Categories
 #import "UITextView+PlaceHolder.h"
+#import "BaseMainViewController+NavigationTitle.h"
 
 @interface OnRevisionViewController ()
 
@@ -67,6 +68,9 @@
     self.commentTextView.placeHolderColor = [UIColor colorWithRed: 0.74 green:0.75 blue:0.76 alpha:1.00];
     self.commentTextView.placeHolderFont  = [UIFont fontWithName: @"SFUIText-Regular"
                                                             size: 15.0f];
+    
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"НА ДОРАБОТКУ"
+                                               withSubTitle: nil];
 }
 
 - (void) bindingUI

@@ -8,6 +8,9 @@
 
 #import "CancelRequestViewController.h"
 
+// Categories
+#import "BaseMainViewController+NavigationTitle.h"
+
 @interface CancelRequestViewController ()
 
 @property (nonatomic, weak) IBOutlet UIBarButtonItem* backBtn;
@@ -24,6 +27,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЗАПРОС НА ОТМЕНУ"
+                                               withSubTitle: nil];
 }
 
 - (void) didReceiveMemoryWarning

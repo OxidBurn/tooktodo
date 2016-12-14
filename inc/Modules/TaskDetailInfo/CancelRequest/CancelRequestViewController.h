@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CancelRequestViewController : UIViewController
+#import "BaseMainViewController.h"
+
+@interface CancelRequestViewController : BaseMainViewController
 
 @end
