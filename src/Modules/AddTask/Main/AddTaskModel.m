@@ -271,7 +271,7 @@
 {
     NSArray* levelsArray = [DataManagerShared getAllRoomsLevelOfSelectedProject];
     
-    [levelsArray enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [levelsArray enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         obj.isSelected = @(YES);
         obj.isExpanded = @(YES);

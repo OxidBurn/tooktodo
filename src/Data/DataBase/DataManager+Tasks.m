@@ -600,8 +600,6 @@
                          withInfo: info
                         inContext: localContext];
         
-        NSLog(@"<INFO> Updated task info: %@", updatedTask);
-        
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           

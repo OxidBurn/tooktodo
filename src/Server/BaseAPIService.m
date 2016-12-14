@@ -28,7 +28,7 @@
     
     requestManager.requestSerializer                 = [AFHTTPRequestSerializer serializer];
     requestManager.responseSerializer                = [AFJSONResponseSerializer serializer];
-    requestManager.requestSerializer.timeoutInterval = 20.0f;
+    requestManager.requestSerializer.timeoutInterval = 10.0f;
     
     requestManager = [self addHeadersToManager: requestManager];
     
@@ -39,8 +39,9 @@
 {
     AFHTTPRequestOperationManager* requestManagerWithoutContentType = [[AFHTTPRequestOperationManager alloc] initWithBaseURL: [NSURL URLWithString: serverURL]];
     
-    requestManagerWithoutContentType.requestSerializer  = [AFHTTPRequestSerializer serializer];
-    requestManagerWithoutContentType.responseSerializer = [AFJSONResponseSerializer serializer];
+    requestManagerWithoutContentType.requestSerializer                 = [AFHTTPRequestSerializer serializer];
+    requestManagerWithoutContentType.responseSerializer                = [AFJSONResponseSerializer serializer];
+    requestManagerWithoutContentType.requestSerializer.timeoutInterval = 10.0f;
     
     [requestManagerWithoutContentType.requestSerializer setValue: [NSString stringWithFormat: @"Bearer %@", [KeyChain getAccessToken]]
                                               forHTTPHeaderField: @"Authorization"];

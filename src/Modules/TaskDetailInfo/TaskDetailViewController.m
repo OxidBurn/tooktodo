@@ -362,7 +362,6 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
         }
         
         [self.viewModel showCommentCell];
-//        [self.viewModel scrollToCommentCell];
         
         self.taskTableView.scrollEnabled = false;
         self.taskTableView.blockScroll   = true;

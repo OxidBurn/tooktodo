@@ -47,6 +47,8 @@
 {
     ProjectTask* task = [self getSelectedTaskInContext: context];
     
+    task.availableActions = nil;
+    
     NSPredicate* findPredicate = [NSPredicate predicateWithFormat: @"task == %@", task];
     
     TaskAvailableActionsList* availableActionsList = [TaskAvailableActionsList MR_findFirstWithPredicate: findPredicate

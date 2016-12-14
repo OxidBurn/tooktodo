@@ -433,8 +433,9 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        project.isExpanded = @(!project.isExpanded.boolValue);
+        ProjectInfo* updatedProject = [project MR_inContext: localContext];
         
+        updatedProject.isExpanded = @(!project.isExpanded.boolValue);
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           
