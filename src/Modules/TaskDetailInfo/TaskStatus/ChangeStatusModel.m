@@ -82,15 +82,7 @@
     NSNumber* statusNumberValue = self.statusesArray[row];
     
     TaskStatusType statusType = statusNumberValue.integerValue;
-    
-    // Warning: delete after next test
-//    NSUInteger currentCancelType = [self.statusesArray indexOfObject: @(TaskCancelStatusType)];
-//    
-//    if (row == currentCancelType)
-//    {
-//        statusType =  [self checkIfUserCanCancelTask];
-//    }
-    
+
     return statusType;
 }
 
@@ -103,37 +95,21 @@
     
     self.availableStatusActions = availableActions.statusActions.allObjects;
     
-    return  self.availableStatusActions;
     
+    
+    return  self.availableStatusActions;
 }
 
 - (TaskStatusType) checkIfUserCanCancelTask
 {
     [self getAvailableStatusActions];
+
+    BOOL canCancelTask = NO;
     
-    __block BOOL canCancelTask = NO;
+    if ( [self.availableStatusActions containsObject: @(TaskCancelStatusType)] )
+        canCancelTask = YES;
     
-    if (self.availableStatusActions != nil)
-    {
-        [self.availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            NSLog(@"///// %@", obj.stautsActionDescription);
-            
-            if ( [obj.statusActionID isEqual: @(3)] )
-            {
-                 canCancelTask = YES;
-                
-                *stop = YES;
-            }
-            
-            else canCancelTask = NO;
-            
-        }];
-        
-        return canCancelTask ? TaskCancelStatusType : TaskToCancelStatusType;
-    }
-    
-    return TaskCancelStatusType;
+    return canCancelTask? TaskCancelStatusType : TaskToCancelStatusType;
 }
 
 - (NSUInteger) returnOnComletionStatusIndex
@@ -172,12 +148,6 @@
     return [[TaskStatusDefaultValues sharedInstance]
             returnExpandedArrowImageForTaskStatus: self.task.status.integerValue];
 }
-
-- (NSNumber*) getSelectedStatusAtIndex: (NSUInteger) index
-{
-    return self.statusesArray[index];
-}
-
 
 #pragma mark - Internal -
 

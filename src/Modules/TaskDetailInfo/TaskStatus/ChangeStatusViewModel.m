@@ -83,29 +83,31 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    if ([self.model getCurrentStatus] == TaskToOnApprovalStatusType)
+    TaskStatusType selectedStatus = [self.model getStatusTypeForRow: indexPath.row];
+    
+    if ( [self.model getCurrentStatus] == TaskToOnApprovalStatusType )
     {
-        if (indexPath.row == [self.model returnOnComletionStatusIndex])
+        if ( selectedStatus == TaskToReworkStatusType )
         {
-            if (self.showOnRevisionController)
+            if ( self.showOnRevisionController )
                 self.showOnRevisionController();
         }
     }
-    
-    if (indexPath.row == [self.model returnCancelRequestStatusIndex])
+    else
+        if ( selectedStatus == TaskToCancelStatusType )
+        {
+            if ( self.showCancelRequestController )
+                self.showCancelRequestController();
+        }
+    else
     {
-        if (self.showCancelRequestController)
-            self.showCancelRequestController();
+        [self.model updateTaskStatusWithNewStatus: selectedStatus
+                                   withCompletion: ^(BOOL isSuccess) {
+                                       
+                                       if ( self.returnToTaskDetailController )
+                                           self.returnToTaskDetailController();
+                                   }];
     }
-    
-    NSUInteger newStatus = [self.model getSelectedStatusAtIndex: indexPath.row].integerValue;
-    
-    [self.model updateTaskStatusWithNewStatus: newStatus
-                               withCompletion: ^(BOOL isSuccess) {
-        
-                                   if ( self.returnToTaskDetailController )
-                                       self.returnToTaskDetailController();
-    }];
 }
 
 @end
