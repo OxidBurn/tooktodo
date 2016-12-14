@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		118610B21DE83FE6008D28FA /* OSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 118610B11DE83FE6008D28FA /* OSTableView.m */; };
 		3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */; };
-		560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2C1DB615EB006F361D /* CancelReguestModel.m */; };
+		560EDD2F1DB615EB006F361D /* CancelRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2C1DB615EB006F361D /* CancelRequestModel.m */; };
 		560EDD301DB615EB006F361D /* CancelRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */; };
 		560EDD311DB615EB006F361D /* CancelRequestViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */; };
 		5613A70E1DC20C09003E2843 /* UIViewController+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5613A70D1DC20C09003E2843 /* UIViewController+Helper.m */; };
@@ -524,10 +524,10 @@
 		118610AF1DE83FDC008D28FA /* OSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSTableView.h; sourceTree = "<group>"; };
 		118610B11DE83FE6008D28FA /* OSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSTableView.m; sourceTree = "<group>"; };
 		41A7A6B2605E4F867002051D /* Pods-TookTODO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TookTODO.debug.xcconfig"; path = "../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO.debug.xcconfig"; sourceTree = "<group>"; };
-		560EDD2C1DB615EB006F361D /* CancelReguestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelReguestModel.m; sourceTree = "<group>"; };
+		560EDD2C1DB615EB006F361D /* CancelRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestModel.m; sourceTree = "<group>"; };
 		560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewController.m; sourceTree = "<group>"; };
 		560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelRequestViewModel.m; sourceTree = "<group>"; };
-		560EDD331DB615F6006F361D /* CancelReguestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelReguestModel.h; sourceTree = "<group>"; };
+		560EDD331DB615F6006F361D /* CancelRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestModel.h; sourceTree = "<group>"; };
 		560EDD341DB615F6006F361D /* CancelRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewController.h; sourceTree = "<group>"; };
 		560EDD351DB615F6006F361D /* CancelRequestViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelRequestViewModel.h; sourceTree = "<group>"; };
 		5613A70C1DC20C09003E2843 /* UIViewController+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Helper.h"; sourceTree = "<group>"; };
@@ -1555,7 +1555,7 @@
 		560EDD2B1DB615EB006F361D /* CancelRequest */ = {
 			isa = PBXGroup;
 			children = (
-				560EDD2C1DB615EB006F361D /* CancelReguestModel.m */,
+				560EDD2C1DB615EB006F361D /* CancelRequestModel.m */,
 				560EDD2D1DB615EB006F361D /* CancelRequestViewController.m */,
 				560EDD2E1DB615EB006F361D /* CancelRequestViewModel.m */,
 			);
@@ -1565,7 +1565,7 @@
 		560EDD321DB615F6006F361D /* CancelRequest */ = {
 			isa = PBXGroup;
 			children = (
-				560EDD331DB615F6006F361D /* CancelReguestModel.h */,
+				560EDD331DB615F6006F361D /* CancelRequestModel.h */,
 				560EDD341DB615F6006F361D /* CancelRequestViewController.h */,
 				560EDD351DB615F6006F361D /* CancelRequestViewModel.h */,
 			);
@@ -4499,7 +4499,7 @@
 				56D06FAB1DAFBDC0008E9AC0 /* OSFlexibleTextCellFactory.m in Sources */,
 				56D06F661DAFBDC0008E9AC0 /* ProjectTasksViewModel.m in Sources */,
 				56D06EEE1DAFBDC0008E9AC0 /* UIViewController+Focus.m in Sources */,
-				560EDD2F1DB615EB006F361D /* CancelReguestModel.m in Sources */,
+				560EDD2F1DB615EB006F361D /* CancelRequestModel.m in Sources */,
 				F7BB2CD21DE5FE34002CFAAE /* LogsCellFactory.m in Sources */,
 				56D06EC01DAFBDC0008E9AC0 /* UserNotifications.m in Sources */,
 				56D06F4A1DAFBDC0008E9AC0 /* ChangeStatusViewModel.m in Sources */,
