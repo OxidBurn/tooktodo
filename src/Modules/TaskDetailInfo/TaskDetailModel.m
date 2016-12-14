@@ -65,12 +65,8 @@
     NSMutableArray* tmpDefaultArray = [NSMutableArray new];
     
     [availableStatusActions enumerateObjectsUsingBlock: ^(TaskAvailableStatusAction* action, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if ( action.statusActionID.integerValue <= 6 )
-        {
-            [tmpDefaultArray addObject: action.statusActionID];
-        }
-        
+
+            [tmpDefaultArray addObject: action.statusActionID];        
     }];
     
     return (tmpDefaultArray.count > 0);

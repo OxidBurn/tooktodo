@@ -18,8 +18,6 @@
 
 - (void) fillSelectedTeamMember: (FilledTeamInfo*) teamMember;
 
-- (void) refreshTableView;
-
 - (void) reloadUserInformationViewData;
 
 @end

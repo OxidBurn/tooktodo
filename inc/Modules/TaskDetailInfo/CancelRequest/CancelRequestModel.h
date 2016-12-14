@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CancelReguestModel : NSObject
+@interface CancelRequestModel : NSObject
+
+// methods
+- (void) sendRequestLetter: (NSString*) letterText;
 
 @end

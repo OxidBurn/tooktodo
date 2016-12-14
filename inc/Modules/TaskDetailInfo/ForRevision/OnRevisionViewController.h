@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OnRevisionViewController : UIViewController
+// Classes
+#import "BaseMainViewController.h"
+
+@interface OnRevisionViewController : BaseMainViewController
 
 @end

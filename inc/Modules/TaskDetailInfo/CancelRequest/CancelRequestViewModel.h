@@ -10,4 +10,7 @@
 
 @interface CancelRequestViewModel : NSObject
 
+// methods
+- (void) sendRequestLetter: (NSString*) letterText;
+
 @end
