@@ -160,11 +160,6 @@
     [self.viewModel fillSelectedTeamMember: teamMember];
 }
 
-- (void) refreshTableView
-{
-    [self.profileInfoTableView reloadData];
-}
-
 - (void) reloadUserInformationViewData
 {
     [self updateUserInfo];

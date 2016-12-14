@@ -94,8 +94,6 @@
         
         [self.profilesVC fillSelectedTeamMember: teamMember];
         
-        [self.profilesVC refreshTableView];
-        
         [self.profilesVC reloadUserInformationViewData];
     }
 }

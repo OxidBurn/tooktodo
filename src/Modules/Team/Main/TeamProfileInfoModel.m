@@ -115,10 +115,6 @@ typedef NS_ENUM(NSUInteger, ContactType)
             
             @strongify(self)
             
-            self.assignment = [DataManagerShared getSelectedProjectRoleAssignment];
-            
-            [self.memberInfo fillTeamInfo: self.assignment];
-            
             [subscriber sendNext: self.memberInfo];
             [subscriber sendCompleted];
             
