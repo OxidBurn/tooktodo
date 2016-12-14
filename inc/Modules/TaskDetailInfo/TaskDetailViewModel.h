@@ -48,6 +48,8 @@
 
 - (void) scrollToCommentCell;
 
+- (void) showCommentCell;
+
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion;
 

@@ -223,7 +223,7 @@
 {
     [self.viewModel hideKeyboard];
     self.taskTableViewBottom.constant = 0;
-    [self.taskTableView removeGestureRecognizer:self.keyboardRecognizer];
+    [self.taskTableView removeGestureRecognizer: self.keyboardRecognizer];
 }
 
 
@@ -353,7 +353,7 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     CGFloat height = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     
     self.taskTableViewBottom.constant = height - kToolBarHeight;
-    self.viewModel.keyboardHeight = height;
+    self.viewModel.keyboardHeight     = height;
     
     dispatch_after (dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
@@ -361,10 +361,14 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
             return;
         }
         
-        [self.viewModel scrollToCommentCell];
+        [self.viewModel showCommentCell];
+//        [self.viewModel scrollToCommentCell];
+        
         self.taskTableView.scrollEnabled = false;
-        self.taskTableView.blockScroll = true;
+        self.taskTableView.blockScroll   = true;
     });
+    
+    
 
 }
 
