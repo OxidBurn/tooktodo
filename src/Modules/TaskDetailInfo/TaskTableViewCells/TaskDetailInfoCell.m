@@ -203,7 +203,7 @@
 - (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
                                 withFinishDate: (NSDate*) finishDate
 {
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM"];
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
     NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
     
     NSString* detailString = [NSString string];

@@ -133,7 +133,7 @@
 - (NSString*) executionDateString: (ProjectTask*) task
 {
     NSString* executionDateValue = [self createTermsLabelTextForStartDate: task.startDay
-                                                           withFinishDate: task.closedDate];
+                                                           withFinishDate: task.endDate];
     
     return executionDateValue;
 }
