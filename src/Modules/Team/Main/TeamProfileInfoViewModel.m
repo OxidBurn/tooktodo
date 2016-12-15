@@ -24,7 +24,7 @@
 // Categories
 #import "DataManager+ProjectInfo.h"
 
-typedef NS_ENUM(NSUInteger, CellType)
+typedef NS_ENUM(NSUInteger, SecondSectionCellType)
 {
     RoleType,
     PermissionType,
@@ -41,8 +41,6 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
 @interface TeamProfileInfoViewModel() <TeamProfileInfoModelDelegate>
 
 @property (nonatomic, strong) TeamProfileInfoModel* model;
-
-@property (nonatomic, strong) UITableViewCell* cell;
 
 @end
 
@@ -97,82 +95,70 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
 - (UITableViewCell*) tableView: (UITableView*) tableView
          cellForRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    
-    if (indexPath.section == 0)
+    switch ( indexPath.section)
     {
-        ContactInfoCell* cell = (ContactInfoCell*)[tableView dequeueReusableCellWithIdentifier: @"UserContactCellID"];
-        
-        [cell fillCellWithContactInfo: [self.model getContactValueForIndexPath: indexPath]
-                         withBtnImage: [self.model getBtnImageForIndexPath: indexPath]
-                         forIndexPath: indexPath];
-        
-        cell.tag = indexPath.row;
-        
-        __weak typeof(self) blockSelf = self;
-        
-        cell.didPressOnPhone = ^(NSUInteger index){
-            
-            [blockSelf performActionForIndex: index];
-        };
-        
-        return cell;
-    }
-    else
-    {
-        NSInteger currentUserPermission = [self.model getCurrentUserPermission];
-        
-        self.cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
-        
-        self.cell.textLabel.text  = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
-        
-        UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
-                                             size: 13.0f];
-        [self.model reloadContent];
-        
-        self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath: indexPath];
-        self.cell.detailTextLabel.textColor = [UIColor blackColor];
-        self.cell.detailTextLabel.font = customFont;
-        
-        switch ( currentUserPermission )
+        case SectionOne:
         {
-            case AdminPermission:
-            {
-                if ( indexPath.row == 0 )
-                {
-                    self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                    
-                    if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
-                    {
-                        self.cell.accessoryType = UITableViewCellAccessoryNone;
-                        self.cell.userInteractionEnabled = NO;
-                    }
-                }
+            ContactInfoCell* cell = (ContactInfoCell*)[tableView dequeueReusableCellWithIdentifier: @"UserContactCellID"];
+            
+            [cell fillCellWithContactInfo: [self.model getContactValueForIndexPath: indexPath]
+                             withBtnImage: [self.model getBtnImageForIndexPath: indexPath]
+                             forIndexPath: indexPath];
+            
+            cell.tag = indexPath.row;
+            
+            __weak typeof(self) blockSelf = self;
+            
+            cell.didPressOnPhone = ^(NSUInteger index){
                 
-                else if (indexPath.row == 1)
-                {
-                    self.cell.accessoryType = UITableViewCellAccessoryNone;
-                    self.cell.userInteractionEnabled = NO;
-                }
-            }
-                break;
-                
-            case OwnerPermission:
-            {
-                self.cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                
-                if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
-                {
-                    self.cell.accessoryType = UITableViewCellAccessoryNone;
-                    self.cell.userInteractionEnabled = NO;
-                }
-            }
-                
-            default:
-                break;
+                [blockSelf performActionForIndex: index];
+            };
+            
+            return cell;
         }
+            break;
+            
+        case SectionTwo:
+        {
+            NSInteger currentUserPermission = [self.model getCurrentUserPermission];
+            
+            UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"RoleInfoCellID"];
+            
+            UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                                 size: 13.0f];
 
-        
-        return self.cell;
+            switch ( indexPath.row)
+            {
+                case RoleType:
+                {
+                    cell.textLabel.text = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
+                    cell.tag = RoleType;
+                }
+                    break;
+                case PermissionType:
+                {
+                    cell.tag = PermissionType;
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            cell.detailTextLabel.text      = [self.model getDetailRoleCellLabelTextForIndexPath: indexPath];
+            cell.detailTextLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.font      = customFont;
+            
+            [self handlePermissionActionsForCell: cell
+                                  withPermission: currentUserPermission
+                                   withIndexPath: indexPath];
+            
+          return cell;
+        }
+            break;
+            
+        default:
+            return nil;
+            break;
     }
 }
 
@@ -210,27 +196,23 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
 - (void)        tableView: (UITableView*) tableView
   didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-    self.cell = [tableView cellForRowAtIndexPath: indexPath];
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath: indexPath];
     
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    if (indexPath.section == 1)
+    if ( indexPath.section == SectionTwo )
     {
-        self.cell.tag = indexPath.row;
-        
-        if (self.cell.tag == RoleType)
+        if ( cell.tag == RoleType )
         {
             NSString* segueID = IS_PHONE ? @"ShowRolesControllerIDiPhone" : @"ShowRoleControllerIDiPad";
             
-            if (self.delegate && [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)])
-            {
+            if ( [self.delegate respondsToSelector:@selector(showControllerWithIdentifier:)] )
                 [self.delegate showControllerWithIdentifier: segueID];
-            }
         }
         
         else
-            if (self.cell.tag == PermissionType)
+            if ( cell.tag == PermissionType)
             {
                 if ([self.model getPermissions].integerValue != AdminPermission)
                 {
@@ -264,36 +246,10 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
     return indexPath;
 }
 
-#pragma mark - Helpers -
-
-- (void) designateAdmin
-{
-     if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
-        {
-            
-            [self.delegate showDesignationAlert: [self.model getMemberName]
-                                     withAvatar: [self.model getAvatar]
-                                    withMessage: @"Назначить администратором"];
-            
-        }
-
-}
-
-- (void) cancelAdminPermission
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
-    {
-        
-        [self.delegate showDesignationAlert: [self.model getMemberName]
-                                 withAvatar: [self.model getAvatar]
-                                withMessage: @"Отменить права администратора"];
-        
-    }
-}
 
 #pragma mark - RolesViewControllerDelegate methods -
 
-- (void) didSelectRole: (ProjectRoles*) value
+- (void) didSelectRole: (ProjectRoles*)         value
         withCompletion: (CompletionWithSuccess) completion
 {
     if ( value )
@@ -302,8 +258,6 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         
         [self.model updateMemberRole: value
                       withCompletion: ^(BOOL isSuccess) {
-                          
-                          blockSelf.cell.detailTextLabel.text = value.title;
                           
                           [blockSelf.model reloadContent];
                           
@@ -324,6 +278,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         [Utils showErrorAlertWithMessage: @"Роль не выбрана"];
     }
 }
+
 
 #pragma mark - Model delegate methods -
 
@@ -347,7 +302,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         case AdminPermission:
         {
             [self.model updateMemberPermission: ParticipantPermission];
-         
+            
             if (self.reloadTableView)
                 self.reloadTableView();
         }
@@ -365,6 +320,79 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         default:
             break;
     }
+}
+
+
+#pragma mark - Helpers -
+
+- (void) designateAdmin
+{
+     if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+        {
+            
+            [self.delegate showDesignationAlert: [self.model getMemberName]
+                                     withAvatar: [self.model getAvatar]
+                                    withMessage: @"Назначить администратором"];
+            
+            [self.model reloadContent];
+        }
+
+}
+
+- (void) cancelAdminPermission
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showDesignationAlert:withAvatar:withMessage:)])
+    {
+        
+        [self.delegate showDesignationAlert: [self.model getMemberName]
+                                 withAvatar: [self.model getAvatar]
+                                withMessage: @"Отменить права администратора"];
+        
+        [self.model reloadContent];
+    }
+}
+
+- (void) handlePermissionActionsForCell: (UITableViewCell*) cell
+                         withPermission: (NSUInteger)       permission
+                          withIndexPath: (NSIndexPath*)     indexPath
+{
+    switch ( permission )
+    {
+        case AdminPermission:
+        {
+            if ( indexPath.row == RoleType )
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                if ([self.model checkIfTeamMemberBlockedOrInvited] == YES)
+                {
+                    cell.accessoryType          = UITableViewCellAccessoryNone;
+                    cell.userInteractionEnabled = NO;
+                }
+            }
+            
+            else if ( indexPath.row == PermissionType )
+            {
+                cell.accessoryType          = UITableViewCellAccessoryNone;
+                cell.userInteractionEnabled = NO;
+            }
+        }
+            break;
+            
+        case OwnerPermission:
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            if ( [self.model checkIfTeamMemberBlockedOrInvited] == YES )
+            {
+                cell.accessoryType          = UITableViewCellAccessoryNone;
+                cell.userInteractionEnabled = NO;
+            }
+        }
+        default:
+            break;
+    }
+
 }
 
 @end
