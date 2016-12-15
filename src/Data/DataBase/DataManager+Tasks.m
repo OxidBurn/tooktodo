@@ -807,87 +807,143 @@
 {
     if ( info.taskID )
         task.taskID = info.taskID;
+    else
+        task.taskID = nil;
     
     if ( info.closedDate )
         task.closedDate = info.closedDate;
+    else
+        task.closedDate = nil;
     
     if ( info.taskDescription )
         task.descriptionValue = info.taskDescription;
+    else
+        task.descriptionValue = nil;
     
     if ( info.duration )
         task.duration = info.duration;
+    else
+        task.duration = nil;
     
     if ( info.endDate )
         task.endDate = info.endDate;
+    else
+        task.endDate = nil;
     
     if ( info.extraId )
         task.extraId = info.extraId;
+    else
+        task.extraId = nil;
     
     if ( info.isAllRooms )
         task.isAllRooms = info.isAllRooms;
+    else
+        task.isAllRooms = nil;
     
     if ( info.isExpired )
         task.isExpired = info.isExpired;
+    else
+        task.isExpired = nil;
     
     if ( info.isIncludedRestDays )
         task.isIncludedRestDays = info.isIncludedRestDays;
+    else
+        task.isIncludedRestDays = nil;
     
     if ( info.isTaskStatusChanged )
         task.isTaskStatusChanged = info.isTaskStatusChanged;
+    else
+        task.isTaskStatusChanged = nil;
     
     if ( info.isUrgent )
         task.isUrgent = info.isUrgent;
+    else
+        task.isUrgent = nil;
     
     if ( info.mapPreviewImage )
         task.mapPreviewImage = info.mapPreviewImage;
+    else
+        task.mapPreviewImage = nil;
     
     if ( info.ownerUserId )
         task.ownerUserId = info.ownerUserId;
+    else
+        task.ownerUserId = nil;
     
     if ( info.parentTaskId )
         task.parentTaskId = info.parentTaskId;
+    else
+        task.parentTaskId = nil;
     
     if ( info.projectId )
         task.projectId = info.projectId;
+    else
+        task.projectId = nil;
     
     if ( info.projectRelatedId )
         task.projectRelatedId = info.projectRelatedId;
+    else
+        task.projectRelatedId = nil;
     
     if ( info.status )
         task.status = info.status;
+    else
+        task.status = nil;
     
     if ( info.statusDescription )
         task.statusDescription = info.statusDescription;
+    else
+        task.statusDescription = nil;
     
     if ( info.storageDirectoryId )
         task.storageDirectoryId = info.storageDirectoryId;
+    else
+        task.storageDirectoryId = nil;
     
     if ( info.storageFilesCount )
         task.storageFilesCount = info.storageFilesCount;
+    else
+        task.storageFilesCount = nil;
     
     if ( info.taskAccess )
         task.taskAccess = info.taskAccess;
+    else
+        task.taskAccess = nil;
     
     if ( info.taskType )
         task.taskType = info.taskType;
+    else
+        task.taskType = nil;
     
     if ( info.taskTypeDescription )
         task.taskTypeDescription = info.taskTypeDescription;
+    else
+        task.taskTypeDescription = nil;
     
     if ( info.title )
         task.title = info.title;
+    else
+        task.title = nil;
     
     if ( project )
         task.project = project;
+    else
+        task.project = nil;
     
     if ( info.startDate )
         task.startDay = info.startDate;
+    else
+        task.startDay = nil;
     
     if ( info.access )
         task.access = info.access;
+    else
+        task.access = nil;
     
     if ( info.attachments.count )
         task.attachments = info.attachments.count;
+    else
+        task.attachments = nil;
     
     task.commentsCount    = info.commentsCount;
     task.factualStartDate = info.factualStartDate;
