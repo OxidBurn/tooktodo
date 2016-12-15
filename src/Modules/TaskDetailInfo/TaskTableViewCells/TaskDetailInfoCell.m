@@ -18,6 +18,7 @@
 #import "NSDate+Helper.h"
 #import "TaskStatusDefaultValues.h"
 #import "Macroses.h"
+#import "Utils.h"
 
 
 @interface TaskDetailInfoCell()
@@ -112,8 +113,10 @@
     
     [self handleTaskStatusTypeBtn: content.status];
     
-    self.taskTermsLabel.text = [self createTermsLabelTextForStartDate: content.taskStartDate
-                                                       withFinishDate: content.taskEndDate];
+    self.taskTermsLabel.text = [Utils createTermsLabelTextForStartDate: content.taskStartDate
+                                                        withFinishDate: content.taskEndDate
+                                                            withFormat: @"dd.MM.yyyy"
+                                                 withEmptyDetailString: @""];
     
     [self.taskStatusMark setStatusString: content.taskTypeDescription
                                 withType: content.taskType];
@@ -198,38 +201,6 @@
     
     [self.accessBtn setImage: image
                     forState: UIControlStateNormal];
-}
-
-- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
-                                withFinishDate: (NSDate*) finishDate
-{
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
-    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
-    
-    NSString* detailString = [NSString string];
-    
-    if ( startDateString )
-    {
-        if ( endDateString )
-        {
-            detailString = [NSString stringWithFormat: @"%@ — %@",
-                            startDateString,
-                            endDateString];
-        }
-        else
-            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
-    }
-    else
-    {
-        if ( endDateString)
-        {
-            detailString = [NSString stringWithFormat: @"— %@", endDateString];
-        }
-        else
-            detailString = @"";
-    }
-    
-    return detailString;
 }
 
 - (void) handleTaskStatusTypeBtn: (NSUInteger) taskStatusType

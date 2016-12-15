@@ -34,6 +34,7 @@
 
 // Helpers
 #import "NSDate+Helper.h"
+#import "Utils.h"
 
 typedef NS_ENUM(NSUInteger, CollectionItemsList)
 {
@@ -235,15 +236,19 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     itemOne.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemOne.cellTitle  = @"Сроки";
-    itemOne.cellDetail = [self createTermsLabelTextForStartDate: self.task.startDay
-                                                 withFinishDate: self.task.endDate];
+    itemOne.cellDetail = [Utils createTermsLabelTextForStartDate: self.task.startDay
+                                                  withFinishDate: self.task.endDate
+                                                      withFormat: @"dd.MM.yyyy"
+                                           withEmptyDetailString: @"Не указано"];
 
     TaskCollectionCellsContent* itemTwo = [TaskCollectionCellsContent new];
     
     itemTwo.cellId     = self.collectionViewCellsIdArray[CollectionTermsCell];
     itemTwo.cellTitle  = @"Фактическая дата";
-    itemTwo.cellDetail = [self createTermsLabelTextForStartDate: self.task.factualStartDate
-                                                 withFinishDate: self.task.factualEndDate];
+    itemTwo.cellDetail = [Utils createTermsLabelTextForStartDate: self.task.factualStartDate
+                                                  withFinishDate: self.task.factualEndDate
+                                                      withFormat: @"dd.MM.yyyy"
+                                           withEmptyDetailString: @"Ну указано"];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
@@ -313,38 +318,6 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 
 
 #pragma mark - Helpers -
-
-- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
-                                withFinishDate: (NSDate*) finishDate
-{
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
-    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
-    
-    NSString* detailString = [NSString string];
-    
-    if ( startDateString )
-    {
-        if ( endDateString )
-        {
-            detailString = [NSString stringWithFormat: @"%@ — %@",
-                            startDateString,
-                            endDateString];
-        }
-        else
-            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
-    }
-    else
-    {
-        if ( endDateString)
-        {
-            detailString = [NSString stringWithFormat: @"— %@", endDateString];
-        }
-        else
-            detailString = @"Не указано";
-    }
-    
-    return detailString;
-}
 
 - (NSArray*) createOwnerTaskArray
 {

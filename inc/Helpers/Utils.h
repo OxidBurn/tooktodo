@@ -108,6 +108,11 @@
 
 + (NSDateFormatter*) defaultDateFormatter;
 
++ (NSString*) createTermsLabelTextForStartDate: (NSDate*)   startDate
+                                withFinishDate: (NSDate*)   finishDate
+                                    withFormat: (NSString*) format
+                         withEmptyDetailString: (NSString*) emptyDetailText;
+
 + (BOOL) addSkipBackupAttributeToItemAtURL: (NSURL*) URL;
 
 + (NSString*) stringFromCurrentDate;
