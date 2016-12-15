@@ -24,7 +24,8 @@
 
 - (BOOL) handleSelectedStateForRole: (NSIndexPath*) indexPath;
 
-- (void) updateLastIndexPath: (NSIndexPath*) indexPath;
+- (void) updateLastIndexPath: (NSIndexPath*)          indexPath
+              withCompletion: (CompletionWithSuccess) completion;
 
 - (ProjectRoles*) getSelectedItem;
 
