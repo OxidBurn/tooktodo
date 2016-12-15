@@ -66,7 +66,10 @@
         
         if ( _task.responsible == nil )
         {
-            _task.responsible = [self getCurrentUserInfoArray];
+            if (self.controllerType == AddNewTaskControllerType)
+            {
+                _task.responsible = [self getCurrentUserInfoArray];
+            }
         }
         
     }
@@ -177,8 +180,15 @@
     
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
-    rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
-    rowFour.cellIndex    = SingleUserInfoCell;
+     NSString* cellForRowFourId = [self determineCellIdForGroupOfMembers: self.task.responsible];
+    
+    NSString* cellFourDetailText  = [cellForRowFourId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не выбран" : @"";
+    
+    AddTaskTableViewCellType cellIndexRowFour = [self.addTaskTableViewCellsInfo indexOfObject: cellForRowFourId];
+    
+    rowFour.cellId       = cellForRowFourId;
+    rowFour.cellIndex    = cellIndexRowFour;
+    rowFour.detail       = cellFourDetailText;
     rowFour.title        = @"Ответственный";
     rowFour.membersArray = self.task.responsible? self.task.responsible : self.task.defaultResponsible;
     rowFour.responsibleArray = self.task.responsible ? self.task.responsible : self.task.defaultResponsible;

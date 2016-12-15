@@ -128,6 +128,41 @@ static NSDateFormatter* defaultDateFormatter = nil;
   return defaultDateFormatter;
 }
 
+// this method is used to work with task cells
++ (NSString*) createTermsLabelTextForStartDate: (NSDate*)   startDate
+                                withFinishDate: (NSDate*)   finishDate
+                                    withFormat: (NSString*) format
+                         withEmptyDetailString: (NSString*) emptyDetailText
+{
+    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: format];
+    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: format];
+    
+    NSString* detailString = [NSString string];
+    
+    if ( startDateString )
+    {
+        if ( endDateString )
+        {
+            detailString = [NSString stringWithFormat: @"%@ — %@",
+                            startDateString,
+                            endDateString];
+        }
+        else
+            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
+    }
+    else
+    {
+        if ( endDateString)
+        {
+            detailString = [NSString stringWithFormat: @"— %@", endDateString];
+        }
+        else
+            detailString = emptyDetailText;
+    }
+    
+    return detailString;
+}
+
 
 #pragma mark - Misc -
 

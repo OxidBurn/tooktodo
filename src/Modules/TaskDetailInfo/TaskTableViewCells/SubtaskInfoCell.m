@@ -19,6 +19,8 @@
 
 // Helpers
 #import "TaskStatusDefaultValues.h"
+#import "NSDate+Helper.h"
+#import "Utils.h"
 
 @interface SubtaskInfoCell()
 
@@ -112,6 +114,11 @@
     [self.taskStatusMark setStatusString: content.taskTypeDescription
                                 withType: content.taskType];
     
+    self.taskTermsLabel.text = [Utils createTermsLabelTextForStartDate: content.taskStartDate
+                                                        withFinishDate: content.taskEndDate
+                                                            withFormat: @"dd.MM.yyyy"
+                                                 withEmptyDetailString: @""];
+    
     
     //Uncomment when responsible won't be nil
     
@@ -165,6 +172,5 @@
     self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
                                              returnFontColorForTaskStatus: taskStatusType];
 }
-
 
 @end

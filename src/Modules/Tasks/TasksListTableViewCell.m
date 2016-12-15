@@ -22,6 +22,7 @@
 // Categories
 #import "UIImageView+WebCache.h"
 #import "NSDate+Helper.h"
+#import "Utils.h"
 
 // Helpers
 #import "TaskStatusDefaultValues.h"
@@ -132,8 +133,10 @@
 
 - (NSString*) executionDateString: (ProjectTask*) task
 {
-    NSString* executionDateValue = [self createTermsLabelTextForStartDate: task.startDay
-                                                           withFinishDate: task.endDate];
+    NSString* executionDateValue = [Utils createTermsLabelTextForStartDate: task.startDay
+                                                            withFinishDate: task.endDate
+                                                                withFormat: @"dd.MM.yyyy"
+                                                     withEmptyDetailString: @""];
     
     return executionDateValue;
 }
@@ -170,41 +173,6 @@
 - (IBAction) onShowTaskDetail: (UIButton*) sender
 {
     
-}
-
-
-#pragma mark - Helpers -
-
-- (NSString*) createTermsLabelTextForStartDate: (NSDate*) startDate
-                                withFinishDate: (NSDate*) finishDate
-{
-    NSString* startDateString = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
-    NSString* endDateString   = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
-    
-    NSString* detailString = [NSString string];
-    
-    if ( startDateString )
-    {
-        if ( endDateString )
-        {
-            detailString = [NSString stringWithFormat: @"%@ — %@",
-                            startDateString,
-                            endDateString];
-        }
-        else
-            detailString = [NSString stringWithFormat: @"%@ —", startDateString];
-    }
-    else
-    {
-        if ( endDateString)
-        {
-            detailString = [NSString stringWithFormat: @"— %@", endDateString];
-        }
-        else
-            detailString = @"";
-    }
-    
-    return detailString;
 }
 
 @end
