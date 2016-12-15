@@ -431,6 +431,7 @@
 		56E1B98E1D6F0FA1003E46DA /* SF-UI-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 56E1B98D1D6F0FA1003E46DA /* SF-UI-Text-Light.otf */; };
 		56E8D40F1DF1E4AF007CFB28 /* ProjectTaskStageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */; };
 		56E8D4121DF1E531007CFB28 /* ProjectStageTasksListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E8D4111DF1E531007CFB28 /* ProjectStageTasksListModel.m */; };
+		56EFA6781E02A6D900D8FA0B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56EFA6771E02A6D900D8FA0B /* MessageUI.framework */; };
 		59088A041DD2022D007B33EA /* AttachmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59088A031DD2022D007B33EA /* AttachmentView.xib */; };
 		5913440C1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5913440A1D5EFDBD0027889F /* DataBaseModel.xcdatamodeld */; };
 		5913440F1D5F03290027889F /* UserNotificationSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5913440E1D5F03290027889F /* UserNotificationSettings.plist */; };
@@ -1348,6 +1349,7 @@
 		56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTaskStageModel.m; sourceTree = "<group>"; };
 		56E8D4101DF1E531007CFB28 /* ProjectStageTasksListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStageTasksListModel.h; sourceTree = "<group>"; };
 		56E8D4111DF1E531007CFB28 /* ProjectStageTasksListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectStageTasksListModel.m; sourceTree = "<group>"; };
+		56EFA6771E02A6D900D8FA0B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		59088A031DD2022D007B33EA /* AttachmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AttachmentView.xib; sourceTree = "<group>"; };
 		5913440B1D5EFDBD0027889F /* DataBaseModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBaseModel.xcdatamodel; sourceTree = "<group>"; };
 		5913440E1D5F03290027889F /* UserNotificationSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserNotificationSettings.plist; path = ../res/settings/UserNotificationSettings.plist; sourceTree = "<group>"; };
@@ -1529,6 +1531,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56EFA6781E02A6D900D8FA0B /* MessageUI.framework in Frameworks */,
 				3DDC23AE2882CDED0E355CFC /* libPods-TookTODO.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3719,6 +3722,7 @@
 		A3DEE62BCE353EEF2D396143 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				56EFA6771E02A6D900D8FA0B /* MessageUI.framework */,
 				C7DA73CAF0AF89DAE881C574 /* libPods-TookTODO.a */,
 			);
 			name = Frameworks;
@@ -4013,6 +4017,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59D9BD051D5868B7009DFBA8 /* Build configuration list for PBXNativeTarget "TookTODO" */;
 			buildPhases = (
+				DF1DCF23FE60ED6BE4B26386 /* 📦 Check Pods Manifest.lock */,
 				C23BCB1F57F4F78BB7CA8DFF /* [CP] Check Pods Manifest.lock */,
 				59D9BCEA1D5868B7009DFBA8 /* Sources */,
 				59D9BCEB1D5868B7009DFBA8 /* Frameworks */,
@@ -4020,6 +4025,8 @@
 				3418453EE7F10BA53A1A2EAB /* [CP] Embed Pods Frameworks */,
 				BF09F5E38D58D6D0ACAB3A9C /* [CP] Copy Pods Resources */,
 				56D173071D66E5D700DB3F43 /* ShellScript */,
+				290F4894E175E1695EC0E891 /* 📦 Embed Pods Frameworks */,
+				D028CF45D5B899B2499F67F3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4111,6 +4118,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		290F4894E175E1695EC0E891 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3418453EE7F10BA53A1A2EAB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4162,6 +4184,36 @@
 			inputPaths = (
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D028CF45D5B899B2499F67F3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../pod/Pods/Target Support Files/Pods-TookTODO/Pods-TookTODO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF1DCF23FE60ED6BE4B26386 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

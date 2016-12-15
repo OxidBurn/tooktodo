@@ -95,7 +95,7 @@ static bool isFirstAccess = YES;
     NSArray* signals = @[[[RolesService sharedInstance] loadAllRolesForProject: project],
                          [[SystemsService sharedInstance] loadCurrentProjectSystems: project.projectID],
                          [[TasksService sharedInstance] loadAllTasksForProject: project],
-                          [self loadUserPermissionForProjectWithID: project.projectID],
+                         [self loadUserPermissionForProjectWithID: project.projectID],
                          [[RoomsService sharedInstance] getRoomLevelsForSelectedProjectWithID: project.projectID],
                          [[TaskFiltersService sharedInstance] loadAllTaskFiltersInfo: project.projectID]];
     
