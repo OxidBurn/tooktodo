@@ -93,7 +93,7 @@
             roleType.roleTypeID = updatedRole.roleID;
             roleType.title      = updatedRole.title;
             
-            assignee.projectRoleType = roleType;
+            roleType.roleAssignment = assignee;
         }
         
     }
