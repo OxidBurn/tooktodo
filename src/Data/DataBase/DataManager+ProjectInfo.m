@@ -26,6 +26,7 @@
 // Categories
 #import "DataManager+Room.h"
 #import "DataManager+Tasks.h"
+#import "DataManager+UserInfo.h"
 
 @implementation DataManager (ProjectInfo)
 
@@ -447,7 +448,7 @@
                       }];
 }
 
-- (void) updateSelectedProjectPermission: (BOOL)                  permission
+- (void) updateSelectedProjectPermission: (NSUInteger)            permission
                           withCompletion: (CompletionWithSuccess) completion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
@@ -468,8 +469,11 @@
 - (NSInteger) getSelectedProjectPermission
 {
     ProjectInfo* selectedProjectInfo = [self getSelectedProjectInfo];
+ 
+    NSUInteger permission = selectedProjectInfo.projectPermission.integerValue;
     
-    return selectedProjectInfo.projectPermission.integerValue;
+    return permission;
+    
 }
 
 @end
