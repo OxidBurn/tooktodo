@@ -210,7 +210,7 @@ static bool isFirstAccess = YES;
 - (void) updateProjectPermissionValue: (NSDictionary*)         response
                        withCompletion: (CompletionWithSuccess) completion
 {
-    BOOL projectPermissionValue = [response[@"projectPermission"] boolValue];
+    NSUInteger projectPermissionValue = [response[@"projectPermission"] integerValue];
     
     [DataManagerShared updateSelectedProjectPermission: projectPermissionValue
                                         withCompletion: completion];

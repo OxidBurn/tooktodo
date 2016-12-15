@@ -147,6 +147,12 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
                         self.cell.userInteractionEnabled = NO;
                     }
                 }
+                
+                else if (indexPath.row == 1)
+                {
+                    self.cell.accessoryType = UITableViewCellAccessoryNone;
+                    self.cell.userInteractionEnabled = NO;
+                }
             }
                 break;
                 
