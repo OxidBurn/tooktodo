@@ -302,6 +302,10 @@
     
     NSArray* allLogs = task.logs.array;
     
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"createdDate" ascending: NO];
+    
+   allLogs = [allLogs sortedArrayUsingDescriptors: [NSArray arrayWithObject:sortDescriptor]];
+    
     [allLogs enumerateObjectsUsingBlock: ^(TaskLogInfo* log, NSUInteger idx, BOOL * _Nonnull stop) {
         
         TaskRowContent* row = [TaskRowContent new];
@@ -349,6 +353,7 @@
         }
         
         [content addObject: row];
+        
     }];
     
     return content.copy;

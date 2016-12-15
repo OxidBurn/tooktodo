@@ -410,7 +410,7 @@
 
 #pragma mark - Data base methods -
 
-- (void) parseTasksForProjectFromResponse: (NSArray*)               response
+- (void) parseTasksForProjectFromResponse: (NSArray*)              response
                                forProject: (ProjectInfo*)          project
                            withCompletion: (CompletionWithSuccess) completion
 {
