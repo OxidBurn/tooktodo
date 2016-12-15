@@ -72,19 +72,20 @@
                       }];
 }
 
-- (void) updateTeamMemberRole: (ProjectRoles*)         role
-               withCompletion: (CompletionWithSuccess) completion
+- (void) updateTeamMemberRole: (ProjectRoles*)           role
+                  forAssignee: (ProjectRoleAssignments*) assignee
+               withCompletion: (CompletionWithSuccess)   completion
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
         ProjectRoles* updatedRole = [role MR_inContext: localContext];
         
-        ProjectRoleAssignments* assignee = [[self getSelectedProjectRoleAssignment] MR_inContext: localContext];
+        ProjectRoleAssignments* localAssignee = [assignee MR_inContext: localContext];
         
-        if ( assignee.projectRoleType )
+        if ( localAssignee.projectRoleType )
         {
-            assignee.projectRoleType.roleTypeID = updatedRole.roleID;
-            assignee.projectRoleType.title      = updatedRole.title;
+            localAssignee.projectRoleType.roleTypeID = updatedRole.roleID;
+            localAssignee.projectRoleType.title      = updatedRole.title;
         }
         else
         {
@@ -93,7 +94,8 @@
             roleType.roleTypeID = updatedRole.roleID;
             roleType.title      = updatedRole.title;
             
-            roleType.roleAssignment = assignee;
+//            localAssignee.projectRoleType = roleType;
+            roleType.roleAssignment = localAssignee;
         }
         
     }

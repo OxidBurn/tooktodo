@@ -256,15 +256,8 @@ typedef NS_ENUM(NSUInteger, ContactType)
         @strongify(self)
         
         [DataManagerShared updateTeamMemberRole: role
+                                    forAssignee: self.memberInfo.assignments
                                  withCompletion: ^(BOOL isSuccess) {
-                                     
-//                                     FilledTeamInfo* teamMember = [FilledTeamInfo new];
-//                                     
-//                                     [teamMember fillTeamInfo: self.assignment];
-//                                     
-//                                     teamMember.role = role.title;
-//                                     
-//                                     self.memberInfo = teamMember;
                                      
                                      self.memberInfo.role = role.title;
                                      
