@@ -128,6 +128,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
         UIFont* customFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.0f];
         [self.model reloadContent];
+        
         self.cell.detailTextLabel.text = [self.model getDetailRoleCellLabelTextForIndexPath: indexPath];
         self.cell.detailTextLabel.textColor = [UIColor blackColor];
         self.cell.detailTextLabel.font = customFont;

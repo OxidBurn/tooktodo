@@ -258,13 +258,15 @@ typedef NS_ENUM(NSUInteger, ContactType)
         [DataManagerShared updateTeamMemberRole: role
                                  withCompletion: ^(BOOL isSuccess) {
                                      
-                                     FilledTeamInfo* teamMember = [FilledTeamInfo new];
+//                                     FilledTeamInfo* teamMember = [FilledTeamInfo new];
+//                                     
+//                                     [teamMember fillTeamInfo: self.assignment];
+//                                     
+//                                     teamMember.role = role.title;
+//                                     
+//                                     self.memberInfo = teamMember;
                                      
-                                     [teamMember fillTeamInfo: self.assignment];
-                                     
-                                     teamMember.role = role.title;
-                                     
-                                     self.memberInfo = teamMember;
+                                     self.memberInfo.role = role.title;
                                      
                                      if ( completion )
                                          completion(isSuccess);
@@ -380,8 +382,8 @@ typedef NS_ENUM(NSUInteger, ContactType)
 
 - (BOOL) checkIfTeamMemberBlockedOrInvited
 {
-    BOOL isBlocked = self.assignment.isBlocked.boolValue;
-    BOOL isInvited = self.assignment.invite != nil;
+    BOOL isBlocked = self.memberInfo.assignments.isBlocked.boolValue;
+    BOOL isInvited = self.memberInfo.assignments.invite != nil;
     
     BOOL disabled = (isBlocked == YES || isInvited);
     
