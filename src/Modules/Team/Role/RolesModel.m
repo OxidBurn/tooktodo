@@ -76,14 +76,18 @@
     return role.title;
 }
 
-- (void) updateLastIndexPath: (NSIndexPath*) indexPath
+- (void) updateLastIndexPath: (NSIndexPath*)          indexPath
+              withCompletion: (CompletionWithSuccess) completion
 {
     self.lastIndexPath = indexPath;
+    
+    if ( completion )
+        completion (YES);
 }
 
 - (BOOL) handleSelectedStateForRole: (NSIndexPath*) indexPath
 {
-    if ([self.lastIndexPath isEqual: indexPath])
+    if ( [ indexPath isEqual: self.lastIndexPath] )
     {
         return YES;
     }

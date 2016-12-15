@@ -49,7 +49,7 @@
         
         NSMutableArray* tmp = [NSMutableArray array];
         
-        for (NSUInteger i; i < numberOfRows; i++)
+        for (NSUInteger i = 0; i < numberOfRows; i++)
         {
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow: i
                                                         inSection: 0];
@@ -111,12 +111,12 @@
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
     
-    [self.model updateLastIndexPath: indexPath];
-    
-//    [tableView reloadData];
-    
-    [tableView reloadRowsAtIndexPaths: self.indexesArray
-                     withRowAnimation: UITableViewRowAnimationFade];
+    [self.model updateLastIndexPath: indexPath
+                     withCompletion: ^(BOOL isSuccess) {
+        
+                         [tableView reloadRowsAtIndexPaths: self.indexesArray
+                                          withRowAnimation: UITableViewRowAnimationFade];
+    }];
 }
 
 
