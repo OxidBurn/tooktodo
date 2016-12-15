@@ -19,6 +19,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* roomNameLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* roomLabelWidthConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* roomNumberToNameHorizontal;
+
 // properties
 
 // methods
@@ -33,9 +37,20 @@
 
 - (void) fillCellWithContent: (TaskCollectionCellsContent*) content
 {
-    self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)content.roomNumber];
-    
-    self.roomNameLabel.text = content.cellDetail;
+    if ( content.roomNumber != 0 )
+    {
+        self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)content.roomNumber];
+        
+        self.roomNameLabel.text = content.cellDetail;
+    }
+    else
+    {
+        self.roomNameLabel.text = @"Не указано";
+        
+        self.roomLabelWidthConstraint.constant   = 0.f;
+        
+        self.roomNumberToNameHorizontal.constant = 0.f;
+    }
 }
 
 

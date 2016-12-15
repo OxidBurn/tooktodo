@@ -956,6 +956,8 @@
                              forTask: task
                            inContext: context];
     }
+    else
+        task.responsible = nil;
     
     // Store task work area
     if ( info.workArea )
@@ -964,6 +966,8 @@
                           forTask: task
                         inContext: context];
     }
+    else
+        task.workArea = nil;
     
     // Store task owner user info
     if ( info.ownerUser )
@@ -972,6 +976,8 @@
                            forTask: task
                          inContext: context];
     }
+    else
+        task.ownerUser = nil;
     
     // Store task marker info
     if ( info.marker )
@@ -980,6 +986,8 @@
                         forTask: task
                       inContext: context];
     }
+    else
+        task.marker = nil;
     
     // Store task rool level
     if ( info.roomLevel )
@@ -988,6 +996,8 @@
                            forTask: task
                          inContext: context];
     }
+    else
+        task.roomLevel = nil;
     
     // Store room value
     if ( info.room )
@@ -997,6 +1007,8 @@
                  isSingleRoom: YES
                     inContext: context];
     }
+    else
+        task.room = nil;
     
     // Store task rooms
     if ( info.rooms )
@@ -1010,6 +1022,8 @@
             
         }];
     }
+    else
+        task.rooms = nil;
     
     // Store subtasks
     if ( info.subTasks )
@@ -1049,6 +1063,8 @@
             
         }];
     }
+    else
+        task.taskRoleAssignments = nil;
     
     // Task approvements
     if ( info.approvments )
@@ -1061,6 +1077,8 @@
             
         }];
     }
+    else
+        task.approvments = nil;
 }
 
 @end
