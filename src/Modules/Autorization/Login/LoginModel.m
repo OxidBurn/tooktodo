@@ -137,6 +137,8 @@
 
 - (void) loadUserContent
 {
+    [SVProgressHUD showWithStatus: @"Загрузка данных пользователя"];
+    
     RACSignal* loadAllProjectsSignal      = [[ProjectsService sharedInstance] getAllProjectsList];
     RACSignal* loadAllUserTasksByProjects = [[TasksService sharedInstance] loadAllTasksForCurrentUser];
     
@@ -153,6 +155,10 @@
             
             if ( project )
                 [[ProjectsService sharedInstance] loadProjectData: project];
+            else
+            {
+                [SVProgressHUD dismiss];
+            }
             
         }];
         

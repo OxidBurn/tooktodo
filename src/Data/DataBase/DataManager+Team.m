@@ -77,19 +77,21 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
+        ProjectRoles* updatedRole = [role MR_inContext: localContext];
+        
         ProjectRoleAssignments* assignee = [[self getSelectedProjectRoleAssignment] MR_inContext: localContext];
         
         if ( assignee.projectRoleType )
         {
-            assignee.projectRoleType.roleTypeID = role.roleID;
-            assignee.projectRoleType.title      = role.title;
+            assignee.projectRoleType.roleTypeID = updatedRole.roleID;
+            assignee.projectRoleType.title      = updatedRole.title;
         }
         else
         {
-            ProjectRoleType* roleType = [ProjectRoleType MR_createEntity];
+            ProjectRoleType* roleType = [ProjectRoleType MR_createEntityInContext: localContext];
             
-            roleType.roleTypeID = role.roleID;
-            roleType.title      = role.title;
+            roleType.roleTypeID = updatedRole.roleID;
+            roleType.title      = updatedRole.title;
             
             assignee.projectRoleType = roleType;
         }

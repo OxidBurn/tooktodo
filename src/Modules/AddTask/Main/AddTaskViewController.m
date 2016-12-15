@@ -558,11 +558,11 @@
     self.viewModel.dismissTaskInfo = ^(){
         
         [blockSelf dismissViewControllerAnimated: YES
-                                      completion: ^{
-                                          
-                                          [DefaultNotifyCenter postNotificationName: @"ShowTaskScreen"
-                                                                             object: nil];
-                                      }];
+                                      completion: NULL];
+        
+        [DefaultNotifyCenter postNotificationName: @"ShowTaskScreen"
+                                           object: nil];
+        
     };
    
 }

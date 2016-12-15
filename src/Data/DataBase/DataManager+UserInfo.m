@@ -43,7 +43,7 @@
             }
         }
         
-        userInfo.fullName                         = info.displayName;
+        userInfo.fullName                         = (info.displayName) ? info.displayName : @"";
         userInfo.email                            = info.email;
         userInfo.firstName                        = info.firstName;
         userInfo.lastName                         = info.lastName;
