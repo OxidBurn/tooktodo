@@ -200,7 +200,7 @@
     // checking if array with statuses contains current task status
     // if not adding this status to first position
     
-    if ( [tmp containsObject: currStatus] == NO )
+    if ( [tmp containsObject: currStatus] == NO && currStatus)
     {
         [tmp insertObject: currStatus
                   atIndex: 0];
