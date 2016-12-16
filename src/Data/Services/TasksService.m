@@ -636,15 +636,21 @@
     
     [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @0,
-                                                      @"projectRoleAssignmentId" : obj.userId}];
+        if ( obj.userId )
+        {
+            [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @0,
+                                                          @"projectRoleAssignmentId" : obj.userId}];
+        }
         
     }];
     
     [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @1,
-                                                      @"projectRoleAssignmentId" : obj.userId}];
+        if ( obj.userId )
+        {
+            [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @1,
+                                                          @"projectRoleAssignmentId" : obj.userId}];
+        }
         
     }];
     
