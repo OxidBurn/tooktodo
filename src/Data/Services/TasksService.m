@@ -241,29 +241,14 @@
              
              @strongify(self)
              
-             if ( isSubtask )
-             {
-                 [self parseNewTaskInfo: response[0]
-                         withCompletion: ^(BOOL isSuccess) {
-                             
-                             [subscriber sendNext: nil];
-                             [subscriber sendCompleted];
-                             
-                         }];
-             }
-             else
-             {
-                 ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
-                 
-                 [self parseTasksForProjectFromResponse: @[response[0]]
-                                             forProject: project
-                                         withCompletion: ^(BOOL isSuccess) {
-                                             
-                                             [subscriber sendNext: nil];
-                                             [subscriber sendCompleted];
-                                             
-                                         }];
-             }
+             [self parseNewTaskInfo: response[0]
+                          isSubTask: isSubtask
+                     withCompletion: ^(BOOL isSuccess) {
+                         
+                         [subscriber sendNext: nil];
+                         [subscriber sendCompleted];
+                         
+                     }];
              
          }
          error: ^(NSError *error) {
@@ -495,6 +480,7 @@
 }
 
 - (void) parseNewTaskInfo: (NSDictionary*)         response
+                isSubTask: (BOOL)                  isSubTask
            withCompletion: (CompletionWithSuccess) completion
 {
     NSError* parsingError      = nil;
@@ -507,8 +493,16 @@
     }
     else
     {
-        [DataManagerShared persistNewSubtask: taskInfo
-                              withCompletion: completion];
+        if ( isSubTask )
+        {
+            [DataManagerShared persistNewSubtask: taskInfo
+                                  withCompletion: completion];
+        }
+        else
+        {
+            [DataManagerShared persistNewTaskForSelectedProject: taskInfo
+                                                 withCompletion: completion];
+        }
     }
 }
 
@@ -595,11 +589,11 @@
     {
         NSDictionary* roomModelDic     = @{@"id"      : taskInfo.room.roomID,
                                            @"levelId" : taskInfo.room.roomLevel.roomLevelID};
-        newTaskParameter[@"rooms"] = roomModelDic;
+        newTaskParameter[@"roomModel"] = roomModelDic;
     }
     else
     {
-        newTaskParameter[@"rooms"] = @{};
+        newTaskParameter[@"roomModel"] = @{};
     }
     
     
@@ -609,11 +603,11 @@
         NSDictionary* stageModelDic     = @{@"id"       : taskInfo.stage.stageID,
                                             @"title"    : taskInfo.stage.title,
                                             @"isCommon" : taskInfo.stage.isCommon};
-        newTaskParameter[@"stage"] = stageModelDic;
+        newTaskParameter[@"stageModel"] = stageModelDic;
     }
     else
     {
-        newTaskParameter[@"stage"] = @{};
+        newTaskParameter[@"stageModel"] = @{};
     }
     
     // Work Area Model
@@ -624,11 +618,11 @@
                                                @"shortTitle" : taskInfo.system.shortTitle,
                                                @"hasTasks"   : taskInfo.system.hasTasks};
         
-        newTaskParameter[@"workArea"] = workAreaModelDic;
+        newTaskParameter[@"workAreaModel"] = workAreaModelDic;
     }
     else
     {
-        newTaskParameter[@"workArea"] = @{};
+        newTaskParameter[@"workAreaModel"] = @{};
     }
     
     // Task Role Assignment Models
