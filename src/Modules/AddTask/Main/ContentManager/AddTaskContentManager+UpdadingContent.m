@@ -87,6 +87,13 @@
     
     RowContent* row = self.addTaskContentArray[SectionOne][TaskResponsibleRow];
     
+    if ( selectedUsersArray )
+    {
+        row.cellId    = [self determineCellIdForGroupOfMembers: selectedUsersArray];
+        row.cellIndex = [self determintCellIndexForCellId: row.cellId];
+    }
+
+    
     row.membersArray     = selectedUsersArray;
     row.responsibleArray = selectedUsersArray;
     
