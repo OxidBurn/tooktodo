@@ -42,6 +42,8 @@
 
 @property (assign, nonatomic) BOOL isHiddenTask;
 
+@property (assign, nonatomic) CGFloat contentWidth;
+
 @property (strong, nonatomic) NSString* mapPreviewImage;
 
 @property (assign, nonatomic) NSUInteger ownerUserId;

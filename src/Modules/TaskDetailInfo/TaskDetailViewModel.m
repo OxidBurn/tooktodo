@@ -232,7 +232,9 @@
         [self.model createContentForTableViewWithFrame: tableView.frame];
     }
 
-    TaskRowContent *content = [self.model getContentForIndexPath: indexPath];
+    TaskRowContent* content = [self.model getContentForIndexPath: indexPath];
+    
+    content.contentWidth = tableView.size.width;
     
     UITableViewCell* cell = [self.factory createCellForTableView: tableView
                                                      withContent: content
