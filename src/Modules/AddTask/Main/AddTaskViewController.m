@@ -23,6 +23,7 @@
 #import "ProjectsEnumerations.h"
 #import "AddTaskModel.h"
 #import "OSAlertController.h"
+#import "DataManager+ProjectInfo.h"
 
 @interface AddTaskViewController () <AddTaskViewModelDelegate, AddTaskModelDataSource>
 
@@ -348,26 +349,7 @@
     titleLabel.font            = customFont;
     titleLabel.textAlignment   = NSTextAlignmentCenter;
     
-    
-    switch ([self getControllerType])
-    {
-        case AddNewTaskControllerType: titleLabel.text = @"НОВАЯ ЗАДАЧА";
-            break;
-            
-        case AddSubtaskControllerType: titleLabel.text = @"НОВАЯ ПОДЗАДАЧА";
-            break;
-            
-        case EditTaskControllerType: titleLabel.text = @"РЕДАКТИРОВАТЬ ЗАДАЧУ";
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    
-    [titleLabel sizeToFit];
-    
+   
     UILabel* subTitleLabel        = [[UILabel alloc] initWithFrame: CGRectMake(0, 17, 0, 0)];
     
     subTitleLabel.backgroundColor = [UIColor clearColor];
@@ -375,9 +357,50 @@
     subTitleLabel.font            = customFontForSubTitle;
     subTitleLabel.textAlignment   = NSTextAlignmentCenter;
     
+    
+    
+    switch ([self getControllerType])
+    {
+        case AddNewTaskControllerType:
+        {
+            titleLabel.text = @"НОВАЯ ЗАДАЧА";
+            subTitleLabel.text = [[DataManagerShared getSelectedProjectInfo] title];
+        }
+            break;
+            
+        case AddSubtaskControllerType:
+        {
+            titleLabel.text = @"НОВАЯ ПОДЗАДАЧА";
+            subTitleLabel.text = @"";
+        }
+            break;
+            
+        case EditTaskControllerType:
+        {
+            titleLabel.text = [NSString stringWithFormat: @"ЗАДАЧА #%@", [[self.viewModel getSelectedTask] taskID]];
+            subTitleLabel.text = @"";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [titleLabel sizeToFit];
+    
     [subTitleLabel sizeToFit];
     
-    UIView* twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
+    UIView* twoLineTitleView = nil;
+    
+    if ([subTitleLabel.text isEqualToString: @""] != NO && subTitleLabel)
+    {
+        twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 20)];
+    }
+    
+    else
+    {
+        twoLineTitleView = [[UIView alloc] initWithFrame: CGRectMake(0, 0, MAX(subTitleLabel.frame.size.width, titleLabel.frame.size.width), 32)];
+    }
     
     [twoLineTitleView addSubview: titleLabel];
     [twoLineTitleView addSubview: subTitleLabel];
