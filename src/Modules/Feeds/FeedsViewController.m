@@ -29,7 +29,7 @@
     
     // Setup navigation title view
      [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЛЕНТА"
-                                                withSubTitle: [DataManagerShared getSelectedProjectName]];
+                                                withSubTitle: @""];
     
     // Add updating notification
     [DefaultNotifyCenter addObserver: self

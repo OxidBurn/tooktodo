@@ -153,9 +153,6 @@
             
             ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
             
-            [DefaultNotifyCenter postNotificationName: @"NeedToUpdateContent"
-                                               object: nil];
-            
             if ( project )
                 [[ProjectsService sharedInstance] loadProjectData: project];
             else
