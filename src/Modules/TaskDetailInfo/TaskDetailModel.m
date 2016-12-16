@@ -260,12 +260,12 @@
 
 - (NSArray*) getSubtasks
 {
-    return self.task.subTasks.allObjects;
+    return self.task.subTasks.array;
 }
 
 - (ProjectTask*) getInfoForCellAtIndexPath: (NSIndexPath*) path
 {
-    ProjectTask* cellsContentInfo = [self.task.subTasks.allObjects objectAtIndex: path.row - 1];
+    ProjectTask* cellsContentInfo = [self.task.subTasks.array objectAtIndex: path.row - 1];
     
     return cellsContentInfo;
 }

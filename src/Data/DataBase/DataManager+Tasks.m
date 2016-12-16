@@ -226,7 +226,7 @@
         
         if ( subtask )
         {
-            [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, BOOL * _Nonnull stop) {
+            [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, NSUInteger idx, BOOL * _Nonnull stop) {
                
                 [subTask MR_deleteEntityInContext: localContext];
                 
@@ -235,7 +235,7 @@
         else
             if ( task.subTasks.count > 0 )
             {
-                [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, BOOL * _Nonnull stop) {
+                [task.subTasks enumerateObjectsUsingBlock: ^(ProjectTask * _Nonnull subTask, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     subTask.parentTaskId = nil;
                     subTask.stage        = task.stage;

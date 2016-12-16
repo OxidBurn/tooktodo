@@ -2,7 +2,7 @@
 //  ProjectTask+CoreDataProperties.h
 //  
 //
-//  Created by Nikolay Chaban on 11/28/16.
+//  Created by Nikolay Chaban on 12/16/16.
 //
 //
 
@@ -59,9 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) ProjectTaskRoomLevel *roomLevel;
 @property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoom *> *rooms;
 @property (nullable, nonatomic, retain) ProjectTaskStage *stage;
-@property (nullable, nonatomic, retain) NSSet<ProjectTask *> *subTasks;
+@property (nullable, nonatomic, retain) NSOrderedSet<ProjectTask *> *subTasks;
 @property (nullable, nonatomic, retain) NSOrderedSet<ProjectTaskRoleAssignments *> *taskRoleAssignments;
 @property (nullable, nonatomic, retain) ProjectTaskWorkArea *workArea;
+@property (nullable, nonatomic, retain) ProjectTask *task;
 
 @end
 
@@ -105,10 +106,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addRooms:(NSOrderedSet<ProjectTaskRoom *> *)values;
 - (void)removeRooms:(NSOrderedSet<ProjectTaskRoom *> *)values;
 
+- (void)insertObject:(ProjectTask *)value inSubTasksAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromSubTasksAtIndex:(NSUInteger)idx;
+- (void)insertSubTasks:(NSArray<ProjectTask *> *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeSubTasksAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInSubTasksAtIndex:(NSUInteger)idx withObject:(ProjectTask *)value;
+- (void)replaceSubTasksAtIndexes:(NSIndexSet *)indexes withSubTasks:(NSArray<ProjectTask *> *)values;
 - (void)addSubTasksObject:(ProjectTask *)value;
 - (void)removeSubTasksObject:(ProjectTask *)value;
-- (void)addSubTasks:(NSSet<ProjectTask *> *)values;
-- (void)removeSubTasks:(NSSet<ProjectTask *> *)values;
+- (void)addSubTasks:(NSOrderedSet<ProjectTask *> *)values;
+- (void)removeSubTasks:(NSOrderedSet<ProjectTask *> *)values;
 
 - (void)insertObject:(ProjectTaskRoleAssignments *)value inTaskRoleAssignmentsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromTaskRoleAssignmentsAtIndex:(NSUInteger)idx;

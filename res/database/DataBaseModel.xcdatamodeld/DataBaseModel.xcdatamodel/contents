@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AllProjectTasksFilterContent" representedClassName="AllProjectTasksFilterContent" syncable="YES">
         <attribute name="closeBeginDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="closeEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -181,7 +181,8 @@
         <relationship name="roomLevel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskRoomLevel" inverseName="task" inverseEntity="ProjectTaskRoomLevel" syncable="YES"/>
         <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoom" inverseName="task" inverseEntity="ProjectTaskRoom" syncable="YES"/>
         <relationship name="stage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskStage" inverseName="tasks" inverseEntity="ProjectTaskStage" syncable="YES"/>
-        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
+        <relationship name="subTasks" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTask" inverseName="task" inverseEntity="ProjectTask" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTask" inverseName="subTasks" inverseEntity="ProjectTask" syncable="YES"/>
         <relationship name="taskRoleAssignments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProjectTaskRoleAssignments" inverseName="task" inverseEntity="ProjectTaskRoleAssignments" syncable="YES"/>
         <relationship name="workArea" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectTaskWorkArea" inverseName="task" inverseEntity="ProjectTaskWorkArea" syncable="YES"/>
     </entity>
@@ -481,7 +482,7 @@
         <element name="ProjectRoles" positionX="-45" positionY="99" width="128" height="180"/>
         <element name="ProjectRoleType" positionX="-27" positionY="117" width="128" height="105"/>
         <element name="ProjectSystem" positionX="-36" positionY="108" width="128" height="135"/>
-        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="750"/>
+        <element name="ProjectTask" positionX="-45" positionY="99" width="128" height="765"/>
         <element name="ProjectTaskAssignee" positionX="-45" positionY="99" width="128" height="330"/>
         <element name="ProjectTaskAttachment" positionX="-45" positionY="99" width="128" height="60"/>
         <element name="ProjectTaskFilterContent" positionX="-36" positionY="108" width="128" height="420"/>

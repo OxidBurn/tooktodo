@@ -388,7 +388,7 @@
 
 - (NSArray*) createSubtaskForTask: (ProjectTask*) task
 {
-    NSArray* subtasksArray = task.subTasks.allObjects;
+    NSArray* subtasksArray = task.subTasks.array;
  
     return [self fillSubtasksContent: subtasksArray];
 }
