@@ -20,14 +20,14 @@
     
     if ( date == nil )
     {
-        formatter.dateFormat = @"yyyy-MM-dd'T'hh:mm:ss";
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
         
         date = [formatter dateFromString: string];
     }
     
     if ( date == nil )
     {
-        formatter.dateFormat = @"dd.mm.yyyy'T'hh:mm:ss.SSS";
+        formatter.dateFormat = @"dd.MM.yyyy'T'HH:mm:ss.SSS";
         
         date = [formatter dateFromString: string];
     }
