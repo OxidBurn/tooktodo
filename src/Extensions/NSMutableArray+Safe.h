@@ -14,4 +14,6 @@
 
 - (void) safeRemoveObject: (id) object;
 
+- (void) safeAddObject: (id) object;
+
 @end

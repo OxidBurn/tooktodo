@@ -27,6 +27,7 @@
 #import "DataManager+ProjectInfo.h"
 #import "NSDate+Helper.h"
 #import "DataManager+TaskLogs.h"
+#import "NSMutableArray+Safe.h"
 
 @implementation TasksService
 
@@ -635,22 +636,25 @@
     
     [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @0,
-                                                  @"projectRoleAssignmentId" : obj.userId}];
+        [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @0,
+                                                      @"projectRoleAssignmentId" : obj.userId}];
         
     }];
     
     [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @1,
-                                                  @"projectRoleAssignmentId" : obj.userId}];
+        [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @1,
+                                                      @"projectRoleAssignmentId" : obj.userId}];
         
     }];
     
     [taskInfo.observers enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [taskRoleAssignmentModelsArr addObject: @{@"taskRoleType" : @2,
-                                                  @"projectRoleAssignmentId" : obj.userId}];
+        if ( obj.userId )
+        {
+            [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @2,
+                                                          @"projectRoleAssignmentId" : obj.userId}];
+        }
         
     }];
     
