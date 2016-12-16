@@ -224,7 +224,6 @@
     [self createUIInfoAccordingToIdiomForContent: content];
     
     [self handleHorizontalConstraintsForContent: content];
-    
 }
 
 - (void) createUIInfoAccordingToIdiomForContent: (TaskRowContent*) content
