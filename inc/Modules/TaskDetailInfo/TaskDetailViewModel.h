@@ -31,6 +31,8 @@
 
 @property (nonatomic, copy) void(^showSortingPopoverBlock)(CGRect frame);
 
+@property (nonatomic, copy) void(^initSubtaskDetailInfoController)();
+
 @property (nonatomic, assign) CGFloat keyboardHeight;
 
 @property (strong, nonatomic) TaskDetailModel* model;
@@ -56,6 +58,8 @@
 - (NSString*) getTaskNumberTitle;
 
 - (NSString*) getProjectTitle;
+
+- (ProjectTask*) getSelectedSubtask;
 
 // Reloading task content info, after appearing on task info screen
 - (void) reloadDataWithCompletion: (CompletionWithSuccess) completion;

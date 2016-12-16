@@ -46,6 +46,7 @@
 
 - (TaskStatusType) getTaskStatus;
 
+- (ProjectTask*) getSelectedSubtask;
 
 // methods for work with content or data base
 - (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion;
@@ -56,6 +57,9 @@
 
 - (void) fillSelectedTask: (ProjectTask*) task
            withCompletion: (CompletionWithSuccess) completion;
+
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion;
 
 // Reloading task content info, after appearing on task info screen
 - (void) reloadDataWithCompletion: (CompletionWithSuccess) completion;

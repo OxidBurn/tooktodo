@@ -36,6 +36,8 @@
 
 @property (assign, nonatomic) CGRect tableViewFrame;
 
+@property (nonatomic, strong) ProjectTask* selectedSubtask;
+
 @end
 
 @implementation TaskDetailModel
@@ -261,6 +263,23 @@
     return self.task.subTasks.allObjects;
 }
 
+- (ProjectTask*) getInfoForCellAtIndexPath: (NSIndexPath*) path
+{
+    ProjectTask* cellsContentInfo = [self.task.subTasks.allObjects objectAtIndex: path.row - 1];
+    
+    return cellsContentInfo;
+}
+
+- (void) markTaskAsSelected: (NSIndexPath*)          index
+             withCompletion: (CompletionWithSuccess) completion
+{
+    self.selectedSubtask = [self getInfoForCellAtIndexPath: index];
+    
+    [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedSubtask
+                                            withSelectedState: YES
+                                               withCompletion: completion];
+}
+
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding
 {
@@ -293,6 +312,11 @@
 {
     [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
             withCompletion: completion];
+}
+
+- (ProjectTask*) getSelectedSubtask
+{
+    return self.selectedSubtask;
 }
 
 

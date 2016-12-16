@@ -13,6 +13,8 @@
 
 @interface SubtaskInfoCell : UITableViewCell
 
+@property (nonatomic, copy) void(^initTaskDetailInfoController)();
+
 // methods
 - (void) fillCellWithContent: (TaskRowContent*) content;
 

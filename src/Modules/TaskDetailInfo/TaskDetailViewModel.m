@@ -25,6 +25,7 @@
 #import "CollectionCell.h"
 #import "ParentCollectionCell.h"
 #import "AlertViewBlocks.h"
+#import "SubtaskInfoCell.h"
 
 // Helpers
 #import "Utils.h"
@@ -112,6 +113,11 @@
 - (TaskStatusType) getTaskStatus
 {
     return [self.model getTaskStatus];
+}
+
+- (ProjectTask*) getSelectedSubtask
+{
+    return [self.model getSelectedSubtask];
 }
 
 - (void) fillSelectedTask: (ProjectTask*) task
@@ -381,6 +387,21 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     [tableView deselectRowAtIndexPath: indexPath
                              animated: YES];
+    
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath: indexPath];
+    
+    if ([cell isKindOfClass: [SubtaskInfoCell class]])
+    {
+        [self.model deselectTaskWithCompletion:^(BOOL isSuccess) {
+            
+            if (self.initSubtaskDetailInfoController)
+                self.initSubtaskDetailInfoController();
+            
+            [self.model markTaskAsSelected: indexPath
+                            withCompletion: nil];
+            
+        }];
+    }
 }
 
 

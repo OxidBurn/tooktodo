@@ -294,6 +294,19 @@
                              withDirection: UIPopoverArrowDirectionAny];
     };
     
+    self.viewModel.initSubtaskDetailInfoController = ^(){
+        
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TasksDetailInfo"
+                                                             bundle: nil];
+        
+        TaskDetailViewController* vc = [storyboard instantiateViewControllerWithIdentifier: @"TaskDetailStoryboardId"];
+        
+        [vc fillSelectedTask: [blockSelf.viewModel getSelectedSubtask]];
+        
+        [blockSelf.navigationController pushViewController: vc animated: YES ];
+        
+    };
+    
     [self handleChangeBtn];
 }
 
