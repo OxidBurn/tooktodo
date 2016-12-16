@@ -38,19 +38,31 @@
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent*   subtaskMark;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent*   attachmentsMark;
 @property (weak, nonatomic) IBOutlet TaskMarkerComponent*   commentsMark;
-@property (weak, nonatomic) IBOutlet UIView*                roomInfoView;
-@property (weak, nonatomic) IBOutlet UILabel*               roomNumberLabel;
-@property (weak, nonatomic) IBOutlet UIImageView*           roomNumberMarkImageView;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint*    taskTermsLeadingConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint*    temsHorizontalToStatusConstraint;
+// Constraints
 
-// varialbe constraints
+// horizontal constraints
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsLeadingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* temsHorizontalToStatusConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* expiredHorizontalToTerms;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTypeHorizontalToWorkAreaShortTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTypeHorizontalToAccessBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* shortAreaHorizontalToAccess;
+
+// floating widths
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusBtnWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusMarkWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shortTitleWidth;
+
+
+
 
 
 // properties
+@property (strong, nonatomic) NSArray* topElementsWidthsArray;
 
+@property (strong, nonatomic) NSArray* topElementsHorizontalConstraints;
 
 // methods
 - (IBAction) onShowSystemDescriptionBtn: (UIButton*) sender;
@@ -70,10 +82,7 @@
 {
     [super awakeFromNib];
     
-    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
-    {
-        self.taskStatusBtnWidthConstraint.constant = 164;
-    }
+    [self handleUIForiPhone5AndLess];
 }
 
 
@@ -144,6 +153,8 @@
     
     [self handleBackgroundImageForTaskAccess: content.isHiddenTask];
     
+    [self handleElementsWidthsForContent: content];
+    
 }
 
 #pragma mark - Internal -
@@ -159,8 +170,6 @@
 {
     if ( roomNumber == 0 )
     {
-        self.roomInfoView.hidden = YES;
-        
         self.temsHorizontalToStatusConstraint.constant = 15;
         
         // conditional operation is needed in cases when user scrolls table view
@@ -169,9 +178,7 @@
         self.temsHorizontalToStatusConstraint.priority = 1000;
     } else
     {
-        self.roomInfoView.hidden = NO;
-        
-        self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)roomNumber];
+        //self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", (unsigned long)roomNumber];
         
         if ( self.temsHorizontalToStatusConstraint.priority != 250 )
         self.temsHorizontalToStatusConstraint.priority = 250;
@@ -192,6 +199,120 @@
         self.workAreaShortTitle.text = workAreaShortTitle;
     }
 }
+
+
+#pragma mark - Handling UI elements -
+
+- (void) handleUIForiPhone5AndLess
+{
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        self.taskStatusBtnWidthConstraint.constant = 164;
+        
+        [self.showWorkAreaDecription removeFromSuperview];
+    }
+}
+
+- (void) handleElementsWidthsForContent: (TaskRowContent*) content
+{
+    // counting of terms label required width
+    NSDictionary* termsAtributes = @{NSFontAttributeName : [UIFont fontWithName: self.taskTermsLabel.font.fontName
+                                                                           size: self.taskTermsLabel.font.pointSize]};
+    
+    CGSize termsLabelSize = [self.taskTermsLabel.text sizeWithAttributes: termsAtributes];
+    
+    self.taskTermsWidth.constant = termsLabelSize.width;
+    
+    // counting of task type view required width
+    
+    UILabel* taskTypeLabel = [self.taskStatusMark getStatusTextLabel];
+    
+    NSDictionary* taskTypeAtributes = @{NSFontAttributeName : [UIFont fontWithName: taskTypeLabel.font.fontName
+                                                                              size: taskTypeLabel.font.pointSize]};
+    
+    CGSize taskStatusLabelSize = [taskTypeLabel.text sizeWithAttributes: taskTypeAtributes];
+    
+    // adding 16 - the width of status point mark + distance to label
+    self.taskStatusMarkWidth.constant = taskStatusLabelSize.width + 16;
+    
+    // counting of task short area required width
+    NSDictionary* areaShortTitleAtributes = @{NSFontAttributeName : [UIFont fontWithName: self.workAreaShortTitle.font.fontName
+                                                                                    size: self.workAreaShortTitle.font.pointSize]};
+    
+    CGSize areaShortTitleSize = [self.workAreaShortTitle.text sizeWithAttributes: areaShortTitleAtributes];
+    
+    self.shortTitleWidth.constant = areaShortTitleSize.width;
+
+    [self createUIInfoAccordingToIdiomForContent: content];
+    
+    [self handleHorizontalConstraintsForContent: content];
+    
+}
+
+- (void) createUIInfoAccordingToIdiomForContent: (TaskRowContent*) content
+{
+    if ( IS_IPHONE_5  || IS_IPHONE_4_OR_LESS )
+    {
+        self.topElementsWidthsArray = @[ @(self.taskTermsWidth.constant),
+                                         @(self.taskStatusMarkWidth.constant),
+                                         @(self.shortTitleWidth.constant) ];
+        
+        self.topElementsHorizontalConstraints = @[ self.temsHorizontalToStatusConstraint,
+                                                   self.taskTypeHorizontalToWorkAreaShortTitle,
+                                                   self.taskTypeHorizontalToAccessBtn];
+    }
+    else
+    {
+        self.topElementsWidthsArray = @[ @(self.taskTermsWidth.constant),
+                                         @(self.taskStatusMarkWidth.constant),
+                                         @(self.shortTitleWidth.constant),
+                                         @(CGRectGetWidth(self.showWorkAreaDecription.frame))];
+        
+        self.topElementsHorizontalConstraints = @[ self.temsHorizontalToStatusConstraint,
+                                                   self.taskTypeHorizontalToWorkAreaShortTitle,
+                                                   self.shortAreaHorizontalToAccess];
+    }
+}
+
+- (void) handleHorizontalConstraintsForContent: (TaskRowContent*) content
+{
+    __block CGFloat allElementsWidths = 0;
+    
+    CGFloat emptySpace = 0;
+    
+    CGFloat floatDistanceBetweenElements = 0;
+    
+    [self.topElementsWidthsArray enumerateObjectsUsingBlock: ^(NSNumber* width, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        allElementsWidths += width.floatValue;
+        
+    }];
+    
+    allElementsWidths += self.taskTermsLeadingConstraint.constant + self.accessBtn.frame.size.width;
+
+    if ( IS_IPHONE_5 || IS_IPHONE_4_OR_LESS )
+    {
+        
+    }
+    else
+        allElementsWidths += self.showWorkAreaDecription.frame.size.width + 2.5;
+
+    emptySpace = content.contentWidth - allElementsWidths;
+
+    floatDistanceBetweenElements = emptySpace / self.topElementsHorizontalConstraints.count;
+    
+    if ( floatDistanceBetweenElements < 5 )
+    {
+        floatDistanceBetweenElements = 5;
+    }
+
+    [self.topElementsHorizontalConstraints enumerateObjectsUsingBlock: ^(NSLayoutConstraint* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        obj.constant = floatDistanceBetweenElements;
+        
+    }];
+}
+
 
 #pragma mark - Helpers -
 

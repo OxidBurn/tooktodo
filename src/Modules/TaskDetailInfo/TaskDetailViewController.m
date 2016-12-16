@@ -20,10 +20,12 @@
 #import "AddTaskViewController.h"
 #import "OSTableView.h"
 #import "ApproverViewController.h"
+#import "ProjectsEnumerations.h"
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
 #import "BaseMainViewController+NavigationTitle.h"
+#import "DataManager+ProjectInfo.h"
 
 
 @interface TaskDetailViewController ()  <ChangeStatusControllerDelegate, UIPopoverPresentationControllerDelegate, UISplitViewControllerDelegate, AddTaskControllerDelegate>
@@ -31,6 +33,7 @@
 // outlets
 @property (weak, nonatomic) IBOutlet OSTableView* taskTableView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint* taskTableViewBottom;
+@property (nonatomic, weak) IBOutlet UIBarButtonItem* changeBtn;
 
 // properties
 @property (strong, nonatomic) TaskDetailViewModel* viewModel;
@@ -291,9 +294,18 @@
                              withDirection: UIPopoverArrowDirectionAny];
     };
     
-    
+    [self handleChangeBtn];
 }
 
+- (void) handleChangeBtn
+{
+    NSUInteger currentUserPermission = [DataManagerShared getSelectedProjectPermission];
+    
+    if (currentUserPermission == ParticipantPermission)
+    {
+        self.changeBtn.enabled = NO;
+    }
+}
 
 - (BOOL)    splitViewController: (UISplitViewController*) splitViewController
 collapseSecondaryViewController: (UIViewController*)      secondaryViewController

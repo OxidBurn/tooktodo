@@ -110,6 +110,11 @@
     self.componentString.text  = [self getTaskTypeDescription: type];
 }
 
+- (UILabel*) getStatusTextLabel
+{
+    return self.componentString;
+}
+
 
 #pragma mark - Internal methods -
 

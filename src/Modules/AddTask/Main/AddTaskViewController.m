@@ -118,11 +118,11 @@
         {
             SelectResponsibleViewController* controller = [segue destinationViewController];
             
-            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
-
             [controller updateControllerType: SelectResponsibleController
                                  withMembers: [self.viewModel getAllMembersArray]
                                 withDelegate: [self.viewModel returnModel]];
+            
+             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
         }
             break;
             
