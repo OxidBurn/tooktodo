@@ -14,4 +14,6 @@
 - (void) setStatusString: (NSString*) status
                 withType: (TaskType) type;
 
+- (UILabel*) getStatusTextLabel;
+
 @end
