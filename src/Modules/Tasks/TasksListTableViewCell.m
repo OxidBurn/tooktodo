@@ -146,6 +146,8 @@
                                                              blue: 70.0/256.0
                                                             alpha: 1.f];
     }
+    else
+        self.executionDateLabel.textColor = [UIColor blackColor];
     
     return executionDateValue;
 }

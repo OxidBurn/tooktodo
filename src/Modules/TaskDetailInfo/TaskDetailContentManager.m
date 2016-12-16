@@ -136,6 +136,7 @@
     taskDetailCellContent.taskEndDate         = task.endDate;
     taskDetailCellContent.isExpired           = task.isExpired.boolValue;
     taskDetailCellContent.status              = task.status.integerValue;
+    taskDetailCellContent.isUrgent            = task.isUrgent.boolValue;
     taskDetailCellContent.taskTypeDescription = task.taskTypeDescription;
     taskDetailCellContent.workAreaShortTitle  = task.workArea.shortTitle;
     taskDetailCellContent.taskTitle           = task.title;
@@ -534,6 +535,7 @@
         subtask.taskStartDate       = obj.startDay;
         subtask.taskEndDate         = obj.endDate;
         subtask.isExpired           = obj.isExpired.boolValue;
+        subtask.isUrgent            = obj.isUrgent.boolValue;
         subtask.status              = obj.status.integerValue;
         subtask.taskTypeDescription = obj.taskTypeDescription;
         subtask.workAreaShortTitle  = obj.workArea.shortTitle;

@@ -25,7 +25,7 @@
 
 // outlets
 @property (weak, nonatomic) IBOutlet UILabel*               taskTermsLabel;
-@property (weak, nonatomic) IBOutlet UIImageView*           isExpiredImageView;
+@property (weak, nonatomic) IBOutlet UIImageView*           isUrgentImageView;
 @property (weak, nonatomic) IBOutlet StatusMarkerComponent* taskStatusMark;
 @property (weak, nonatomic) IBOutlet UILabel*               workAreaShortTitle;
 @property (weak, nonatomic) IBOutlet UIButton*              showWorkAreaDecription;
@@ -44,7 +44,6 @@
 // horizontal constraints
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsLeadingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* temsHorizontalToStatusConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint* expiredHorizontalToTerms;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTypeHorizontalToWorkAreaShortTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTypeHorizontalToAccessBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* shortAreaHorizontalToAccess;
@@ -53,7 +52,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusBtnWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusMarkWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsWidth;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shortTitleWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* shortTitleWidth;
 
 
 
@@ -114,7 +113,7 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
-    [self handleExpiredMark: content.isExpired];
+    [self handleUrgentMark: content.isUrgent];
     
     [self handleRoomInfoView: content.roomNumber];
     
@@ -135,6 +134,8 @@
                                                          blue: 70.0/256.0
                                                         alpha: 1.f];
     }
+    else
+        self.taskTermsLabel.textColor = [UIColor blackColor];
     
     [self.taskStatusMark setStatusString: content.taskTypeDescription
                                 withType: content.taskType];
@@ -159,11 +160,11 @@
 
 #pragma mark - Internal -
 
-- (void) handleExpiredMark: (BOOL) isExpired
+- (void) handleUrgentMark: (BOOL) isUrgent
 {
-    self.isExpiredImageView.hidden = isExpired? NO : YES;
+    self.isUrgentImageView.hidden = isUrgent? NO : YES;
     
-    self.taskTermsLeadingConstraint.constant = isExpired? 32 : 15;
+    self.taskTermsLeadingConstraint.constant = isUrgent? 32 : 15;
 }
 
 - (void) handleRoomInfoView: (NSUInteger) roomNumber
