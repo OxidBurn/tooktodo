@@ -607,12 +607,12 @@
                             <mask key="constraints">
                                 <exclude reference="MUc-OQ-gya"/>
                                 <exclude reference="UNw-WS-b4S"/>
-                                <exclude reference="G4Y-II-1tc"/>
-                                <exclude reference="VF1-ND-HRS"/>
-                                <exclude reference="ZK0-dp-3D3"/>
-                                <exclude reference="txh-Pc-Udl"/>
                                 <exclude reference="PfB-4c-2E0"/>
                                 <exclude reference="XMP-Qt-trF"/>
+                                <exclude reference="ZK0-dp-3D3"/>
+                                <exclude reference="txh-Pc-Udl"/>
+                                <exclude reference="G4Y-II-1tc"/>
+                                <exclude reference="VF1-ND-HRS"/>
                                 <exclude reference="70o-oX-UXB"/>
                                 <exclude reference="BzS-L8-5Ap"/>
                                 <exclude reference="LKk-aR-pM2"/>
@@ -635,14 +635,14 @@
                                 <include reference="MUc-OQ-gya"/>
                                 <exclude reference="OYC-HE-lnn"/>
                                 <exclude reference="m1F-Dy-8zl"/>
-                                <exclude reference="74W-Vz-fTX"/>
-                                <include reference="G4Y-II-1tc"/>
-                                <exclude reference="oDd-kz-OLU"/>
-                                <exclude reference="SWK-vS-d2m"/>
-                                <include reference="ZK0-dp-3D3"/>
                                 <include reference="XMP-Qt-trF"/>
                                 <exclude reference="c2T-Bw-Pii"/>
                                 <exclude reference="tcw-Me-eT3"/>
+                                <exclude reference="SWK-vS-d2m"/>
+                                <include reference="ZK0-dp-3D3"/>
+                                <exclude reference="74W-Vz-fTX"/>
+                                <include reference="G4Y-II-1tc"/>
+                                <exclude reference="oDd-kz-OLU"/>
                                 <include reference="BzS-L8-5Ap"/>
                                 <exclude reference="EyD-3l-AS9"/>
                                 <exclude reference="hrz-fd-ehh"/>
@@ -662,12 +662,12 @@
                             <mask key="constraints">
                                 <exclude reference="MUc-OQ-gya"/>
                                 <include reference="UNw-WS-b4S"/>
-                                <exclude reference="G4Y-II-1tc"/>
-                                <include reference="VF1-ND-HRS"/>
-                                <exclude reference="ZK0-dp-3D3"/>
-                                <include reference="txh-Pc-Udl"/>
                                 <include reference="PfB-4c-2E0"/>
                                 <exclude reference="XMP-Qt-trF"/>
+                                <exclude reference="ZK0-dp-3D3"/>
+                                <include reference="txh-Pc-Udl"/>
+                                <exclude reference="G4Y-II-1tc"/>
+                                <include reference="VF1-ND-HRS"/>
                                 <include reference="70o-oX-UXB"/>
                                 <exclude reference="BzS-L8-5Ap"/>
                                 <exclude reference="LKk-aR-pM2"/>
@@ -829,17 +829,12 @@
                                             <action selector="onCancelBtn:" destination="yzh-2q-O6U" eventType="touchUpInside" id="1Ss-2G-gNC"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы действительно хотите удалить задачу?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aH-nM-RyC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы действительно хотите удалить задачу?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aH-nM-RyC">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="5q8-0k-RnU"/>
+                                            <constraint firstAttribute="height" constant="103" id="5q8-0k-RnU"/>
                                             <constraint firstAttribute="width" constant="254" id="a3a-rs-K8j"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название задачи" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tov-kG-mCP">
-                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4x-ge-NbH">
@@ -872,11 +867,9 @@
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="eB4-aR-VEV" firstAttribute="leading" secondItem="iAR-K0-e5o" secondAttribute="trailing" id="7R4-CA-aSP"/>
-                                    <constraint firstItem="Tov-kG-mCP" firstAttribute="top" secondItem="3aH-nM-RyC" secondAttribute="bottom" constant="17" id="A1s-Ij-n7l"/>
                                     <constraint firstItem="iAR-K0-e5o" firstAttribute="top" secondItem="xyZ-FY-WDP" secondAttribute="bottom" id="BdL-pQ-TjQ"/>
                                     <constraint firstItem="xyZ-FY-WDP" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" id="DdY-Gd-ocM"/>
                                     <constraint firstItem="j4x-ge-NbH" firstAttribute="top" secondItem="xyZ-FY-WDP" secondAttribute="bottom" id="EMV-SM-MLa"/>
-                                    <constraint firstAttribute="trailing" secondItem="Tov-kG-mCP" secondAttribute="trailing" constant="16" id="Ezh-BX-ttq"/>
                                     <constraint firstItem="eB4-aR-VEV" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="158" id="FFW-4A-NB6"/>
                                     <constraint firstAttribute="trailing" secondItem="j4x-ge-NbH" secondAttribute="trailing" id="IG6-Vw-Shg"/>
                                     <constraint firstItem="xyZ-FY-WDP" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="157" id="Kdp-gt-V8w"/>
@@ -885,8 +878,6 @@
                                     <constraint firstAttribute="trailing" secondItem="xyZ-FY-WDP" secondAttribute="trailing" id="Yk4-ii-uLW"/>
                                     <constraint firstItem="iAR-K0-e5o" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" id="l4X-DN-1KO"/>
                                     <constraint firstItem="3aH-nM-RyC" firstAttribute="top" secondItem="g9g-fx-Zya" secondAttribute="top" constant="24" id="raV-9F-h2z"/>
-                                    <constraint firstItem="xyZ-FY-WDP" firstAttribute="top" secondItem="Tov-kG-mCP" secondAttribute="bottom" constant="20" id="sUj-HA-0qZ"/>
-                                    <constraint firstItem="Tov-kG-mCP" firstAttribute="leading" secondItem="g9g-fx-Zya" secondAttribute="leading" constant="16" id="tag-dM-8aQ"/>
                                     <constraint firstAttribute="height" constant="198" id="zA2-vh-xoh"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -907,7 +898,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="taskTitleLabel" destination="Tov-kG-mCP" id="e7w-Nd-qeU"/>
+                        <outlet property="taskTitleLabel" destination="3aH-nM-RyC" id="SAl-Bj-xMh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LMi-fX-Smd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -917,7 +908,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-652.26939970717422" y="1151.953125"/>
+            <point key="canvasLocation" x="-653.60000000000002" y="1151.8740629685158"/>
         </scene>
     </scenes>
     <resources>

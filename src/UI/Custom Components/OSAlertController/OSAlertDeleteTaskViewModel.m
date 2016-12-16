@@ -7,6 +7,7 @@
 //
 
 #import "OSAlertDeleteTaskWithSubtasksViewModel.h"
+#import "DataManager+Tasks.h"
 
 typedef NS_ENUM(NSUInteger, DeleteTaskTableCellsType)
 {
@@ -52,23 +53,15 @@ typedef NS_ENUM(NSUInteger, DeleteTaskTableCellsType)
     
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: identifier
                                                             forIndexPath: indexPath];
-    
-//    if (cell == nil)
-//    {
-//        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
-//                                      reuseIdentifier: identifier];
-//    }
-    
-//    UIFont* customFont            = [UIFont fontWithName: @"SFUIText-Regular"
-//                                                    size: 17.0f];
-//    
+
     cell.textLabel.text          = self.titlesArray[indexPath.row];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
-   // cell.textLabel.font = customFont;
     
     if (indexPath.row == 0)
     {
         cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.text = [NSString stringWithFormat: @"Задача \"%@ \" содержит подзадачи", [[DataManagerShared getSelectedTask] title]];
+        cell.textLabel.numberOfLines = 2;
     }
     
     else if (indexPath.row == 1)
