@@ -37,6 +37,9 @@
 - (void) persistNewSubtask: (ProjectTaskModel*)     info
             withCompletion: (CompletionWithSuccess) completion;
 
+- (void) persistNewTaskForSelectedProject: (ProjectTaskModel*)     info
+                           withCompletion: (CompletionWithSuccess) completion;
+
 // update
 - (void) updateSelectedTaskInfo: (ProjectTask*)          task
                     withNewInfo: (ProjectTaskModel*)     info

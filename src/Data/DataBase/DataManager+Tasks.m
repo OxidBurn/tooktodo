@@ -117,9 +117,6 @@
             ProjectInfo* project = [DataManagerShared getProjectWithID: @(obj.projectID)
                                                               inCotext: localContext];
             
-            NSLog(@"<WARNING> Project id: %@", project.projectID);
-            NSLog(@"<VERBOSE> Count of tasks %lu", obj.tasks.count);
-            
             [obj.tasks enumerateObjectsUsingBlock: ^(ProjectTaskModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 ProjectTask* task = [ProjectTask MR_createEntityInContext: localContext];
@@ -187,6 +184,38 @@
                               completion(contextDidSave);
                           
                       }];
+}
+
+- (void) persistNewTaskForSelectedProject: (ProjectTaskModel*)     info
+                           withCompletion: (CompletionWithSuccess) completion
+{
+    [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
+        
+        ProjectInfo* taskProject = [self getSelectedProjectInfoInContext: localContext];
+        
+        ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstOrCreateByAttribute: @"stageID"
+                                                                          withValue: @(info.stage.stageID)
+                                                                          inContext: localContext];
+        
+        stage.project  = taskProject;
+        stage.stageID  = @(info.stage.stageID);
+        stage.isCommon = @(info.stage.isCommon);
+        stage.title    = info.stage.title;
+        
+        ProjectTask* newTask = [self persistTaskWithInfo: info
+                                              forProject: taskProject
+                                               inContext: localContext];
+        
+        newTask.project = taskProject;
+        newTask.stage   = stage;
+        
+    }
+                      completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
+        
+                          if ( completion )
+                              completion(YES);
+                          
+    }];
 }
 
 - (void) deleteTaskWithInfo: (ProjectTask*)          task
