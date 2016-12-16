@@ -30,6 +30,12 @@
     // Setup navigation title view
      [self setupNavigationTitleWithTwoLinesWithMainTitleText: @"ЛЕНТА"
                                                 withSubTitle: [DataManagerShared getSelectedProjectName]];
+    
+    // Add updating notification
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(needToUpdateContent)
+                                name: @"NeedToUpdateContent"
+                              object: nil];
 }
 
 - (void) viewDidLoad
@@ -50,6 +56,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"NeedToUpdateContent"
+                                 object: nil];
 }
 
 

@@ -105,6 +105,9 @@ static bool isFirstAccess = YES;
         
         NSLog(@"<INFO> Load project info is successful!");
         
+        [DefaultNotifyCenter postNotificationName: @"NeedToUpdateContent"
+                                           object: nil];
+        
         [SVProgressHUD dismiss];
         
     }];
