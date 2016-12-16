@@ -138,6 +138,15 @@
                                                                 withFormat: @"dd.MM.yyyy"
                                                      withEmptyDetailString: @""];
     
+    // changing terms label font color if task is expired
+    if ( task.isExpired.boolValue == YES )
+    {
+        self.executionDateLabel.textColor = [UIColor colorWithRed: 270.0/256.0
+                                                            green: 70.0/256.0
+                                                             blue: 70.0/256.0
+                                                            alpha: 1.f];
+    }
+    
     return executionDateValue;
 }
 
