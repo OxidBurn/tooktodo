@@ -106,7 +106,7 @@
         self.teamMemberName.textColor       = [UIColor grayColor];
         self.teamMemberPermission.textColor = [UIColor grayColor];
     } else
-        if ( assignments.invite != nil )
+        if ( assignments.assignee == nil )
         {
             self.teamMemberName.textColor       = [UIColor grayColor];
             self.teamMemberPermission.textColor = [UIColor grayColor];

@@ -376,7 +376,7 @@ typedef NS_ENUM(NSUInteger, ContactType)
 - (BOOL) checkIfTeamMemberBlockedOrInvited
 {
     BOOL isBlocked = self.memberInfo.assignments.isBlocked.boolValue;
-    BOOL isInvited = self.memberInfo.assignments.invite != nil;
+    BOOL isInvited = self.memberInfo.assignments.assignee == nil;
     
     BOOL disabled = (isBlocked == YES || isInvited);
     
