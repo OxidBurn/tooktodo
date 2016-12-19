@@ -85,29 +85,63 @@
     
     TaskStatusType selectedStatus = [self.model getStatusTypeForRow: indexPath.row];
     
-    if ( [self.model getCurrentStatus] == TaskToOnApprovalStatusType )
+    TaskStatusType currentStatus = [self.model getCurrentStatus];
+    
+    // handling unique cases
+    // if 'Resume' action was selected we switch it to 'OnWaiting'
+    // if 'Approve' action was selected we switch it to 'Completed'
+    // if 'Cancel request' or 'On rework' was selected we go to another controller
+    
+ 
+    switch ( currentStatus )
     {
-        if ( selectedStatus == TaskToReworkStatusType )
+        case TaskToOnApprovalStatusType:
         {
-            if ( self.showOnRevisionController )
-                self.showOnRevisionController();
+            if ( selectedStatus == TaskApproveStatusType )
+            {
+                selectedStatus = TaskCompleteStatusType;
+            } else
+                if ( selectedStatus == TaskOnReworkStatusType )
+                {
+                    if ( self.showOnRevisionController )
+                        self.showOnRevisionController();
+                    
+                    return;
+                }
         }
-    }
-    else
-        if ( selectedStatus == TaskToCancelStatusType )
+            break;
+            
+        case TaskToInWorkStatusType:
+        {
+            selectedStatus = TaskToPauseStatusType;
+        }
+            break;
+            
+        case TaskApproveStatusType:
+        {
+            selectedStatus = TaskCompleteStatusType;
+        }
+            break;
+            
+        case TaskToCancelStatusType:
         {
             if ( self.showCancelRequestController )
                 self.showCancelRequestController();
+            
+            return;
         }
-    else
-    {
-        [self.model updateTaskStatusWithNewStatus: selectedStatus
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       
-                                       if ( self.returnToTaskDetailController )
-                                           self.returnToTaskDetailController();
-                                   }];
+            break;
+    
+        default:
+            break;
     }
+
+    [self.model updateTaskStatusWithNewStatus: selectedStatus
+                               withCompletion: ^(BOOL isSuccess) {
+                                   
+                                   if ( self.returnToTaskDetailController )
+                                       self.returnToTaskDetailController();
+                               }];
 }
 
 @end
