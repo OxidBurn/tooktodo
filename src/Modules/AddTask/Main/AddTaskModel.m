@@ -482,7 +482,7 @@
     
     [self.allMembersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ( member.assignments.invite )
+        if ( member.assignments.assignee == nil )
         {
             [tmpMembersArray removeObject: member];
         }
