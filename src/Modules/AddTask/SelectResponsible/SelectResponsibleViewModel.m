@@ -68,7 +68,7 @@
     {
         case SelectObserversController:
             
-            isSelected = [user.taskRoleAssinment isEqual: @(ObserverRoleType)];
+            isSelected = user.taskRoleAssinment.integerValue == ObserverRoleType;
             
             break;
             
@@ -154,21 +154,17 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 #pragma mark - Public -
 
 - (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                  withSelectedUsers: (NSArray*)                selectedUsers
                      withAllMembers: (NSArray*)                allMembers
-
 {
     [self.model fillContollerTypeSelection: controllerType
+                         withSelectedUsers: selectedUsers
                             withAllMembers: allMembers];
 }
 
 - (ControllerTypeSelection) returnControllerType
 {
     return [self.model returnControllerType];
-}
-
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
-{
-    [self.model fillSelectedUsersInfo: selectedUsers];
 }
 
 - (NSArray*) returnSelectedResponsibleArray

@@ -21,10 +21,8 @@
 // methods
 - (void) updateControllerType: (ControllerTypeSelection) controllerType
                   withMembers: (NSArray*)                allMembers
+            withSelectedUsers: (NSArray*)                selectedUsers
                  withDelegate: (id)                      delegate;
-
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
-
 
 @end
 

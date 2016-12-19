@@ -12,7 +12,8 @@
 #import "DataManager+Tasks.h"
 #import "DataManager+ProjectInfo.h"
 #import "ProjectInfo+CoreDataClass.h"
-
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
 
 @interface SelectResponsibleModel()
 
@@ -56,11 +57,34 @@
 #pragma mark - Public -
 
 - (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
-                     withAllMembers: (NSArray*)                allMembers
+                  withSelectedUsers: (NSArray*)                selectedUsers
+                     withAllMembers: (NSArray*)                allMembers;
 {
     self.controllerType = controllerType;
     
     self.membersArray = allMembers;
+    
+    switch (controllerType)
+    {
+        case SelectResponsibleController:
+        {
+            self.selectedResponsibleArray = selectedUsers;
+        }
+            break;
+        case SelectClaimingController:
+        {
+            self.selectedClaimingArray = selectedUsers;
+        }
+            break;
+        case SelectObserversController:
+        {
+            self.selectedObserversArray = selectedUsers;
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     [self configurateMembersArray];
 }
@@ -95,7 +119,7 @@
                 {
                     obj.taskRoleAssinment = @(ResponsibleRoleType);
                 } else
-                    if ( [obj.taskRoleAssinment isEqual: @(SelectResponsibleController)] )
+                    if ( [obj.taskRoleAssinment isEqual: @(ResponsibleRoleType)] )
                     {
                         obj.taskRoleAssinment = nil;
                     }
@@ -214,33 +238,6 @@
     return memberInfo.taskRoleAssinment;
 }
 
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
-{
-    switch ( self.controllerType )
-    {
-        case SelectResponsibleController:
-            
-            self.selectedResponsibleArray = selectedUsers;
-
-            break;
-            
-        case SelectClaimingController:
-            
-            self.selectedClaimingArray = selectedUsers;
-
-            break;
-            
-        case SelectObserversController:
-            
-            self.selectedObserversArray = selectedUsers;
-
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (ControllerTypeSelection) returnControllerType
 {
     return self.controllerType;
@@ -311,13 +308,32 @@
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
                     
-                    if ( userInList.userId.integerValue == selectedUser.userId.integerValue )
+                    if ([selectedUser isKindOfClass: [ProjectTaskAssignee class]])
                     {
-                        userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
+                        ProjectTaskAssignee* selectedAssignee = (ProjectTaskAssignee*)selectedUser;
                         
-                        NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
+                        if ( [userInList.userId isEqual: selectedAssignee.assigneeID] )
+                        {
+                            userInList.taskRoleAssinment = selectedAssignee.roleAssignment.projectRoleAssignments.taskRoleType;
+                            
+                            NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
+                            
+                            self.previousesSelectedIndexPath = temp;
+                        }
+                    }
+                    
+                    else if ([selectedUser isKindOfClass: [FilledTeamInfo class]])
+                    {
+                        FilledTeamInfo* selectedTeamMember = (FilledTeamInfo*)selectedUser;
                         
-                        self.previousesSelectedIndexPath = temp;
+                        if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                        {
+                            userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                            
+                            NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
+                            
+                            self.previousesSelectedIndexPath = temp;
+                        }
                     }
                     
                 }];
@@ -347,14 +363,28 @@
 {
     [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        [selectedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
-           
-            if ( [userInList.userId isEqual: selectedUser.userId] )
-            {
-                userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
-            }
-
+        [selectedMembers enumerateObjectsUsingBlock: ^(id selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
             
+            if ([selectedUser isKindOfClass: [ProjectTaskAssignee class]])
+            {
+                ProjectTaskAssignee* selectedAssignee = (ProjectTaskAssignee*)selectedUser;
+                
+                if ( [userInList.userId isEqual: selectedAssignee.assigneeID] )
+                {
+                    userInList.taskRoleAssinment = selectedAssignee.roleAssignment.projectRoleAssignments.taskRoleType;
+                }
+            }
+            
+            else if ([selectedUser isKindOfClass: [FilledTeamInfo class]])
+            {
+                FilledTeamInfo* selectedTeamMember = (FilledTeamInfo*)selectedUser;
+                
+                if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                {
+                    userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                }
+            }
+           
         }];
         
     }];
@@ -364,7 +394,7 @@
 {
     __block NSMutableArray* tmpMembersArray = self.membersArray.mutableCopy;
     
-    [self.membersArray enumerateObjectsUsingBlock:^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
        
         if ( member.assignments.assignee == nil )
         {
