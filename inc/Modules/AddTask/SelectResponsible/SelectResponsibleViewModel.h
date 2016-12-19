@@ -23,11 +23,10 @@
 
 // methods
 - (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                  withSelectedUsers: (NSArray*)                selectedUsers
                      withAllMembers: (NSArray*)                allMembers;
 
 - (ControllerTypeSelection) returnControllerType;
-
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
 
 - (NSArray*) returnSelectedResponsibleArray;
 

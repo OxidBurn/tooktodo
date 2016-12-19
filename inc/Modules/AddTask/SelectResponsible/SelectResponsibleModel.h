@@ -25,6 +25,7 @@
 - (NSNumber*) getMemberTaskRoleTypeAtIndex: (NSUInteger) index;
 
 - (void) fillContollerTypeSelection: (ControllerTypeSelection) controllerType
+                  withSelectedUsers: (NSArray*)                selectedUsers
                      withAllMembers: (NSArray*)                allMembers;
 
 - (ControllerTypeSelection) returnControllerType;
@@ -34,8 +35,6 @@
 - (void) updatePreviousCellIndexPath: (NSIndexPath*) indexPath;
 
 - (NSIndexPath*) returnPreviousMarkedCellIndexPath;
-
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers;
 
 - (NSArray*) returnSelectedResponsibleArray;
 

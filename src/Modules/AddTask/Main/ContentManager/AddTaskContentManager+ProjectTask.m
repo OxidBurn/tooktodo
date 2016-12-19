@@ -61,15 +61,11 @@
     RowContent* rowFive = [[RowContent alloc] initWithUserInteractionEnabled];
     RowContent* rowSix  = [[RowContent alloc] initWithUserInteractionEnabled];
     
-    [self fillResponsibleArray: rowFour
-            withClaimingsArray: rowFive
-            withObserversArray: rowSix
-                       forTask: task];
+    [self fillMemebersforTask: task];
     
-    
-    NSString* responsibleCellId = [self determineCellIdForGroupOfMembers: rowFour.responsibleArray];
-    NSString* claimingCellId    = [self determineCellIdForGroupOfMembers: rowFive.claimingsArray];
-    NSString* observersCellId   = [self determineCellIdForGroupOfMembers: rowSix.observersArray];
+    NSString* responsibleCellId = [self determineCellIdForGroupOfMembers: self.task.responsible];
+    NSString* claimingCellId    = [self determineCellIdForGroupOfMembers: self.task.claiming];
+    NSString* observersCellId   = [self determineCellIdForGroupOfMembers: self.task.observers];
     
     NSString* responsibleDetailText  = [responsibleCellId isEqualToString: self.addTaskTableViewCellsInfo[RightDetailCell]] ? @"Не указан" : @"";
     
@@ -79,10 +75,11 @@
 
     AddTaskTableViewCellType rowFourIndex = [self.addTaskTableViewCellsInfo indexOfObject: responsibleCellId];
     
-    rowFour.cellId       = self.addTaskTableViewCellsInfo[SingleUserInfoCell];
+    rowFour.cellId       = responsibleCellId;
     rowFour.detail       = responsibleDetailText;
     rowFour.cellIndex    = rowFourIndex;
     rowFour.title        = @"Ответственный";
+    rowFour.responsibleArray = self.task.responsible;
     rowFour.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectResponsibleControllerSegueID];
    
     if (rowFour.responsibleArray != nil && rowFour.responsibleArray.count > 0)
@@ -90,32 +87,35 @@
         rowFour.membersArray = rowFour.responsibleArray;
     }
     
-    if (rowFive.claimingsArray != nil && rowFive.claimingsArray.count>0)
-    {
-        rowFive.membersArray = rowFive.claimingsArray;
-    }
-    
+
     AddTaskTableViewCellType cellIndexRowFive = [self.addTaskTableViewCellsInfo indexOfObject: claimingCellId];
     
     rowFive.cellId       = claimingCellId;
     rowFive.cellIndex    = cellIndexRowFive;
     rowFive.title        = @"Утверждающие";
+    rowFive.claimingsArray = self.task.claiming;
     rowFive.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectClaimingControllerSegueID];
     rowFive.detail       = claimingDetailText;
     
+    if (rowFive.claimingsArray != nil && rowFive.claimingsArray.count>0)
+    {
+        rowFive.membersArray = rowFive.claimingsArray;
+    }
     
     AddTaskTableViewCellType cellIndexRowSix = [self.addTaskTableViewCellsInfo indexOfObject: observersCellId];
+    
+
+    rowSix.cellId       = observersCellId;
+    rowSix.cellIndex    = cellIndexRowSix;
+    rowSix.title        = @"Наблюдатели";
+    rowSix.observersArray = self.task.observers;
+    rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
+    rowSix.detail       = observersDetailText;
     
     if (rowSix.observersArray != nil && rowSix.observersArray.count > 0)
     {
         rowSix.membersArray = rowSix.observersArray;
     }
-    
-    rowSix.cellId       = observersCellId;
-    rowSix.cellIndex    = cellIndexRowSix;
-    rowSix.title        = @"Наблюдатели";
-    rowSix.segueId      = self.addTaskTableViewSeguesInfo[ShowSelectObserversControllerSegueID];
-    rowSix.detail       = observersDetailText;
     
     return @[ rowOne, rowTwo, rowThree, rowFour, rowFive, rowSix ];
 }
@@ -202,22 +202,19 @@
 }
 
 
-- (void) fillResponsibleArray: (RowContent*) contentResponsible
-           withClaimingsArray: (RowContent*) contentClaimings
-           withObserversArray: (RowContent*) contentObservers
-                      forTask: (ProjectTask*) task;
+- (void) fillMemebersforTask: (ProjectTask*) task;
 {
     NSArray* roleAssignments = task.taskRoleAssignments.array;
     
-    contentResponsible.responsibleArray = [NSArray array];
-    contentClaimings.claimingsArray     = [NSArray array];
-    contentObservers.observersArray     = [NSArray array];
+    self.task.responsible = [NSArray array];
+    self.task.claiming    = [NSArray array];
+    self.task.observers   = [NSArray array];
     
-    __block NSMutableArray* tmpResponsibleArr = contentResponsible.responsibleArray.mutableCopy;
-    __block NSMutableArray* tmpClaimingsArr   = contentClaimings.claimingsArray.mutableCopy;
-    __block NSMutableArray* tmpObserversArr   = contentObservers.observersArray.mutableCopy;
+    __block NSMutableArray* tmpResponsibleArr = self.task.responsible.mutableCopy;
+    __block NSMutableArray* tmpClaimingsArr   = self.task.claiming.mutableCopy;
+    __block NSMutableArray* tmpObserversArr   = self.task.observers.mutableCopy;
     
-    [roleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
+    [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
         
         switch (taskRoleAssignments.taskRoleType.integerValue)
         {
@@ -287,9 +284,9 @@
         }
     }];
     
-    contentResponsible.responsibleArray = tmpResponsibleArr.copy;
-    contentClaimings.claimingsArray     = tmpClaimingsArr.copy;
-    contentObservers.observersArray     = tmpObserversArr.copy;
+    self.task.responsible = tmpResponsibleArr.copy;
+    self.task.claiming    = tmpClaimingsArr.copy;
+    self.task.observers   = tmpObserversArr.copy;
     
     tmpObserversArr = nil;
     tmpClaimingsArr = nil;

@@ -102,18 +102,16 @@
 
 - (void) updateControllerType: (ControllerTypeSelection) controllerType
                   withMembers: (NSArray*)                allMembers
+            withSelectedUsers: (NSArray*)                selectedUsers
                  withDelegate: (id)                      delegate
 {
     [self.viewModel fillContollerTypeSelection: controllerType
+                             withSelectedUsers: selectedUsers
                                 withAllMembers: allMembers];
 
     self.delegate = delegate;
 }
 
-- (void) fillSelectedUsersInfo: (NSArray*) selectedUsers
-{
-    [self.viewModel fillSelectedUsersInfo: selectedUsers];
-}
 
 #pragma mark - Internal -
 

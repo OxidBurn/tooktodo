@@ -120,9 +120,9 @@
             
             [controller updateControllerType: SelectResponsibleController
                                  withMembers: [self.viewModel getAllMembersArray]
+                           withSelectedUsers: [self.viewModel returnSelectedResponsibleArray]
                                 withDelegate: [self.viewModel returnModel]];
             
-             [controller fillSelectedUsersInfo: [self.viewModel returnSelectedResponsibleArray]];
         }
             break;
             
@@ -132,9 +132,9 @@
             
             [controller updateControllerType: SelectClaimingController
                                  withMembers: [self.viewModel getAllMembersArray]
+                           withSelectedUsers: [self.viewModel returnSelectedClaimingArray]
                                 withDelegate: [self.viewModel returnModel]];
             
-            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedClaimingArray]];
         }
             break;
             
@@ -143,9 +143,9 @@
             SelectResponsibleViewController* controller = [segue destinationViewController];
             [controller updateControllerType: SelectObserversController
                                  withMembers: [self.viewModel getAllMembersArray]
+                           withSelectedUsers: [self.viewModel returnSelectedObserversArray]
                                 withDelegate: [self.viewModel returnModel]];
             
-            [controller fillSelectedUsersInfo: [self.viewModel returnSelectedObserversArray]];
         }
             break;
             
