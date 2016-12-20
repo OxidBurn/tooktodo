@@ -92,6 +92,8 @@
 
 - (void) resetCellsContent;
 
+- (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion;
+
 @end
 
 

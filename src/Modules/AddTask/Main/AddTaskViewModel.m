@@ -90,6 +90,11 @@
     [self.model storeNewTaskWithCompletion: completion];
 }
 
+- (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion
+{
+    [self.model updateTaskInfoOnServerWithCompletion: completion];
+}
+
 - (NSArray*) returnAllSeguesArray
 {
     return [self.model returnAllSeguesArray];

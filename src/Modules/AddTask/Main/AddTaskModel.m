@@ -233,6 +233,11 @@
      }];
 }
 
+- (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion
+{
+    NSLog(@"Task info: %@", self.task);
+}
+
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden
 {

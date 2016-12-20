@@ -544,6 +544,8 @@
         
         [signal subscribeCompleted: ^{
             
+            @strongify(self)
+            
             switch ([self getControllerType])
             {
                 case AddSubtaskControllerType:
@@ -561,10 +563,12 @@
                 
                 case EditTaskControllerType:
                 {
-                   //TODO: implement updating task according to changed task properties
+                   [self.viewModel updateTaskInfoOnServerWithCompletion: ^(BOOL isSuccess) {
                     
-                    [self dismissViewControllerAnimated: YES
-                                             completion: nil];
+                       [self dismissViewControllerAnimated: YES
+                                                completion: nil];
+                       
+                   }];
                 }
                     
                 default:

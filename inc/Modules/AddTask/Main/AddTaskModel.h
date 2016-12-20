@@ -64,6 +64,8 @@
 
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
+- (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion;
+
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
