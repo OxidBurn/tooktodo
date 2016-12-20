@@ -108,5 +108,13 @@
     return [[[requestManager rac_POST: requestURL parameters: parameter] logError] replayLazily];
 }
 
+- (RACSignal*) updateTaskInfo: (NSString*)     requestURL
+               withParameters: (NSDictionary*) parameter
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_PUT: requestURL parameters: parameter] logError] replayLazily];
+}
+
 
 @end

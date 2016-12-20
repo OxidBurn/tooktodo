@@ -41,4 +41,7 @@
 - (RACSignal*) taskCancelRequest: (NSString*)     requestURL
                   withParameters: (NSDictionary*) parameter;
 
+- (RACSignal*) updateTaskInfo: (NSString*)     requestURL
+               withParameters: (NSDictionary*) parameter;
+
 @end

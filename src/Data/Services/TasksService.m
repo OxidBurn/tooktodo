@@ -472,6 +472,41 @@
     return loadTaskInfo;
 }
 
+- (RACSignal*) updateTaskInfo: (NewTask*) newInfo
+{
+    ProjectTask* currentTask       = [self getUpdatedSelectedTask];
+    NSString* requestURL           = [self buildGetTaskInfoURL: currentTask];
+    NSDictionary* requestParameter = [self buildNewTaskParameter: newInfo
+                                                       isSubtask: NO];
+    
+    RACSignal* updateTaskSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] updateTaskInfo: requestURL
+                                           withParameters: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             [self parseSelectedTaskInfo: response[0]
+                                withTask: currentTask
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
+             
+         }
+         error: ^(NSError* error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return updateTaskSignal;
+}
+
 - (RACSignal*) setSelectedTaskToApproval
 {
     NSString* requestURL = [self buildSetTaskToApprovalRequestURL];
