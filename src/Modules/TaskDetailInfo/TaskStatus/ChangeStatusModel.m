@@ -89,8 +89,6 @@
 //Method for getting available status actions for current user
 - (NSArray*) getAvailableStatusActions
 {
-    self.task = [DataManagerShared getSelectedTask];
-    
     TaskAvailableActionsList* availableActions = self.task.availableActions;
     
     self.availableStatusActions = availableActions.statusActions.allObjects;

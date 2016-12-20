@@ -167,26 +167,6 @@
     }];
 }
 
-- (void) reloadTaskStatusCell
-{
-    self.task = [DataManagerShared getSelectedTask];
-    
-    // row that contains info about first cell in table view
-    TaskRowContent* row   = self.taskTableViewContent[0][0];
-    
-    row.status            = self.task.status.integerValue;
-    row.statusDescription = self.task.statusDescription;
-    
-    [DataManagerShared updateStatusType: @(row.status)
-                  withStatusDescription: row.statusDescription
-                         withCompletion: nil];
-    
-    // updating content with new status value
-    [self updateContentWithRow: row
-                     inSection: 0
-                         inRow: 0];
-}
-
 - (ProjectTaskStage*) getTaskStage
 {
     return self.task.stage;

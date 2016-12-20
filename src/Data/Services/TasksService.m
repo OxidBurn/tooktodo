@@ -337,8 +337,13 @@
                                withTask: currentTask
                          withCompletion: ^(BOOL isSuccess) {
                              
-                             [subscriber sendNext: nil];
-                             [subscriber sendCompleted];
+                             [[self loadSelectedTaskAvailableActionsForTask: currentTask]
+                              subscribeCompleted: ^{
+                                  
+                                  [subscriber sendNext: nil];
+                                  [subscriber sendCompleted];
+                                  
+                              }];
                              
                          }];
             
