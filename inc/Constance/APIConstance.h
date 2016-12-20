@@ -49,6 +49,7 @@ static NSString* sendReworkMessageURL           = @"/api/task/p{projectId}-t{tas
 static NSString* getTaskInfoURL                 = @"/api/task/p{projectId}-t{taskId}";
 static NSString* updateTeamMemberRoleURL        = @"/api/project/{id}/roleType";
 static NSString* setTaskToApprovalURL           = @"/api/task/p{projectId}-t{taskId}/approvment";
+static NSString* requestToCancelTaskURL         = @"/api/task/p{projectId}-t{taskId}/requestToCancel";
 
 // Grab filters info
 static NSString* getFiltersStatusesURL     = @"/api/tasksFilter/project/{projectId}/counters/statuses";

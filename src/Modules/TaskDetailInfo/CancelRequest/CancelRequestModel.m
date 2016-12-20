@@ -13,19 +13,14 @@
 #import "DataManager+Tasks.h"
 #import "ProjectTaskOwner+CoreDataClass.h"
 #import "AlertViewBlocks.h"
-#import <MessageUI/MessageUI.h>
+#import "TasksService.h"
 
 // Categories
 #import "NSString+Utils.h"
-#import "UIViewController+Utils.h"
 
-@interface CancelRequestModel() <MFMailComposeViewControllerDelegate>
+@interface CancelRequestModel()
 
 // properties
-
-@property (strong, nonatomic) MFMailComposeViewController* mc;
-
-@property (copy, nonatomic) void(^sendMailCompletionBlock)(BOOL isSuccess);
 
 // methods
 
@@ -42,84 +37,25 @@
 {
     letterText = [NSString getStringWithoutWhiteSpacesAndNewLines: letterText];
     
-    if ( [MFMailComposeViewController canSendMail] )
+    if ( letterText.length > 0 )
     {
-        if ( letterText.length > 0 )
-        {
-            self.sendMailCompletionBlock = completion;
-            
-            ProjectTask* currentTask = [DataManagerShared getSelectedTask];
-            
-            ProjectTaskOwner* owner = currentTask.ownerUser;
-            
-            NSString* emailAdress = owner.email;
-            // To address
-            NSArray *toRecipents = [NSArray arrayWithObject: emailAdress];
-            
-            self.mc = [[MFMailComposeViewController alloc] init];
-            self.mc.mailComposeDelegate = self;
-            
-            [self.mc setSubject: @"Запрос на отмену проекта"];
-            
-            [self.mc setMessageBody: letterText
-                        isHTML: NO];
-            
-            [self.mc setToRecipients: toRecipents];
-            
-            // Present mail view controller on screen
-            [[UIViewController topMostController] presentViewController: self.mc
-                                                               animated: YES
-                                                             completion: NULL];
-            
-        }
-        else
-        {
-            [AlertViewBlocks confirmWithTitle: @"Ошибка"
-                                      message: @"Текст сообщения не может быть пустым"
-                                      confirm: nil];
-        }
+        [[[TasksService sharedInstance] requestToCancelTask: letterText]
+         subscribeNext: ^(id x) {
+             
+             if ( completion )
+                 completion(YES);
+             
+         }
+         error: ^(NSError *error) {
+             
+         }];
     }
     else
     {
         [AlertViewBlocks confirmWithTitle: @"Ошибка"
-                                  message: @"Вы не можете отправить письмо"
+                                  message: @"Текст сообщения не может быть пустым"
                                   confirm: nil];
     }
-}
-
-
-#pragma mark - Mail delegate methods -
-
-- (void) mailComposeController: (MFMailComposeViewController*) controller
-           didFinishWithResult: (MFMailComposeResult)          result
-                         error: (NSError*)                     error
-{
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-        {
-            if ( self.sendMailCompletionBlock )
-                self.sendMailCompletionBlock(YES);
-            
-            NSLog(@"Mail sent");
-        }
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
-    
-    // Close the Mail Interface
-    [self.mc dismissViewControllerAnimated: YES
-                                completion: NULL];
 }
 
 @end

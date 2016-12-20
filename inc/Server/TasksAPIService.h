@@ -38,4 +38,7 @@
 
 - (RACSignal*) setTaskToApproval: (NSString*) requestURL;
 
+- (RACSignal*) taskCancelRequest: (NSString*)     requestURL
+                  withParameters: (NSDictionary*) parameter;
+
 @end

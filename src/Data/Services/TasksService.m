@@ -366,8 +366,16 @@
                                                    withParameters: requestParameter]
          subscribeNext: ^(RACTuple* response) {
              
-             [subscriber sendNext: nil];
-             [subscriber sendCompleted];
+             ProjectTask* task = [DataManagerShared getSelectedTask];
+             
+             [self parseSelectedTaskInfo: response[0]
+                                withTask: task
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
              
          }
          error: ^(NSError *error) {
@@ -380,6 +388,45 @@
     }];
     
     return sendReworkStatusMessage;
+}
+
+- (RACSignal*) requestToCancelTask: (NSString*) message
+{
+    NSString* requestURL           = [self buildCancelTaskRequestURL];
+    NSDictionary* requestParameter = @{@"message" : message};
+    
+    @weakify(self)
+    
+    RACSignal* cancelRequestSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [[[TasksAPIService sharedInstance] taskCancelRequest: requestURL
+                                             withParameters: requestParameter]
+         subscribeNext: ^(RACTuple* response) {
+             
+             @strongify(self)
+             
+             ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+             
+             [self parseSelectedTaskInfo: response[0]
+                                withTask: currentTask
+                          withCompletion: ^(BOOL isSuccess) {
+                              
+                              [subscriber sendNext: nil];
+                              [subscriber sendCompleted];
+                              
+                          }];
+             
+         }
+         error: ^(NSError *error) {
+             
+             [subscriber sendError: error];
+             
+         }];
+        
+        return nil;
+    }];
+    
+    return cancelRequestSignal;
 }
 
 - (RACSignal*) loadSelectedTaskInfoWithCompletion
@@ -795,6 +842,19 @@
     
     NSString* requestURL = [setTaskToApprovalURL stringByReplacingOccurrencesOfString: @"{projectId}"
                                                                            withString: currentTask.project.projectID.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
+
+- (NSString*) buildCancelTaskRequestURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [requestToCancelTaskURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                             withString: currentTask.projectId.stringValue];
     
     requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
                                                        withString: currentTask.taskID.stringValue];
