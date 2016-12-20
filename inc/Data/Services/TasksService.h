@@ -48,4 +48,6 @@
 
 - (RACSignal*) requestToCancelTask: (NSString*) message;
 
+- (RACSignal*) updateTaskInfo: (NewTask*) newInfo;
+
 @end
