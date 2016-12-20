@@ -118,7 +118,8 @@
                 if ( idx == indexPath.row )
                 {
                     obj.taskRoleAssinment = @(ResponsibleRoleType);
-                } else
+                }
+                else
                     if ( [obj.taskRoleAssinment isEqual: @(ResponsibleRoleType)] )
                     {
                         obj.taskRoleAssinment = nil;
@@ -164,13 +165,34 @@
                     
                     [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        if ( [obj.userId isEqual: user.userId] )
+                        if ( [obj isKindOfClass: [FilledTeamInfo class]] )
                         {
-                            NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
+                            FilledTeamInfo* filledUser = (FilledTeamInfo*)obj;
                             
-                            [selectedArrayCopy removeObject: obj];
-                            
-                            self.selectedClaimingArray = [selectedArrayCopy copy];
+                            if ( [filledUser.userId isEqual: user.userId] )
+                            {
+                                NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
+                                
+                                [selectedArrayCopy removeObject: obj];
+                                
+                                self.selectedClaimingArray = [selectedArrayCopy copy];
+                            }
+                        }
+                        else
+                        {
+                            if ( [obj isKindOfClass: [ProjectTaskAssignee class]])
+                            {
+                                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
+                                
+                                if ( [assignee.assigneeID isEqual: user.userId] )
+                                {
+                                    NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
+                                    
+                                    [selectedArrayCopy removeObject: obj];
+                                    
+                                    self.selectedClaimingArray = [selectedArrayCopy copy];
+                                }
+                            }
                         }
                        
                     }];
@@ -208,16 +230,38 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedObserversArray enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.selectedObserversArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        if ( [obj.userId isEqual: user.userId] )
+                        if ( [obj isKindOfClass: [FilledTeamInfo class]] )
                         {
-                            NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
+                            FilledTeamInfo* filledUser = (FilledTeamInfo*)obj;
                             
-                            [selectedArrayCopy removeObject: obj];
-                            
-                            self.selectedObserversArray = [selectedArrayCopy copy];
+                            if ( [filledUser.userId isEqual: user.userId] )
+                            {
+                                NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
+                                
+                                [selectedArrayCopy removeObject: obj];
+                                
+                                self.selectedObserversArray = [selectedArrayCopy copy];
+                            }
                         }
+                        else
+                        {
+                            if ( [obj isKindOfClass: [ProjectTaskAssignee class]])
+                            {
+                                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
+                                
+                                if ( [assignee.assigneeID isEqual: user.userId] )
+                                {
+                                    NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
+                                    
+                                    [selectedArrayCopy removeObject: obj];
+                                    
+                                    self.selectedObserversArray = [selectedArrayCopy copy];
+                                }
+                            }
+                        }
+                        
                     }];
                 }
         }
@@ -322,7 +366,8 @@
                         }
                     }
                     
-                    else if ([selectedUser isKindOfClass: [FilledTeamInfo class]])
+                    else
+                        if ( [selectedUser isKindOfClass: [FilledTeamInfo class]] )
                     {
                         FilledTeamInfo* selectedTeamMember = (FilledTeamInfo*)selectedUser;
                         

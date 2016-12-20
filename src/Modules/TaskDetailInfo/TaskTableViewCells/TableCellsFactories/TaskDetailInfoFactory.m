@@ -18,7 +18,7 @@
 - (UITableViewCell*) returnTaskDetailCellWithContent: (TaskRowContent*) content
                                         forTableView: (UITableView*)    tableView
 {
-    TaskDetailInfoCell* cell = [tableView dequeueReusableCellWithIdentifier: content.cellId];
+    TaskDetailInfoCell* cell = (TaskDetailInfoCell*)[tableView dequeueReusableCellWithIdentifier: content.cellId];
     
     [cell fillCellWithContent: content];
     
