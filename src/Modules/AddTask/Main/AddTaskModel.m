@@ -380,6 +380,8 @@
     if ( selectedUsersArray )
     {
         self.addTaskTableViewContent = [self.contentManager updateSelectedResponsibleInfo: selectedUsersArray];
+        
+        self.task.responsible = selectedUsersArray;
     }
     
     [self updateMembersRoleTypes: allMembers];
@@ -391,6 +393,8 @@
     if ( selectedClaiming)
     {
         self.addTaskTableViewContent = [self.contentManager updateSelectedClaimingInfo: selectedClaiming];
+        
+        self.task.claiming = selectedClaiming;
     }
     
     [self updateMembersRoleTypes: allMembers];
@@ -402,6 +406,8 @@
     if ( selectedObservers)
     {
         self.addTaskTableViewContent = [self.contentManager updateSelectedObserversInfo: selectedObservers];
+        
+        self.task.observers = selectedObservers;
     }
     
     [self updateMembersRoleTypes: allMembers];

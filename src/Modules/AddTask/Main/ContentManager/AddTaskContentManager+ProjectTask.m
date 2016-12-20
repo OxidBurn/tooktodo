@@ -36,7 +36,7 @@
     NewTask* newTask = [NewTask new];
     
     newTask.taskName               = task.title;
-    newTask.taskDescription        = task.description;
+    newTask.taskDescription        = task.taskDescription;
     newTask.isHiddenTask           = task.access.boolValue;
     newTask.terms.startDate        = task.startDay;
     newTask.terms.endDate          = task.endDate;
