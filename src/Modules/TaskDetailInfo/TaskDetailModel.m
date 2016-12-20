@@ -55,6 +55,16 @@
     return _contentManager;
 }
 
+- (ProjectTask*) task
+{
+    if ( _task == nil )
+    {
+        _task = [DataManagerShared getSelectedTask];
+    }
+    
+    return _task;
+}
+
 
 #pragma mark - Public -
 
@@ -140,17 +150,16 @@
 
 - (void) updateTaskStatusWithCompletion: (CompletionWithSuccess) completion
 {
-    self.task = [DataManagerShared getSelectedTask];
-    
-    [self reloadTaskStatusCell];
-    
     @weakify(self)
     
     [[[TasksService sharedInstance] updateStatusForSelectedTask: self.task.status.integerValue] subscribeCompleted: ^{
         
         @strongify(self)
         
-        [self reloadTaskStatusCell];
+        self.task = [DataManagerShared getSelectedTask];
+        
+        self.taskTableViewContent = [self.contentManager getTableViewContentForTask: self.task
+                                                              forTableViewWithFrame: self.tableViewFrame];
         
         if ( completion )
             completion(YES);
