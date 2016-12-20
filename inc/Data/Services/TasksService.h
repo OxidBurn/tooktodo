@@ -46,4 +46,6 @@
 
 - (RACSignal*) sendReworkStatusMessage: (NSString*) message;
 
+- (RACSignal*) requestToCancelTask: (NSString*) message;
+
 @end

@@ -119,12 +119,15 @@
         }
             break;
             
-        case TaskToCancelStatusType:
+        case TaskToPauseStatusType:
         {
-            if ( self.showCancelRequestController )
-                self.showCancelRequestController();
-            
-            return;
+            if ( selectedStatus == TaskToCancelStatusType )
+            {
+                if ( self.showCancelRequestController )
+                    self.showCancelRequestController();
+                
+                return;
+            }
         }
             break;
     
