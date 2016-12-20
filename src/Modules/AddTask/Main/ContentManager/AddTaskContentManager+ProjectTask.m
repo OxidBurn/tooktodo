@@ -31,6 +31,29 @@
     return [NSArray arrayWithObjects: sectionOne, sectionTwo, sectionThree, nil];
 }
 
+- (NewTask*) parseProjectTaskToNewTask: (ProjectTask*) task
+{
+    NewTask* newTask = [NewTask new];
+    
+    newTask.taskName               = task.title;
+    newTask.taskDescription        = task.description;
+    newTask.isHiddenTask           = task.access.boolValue;
+    newTask.terms.startDate        = task.startDay;
+    newTask.terms.endDate          = task.endDate;
+    newTask.terms.factualStartDate = task.factualStartDate;
+    newTask.terms.factualEndDate   = task.factualStartDate;
+    newTask.terms.closedDate       = task.closedDate;
+    newTask.level                  = task.roomLevel;
+    newTask.room                   = task.room;
+    newTask.taskType               = task.taskType.integerValue;
+    newTask.stage                  = task.stage;
+    
+    // parsing responsible, claiming and observers
+    [self fillMemebersforTask: task];
+    
+    return newTask;
+}
+
 
 #pragma mark - Internal -
 

@@ -16,6 +16,12 @@
 
 @property (strong, nonatomic) NSDate* endDate;
 
+@property (strong, nonatomic) NSDate* factualStartDate;
+
+@property (strong, nonatomic) NSDate* factualEndDate;
+
+@property (strong, nonatomic) NSDate* closedDate;
+
 @property (strong, nonatomic) NSString* endDateString;
 
 @property (assign, nonatomic) NSUInteger duration;

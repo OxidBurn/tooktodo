@@ -235,6 +235,8 @@
 
 - (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion
 {
+    
+    
     NSLog(@"Task info: %@", self.task);
 }
 
@@ -255,6 +257,8 @@
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
 {
+    self.task = [self.contentManager parseProjectTaskToNewTask: taskToEdit];
+    
     self.addTaskTableViewContent = [self.contentManager convertProjectTaskToContent: taskToEdit];
     
     self.editedTask = taskToEdit;

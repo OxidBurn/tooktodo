@@ -8,9 +8,14 @@
 
 #import "AddTaskContentManager.h"
 
+// Classes
+#import "NewTask.h"
+
 @interface AddTaskContentManager (ProjectTask)
 
 // methods
 - (NSArray*) convertProjectTaskToContent: (ProjectTask*) task;
+
+- (NewTask*) parseProjectTaskToNewTask: (ProjectTask*) task;
 
 @end
