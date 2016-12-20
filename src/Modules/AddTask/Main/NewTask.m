@@ -22,12 +22,4 @@
     return _terms;
 }
 
-
-#pragma mark - Desctiption -
-
-//- (NSString*) description
-//{
-//    return [NSString stringWithFormat: @"New task: \nname:%@, description: %@", self.taskName, self.taskDescription];
-//}
-
 @end
