@@ -235,9 +235,20 @@
 
 - (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion
 {
-    
-    
-    NSLog(@"Task info: %@", self.task);
+    [[[TasksService sharedInstance] updateTaskInfo: self.task]
+     subscribeNext: ^(id x) {
+         
+         if ( completion )
+             completion(YES);
+         
+     }
+     error: ^(NSError *error) {
+         
+         NSLog(@"<ERROR> Error with creation new task: %@", error.localizedDescription);
+         
+         [Utils showErrorAlertWithMessage: @"Произошла ошибка при обновлении задачи!"];
+         
+     }];
 }
 
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
