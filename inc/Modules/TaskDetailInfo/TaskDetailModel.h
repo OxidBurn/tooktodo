@@ -53,7 +53,7 @@
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex;
 
-- (void) updateTaskStatus;
+- (void) updateTaskStatusWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) fillSelectedTask: (ProjectTask*) task
            withCompletion: (CompletionWithSuccess) completion;

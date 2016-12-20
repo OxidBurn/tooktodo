@@ -311,21 +311,43 @@
     NSString* requestURL           = [self buildUpdateTaskStatusURL];
     NSDictionary* requestParameter = [self getUpdateTaskStatusParameter: status];
     
+    @weakify(self)
+    
     RACSignal* updateStatusSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
        
-        [[[TasksAPIService sharedInstance] updateTaskStatus: requestURL
-                                             withParameter: requestParameter]
-         subscribeNext: ^(RACTuple* response) {
-             
-             [subscriber sendNext: nil];
-             [subscriber sendCompleted];
-             
-         }
-         error: ^(NSError *error) {
+        RACSignal* signal = nil;
+        
+        @strongify(self)
+        
+        if ( status == TaskApproveStatusType )
+        {
+            signal = [self setSelectedTaskToApproval];
+        }
+        else
+        {
+            signal = [self updateStatusForTask: requestURL
+                          withRequestParameter: requestParameter];
+        }
+        
+        [signal subscribeNext: ^(RACTuple* response) {
             
-             [subscriber sendError: error];
-             
-         }];
+            ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+            
+            [self parseSelectedTaskInfo: response[0]
+                               withTask: currentTask
+                         withCompletion: ^(BOOL isSuccess) {
+                             
+                             [subscriber sendNext: nil];
+                             [subscriber sendCompleted];
+                             
+                         }];
+            
+        }
+                        error: ^(NSError *error) {
+                            
+                            [subscriber sendError: error];
+                            
+                        }];
         
         return nil;
     }];
@@ -396,6 +418,20 @@
     }];
     
     return loadTaskInfo;
+}
+
+- (RACSignal*) setSelectedTaskToApproval
+{
+    NSString* requestURL = [self buildSetTaskToApprovalRequestURL];
+    
+    return [[TasksAPIService sharedInstance] setTaskToApproval: requestURL];
+}
+
+- (RACSignal*) updateStatusForTask: (NSString*)     requestURL
+              withRequestParameter: (NSDictionary*) parameter
+{
+    return [[TasksAPIService sharedInstance] updateTaskStatus: requestURL
+                                                withParameter: parameter];
 }
 
 #pragma mark - Data base methods -
@@ -753,5 +789,17 @@
     return requestURL;
 }
 
+- (NSString*) buildSetTaskToApprovalRequestURL
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSString* requestURL = [setTaskToApprovalURL stringByReplacingOccurrencesOfString: @"{projectId}"
+                                                                           withString: currentTask.project.projectID.stringValue];
+    
+    requestURL = [requestURL stringByReplacingOccurrencesOfString: @"{taskId}"
+                                                       withString: currentTask.taskID.stringValue];
+    
+    return requestURL;
+}
 
 @end

@@ -132,7 +132,6 @@
 - (void) updateTaskStatusWithNewStatus: (TaskStatusType)        status
                         withCompletion: (CompletionWithSuccess) completion
 {
-    
     NSNumber* statusValue = @(status);
     
     [DataManagerShared updateStatusType: statusValue

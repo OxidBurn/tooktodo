@@ -181,9 +181,9 @@
     [self.tableView setContentOffset: offset animated: NO];
 }
 
-- (void) updateTaskStatus
+- (void) updateTaskStatusWithCompletion: (CompletionWithSuccess) completion
 {
-    [self.model updateTaskStatus];
+    [self.model updateTaskStatusWithCompletion: completion];
 }
 
 - (void) hideKeyboard

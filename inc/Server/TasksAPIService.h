@@ -36,4 +36,6 @@
 - (RACSignal*) sendReworkStatusMessage: (NSString*)     requestURL
                         withParameters: (NSDictionary*) parameter;
 
+- (RACSignal*) setTaskToApproval: (NSString*) requestURL;
+
 @end

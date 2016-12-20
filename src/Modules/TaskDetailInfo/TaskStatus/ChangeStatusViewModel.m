@@ -97,17 +97,13 @@
     {
         case TaskToOnApprovalStatusType:
         {
-            if ( selectedStatus == TaskApproveStatusType )
+            if ( selectedStatus == TaskOnReworkStatusType )
             {
-                selectedStatus = TaskCompleteStatusType;
-            } else
-                if ( selectedStatus == TaskOnReworkStatusType )
-                {
-                    if ( self.showOnRevisionController )
-                        self.showOnRevisionController();
-                    
-                    return;
-                }
+                if ( self.showOnRevisionController )
+                    self.showOnRevisionController();
+                
+                return;
+            }
         }
             break;
             

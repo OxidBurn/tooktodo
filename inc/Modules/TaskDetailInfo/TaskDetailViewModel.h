@@ -44,7 +44,7 @@
 
 - (TaskStatusType) getTaskStatus;
 
-- (void) updateTaskStatus;
+- (void) updateTaskStatusWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) hideKeyboard;
 

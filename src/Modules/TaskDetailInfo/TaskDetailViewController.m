@@ -240,9 +240,11 @@
 
 - (void) updataTaskDetailInfoTaskStatus
 {
-    [self.viewModel updateTaskStatus];
-    
-    [self.taskTableView reloadData];
+    [self.viewModel updateTaskStatusWithCompletion: ^(BOOL isSuccess) {
+       
+        [self.taskTableView reloadData];
+        
+    }];
 }
 
 

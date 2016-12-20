@@ -93,5 +93,12 @@
     return [[[requestManager rac_POST: requestURL parameters: parameter] logError] replayLazily];
 }
 
+- (RACSignal*) setTaskToApproval: (NSString*) requestURL
+{
+    AFHTTPRequestOperationManager* requestManager = [self getRawManager];
+    
+    return [[[requestManager rac_POST: requestURL parameters: nil] logError] replayLazily];
+}
+
 
 @end

@@ -148,13 +148,10 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        ProjectTask* selectedTask = [self getSelectedTask];
+        ProjectTask* selectedTask = [[self getSelectedTask] MR_inContext: localContext];
         
-        ProjectTask* task = [ProjectTask MR_findFirstByAttribute: @"taskID"
-                                                       withValue: selectedTask.taskID
-                                                       inContext: localContext];
-        task.status            = newStatus;
-        task.statusDescription = statusDescription;
+        selectedTask.status            = newStatus;
+        selectedTask.statusDescription = statusDescription;
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
                           

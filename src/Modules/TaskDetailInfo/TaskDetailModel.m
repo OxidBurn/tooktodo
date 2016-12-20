@@ -138,7 +138,27 @@
     self.taskTableViewContent = contentCopy.copy;
 }
 
-- (void) updateTaskStatus
+- (void) updateTaskStatusWithCompletion: (CompletionWithSuccess) completion
+{
+    self.task = [DataManagerShared getSelectedTask];
+    
+    [self reloadTaskStatusCell];
+    
+    @weakify(self)
+    
+    [[[TasksService sharedInstance] updateStatusForSelectedTask: self.task.status.integerValue] subscribeCompleted: ^{
+        
+        @strongify(self)
+        
+        [self reloadTaskStatusCell];
+        
+        if ( completion )
+            completion(YES);
+        
+    }];
+}
+
+- (void) reloadTaskStatusCell
 {
     self.task = [DataManagerShared getSelectedTask];
     
@@ -148,17 +168,10 @@
     row.status            = self.task.status.integerValue;
     row.statusDescription = self.task.statusDescription;
     
-    
-    [[[TasksService sharedInstance] updateStatusForSelectedTask: row.status] subscribeCompleted: ^{
-        
-        NSLog(@"<INFO> Task status updated successful");
-        
-    }];
-    
     [DataManagerShared updateStatusType: @(row.status)
                   withStatusDescription: row.statusDescription
                          withCompletion: nil];
-
+    
     // updating content with new status value
     [self updateContentWithRow: row
                      inSection: 0
