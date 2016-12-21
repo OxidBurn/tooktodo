@@ -456,6 +456,11 @@
         [selectedTeamMember convertInviteToTeamInfo: invite];
     }
     
+    else if ([object isKindOfClass:[FilledTeamInfo class]])
+    {
+        selectedTeamMember = (FilledTeamInfo*)object;
+    }
+    
     return selectedTeamMember;
     
 }
