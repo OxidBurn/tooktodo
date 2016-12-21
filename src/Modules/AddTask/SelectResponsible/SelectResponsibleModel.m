@@ -14,6 +14,7 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectTaskRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfoPack.h"
 
 @interface SelectResponsibleModel()
 
@@ -166,7 +167,7 @@
                     
                     [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
+                        FilledTeamInfo* filledUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
 
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
@@ -213,7 +214,7 @@
                     
                     [self.selectedObserversArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
+                        FilledTeamInfo* filledUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
                         
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
@@ -313,7 +314,7 @@
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
                         
-                        FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
+                        FilledTeamInfo* selectedTeamMember = [FilledTeamInfoPack convertObjectToTeamMember: selectedUser];
 
                         if ( [userInList.userId isEqual: selectedTeamMember.userId] )
                         {
@@ -352,7 +353,7 @@
        
         [selectedMembers enumerateObjectsUsingBlock: ^(id selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
             
-                FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
+                FilledTeamInfo* selectedTeamMember = [FilledTeamInfoPack convertObjectToTeamMember: selectedUser];
                 
                 if ( [userInList.userId isEqual: selectedTeamMember.userId] )
                 {
@@ -361,22 +362,6 @@
         }];
         
     }];
-}
-
-- (void) excludeInvitedUsers
-{
-    __block NSMutableArray* tmpMembersArray = self.membersArray.mutableCopy;
-    
-    [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
-       
-        if ( member.assignments.assignee == nil )
-        {
-            [tmpMembersArray removeObject: member];
-        }
-        
-    }];
-    
-    self.membersArray = tmpMembersArray.copy;
 }
 
 - (void) sortContentAccordingToType
@@ -437,33 +422,5 @@
     
     [self updateSelectedUsers];
 }
-
-- (FilledTeamInfo*) convertObjectToTeamMember: (id) object
-{
-    FilledTeamInfo* selectedTeamMember = [FilledTeamInfo new];
-    
-    if ([object isKindOfClass: [ProjectTaskAssignee class]])
-    {
-        ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)object;
-        
-        [selectedTeamMember convertAssigneeToTeamInfo: assignee];
-    }
-    
-    else if ([object isKindOfClass: [ProjectInviteInfo class]])
-    {
-        ProjectInviteInfo* invite = (ProjectInviteInfo*)object;
-        
-        [selectedTeamMember convertInviteToTeamInfo: invite];
-    }
-    
-    else if ([object isKindOfClass:[FilledTeamInfo class]])
-    {
-        selectedTeamMember = (FilledTeamInfo*)object;
-    }
-    
-    return selectedTeamMember;
-    
-}
-
 
 @end

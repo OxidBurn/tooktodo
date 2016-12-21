@@ -21,6 +21,7 @@
 #import "OSFlexibleTextCellFactory.h"
 #import "OSFlexibleTextFieldCellFactory.h"
 #import "OSSwitchTableCell.h"
+#import "FilledTeamInfoPack.h"
 
 @interface AddTaskMainFactory()
 
@@ -103,32 +104,11 @@
             NSString* userFullName = @"";
             NSString* userAvatarSrc = @"";
             
-            if ([user isKindOfClass:[ProjectTaskAssignee class]])
-            {
-                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*) user;
-                
-                userFullName  = [NSString stringWithFormat: @"%@ %@", assignee.firstName, assignee.lastName];
-                
-                userAvatarSrc = assignee.avatarSrc;
-            }
+            FilledTeamInfo* packedUser = [FilledTeamInfoPack convertObjectToTeamMember: user];
             
-            else if ([user isKindOfClass:[ProjectInviteInfo class]])
-
-            {
-                ProjectInviteInfo* invite = (ProjectInviteInfo*) user;
-
-                userFullName  = [NSString stringWithFormat: @"%@ %@", invite.firstName, invite.lastName];
-            }
+            userFullName  = packedUser.fullname;
             
-            else if ([user isKindOfClass: [FilledTeamInfo class]])
-           
-            {
-                FilledTeamInfo* filledUser = (FilledTeamInfo*) user;
-                
-                userFullName  = filledUser.fullname;
-                
-                userAvatarSrc = filledUser.avatarSrc;
-            }
+            userAvatarSrc = packedUser.avatarSrc;
             
             cell = [factory returnSingleUserCellWithTitle: content.title
                                          withUserFullName: userFullName

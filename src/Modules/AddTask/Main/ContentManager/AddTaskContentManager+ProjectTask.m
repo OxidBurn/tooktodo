@@ -15,6 +15,7 @@
 #import "ProjectTaskRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfoPack.h"
 
 @implementation AddTaskContentManager (ProjectTask)
 
@@ -259,6 +260,8 @@
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
+                        
+                        [self convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr];
                     }
                     
                 }];
@@ -278,6 +281,8 @@
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                        
+                        [self convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr];
                     }
                     
                 }];
@@ -298,12 +303,12 @@
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];
                         
+                        [self convertMembersToFilledTeamInfoFromArray: tmpObserversArr];
                     }
                     
                 }];
                 
             }
-                
                 break;
                 
             default:
@@ -319,6 +324,24 @@
     tmpObserversArr = nil;
     tmpClaimingsArr = nil;
     tmpResponsibleArr = nil;
+}
+
+- (void) convertMembersToFilledTeamInfoFromArray: (NSArray*) array
+{
+    __block  FilledTeamInfo* convertedUser = nil;
+    __block NSMutableArray* arrWithConvertedUsers = [NSMutableArray array];
+    
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        convertedUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
+        
+        [arrWithConvertedUsers addObject: convertedUser];
+        
+    }];
+    
+    array = arrWithConvertedUsers;
+    
+    arrWithConvertedUsers = nil;
 }
 
 - (UIColor*) getColorForTaskType: (TaskType) taskType
@@ -346,4 +369,5 @@
     
     return typeColor;
 }
+
 @end
