@@ -14,7 +14,6 @@
 #import "ProjectInfo+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectTaskRoleAssignments+CoreDataClass.h"
-#import "FilledTeamInfoPack.h"
 
 @interface SelectResponsibleModel()
 
@@ -36,7 +35,6 @@
 @property (strong, nonatomic) NSIndexPath* previousesSelectedIndexPath;
 
 // methods
-
 
 @end
 
@@ -165,15 +163,13 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* filledUser, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        FilledTeamInfo* filledUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
-
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
                                 
-                                [selectedArrayCopy removeObject: obj];
+                                [selectedArrayCopy removeObject: filledUser];
                                 
                                 self.selectedClaimingArray = [selectedArrayCopy copy];
                             }
@@ -212,15 +208,13 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedObserversArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
-                        FilledTeamInfo* filledUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
+                    [self.selectedObserversArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* filledUser, NSUInteger idx, BOOL * _Nonnull stop) {
                         
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
                                 
-                                [selectedArrayCopy removeObject: obj];
+                                [selectedArrayCopy removeObject: filledUser];
                                 
                                 self.selectedObserversArray = [selectedArrayCopy copy];
                             }
@@ -313,12 +307,10 @@
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
-                        
-                        FilledTeamInfo* selectedTeamMember = [FilledTeamInfoPack convertObjectToTeamMember: selectedUser];
-
-                        if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                    
+                        if ( [userInList.userId isEqual: selectedUser.userId] )
                         {
-                            userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                            userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
                             
                             NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
                             
@@ -351,13 +343,11 @@
 {
     [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        [selectedMembers enumerateObjectsUsingBlock: ^(id selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+        [selectedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
             
-                FilledTeamInfo* selectedTeamMember = [FilledTeamInfoPack convertObjectToTeamMember: selectedUser];
-                
-                if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                if ( [userInList.userId isEqual: selectedUser.userId] )
                 {
-                    userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                    userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
                 }
         }];
         

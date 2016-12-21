@@ -55,7 +55,7 @@
     
     self.userNameLabel.text = [NSString stringWithFormat: @"%@ %@", userInfo.firstName, userInfo.lastName];
     
-    if ([userInfo respondsToSelector:@selector(avatarSrc)])
+    if (userInfo.avatarSrc.length > 0)
     {
         [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: userInfo.avatarSrc]];
     }

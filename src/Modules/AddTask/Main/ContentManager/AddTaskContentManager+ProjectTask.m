@@ -261,7 +261,8 @@
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
                         
-                        [self convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr];
+                        tmpResponsibleArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr].mutableCopy;
+                        
                     }
                     
                 }];
@@ -282,7 +283,7 @@
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
                         
-                        [self convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr];
+                        tmpClaimingsArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr].mutableCopy;
                     }
                     
                 }];
@@ -303,7 +304,7 @@
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];
                         
-                        [self convertMembersToFilledTeamInfoFromArray: tmpObserversArr];
+                        tmpObserversArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpObserversArr].mutableCopy;
                     }
                     
                 }];
@@ -324,24 +325,6 @@
     tmpObserversArr = nil;
     tmpClaimingsArr = nil;
     tmpResponsibleArr = nil;
-}
-
-- (void) convertMembersToFilledTeamInfoFromArray: (NSArray*) array
-{
-    __block  FilledTeamInfo* convertedUser = nil;
-    __block NSMutableArray* arrWithConvertedUsers = [NSMutableArray array];
-    
-    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        convertedUser = [FilledTeamInfoPack convertObjectToTeamMember: obj];
-        
-        [arrWithConvertedUsers addObject: convertedUser];
-        
-    }];
-    
-    array = arrWithConvertedUsers;
-    
-    arrWithConvertedUsers = nil;
 }
 
 - (UIColor*) getColorForTaskType: (TaskType) taskType

@@ -29,9 +29,6 @@
 #import "DataManager+TaskLogs.h"
 #import "NSMutableArray+Safe.h"
 
-// Helpers
-#import "FilledTeamInfoPack.h"
-
 @implementation TasksService
 
 
@@ -754,9 +751,7 @@
     // Task Role Assignment Models
     NSMutableArray* taskRoleAssignmentModelsArr = [NSMutableArray array];
     
-    [taskInfo.responsible enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        FilledTeamInfo* obj = [FilledTeamInfoPack convertObjectToTeamMember: user];
+    [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( obj.userId )
         {
@@ -766,8 +761,7 @@
         
     }];
     
-    [taskInfo.claiming enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
-        FilledTeamInfo* obj = [FilledTeamInfoPack convertObjectToTeamMember: user];
+    [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( obj.userId )
         {
@@ -777,9 +771,7 @@
         
     }];
     
-    [taskInfo.observers enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        FilledTeamInfo* obj = [FilledTeamInfoPack convertObjectToTeamMember: user];
+    [taskInfo.observers enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ( obj.userId )
         {

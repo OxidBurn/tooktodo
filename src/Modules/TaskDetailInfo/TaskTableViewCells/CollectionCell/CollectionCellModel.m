@@ -35,6 +35,7 @@
 // Helpers
 #import "NSDate+Helper.h"
 #import "Utils.h"
+#import "FilledTeamInfoPack.h"
 
 typedef NS_ENUM(NSUInteger, CollectionItemsList)
 {
@@ -130,6 +131,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     return _approversIDsArray;
 }
+
 
 #pragma mark - Public -
 
@@ -289,7 +291,19 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
             withClaimingsArray: itemSeven
             withObserversArray: itemEight];
     
-    NSString* responsibleCellId = [self determineCollectionCellIdForContent: itemSix.responsible];
+
+    NSString* responsibleCellId = @"";
+    
+    switch (itemSix.responsible.count) {
+        case 0: responsibleCellId = self.collectionViewCellsIdArray[CollectionDefaultCell];
+            break;
+            
+        case 1 ... 1000: responsibleCellId = self.collectionViewCellsIdArray[CollectionSingleUserCell];
+            
+        default:
+            break;
+    }
+    
     
     NSString* claimingCellId = [self determineCollectionCellIdForContent: itemSeven.claiming];
     
@@ -373,6 +387,8 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
+            
+                        tmpResponsibleArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr].mutableCopy;
                     }
                     
                 }];
@@ -392,6 +408,8 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                        
+                        tmpClaimingsArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr].mutableCopy;
                     }
                     
                 }];
@@ -412,6 +430,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];
                     
+                        tmpObserversArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpObserversArr].mutableCopy;
                     }
                     
                 }];
@@ -442,32 +461,16 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     NSMutableArray* tmpApproversArr = [NSMutableArray array];
     
-    
     [approvmentsArray enumerateObjectsUsingBlock:^(TaskApprovments*  _Nonnull approvement, NSUInteger idx, BOOL * _Nonnull stop) {
         
         [approvers enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ([obj isKindOfClass:[ProjectTaskAssignee class]])
-            {
-                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
-                
-                if ([approvement.approverUserId isEqual: assignee.assigneeID])
+            FilledTeamInfo* user = [FilledTeamInfoPack convertObjectToTeamMember: obj];
+            
+                if ([approvement.approverUserId isEqual: user.userId])
                 {
-                    [tmpApproversArr addObject: assignee.assigneeID];
+                    [tmpApproversArr addObject: user.userId];
                 }
-            }
-            
-            if ([obj isKindOfClass:[ProjectInviteInfo class]])
-            {
-                ProjectInviteInfo* invite = (ProjectInviteInfo*)obj;
-                
-                if ([approvement.approverUserId isEqual: invite.inviteID])
-                {
-                    [tmpApproversArr addObject: invite.inviteID];
-                }
-            }
-            
-            
         }];
     }];
     
@@ -481,13 +484,15 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     if ( arrayToCheck == nil || arrayToCheck.count == 0 )
     {
         cellId = self.collectionViewCellsIdArray[CollectionDefaultCell];
-    } else
-        if ( arrayToCheck.count == 1 )
+    }
+    else if ( arrayToCheck.count == 1 )
         {
             cellId = self.collectionViewCellsIdArray[CollectionSingleUserCell];
-        } else
-            cellId = self.collectionViewCellsIdArray[CollectionGroupOfUsersCell];
+        }
+    else
+        cellId = self.collectionViewCellsIdArray[CollectionGroupOfUsersCell];
     
     return cellId;
 }
+
 @end
