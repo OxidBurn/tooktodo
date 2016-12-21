@@ -14,6 +14,7 @@
 #import "ProjectTaskResponsible+CoreDataClass.h"
 #import "ProjectTaskRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectRoleAssignments+CoreDataClass.h"
 
 @implementation AddTaskContentManager (ProjectTask)
 
@@ -50,6 +51,10 @@
     
     // parsing responsible, claiming and observers
     [self fillMemebersforTask: task];
+    
+    newTask.responsible = self.task.responsible;
+    newTask.claiming    = self.task.claiming;
+    newTask.observers   = self.task.observers;
     
     return newTask;
 }
