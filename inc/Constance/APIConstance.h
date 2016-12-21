@@ -14,7 +14,7 @@
 // URLS
 static NSString* registerPageURL = @"https://tooktodo.ru";
 
-static NSString* serverURL = @"http://api.taketowork.com:80/";
+static NSString* serverURL = @"http://api.taketowork.com/";
 
 static NSString* loginURL                       = @"token";
 static NSString* userInfoURL                    = @"api/Account/info";
