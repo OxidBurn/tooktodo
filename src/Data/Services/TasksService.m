@@ -751,7 +751,9 @@
     // Task Role Assignment Models
     NSMutableArray* taskRoleAssignmentModelsArr = [NSMutableArray array];
     
-    [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [taskInfo.responsible enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        FilledTeamInfo* obj = [self convertObjectToTeamMember: user];
         
         if ( obj.userId )
         {
@@ -761,7 +763,8 @@
         
     }];
     
-    [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [taskInfo.claiming enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
+        FilledTeamInfo* obj = [self convertObjectToTeamMember: user];
         
         if ( obj.userId )
         {
@@ -771,7 +774,9 @@
         
     }];
     
-    [taskInfo.observers enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [taskInfo.observers enumerateObjectsUsingBlock: ^(id user, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        FilledTeamInfo* obj = [self convertObjectToTeamMember: user];
         
         if ( obj.userId )
         {
@@ -900,6 +905,28 @@
                                                        withString: currentTask.taskID.stringValue];
     
     return requestURL;
+}
+
+- (FilledTeamInfo*) convertObjectToTeamMember: (id) object
+{
+    FilledTeamInfo* selectedTeamMember = [FilledTeamInfo new];
+    
+    if ([object isKindOfClass: [ProjectTaskAssignee class]])
+    {
+        ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)object;
+        
+        [selectedTeamMember convertAssigneeToTeamInfo: assignee];
+    }
+    
+    else if ([object isKindOfClass: [ProjectInviteInfo class]])
+    {
+        ProjectInviteInfo* invite = (ProjectInviteInfo*)object;
+        
+        [selectedTeamMember convertInviteToTeamInfo: invite];
+    }
+    
+    return selectedTeamMember;
+    
 }
 
 @end

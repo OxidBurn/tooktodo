@@ -163,12 +163,10 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        if ( [obj isKindOfClass: [FilledTeamInfo class]] )
-                        {
-                            FilledTeamInfo* filledUser = (FilledTeamInfo*)obj;
-                            
+                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
+
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
@@ -177,24 +175,6 @@
                                 
                                 self.selectedClaimingArray = [selectedArrayCopy copy];
                             }
-                        }
-                        else
-                        {
-                            if ( [obj isKindOfClass: [ProjectTaskAssignee class]])
-                            {
-                                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
-                                
-                                if ( [assignee.assigneeID isEqual: user.userId] )
-                                {
-                                    NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
-                                    
-                                    [selectedArrayCopy removeObject: obj];
-                                    
-                                    self.selectedClaimingArray = [selectedArrayCopy copy];
-                                }
-                            }
-                        }
-                       
                     }];
                 }
                 else
@@ -232,10 +212,8 @@
                     
                     [self.selectedObserversArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        if ( [obj isKindOfClass: [FilledTeamInfo class]] )
-                        {
-                            FilledTeamInfo* filledUser = (FilledTeamInfo*)obj;
-                            
+                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
+                        
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
@@ -244,24 +222,6 @@
                                 
                                 self.selectedObserversArray = [selectedArrayCopy copy];
                             }
-                        }
-                        else
-                        {
-                            if ( [obj isKindOfClass: [ProjectTaskAssignee class]])
-                            {
-                                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)obj;
-                                
-                                if ( [assignee.assigneeID isEqual: user.userId] )
-                                {
-                                    NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
-                                    
-                                    [selectedArrayCopy removeObject: obj];
-                                    
-                                    self.selectedObserversArray = [selectedArrayCopy copy];
-                                }
-                            }
-                        }
-                        
                     }];
                 }
         }
@@ -351,26 +311,9 @@
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
-                    
-                    if ([selectedUser isKindOfClass: [ProjectTaskAssignee class]])
-                    {
-                        ProjectTaskAssignee* selectedAssignee = (ProjectTaskAssignee*)selectedUser;
                         
-                        if ( [userInList.userId isEqual: selectedAssignee.assigneeID] )
-                        {
-                            userInList.taskRoleAssinment = selectedAssignee.roleAssignment.projectRoleAssignments.taskRoleType;
-                            
-                            NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
-                            
-                            self.previousesSelectedIndexPath = temp;
-                        }
-                    }
-                    
-                    else
-                        if ( [selectedUser isKindOfClass: [FilledTeamInfo class]] )
-                    {
-                        FilledTeamInfo* selectedTeamMember = (FilledTeamInfo*)selectedUser;
-                        
+                        FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
+
                         if ( [userInList.userId isEqual: selectedTeamMember.userId] )
                         {
                             userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
@@ -379,8 +322,6 @@
                             
                             self.previousesSelectedIndexPath = temp;
                         }
-                    }
-                    
                 }];
                 
             }];
@@ -410,26 +351,12 @@
        
         [selectedMembers enumerateObjectsUsingBlock: ^(id selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ([selectedUser isKindOfClass: [ProjectTaskAssignee class]])
-            {
-                ProjectTaskAssignee* selectedAssignee = (ProjectTaskAssignee*)selectedUser;
-                
-                if ( [userInList.userId isEqual: selectedAssignee.assigneeID] )
-                {
-                    userInList.taskRoleAssinment = selectedAssignee.roleAssignment.projectRoleAssignments.taskRoleType;
-                }
-            }
-            
-            else if ([selectedUser isKindOfClass: [FilledTeamInfo class]])
-            {
-                FilledTeamInfo* selectedTeamMember = (FilledTeamInfo*)selectedUser;
+                FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
                 
                 if ( [userInList.userId isEqual: selectedTeamMember.userId] )
                 {
                     userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
                 }
-            }
-           
         }];
         
     }];
@@ -511,5 +438,28 @@
     
     [self updateSelectedUsers];
 }
+
+- (FilledTeamInfo*) convertObjectToTeamMember: (id) object
+{
+    FilledTeamInfo* selectedTeamMember = [FilledTeamInfo new];
+    
+    if ([object isKindOfClass: [ProjectTaskAssignee class]])
+    {
+        ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)object;
+        
+        [selectedTeamMember convertAssigneeToTeamInfo: assignee];
+    }
+    
+    else if ([object isKindOfClass: [ProjectInviteInfo class]])
+    {
+        ProjectInviteInfo* invite = (ProjectInviteInfo*)object;
+        
+        [selectedTeamMember convertInviteToTeamInfo: invite];
+    }
+    
+    return selectedTeamMember;
+    
+}
+
 
 @end
