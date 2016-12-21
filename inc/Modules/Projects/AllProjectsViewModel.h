@@ -24,6 +24,8 @@
 
 @property (nonatomic, copy) void(^dismissController)();
 
+@property (copy, nonatomic) void(^hideProjectsTable)(BOOL isHidden);
+
 // methods
 
 - (void) updateProjectsContent;

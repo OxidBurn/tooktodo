@@ -77,6 +77,9 @@ static CGFloat sectionHeaderHeight = 30;
         if ( self.reloadTable )
             self.reloadTable();
         
+        if ( self.hideProjectsTable )
+            self.hideProjectsTable(self.projectsContent.count == 0);
+        
     }];
 }
 
