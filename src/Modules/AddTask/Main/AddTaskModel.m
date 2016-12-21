@@ -487,7 +487,6 @@
 
 - (void) updateMembersRoleTypes: (NSArray*) changedMembers
 {
-    [self excludeInvitedUsers];
     
     [self.allMembersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* oldMember, NSUInteger idx, BOOL * _Nonnull stop) {
        

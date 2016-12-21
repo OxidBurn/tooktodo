@@ -364,6 +364,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         
                                  }] ;
     
+    
     self.enableAllButtonsCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                            signalBlock: ^RACSignal *(id input) {
     

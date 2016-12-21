@@ -87,7 +87,7 @@
                 
                 imageView.hidden = NO;
                 
-                 if ([user respondsToSelector:@selector(avatarSrc)])
+                if ( user.avatarSrc.length > 0)
                 {
                     [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
                 }

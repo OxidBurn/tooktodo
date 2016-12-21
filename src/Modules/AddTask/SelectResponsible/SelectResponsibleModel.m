@@ -108,6 +108,7 @@
             if ( [indexPath isEqual: self.previousesSelectedIndexPath] )
             {
                 self.previousesSelectedIndexPath = nil;
+                
             }
             else
                 if ( [indexPath isEqual: self.previousesSelectedIndexPath] == NO )
@@ -431,9 +432,7 @@
 }
 
 - (void) configurateMembersArray
-{
-    [self excludeInvitedUsers];
-    
+{    
     [self sortContentAccordingToType];
     
     [self updateSelectedUsers];

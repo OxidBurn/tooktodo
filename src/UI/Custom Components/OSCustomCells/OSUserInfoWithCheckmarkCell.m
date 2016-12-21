@@ -46,6 +46,11 @@
     
     self.checkMarkImageView.hidden = !isSelected;
     
+    if ([memberInfo.avatarSrc isEqualToString: @""])
+    {
+        self.userAvatarImageView.image = [UIImage imageNamed: @"emptyAvatarIcon"];
+    }
+    
 }
 
 - (void) fillCellWithAssignee: (ProjectTaskAssignee*) assignee
