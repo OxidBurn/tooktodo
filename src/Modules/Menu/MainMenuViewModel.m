@@ -74,7 +74,7 @@
 
 - (RACCommand*) supportActionCommand
 {
-    return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    return [[RACCommand alloc] initWithSignalBlock: ^RACSignal *(id input) {
        
         return [RACSignal empty];
         

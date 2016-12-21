@@ -12,6 +12,7 @@
 // Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
+#import "APIConstance.h"
 
 // Extensions
 #import "BaseMainViewController+Popover.h"
@@ -117,6 +118,14 @@
                              completion: nil];
 }
 
+- (IBAction) onOpenWebBrowser: (UIButton*) sender
+{
+    NSURL* siteURL = [NSURL URLWithString: registerPageURL];
+    
+    if ( [SharedApplication canOpenURL: siteURL])
+        [SharedApplication openURL: siteURL];
+}
+
 #pragma mark - Internal Method -
 
 - (UILabel*) titleLabel
@@ -142,14 +151,13 @@
 
 - (void) bindingUI
 {
+    [self handleModelActions];
+    
     [self.viewModel updateProjectsContent];
     
     self.projectsTable.dataSource = self.viewModel;
     self.projectsTable.delegate   = self.viewModel;
     self.searchBar.delegate       = self.viewModel;
-    
-    [self handleModelActions];
-
 }
 
 - (void) setupTableView
@@ -199,6 +207,12 @@
       
         [blockSelf dismissViewControllerAnimated: YES
                                       completion: nil];
+    };
+    
+    self.viewModel.hideProjectsTable = ^(BOOL isHidden){
+        
+        blockSelf.projectsTable.hidden = isHidden;
+        
     };
 }
 
