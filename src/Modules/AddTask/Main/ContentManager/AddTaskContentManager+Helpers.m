@@ -87,6 +87,8 @@
     
     [teamInfo convertUserToTeamInfo: userInfo];
     
+    teamInfo.taskRoleAssinment = @(ResponsibleRoleType);
+    
     return teamInfo ? [@[teamInfo] copy] : nil;
 }
 
