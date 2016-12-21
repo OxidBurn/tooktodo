@@ -62,6 +62,8 @@
     
     FilledTeamInfo* user = [self.model returnFilledUserInfoForIndex: indexPath.row];
     
+    user.taskRoleAssinment = [self.model getMemberTaskRoleTypeAtIndex: indexPath.row];
+    
     BOOL isSelected = NO;
     
     switch ( selection )
