@@ -286,5 +286,31 @@ typedef NS_ENUM(NSUInteger, LogsActionType)
     DeletedValueType,
 };
 
+typedef NS_ENUM(NSUInteger, TaskLogsType)
+{
+    LogCreatedTaskType = 0, // создал задачу (без инфы про задачу)
+    LogAddedAttachmentType = 1, // прикрепил документ "документ"
+    LogDeletedAttachmentType = 2, // удалил документ "документ"
+    LogAddedUserWithRoleType = 3, // добавил "роль" ( приходяд данные об одном пользователе )
+    LogDeletedUserWithRoleType = 4, // aналогично п.3 только удаление
+    LogChangedTaskNameType = 5, // сменил название задачи с "название1" на "название2"
+    LogAddedMarkType = 6, // добавил метку "метка"
+    LogDeletedMarkType = 7, // удалил метку "метка"
+    LogAddedDatesType = 8, // добавил сроки "дата1" - "дата2"
+    LogChangedDatesType = 9, // изменил сроки (без данных о сроках)
+    LogDeletedDatesType = 10, // удалил сроки (без данных о сроках)
+    LogChangedDatesToNewValueType = 11, // изменил сроки с "срок1" на "срок2"
+    LogDeletedRoomType = 12, // удалил комнату (без инфе о комнате)
+    LogAddedRoomType = 13, // добалил комнату с инфой о комнате
+    LogChangedRoomType = 14, // изменил помещение с "пом1" на "пом2"
+    LogMovedTaskType = 15, // перенес задачу с "этап1" в "этап2"
+    LogTookTaskToWorkType = 16, //взял задачу в работу (в вебе без описания, у нас, вероятно, с иконкой "В работу")
+    LogChangedTypeOfTaskType = 17, // изменил тип задачи с "тип1" на "тип2"
+    LogSentTaskToOnApprovalType = 18, // отправил задачу на утверждение ( возможно будут прихотить типы задач "В работе" и "На утверждение"
+    LogSentTaskToWaitingType = 19, // отправил задачу в ожидание ( возможно приходит 2 типа задачи )
+    LogAddedCommentType = 20, // добавил комментрарий ( приходит commentId )
+    LogCanceledTaskType = 21, // отменил задачу ( возможно приходит 2 типа задачи )
+};
+
 
 #endif /* ProjectsEnumerations_h */
