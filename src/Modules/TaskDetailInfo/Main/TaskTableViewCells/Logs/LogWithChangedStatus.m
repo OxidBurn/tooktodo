@@ -1,12 +1,12 @@
 //
-//  LogWithAcitonCell.m
+//  LogWithChangedStatus.m
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11.10.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogWithAcitonCell.h"
+#import "LogWithChangedStatus.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -15,7 +15,7 @@
 #import "AvatarImageView.h"
 #import "TaskStatusDefaultValues.h"
 
-@interface LogWithAcitonCell()
+@interface LogWithChangedStatus()
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation LogWithAcitonCell
+@implementation LogWithChangedStatus
 
 
 #pragma mark - Public -

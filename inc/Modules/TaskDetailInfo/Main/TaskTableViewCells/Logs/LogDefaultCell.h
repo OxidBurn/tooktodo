@@ -1,5 +1,5 @@
 //
-//  LogCell.h
+//  LogDefaultCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11.10.16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogCell : UITableViewCell
+@interface LogDefaultCell : UITableViewCell
 
 // methods
 - (void) fillLogCellWithText: (NSAttributedString*) text

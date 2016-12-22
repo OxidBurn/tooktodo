@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
         switch ( row.cellTypeIndex )
         {
-            case LogChangedTaskStatusCellType:
+            case LogWithChangedStatusCellType:
             {
                 row.oldStatusValue = log.data.oldStatus.integerValue;
                 row.newStatusValue = log.data.newStatus.integerValue;
@@ -227,7 +227,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     
     if ( [properties containsObject: @"oldStatus"] )
     {
-        index = LogChangedTaskStatusCellType;
+        index = LogWithChangedStatusCellType;
     }
     
     if ( [properties containsObject: @"oldEndDate"] )
