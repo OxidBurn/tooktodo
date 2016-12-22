@@ -415,6 +415,8 @@
 		CF77793C1DEB7869003B2818 /* FilterBySystemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF77793B1DEB7869003B2818 /* FilterBySystemsViewController.m */; };
 		CF77793F1DEB7889003B2818 /* FilterBySystemViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF77793E1DEB7889003B2818 /* FilterBySystemViewModel.m */; };
 		CF7779421DEB789B003B2818 /* FilterBySystemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7779411DEB789B003B2818 /* FilterBySystemModel.m */; };
+		CFA45CCC1E0C4BCB005A56FD /* SearchBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA45CCB1E0C4BCB005A56FD /* SearchBarView.xib */; };
+		CFA45CCE1E0C4BDE005A56FD /* SearchBarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFA45CCD1E0C4BDE005A56FD /* SearchBarHeaderView.m */; };
 		CFCAA3D21DCA580A00B8EF16 /* RolesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */; };
 		F725FBD51DC365F100793EA3 /* InfoiPadTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */; };
 		F725FBD91DC367C700793EA3 /* InfoiPadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F725FBD81DC367C700793EA3 /* InfoiPadViewModel.m */; };
@@ -1342,6 +1344,9 @@
 		CF77793E1DEB7889003B2818 /* FilterBySystemViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBySystemViewModel.m; sourceTree = "<group>"; };
 		CF7779401DEB789B003B2818 /* FilterBySystemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterBySystemModel.h; sourceTree = "<group>"; };
 		CF7779411DEB789B003B2818 /* FilterBySystemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterBySystemModel.m; sourceTree = "<group>"; };
+		CFA45CCB1E0C4BCB005A56FD /* SearchBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchBarView.xib; sourceTree = "<group>"; };
+		CFA45CCD1E0C4BDE005A56FD /* SearchBarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBarHeaderView.m; sourceTree = "<group>"; };
+		CFA45CCF1E0C4C36005A56FD /* SearchBarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchBarHeaderView.h; path = ../../../src/Modules/Tasks/SearchBarHeaderView.h; sourceTree = "<group>"; };
 		CFCAA3D01DCA580A00B8EF16 /* RolesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RolesModel.h; sourceTree = "<group>"; };
 		CFCAA3D11DCA580A00B8EF16 /* RolesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RolesModel.m; sourceTree = "<group>"; };
 		F725FBD41DC365F100793EA3 /* InfoiPadTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoiPadTableViewController.m; sourceTree = "<group>"; };
@@ -2232,6 +2237,7 @@
 		56D06C751DAFBDBF008E9AC0 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				CFA45CCF1E0C4C36005A56FD /* SearchBarHeaderView.h */,
 				56D06C761DAFBDBF008E9AC0 /* AllTaskBaseTableViewCell.h */,
 				56D06C771DAFBDBF008E9AC0 /* AllTasksModel.h */,
 				56D06C781DAFBDBF008E9AC0 /* AllTasksViewModel.h */,
@@ -3061,6 +3067,7 @@
 				F7EB66CE1DE35D6100F44CDF /* TaskFilter */,
 				56D06E061DAFBDBF008E9AC0 /* ProjectTasksModel.m */,
 				56D06E071DAFBDBF008E9AC0 /* ProjectTasksViewController.m */,
+				CFA45CCD1E0C4BDE005A56FD /* SearchBarHeaderView.m */,
 				56D06E081DAFBDBF008E9AC0 /* ProjectTasksViewModel.m */,
 				56D06E091DAFBDBF008E9AC0 /* StageTitleView.m */,
 				56D06E0A1DAFBDBF008E9AC0 /* StatusMarkerComponent.m */,
@@ -3491,6 +3498,7 @@
 		59D9BD111D586974009DFBA8 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				CFA45CCB1E0C4BCB005A56FD /* SearchBarView.xib */,
 				5664A01A1DA3C4C600344879 /* MainScreen.storyboard */,
 				5664A0221DA3C4C600344879 /* Tasks.storyboard */,
 				564B0C521DF0703E00078926 /* TasksDetailInfo.storyboard */,
@@ -4395,6 +4403,7 @@
 				5664A03C1DA3C4C600344879 /* UserInfo.storyboard in Resources */,
 				564B0C541DF0703E00078926 /* TasksDetailInfo.storyboard in Resources */,
 				59A793481D59D3480062007E /* Lato-Semibold.ttf in Resources */,
+				CFA45CCC1E0C4BCB005A56FD /* SearchBarView.xib in Resources */,
 				56D06FCB1DAFFA51008E9AC0 /* AddNewRole.storyboard in Resources */,
 				5664A03E1DA3C4C600344879 /* WelcomeTour.storyboard in Resources */,
 			);
@@ -4832,6 +4841,7 @@
 				F7EB66F41DE35D6100F44CDF /* FilterByTermsCell.m in Sources */,
 				56D06FAA1DAFBDC0008E9AC0 /* OSDatePickerCellFactory.m in Sources */,
 				56D06EAD1DAFBDC0008E9AC0 /* ProjectTaskRoleType+CoreDataProperties.m in Sources */,
+				CFA45CCE1E0C4BDE005A56FD /* SearchBarHeaderView.m in Sources */,
 				56D06EB71DAFBDC0008E9AC0 /* ProjectTaskWorkArea+CoreDataProperties.m in Sources */,
 				F7F4C9581E0BE85400EF5669 /* LogWithUpdatedStringValuesCell.m in Sources */,
 				5663BB541DE4DBC400F82E5B /* TaskApprovments+CoreDataProperties.m in Sources */,
