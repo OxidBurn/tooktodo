@@ -9,7 +9,7 @@
 #import "LogWithChangedStatusFactory.h"
 
 // Classes
-#import "LogWithChangedStatus.h"
+#import "LogWithChangedStatusCell.h"
 
 @implementation LogWithChangedStatusFactory
 
@@ -18,13 +18,22 @@
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
                                    withContent: (TaskRowContent*) content
 {
-    LogWithChangedStatus* cell = [tableView dequeueReusableCellWithIdentifier: @"LogChangedTaskStatusCellId"];
+    static NSString* cellId = @"TaskLogWithChangedStatusCellId";
     
-    [cell fillLogCellWithText: content.logContent.logText
-                     withDate: content.logContent.createdDate
-               withUserAvatar: content.logContent.avatarSrs
-                withOldStatus: content.oldStatusValue
-                withNewStatus: content.newStatusValue];
+    static NSString* nibName = @"TaskLogChangeStatusCell";
+    
+    LogWithChangedStatusCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
+    
+    if ( cell == nil )
+    {
+        [tableView registerNib: [UINib nibWithNibName: nibName
+                                               bundle: nil]
+        forCellReuseIdentifier: cellId];
+        
+        cell = [tableView dequeueReusableCellWithIdentifier: cellId];
+    }
+    
+    [cell fillLogCellWithContent: content.logContent];
     
     return cell;
 }

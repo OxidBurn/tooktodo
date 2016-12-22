@@ -1,29 +1,28 @@
 //
-//  LogWithUpdatedStringValuesFactory.m
+//  LogDefaultCellFactory.m
 //  TookTODO
 //
 //  Created by Nikolay Chaban on 23.11.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogWithUpdatedStringValuesFactory.h"
+#import "LogDefaultCellFactory.h"
 
 // Classes
-#import "LogWithUpdatedStringValuesCell.h"
+#import "LogDefaultCell.h"
 
-@implementation LogWithUpdatedStringValuesFactory
-
+@implementation LogDefaultCellFactory
 
 #pragma mark - Public -
 
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
                                    withContent: (TaskRowContent*) content
 {
-    static NSString* cellId = @"TaskLogWithUpdatedStringsId";
+    static NSString* cellId = @"TaskLogDefaultCellId";
     
-    static NSString* nibName = @"TaskLogWithUpdatedStrings";
+    static NSString* nibName = @"TaskLogDefaultCell";
     
-    LogWithUpdatedStringValuesCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
+    LogDefaultCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
     
     if ( cell == nil )
     {
@@ -35,7 +34,7 @@
     }
     
     [cell fillLogCellWithContent: content.logContent];
-        
+    
     return cell;
 }
 

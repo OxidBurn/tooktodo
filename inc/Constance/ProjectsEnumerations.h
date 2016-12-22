@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells)
     FilterAttachmentsCellType,
     AddCommentCellType,
     LogDefaultCellType,
-    LogWithUpdatedTextLabelsType,
+    LogWithUpdatedStringValuesType,
     LogWithChangedStatusCellType,
 };
 

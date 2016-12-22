@@ -11,16 +11,4 @@
 @implementation TaskRowContent
 
 
-#pragma mark - Properties -
-
-- (NSString*) newTermsValue
-{
-    if ( _newTermsValue == nil )
-    {
-        _newTermsValue = [NSString new];
-    }
-    
-    return _newTermsValue;
-}
-
 @end

@@ -173,6 +173,7 @@
     }
     
     [self.tableView reloadData];
+    
     [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
                          withDelegate: self];
 

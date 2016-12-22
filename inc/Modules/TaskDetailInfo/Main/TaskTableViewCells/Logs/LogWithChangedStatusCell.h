@@ -1,5 +1,5 @@
 //
-//  LogDefaultCell.h
+//  LogWithChangedStatusCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11.10.16.
@@ -11,9 +11,9 @@
 // Classes
 #import "LogsContent.h"
 
-@interface LogDefaultCell : UITableViewCell
+@interface LogWithChangedStatusCell : UITableViewCell
 
 // methods
-- (void) fillLogCellWithContent: (LogsContent*) content;
+- (void) fillLogCellWithContent: (LogsContent*) logContent;
 
 @end

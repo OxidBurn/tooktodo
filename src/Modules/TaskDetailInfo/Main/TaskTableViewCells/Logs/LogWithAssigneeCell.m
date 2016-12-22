@@ -1,12 +1,12 @@
 //
-//  LogWithUpdatedStringValuesCell.m
+//  LogWithAssigneeCell.m
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 11.10.16.
+//  Created by Nikolay Chaban on 22.12.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogWithUpdatedStringValuesCell.h"
+#import "LogWithAssigneeCell.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -14,7 +14,7 @@
 // Classes
 #import "AvatarImageView.h"
 
-@interface LogWithUpdatedStringValuesCell()
+@interface LogWithAssigneeCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
@@ -22,8 +22,11 @@
 @property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel* logFirstDetailLabel;
-@property (weak, nonatomic) IBOutlet UILabel* logSecondDetailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *oldUserNameLabel;
+@property (weak, nonatomic) IBOutlet AvatarImageView *oldUserAvatarImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowSendImageView;
+@property (weak, nonatomic) IBOutlet UILabel *updatedUserNameLabel;
+@property (weak, nonatomic) IBOutlet AvatarImageView *updatedUserAvatarImageView;
 
 // properties
 
@@ -33,7 +36,7 @@
 
 @end
 
-@implementation LogWithUpdatedStringValuesCell
+@implementation LogWithAssigneeCell
 
 
 #pragma mark - Public -
@@ -45,9 +48,6 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
-    self.logFirstDetailLabel.text  = logContent.oldTextValue;
-    self.logSecondDetailLabel.text = logContent.updatedTextValue;
 }
-
 
 @end

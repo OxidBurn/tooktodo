@@ -36,13 +36,12 @@
 
 #pragma mark - Public -
 
-- (void) fillLogCellWithText: (NSAttributedString*) text
-                    withDate: (NSString*) date
-              withUserAvatar: (NSString*) avatarSrc
+- (void) fillLogCellWithContent: (LogsContent*) content
 {    
-    self.logInfoLabel.attributedText = text;
-    self.logDateLabel.text = date;
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: avatarSrc]];
+    self.logInfoLabel.attributedText = content.logText;
+    self.logDateLabel.text           = content.createdDate;
+    
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: content.avatarSrs]];
 }
 
 

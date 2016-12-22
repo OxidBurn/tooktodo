@@ -1,8 +1,8 @@
 //
-//  LogWithUpdatedStringValuesCell.h
+//  LogWithTaskTypeCell.h
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 11.10.16.
+//  Created by Nikolay Chaban on 22.12.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 // Classes
 #import "LogsContent.h"
 
-@interface LogWithUpdatedStringValuesCell : UITableViewCell
+@interface LogWithTaskTypeCell : UITableViewCell
 
 // methods
 - (void) fillLogCellWithContent: (LogsContent*) logContent;

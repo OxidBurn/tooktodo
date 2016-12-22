@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pfm-3F-ZyQ">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskLogErrorCellId" id="Pfm-3F-ZyQ" customClass="LogWithErrorCell">
             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pfm-3F-ZyQ" id="Gco-iP-Iub">
@@ -78,6 +78,12 @@
                 </constraints>
             </tableViewCellContentView>
             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+            <connections>
+                <outlet property="errorTextLabel" destination="Sy6-Qf-436" id="4of-6P-GYd"/>
+                <outlet property="logDateLabel" destination="o1X-Id-758" id="Wgo-bv-xcc"/>
+                <outlet property="logInfoLabel" destination="vsF-yN-4tt" id="ciT-W5-DTV"/>
+                <outlet property="userAvatarImageView" destination="RQF-tY-6Tc" id="BYR-0L-hXK"/>
+            </connections>
             <point key="canvasLocation" x="-44" y="48"/>
         </tableViewCell>
     </objects>

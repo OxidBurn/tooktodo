@@ -1,20 +1,21 @@
 //
-//  LogWithUpdatedStringValuesCell.m
+//  LogWithTaskTypeCell.m
 //  TookTODO
 //
-//  Created by Chaban Nikolay on 11.10.16.
+//  Created by Nikolay Chaban on 22.12.16.
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogWithUpdatedStringValuesCell.h"
+#import "LogWithTaskTypeCell.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
 
 // Classes
 #import "AvatarImageView.h"
+#import "RoundedView.h"
 
-@interface LogWithUpdatedStringValuesCell()
+@interface LogWithTaskTypeCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
@@ -22,8 +23,13 @@
 @property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel* logFirstDetailLabel;
-@property (weak, nonatomic) IBOutlet UILabel* logSecondDetailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *oldTypeTextLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *updatedTypeTextValue;
+
+@property (weak, nonatomic) IBOutlet UIImageView *arrowSendImageView;
+@property (weak, nonatomic) IBOutlet RoundedView *oldTypeView;
+@property (weak, nonatomic) IBOutlet RoundedView *updatedTypeView;
 
 // properties
 
@@ -33,7 +39,7 @@
 
 @end
 
-@implementation LogWithUpdatedStringValuesCell
+@implementation LogWithTaskTypeCell
 
 
 #pragma mark - Public -
@@ -45,8 +51,7 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
-    self.logFirstDetailLabel.text  = logContent.oldTextValue;
-    self.logSecondDetailLabel.text = logContent.updatedTextValue;
+    
 }
 
 
