@@ -20,9 +20,9 @@
 {
     LogWithAcitonCell* cell = [tableView dequeueReusableCellWithIdentifier: @"LogChangedTaskStatusCellId"];
     
-    [cell fillLogCellWithText: content.logText
-                     withDate: content.logDateInString
-               withUserAvatar: content.logAuthorAvatarSrs
+    [cell fillLogCellWithText: content.logContent.logText
+                     withDate: content.logContent.createdDate
+               withUserAvatar: content.logContent.avatarSrs
                 withOldStatus: content.oldStatusValue
                 withNewStatus: content.newStatusValue];
     

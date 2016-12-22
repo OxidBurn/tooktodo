@@ -21,8 +21,8 @@
 {
     LogWithDetailCell* cell = [tableView dequeueReusableCellWithIdentifier: @"LogChangedTermsCellId"];
     
-    [cell fillLogCellWithText: content.logText
-                     withDate: content.logDateInString
+    [cell fillLogCellWithText: content.logContent.logText
+                     withDate: content.logContent.createdDate
                withUserAvatar: content.logAuthorAvatarSrs
                  withOldTerms: content.oldTerms
                  withNewTerms: content.newTermsValue];

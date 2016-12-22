@@ -20,9 +20,9 @@
 {
     LogCell* cell = [tableView dequeueReusableCellWithIdentifier: @"LogDefaultCellId"];
     
-    [cell fillLogCellWithText: content.logText
-                     withDate: content.logDateInString
-               withUserAvatar: content.logAuthorAvatarSrs];
+    [cell fillLogCellWithText: content.logContent.logText
+                     withDate: content.logContent.createdDate
+               withUserAvatar: content.logContent.avatarSrs];
     
     return cell;
 }

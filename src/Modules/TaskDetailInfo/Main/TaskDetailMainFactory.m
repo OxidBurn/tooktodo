@@ -140,7 +140,7 @@
         }
             break;
             
-        case LogChangedTermsCellType:
+        case LogWithUpdatedTextLabelsType:
         {
             LogsChangeTermsFactory* factory = [LogsChangeTermsFactory new];
             

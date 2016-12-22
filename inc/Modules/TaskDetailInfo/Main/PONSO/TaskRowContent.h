@@ -11,6 +11,7 @@
 // Classes
 #import "TaskMarkerComponent.h"
 #import "FlexibleViewsContainer.h"
+#import "LogsContent.h"
 
 @interface TaskRowContent : NSObject
 
@@ -126,5 +127,8 @@
 @property (strong, nonatomic) NSString* newTermsValue;
 
 @property (assign, nonatomic) CGFloat logLabelHeight;
+
+
+@property (strong, nonatomic) LogsContent* logContent;
 
 @end

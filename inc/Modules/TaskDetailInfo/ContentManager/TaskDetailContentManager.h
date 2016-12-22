@@ -15,6 +15,9 @@
 
 @interface TaskDetailContentManager : NSObject
 
+// properties
+@property (assign, nonatomic) CGRect tableViewFrame;
+
 // methods
 - (NSArray*) getTableViewContentForTask: (ProjectTask*) task
                   forTableViewWithFrame: (CGRect)       tableViewFrame;

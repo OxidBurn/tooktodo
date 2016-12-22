@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells)
     FilterAttachmentsCellType,
     AddCommentCellType,
     LogDefaultCellType,
-    LogChangedTermsCellType,
+    LogWithUpdatedTextLabelsType,
     LogChangedTaskStatusCellType,
 };
 
@@ -275,6 +275,15 @@ typedef NS_ENUM(NSUInteger, FilterTagParameterType)
     ProjectRoleFilterParameter,
     ProjectsFilterParameter,
     ProjectsAllFilterParameter,
+};
+
+// enums for working with task logs
+
+typedef NS_ENUM(NSUInteger, LogsActionType)
+{
+    AddedNewValueType,
+    EditedOldValueType,
+    DeletedValueType,
 };
 
 

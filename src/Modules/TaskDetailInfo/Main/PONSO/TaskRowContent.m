@@ -23,5 +23,4 @@
     return _newTermsValue;
 }
 
-
 @end

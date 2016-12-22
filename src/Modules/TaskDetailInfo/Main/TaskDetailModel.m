@@ -216,7 +216,7 @@
         }
             break;
             
-        case LogChangedTermsCellType:
+        case LogWithUpdatedTextLabelsType:
             height = 94.f;
             
             break;
