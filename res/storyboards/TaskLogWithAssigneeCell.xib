@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -81,11 +81,21 @@
                         <constraint firstAttribute="width" constant="16" id="e84-Xy-tHe"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="33h-lO-Oyf" customClass="AvatarImageView">
-                    <rect key="frame" x="213" y="58" width="20" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А. Беляев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JL-Xs-EXe">
+                    <rect key="frame" x="213" y="60" width="100" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="Edb-uj-WNa"/>
-                        <constraint firstAttribute="width" constant="20" id="WEf-AD-YMi"/>
+                        <constraint firstAttribute="height" constant="16" id="P8R-Dc-JJ4"/>
+                        <constraint firstAttribute="width" constant="100" id="YEC-0F-37H"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hHn-As-Yjn" customClass="AvatarImageView">
+                    <rect key="frame" x="320.5" y="58" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="ERF-qX-ojU"/>
+                        <constraint firstAttribute="width" constant="20" id="ffS-4M-dya"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -93,31 +103,21 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А. Беляев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JL-Xs-EXe">
-                    <rect key="frame" x="241" y="60" width="118" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="16" id="P8R-Dc-JJ4"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
-                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="33h-lO-Oyf" firstAttribute="leading" secondItem="gFd-RF-Ykd" secondAttribute="trailing" constant="10" id="49X-cr-pmh"/>
+                <constraint firstItem="2JL-Xs-EXe" firstAttribute="leading" secondItem="gFd-RF-Ykd" secondAttribute="trailing" constant="10" id="9Pa-Ix-XPM"/>
                 <constraint firstItem="dqe-oF-fGk" firstAttribute="top" secondItem="MYG-5r-kdD" secondAttribute="bottom" constant="16" id="FiA-hr-Y0J"/>
-                <constraint firstItem="33h-lO-Oyf" firstAttribute="top" secondItem="8Zs-lR-cbg" secondAttribute="top" id="IAN-I1-6vq"/>
                 <constraint firstItem="MYG-5r-kdD" firstAttribute="leading" secondItem="n0Y-4y-8Wa" secondAttribute="leading" id="Jfs-k0-ciS"/>
                 <constraint firstItem="2JL-Xs-EXe" firstAttribute="top" secondItem="dqe-oF-fGk" secondAttribute="top" id="K37-2f-0yI"/>
+                <constraint firstItem="hHn-As-Yjn" firstAttribute="leading" secondItem="2JL-Xs-EXe" secondAttribute="trailing" constant="8" id="KWa-Ve-qfM"/>
                 <constraint firstItem="n0Y-4y-8Wa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="KvJ-xz-NPg"/>
                 <constraint firstItem="gFd-RF-Ykd" firstAttribute="leading" secondItem="8Zs-lR-cbg" secondAttribute="trailing" constant="10" id="Los-W2-WX5"/>
                 <constraint firstItem="MYG-5r-kdD" firstAttribute="top" secondItem="n0Y-4y-8Wa" secondAttribute="bottom" id="No7-wW-a2a"/>
-                <constraint firstItem="2JL-Xs-EXe" firstAttribute="leading" secondItem="33h-lO-Oyf" secondAttribute="trailing" constant="8" id="QSa-wh-jKj"/>
                 <constraint firstItem="n0Y-4y-8Wa" firstAttribute="leading" secondItem="myQ-v9-6rv" secondAttribute="trailing" constant="8" id="WqY-nD-KL0"/>
                 <constraint firstItem="8Zs-lR-cbg" firstAttribute="leading" secondItem="dqe-oF-fGk" secondAttribute="trailing" constant="8" id="XxU-Es-PDg"/>
+                <constraint firstItem="hHn-As-Yjn" firstAttribute="centerY" secondItem="2JL-Xs-EXe" secondAttribute="centerY" id="Y0a-vg-sla"/>
                 <constraint firstItem="MYG-5r-kdD" firstAttribute="trailing" secondItem="n0Y-4y-8Wa" secondAttribute="trailing" id="aEK-RL-f4p"/>
-                <constraint firstItem="2JL-Xs-EXe" firstAttribute="trailing" secondItem="MYG-5r-kdD" secondAttribute="trailing" id="fC3-xq-aWA"/>
                 <constraint firstItem="dqe-oF-fGk" firstAttribute="leading" secondItem="MYG-5r-kdD" secondAttribute="leading" id="nvn-8a-6xH"/>
                 <constraint firstItem="myQ-v9-6rv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="qi2-cC-LsR"/>
                 <constraint firstItem="myQ-v9-6rv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="rt9-3t-psD"/>
