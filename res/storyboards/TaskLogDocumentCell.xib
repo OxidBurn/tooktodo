@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="AFg-Ci-1a1">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="98"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AFg-Ci-1a1" id="opv-5a-652">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="97"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ora-DJ-v2y" customClass="AvatarImageView">
+                        <rect key="frame" x="11" y="15" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Pk9-nB-dW7"/>
+                            <constraint firstAttribute="height" constant="30" id="db7-h3-gfa"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Влад Комаров отправил на утверждение задачу" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypU-bI-X9R">
+                        <rect key="frame" x="49" y="16" width="319" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="SNL-5L-aEl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                        <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17 сентября в 19:51" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afM-La-ntD">
+                        <rect key="frame" x="49" y="30" width="319" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="wOv-DX-79c"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                        <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Attachment" translatesAutoresizingMaskIntoConstraints="NO" id="4gF-zh-Nzf">
+                        <rect key="frame" x="49" y="57" width="14" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="BgR-oR-ySh"/>
+                            <constraint firstAttribute="width" constant="14" id="Je8-v0-c9c"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Обмерочный план.pdf" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tvc-p3-7mt">
+                        <rect key="frame" x="68" y="58" width="300" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="kqp-dp-0jE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tvc-p3-7mt" firstAttribute="centerY" secondItem="4gF-zh-Nzf" secondAttribute="centerY" id="9uJ-TA-HxH"/>
+                    <constraint firstItem="afM-La-ntD" firstAttribute="top" secondItem="ypU-bI-X9R" secondAttribute="bottom" id="Aig-BR-gdo"/>
+                    <constraint firstItem="Ora-DJ-v2y" firstAttribute="top" secondItem="opv-5a-652" secondAttribute="topMargin" constant="15" id="DLN-2j-UdP"/>
+                    <constraint firstItem="Tvc-p3-7mt" firstAttribute="trailing" secondItem="afM-La-ntD" secondAttribute="trailing" id="DSk-G0-Lth"/>
+                    <constraint firstItem="Ora-DJ-v2y" firstAttribute="leading" secondItem="opv-5a-652" secondAttribute="leadingMargin" constant="11" id="E13-B0-Rpg"/>
+                    <constraint firstItem="ypU-bI-X9R" firstAttribute="top" secondItem="opv-5a-652" secondAttribute="topMargin" constant="16" id="FV1-EM-44b"/>
+                    <constraint firstItem="4gF-zh-Nzf" firstAttribute="leading" secondItem="afM-La-ntD" secondAttribute="leading" id="I2G-ht-3av"/>
+                    <constraint firstItem="Tvc-p3-7mt" firstAttribute="leading" secondItem="4gF-zh-Nzf" secondAttribute="trailing" constant="5" id="OKs-be-4wZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ypU-bI-X9R" secondAttribute="trailing" constant="16" id="Zyh-QH-szz"/>
+                    <constraint firstItem="afM-La-ntD" firstAttribute="trailing" secondItem="ypU-bI-X9R" secondAttribute="trailing" id="bsK-pZ-hrk"/>
+                    <constraint firstItem="4gF-zh-Nzf" firstAttribute="top" secondItem="afM-La-ntD" secondAttribute="bottom" constant="15" id="fIq-vy-ZXe"/>
+                    <constraint firstItem="ypU-bI-X9R" firstAttribute="leading" secondItem="Ora-DJ-v2y" secondAttribute="trailing" constant="8" id="l9s-Jv-rSv"/>
+                    <constraint firstItem="afM-La-ntD" firstAttribute="leading" secondItem="ypU-bI-X9R" secondAttribute="leading" id="vze-Ti-UpW"/>
+                </constraints>
+                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="14" y="-23"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Attachment" width="14" height="16"/>
+        <image name="emptyAvatarIcon" width="60" height="60"/>
+    </resources>
+</document>
