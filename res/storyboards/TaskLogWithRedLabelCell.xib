@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UITableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="99"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="u1N-Np-wgZ" customClass="AvatarImageView">
+                    <rect key="frame" x="11" y="15" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="bIG-Cs-HPu"/>
+                        <constraint firstAttribute="width" constant="30" id="tX0-gh-vgV"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иван Иванов изменил статус задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iO7-fL-xxf">
+                    <rect key="frame" x="49" y="16" width="309" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="Cl2-r0-ZIn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                    <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21 декабря 2016 г" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="csJ-ZW-iyU">
+                    <rect key="frame" x="49" y="30" width="309" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="aI9-kW-kuF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                    <color key="textColor" red="0.34901960784313724" green="0.39215686274509803" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ошибка — конфликт с действием другого пользователя " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6V-42-CaJ">
+                    <rect key="frame" x="49" y="51" width="309" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="WSd-Bb-XNK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                    <color key="textColor" red="1" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="u6V-42-CaJ" firstAttribute="top" secondItem="csJ-ZW-iyU" secondAttribute="bottom" constant="7" id="7ad-Vu-ZWr"/>
+                <constraint firstItem="iO7-fL-xxf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="AFS-6Q-stB"/>
+                <constraint firstItem="u1N-Np-wgZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="BN2-0T-w4V"/>
+                <constraint firstItem="u1N-Np-wgZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="11" id="Cib-qt-Xck"/>
+                <constraint firstItem="u6V-42-CaJ" firstAttribute="trailing" secondItem="csJ-ZW-iyU" secondAttribute="trailing" id="Dh7-Ao-jcR"/>
+                <constraint firstItem="csJ-ZW-iyU" firstAttribute="leading" secondItem="iO7-fL-xxf" secondAttribute="leading" id="Ggl-NN-ncg"/>
+                <constraint firstItem="u6V-42-CaJ" firstAttribute="leading" secondItem="csJ-ZW-iyU" secondAttribute="leading" id="TA1-zz-qFJ"/>
+                <constraint firstItem="csJ-ZW-iyU" firstAttribute="top" secondItem="iO7-fL-xxf" secondAttribute="bottom" id="UPB-h4-knM"/>
+                <constraint firstAttribute="trailing" secondItem="iO7-fL-xxf" secondAttribute="trailing" constant="16" id="X5Y-Ul-XfW"/>
+                <constraint firstItem="iO7-fL-xxf" firstAttribute="leading" secondItem="u1N-Np-wgZ" secondAttribute="trailing" constant="8" id="iBz-O1-fvq"/>
+                <constraint firstItem="csJ-ZW-iyU" firstAttribute="trailing" secondItem="iO7-fL-xxf" secondAttribute="trailing" id="vN5-Iy-EU1"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-44" y="-119.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="emptyAvatarIcon" width="60" height="60"/>
+    </resources>
+</document>

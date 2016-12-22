@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogWithDetailCell : UITableViewCell
+@interface LogWithUpdatedStringValues : UITableViewCell
 
 // methods
 - (void) fillLogCellWithText: (NSAttributedString*) text
