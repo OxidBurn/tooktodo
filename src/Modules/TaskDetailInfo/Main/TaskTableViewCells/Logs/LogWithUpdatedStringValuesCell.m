@@ -13,6 +13,7 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "ProjectsEnumerations.h"
 
 @interface LogWithUpdatedStringValuesCell()
 
@@ -24,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* logFirstDetailLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logSecondDetailLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView* arrowSendImageView;
 
 // properties
 
@@ -38,20 +41,53 @@
 
 #pragma mark - Public -
 
-- (void) fillLogCellWithText: (NSAttributedString*) text
-                    withDate: (NSString*) date
-              withUserAvatar: (NSString*) avatarSrc
-                withOldTerms: (NSString*) oldTerms
-                withNewTerms: (NSString*) newTerms
+- (void) fillLogCellWithContent: (LogsContent*) logContent
 {
-    self.logInfoLabel.attributedText = text;
-    self.logDateLabel.text = date;
+    self.logInfoLabel.attributedText = logContent.logText;
+    self.logDateLabel.text           = logContent.createdDate;
     
-    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: avatarSrc]];
+    [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
-    self.logFirstDetailLabel.text  = oldTerms;
-    self.logSecondDetailLabel.text = newTerms;
+    [self handleUIAccordingToActionType: logContent.actionType];
+    
+    self.logFirstDetailLabel.text  = logContent.oldTextValue;
+    self.logSecondDetailLabel.text = logContent.updatedTextValue;
 }
+
+
+#pragma mark - Internal -
+
+- (void) handleUIAccordingToActionType: (LogsActionType) actionType
+{
+    switch ( actionType )
+    {
+        case AddedNewValueType:
+        {
+            // hiding unnecessary UI elements
+            self.arrowSendImageView.hidden   = YES;
+            self.logSecondDetailLabel.hidden = YES;
+        }
+            break;
+            
+        case EditedOldValueType:
+        {
+            
+        }
+            break;
+            
+        case DeletedValueType:
+        {
+            // hiding unnecessary UI elements
+            self.arrowSendImageView.hidden   = YES;
+            self.logSecondDetailLabel.hidden = YES;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 
 @end

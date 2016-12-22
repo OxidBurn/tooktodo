@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5Tp-8o-uiH">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskLogWithUpdatedStringsId" id="5Tp-8o-uiH" customClass="LogWithUpdatedStringValuesCell">
             <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Tp-8o-uiH" id="dVP-x9-cxO">
@@ -24,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04.07.15 – 20.07.15" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jt-1B-PxU">
-                        <rect key="frame" x="208" y="55" width="115" height="15"/>
+                        <rect key="frame" x="210" y="55" width="115" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="LtD-4O-nGa"/>
                         </constraints>
@@ -33,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04.07.15 – 07.07.15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HWq-2P-gyF">
-                        <rect key="frame" x="49" y="55" width="113" height="15"/>
+                        <rect key="frame" x="49" y="55" width="115" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="yuj-bW-k5w"/>
                         </constraints>
@@ -44,10 +45,8 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VEO-UZ-fhI" customClass="AvatarImageView">
                         <rect key="frame" x="11" y="15" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="ILh-Wd-vlm"/>
                             <constraint firstAttribute="width" constant="30" id="jCw-O6-XXw"/>
                             <constraint firstAttribute="height" constant="30" id="m06-1V-VvD"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="pgr-g7-dJH"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -56,23 +55,20 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowSend" translatesAutoresizingMaskIntoConstraints="NO" id="EXC-Dr-p5N">
-                        <rect key="frame" x="177" y="56" width="16" height="12"/>
+                        <rect key="frame" x="179" y="56" width="16" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="mz5-mm-iaE"/>
                             <constraint firstAttribute="width" constant="16" id="r4b-WC-qS0"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Влад Комаров отправил на утверждение задачу" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoA-6x-Ncl">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Влад Комаров отправил на утверждение задачу" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoA-6x-Ncl">
                         <rect key="frame" x="49" y="15" width="310" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="14" id="9da-4X-tUD"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                         <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17 сентября в 19:51" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ecv-Xu-IOz">
-                        <rect key="frame" x="49" y="29" width="310" height="12"/>
+                        <rect key="frame" x="49" y="29" width="93.5" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="tz8-s6-3k3"/>
                         </constraints>
@@ -84,21 +80,30 @@
                 <constraints>
                     <constraint firstItem="8Jt-1B-PxU" firstAttribute="centerY" secondItem="EXC-Dr-p5N" secondAttribute="centerY" id="3gt-OH-60s"/>
                     <constraint firstItem="Ecv-Xu-IOz" firstAttribute="top" secondItem="HoA-6x-Ncl" secondAttribute="bottom" id="AkK-dq-T0C"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8Jt-1B-PxU" secondAttribute="trailing" priority="250" constant="44" id="Dxv-qi-ePM"/>
                     <constraint firstItem="VEO-UZ-fhI" firstAttribute="leading" secondItem="dVP-x9-cxO" secondAttribute="leading" constant="11" id="J46-SG-Uqu"/>
                     <constraint firstItem="EXC-Dr-p5N" firstAttribute="centerY" secondItem="HWq-2P-gyF" secondAttribute="centerY" id="LlW-dD-gAb"/>
-                    <constraint firstItem="HWq-2P-gyF" firstAttribute="leading" secondItem="Ecv-Xu-IOz" secondAttribute="leading" id="Nod-m1-tOH"/>
+                    <constraint firstAttribute="trailing" secondItem="Ecv-Xu-IOz" secondAttribute="trailing" priority="250" constant="231" id="Rdn-3f-ugN"/>
                     <constraint firstItem="HoA-6x-Ncl" firstAttribute="top" secondItem="dVP-x9-cxO" secondAttribute="top" constant="15" id="Tuk-hE-1Lp"/>
                     <constraint firstItem="8Jt-1B-PxU" firstAttribute="leading" secondItem="EXC-Dr-p5N" secondAttribute="trailing" constant="15" id="UVH-Ua-Jgi"/>
-                    <constraint firstItem="Ecv-Xu-IOz" firstAttribute="trailing" secondItem="HoA-6x-Ncl" secondAttribute="trailing" id="VXe-Zy-Ji0"/>
                     <constraint firstItem="EXC-Dr-p5N" firstAttribute="leading" secondItem="HWq-2P-gyF" secondAttribute="trailing" constant="15" id="YU6-AU-8GM"/>
+                    <constraint firstItem="Ecv-Xu-IOz" firstAttribute="leading" secondItem="HoA-6x-Ncl" secondAttribute="leading" id="cmE-F1-ojN"/>
                     <constraint firstAttribute="trailing" secondItem="HoA-6x-Ncl" secondAttribute="trailing" constant="16" id="eTk-vk-R6c"/>
                     <constraint firstItem="HWq-2P-gyF" firstAttribute="top" secondItem="Ecv-Xu-IOz" secondAttribute="bottom" constant="14" id="juK-8S-xbv"/>
-                    <constraint firstItem="Ecv-Xu-IOz" firstAttribute="leading" secondItem="HoA-6x-Ncl" secondAttribute="leading" id="t17-WU-Jij"/>
+                    <constraint firstItem="HWq-2P-gyF" firstAttribute="leading" secondItem="HoA-6x-Ncl" secondAttribute="leading" id="ouH-IT-3vd"/>
                     <constraint firstItem="VEO-UZ-fhI" firstAttribute="top" secondItem="dVP-x9-cxO" secondAttribute="top" constant="15" id="wRM-aN-foL"/>
                     <constraint firstItem="HoA-6x-Ncl" firstAttribute="leading" secondItem="VEO-UZ-fhI" secondAttribute="trailing" constant="8" id="yJ9-0s-qBH"/>
                 </constraints>
             </tableViewCellContentView>
             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
+            <connections>
+                <outlet property="arrowSendImageView" destination="EXC-Dr-p5N" id="aNp-7Y-neP"/>
+                <outlet property="logDateLabel" destination="Ecv-Xu-IOz" id="rbr-dA-xOE"/>
+                <outlet property="logFirstDetailLabel" destination="HWq-2P-gyF" id="5Rc-7d-oAE"/>
+                <outlet property="logInfoLabel" destination="HoA-6x-Ncl" id="ie3-c3-bE3"/>
+                <outlet property="logSecondDetailLabel" destination="8Jt-1B-PxU" id="PK9-pi-1hW"/>
+                <outlet property="userAvatarImageView" destination="VEO-UZ-fhI" id="WOm-Ou-5Uv"/>
+            </connections>
             <point key="canvasLocation" x="-81" y="245"/>
         </tableViewCell>
     </objects>

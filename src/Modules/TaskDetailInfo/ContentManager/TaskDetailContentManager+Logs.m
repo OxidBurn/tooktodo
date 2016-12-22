@@ -64,12 +64,12 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
         {
             case LogWithChangedStatusCellType:
             {
-                row.oldStatusValue = log.data.oldStatus.integerValue;
-                row.newStatusValue = log.data.newStatus.integerValue;
+                row.logContent.oldTaskStatus     = log.data.oldStatus.integerValue;
+                row.logContent.updatedTaskStatus = log.data.newStatus.integerValue;
             }
                 break;
                 
-            case LogWithUpdatedTextLabelsType:
+            case LogWithUpdatedStringValuesType:
             {
                 LogsWithUpdatedLabelsActionType actionType;
                 
@@ -122,11 +122,11 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 }
                 
                 
-                row.oldTerms = [self createTermsLabelForStartDate: log.data.oldStartDate
-                                                       andEndDate: log.data.oldEndDate];
+                row.logContent.oldTextValue = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                                      andEndDate: log.data.oldEndDate];
                 
-                row.newTermsValue = [self createTermsLabelForStartDate: log.data.newStartDate
-                                                            andEndDate: log.data.newEndDate];
+                row.logContent.updatedTextValue = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                                          andEndDate: log.data.newEndDate];
             }
                 break;
                 
@@ -134,8 +134,8 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             {
                 NSString* fullLogString = [log.userFullName stringByAppendingString: log.text];
                 
-                row.logLabelHeight = [self countHeightForLogLabelWithString: fullLogString
-                                                                   forFrame: self.tableViewFrame];
+                row.logContent.cellHeight = [self countHeightForLogLabelWithString: fullLogString
+                                                                          forFrame: self.tableViewFrame];
             }
                 
             default:
@@ -231,7 +231,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     }
     
     if ( [properties containsObject: @"oldEndDate"] )
-        index = LogWithUpdatedTextLabelsType;
+        index = LogWithUpdatedStringValuesType;
     
     return index;
 }

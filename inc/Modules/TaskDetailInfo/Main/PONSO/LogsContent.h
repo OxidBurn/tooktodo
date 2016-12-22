@@ -25,6 +25,8 @@
 
 @property (strong, nonatomic) NSAttributedString* logText;
 
+@property (assign, nonatomic) CGFloat cellHeight;
+
 // properties for logs with two updated labals
 @property (strong, nonatomic) NSString* updatedTextValue;
 
@@ -33,6 +35,11 @@
 @property (assign, nonatomic) LogsActionType actionType;
 
 // properties for logs with team members
+
+// properties for logs with task statuses
+@property (assign, nonatomic) NSUInteger oldTaskStatus;
+
+@property (assign, nonatomic) NSUInteger updatedTaskStatus;
 
 
 

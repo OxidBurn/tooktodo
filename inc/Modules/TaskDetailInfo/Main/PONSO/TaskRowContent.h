@@ -112,23 +112,6 @@
 
 // properties for logs
 
-@property (strong, nonatomic) NSAttributedString* logText;
-
-@property (strong, nonatomic) NSString* logDateInString;
-
-@property (strong, nonatomic) NSString* logAuthorAvatarSrs;
-
-@property (assign, nonatomic) NSUInteger oldStatusValue;
-
-@property (assign, nonatomic) NSUInteger newStatusValue;
-
-@property (strong, nonatomic) NSString* oldTerms;
-
-@property (strong, nonatomic) NSString* newTermsValue;
-
-@property (assign, nonatomic) CGFloat logLabelHeight;
-
-
 @property (strong, nonatomic) LogsContent* logContent;
 
 @end

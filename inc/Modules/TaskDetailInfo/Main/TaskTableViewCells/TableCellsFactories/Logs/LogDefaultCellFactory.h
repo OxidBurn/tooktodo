@@ -1,5 +1,5 @@
 //
-//  LogsCellFactory.h
+//  LogDefaultCellFactory.h
 //  TookTODO
 //
 //  Created by Nikolay Chaban on 23.11.16.
@@ -14,7 +14,7 @@
 // Classes
 #import "TaskRowContent.h"
 
-@interface LogsCellFactory : NSObject
+@interface LogDefaultCellFactory : NSObject
 
 // methods
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView

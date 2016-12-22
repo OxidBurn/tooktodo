@@ -212,11 +212,11 @@
     {
         case LogDefaultCellType:
         {
-            height = content.logLabelHeight + 36; // 36 is row height without log label height
+            height = content.logContent.cellHeight + 36; // 36 is row height without log label height
         }
             break;
             
-        case LogWithUpdatedTextLabelsType:
+        case LogWithUpdatedStringValuesType:
             height = 94.f;
             
             break;

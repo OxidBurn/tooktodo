@@ -19,24 +19,23 @@
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
                                    withContent: (TaskRowContent*) content
 {
-    static NSString* cellId = @"TaskLogWithUpdatedStringsCellId";
+    static NSString* cellId = @"TaskLogWithUpdatedStringsId";
+    
+    static NSString* nibName = @"TaskLogWithUpdatedStrings";
     
     LogWithUpdatedStringValuesCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
     
     if ( cell == nil )
     {
-        NSArray* nib = [[NSBundle mainBundle] loadNibNamed: @"TaskLogWithUpdatedStrings"
-                                                     owner: tableView
-                                                   options: nil];
-        cell = [nib objectAtIndex:0];
+        [tableView registerNib: [UINib nibWithNibName: nibName
+                                               bundle: nil]
+        forCellReuseIdentifier: cellId];
+        
+        cell = [tableView dequeueReusableCellWithIdentifier: cellId];
     }
     
-    [cell fillLogCellWithText: content.logContent.logText
-                     withDate: content.logContent.createdDate
-               withUserAvatar: content.logAuthorAvatarSrs
-                 withOldTerms: content.oldTerms
-                 withNewTerms: content.newTermsValue];
-    
+    [cell fillLogCellWithContent: content.logContent];
+        
     return cell;
 }
 
