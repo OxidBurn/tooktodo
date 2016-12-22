@@ -99,36 +99,12 @@
         {
             OSSingleUserInfoCellFactory* factory = [OSSingleUserInfoCellFactory new];
             
-            id user = content.membersArray[0];
+            FilledTeamInfo* user = content.membersArray[0];
             NSString* userFullName = @"";
             NSString* userAvatarSrc = @"";
             
-            if ([user isKindOfClass:[ProjectTaskAssignee class]])
-            {
-                ProjectTaskAssignee* assignee = (ProjectTaskAssignee*) user;
-                
-                userFullName  = [NSString stringWithFormat: @"%@ %@", assignee.firstName, assignee.lastName];
-                
-                userAvatarSrc = assignee.avatarSrc;
-            }
-            
-            else if ([user isKindOfClass:[ProjectInviteInfo class]])
-
-            {
-                ProjectInviteInfo* invite = (ProjectInviteInfo*) user;
-
-                userFullName  = [NSString stringWithFormat: @"%@ %@", invite.firstName, invite.lastName];
-            }
-            
-            else if ([user isKindOfClass: [FilledTeamInfo class]])
-           
-            {
-                FilledTeamInfo* filledUser = (FilledTeamInfo*) user;
-                
-                userFullName  = filledUser.fullname;
-                
-                userAvatarSrc = filledUser.avatarSrc;
-            }
+            userFullName  = user.fullname;
+            userAvatarSrc = user.avatarSrc;
             
             cell = [factory returnSingleUserCellWithTitle: content.title
                                          withUserFullName: userFullName

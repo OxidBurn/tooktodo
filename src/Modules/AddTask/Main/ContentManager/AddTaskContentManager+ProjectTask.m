@@ -15,6 +15,7 @@
 #import "ProjectTaskRoleAssignments+CoreDataClass.h"
 #import "ProjectTaskRoleAssignment+CoreDataClass.h"
 #import "ProjectRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfoPack.h"
 
 @implementation AddTaskContentManager (ProjectTask)
 
@@ -259,6 +260,9 @@
                         
                         [tmpResponsibleArr addObjectsFromArray: assigneeArr];
                         [tmpResponsibleArr addObjectsFromArray: inviteArr];
+                        
+                        tmpResponsibleArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr].mutableCopy;
+                        
                     }
                     
                 }];
@@ -278,6 +282,8 @@
                         
                         [tmpClaimingsArr addObjectsFromArray: assigneeArr];
                         [tmpClaimingsArr addObjectsFromArray: inviteArr];
+                        
+                        tmpClaimingsArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr].mutableCopy;
                     }
                     
                 }];
@@ -298,12 +304,12 @@
                         [tmpObserversArr addObjectsFromArray: assigneeArr];
                         [tmpObserversArr addObjectsFromArray: inviteArr];
                         
+                        tmpObserversArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpObserversArr].mutableCopy;
                     }
                     
                 }];
                 
             }
-                
                 break;
                 
             default:
@@ -346,4 +352,5 @@
     
     return typeColor;
 }
+
 @end

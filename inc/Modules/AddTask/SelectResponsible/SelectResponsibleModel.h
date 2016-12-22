@@ -48,4 +48,6 @@
 
 - (void) deselectAll;
 
+- (void) configurateMembersArray;
+
 @end

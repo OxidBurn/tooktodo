@@ -36,7 +36,6 @@
 
 // methods
 
-
 @end
 
 @implementation SelectResponsibleModel
@@ -164,15 +163,13 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self.selectedClaimingArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* filledUser, NSUInteger idx, BOOL * _Nonnull stop) {
                         
-                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
-
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedClaimingArray.mutableCopy;
                                 
-                                [selectedArrayCopy removeObject: obj];
+                                [selectedArrayCopy removeObject: filledUser];
                                 
                                 self.selectedClaimingArray = [selectedArrayCopy copy];
                             }
@@ -211,15 +208,13 @@
                 {
                     user.taskRoleAssinment = nil;
                     
-                    [self.selectedObserversArray enumerateObjectsUsingBlock: ^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        
-                        FilledTeamInfo* filledUser = [self convertObjectToTeamMember: obj];
+                    [self.selectedObserversArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* filledUser, NSUInteger idx, BOOL * _Nonnull stop) {
                         
                             if ( [filledUser.userId isEqual: user.userId] )
                             {
                                 NSMutableArray* selectedArrayCopy = self.selectedObserversArray.mutableCopy;
                                 
-                                [selectedArrayCopy removeObject: obj];
+                                [selectedArrayCopy removeObject: filledUser];
                                 
                                 self.selectedObserversArray = [selectedArrayCopy copy];
                             }
@@ -312,12 +307,10 @@
             [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                                 
                 [self.selectedResponsibleArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx2, BOOL * _Nonnull stop) {
-                        
-                        FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
-
-                        if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                    
+                        if ( [userInList.userId isEqual: selectedUser.userId] )
                         {
-                            userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                            userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
                             
                             NSIndexPath* temp = [NSIndexPath indexPathForRow: idx inSection: 0];
                             
@@ -350,33 +343,15 @@
 {
     [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* userInList, NSUInteger idx, BOOL * _Nonnull stop) {
        
-        [selectedMembers enumerateObjectsUsingBlock: ^(id selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
+        [selectedMembers enumerateObjectsUsingBlock: ^(FilledTeamInfo* selectedUser, NSUInteger idx, BOOL * _Nonnull stop) {
             
-                FilledTeamInfo* selectedTeamMember = [self convertObjectToTeamMember: selectedUser];
-                
-                if ( [userInList.userId isEqual: selectedTeamMember.userId] )
+                if ( [userInList.userId isEqual: selectedUser.userId] )
                 {
-                    userInList.taskRoleAssinment = selectedTeamMember.taskRoleAssinment;
+                    userInList.taskRoleAssinment = selectedUser.taskRoleAssinment;
                 }
         }];
         
     }];
-}
-
-- (void) excludeInvitedUsers
-{
-    __block NSMutableArray* tmpMembersArray = self.membersArray.mutableCopy;
-    
-    [self.membersArray enumerateObjectsUsingBlock: ^(FilledTeamInfo* member, NSUInteger idx, BOOL * _Nonnull stop) {
-       
-        if ( member.assignments.assignee == nil )
-        {
-            [tmpMembersArray removeObject: member];
-        }
-        
-    }];
-    
-    self.membersArray = tmpMembersArray.copy;
 }
 
 - (void) sortContentAccordingToType
@@ -437,33 +412,5 @@
     
     [self updateSelectedUsers];
 }
-
-- (FilledTeamInfo*) convertObjectToTeamMember: (id) object
-{
-    FilledTeamInfo* selectedTeamMember = [FilledTeamInfo new];
-    
-    if ([object isKindOfClass: [ProjectTaskAssignee class]])
-    {
-        ProjectTaskAssignee* assignee = (ProjectTaskAssignee*)object;
-        
-        [selectedTeamMember convertAssigneeToTeamInfo: assignee];
-    }
-    
-    else if ([object isKindOfClass: [ProjectInviteInfo class]])
-    {
-        ProjectInviteInfo* invite = (ProjectInviteInfo*)object;
-        
-        [selectedTeamMember convertInviteToTeamInfo: invite];
-    }
-    
-    else if ([object isKindOfClass:[FilledTeamInfo class]])
-    {
-        selectedTeamMember = (FilledTeamInfo*)object;
-    }
-    
-    return selectedTeamMember;
-    
-}
-
 
 @end

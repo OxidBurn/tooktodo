@@ -13,6 +13,7 @@
 #import "FilledTeamInfo.h"
 #import "ProjectTaskAssignee+CoreDataClass.h"
 #import "ProjectInviteInfo+CoreDataClass.h"
+#import "FilledTeamInfoPack.h"
 
 @interface GroupOfUsersCollectionCell()
 
@@ -96,7 +97,6 @@
 
 }
 
-
 #pragma mark - Helpers -
 
 - (void) fillImagesWithUsers: (NSArray*) approvals
@@ -111,7 +111,7 @@
                 
             imageView.hidden = NO;
             
-            if ( [user respondsToSelector: @selector(avatarSrc)] )
+            if ( user.avatarSrc.length > 0 )
             {
                 [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
             }
@@ -140,7 +140,7 @@
                 
                 imageView.hidden = NO;
                 
-                if ( [user respondsToSelector: @selector(avatarSrc)] )
+                if ( user.avatarSrc.length > 0 )
                 {
                     [imageView sd_setImageWithURL: [NSURL URLWithString: user.avatarSrc]];
                 }
@@ -160,21 +160,16 @@
 {
     if (content.claiming.count <= 5)
     {
-        [content.claiming enumerateObjectsUsingBlock:^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [content.claiming enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
             UIImageView* imageView = self.checkMarksArray[idx];
             imageView.hidden = NO;
             
             NSNumber* claimingID = @0;
             
-            if ( [obj isKindOfClass:[ProjectTaskAssignee class]] )
-            {
-                claimingID = [(ProjectTaskAssignee*)obj assigneeID];
-            }
-            else
-            {
-                claimingID = [(ProjectInviteInfo*)obj inviteID];
-            }
+            FilledTeamInfo* user = [FilledTeamInfoPack convertObjectToTeamMember: obj];
+            
+            claimingID = user.userId;
             
             if ([content.approvers containsObject: claimingID])
             {
@@ -200,14 +195,9 @@
                 
                 NSNumber* claimingID = @0;
                 
-                if ( [obj isKindOfClass:[ProjectTaskAssignee class]] )
-                {
-                    claimingID = [(ProjectTaskAssignee*)obj assigneeID];
-                }
-                else
-                {
-                    claimingID = [(ProjectInviteInfo*)obj inviteID];
-                }
+                FilledTeamInfo* user = [FilledTeamInfoPack convertObjectToTeamMember: obj];
+                
+                claimingID = user.userId;
                 
                 if ([content.approvers containsObject: claimingID])
                 {
@@ -227,7 +217,7 @@
 
 - (void) roundAllImageViews
 {
-    [self.arrayWithImages enumerateObjectsUsingBlock:^(UIImageView* imageView, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.arrayWithImages enumerateObjectsUsingBlock: ^(UIImageView* imageView, NSUInteger idx, BOOL * _Nonnull stop) {
         
         imageView.layer.cornerRadius = 10;
         imageView.clipsToBounds      = YES;
@@ -238,7 +228,7 @@
 {
     [self roundAllImageViews];
     
-    [self.arrayWithImages enumerateObjectsUsingBlock:^(UIImageView* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.arrayWithImages enumerateObjectsUsingBlock: ^(UIImageView* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         obj.hidden = YES;
         
