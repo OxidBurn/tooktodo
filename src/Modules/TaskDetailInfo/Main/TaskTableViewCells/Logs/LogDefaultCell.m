@@ -7,7 +7,7 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogCell.h"
+#import "LogDefaultCell.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -15,7 +15,7 @@
 // Classes
 #import "AvatarImageView.h"
 
-@interface LogCell()
+@interface LogDefaultCell()
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
@@ -31,7 +31,7 @@
 
 @end
 
-@implementation LogCell
+@implementation LogDefaultCell
 
 
 #pragma mark - Public -

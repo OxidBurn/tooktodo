@@ -9,7 +9,7 @@
 #import "LogsCellFactory.h"
 
 // Classes
-#import "LogCell.h"
+#import "LogDefaultCell.h"
 
 @implementation LogsCellFactory
 
@@ -18,7 +18,7 @@
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
                                    withContent: (TaskRowContent*) content
 {
-    LogCell* cell = [tableView dequeueReusableCellWithIdentifier: @"LogDefaultCellId"];
+    LogDefaultCell* cell = [tableView dequeueReusableCellWithIdentifier: @"LogDefaultCellId"];
     
     [cell fillLogCellWithText: content.logContent.logText
                      withDate: content.logContent.createdDate

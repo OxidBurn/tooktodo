@@ -22,8 +22,8 @@
 #import "AttachmentsCellFactory.h"
 #import "CommentsCellFactory.h"
 #import "LogsCellFactory.h"
-#import "LogsChangeTermsFactory.h"
-#import "LogsChangeStatusFactory.h"
+#import "LogWithUpdatedStringValuesFactory.h"
+#import "LogWithChangedStatusFactory.h"
 
 @implementation TaskDetailMainFactory
 
@@ -131,9 +131,9 @@
         }
             break;
             
-        case LogChangedTaskStatusCellType:
+        case LogWithChangedStatusCellType:
         {
-            LogsChangeStatusFactory* factory = [LogsChangeStatusFactory new];
+            LogWithChangedStatusFactory* factory = [LogWithChangedStatusFactory new];
             
             cell = [factory returnLogCellForTableView: tableView
                                           withContent: content];
@@ -142,7 +142,7 @@
             
         case LogWithUpdatedTextLabelsType:
         {
-            LogsChangeTermsFactory* factory = [LogsChangeTermsFactory new];
+            LogWithUpdatedStringValuesFactory* factory = [LogWithUpdatedStringValuesFactory new];
             
             cell = [factory returnLogCellForTableView: tableView
                                           withContent: content];

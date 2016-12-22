@@ -221,7 +221,7 @@
             
             break;
             
-        case LogChangedTaskStatusCellType:
+        case LogWithChangedStatusCellType:
             height = 109.f;
             
             break;

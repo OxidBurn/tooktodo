@@ -1,5 +1,5 @@
 //
-//  LogWithAcitonCell.h
+//  LogWithChangedStatus.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11.10.16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogWithAcitonCell : UITableViewCell
+@interface LogWithChangedStatus : UITableViewCell
 
 // methods
 - (void) fillLogCellWithText: (NSAttributedString*)  text

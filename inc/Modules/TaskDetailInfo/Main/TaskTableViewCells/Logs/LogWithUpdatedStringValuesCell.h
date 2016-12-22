@@ -1,5 +1,5 @@
 //
-//  LogWithDetailCell.h
+//  LogWithUpdatedStringValuesCell.h
 //  TookTODO
 //
 //  Created by Chaban Nikolay on 11.10.16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogWithUpdatedStringValues : UITableViewCell
+@interface LogWithUpdatedStringValuesCell : UITableViewCell
 
 // methods
 - (void) fillLogCellWithText: (NSAttributedString*) text

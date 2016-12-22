@@ -1,5 +1,5 @@
 //
-//  LogsChangeStatusFactory.h
+//  LogWithUpdatedStringValuesFactory.h
 //  TookTODO
 //
 //  Created by Nikolay Chaban on 23.11.16.
@@ -14,7 +14,7 @@
 // Classes
 #import "TaskRowContent.h"
 
-@interface LogsChangeStatusFactory : NSObject
+@interface LogWithUpdatedStringValuesFactory: NSObject
 
 // methods
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
