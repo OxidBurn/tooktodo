@@ -60,8 +60,6 @@
 
 - (NSString*) returnSelectedTaskTypeDesc;
 
-- (NSString*) returnTaskName;
-
 - (void) storeNewTaskWithCompletion: (CompletionWithSuccess) completion;
 
 - (void) updateTaskInfoOnServerWithCompletion: (CompletionWithSuccess) completion;
