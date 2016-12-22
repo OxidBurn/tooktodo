@@ -68,6 +68,7 @@
         case SelectResponsibleController:
         {
             self.selectedResponsibleArray = selectedUsers;
+            
         }
             break;
         case SelectClaimingController:

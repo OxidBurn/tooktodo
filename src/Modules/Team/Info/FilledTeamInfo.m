@@ -62,6 +62,7 @@
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         self.memberID               = invite.inviteID;
+        self.taskRoleAssinment      = invite.projectTaskAssignment.projectRoleAssignments.taskRoleType;
         self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
         self.assignments            = assignment;
     }
@@ -82,6 +83,7 @@
     self.role                  = @"";
     self.avatarSrc             = user.avatarSrc     ? user.avatarSrc   : @"";
     self.projectPermission     = @(-2);
+    
 }
 
 - (void) convertTaskOwnerToTeamInfo: (ProjectTaskOwner*) projectOwner

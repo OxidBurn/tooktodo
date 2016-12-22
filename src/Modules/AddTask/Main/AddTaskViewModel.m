@@ -150,11 +150,6 @@
     return [self.model returnSelectedTaskTypeDesc];
 }
 
-- (NSString*) returnTaskName
-{
-    return [self.model returnTaskName];
-}
-
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden
 {
@@ -359,7 +354,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableConfirmButtons = [RACObserve (self, taskNameText)
                                  
                                  map: ^id (NSString* value) {
-        
+                                     
                                      return @([self.model isValidTaskName: value]);
         
                                  }] ;
@@ -370,10 +365,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
                                                                __block NSString* taskName = @"";
                                                                
+                                                               
+                                                               
                                                                [self endEnteringTitleWithCompletion:^(BOOL isSuccess) {
                                                                    
-                                                                    taskName = [self.model returnTaskName];
-                                                               }];
+                                                                    taskName = [[self.model returnNewTask] taskName];
+                                                                   
+                                                                }];
                                                               
                                                                
                                                                return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -389,7 +387,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     self.enableCreteOnBaseBtnCommand = [[RACCommand alloc] initWithEnabled: self.enableConfirmButtons
                                                                signalBlock: ^RACSignal *(id input) {
                                                                    
-                                                                   NSString* taskName = [self.model returnTaskName];
+                                                                   NSString* taskName = [[self.model returnNewTask] taskName];
                                                                    
                                                                    [self resetCellsContent];
                                                                    
@@ -434,9 +432,7 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
     OSFlexibleTextFieldCell* cell = [self.tableView cellForRowAtIndexPath: [NSIndexPath indexPathForRow: 0
                                                                                               inSection: 0]];
-    
     [cell endTaskTitleEditingWithCompletion: completion];
-
 }
 
 

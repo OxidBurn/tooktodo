@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserInfo (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *email;
-@property (nullable, nonatomic, retain) NSDate *expireTokenDate;
+@property (nullable, nonatomic, retain) NSDate   *expireTokenDate;
 @property (nullable, nonatomic, retain) NSString *extendPhoneNumber;
 @property (nullable, nonatomic, retain) NSString *fullName;
 @property (nullable, nonatomic, retain) NSString *notificationSettingsPath;
