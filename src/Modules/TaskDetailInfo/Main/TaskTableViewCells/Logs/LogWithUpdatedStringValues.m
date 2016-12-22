@@ -6,7 +6,7 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "LogWithDetailCell.h"
+#import "LogWithUpdatedStringValues.h"
 
 // Frameworks
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -14,7 +14,7 @@
 // Classes
 #import "AvatarImageView.h"
 
-@interface LogWithDetailCell()
+@interface LogWithUpdatedStringValues()
 
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation LogWithDetailCell
+@implementation LogWithUpdatedStringValues
 
 
 #pragma mark - Public -
