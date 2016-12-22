@@ -228,10 +228,19 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     if ( [properties containsObject: @"oldStatus"] )
     {
         index = LogWithChangedStatusCellType;
+        return index;
     }
     
     if ( [properties containsObject: @"oldEndDate"] )
+    {
         index = LogWithUpdatedStringValuesType;
+        return index;
+    }
+    
+    if ( [properties containsObject: @""] )
+    {
+        
+    }
     
     return index;
 }
