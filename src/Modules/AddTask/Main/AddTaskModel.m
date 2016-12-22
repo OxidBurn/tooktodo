@@ -338,29 +338,22 @@
              
              [tmpTeamList enumerateObjectsUsingBlock:^(FilledTeamInfo*  _Nonnull userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                  
-                 
                  NSMutableArray* tmpArr = [NSMutableArray new];
                  
                  [tmpArr addObjectsFromArray: self.task.responsible];
                  [tmpArr addObjectsFromArray: self.task.claiming];
                  [tmpArr addObjectsFromArray: self.task.observers];
                  
-                 if (tmpArr.count == 0)
+                 if (tmpArr.count == 0 || userInList.taskRoleAssinment)
                  {
                      userInList.taskRoleAssinment = nil;
                  }
                  
                  [tmpArr enumerateObjectsUsingBlock:^(FilledTeamInfo*  _Nonnull userWithRole, NSUInteger idx, BOOL * _Nonnull stop) {
                      
-                     
                      if ([userInList.userId isEqual: userWithRole.userId])
                      {
                          userInList.taskRoleAssinment = userWithRole.taskRoleAssinment;
-                     }
-                     
-                     else
-                     {
-                         userInList.taskRoleAssinment = nil;
                      }
 
                  }];
