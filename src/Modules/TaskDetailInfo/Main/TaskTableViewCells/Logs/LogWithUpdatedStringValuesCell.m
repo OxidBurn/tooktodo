@@ -13,6 +13,7 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "ProjectsEnumerations.h"
 
 @interface LogWithUpdatedStringValuesCell()
 
@@ -24,6 +25,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* logFirstDetailLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logSecondDetailLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView* arrowSendImageView;
 
 // properties
 
@@ -45,9 +48,46 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
+    [self handleUIAccordingToActionType: logContent.actionType];
+    
     self.logFirstDetailLabel.text  = logContent.oldTextValue;
     self.logSecondDetailLabel.text = logContent.updatedTextValue;
 }
+
+
+#pragma mark - Internal -
+
+- (void) handleUIAccordingToActionType: (LogsActionType) actionType
+{
+    switch ( actionType )
+    {
+        case AddedNewValueType:
+        {
+            // hiding unnecessary UI elements
+            self.arrowSendImageView.hidden   = YES;
+            self.logSecondDetailLabel.hidden = YES;
+        }
+            break;
+            
+        case EditedOldValueType:
+        {
+            
+        }
+            break;
+            
+        case DeletedValueType:
+        {
+            // hiding unnecessary UI elements
+            self.arrowSendImageView.hidden   = YES;
+            self.logSecondDetailLabel.hidden = YES;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 
 @end
