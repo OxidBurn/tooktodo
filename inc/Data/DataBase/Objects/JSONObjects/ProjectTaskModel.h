@@ -20,6 +20,7 @@
 #import "TaskWorkAreaModel.h"
 #import "TaskAttachmentsModel.h"
 #import "TaskApprovementsModel.h"
+#import "ProjectTaskCommentModel.h"
 
 @protocol ProjectTaskModel;
 
@@ -67,5 +68,6 @@
 @property (strong, nonatomic) NSNumber* isUrgent;
 @property (strong, nonatomic) NSArray<TaskRoomModel, Optional> * rooms;
 @property (strong, nonatomic) TaskRoomModel<Optional>* room;
+@property (strong, nonatomic) ProjectTaskCommentModel <Optional>* comments;
 
 @end

@@ -971,7 +971,11 @@
     else
         task.attachments = nil;
     
-    task.commentsCount    = info.commentsCount;
+    if ( info.comments )
+        task.commentsCount = info.comments.count;
+    else
+        task.commentsCount = info.commentsCount;
+    
     task.factualStartDate = info.factualStartDate;
     task.factualEndDate   = info.factualEndDate;
     

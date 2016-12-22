@@ -19,6 +19,7 @@
 #import "TaskRoleAssignmentsModel.h"
 #import "TaskWorkAreaModel.h"
 #import "TaskAttachmentsModel.h"
+#import "ProjectTaskCommentModel.h"
 
 @protocol TaskSortedByProjectModel;
 
@@ -69,5 +70,6 @@
 @property (strong, nonatomic) NSDate<Optional>* factualStartDate;
 @property (strong, nonatomic) NSArray<Optional>* availableStatusActions;
 @property (strong, nonatomic) NSArray<Optional>* approvments;
+@property (strong, nonatomic) ProjectTaskCommentModel <Optional>* comments;
 
 @end
