@@ -296,6 +296,7 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
     LogChangedTaskNameType = 5, // сменил название задачи с "название1" на "название2"
     LogAddedMarkType = 6, // добавил метку "метка"
     LogDeletedMarkType = 7, // удалил метку "метка"
+    
     LogAddedDatesType = 8, // добавил сроки "дата1" - "дата2"
     LogChangedDatesType = 9, // изменил сроки (без данных о сроках)
     LogDeletedDatesType = 10, // удалил сроки (без данных о сроках)
@@ -303,6 +304,7 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
     LogDeletedRoomType = 12, // удалил комнату (без инфе о комнате)
     LogAddedRoomType = 13, // добалил комнату с инфой о комнате
     LogChangedRoomType = 14, // изменил помещение с "пом1" на "пом2"
+    
     LogMovedTaskType = 15, // перенес задачу с "этап1" в "этап2"
     LogTookTaskToWorkType = 16, //взял задачу в работу (в вебе без описания, у нас, вероятно, с иконкой "В работу")
     LogChangedTypeOfTaskType = 17, // изменил тип задачи с "тип1" на "тип2"

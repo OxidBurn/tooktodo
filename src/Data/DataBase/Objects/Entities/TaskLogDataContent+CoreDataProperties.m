@@ -41,6 +41,8 @@
 @dynamic roomIdNew;
 @dynamic isAllRoomsNew;
 @dynamic oldIsAllRooms;
+@dynamic oldType;
+@dynamic typeNew;
 @dynamic taskLog;
 
 @end

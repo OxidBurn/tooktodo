@@ -37,6 +37,8 @@
 @property (strong, nonatomic) NSNumber<Optional>* roomIdNew;
 @property (strong, nonatomic) NSNumber<Optional>* isAllRoomsNew;
 @property (strong, nonatomic) NSNumber<Optional>* oldIsAllRooms;
+@property (strong, nonatomic) NSNumber<Optional>* oldType;
+@property (strong, nonatomic) NSNumber<Optional>* typeNew;
 
 
 @end

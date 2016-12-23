@@ -14,6 +14,7 @@
 #import "TaskLogContentModel.h"
 #import "TaskLogDataContentModel.h"
 #import "ProjectTask+CoreDataClass.h"
+#import "ProjectsEnumerations.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -72,7 +73,132 @@
             [self persistNewLogsData: info.data
                               forLog: logInfo
                            inContext: context];
+            
+            // Parse incoming data and set log type
+            [self setupLogType: info.data
+                        forLog: logInfo];
         }
+        else
+        {
+            logInfo.logType = @(LogCreatedTaskType);
+        }
+    }
+}
+
+- (void) setupLogType: (TaskLogDataContentModel*) info
+               forLog: (TaskLogInfo*)             log
+{
+    // Add\remove document
+    if ( info.storageFiles.count > 0 )
+    {
+        if ( [log.text containsString: @"приложил"] )
+        {
+            log.logType = @(LogAddedAttachmentType);
+        }
+        else
+        {
+            log.logType = @(LogDeletedAttachmentType);
+        }
+    }
+    
+    // Added/remove role role
+    if ( info.userId )
+    {
+        // added
+        if ( [log.text containsString: @"добавил"] )
+        {
+            log.logType = @(LogAddedUserWithRoleType);
+        }
+        else
+        {
+            log.logType = @(LogDeletedUserWithRoleType);
+        }
+    }
+    
+    // Change task name
+    if ( info.oldTitle )
+    {
+        log.logType = @(LogChangedTaskNameType);
+    }
+    
+    // Added/remove mark
+    if ( info.oldValue )
+    {
+        if ( [log.text containsString: @""] )
+        {
+            log.logType = @(LogAddedMarkType);
+        }
+        else
+        {
+            log.logType = @(LogDeletedMarkType);
+        }
+    }
+    
+    // Dates
+    if ( [log.text containsString: @"сроки"] )
+    {
+        if ( [log.text containsString: @"добавил"] )
+        {
+            log.logType = @(LogAddedDatesType);
+        }
+        else
+            if ( [log.text containsString: @"изменил сроки с"] )
+            {
+                log.logType = @(LogChangedDatesToNewValueType);
+            }
+            else
+                if ( [log.text containsString: @"изменил"] )
+                {
+                    log.logType = @(LogChangedDatesType);
+                }
+                else
+                    if ( [log.text containsString: @"удалил"] )
+                    {
+                        log.logType = @(LogDeletedDatesType);
+                    }
+    }
+    
+    // Rooms
+    if ( [log.text containsString: @"помещение"] )
+    {
+        if ( [log.text containsString: @"добавил"] )
+        {
+            log.logType = @(LogAddedRoomType);
+        }
+        else
+            if ( [log.text containsString: @"изменил"] )
+            {
+                log.logType = @(LogChangedRoomType);
+            }
+            else
+                if ( [log.text containsString: @"удалил"] )
+                {
+                    log.logType = @(LogChangedRoomType);
+                }
+    }
+    
+    // Changed stages
+    if ( info.oldStageId )
+    {
+        log.logType = @(LogMovedTaskType);
+    }
+    
+    // Changed task type
+    if ( info.oldType )
+    {
+        log.logType = @(LogChangedTypeOfTaskType);
+    }
+    
+    // Add/update/delete comment
+    if ( info.commentId )
+    {
+        log.logType = @(LogAddedCommentType);
+    }
+    
+    // Changed task status type
+    if ( info.oldStatus )
+    {
+        log.logType = @(LogChangedTypeOfTaskType);
     }
 }
 
@@ -103,7 +229,16 @@
     dataContent.newEndDate               = info.endDateNew;
     dataContent.oldEndDate               = info.oldEndDate;
     dataContent.userId                   = info.userId;
-    
+    dataContent.oldTitle                 = info.oldTitle;
+    dataContent.titleNew                 = info.titleNew;
+    dataContent.oldStageId               = info.oldStageId;
+    dataContent.stageIdNew               = info.stageIdNew;
+    dataContent.oldRoomId                = info.oldRoomId;
+    dataContent.roomIdNew                = info.roomIdNew;
+    dataContent.isAllRoomsNew            = info.isAllRoomsNew;
+    dataContent.oldIsAllRooms            = info.oldIsAllRooms;
+    dataContent.oldType                  = info.oldType;
+    dataContent.typeNew                  = info.typeNew;
 }
 
 - (TaskLogInfo*) getTaskLogWithInfo: (TaskLogContentModel*)    info

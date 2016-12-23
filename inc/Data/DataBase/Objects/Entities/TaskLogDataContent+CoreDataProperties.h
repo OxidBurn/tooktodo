@@ -42,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSNumber *roomIdNew;
 @property (nullable, nonatomic, copy) NSNumber *isAllRoomsNew;
 @property (nullable, nonatomic, copy) NSNumber *oldIsAllRooms;
+@property (nullable, nonatomic, copy) NSNumber *oldType;
+@property (nullable, nonatomic, copy) NSNumber *typeNew;
 @property (nullable, nonatomic, retain) TaskLogInfo *taskLog;
 
 @end

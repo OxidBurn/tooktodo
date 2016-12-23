@@ -22,7 +22,8 @@
                                                         @"newStageId"     : @"stageIdNew",
                                                         @"newRoomId"      : @"roomIdNew",
                                                         @"newIsAllRooms"  : @"isAllRoomsNew",
-                                                        @"newValue"       : @"valueNew"}];
+                                                        @"newValue"       : @"valueNew",
+                                                        @"newType"        : @"typeNew"}];
 }
 
 @end
