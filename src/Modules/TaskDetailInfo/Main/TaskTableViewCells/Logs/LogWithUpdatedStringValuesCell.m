@@ -48,38 +48,40 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
-    [self handleUIAccordingToActionType: logContent.actionType];
-    
-    self.logFirstDetailLabel.text  = logContent.oldTextValue;
-    self.logSecondDetailLabel.text = logContent.updatedTextValue;
+    [self handleUIAccordingToActionType: logContent.actionType
+                         withLogContent: logContent];
 }
 
 
 #pragma mark - Internal -
 
 - (void) handleUIAccordingToActionType: (LogsActionType) actionType
+                        withLogContent: (LogsContent*) logContent
 {
     switch ( actionType )
     {
         case AddedNewValueType:
         {
-            // hiding unnecessary UI elements
-            self.arrowSendImageView.hidden   = YES;
-            self.logSecondDetailLabel.hidden = YES;
+            self.logFirstDetailLabel.text = logContent.oldTextValue;
         }
             break;
             
         case EditedOldValueType:
         {
+            // showing second label and arrow
+            self.arrowSendImageView.hidden   = NO;
+            self.logSecondDetailLabel.hidden = NO;
             
+            self.logFirstDetailLabel.text  = logContent.oldTextValue;
+            self.logSecondDetailLabel.text = logContent.updatedTextValue;
         }
             break;
             
         case DeletedValueType:
         {
-            // hiding unnecessary UI elements
-            self.arrowSendImageView.hidden   = YES;
-            self.logSecondDetailLabel.hidden = YES;
+            self.logFirstDetailLabel.text = logContent.oldTextValue;
+            
+            // ToDo: edit font for current case
         }
             break;
             

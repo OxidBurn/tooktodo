@@ -149,6 +149,13 @@ typedef NS_ENUM(NSUInteger, TaskDetailTableViewCells)
     LogDefaultCellType,
     LogWithUpdatedStringValuesType,
     LogWithChangedStatusCellType,
+    LogWithAssigneeCellType,
+    LogWithTaskTypeCellType,
+    LogWithRenamedCellType,
+    LogWithMarkCellType,
+    LogWithErrorCellType,
+    LogWithAttachmentCellType,
+    LogWithCommentCellType,
 };
 
 
@@ -308,10 +315,11 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
     LogMovedTaskType = 15, // перенес задачу с "этап1" в "этап2"
     LogTookTaskToWorkType = 16, //взял задачу в работу (в вебе без описания, у нас, вероятно, с иконкой "В работу")
     LogChangedTypeOfTaskType = 17, // изменил тип задачи с "тип1" на "тип2"
-    LogSentTaskToOnApprovalType = 18, // отправил задачу на утверждение ( возможно будут прихотить типы задач "В работе" и "На утверждение"
-    LogSentTaskToWaitingType = 19, // отправил задачу в ожидание ( возможно приходит 2 типа задачи )
+    LogChangedTaskStatusType = 18, // будет хендлить все логи, связанные со статусами задач (принимает 2 статуса)
+    //LogSentTaskToOnApprovalType = 18, // отправил задачу на утверждение ( возможно будут прихотить типы задач "В работе" и "На утверждение"
+   // LogSentTaskToWaitingType = 19, // отправил задачу в ожидание ( возможно приходит 2 типа задачи )
     LogAddedCommentType = 20, // добавил комментрарий ( приходит commentId )
-    LogCanceledTaskType = 21, // отменил задачу ( возможно приходит 2 типа задачи )
+    //LogCanceledTaskType = 21, // отменил задачу ( возможно приходит 2 типа задачи )
 };
 
 

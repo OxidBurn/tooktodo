@@ -591,7 +591,6 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         }
             break;
     }
-    
     return height;
 }
 

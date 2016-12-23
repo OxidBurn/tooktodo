@@ -19,9 +19,9 @@
 - (UITableViewCell*) returnLogCellForTableView: (UITableView*)    tableView
                                    withContent: (TaskRowContent*) content
 {
-    static NSString* cellId = @"TaskLogTypeCell";
+    static NSString* cellId = @"TaskLogTypeCellId";
     
-    static NSString* nibName = @"TaskLogTypeCellId";
+    static NSString* nibName = @"TaskLogTypeCell";
     
     LogWithTaskTypeCell* cell = [tableView dequeueReusableCellWithIdentifier: cellId];
     

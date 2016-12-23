@@ -51,96 +51,194 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
         
         TaskRowContent* row = [TaskRowContent new];
         
-        row.logContent = [LogsContent new];
+        LogsContent* logContent = [LogsContent new];
         
         [self fillBaseLogsDataForLog: log
-                           toContent: row];
+                           toContent: logContent];
         
-        NSArray* properties = [self getAllPropertiesForLogData: log.data];
+//        NSArray* properties = [self getAllPropertiesForLogData: log.data];
+//        
+//        row.cellTypeIndex = [self determineCellIndexForProperties: properties];
         
-        row.cellTypeIndex = [self determineCellIndexForProperties: properties];
-                
-        switch ( row.cellTypeIndex )
+        NSUInteger logType = log.logType.integerValue;
+        
+        switch ( logType )
         {
-            case LogWithChangedStatusCellType:
+//            case LogCreatedTaskType:               // might be unnaccessary
+//            {
+//                logContent.logText = 
+//            }
+//                break;
+               
+//            case LogAddedAttachmentType:
+//            {
+//                
+//            }
+//                break;
+                
+//            case LogDeletedAttachmentType:
+//            {
+//                
+//            }
+//                break;
+                
+            case LogAddedUserWithRoleType:
             {
-                row.logContent.oldTaskStatus     = log.data.oldStatus.integerValue;
-                row.logContent.updatedTaskStatus = log.data.newStatus.integerValue;
+                logContent.userNewRoleType = log.data.taskRoleType;
+                logContent.userNewId       = log.data.userId;
+                
+                row.cellTypeIndex = LogWithAssigneeCellType;
+                
+                logContent.actionType = AddedNewValueType;
             }
                 break;
                 
-            case LogWithUpdatedStringValuesType:
+            case LogDeletedUserWithRoleType:
             {
-                LogsWithUpdatedLabelsActionType actionType;
+                logContent.userNewRoleType = log.data.taskRoleType;
+                logContent.userNewId       = log.data.userId;
                 
-                switch ( actionType )
-                {
-                    case AddedDateType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case ChangedDatesType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case DeletedDateType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case AddedRoomType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case ChangedRoomType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case DeletedRoomType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    case MovedTaskType:
-                    {
-                        
-                    }
-                        break;
-                        
-                    default:
-                        break;
-                }
+                row.cellTypeIndex = LogWithAssigneeCellType;
                 
-                
-                row.logContent.oldTextValue = [self createTermsLabelForStartDate: log.data.oldStartDate
-                                                                      andEndDate: log.data.oldEndDate];
-                
-                row.logContent.updatedTextValue = [self createTermsLabelForStartDate: log.data.newStartDate
-                                                                          andEndDate: log.data.newEndDate];
+                logContent.actionType = DeletedValueType;
             }
                 break;
                 
-            case LogDefaultCellType:
+            case LogChangedTaskNameType:
             {
-                NSString* fullLogString = [log.userFullName stringByAppendingString: log.text];
+                logContent.oldTitle = log.data.oldTitle;
+                logContent.titleNew = log.data.titleNew;
                 
-                row.logContent.cellHeight = [self countHeightForLogLabelWithString: fullLogString
-                                                                          forFrame: self.tableViewFrame];
+                row.cellTypeIndex = LogWithRenamedCellType;
             }
+                break;
+                
+//            case LogAddedMarkType:
+//            {
+//                
+//            }
+//                break;
+                
+//            case LogDeletedMarkType:
+//            {
+//                
+//            }
+//                break;
+                
+            case LogAddedDatesType:
+            {
+                logContent.oldTextValue = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                                  andEndDate: log.data.newEndDate];
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+                
+                logContent.actionType = AddedNewValueType;
+            }
+                break;
+                
+//            case LogChangedDatesType:   // might be unnaccessary
+//            {
+//                
+//            }
+//                break;
+//                
+//            case LogDeletedDatesType:
+//            {
+//                
+//            }
+//                break;
+                
+            case LogChangedDatesToNewValueType:
+            {
+                NSString* terms1 = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                           andEndDate: log.data.oldEndDate];
+                
+                NSString* terms2 = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                           andEndDate: log.data.newEndDate];
+                
+                logContent.oldTextValue     = terms1;
+                logContent.updatedTextValue = terms2;
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+                
+                logContent.actionType = EditedOldValueType;
+            }
+                break;
+                
+//            case LogDeletedRoomType:
+//            {
+//                
+//            }
+//                break;
+                
+                // ToDo: configurate attributed string with room title
+            case LogAddedRoomType:
+            {
+                logContent.oldTextValue = [NSString stringWithFormat: @"%@", log.data.roomIdNew.stringValue];
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+                
+                logContent.actionType = AddedNewValueType;
+            }
+                break;
+                
+                // ToDo: make two attributed strings with rooms info
+            case LogChangedRoomType:
+            {
+                logContent.oldTextValue     = log.data.oldRoomId.stringValue;
+                logContent.updatedTextValue = log.data.roomIdNew.stringValue;
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+                
+                logContent.actionType = EditedOldValueType;
+            }
+                break;
+                
+            case LogMovedTaskType:
+            {
+                logContent.oldTextValue     = log.data.oldStageId.stringValue;
+                logContent.updatedTextValue = log.data.stageIdNew.stringValue;
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+                
+                logContent.actionType = EditedOldValueType;
+            }
+                break;
+                
+            case LogChangedTypeOfTaskType:
+            {
+                logContent.oldTaskType = log.data.oldType;
+                logContent.taskTypeNew = log.data.typeNew;
+                
+                row.cellTypeIndex = LogWithTaskTypeCellType;
+            }
+                break;
+                
+            case LogChangedTaskStatusType:
+            {
+                logContent.oldTaskStatus     = log.data.oldStatus.integerValue;
+                logContent.updatedTaskStatus = log.data.newStatus.integerValue;
+            }
+                break;
+                
+            case LogAddedCommentType:
+            {
+                logContent.commentId = log.data.commentId;
+                
+                row.cellTypeIndex = LogWithCommentCellType;
+            }
+                break;
                 
             default:
+                
+                row.cellTypeIndex = LogDefaultCellType;
+                
                 break;
         }
+
+        logContent.cellHeight = 70;
+        
+        row.logContent = logContent;
         
         [content addObject: row];
         
@@ -152,15 +250,15 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
 
 #pragma mark - Helpers -
 
-- (void) fillBaseLogsDataForLog: (TaskLogInfo*)    log
-                      toContent: (TaskRowContent*) content
+- (void) fillBaseLogsDataForLog: (TaskLogInfo*) log
+                      toContent: (LogsContent*) logContent
 {
-    content.logContent.logText = [self createLogWithAuthor: log.userFullName
+    logContent.logText = [self createLogWithAuthor: log.userFullName
                                            withLogText: log.text];
     
-    content.logContent.createdDate = [self createLogDateWithDate: log.createdDate];
+    logContent.createdDate = [self createLogDateWithDate: log.createdDate];
     
-    content.logContent.avatarSrs = log.userAvatar;
+    logContent.avatarSrs = log.userAvatar;
 }
 
 

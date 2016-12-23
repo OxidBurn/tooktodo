@@ -24,6 +24,12 @@
 #import "LogDefaultCellFactory.h"
 #import "LogWithUpdatedStringValuesFactory.h"
 #import "LogWithChangedStatusFactory.h"
+#import "LogWithAssigneeCellFactory.h"
+#import "LogWithErrorCellFactory.h"
+#import "LogWithCommentCellFactory.h"
+#import "LogWithRenamedCellFactory.h"
+#import "LogWithAttachmentCellFactory.h"
+#import "LogWithTaskTypeCellFactrory.h"
 
 @implementation TaskDetailMainFactory
 
@@ -148,6 +154,58 @@
                                           withContent: content];
         }
             break;
+            
+        case LogWithAssigneeCellType:
+        {
+            LogWithAssigneeCellFactory* factory = [LogWithAssigneeCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+
+        case LogWithTaskTypeCellType:
+        {
+            LogWithTaskTypeCellFactrory* factory = [LogWithTaskTypeCellFactrory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+        case LogWithRenamedCellType:
+        {
+            LogWithRenamedCellFactory* factory = [LogWithRenamedCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+//        case LogWithMarkCellType:
+//        {
+
+//        }
+//            break;
+            
+        case LogWithErrorCellType:
+        {
+            LogWithErrorCellFactory* factory = [LogWithErrorCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+        case LogWithCommentCellType:
+        {
+            LogWithCommentCellFactory* factory = [LogWithCommentCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

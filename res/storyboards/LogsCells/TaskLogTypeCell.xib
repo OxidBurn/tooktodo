@@ -63,11 +63,8 @@
                             <constraint firstAttribute="width" constant="16" id="9uf-zq-hb3"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Влад Комаров отправил на утверждение задачу" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWN-bU-dPE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Влад Комаров отправил на утверждение задачу" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWN-bU-dPE">
                         <rect key="frame" x="49" y="16" width="310" height="14"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="14" id="hC8-ut-Hiw"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                         <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -109,10 +106,10 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="wWN-bU-dPE" firstAttribute="leading" secondItem="0HH-rY-txr" secondAttribute="leadingMargin" constant="49" id="2DC-oa-zIS"/>
                     <constraint firstItem="SHa-Kb-qTS" firstAttribute="leading" secondItem="JQl-Jq-Znv" secondAttribute="trailing" constant="10" id="2QK-R8-jrL"/>
                     <constraint firstItem="J1x-Ej-k8O" firstAttribute="top" secondItem="WmF-1B-99H" secondAttribute="bottom" constant="14" id="2eF-11-046"/>
                     <constraint firstItem="4yH-IE-6pK" firstAttribute="leading" secondItem="WmF-1B-99H" secondAttribute="leading" id="587-EI-i1A"/>
-                    <constraint firstItem="wWN-bU-dPE" firstAttribute="leading" secondItem="Tu0-XD-WOx" secondAttribute="trailing" constant="8" id="9om-n3-Buf"/>
                     <constraint firstItem="WmF-1B-99H" firstAttribute="top" secondItem="wWN-bU-dPE" secondAttribute="bottom" id="Bcm-8c-BIk"/>
                     <constraint firstItem="WmF-1B-99H" firstAttribute="trailing" secondItem="wWN-bU-dPE" secondAttribute="trailing" id="BdR-rd-syz"/>
                     <constraint firstItem="JQl-Jq-Znv" firstAttribute="leading" secondItem="J1x-Ej-k8O" secondAttribute="trailing" constant="10" id="Dkb-0x-39G"/>
@@ -124,6 +121,7 @@
                     <constraint firstItem="Tu0-XD-WOx" firstAttribute="top" secondItem="0HH-rY-txr" secondAttribute="topMargin" constant="15" id="l0y-NZ-r4y"/>
                     <constraint firstItem="OBH-94-y3X" firstAttribute="leading" secondItem="SHa-Kb-qTS" secondAttribute="trailing" constant="5" id="nxZ-uv-YpZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="wWN-bU-dPE" secondAttribute="trailing" constant="16" id="oG7-oD-3j1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wWN-bU-dPE" secondAttribute="bottom" priority="250" constant="64" id="rg8-2U-DlN"/>
                     <constraint firstItem="JQl-Jq-Znv" firstAttribute="centerY" secondItem="J1x-Ej-k8O" secondAttribute="centerY" id="s98-5F-lMH"/>
                     <constraint firstItem="OBH-94-y3X" firstAttribute="centerY" secondItem="JQl-Jq-Znv" secondAttribute="centerY" id="wQj-gD-Dha"/>
                     <constraint firstItem="4yH-IE-6pK" firstAttribute="centerY" secondItem="J1x-Ej-k8O" secondAttribute="centerY" id="yW6-js-cHq"/>

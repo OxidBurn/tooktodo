@@ -214,7 +214,6 @@
     dataContent.newWorkArea              = info.WorkAreaNew;
     dataContent.oldWorkArea              = info.oldWorkArea;
     dataContent.commentId                = info.commentId;
-    dataContent.storageFiles             = info.storageFiles;
     dataContent.oldStatus                = info.oldStatus;
     dataContent.newStatus                = info.statusNew;
     dataContent.projectRoleAssignmentId  = info.projectRoleAssignmentId;
@@ -224,6 +223,7 @@
     dataContent.newStartDate             = info.startDateNew;
     dataContent.oldDescription           = info.oldDescription;
     dataContent.newDescription           = info.descriptionNew;
+    dataContent.storageFiles             = info.storageFiles;
     dataContent.fileTitles               = info.fileTitles;
     dataContent.fileTitlesWithExtensions = info.fileTitlesWithExtensions;
     dataContent.newEndDate               = info.endDateNew;
