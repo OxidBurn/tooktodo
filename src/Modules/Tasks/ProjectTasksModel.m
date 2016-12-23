@@ -107,7 +107,7 @@ static NSString* contentKey = @"contentInfoKey";
 {
     NSArray* projectTasksStages = self.currentProjectInfo.stage.array;
     
-    return projectTasksStages.count;
+    return projectTasksStages.count + ((self.tableState == TableSearchState) ? 1 : 0);
 }
 
 - (NSUInteger) countOfRowsInSection: (NSUInteger) section
@@ -146,7 +146,9 @@ static NSString* contentKey = @"contentInfoKey";
 
 - (ProjectTaskStage*) getStageForSection: (NSUInteger) section
 {
-    return [self.currentProjectInfo.stage objectAtIndex: section];
+    NSUInteger sectionNumber = section - ((self.tableState == TableSearchState) ? 1 : 0);
+    
+    return [self.currentProjectInfo.stage objectAtIndex: sectionNumber];
 }
 
 - (void) markStageAsExpandedAtIndexPath: (NSInteger)             section
@@ -231,5 +233,6 @@ static NSString* contentKey = @"contentInfoKey";
     
     self.countOfFoundTasks = counter;
 }
+
 
 @end

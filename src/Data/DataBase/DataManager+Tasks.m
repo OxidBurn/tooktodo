@@ -172,7 +172,7 @@
                                                  forProject: selectedProject
                                                   inContext: localContext];
         
-        [selectedTask addSubTasksObject: newSubTask];
+        newSubTask.task = selectedTask;
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {
@@ -1077,7 +1077,7 @@
                                                   forProject: project
                                                    inContext: context];
             
-            [task addSubTasksObject: subTask];
+            subTask.task = task;
             
         }];
     }

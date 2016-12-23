@@ -61,6 +61,13 @@
     self.textView.placeHolder = @"Название задачи";
     
     self.textView.placeHolderColor = self.steelColor;
+    
+    if ([self.delegate respondsToSelector:@selector(getViewModel)])
+    {
+        AddTaskViewModel* viewModel = [self.delegate getViewModel];
+        
+        RAC(viewModel, taskNameText) = [self.textView.rac_textSignal takeUntil: self.rac_prepareForReuseSignal];
+    }
 }
 
 - (void) resetCellContent
@@ -82,16 +89,6 @@
 }
 
 #pragma mark - UITextViewDelegate methods -
-
-- (void) textViewDidBeginEditing: (UITextView*) textView
-{
-    if ([self.delegate respondsToSelector:@selector(getViewModel)])
-    {
-        AddTaskViewModel* viewModel = [self.delegate getViewModel];
-        
-        RAC(viewModel, taskNameText) = [self.textView.rac_textSignal takeUntil: self.rac_prepareForReuseSignal];
-    }
-}
 
 - (void) textViewDidEndEditing: (UITextView*) textView
 {
