@@ -17,6 +17,7 @@
 
 // Classes
 #import "DataManager+ProjectInfo.h"
+#import "DataManager+Tasks.h"
 
 @implementation DataManager (Room)
 
@@ -223,6 +224,17 @@
          if ( completion )
              completion(contextDidSave);
      }];
+}
+
+- (NSString*) getRoomTitleWithID: (NSNumber*) roomID
+{
+    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roomID == %@ AND task == %@", roomID, currentTask];
+    
+    ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: predicate];
+    
+    return [room.roomID.stringValue stringByAppendingString: room.title];
 }
 
 @end

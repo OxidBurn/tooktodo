@@ -49,4 +49,7 @@
 
 - (void) updateSelectedStateOfRoom: (ProjectTaskRoom*)      room
                     withCompletion: (CompletionWithSuccess) completion;
+
+- (NSString*) getRoomTitleWithID: (NSNumber*) roomID;
+
 @end
