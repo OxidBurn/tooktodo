@@ -414,7 +414,7 @@ static NSDateFormatter* defaultDateFormatter = nil;
                                        attributes: @{ NSFontAttributeName: font }
                                           context: nil];
         
-        size = CGSizeMake(frame.size.width, frame.size.height + 1);
+        size = frame.size;
     }
     
     return size;
@@ -434,7 +434,24 @@ static NSDateFormatter* defaultDateFormatter = nil;
                                        attributes: @{ NSFontAttributeName: font }
                                           context: nil];
         
-        textSize = CGSizeMake(frame.size.width, frame.size.height);
+        textSize = frame.size;
+    }
+    
+    return textSize;
+}
+
++ (CGSize) getAttributedTextSize: (NSAttributedString*) string
+                    withMaxWidth: (CGFloat)             width
+{
+    CGSize textSize = CGSizeZero;
+    
+    if ( string.length > 0 )
+    {
+        CGRect textFrame = [string boundingRectWithSize: CGSizeMake(width, CGFLOAT_MAX)
+                                                options: NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                context: nil];
+        
+        textSize = textFrame.size;
     }
     
     return textSize;

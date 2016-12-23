@@ -129,6 +129,9 @@
                  withMaxWidth: (CGFloat)   maxWidth
                      withFont: (UIFont*)   font;
 
++ (CGSize) getAttributedTextSize: (NSAttributedString*) string
+                    withMaxWidth: (CGFloat)             width;
+
 + (NSString*) stringByStrippingHTML: (NSString*) inputString;
 
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
