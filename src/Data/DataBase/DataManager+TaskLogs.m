@@ -55,7 +55,8 @@
         
         if ( [obj.assignee.assigneeID isEqual: userId] )
         {
-            userInfo = [[LogUserInfo alloc] initWithName: obj.assignee.displayName
+            userInfo = [[LogUserInfo alloc] initWithName: obj.assignee.firstName
+                                              andSurName: obj.assignee.lastName
                                           withAvatarPath: obj.assignee.avatarSrc];
             
             *stop = YES;
@@ -63,7 +64,8 @@
         else
             if ([obj.invite.inviteID isEqual: userId] )
         {
-            userInfo = [[LogUserInfo alloc] initWithName: [obj.invite.firstName stringByAppendingString: obj.invite.lastName]
+            userInfo = [[LogUserInfo alloc] initWithName: obj.invite.firstName
+                                              andSurName: obj.invite.lastName
                                           withAvatarPath: @""];
             
             *stop = YES;

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString* userName;
 
 - (instancetype) initWithName: (NSString*) userName
+                   andSurName: (NSString*) surname
                withAvatarPath: (NSString*) avatarPath;
 
 @end
