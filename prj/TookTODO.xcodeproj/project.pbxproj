@@ -620,7 +620,6 @@
 		565340D51DBF709700B40187 /* CustomTabBarIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarIPad.h; sourceTree = "<group>"; };
 		565340D61DBF767000B40187 /* BaseLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLaunchViewController.h; sourceTree = "<group>"; };
 		565340D71DBF767000B40187 /* BaseLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLaunchViewController.m; sourceTree = "<group>"; };
-		565E50141DEBE24E00857865 /* DataManager+AllProjectsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+AllProjectsFilter.h"; sourceTree = "<group>"; };
 		565E50151DEBE24E00857865 /* DataManager+AllProjectsFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+AllProjectsFilter.m"; sourceTree = "<group>"; };
 		5663BB341DE4ACBA00F82E5B /* TaskFiltersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskFiltersService.m; sourceTree = "<group>"; };
 		5663BB361DE4B13C00F82E5B /* TaskFiltersAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskFiltersAPIService.h; sourceTree = "<group>"; };
@@ -690,7 +689,6 @@
 		56955F551DE60B9C00601D03 /* ProjectTaskRoleAssignments+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectTaskRoleAssignments+CoreDataClass.m"; sourceTree = "<group>"; };
 		56955F581DE60BA400601D03 /* ProjectTaskRoleAssignment+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectTaskRoleAssignment+CoreDataClass.h"; sourceTree = "<group>"; };
 		56955F591DE60BA400601D03 /* ProjectTaskRoleAssignments+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProjectTaskRoleAssignments+CoreDataClass.h"; sourceTree = "<group>"; };
-		56955F5A1DE727DE00601D03 /* DataManager+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+Filters.h"; sourceTree = "<group>"; };
 		56955F5B1DE727DE00601D03 /* DataManager+Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DataManager+Filters.m"; sourceTree = "<group>"; };
 		56955F5D1DE72CE100601D03 /* ProjectFilterInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectFilterInfo+CoreDataClass.m"; sourceTree = "<group>"; };
 		56955F5E1DE72CE100601D03 /* ProjectFilterInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProjectFilterInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -1285,6 +1283,8 @@
 		56E54D031E0C038F00E39B9F /* TaskDetailInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TaskDetailInfo.storyboard; sourceTree = "<group>"; };
 		56E54D0D1E0C08E700E39B9F /* ProjectTaskCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTaskCommentModel.h; sourceTree = "<group>"; };
 		56E54D0E1E0C08E700E39B9F /* ProjectTaskCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTaskCommentModel.m; sourceTree = "<group>"; };
+		56E54D441E0D24A200E39B9F /* DataManager+AllProjectsFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+AllProjectsFilter.h"; sourceTree = "<group>"; };
+		56E54D451E0D24A200E39B9F /* DataManager+Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DataManager+Filters.h"; sourceTree = "<group>"; };
 		56E8D40D1DF1E4AF007CFB28 /* ProjectTaskStageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTaskStageModel.h; sourceTree = "<group>"; };
 		56E8D40E1DF1E4AF007CFB28 /* ProjectTaskStageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTaskStageModel.m; sourceTree = "<group>"; };
 		56E8D4101DF1E531007CFB28 /* ProjectStageTasksListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectStageTasksListModel.h; sourceTree = "<group>"; };
@@ -1761,6 +1761,8 @@
 		56D06B6E1DAFBDBF008E9AC0 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
+				56E54D441E0D24A200E39B9F /* DataManager+AllProjectsFilter.h */,
+				56E54D451E0D24A200E39B9F /* DataManager+Filters.h */,
 				5663BB7C1DE5FDBE00F82E5B /* DataManager+TaskLogs.h */,
 				5663BB551DE4DBCD00F82E5B /* DataManager+TaskApprovements.h */,
 				5643A2E81DDCAF5C00038414 /* DataManager+TaskComments.h */,
@@ -2592,9 +2594,7 @@
 				56D06D021DAFBDBF008E9AC0 /* DataManager+UserInfo.m */,
 				5663BB4F1DE4D97C00F82E5B /* DataManager+TaskApprovements.m */,
 				56D06D031DAFBDBF008E9AC0 /* DataManager.m */,
-				56955F5A1DE727DE00601D03 /* DataManager+Filters.h */,
 				56955F5B1DE727DE00601D03 /* DataManager+Filters.m */,
-				565E50141DEBE24E00857865 /* DataManager+AllProjectsFilter.h */,
 				565E50151DEBE24E00857865 /* DataManager+AllProjectsFilter.m */,
 				56D06D041DAFBDBF008E9AC0 /* Objects */,
 			);

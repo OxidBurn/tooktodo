@@ -2,7 +2,7 @@
 //  TaskLogDataContent+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 12/23/16.
 //
 //
 
@@ -15,24 +15,32 @@
 }
 
 @dynamic commentId;
-@dynamic oldStartDate;
-@dynamic oldEndDate;
-@dynamic newStartDate;
-@dynamic newEndDate;
-@dynamic oldStatus;
-@dynamic newStatus;
 @dynamic fileTitles;
 @dynamic fileTitlesWithExtensions;
-@dynamic storageFiles;
-@dynamic oldValue;
-@dynamic newValue;
-@dynamic userId;
-@dynamic projectRoleAssignmentId;
-@dynamic taskRoleType;
-@dynamic oldDescription;
 @dynamic newDescription;
-@dynamic oldWorkArea;
+@dynamic newEndDate;
+@dynamic newStartDate;
+@dynamic newStatus;
+@dynamic newValue;
 @dynamic newWorkArea;
+@dynamic oldDescription;
+@dynamic oldEndDate;
+@dynamic oldStartDate;
+@dynamic oldStatus;
+@dynamic oldValue;
+@dynamic oldWorkArea;
+@dynamic projectRoleAssignmentId;
+@dynamic storageFiles;
+@dynamic taskRoleType;
+@dynamic userId;
+@dynamic oldTitle;
+@dynamic titleNew;
+@dynamic oldStageId;
+@dynamic stageIdNew;
+@dynamic oldRoomId;
+@dynamic roomIdNew;
+@dynamic isAllRoomsNew;
+@dynamic oldIsAllRooms;
 @dynamic taskLog;
 
 @end

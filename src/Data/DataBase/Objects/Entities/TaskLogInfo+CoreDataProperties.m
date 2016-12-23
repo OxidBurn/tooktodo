@@ -2,7 +2,7 @@
 //  TaskLogInfo+CoreDataProperties.m
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 12/23/16.
 //
 //
 
@@ -15,11 +15,12 @@
 }
 
 @dynamic createdDate;
-@dynamic userFullName;
-@dynamic userAvatar;
 @dynamic projectRoleTypeDescription;
 @dynamic text;
-@dynamic task;
+@dynamic userAvatar;
+@dynamic userFullName;
+@dynamic logType;
 @dynamic data;
+@dynamic task;
 
 @end

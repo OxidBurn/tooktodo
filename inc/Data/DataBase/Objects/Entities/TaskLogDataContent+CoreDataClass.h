@@ -2,7 +2,7 @@
 //  TaskLogDataContent+CoreDataClass.h
 //  
 //
-//  Created by Nikolay Chaban on 11/23/16.
+//  Created by Nikolay Chaban on 12/23/16.
 //
 //
 
