@@ -20,7 +20,7 @@
 #import "NSObject+Sorting.h"
 #import "TasksListTableViewCell.h"
 #import "Utils.h"
-#import "SearchBarHeaderView.h"
+#import "SearchResultsHeaderView.h"
 
 // Categories
 #import "UISearchBar+TextFieldControl.h"
@@ -31,7 +31,7 @@
 
 @property (strong, nonatomic) ProjectTasksModel* model;
 
-@property (strong, nonatomic) SearchBarHeaderView* searchBarHeader;
+@property (strong, nonatomic) SearchResultsHeaderView* searchResultsHeader;
 
 @property (nonatomic, assign) BOOL isCanceledSearch;
 
@@ -135,17 +135,17 @@
 
     if (section == 0 && [self.model getSearchTableState] == TableSearchState)
     {
-        self.searchBarHeader = [[MainBundle loadNibNamed: @"ResultsCountView"
+        self.searchResultsHeader = [[MainBundle loadNibNamed: @"ResultsCountView"
                                                    owner: self
                                                  options: nil] firstObject];
         
         self.countOfFoundTasksText = [Utils getDeclensionStringWithValue: [self.model getCountOfFoundTaks]
                                                   withSearchedObjectName: @"задач"];
         
-        [self.searchBarHeader fillCountOfTasks: self.countOfFoundTasksText];
+        [self.searchResultsHeader fillCountOfTasks: self.countOfFoundTasksText];
     
         
-        return self.searchBarHeader;
+        return self.searchResultsHeader;
     }
     
     else
@@ -276,7 +276,7 @@
         
         [self.model applyFilteringByText: searchText];
         
-        RAC(self.searchBarHeader, countOfTasksLabel) = RACObserve(self, countOfFoundTasksText);
+        RAC(self.searchResultsHeader, countOfTasksLabel) = RACObserve(self, countOfFoundTasksText);
         
         if ( self.reloadTable )
             self.reloadTable();

@@ -6,15 +6,9 @@
 //  Copyright © 2016 Nikolay Chaban. All rights reserved.
 //
 
-#import "SearchBarHeaderView.h"
+#import "SearchResultsHeaderView.h"
 
-@interface SearchBarHeaderView()
-
-//@property (weak, nonatomic) IBOutlet UILabel *countOfTasksLabel;
-
-@end
-
-@implementation SearchBarHeaderView
+@implementation SearchResultsHeaderView
 
 - (void) fillCountOfTasks: (NSString*) countOfTasksText
 {

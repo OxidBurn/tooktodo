@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchBarHeaderView : UIView
+@interface SearchResultsHeaderView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *countOfTasksLabel;
 
