@@ -43,19 +43,15 @@
                       }];
 }
 
-- (NSArray*) getAllCommentsForSelectedTask
+- (NSString*) getCommentTextWithID: (NSNumber*)    commentID
+                            inTask: (ProjectTask*) task
 {
-    ProjectTask* selectedTask = [DataManagerShared getSelectedTask];
+    TaskComment* comment = [self getTaskCommentWithID: commentID
+                                               inTask: task
+                                            inContext: [NSManagedObjectContext MR_defaultContext]];
     
-//    return selectedTask.comm
-    
-    return nil;
+    return comment.message;
 }
-//
-//- (NSArray*) getAllCommentsForTask: (ProjectTask*) task
-//{
-//    
-//}
 
 
 #pragma mark - Internal methods -
