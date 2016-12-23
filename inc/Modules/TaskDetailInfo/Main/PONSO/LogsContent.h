@@ -27,6 +27,7 @@
 
 @property (assign, nonatomic) CGFloat cellHeight;
 
+
 // properties for logs with two updated labals
 @property (strong, nonatomic) NSString* updatedTextValue;
 
@@ -34,31 +35,37 @@
 
 @property (assign, nonatomic) LogsActionType actionType;
 
-// properties for logs with team members
 
+// properties for logs with team members
 @property (strong, nonatomic) NSNumber* userNewRoleType;
 
 @property (strong, nonatomic) NSNumber* userNewId;
+
+@property (strong, nonatomic) NSString* memberAvatarSrs;
+
 
 // properties for logs with task statuses
 @property (assign, nonatomic) NSUInteger oldTaskStatus;
 
 @property (assign, nonatomic) NSUInteger updatedTaskStatus;
 
-// properties for logs with tasks with changed titles
 
+// properties for logs with tasks with changed titles
 @property (strong, nonatomic) NSString* oldTitle;
 
 @property (strong, nonatomic) NSString* titleNew;
 
-// properties for logs with changed task type
 
+// properties for logs with changed task type
 @property (strong, nonatomic) NSNumber* oldTaskType;
 
 @property (strong, nonatomic) NSNumber* taskTypeNew;
 
 // properties for logs with new added comment
-
 @property (strong, nonatomic) NSNumber* commentId;
+
+@property (strong, nonatomic) NSString* commentText;
+
+@property (assign, nonatomic) CGSize sizeOfCommentLabel;
 
 @end

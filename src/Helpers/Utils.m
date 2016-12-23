@@ -457,6 +457,16 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return textSize;
 }
 
++ (CGFloat) countWidthForString: (NSString*) userName
+                       withFont: (UIFont*)   font
+{
+    NSDictionary* atributes = @{NSFontAttributeName : font};
+    
+    CGSize size = [userName sizeWithAttributes: atributes];
+    
+    return  size.width;
+}
+
 + (NSString*) getNameAbbreviation: (NSString*) name
 {
     NSMutableString* abbreviation = [NSMutableString stringWithString: [name substringToIndex: 1]];

@@ -13,6 +13,7 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "ViewWithBorder.h"
 
 @interface LogWithCommentCell()
 
@@ -23,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel* commentTextLabel;
+
+@property (weak, nonatomic) IBOutlet ViewWithBorder* viewWithBorder;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* viewWithBorderHeight;
 
 // properties
 
@@ -44,7 +48,16 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
+    self.commentTextLabel.text = logContent.commentText;
     
+    // 38 is value of contraints to top and boddom
+    self.viewWithBorderHeight.constant = logContent.sizeOfCommentLabel.height + 38;
+    
+    // handling cases when comment string value is nil
+    if ( logContent.commentText == nil )
+    {
+        self.viewWithBorder.hidden = YES;
+    }
 }
 
 @end

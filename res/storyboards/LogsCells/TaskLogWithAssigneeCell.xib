@@ -73,14 +73,14 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowSend" translatesAutoresizingMaskIntoConstraints="NO" id="szU-bl-GG7">
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArrowSend" translatesAutoresizingMaskIntoConstraints="NO" id="szU-bl-GG7">
                         <rect key="frame" x="187" y="62" width="16" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="KDU-a1-sBF"/>
                             <constraint firstAttribute="height" constant="12" id="RtL-gA-QU7"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А. Беляев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZh-Ur-NR8">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="А. Беляев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZh-Ur-NR8">
                         <rect key="frame" x="213" y="60" width="100" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="1lK-Kj-ONj"/>
@@ -90,7 +90,7 @@
                         <color key="textColor" red="0.14901960780000001" green="0.1764705882" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Qjq-VS-ix3" customClass="AvatarImageView">
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyAvatarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Qjq-VS-ix3" customClass="AvatarImageView">
                         <rect key="frame" x="321" y="58" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="E2b-XE-aKQ"/>
@@ -129,10 +129,12 @@
             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
             <connections>
                 <outlet property="arrowSendImageView" destination="szU-bl-GG7" id="2tX-GK-Fl9"/>
+                <outlet property="firstUserNameWidth" destination="djT-OM-OUd" id="fUa-v5-x8J"/>
                 <outlet property="logDateLabel" destination="gcv-mv-172" id="aHg-W8-ye3"/>
                 <outlet property="logInfoLabel" destination="R0m-9b-Ud0" id="oBd-0N-JGo"/>
                 <outlet property="oldUserAvatarImageView" destination="MwO-oN-yoj" id="7gs-xc-GIE"/>
                 <outlet property="oldUserNameLabel" destination="4Rq-lf-NcY" id="Peq-nc-qr4"/>
+                <outlet property="secondUserNameWidth" destination="zN2-w8-i0j" id="ZbA-yL-BLg"/>
                 <outlet property="updatedUserAvatarImageView" destination="Qjq-VS-ix3" id="FhC-UA-bAD"/>
                 <outlet property="updatedUserNameLabel" destination="AZh-Ur-NR8" id="b0j-To-9fd"/>
                 <outlet property="userAvatarImageView" destination="BO7-SR-C1U" id="h0n-XU-9yU"/>

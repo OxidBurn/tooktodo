@@ -8,16 +8,19 @@
 
 #import "TaskDetailContentManager+Logs.h"
 
-// Frameworks
-#import <objc/runtime.h>
-
 // Classes
 #import "TaskLogInfo+CoreDataClass.h"
 #import "TaskLogDataContent+CoreDataClass.h"
 #import "LogsContent.h"
+#import "DataManager+TaskComments.h"
+#import "DataManager+TaskLogs.h"
 
 // Helpers
 #import "NSDate+Helper.h"
+
+// 65 is width that we need to discount
+// it contains width of avatar plus all horizontal costraints values
+#define SUMMARY_WIDTH 65.f;
 
 typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
 {
@@ -56,9 +59,19 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
         [self fillBaseLogsDataForLog: log
                            toContent: logContent];
         
-//        NSArray* properties = [self getAllPropertiesForLogData: log.data];
-//        
-//        row.cellTypeIndex = [self determineCellIndexForProperties: properties];
+        // value of whole log cell height without heith of log text label
+        CGFloat defaultCellHeight = 0;
+        
+        // value of height required for logs with variable content lenth
+        // may contain height of main log text plus additional content height
+        // for example new task title height
+        CGFloat logContentHeight = 0;
+        
+        // value of main log text height
+        CGFloat logTextHeight = [self countHeightForLogLabelWithString: logContent.logText
+                                                              forFrame: self.tableViewFrame];
+        
+        logContentHeight = logTextHeight;
         
         NSUInteger logType = log.logType.integerValue;
         
@@ -83,16 +96,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
 //                break;
                 
             case LogAddedUserWithRoleType:
-            {
-                logContent.userNewRoleType = log.data.taskRoleType;
-                logContent.userNewId       = log.data.userId;
-                
-                row.cellTypeIndex = LogWithAssigneeCellType;
-                
-                logContent.actionType = AddedNewValueType;
-            }
-                break;
-                
             case LogDeletedUserWithRoleType:
             {
                 logContent.userNewRoleType = log.data.taskRoleType;
@@ -100,7 +103,12 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
                 row.cellTypeIndex = LogWithAssigneeCellType;
                 
-                logContent.actionType = DeletedValueType;
+                logContent.actionType = AddedNewValueType;
+                
+                LogUserInfo* user = [DataManagerShared getUserWithID: log.data.userId];
+                
+                logContent.memberAvatarSrs = user.avatarSrc;
+                logContent.userFullName    = user.userName;
             }
                 break;
                 
@@ -110,6 +118,25 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 logContent.titleNew = log.data.titleNew;
                 
                 row.cellTypeIndex = LogWithRenamedCellType;
+                
+                // counting content height to determine whole cell height
+                CGFloat width = self.tableViewFrame.size.width - SUMMARY_WIDTH;
+                
+                UIFont* fontOfNewTitle = [UIFont fontWithName: @"SFUIText-Semibold"
+                                                         size: 13.f];
+                
+                UIFont* fontOfOldTitle = [UIFont fontWithName: @"SFUIText-Regular"
+                                                         size: 13.f];
+                
+                CGSize sizeOfOldTitle = [Utils findHeightForText: log.data.oldTitle
+                                                     havingWidth: width
+                                                         andFont: fontOfOldTitle];
+                
+                CGSize sizeOfNewTitle = [Utils findHeightForText: log.data.titleNew
+                                                     havingWidth: width
+                                                         andFont: fontOfNewTitle];
+                
+                logContentHeight += sizeOfNewTitle.height + sizeOfOldTitle.height;
             }
                 break;
                 
@@ -218,6 +245,8 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             {
                 logContent.oldTaskStatus     = log.data.oldStatus.integerValue;
                 logContent.updatedTaskStatus = log.data.newStatus.integerValue;
+                
+                row.cellTypeIndex = LogWithChangedStatusCellType;
             }
                 break;
                 
@@ -226,6 +255,31 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 logContent.commentId = log.data.commentId;
                 
                 row.cellTypeIndex = LogWithCommentCellType;
+                
+                // counting content height to determine whole cell height
+                CGFloat width = self.tableViewFrame.size.width - SUMMARY_WIDTH;
+                
+                UIFont* font = [UIFont fontWithName: @"SFUIText-Regular"
+                                               size: 13.f];
+                
+                NSString* commentText = [DataManagerShared getCommentTextWithID: log.data.commentId
+                                                                         inTask: task];
+                
+                // in case when comment was deleted from web version but log still exists
+                // we reduce cell height to size of default log
+                if ( commentText == nil )
+                {
+                    logContentHeight = -45.f;
+                }
+                
+                CGSize size = [Utils findHeightForText: commentText
+                                           havingWidth: width
+                                               andFont: font];
+                
+                logContent.commentText        = commentText;
+                logContent.sizeOfCommentLabel = size;
+                
+                logContentHeight += size.height;
             }
                 break;
                 
@@ -235,8 +289,10 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
                 break;
         }
+        
+        defaultCellHeight = [self getDeafautCellHeightForCellType: row.cellTypeIndex];
 
-        logContent.cellHeight = 70;
+        logContent.cellHeight = defaultCellHeight + logContentHeight;
         
         row.logContent = logContent;
         
@@ -254,7 +310,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                       toContent: (LogsContent*) logContent
 {
     logContent.logText = [self createLogWithAuthor: log.userFullName
-                                           withLogText: log.text];
+                                       withLogText: log.text];
     
     logContent.createdDate = [self createLogDateWithDate: log.createdDate];
     
@@ -291,58 +347,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     return [NSString stringWithFormat: @"%@ в %@", dateInString, time];
 }
 
-
-- (NSArray*) getAllPropertiesForLogData: (TaskLogDataContent*) logData
-{
-    id currentClass = [logData class];
-    
-    NSString* propertyName;
-    
-    unsigned int outCount, i;
-    
-    objc_property_t *properties = class_copyPropertyList(currentClass, &outCount);
-    
-    NSMutableArray* propertiesArray = [NSMutableArray new];
-    
-    for (i = 0; i < outCount; i++) {
-        
-        objc_property_t property = properties[i];
-        
-        propertyName = [NSString stringWithCString:property_getName(property)];
-        
-        if ( [logData valueForKey: propertyName] != nil )
-        {
-            [propertiesArray addObject: propertyName];
-        }
-    }
-    
-    return propertiesArray.copy;
-}
-
-- (TaskDetailTableViewCells) determineCellIndexForProperties: (NSArray*) properties
-{
-    NSUInteger index = LogDefaultCellType;
-    
-    if ( [properties containsObject: @"oldStatus"] )
-    {
-        index = LogWithChangedStatusCellType;
-        return index;
-    }
-    
-    if ( [properties containsObject: @"oldEndDate"] )
-    {
-        index = LogWithUpdatedStringValuesType;
-        return index;
-    }
-    
-    if ( [properties containsObject: @""] )
-    {
-        
-    }
-    
-    return index;
-}
-
 - (NSString*) createTermsLabelForStartDate: (NSDate*) startDate
                                 andEndDate: (NSDate*) endDate
 {
@@ -357,22 +361,83 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     return terms;
 }
 
-- (CGFloat) countHeightForLogLabelWithString: (NSString*) string
-                                    forFrame: (CGRect)    frame
+- (CGFloat) countHeightForLogLabelWithString: (NSAttributedString*) string
+                                    forFrame: (CGRect)              frame
 {
     CGFloat height;
     
-    UIFont* font = [UIFont fontWithName: @"SFUIText-Regular" size: 12.f];
+    CGFloat requiredWidth = frame.size.width - SUMMARY_WIDTH;
     
-    CGSize size = [Utils findHeightForText: string
-                               havingWidth: frame.size.width - 69
-                                   andFont: font];
+    CGSize size = [Utils getAttributedTextSize: string
+                                  withMaxWidth: requiredWidth];
     
     height = size.height;
     
     return height;
 }
 
-
+- (CGFloat) getDeafautCellHeightForCellType: (TaskDetailTableViewCells) cellIndex
+{
+    CGFloat height = 0;
+    
+    switch ( cellIndex )
+    {
+        case LogDefaultCellType:
+        case LogWithMarkCellType:
+            
+            height = 46.5f;
+            
+            break;
+        case LogWithUpdatedStringValuesType:
+        case LogWithTaskTypeCellType:
+            
+            height = 81.f;
+            
+            break;
+            
+        case LogWithChangedStatusCellType:
+            
+            height = 95;
+            
+            break;
+            
+        case LogWithAssigneeCellType:
+            
+            height = 88;
+            
+            break;
+            
+        case LogWithRenamedCellType:
+            
+            height = 70;
+            
+            break;
+            
+        case LogWithErrorCellType:
+            
+            height = 61;
+            
+            break;
+            
+        case LogWithAttachmentCellType:
+            
+            height = 84;
+            
+            break;
+            
+        case LogWithCommentCellType:
+            
+            height = 104;
+            
+            break;
+            
+        default:
+            
+            height = 60.f;
+            break;
+    }
+    
+    return height;
+}
 
 @end

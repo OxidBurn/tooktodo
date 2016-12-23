@@ -202,37 +202,9 @@
 - (CGFloat) countHeightForLogCellForIndexPath: (NSIndexPath*) indexPath
                                  forTableView: (UITableView*) tableView
 {
-    CGFloat height;
-    
     TaskRowContent* content = self.taskTableViewContent[indexPath.section][indexPath.row];
-    
-    TaskDetailTableViewCells index = content.cellTypeIndex;
-    
-    switch ( index )
-    {
-        case LogDefaultCellType:
-        {
-            height = content.logContent.cellHeight + 36; // 36 is row height without log label height
-        }
-            break;
-            
-        case LogWithUpdatedStringValuesType:
-            height = 94.f;
-            
-            break;
-            
-        case LogWithChangedStatusCellType:
-            height = 109.f;
-            
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    return 100;
-//    return height;
+        
+    return content.logContent.cellHeight;
 }
 
 - (void) createContentForTableViewWithFrame: (CGRect) frame

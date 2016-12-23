@@ -120,23 +120,6 @@
 + (UIImage*) imageWithImage: (UIImage*) image
                scaledToSize: (CGSize)   newSize;
 
-+ (CGSize) findHeightForText: (NSString*) text
-                 havingWidth: (CGFloat)   widthValue
-                     andFont: (UIFont*)   font;
-
-+ (CGSize) getTextSizeForText: (NSString*) text
-                 havingHeight: (CGFloat)   heightValue
-                 withMaxWidth: (CGFloat)   maxWidth
-                     withFont: (UIFont*)   font;
-
-+ (CGSize) getAttributedTextSize: (NSAttributedString*) string
-                    withMaxWidth: (CGFloat)             width;
-
-+ (NSString*) stringByStrippingHTML: (NSString*) inputString;
-
-+ (NSString*) getDeclensionStringWithValue: (NSUInteger) count
-                    withSearchedObjectName: (NSString*)  value;
-
 + (NSString*) generateStringOfDaysCount: (NSUInteger) count;
 
 + (NSDate*) getFistDayOfCurrentWeeak;
@@ -154,6 +137,30 @@
 + (NSDate*) getFirstDateOfPrevMonth;
 
 + (NSDate*) getLastDateOFPrevMonth;
+
+
+
+#pragma mark - Strings -
+
++ (CGSize) findHeightForText: (NSString*) text
+                 havingWidth: (CGFloat)   widthValue
+                     andFont: (UIFont*)   font;
+
++ (CGSize) getTextSizeForText: (NSString*) text
+                 havingHeight: (CGFloat)   heightValue
+                 withMaxWidth: (CGFloat)   maxWidth
+                     withFont: (UIFont*)   font;
+
++ (CGSize) getAttributedTextSize: (NSAttributedString*) string
+                    withMaxWidth: (CGFloat)             width;
+
++ (CGFloat) countWidthForString: (NSString*) userName
+                       withFont: (UIFont*)   font;
+
++ (NSString*) stringByStrippingHTML: (NSString*) inputString;
+
++ (NSString*) getDeclensionStringWithValue: (NSUInteger) count
+                    withSearchedObjectName: (NSString*)  value;
 
 + (void) showErrorAlertWithMessage: (NSString*) message;
 
