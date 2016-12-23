@@ -7,10 +7,13 @@
 //
 
 #import "DataManager.h"
+#import "LogUserInfo.h"
 
 @interface DataManager (TaskLogs)
 
 - (void) persistNewLogs: (NSArray*)              logsInfo
          withCompletion: (CompletionWithSuccess) completion;
+
+- (LogUserInfo*) getUserWithID: (NSNumber*) userId;
 
 @end

@@ -379,6 +379,7 @@
     return teamList;
 }
 
+
 #pragma mark - Updating methods -
 
 - (void) markFirstProjectAsSelectedWithCompletion: (CompletionWithSuccess) completion

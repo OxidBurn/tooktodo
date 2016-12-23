@@ -15,6 +15,7 @@
 #import "TaskLogDataContentModel.h"
 #import "ProjectTask+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
+#import "ProjectInfo+CoreDataClass.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -43,6 +44,34 @@
                               completion(contextDidSave);
                           
                       }];
+}
+
+- (LogUserInfo*) getUserWithID: (NSNumber*) userId
+{
+    ProjectTask* task             = [DataManagerShared getSelectedTask];
+    __block LogUserInfo* userInfo = nil;
+    
+    [task.project.projectRoleAssignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( [obj.assignee.assigneeID isEqual: userId] )
+        {
+            userInfo = [[LogUserInfo alloc] initWithName: obj.assignee.displayName
+                                          withAvatarPath: obj.assignee.avatarSrc];
+            
+            *stop = YES;
+        }
+        else
+            if ([obj.invite.inviteID isEqual: userId] )
+        {
+            userInfo = [[LogUserInfo alloc] initWithName: [obj.invite.firstName stringByAppendingString: obj.invite.lastName]
+                                          withAvatarPath: @""];
+            
+            *stop = YES;
+        }
+        
+    }];
+    
+    return userInfo;
 }
 
 
