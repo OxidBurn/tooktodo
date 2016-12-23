@@ -398,6 +398,7 @@
         <attribute name="commentId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fileTitles" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="fileTitlesWithExtensions" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="isAllRoomsNew" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="newDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="newEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="newStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -406,13 +407,20 @@
         <attribute name="newWorkArea" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="oldDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="oldEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="oldIsAllRooms" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="oldRoomId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="oldStageId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="oldStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="oldStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="oldTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="oldValue" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="oldWorkArea" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="projectRoleAssignmentId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="roomIdNew" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="stageIdNew" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="storageFiles" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="taskRoleType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="titleNew" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="taskLog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskLogInfo" inverseName="data" inverseEntity="TaskLogInfo" syncable="YES"/>
     </entity>
@@ -504,7 +512,7 @@
         <element name="TaskAvailableStagesAction" positionX="-18" positionY="126" width="128" height="103"/>
         <element name="TaskAvailableStatusAction" positionX="-27" positionY="117" width="128" height="90"/>
         <element name="TaskComment" positionX="-45" positionY="99" width="128" height="165"/>
-        <element name="TaskLogDataContent" positionX="-27" positionY="117" width="128" height="345"/>
+        <element name="TaskLogDataContent" positionX="-27" positionY="117" width="128" height="465"/>
         <element name="TaskLogInfo" positionX="-36" positionY="108" width="128" height="150"/>
         <element name="TaskStorageFiles" positionX="-36" positionY="108" width="128" height="60"/>
         <element name="TeamMember" positionX="-36" positionY="108" width="128" height="240"/>

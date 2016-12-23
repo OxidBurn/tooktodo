@@ -29,5 +29,14 @@
 @property (nonatomic, strong) NSString<Optional>* descriptionNew;
 @property (nonatomic, strong) NSNumber<Optional>* oldWorkArea;
 @property (nonatomic, strong) NSNumber<Optional>* WorkAreaNew;
+@property (strong, nonatomic) NSString<Optional>* oldTitle;
+@property (strong, nonatomic) NSString<Optional>* titleNew;
+@property (strong, nonatomic) NSNumber<Optional>* oldStageId;
+@property (strong, nonatomic) NSNumber<Optional>* stageIdNew;
+@property (strong, nonatomic) NSNumber<Optional>* oldRoomId;
+@property (strong, nonatomic) NSNumber<Optional>* roomIdNew;
+@property (strong, nonatomic) NSNumber<Optional>* isAllRoomsNew;
+@property (strong, nonatomic) NSNumber<Optional>* oldIsAllRooms;
+
 
 @end

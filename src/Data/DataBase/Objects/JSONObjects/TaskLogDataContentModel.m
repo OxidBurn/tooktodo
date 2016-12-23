@@ -12,12 +12,17 @@
 
 + (JSONKeyMapper*) keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary: @{@"newStartDate" : @"startDateNew",
-                                                        @"newEndDate" : @"endDateNew",
-                                                        @"newStatus" : @"statusNew",
+    return [[JSONKeyMapper alloc] initWithDictionary: @{@"newStartDate"   : @"startDateNew",
+                                                        @"newEndDate"     : @"endDateNew",
+                                                        @"newStatus"      : @"statusNew",
                                                         @"newDescription" : @"descriptionNew",
-                                                        @"newValue"     : @"valueNew",
-                                                        @"newWorkArea"  : @"WorkAreaNew"}];
+                                                        @"newValue"       : @"valueNew",
+                                                        @"newWorkArea"    : @"WorkAreaNew",
+                                                        @"newTitle"       : @"titleNew",
+                                                        @"newStageId"     : @"stageIdNew",
+                                                        @"newRoomId"      : @"roomIdNew",
+                                                        @"newIsAllRooms"  : @"isAllRoomsNew",
+                                                        @"newValue"       : @"valueNew"}];
 }
 
 @end
