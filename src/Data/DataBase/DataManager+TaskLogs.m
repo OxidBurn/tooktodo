@@ -198,7 +198,7 @@
     // Changed task status type
     if ( info.oldStatus )
     {
-        log.logType = @(LogChangedTypeOfTaskType);
+        log.logType = @(LogChangedTaskStatusType);
     }
 }
 
