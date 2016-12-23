@@ -13,23 +13,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchBarHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" placeholder="Поиск" translatesAutoresizingMaskIntoConstraints="NO" id="xnU-eb-r2G">
-                    <constraints>
-                        <constraint firstAttribute="width" constant="375" id="7tS-sO-fzD"/>
-                        <constraint firstAttribute="height" constant="44" id="qeO-v8-xxQ"/>
-                    </constraints>
-                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                </searchBar>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Найдено №2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knu-8c-DCA">
                     <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="375" id="oBu-hi-fhQ"/>
-                        <constraint firstAttribute="height" constant="24" id="p36-dL-gJF"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                     <color key="textColor" red="0.34901960780000002" green="0.3921568627" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -37,12 +26,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Knu-8c-DCA" firstAttribute="top" secondItem="xnU-eb-r2G" secondAttribute="bottom" id="4fc-XB-TzR"/>
-                <constraint firstItem="xnU-eb-r2G" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hF7-MN-f3g"/>
-                <constraint firstItem="xnU-eb-r2G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j9n-CT-62Q"/>
-                <constraint firstItem="Knu-8c-DCA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tgT-oQ-UVD"/>
+                <constraint firstItem="Knu-8c-DCA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1D6-S7-vbm"/>
+                <constraint firstItem="Knu-8c-DCA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GBP-eQ-wlS"/>
+                <constraint firstAttribute="bottom" secondItem="Knu-8c-DCA" secondAttribute="bottom" id="dhG-EE-DwK"/>
+                <constraint firstAttribute="trailing" secondItem="Knu-8c-DCA" secondAttribute="trailing" id="oMp-It-yzd"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="countOfTasksLabel" destination="Knu-8c-DCA" id="gPD-Db-BVF"/>
+            </connections>
             <point key="canvasLocation" x="22" y="94"/>
         </view>
     </objects>

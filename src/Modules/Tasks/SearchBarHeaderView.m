@@ -8,8 +8,17 @@
 
 #import "SearchBarHeaderView.h"
 
+@interface SearchBarHeaderView()
+
+//@property (weak, nonatomic) IBOutlet UILabel *countOfTasksLabel;
+
+@end
+
 @implementation SearchBarHeaderView
 
-
+- (void) fillCountOfTasks: (NSString*) countOfTasksText
+{
+    self.countOfTasksLabel.text = countOfTasksText;
+}
 
 @end

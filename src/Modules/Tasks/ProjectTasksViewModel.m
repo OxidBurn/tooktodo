@@ -20,6 +20,7 @@
 #import "NSObject+Sorting.h"
 #import "TasksListTableViewCell.h"
 #import "Utils.h"
+#import "SearchBarHeaderView.h"
 
 // Categories
 #import "UISearchBar+TextFieldControl.h"
@@ -30,9 +31,9 @@
 
 @property (strong, nonatomic) ProjectTasksModel* model;
 
-@property (assign, nonatomic) BOOL isCanceledSearch;
+@property (strong, nonatomic) SearchBarHeaderView* searchBarHeader;
 
-@property (nonatomic, assign) CGRect searchBarBackgroundRect;
+@property (nonatomic, assign) BOOL isCanceledSearch;
 
 // methods
 
@@ -43,16 +44,6 @@
 
 
 #pragma mark - Properties -
-
-- (NSValue*) searchBarBackgroungRectValue
-{
-    if (_searchBarBackgroungRectValue == nil)
-    {
-        _searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake(0, 0, 375, 44))];
-    }
-    
-    return _searchBarBackgroungRectValue;
-}
 
 - (ProjectTasksModel*) model
 {
@@ -98,6 +89,13 @@
     return [self.model getCountOfFoundTaks];
 }
 
+#pragma mark - SearchBarHeaderDelegate -
+
+- (ProjectTasksViewModel*) getViewModel
+{
+    return self;
+}
+
 #pragma mark - UITable view data source -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -108,6 +106,9 @@
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
+    if ( section == 0 && [self.model getSearchTableState] == TableSearchState )
+        return 0;
+    
     NSUInteger countOfRows = [self.model countOfRowsInSection: section];
     
     return countOfRows;
@@ -116,7 +117,10 @@
 - (CGFloat)     tableView: (UITableView*) tableView
  heightForHeaderInSection: (NSInteger)    section
 {
-    return 48.0f;
+    if (section == 0 && [self.model getSearchTableState] == TableSearchState)
+        return 24.0f;
+    else
+        return 48.0f;
 }
 
 - (CGFloat)    tableView: (UITableView*) tableView
@@ -128,36 +132,54 @@
 - (nullable UIView*) tableView: (UITableView*) tableView
         viewForHeaderInSection: (NSInteger)    section
 {
-    StageTitleView* stageInfoView = [[MainBundle loadNibNamed: @"StageTitleView"
-                                                        owner: self
-                                                      options: nil] firstObject];
-    
-    stageInfoView.tag = section;
-    
-    ProjectTaskStage* stage = [self.model getStageForSection: section];
-    
-    [stageInfoView fillInfo: stage
-        withStagesTasksList: [self.model rowsContentForSection: section]
-            withSearchState: [self.model getSearchTableState]];
-    
-    self.countOfFoundTasksText = [Utils getDeclensionStringWithValue: [self.model getCountOfFoundTaks]
-                                              withSearchedObjectName: @"задач"];
-    
-    // Handle changing expand state of the project
-    __weak typeof(self) blockSelf = self;
-    
-    stageInfoView.didChangeExpandState = ^( NSUInteger section ){
+
+    if (section == 0 && [self.model getSearchTableState] == TableSearchState)
+    {
+        self.searchBarHeader = [[MainBundle loadNibNamed: @"ResultsCountView"
+                                                   owner: self
+                                                 options: nil] firstObject];
         
-        [blockSelf.model markStageAsExpandedAtIndexPath: section
-                                         withCompletion: ^(BOOL isSuccess) {
-                                             
-                                             [tableView reloadData];
-                                             
-                                         }];
+        self.countOfFoundTasksText = [Utils getDeclensionStringWithValue: [self.model getCountOfFoundTaks]
+                                                  withSearchedObjectName: @"задач"];
         
-    };
+        [self.searchBarHeader fillCountOfTasks: self.countOfFoundTasksText];
     
-    return stageInfoView;
+        
+        return self.searchBarHeader;
+    }
+    
+    else
+    {
+        StageTitleView* stageInfoView = [[MainBundle loadNibNamed: @"StageTitleView"
+                                                            owner: self
+                                                          options: nil] firstObject];
+        
+        stageInfoView.tag = section;
+        
+        ProjectTaskStage* stage = [self.model getStageForSection: section];
+        
+        [stageInfoView fillInfo: stage
+            withStagesTasksList: [self.model rowsContentForSection: section]
+                withSearchState: [self.model getSearchTableState]];
+        
+        
+        // Handle changing expand state of the project
+        __weak typeof(self) blockSelf = self;
+        
+        stageInfoView.didChangeExpandState = ^( NSUInteger section ){
+            
+            [blockSelf.model markStageAsExpandedAtIndexPath: section
+                                             withCompletion: ^(BOOL isSuccess) {
+                                                 
+                                                 [tableView reloadData];
+                                                 
+                                             }];
+            
+        };
+        
+        return stageInfoView;
+    }
+
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView
@@ -243,24 +265,18 @@
         self.reloadTable();
 }
 
-
 #pragma mark - Search bar delegate methods -
 
 - (void) searchBar: (UISearchBar*) searchBar
      textDidChange: (NSString*)    searchText
 {
-    
     if ( self.isCanceledSearch == NO )
     {
         [self.model countSearchResultsForString: searchText];
         
         [self.model applyFilteringByText: searchText];
         
-        self.foundedTasksHeigthConstraintConstant = 24;
-        
-        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 68);
-        
-        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
+        RAC(self.searchBarHeader, countOfTasksLabel) = RACObserve(self, countOfFoundTasksText);
         
         if ( self.reloadTable )
             self.reloadTable();
@@ -268,9 +284,6 @@
     
     else
     {
-        self.searchBarBackgroundRect = CGRectMake(0, 0, 375, 44);
-        self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: self.searchBarBackgroundRect];
-     
         if ( self.reloadTable )
             self.reloadTable();
     }
@@ -303,18 +316,16 @@
     
     self.isCanceledSearch = YES;
     
-    self.foundedTasksHeigthConstraintConstant = 0;
-    self.searchBarBackgroungRectValue = [NSValue valueWithCGRect: (CGRectMake( 0, 0, 375, 44))];
-    
     if (self.reloadTable)
         self.reloadTable();
-
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         self.isCanceledSearch = NO;
         
     });
 }
+
 
 
 @end

@@ -10,4 +10,8 @@
 
 @interface SearchBarHeaderView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *countOfTasksLabel;
+
+- (void) fillCountOfTasks: (NSString*) countOfTasksText;
+
 @end

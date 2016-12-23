@@ -1077,7 +1077,7 @@
                                                   forProject: project
                                                    inContext: context];
             
-            [task addSubTasksObject: subTask];
+           // [task addSubTasksObject: subTask];
             
         }];
     }
