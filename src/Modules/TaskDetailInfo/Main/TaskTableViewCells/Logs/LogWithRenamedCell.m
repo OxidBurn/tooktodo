@@ -21,8 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *updatedStringValueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *oldStringValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel* updatedStringValueLabel;
+@property (weak, nonatomic) IBOutlet UILabel* oldStringValueLabel;
 
 // properties
 
@@ -43,6 +43,10 @@
     self.logDateLabel.text           = logContent.createdDate;
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
+    
+    self.updatedStringValueLabel.text = logContent.titleNew;
+    
+    self.oldStringValueLabel.attributedText = [Utils getStrikeoutStringForString: logContent.oldTitle];
 }
 
 @end

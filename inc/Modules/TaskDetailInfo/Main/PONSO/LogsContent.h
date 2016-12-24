@@ -33,6 +33,10 @@
 
 @property (strong, nonatomic) NSString* oldTextValue;
 
+@property (strong, nonatomic) NSAttributedString* oldRoomValue;
+
+@property (strong, nonatomic) NSAttributedString* roomNewValue;
+
 @property (assign, nonatomic) LogsActionType actionType;
 
 
@@ -67,5 +71,11 @@
 @property (strong, nonatomic) NSString* commentText;
 
 @property (assign, nonatomic) CGSize sizeOfCommentLabel;
+
+// properties for logs with attachments
+@property (strong, nonatomic) NSString* attachmentTitle;
+
+// properties for logs with marks
+@property (assign, nonatomic) BOOL isYes;
 
 @end

@@ -162,6 +162,8 @@
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
                     withSearchedObjectName: (NSString*)  value;
 
++ (NSAttributedString*) getStrikeoutStringForString: (NSString*) string;
+
 + (void) showErrorAlertWithMessage: (NSString*) message;
 
 @end

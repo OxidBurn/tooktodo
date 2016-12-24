@@ -434,6 +434,8 @@
 		F72F3BD01DE76930009648A6 /* FilterByAssigneeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */; };
 		F745D31D1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m in Sources */ = {isa = PBXBuildFile; fileRef = F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */; };
 		F7C3CA771DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */; };
+		F7D7BBFA1E0EBD5A007D6905 /* LogWithMarkCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D7BBF91E0EBD5A007D6905 /* LogWithMarkCellFactory.m */; };
+		F7D7BBFE1E0EBDD8007D6905 /* LogWithMarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D7BBFD1E0EBDD8007D6905 /* LogWithMarkCell.m */; };
 		F7DEE5FF1DD9D12F0089D09A /* AddTaskMainFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */; };
 		F7E765811DE8A7B300E8F10F /* FilterByStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765801DE8A7B300E8F10F /* FilterByStatusViewController.m */; };
 		F7E765841DE8A7C600E8F10F /* FilterByStatusViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E765831DE8A7C600E8F10F /* FilterByStatusViewModel.m */; };
@@ -1385,6 +1387,10 @@
 		F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTasksController.m; sourceTree = "<group>"; };
 		F7C3CA751DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AddTaskContentManager+ProjectTask.h"; path = "../../../../../src/Modules/AddTask/Main/ContentManager/AddTaskContentManager+ProjectTask.h"; sourceTree = "<group>"; };
 		F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AddTaskContentManager+ProjectTask.m"; sourceTree = "<group>"; };
+		F7D7BBF91E0EBD5A007D6905 /* LogWithMarkCellFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWithMarkCellFactory.m; sourceTree = "<group>"; };
+		F7D7BBFB1E0EBD85007D6905 /* LogWithMarkCellFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LogWithMarkCellFactory.h; path = ../../Logs/LogWithMarkCellFactory.h; sourceTree = "<group>"; };
+		F7D7BBFD1E0EBDD8007D6905 /* LogWithMarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogWithMarkCell.m; sourceTree = "<group>"; };
+		F7D7BBFF1E0EBDF3007D6905 /* LogWithMarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWithMarkCell.h; sourceTree = "<group>"; };
 		F7DEE5FE1DD9D12F0089D09A /* AddTaskMainFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskMainFactory.m; sourceTree = "<group>"; };
 		F7E7657F1DE8A7B300E8F10F /* FilterByStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByStatusViewController.h; sourceTree = "<group>"; };
 		F7E765801DE8A7B300E8F10F /* FilterByStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByStatusViewController.m; sourceTree = "<group>"; };
@@ -3955,6 +3961,7 @@
 				F7F4C9CF1E0C229E00EF5669 /* LogWithRenamedCell.m */,
 				F7F4C9CC1E0C225700EF5669 /* LogWithErrorCell.m */,
 				F7F4C9C91E0C21E300EF5669 /* LogWithAssigneeCell.m */,
+				F7D7BBFD1E0EBDD8007D6905 /* LogWithMarkCell.m */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -4189,6 +4196,7 @@
 				F7F4C9E01E0C307000EF5669 /* LogWithErrorCell.h */,
 				F7F4C9E11E0C307000EF5669 /* LogWithRenamedCell.h */,
 				F7F4C9E21E0C307000EF5669 /* LogWithTaskTypeCell.h */,
+				F7D7BBFF1E0EBDF3007D6905 /* LogWithMarkCell.h */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -4260,6 +4268,7 @@
 				F7F4CA021E0C337C00EF5669 /* LogWithRenamedCellFactory.m */,
 				F7F4CA031E0C337C00EF5669 /* LogWithTaskTypeCellFactrory.m */,
 				F7F4CA041E0C337C00EF5669 /* LogWithUpdatedStringValuesFactory.m */,
+				F7D7BBF91E0EBD5A007D6905 /* LogWithMarkCellFactory.m */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -4276,6 +4285,7 @@
 				F7F4CA151E0C339C00EF5669 /* LogWithRenamedCellFactory.h */,
 				F7F4CA161E0C339C00EF5669 /* LogWithTaskTypeCellFactrory.h */,
 				F7F4CA171E0C339C00EF5669 /* LogWithUpdatedStringValuesFactory.h */,
+				F7D7BBFB1E0EBD85007D6905 /* LogWithMarkCellFactory.h */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -4709,6 +4719,7 @@
 				564DE39D1DB100A600BF9817 /* TaskAvailableStagesAction+CoreDataProperties.m in Sources */,
 				56D06F6F1DAFBDC0008E9AC0 /* ContactInfoCell.m in Sources */,
 				56D06ED91DAFBDC0008E9AC0 /* TaskStageModel.m in Sources */,
+				F7D7BBFE1E0EBDD8007D6905 /* LogWithMarkCell.m in Sources */,
 				56955F5F1DE72CE100601D03 /* ProjectFilterInfo+CoreDataClass.m in Sources */,
 				F7F4C9461E0BE85400EF5669 /* OnRevisionModel.m in Sources */,
 				5684B57A1DEBF0BB00F33FF6 /* FilterByProjectViewModel.m in Sources */,
@@ -4739,6 +4750,7 @@
 				56D06F191DAFBDC0008E9AC0 /* SelectSystemModel.m in Sources */,
 				56D06F901DAFBDC0008E9AC0 /* WelcomeTourViewController.m in Sources */,
 				56D06FB51DAFBDC0008E9AC0 /* OSFlexibleTextTableCell.m in Sources */,
+				F7D7BBFA1E0EBD5A007D6905 /* LogWithMarkCellFactory.m in Sources */,
 				56AF93FB1E00B17300CFBDB7 /* NSMutableArray+Safe.m in Sources */,
 				F72DC5441DDB545500E0AC3A /* AddTaskContentManager+UpdadingContent.m in Sources */,
 				F7F4C94E1E0BE85400EF5669 /* TaskDetailViewModel.m in Sources */,

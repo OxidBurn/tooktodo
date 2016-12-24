@@ -30,6 +30,8 @@
 #import "LogWithRenamedCellFactory.h"
 #import "LogWithAttachmentCellFactory.h"
 #import "LogWithTaskTypeCellFactrory.h"
+#import "LogWithMarkCellFactory.h"
+
 
 @implementation TaskDetailMainFactory
 
@@ -182,11 +184,14 @@
         }
             break;
             
-//        case LogWithMarkCellType:
-//        {
-
-//        }
-//            break;
+        case LogWithMarkCellType:
+        {
+            LogWithMarkCellFactory* factory = [LogWithMarkCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
             
         case LogWithErrorCellType:
         {
@@ -200,6 +205,15 @@
         case LogWithCommentCellType:
         {
             LogWithCommentCellFactory* factory = [LogWithCommentCellFactory new];
+            
+            cell = [factory returnLogCellForTableView: tableView
+                                          withContent: content];
+        }
+            break;
+            
+        case LogWithAttachmentCellType:
+        {
+            LogWithAttachmentCellFactory* factory = [LogWithAttachmentCellFactory new];
             
             cell = [factory returnLogCellForTableView: tableView
                                           withContent: content];

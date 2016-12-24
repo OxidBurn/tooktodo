@@ -19,10 +19,10 @@
 // outlets
 @property (weak, nonatomic) IBOutlet AvatarImageView* userAvatarImageView;
 
-@property (weak, nonatomic) IBOutlet UILabel* logInfoLabel;
-@property (weak, nonatomic) IBOutlet UILabel* logDateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *attachmentIconImageView;
-@property (weak, nonatomic) IBOutlet UILabel *attachmentNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel*     logInfoLabel;
+@property (weak, nonatomic) IBOutlet UILabel*     logDateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView* attachmentIconImageView;
+@property (weak, nonatomic) IBOutlet UILabel*     attachmentNameLabel;
 
 // properties
 
@@ -44,7 +44,13 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
+    // ToDo: add required attribute to string
+    if ( logContent.actionType == DeletedValueType )
+    {
+        
+    }
     
+    self.attachmentNameLabel.text = logContent.attachmentTitle;
 }
 
 @end

@@ -83,17 +83,23 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
 //            }
 //                break;
                
-//            case LogAddedAttachmentType:
-//            {
-//                
-//            }
-//                break;
+            case LogAddedAttachmentType:
+            {
+                logContent.attachmentTitle = @"File";
+                logContent.actionType      = AddedNewValueType;
                 
-//            case LogDeletedAttachmentType:
-//            {
-//                
-//            }
-//                break;
+                row.cellTypeIndex = LogWithAttachmentCellType;
+            }
+                break;
+                
+            case LogDeletedAttachmentType:
+            {
+                logContent.attachmentTitle = @"Deleted file";
+                logContent.actionType      = DeletedValueType;
+                
+                row.cellTypeIndex = LogWithAttachmentCellType;
+            }
+                break;
                 
             case LogAddedUserWithRoleType:
             case LogDeletedUserWithRoleType:
@@ -140,17 +146,17 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             }
                 break;
                 
-//            case LogAddedMarkType:
-//            {
-//                
-//            }
-//                break;
+            case LogAddedMarkType:
+            {
+                row.cellTypeIndex = LogWithMarkCellType;
+            }
+                break;
                 
-//            case LogDeletedMarkType:
-//            {
-//                
-//            }
-//                break;
+            case LogDeletedMarkType:
+            {
+                row.cellTypeIndex = LogWithMarkCellType;
+            }
+                break;
                 
             case LogAddedDatesType:
             {
@@ -333,6 +339,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     [attrStr addAttribute: NSForegroundColorAttributeName
                     value: authorClr
                     range: authorRng];
+    
     return attrStr.copy;
 }
 
@@ -439,5 +446,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     
     return height;
 }
+
 
 @end

@@ -505,6 +505,16 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return outString; 
 }
 
++ (NSAttributedString*) getStrikeoutStringForString: (NSString*) string
+{
+    NSAttributedString* theAttributedString;
+    
+    theAttributedString = [[NSAttributedString alloc] initWithString: string
+                                                          attributes: @{NSStrikethroughStyleAttributeName:
+                                                                            [NSNumber numberWithInteger:NSUnderlineStyleSingle]} ];
+    return theAttributedString;
+}
+
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count
                     withSearchedObjectName: (NSString*)  value
 {
