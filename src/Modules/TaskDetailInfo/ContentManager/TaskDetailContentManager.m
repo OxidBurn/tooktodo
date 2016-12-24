@@ -308,7 +308,11 @@
                                                               owner: nil
                                                             options: nil] lastObject];
         
-        [view fillViewWithAttachmentName: title];
+        UIFont* labelFont = [UIFont fontWithName: @"Lato-Regular" size: 12];
+        
+        [view fillViewWithAttachmentName: title
+                                withFont: labelFont
+                                withType: AttachmentTitleDefault];
         
         [viewsArray addObject: view];
     }];

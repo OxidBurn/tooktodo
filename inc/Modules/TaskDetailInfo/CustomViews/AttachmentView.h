@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, AttachmentViewTitleType)
+{
+    AttachmentTitleDefault   = 1,
+    AttachmentTitleStrikeout = 2,
+};
+
 @interface AttachmentView : UIView
 
 // methods
-- (void) fillViewWithAttachmentName: (NSString*) attachmentName;
+- (void) fillViewWithAttachmentName: (NSString*)               attachmentName
+                           withFont: (UIFont*)                 font
+                           withType: (AttachmentViewTitleType) type;
 
 @end

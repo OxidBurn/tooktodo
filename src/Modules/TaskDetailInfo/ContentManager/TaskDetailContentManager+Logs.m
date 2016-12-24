@@ -14,6 +14,8 @@
 #import "LogsContent.h"
 #import "DataManager+TaskComments.h"
 #import "DataManager+TaskLogs.h"
+#import "FlexibleViewsContainer.h"
+#import "AttachmentView.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -85,17 +87,47 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                
             case LogAddedAttachmentType:
             {
-                logContent.attachmentTitle = @"File";
-                logContent.actionType      = AddedNewValueType;
+                NSArray* storageFiles = (NSArray*)log.data.fileTitlesWithExtensions;
                 
+                NSArray* viewsArray = [self getArrayAttachmentsViewsWithTitles: storageFiles
+                                                                     withType: AttachmentTitleDefault];
+                
+                CGFloat availableWidth = self.tableViewFrame.size.width - SUMMARY_WIDTH;
+                
+                CGRect rect = CGRectMake(0, 0, availableWidth, 16);
+                
+                FlexibleViewsContainer* container = [[FlexibleViewsContainer alloc] initWithFrame: rect];
+                
+                [container fillViewsContainerWithViews: viewsArray
+                                              forWidth: availableWidth];
+                
+                logContent.attachmentsContainer = container;
+                
+                logContentHeight += container.frame.size.height;
+
                 row.cellTypeIndex = LogWithAttachmentCellType;
             }
                 break;
                 
             case LogDeletedAttachmentType:
             {
-                logContent.attachmentTitle = @"Deleted file";
-                logContent.actionType      = DeletedValueType;
+                NSArray* storageFiles = (NSArray*)log.data.fileTitlesWithExtensions;
+                
+                NSArray* viewsArray = [self getArrayAttachmentsViewsWithTitles: storageFiles
+                                                                      withType: AttachmentTitleStrikeout];
+                
+                CGFloat availableWidth = self.tableViewFrame.size.width - SUMMARY_WIDTH;
+                
+                CGRect rect = CGRectMake(0, 0, availableWidth, 16);
+                
+                FlexibleViewsContainer* container = [[FlexibleViewsContainer alloc] initWithFrame: rect];
+                
+                [container fillViewsContainerWithViews: viewsArray
+                                              forWidth: availableWidth];
+                
+                logContent.attachmentsContainer = container;
+                
+                logContentHeight += container.frame.size.height;
                 
                 row.cellTypeIndex = LogWithAttachmentCellType;
             }
@@ -428,7 +460,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             
         case LogWithAttachmentCellType:
             
-            height = 84;
+            height = 62;
             
             break;
             
@@ -447,5 +479,27 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     return height;
 }
 
+- (NSArray*) getArrayAttachmentsViewsWithTitles: (NSArray*)                titles
+                                       withType: (AttachmentViewTitleType) type
+{
+    __block NSMutableArray* viewsArray = [NSMutableArray new];
+    
+    [titles enumerateObjectsUsingBlock: ^(NSString* title, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        AttachmentView* view = [[[NSBundle mainBundle] loadNibNamed: @"AttachmentView"
+                                                              owner: nil
+                                                            options: nil] lastObject];
+        
+        UIFont* labelFont = [UIFont fontWithName: @"SFUIText-Regular" size: 13];
+        
+        [view fillViewWithAttachmentName: title
+                                withFont: labelFont
+                                withType: type];
+        
+        [viewsArray addObject: view];
+    }];
+    
+    return viewsArray.copy;
+}
 
 @end

@@ -10,6 +10,7 @@
 
 // Classes
 #import "ProjectsEnumerations.h"
+#import "FlexibleViewsContainer.h"
 
 @interface LogsContent : NSObject
 
@@ -73,7 +74,7 @@
 @property (assign, nonatomic) CGSize sizeOfCommentLabel;
 
 // properties for logs with attachments
-@property (strong, nonatomic) NSString* attachmentTitle;
+@property (strong, nonatomic) FlexibleViewsContainer* attachmentsContainer;
 
 // properties for logs with marks
 @property (assign, nonatomic) BOOL isYes;

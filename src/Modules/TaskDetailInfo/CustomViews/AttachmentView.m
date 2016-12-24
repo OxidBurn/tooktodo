@@ -9,6 +9,7 @@
 #import "AttachmentView.h"
 
 // Classes
+#import "Utils.h"
 
 @interface AttachmentView()
 
@@ -18,9 +19,6 @@
 // properties
 @property (strong, nonatomic) NSString* attachmentName;
 
-// methods
-- (void) countFrame;
-
 @end
 
 @implementation AttachmentView
@@ -28,22 +26,45 @@
 
 #pragma mark - Public -
 
-- (void) fillViewWithAttachmentName: (NSString*) attachmentName
+- (void) fillViewWithAttachmentName: (NSString*)               attachmentName
+                           withFont: (UIFont*)                 font
+                           withType: (AttachmentViewTitleType) type
 {
-    self.attachmentNameLabel.text = attachmentName;
-    self.attachmentName           = attachmentName;
+    switch ( type )
+    {
+        case AttachmentTitleDefault:
+        {
+            self.attachmentNameLabel.text = attachmentName;
+        }
+            break;
+            
+        case AttachmentTitleStrikeout:
+        {
+            self.attachmentNameLabel.attributedText = [Utils getStrikeoutStringForString: attachmentName];
+            
+            self.attachmentNameLabel.textColor = [UIColor colorWithRed: 91.0/256.0
+                                                                 green: 100.0/256.0
+                                                                  blue: 113.0/256.0
+                                                                 alpha: 1.f];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
-    [self countFrame];
+
+    self.attachmentName = attachmentName;
+    
+    [self countFrameForFont: font];
 }
 
 
 #pragma mark - Internal -
 
-- (void) countFrame
+- (void) countFrameForFont: (UIFont*) font
 {
-    UIFont* labelFont = [UIFont fontWithName: @"Lato-Regular" size: 12];
-    
-    CGSize labelSize = [self.attachmentName sizeWithAttributes: @{NSFontAttributeName: labelFont}];
+    CGSize labelSize = [self.attachmentName sizeWithAttributes: @{NSFontAttributeName: font}];
     
     labelSize.width +=2;
     

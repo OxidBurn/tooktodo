@@ -16,8 +16,6 @@
 @property (strong, nonatomic) NSArray* viewsArray;
 
 // methods
-- (void) handleViewAccrdingToType;
-
 - (void) addViewAsSubview: (UIView*) view
         beginingFromPoint: (CGPoint) point;
 @end
@@ -30,12 +28,10 @@
 - (void) setTypeToViewsContainer: (FlexibleViewsContainerType) type
 {
     self.viewType = type;
-    
-    [self handleViewAccrdingToType];
 }
 
-- (void) fillViewsContainerWithViews: (NSArray*)              viewsArray
-                            forWidth: (CGFloat)               width
+- (void) fillViewsContainerWithViews: (NSArray*) viewsArray
+                            forWidth: (CGFloat)  width
 {
     self.autoresizesSubviews = NO;
     
@@ -84,21 +80,6 @@
 
 #pragma mark - Internal -
 
-
-- (void) handleViewAccrdingToType
-{
-    switch ( self.viewType)
-    {
-        case ViewForCommentCell:
-            
-            break;
-            
-        case ViewForFilterParameters:
-            
-        default:
-            break;
-    }
-}
 
 - (void) addViewAsSubview: (UIView*) view
         beginingFromPoint: (CGPoint) point

@@ -13,6 +13,8 @@
 
 // Classes
 #import "AvatarImageView.h"
+#import "Utils.h"
+#import "FlexibleViewsContainer.h"
 
 @interface LogWithAttachmentCell()
 
@@ -21,8 +23,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel*     logInfoLabel;
 @property (weak, nonatomic) IBOutlet UILabel*     logDateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView* attachmentIconImageView;
-@property (weak, nonatomic) IBOutlet UILabel*     attachmentNameLabel;
+
+@property (weak, nonatomic) IBOutlet FlexibleViewsContainer* attachmentContainer;
 
 // properties
 
@@ -44,13 +46,11 @@
     
     [self.userAvatarImageView sd_setImageWithURL: [NSURL URLWithString: logContent.avatarSrs]];
     
-    // ToDo: add required attribute to string
-    if ( logContent.actionType == DeletedValueType )
-    {
-        
-    }
+    FlexibleViewsContainer* container = logContent.attachmentsContainer;
     
-    self.attachmentNameLabel.text = logContent.attachmentTitle;
+    [self.attachmentContainer addSubview: container];
+    self.attachmentContainer.frame = container.frame;
 }
+
 
 @end
