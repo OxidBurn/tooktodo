@@ -16,6 +16,7 @@
 #import "DataManager+TaskLogs.h"
 #import "FlexibleViewsContainer.h"
 #import "AttachmentView.h"
+#import "DataManager+Room.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -79,9 +80,12 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
         
         switch ( logType )
         {
-//            case LogCreatedTaskType:               // might be unnaccessary
+                // case for log of new task created
+                // this case is equal the default case
+                // uncomment and handle if additional data will come
+//            case LogCreatedTaskType:
 //            {
-//                logContent.logText = 
+//
 //            }
 //                break;
                
@@ -201,17 +205,29 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             }
                 break;
                 
-//            case LogChangedDatesType:   // might be unnaccessary
-//            {
-//                
-//            }
-//                break;
-//                
-//            case LogDeletedDatesType:
-//            {
-//                
-//            }
-//                break;
+            case LogChangedDatesType:   
+            {
+                logContent.oldTitle = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                              andEndDate: log.data.oldEndDate];
+                
+                logContent.titleNew = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                              andEndDate: log.data.newEndDate];
+                
+                logContent.actionType = EditedOldValueType;
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+            }
+                break;
+                
+            case LogDeletedDatesType:
+            {
+                NSLog( @"%@", log.data.debugDescription );
+                
+                logContent.actionType = DeletedValueType;
+                
+                row.cellTypeIndex = LogWithUpdatedStringValuesType;
+            }
+                break;
                 
             case LogChangedDatesToNewValueType:
             {
@@ -239,7 +255,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 // ToDo: configurate attributed string with room title
             case LogAddedRoomType:
             {
-                logContent.oldTextValue = [NSString stringWithFormat: @"%@", log.data.roomIdNew.stringValue];
+                logContent.oldTextValue = [self getRoomInfoForRoomId: log.data.roomIdNew];
                 
                 row.cellTypeIndex = LogWithUpdatedStringValuesType;
                 
@@ -390,10 +406,10 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                                 andEndDate: (NSDate*) endDate
 {
     NSString* start = [NSDate stringFromDate: startDate
-                                  withFormat: @"dd.mm.yyyy"];
+                                  withFormat: @"dd.MM.yyyy"];
     
     NSString* end = [NSDate stringFromDate: endDate
-                                withFormat: @"dd.mm.yyyy"];
+                                withFormat: @"dd.MM.yyyy"];
     
     NSString* terms = [NSString stringWithFormat: @"%@ - %@", start, end];
     
@@ -500,6 +516,13 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     }];
     
     return viewsArray.copy;
+}
+
+- (NSString*) getRoomInfoForRoomId: (NSNumber*) roomId
+{
+    NSString* roomInfo = [DataManagerShared getRoomTitleWithID: roomId];
+    
+    return roomInfo;
 }
 
 @end

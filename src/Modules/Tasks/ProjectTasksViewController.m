@@ -179,6 +179,8 @@
     self.tasksByProjectTableView.delegate   = self.viewModel;
     self.searchBar.delegate                 = self.viewModel;
     
+    self.tasksByProjectTableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.filterParametersView.dataSource     = self.filterParameterManager;
     self.filterParametersView.filterDelegate = self.filterParameterManager;
 

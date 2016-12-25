@@ -49,16 +49,16 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskStatusMarkWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTermsWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* shortTitleWidth;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *roomNumberLabelWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* roomNumberLabelWidth;
 
 // horizontal constraints
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsLabelLeading;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *termsToRoomMark;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *roomNumberToTaskType;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* termsLabelLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* termsToRoomMark;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* roomNumberToTaskType;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* dateToTypeHorizontalConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *taskTypeToShortAreaTitle;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *areaShortTitleToAccessBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shortTitleTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* taskTypeToShortAreaTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* areaShortTitleToAccessBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint* shortTitleTrailing;
 
 // properties
 @property (strong, nonatomic) NSArray* topElementsWidthsArray;

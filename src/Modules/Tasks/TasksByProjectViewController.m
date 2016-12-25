@@ -145,6 +145,7 @@
 {
     self.tasksByProjectTableView.dataSource = self.viewModel;
     self.tasksByProjectTableView.delegate   = self.viewModel;
+    self.tasksByProjectTableView.rowHeight  = UITableViewAutomaticDimension;
     
     self.filterParametersView.dataSource     = self.filterParameterManager;
     self.filterParametersView.filterDelegate = self.filterParameterManager;
