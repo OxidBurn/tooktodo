@@ -12,8 +12,6 @@
 #import "AvatarImageView.h"
 #import "TaskMarkerComponent.h"
 #import "StatusMarkerComponent.h"
-#import "ProjectTaskResponsible+CoreDataClass.h"
-#import "ProjectTaskOwner+CoreDataClass.h"
 #import "SDWebImageCompat.h"
 #import "UIImageView+WebCache.h"
 
@@ -21,6 +19,7 @@
 #import "TaskStatusDefaultValues.h"
 #import "NSDate+Helper.h"
 #import "Utils.h"
+#import "DataManager+Tasks.h"
 
 @interface SubtaskInfoCell()
 
@@ -102,7 +101,6 @@
 
 - (void) fillCellWithContent: (TaskRowContent*) content
 {
-    
     self.taskTitleLabel.text = content.taskTitle;
     
     self.workAreaShortTitle.text = content.workAreaShortTitle;
@@ -149,17 +147,13 @@
     else
         self.roomNumberLabel.text = [NSString stringWithFormat: @"%ld", content.roomNumber];
     
+    FilledTeamInfo* responsible = content.responsibleUser.firstObject;
     
-    //Uncomment when responsible won't be nil
+    if (responsible.avatarSrc.length > 0)
+        [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: responsible.avatarSrc]];
     
-//    ProjectTaskResponsible* responsible = content.responsibleUser.firstObject;
-//    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: responsible.avatarSrc]];
-    
-    
-    //Delete when responsible won't be nil
-    ProjectTaskOwner* owner = content.ownerUser.firstObject;
-    
-    [self.avatarImage sd_setImageWithURL: [NSURL URLWithString: owner.avatarSrc]];
+    else
+        self.avatarImage.image = [UIImage imageNamed: @"emptyAvatarIcon"];
     
     [self handleElementsWidthsForContent: content];
     
@@ -380,5 +374,7 @@
     self.statusDescriptionLabel.textColor = [[TaskStatusDefaultValues sharedInstance]
                                              returnFontColorForTaskStatus: taskStatusType];
 }
+
+
 
 @end

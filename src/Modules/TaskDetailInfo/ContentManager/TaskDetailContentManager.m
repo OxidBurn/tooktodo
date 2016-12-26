@@ -23,6 +23,10 @@
 #import "TaskLogDataContent+CoreDataProperties.h"
 #import "DataManager+UserInfo.h"
 
+#import "ProjectTaskRoleAssignment+CoreDataClass.h"
+#import "ProjectTaskRoleAssignments+CoreDataClass.h"
+#import "FilledTeamInfoPack.h"
+
 #import "LogsContent.h"
 
 #import "Utils.h"
@@ -388,6 +392,8 @@
         subtask.commentsNumber      = obj.commentsCount.integerValue;
         subtask.taskType            = obj.taskType.integerValue;
         
+        subtask.responsibleUser = [self fillResponsible: subtask.responsibleUser forTask: obj];
+        
         subtask.cellId = self.tableViewCellsIdArray[SubtaskInfoCellType];
         
         [subtasksTmp addObject: subtask];
@@ -465,5 +471,49 @@
 }
 
 
+- (NSArray*) fillResponsible: (NSArray*)     responsible
+                     forTask: (ProjectTask*) task;
+{
+    NSArray* roleAssignments = task.taskRoleAssignments.array;
+    
+    responsible = [NSArray array];
+    
+    __block NSMutableArray* tmpResponsibleArr = responsible.mutableCopy;
+    
+    [roleAssignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        switch (taskRoleAssignments.taskRoleType.integerValue)
+        {
+            case ResponsibleRoleType:
+            {
+                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
+                
+                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if (obj.assignee || obj.invite)
+                    {
+                        NSArray* assigneeArr = obj.assignee.array;
+                        NSArray* inviteArr   = obj.invite.array;
+                        
+                        [tmpResponsibleArr addObjectsFromArray: assigneeArr];
+                        [tmpResponsibleArr addObjectsFromArray: inviteArr];
+                        
+                        tmpResponsibleArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr].mutableCopy;
+                        
+                    }
+                    
+                }];
+            }
+                break;
+                
+        }
+    }];
+    
+    responsible = tmpResponsibleArr.copy;
+    
+    tmpResponsibleArr = nil;
+    
+    return responsible;
+}
 
 @end
