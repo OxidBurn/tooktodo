@@ -226,15 +226,16 @@
      }];
 }
 
-- (NSString*) getRoomTitleWithID: (NSNumber*) roomID
+- (LogRoomInfo*) getRoomTitleWithID: (NSNumber*) roomID
 {
-    ProjectTask* currentTask = [DataManagerShared getSelectedTask];
-    
-    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roomID == %@ AND task == %@", roomID, currentTask];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roomID == %@", roomID];
     
     ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: predicate];
     
-    return [room.number.stringValue stringByAppendingFormat: @" %@", room.title];
+    LogRoomInfo* roomInfo = [[LogRoomInfo alloc] initWithRoomNumber: room.number
+                                                          withTitle: room.title];
+    
+    return roomInfo;
 }
 
 @end

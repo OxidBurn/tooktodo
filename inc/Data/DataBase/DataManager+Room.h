@@ -12,6 +12,7 @@
 #import "TaskRoomLevelModel.h"
 #import "TaskRoomModel.h"
 #import "TaskMapContourModel.h"
+#import "LogRoomInfo.h"
 
 // Entities
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
@@ -50,6 +51,6 @@
 - (void) updateSelectedStateOfRoom: (ProjectTaskRoom*)      room
                     withCompletion: (CompletionWithSuccess) completion;
 
-- (NSString*) getRoomTitleWithID: (NSNumber*) roomID;
+- (LogRoomInfo*) getRoomTitleWithID: (NSNumber*) roomID;
 
 @end
