@@ -70,4 +70,8 @@
 
 - (ProjectTask*) getCurrentTask;
 
+- (void) fillIsSubtaskState: (BOOL) isSubtask;
+
+- (BOOL) getIsSubtaskState;
+
 @end

@@ -22,6 +22,8 @@
 
 - (TaskStatusType) getStatusType;
 
+- (void) fillIsSubtaskState: (BOOL) isSubtask;
+
 - (void) fillSelectedTask: (ProjectTask*) task;
 
 - (void) refreshTableView;

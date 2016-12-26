@@ -38,6 +38,8 @@
 
 @property (nonatomic, strong) ProjectTask* selectedSubtask;
 
+@property (nonatomic, assign) BOOL isSubtask;
+
 @end
 
 @implementation TaskDetailModel
@@ -118,9 +120,27 @@
 
 - (void) deselectTaskWithCompletion: (CompletionWithSuccess) completion
 {
-    [[TasksService sharedInstance] changeSelectedStageForTask: self.task
-                                            withSelectedState: NO
-                                               withCompletion: completion];
+    if (self.isSubtask == YES)
+    {
+        [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedSubtask
+                                                withSelectedState: NO
+                                                   withCompletion: ^(BOOL isSuccess) {
+                                                       
+                                                       // Select parent task
+                                                       [[TasksService sharedInstance] changeSelectedStageForTask: self.selectedSubtask.task
+                                                                                               withSelectedState: YES
+                                                                                                  withCompletion: completion];
+                                                   }];
+        
+        
+    }
+    
+    else
+    {
+        [[TasksService sharedInstance] changeSelectedStageForTask: self.task
+                                                withSelectedState: NO
+                                                   withCompletion: completion];
+    }
 }
 
 - (NSArray*) returnHeaderNumbersInfo
@@ -273,8 +293,16 @@
 - (void) fillSelectedTask: (ProjectTask*)          task
            withCompletion: (CompletionWithSuccess) completion
 {
-    self.task = task;
+    if (self.isSubtask)
+    {
+        self.selectedSubtask = task;
+    }
     
+    else
+    {
+        self.task = task;
+    }
+
     self.taskTableViewContent = [self.contentManager getTableViewContentForTask: task
                                                           forTableViewWithFrame: self.tableViewFrame];
     
@@ -295,6 +323,15 @@
     return self.selectedSubtask;
 }
 
+- (void) fillIsSubtaskState: (BOOL) isSubtask
+{
+    self.isSubtask = isSubtask;
+}
+
+- (BOOL) getIsSubtaskState
+{
+    return self.isSubtask;
+}
 
 #pragma mark - Helpers -
 

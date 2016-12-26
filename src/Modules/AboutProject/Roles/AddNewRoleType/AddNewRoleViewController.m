@@ -83,7 +83,11 @@
             
             [SVProgressHUD showSuccessWithStatus: @"Новая роль успешно создана."];
             
-            [self dismissViewControllerAnimated: YES
+            if (IS_PHONE)
+                [self.navigationController.navigationController popViewControllerAnimated: YES];
+            
+            else
+                [self dismissViewControllerAnimated: YES
                                      completion: nil];
             
         }];
@@ -116,7 +120,11 @@
 
 - (IBAction) onDismiss: (UIBarButtonItem*) sender
 {
-    [self dismissViewControllerAnimated: YES
+    if (IS_PHONE)
+        [self.navigationController.navigationController popViewControllerAnimated: YES];
+    
+    else
+        [self dismissViewControllerAnimated: YES
                              completion: nil];
 }
 

@@ -145,6 +145,11 @@
     [self.taskTableView reloadData];
 }
 
+- (void) fillIsSubtaskState: (BOOL) isSubtask
+{
+    [self.viewModel fillIsSubtaskState: isSubtask];
+}
+
 #pragma mark - Segue -
 
 - (void) prepareForSegue: (UIStoryboardSegue*) segue
@@ -193,10 +198,15 @@
 {
     __weak typeof(self) blockSelf = self;
     
-    [self.viewModel deselectTaskWithCompletion:^(BOOL isSuccess) {
+        [self.viewModel deselectTaskWithCompletion: ^(BOOL isSuccess) {
+            
+            //TODO: Need to make more cleaner solution
+            
+            if ([self.viewModel getIsSubtaskState] == YES)
+                 [blockSelf.navigationController popToRootViewControllerAnimated: YES];
         
-        //TODO: Need to make more cleaner solution
-        [blockSelf.navigationController.navigationController popViewControllerAnimated: YES];
+            else
+                [blockSelf.navigationController.navigationController popViewControllerAnimated: YES];
         
     }];
 }
@@ -299,13 +309,16 @@
     self.viewModel.initSubtaskDetailInfoController = ^(){
         
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName: @"TasksDetailInfo"
-                                                             bundle: nil];
+                                                             bundle: [NSBundle mainBundle]];
         
         TaskDetailViewController* vc = [storyboard instantiateViewControllerWithIdentifier: @"TaskDetailStoryboardId"];
         
         [vc fillSelectedTask: [blockSelf.viewModel getSelectedSubtask]];
         
-        [blockSelf.navigationController pushViewController: vc animated: YES ];
+        [vc fillIsSubtaskState: YES];
+        
+        [blockSelf.navigationController pushViewController: vc
+                                                  animated: YES ];
         
     };
     

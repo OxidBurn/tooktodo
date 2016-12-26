@@ -216,6 +216,16 @@
     return [self.model getProjectTitle];
 }
 
+- (void) fillIsSubtaskState: (BOOL) isSubtask
+{
+    [self.model fillIsSubtaskState: isSubtask];
+}
+
+- (BOOL) getIsSubtaskState
+{
+   return [self.model getIsSubtaskState];
+}
+
 #pragma mark - UITableViewDataSourse methods -
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
@@ -393,15 +403,13 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
     
     if ([cell isKindOfClass: [SubtaskInfoCell class]])
     {
-        [self.model deselectTaskWithCompletion:^(BOOL isSuccess) {
-            
-            if (self.initSubtaskDetailInfoController)
-                self.initSubtaskDetailInfoController();
-            
             [self.model markTaskAsSelected: indexPath
-                            withCompletion: nil];
-            
-        }];
+                            withCompletion:^(BOOL isSuccess) {
+                                
+                                if (self.initSubtaskDetailInfoController)
+                                    self.initSubtaskDetailInfoController();
+                            }];
+        
     }
 }
 

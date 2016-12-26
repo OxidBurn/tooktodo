@@ -84,6 +84,11 @@
 
 - (void) sortArrayForType: (TasksSortingType)           type
                isAcceding: (ContentAccedingSortingType) isAcceding;
+
+- (void) fillIsSubtaskState: (BOOL) isSubtask;
+
+- (BOOL) getIsSubtaskState;
+
 @end
 
 
