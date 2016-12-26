@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView* arrowSendImageView;
 
 // properties
-
+@property (strong, nonatomic) UIColor* darkColor;
 
 // methods
 
@@ -37,6 +37,22 @@
 @end
 
 @implementation LogWithUpdatedStringValuesCell
+
+
+#pragma mark - Properties -
+
+- (UIColor*) darkColor
+{
+    if ( _darkColor == nil )
+    {
+        _darkColor = [UIColor colorWithRed: 38.0/256.0
+                                     green: 45.0/256.0
+                                      blue: 55.0/256.0
+                                     alpha: 1.f];
+    }
+    
+    return _darkColor;
+}
 
 
 #pragma mark - Public -
@@ -62,6 +78,8 @@
     {
         case AddedNewValueType:
         {
+            self.logFirstDetailLabel.textColor = self.darkColor;
+            
             self.logFirstDetailLabel.attributedText = logContent.oldTextValue;
         }
             break;
@@ -71,6 +89,9 @@
             // showing second label and arrow
             self.arrowSendImageView.hidden   = NO;
             self.logSecondDetailLabel.hidden = NO;
+            
+            self.logFirstDetailLabel.textColor  = self.darkColor;
+            self.logSecondDetailLabel.textColor = self.darkColor;
             
             self.logFirstDetailLabel.attributedText  = logContent.oldTextValue;
             self.logSecondDetailLabel.attributedText = logContent.updatedTextValue;

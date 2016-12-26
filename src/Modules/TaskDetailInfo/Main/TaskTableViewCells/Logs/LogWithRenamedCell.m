@@ -46,7 +46,9 @@
     
     self.updatedStringValueLabel.text = logContent.titleNew;
     
-    self.oldStringValueLabel.attributedText = [Utils getStrikeoutStringForString: logContent.oldTitle];
+    NSAttributedString* attrString = [[NSAttributedString alloc] initWithString: logContent.oldTitle];
+    
+    self.oldStringValueLabel.attributedText = [Utils getStrikeoutStringForString: attrString];
 }
 
 @end

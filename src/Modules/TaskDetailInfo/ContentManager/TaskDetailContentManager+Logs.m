@@ -233,7 +233,10 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
             case LogDeletedDatesType:
             {
-                NSLog( @"%@", log.data.debugDescription );
+                NSString* deletedDate = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                                andEndDate: log.data.oldEndDate];
+                
+                logContent.oldTextValue = [self convertToAttributedString: deletedDate];
                 
                 logContent.actionType = DeletedValueType;
                 
@@ -270,7 +273,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             }
                 break;
                 
-                // ToDo: configurate attributed string with room title
             case LogAddedRoomType:
             {
                 LogRoomInfo* roomInfo = [DataManagerShared getRoomTitleWithID: log.data.roomIdNew];
@@ -434,10 +436,25 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     NSString* start = [NSDate stringFromDate: startDate
                                   withFormat: @"dd.MM.YY"];
     
+    if ( start == nil )
+        start = @"";
+    
     NSString* end = [NSDate stringFromDate: endDate
                                 withFormat: @"dd.MM.YY"];
     
-    NSString* terms = [NSString stringWithFormat: @"%@ - %@", start, end];
+    if ( end == nil )
+        end = @"";
+    
+    NSString* hyphenSymbol;
+    
+    if ( start.length > 0 && end.length > 0 )
+    {
+        hyphenSymbol = @" - ";
+    }
+    else
+        hyphenSymbol = @"";
+    
+    NSString* terms = [NSString stringWithFormat: @"%@%@%@", start, hyphenSymbol, end];
     
     return terms;
 }

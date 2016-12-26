@@ -40,7 +40,9 @@
             
         case AttachmentTitleStrikeout:
         {
-            self.attachmentNameLabel.attributedText = [Utils getStrikeoutStringForString: attachmentName];
+            NSAttributedString* attrString = [[NSAttributedString alloc] initWithString: attachmentName];
+            
+            self.attachmentNameLabel.attributedText = [Utils getStrikeoutStringForString: attrString];
             
             self.attachmentNameLabel.textColor = [UIColor colorWithRed: 91.0/256.0
                                                                  green: 100.0/256.0

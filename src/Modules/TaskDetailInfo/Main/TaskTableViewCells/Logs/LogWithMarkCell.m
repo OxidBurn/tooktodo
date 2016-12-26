@@ -46,7 +46,8 @@
     
     NSTextAttachment* iconAttachment = [[NSTextAttachment alloc] init];
     
-    iconAttachment.image = [UIImage imageNamed: @"Overdue"];
+    iconAttachment.image = [self getMarkImageForLogText: logContent.logText.string];
+    
     iconAttachment.bounds = CGRectMake(5, -3, 14, 14);
     
     NSAttributedString* attributedString = [NSAttributedString attributedStringWithAttachment: iconAttachment];
@@ -58,6 +59,27 @@
     self.logInfoLabel.attributedText = string;
     self.logInfoLabel.textAlignment  = UIControlContentVerticalAlignmentCenter;
 }
+
+
+#pragma mark - Internal -
+
+- (UIImage*) getMarkImageForLogText: (NSString*) logText
+{
+    NSString* assetName = [NSString new];
+    
+    if ( [logText containsString: @"пометку \"Срочно\""] )
+    {
+        assetName = @"Overdue";
+    }
+    else
+        if ( [logText containsString: @"метку на плане"] )
+        {
+            assetName = @"MarkOnPlan";
+        }
+    
+    return [UIImage imageNamed: assetName];
+}
+
 
 
 @end
