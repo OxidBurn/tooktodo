@@ -30,13 +30,9 @@
 
 
 // properties for logs with two updated labals
-@property (strong, nonatomic) NSString* updatedTextValue;
+@property (strong, nonatomic) NSAttributedString* updatedTextValue;
 
-@property (strong, nonatomic) NSString* oldTextValue;
-
-@property (strong, nonatomic) NSAttributedString* oldRoomValue;
-
-@property (strong, nonatomic) NSAttributedString* roomNewValue;
+@property (strong, nonatomic) NSAttributedString* oldTextValue;
 
 @property (assign, nonatomic) LogsActionType actionType;
 
