@@ -73,4 +73,6 @@
 
 - (ProjectTask*) getSelectedTaskInContext: (NSManagedObjectContext*) context;
 
+- (NSString*) getTaskStageTitleByID: (NSNumber*) stageID;
+
 @end

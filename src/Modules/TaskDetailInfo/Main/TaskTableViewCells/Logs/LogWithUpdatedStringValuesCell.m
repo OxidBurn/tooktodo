@@ -62,7 +62,7 @@
     {
         case AddedNewValueType:
         {
-            self.logFirstDetailLabel.text = logContent.oldTextValue;
+            self.logFirstDetailLabel.attributedText = logContent.oldTextValue;
         }
             break;
             
@@ -72,16 +72,24 @@
             self.arrowSendImageView.hidden   = NO;
             self.logSecondDetailLabel.hidden = NO;
             
-            self.logFirstDetailLabel.text  = logContent.oldTextValue;
-            self.logSecondDetailLabel.text = logContent.updatedTextValue;
+            self.logFirstDetailLabel.attributedText  = logContent.oldTextValue;
+            self.logSecondDetailLabel.attributedText = logContent.updatedTextValue;
         }
             break;
             
         case DeletedValueType:
         {
-            self.logFirstDetailLabel.text = logContent.oldTextValue;
+            NSAttributedString* text;
             
-            // ToDo: edit font for current case
+            if ( logContent.oldTitle )
+                text = [Utils getStrikeoutStringForString: logContent.oldTitle];
+            
+            self.logFirstDetailLabel.textColor = [UIColor colorWithRed: 38.0/256.0
+                                                                 green: 45.0/256.0
+                                                                  blue: 55.0/256.0
+                                                                 alpha: 0.5f];
+            
+            self.logFirstDetailLabel.attributedText = text;
         }
             break;
             
