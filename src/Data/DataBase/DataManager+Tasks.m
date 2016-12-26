@@ -778,6 +778,17 @@
     return task;
 }
 
+- (NSString*) getTaskStageTitleByID: (NSNumber*) stageID
+{
+    ProjectInfo* currentProject = [DataManagerShared getSelectedProjectInfo];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"stageID == %@ AND project == %@", stageID, currentProject];
+    
+    ProjectTaskStage* stage = [ProjectTaskStage MR_findFirstWithPredicate: predicate];
+    
+    return stage.title;
+}
+
 - (ProjectTaskRoleAssignment*) getAssignmentWithID: (NSNumber*)                   assignmentID
                                  inRoleAssignments: (ProjectTaskRoleAssignments*) assignments
                                          inContext: (NSManagedObjectContext*)     context

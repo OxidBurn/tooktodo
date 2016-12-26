@@ -234,7 +234,7 @@
     
     ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: predicate];
     
-    return [room.roomID.stringValue stringByAppendingString: room.title];
+    return [room.number.stringValue stringByAppendingFormat: @" %@", room.title];
 }
 
 @end

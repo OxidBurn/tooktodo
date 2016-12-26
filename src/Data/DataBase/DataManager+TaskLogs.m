@@ -204,7 +204,7 @@
             else
                 if ( [log.text containsString: @"удалил"] )
                 {
-                    log.logType = @(LogChangedRoomType);
+                    log.logType = @(LogDeletedRoomType);
                 }
     }
     
