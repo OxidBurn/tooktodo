@@ -81,8 +81,8 @@
         {
             NSAttributedString* text;
             
-            if ( logContent.oldTitle )
-                text = [Utils getStrikeoutStringForString: logContent.oldTitle];
+            if ( logContent.oldTextValue )
+                text = [Utils getStrikeoutStringForString: logContent.oldTextValue];
             
             self.logFirstDetailLabel.textColor = [UIColor colorWithRed: 38.0/256.0
                                                                  green: 45.0/256.0

@@ -46,6 +46,7 @@
     NSMutableAttributedString* roomInfoWithAttribute = [[NSMutableAttributedString alloc] init];
     
     [roomInfoWithAttribute appendAttributedString: [self getRoomNumberStringForLog]];
+    [roomInfoWithAttribute appendAttributedString: [[NSAttributedString alloc] initWithString: @" "]];
     [roomInfoWithAttribute appendAttributedString: [self getRoomTitleStringForLog]];
     
     return roomInfoWithAttribute.copy;
@@ -56,16 +57,22 @@
 
 - (NSAttributedString*) getRoomNumberStringForLog
 {
+    UIFont* roomNumberFont = [UIFont fontWithName: @"SFUIText-Semibold"
+                                             size: 13.f];
+    
     NSAttributedString* numberString = [[NSAttributedString alloc] initWithString: self.roomNumber
-                                                                       attributes: @{}];
+                                                                       attributes: @{ NSFontAttributeName: roomNumberFont}];
     
     return numberString;
 }
 
 - (NSAttributedString*) getRoomTitleStringForLog
 {
+    UIFont* roomTitleFont = [UIFont fontWithName: @"SFUIText-Regular"
+                                             size: 13.f];
+    
     NSAttributedString* titleString = [[NSAttributedString alloc] initWithString: self.roomTitle
-                                                                      attributes: @{}];
+                                                                      attributes: @{ NSFontAttributeName: roomTitleFont}];
     
     return titleString;
 }

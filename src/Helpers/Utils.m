@@ -505,14 +505,15 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return outString; 
 }
 
-+ (NSAttributedString*) getStrikeoutStringForString: (NSString*) string
++ (NSAttributedString*) getStrikeoutStringForString: (NSAttributedString*) string
 {
-    NSAttributedString* theAttributedString;
+    NSMutableAttributedString* theAttributedString = string.mutableCopy;
     
-    theAttributedString = [[NSAttributedString alloc] initWithString: string
-                                                          attributes: @{NSStrikethroughStyleAttributeName:
-                                                                            [NSNumber numberWithInteger:NSUnderlineStyleSingle]} ];
-    return theAttributedString;
+    [theAttributedString addAttribute: NSStrikethroughStyleAttributeName
+                                value: [NSNumber numberWithInteger:NSUnderlineStyleSingle]
+                                range: NSMakeRange(0, string.length)];
+    
+    return theAttributedString.copy;
 }
 
 + (NSString*) getDeclensionStringWithValue: (NSUInteger) count

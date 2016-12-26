@@ -18,6 +18,7 @@
 #import "AttachmentView.h"
 #import "DataManager+Room.h"
 #import "DataManager+Tasks.h"
+#import "LogRoomInfo.h"
 
 // Helpers
 #import "NSDate+Helper.h"
@@ -202,7 +203,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             case LogAddedDatesType:
             {
                 NSString* terms = [self createTermsLabelForStartDate: log.data.newStartDate
-                                                                  andEndDate: log.data.newEndDate];
+                                                          andEndDate: log.data.newEndDate];
                 
                 logContent.oldTextValue = [self convertToAttributedString: terms];
                 
@@ -214,11 +215,15 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
             case LogChangedDatesType:   
             {
-                logContent.oldTitle = [self createTermsLabelForStartDate: log.data.oldStartDate
-                                                              andEndDate: log.data.oldEndDate];
+                NSString* oldTerms = [self createTermsLabelForStartDate: log.data.oldStartDate
+                                                             andEndDate: log.data.oldEndDate];
                 
-                logContent.titleNew = [self createTermsLabelForStartDate: log.data.newStartDate
-                                                              andEndDate: log.data.newEndDate];
+                NSString* termsNew = [self createTermsLabelForStartDate: log.data.newStartDate
+                                                             andEndDate: log.data.newEndDate];
+                
+                logContent.oldTextValue = [self convertToAttributedString: oldTerms];
+                
+                logContent.updatedTextValue = [self convertToAttributedString: termsNew];
                 
                 logContent.actionType = EditedOldValueType;
                 
@@ -255,9 +260,9 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
             case LogDeletedRoomType:
             {
-                NSString* roomInfo = [self getRoomInfoForRoomId: log.data.oldRoomId];
+                LogRoomInfo* roomInfo = [DataManagerShared getRoomTitleWithID: log.data.oldRoomId];
                 
-                logContent.oldTextValue = [self convertToAttributedString: roomInfo];
+                logContent.oldTextValue = [roomInfo getRoomInfoWithAttributesForLog];
                 
                 row.cellTypeIndex = LogWithUpdatedStringValuesType;
                 
@@ -267,10 +272,10 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 
                 // ToDo: configurate attributed string with room title
             case LogAddedRoomType:
-            {                
-                NSString* roomInfo = [self getRoomInfoForRoomId: log.data.roomIdNew];
+            {
+                LogRoomInfo* roomInfo = [DataManagerShared getRoomTitleWithID: log.data.roomIdNew];
                 
-                logContent.oldTextValue = [self convertToAttributedString: roomInfo];
+                logContent.oldTextValue = [roomInfo getRoomInfoWithAttributesForLog];
                 
                 row.cellTypeIndex = LogWithUpdatedStringValuesType;
                 
@@ -281,11 +286,11 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                 // ToDo: make two attributed strings with rooms info
             case LogChangedRoomType:
             {
-                NSString* roomInfoOld = [self getRoomInfoForRoomId: log.data.oldRoomId];
-                NSString* roomInfoNew = [self getRoomInfoForRoomId: log.data.roomIdNew];
+                LogRoomInfo* roomInfoOld = [DataManagerShared getRoomTitleWithID: log.data.oldRoomId];
+                LogRoomInfo* roomInfoNew = [DataManagerShared getRoomTitleWithID: log.data.roomIdNew];
 
-                logContent.oldTextValue     = [self convertToAttributedString: roomInfoOld];
-                logContent.updatedTextValue = [self convertToAttributedString: roomInfoNew];
+                logContent.oldTextValue     = [roomInfoOld getRoomInfoWithAttributesForLog];
+                logContent.updatedTextValue = [roomInfoNew getRoomInfoWithAttributesForLog];
                 
                 row.cellTypeIndex = LogWithUpdatedStringValuesType;
                 
@@ -537,13 +542,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
     }];
     
     return viewsArray.copy;
-}
-
-- (NSString*) getRoomInfoForRoomId: (NSNumber*) roomId
-{
-    NSString* roomInfo = [DataManagerShared getRoomTitleWithID: roomId];
-    
-    return roomInfo;
 }
 
 - (NSAttributedString*) convertToAttributedString: (NSString*) string
