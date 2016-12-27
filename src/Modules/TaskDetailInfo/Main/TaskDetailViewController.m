@@ -68,6 +68,8 @@
     
     if ( IS_PHONE == NO)
         self.navigationItem.leftBarButtonItem = nil;
+    
+    [self handleChangeBtn];
 }
 
 - (void) viewDidLoad
@@ -322,7 +324,6 @@
         
     };
     
-    [self handleChangeBtn];
 }
 
 - (void) handleChangeBtn
@@ -331,7 +332,7 @@
     
     if (currentUserPermission == ParticipantPermission)
     {
-        self.changeBtn.enabled = NO;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
 
