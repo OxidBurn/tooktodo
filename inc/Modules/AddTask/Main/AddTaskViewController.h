@@ -22,7 +22,8 @@
 - (void) fillDefaultStage: (ProjectTaskStage*) stage
            andHiddenState: (BOOL)              isHidden;
 
-- (void) fillControllerType: (AddTaskControllerType) controllerType;
+- (void) fillControllerType: (AddTaskControllerType) controllerType
+               withDelegate: (id)                    delegate;
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit;
 
@@ -32,6 +33,6 @@
 
 @optional
 
-- (void) subscribeNotifications;
+- (void) reloadTaskDetailTableView;
 
 @end

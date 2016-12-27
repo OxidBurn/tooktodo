@@ -164,7 +164,8 @@
         
         AddTaskViewController* vc = (AddTaskViewController*)destinationNavController.topViewController;
         
-        [vc fillControllerType: AddSubtaskControllerType];
+        [vc fillControllerType: AddSubtaskControllerType
+                  withDelegate: self];
         
         [vc fillDefaultStage: [self.viewModel getTaskStage]
               andHiddenState: [self.viewModel getTaskState]];
@@ -178,7 +179,8 @@
         
         AddTaskViewController* vc = (AddTaskViewController*) destinationNavController.topViewController;
         
-        [vc fillControllerType: EditTaskControllerType];
+        [vc fillControllerType: EditTaskControllerType
+                  withDelegate: self];
         
         [vc fillTaskToEdit: [self.viewModel getCurrentTask]];
        
@@ -262,10 +264,11 @@
 
 #pragma mark - AddTaskControllerDelegate methods -
 
-- (void) subscribeNotifications
+- (void) reloadTaskDetailTableView
 {
-    [self addNotifications];
+    [self.taskTableView reloadData];
 }
+
 
 #pragma mark - Helpers -
 

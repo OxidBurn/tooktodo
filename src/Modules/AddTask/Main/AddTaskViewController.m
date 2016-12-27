@@ -232,8 +232,11 @@
 }
 
 - (void) fillControllerType: (AddTaskControllerType) controllerType
+               withDelegate: (id)                    delegate
 {
     [self.viewModel fillControllerType: controllerType];
+    
+    self.delegate = delegate;
 }
 
 - (void) fillTaskToEdit: (ProjectTask*) taskToEdit
@@ -263,7 +266,7 @@
 - (IBAction) onAddTaskBtn: (UIButton*) sender
 {
     [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-       
+
         [self dismissViewControllerAnimated: YES
                                  completion: nil];
     }];
