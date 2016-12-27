@@ -15,6 +15,7 @@
 #import "AddTaskViewController.h"
 #import "CustomTabBar.h"
 #import "CustomTabBarIPad.h"
+#import "DataManager+ProjectInfo.h"
 
 #import "KeyChainManager.h"
 
@@ -219,10 +220,40 @@
     UIStoryboard* alertStoryboard = [UIStoryboard storyboardWithName: @"TaskOptionsScreen"
                                                               bundle: [NSBundle mainBundle]];
     
-    AddTaskViewController* addTaskController = [alertStoryboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
+    UINavigationController* addTaskNavController = [alertStoryboard instantiateViewControllerWithIdentifier: @"AddTaskNavControllerID"];
     
-    [self presentViewController: addTaskController
+    AddTaskViewController* addTaskController = (AddTaskViewController*)addTaskNavController.topViewController;
+    
+    [addTaskController fillDefaultStage: [self getDefaultStageForAddNewTask]
+                         andHiddenState: NO];
+    
+    [self presentViewController: addTaskNavController
                        animated: YES
                      completion: nil];
+    
+}
+
+
+- (ProjectTaskStage*) getDefaultStageForAddNewTask
+{
+    ProjectTaskStage* defaultStage = nil;
+    
+    NSArray* stages = [[[DataManagerShared getSelectedProjectInfo] stage] array];
+    
+    __block NSMutableArray* expandedStages = [NSMutableArray array];
+    
+    [stages enumerateObjectsUsingBlock:^(ProjectTaskStage* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.isExpanded.boolValue)
+            [expandedStages addObject: obj];
+    }];
+    
+    if (expandedStages.count == 0)
+        defaultStage = stages.firstObject;
+    
+    else
+        defaultStage = expandedStages.firstObject;
+    
+    return defaultStage;
 }
 @end
