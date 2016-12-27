@@ -375,7 +375,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
-    [formatter setDateFormat: @"yyyy.dd.MM"];
+    [formatter setDateFormat: @"MM.dd.yyyy"];
     
     NSString* dateFromString = date ? [formatter stringFromDate: date] : @"Не выбрано";
     

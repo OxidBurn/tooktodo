@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     itemTwo.cellDetail = [Utils createTermsLabelTextForStartDate: self.task.factualStartDate
                                                   withFinishDate: self.task.factualEndDate
                                                       withFormat: @"dd.MM.yyyy"
-                                           withEmptyDetailString: @"Ну указано"];
+                                           withEmptyDetailString: @"Не указано"];
     
     TaskCollectionCellsContent* itemThree = [TaskCollectionCellsContent new];
     
