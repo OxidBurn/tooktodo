@@ -40,7 +40,9 @@
         self.avatarSrc              = assignee.avatarSrc ? assignee.avatarSrc : @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
         self.taskRoleAssinment      = assignee.roleAssignment.projectRoleAssignments.taskRoleType;
-        self.memberID               = assignee.assigneeID;
+        
+        //used for sending task role assignments (responsible, approver, observer) on server
+        self.memberID               = assignment.roleID;
         self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
         self.assignments            = assignment;
         
@@ -61,7 +63,9 @@
         self.role                   = roleType.title ? roleType.title : @"";
         self.avatarSrc              = @"";
         self.projectPermission      = assignment.projectPermission ? assignment.projectPermission : @(-2);
-        self.memberID               = invite.inviteID;
+        
+        //used for sending task role assignments (responsible, approver, observer) on server
+        self.memberID               = assignment.roleID;
         self.taskRoleAssinment      = invite.projectTaskAssignment.projectRoleAssignments.taskRoleType;
         self.isBlocked              = assignment.isBlocked.boolValue ? assignment.isBlocked.boolValue : NO;
         self.assignments            = assignment;

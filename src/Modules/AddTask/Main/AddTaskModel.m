@@ -334,11 +334,9 @@
              
              [teamMemberInfo fillTeamInfo: obj];
              
-             teamMemberInfo.userId = obj.roleID;
-             
              [tmpTeamList addObject: teamMemberInfo];
              
-             [tmpTeamList enumerateObjectsUsingBlock:^(FilledTeamInfo*  _Nonnull userInList, NSUInteger idx, BOOL * _Nonnull stop) {
+             [tmpTeamList enumerateObjectsUsingBlock: ^(FilledTeamInfo*  _Nonnull userInList, NSUInteger idx, BOOL * _Nonnull stop) {
                  
                  NSMutableArray* tmpArr = [NSMutableArray new];
                  
