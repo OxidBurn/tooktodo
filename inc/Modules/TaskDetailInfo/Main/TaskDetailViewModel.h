@@ -33,6 +33,8 @@
 
 @property (nonatomic, copy) void(^initSubtaskDetailInfoController)();
 
+@property (nonatomic, copy) void(^handleKeyboardNotifications)(BOOL isAdd);
+
 @property (nonatomic, assign) CGFloat keyboardHeight;
 
 @property (strong, nonatomic) TaskDetailModel* model;

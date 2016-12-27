@@ -101,16 +101,8 @@
         [blockSelf.taskTableView reloadData];
         
     }];
-    
-    [self addNotifications];
 }
 
-- (void) viewWillDisappear: (BOOL) animated
-{
-    [super viewWillDisappear: animated];
-    
-    [self removeNotifications];
-}
 
 #pragma mark - Properties -
 
@@ -322,6 +314,19 @@
         [blockSelf.navigationController pushViewController: vc
                                                   animated: YES ];
         
+    };
+    
+    self.viewModel.handleKeyboardNotifications = ^(BOOL isAdd){
+      
+        if ( isAdd )
+        {
+            [blockSelf addNotifications];
+        }
+        else
+        {
+            [blockSelf.view endEditing: YES];
+            [blockSelf removeNotifications];
+        }
     };
     
 }

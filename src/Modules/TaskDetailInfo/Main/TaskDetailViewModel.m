@@ -418,6 +418,16 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (void) updateSecondSectionContentType: (NSUInteger) typeIndex
 {
+    BOOL addNotifications = NO;
+    
+    if ( typeIndex == CommentsContentType )
+    {
+        addNotifications = YES;
+    }
+    
+    if ( self.handleKeyboardNotifications )
+        self.handleKeyboardNotifications(addNotifications);
+    
     [self updateSecondSectionContentForType: typeIndex];
 }
 
