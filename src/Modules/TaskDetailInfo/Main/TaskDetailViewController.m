@@ -266,7 +266,10 @@
 
 - (void) reloadTaskDetailTableView
 {
-    [self.taskTableView reloadData];
+    [self.viewModel reloadDataWithCompletion: ^(BOOL isSuccess) {
+        
+        [self.taskTableView reloadData];
+    }];
 }
 
 
