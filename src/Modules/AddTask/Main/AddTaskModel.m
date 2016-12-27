@@ -28,6 +28,9 @@
 #import "AddTaskContentManager+ProjectTask.h"
 #import "DataManager+Room.h"
 
+// Helpers
+#import "NSString+Utils.h"
+
 @interface AddTaskModel() <AddMessageViewControllerDelegate,
                            OSSwitchTableCellDelegate,
                            SelectResponsibleViewControllerDelegate,
@@ -500,6 +503,8 @@
 
 - (BOOL) isValidTaskName: (NSString*) taskName
 {
+    taskName = [NSString getStringWithoutWhiteSpacesAndNewLines: taskName];
+    
     return taskName.length > 0;
 }
 
