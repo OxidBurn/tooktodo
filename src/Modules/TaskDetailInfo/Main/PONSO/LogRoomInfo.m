@@ -60,7 +60,7 @@
     UIFont* roomNumberFont = [UIFont fontWithName: @"SFUIText-Semibold"
                                              size: 13.f];
     
-    NSAttributedString* numberString = [[NSAttributedString alloc] initWithString: self.roomNumber
+    NSAttributedString* numberString = [[NSAttributedString alloc] initWithString: ( self.roomNumber ) ? self.roomNumber : @""
                                                                        attributes: @{ NSFontAttributeName: roomNumberFont}];
     
     return numberString;
