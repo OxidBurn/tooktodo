@@ -30,6 +30,7 @@
 // Helpers
 #import "Utils.h"
 #import "ProjectsEnumerations.h"
+#import "NSString+Utils.h"
 
 @interface TaskDetailViewModel() <TaskInfoHeaderDelegate, TaskDetailCellDelegate, FilterSubtasksCellDelegate, CommentCellDelegate, AddCommentCellDelegate, ParentCollectionCellDelegate, UIScrollViewDelegate>
 
@@ -665,10 +666,19 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 
 - (BOOL) isCorrectMessageLenght: (NSString*) message
 {
-    if ( message.length < 2000 )
+    if ( message.length == 0 )
     {
-        return YES;
+        [AlertViewBlocks confirmWithTitle: @"Ошибка"
+                                  message: @"Необходимо заполнить поле комментария"
+                                  confirm: nil];
+        
+        return NO;
     }
+    else
+        if ( message.length < 2000 )
+        {
+            return YES;
+        }
     
     [AlertViewBlocks confirmWithTitle: @"Ошибка"
                               message: @"Текст комментария превышает колличество допустимых символов"
@@ -765,7 +775,9 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void) addCommentCell: (AddCommentCell *) addCommentCell
             onSendClick: (UIButton *)       sender
 {
-    if ( [self isCorrectMessageLenght: addCommentCell.addCommentTextView.text] )
+    NSString* commentText = [NSString getStringWithoutWhiteSpacesAndNewLines: addCommentCell.addCommentTextView.text];
+    
+    if ( [self isCorrectMessageLenght: commentText] )
     {
         if (self.commentID)
         {
