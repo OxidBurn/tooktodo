@@ -71,7 +71,7 @@
     UIFont* roomTitleFont = [UIFont fontWithName: @"SFUIText-Regular"
                                              size: 13.f];
     
-    NSAttributedString* titleString = [[NSAttributedString alloc] initWithString: self.roomTitle
+    NSAttributedString* titleString = [[NSAttributedString alloc] initWithString: ( self.roomTitle ) ? self.roomTitle : @""
                                                                       attributes: @{ NSFontAttributeName: roomTitleFont}];
     
     return titleString;
