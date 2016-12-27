@@ -137,6 +137,7 @@ typedef NS_ENUM(NSUInteger, ButtonOnAlertType)
                     break;
                 case PermissionType:
                 {
+                    cell.textLabel.text = [self.model getRoleInfoCellLabelTextForIndexPath: indexPath];
                     cell.tag = PermissionType;
                 }
                     break;

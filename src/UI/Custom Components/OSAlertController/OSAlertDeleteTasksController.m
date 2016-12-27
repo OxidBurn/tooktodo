@@ -39,7 +39,7 @@
 
 - (void) setTaskTitle: (NSString*) title
 {
-    self.taskTitleLabel.text = [NSString stringWithFormat: @"Вы действительно ходите удалить задачу %@ ?", title];
+    self.taskTitleLabel.text = [NSString stringWithFormat: @"Вы действительно хотите удалить задачу %@ ?", title];
 }
 
 #pragma mark - Actions -

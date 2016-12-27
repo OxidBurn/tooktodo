@@ -333,9 +333,14 @@ typedef NS_ENUM(NSUInteger, ContactType)
         [tmpCellContentArray removeObject: @"Права доступа"];
         
         self.roleCellsContent = tmpCellContentArray.copy;
+        
+        return self.roleCellsContent[indexPath.row];
     }
     
-    return self.roleCellsContent[indexPath.row];
+    else
+    {
+        return self.roleCellsContent[indexPath.row];
+    }
 }
 
 - (NSString*) getDetailRoleCellLabelTextForIndexPath: (NSIndexPath*) indexPath
