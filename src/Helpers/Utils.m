@@ -313,6 +313,27 @@ static NSDateFormatter* defaultDateFormatter = nil;
     return expareDate;
 }
 
++ (void) convertDictionaryToJsonAndPrint: (NSDictionary*) dictionary
+{
+    NSError* error = nil;
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject: dictionary
+                                                       options: NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error: &error];
+    
+    if (! jsonData)
+    {
+        NSLog(@"Got an error: %@", error);
+    }
+    else
+    {
+        NSString* jsonString = [[NSString alloc] initWithData: jsonData
+                                                     encoding: NSUTF8StringEncoding];
+        
+        NSLog(@"Json string:\n %@", jsonString);
+    }
+}
+
 #pragma mark - Application -
 
 + (NSString*) applicationSupportDirectory

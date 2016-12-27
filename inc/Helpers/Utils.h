@@ -90,6 +90,8 @@
 
 - (NSDate*) getDateFromString: (NSString*) string;
 
++ (void) convertDictionaryToJsonAndPrint: (NSDictionary*) dictionary;
+
 
 #pragma mark - Avatars -
 
