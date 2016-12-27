@@ -107,6 +107,7 @@
 {
     self.addTermTasksTableView.dataSource = self.viewModel;
     self.addTermTasksTableView.delegate   = self.viewModel;
+    self.addTermTasksTableView.rowHeight  = UITableViewAutomaticDimension;
 }
 
 #pragma mark - AddTaskTermsViewModelDelegate methods -
