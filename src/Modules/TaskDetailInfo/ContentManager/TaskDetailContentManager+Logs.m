@@ -39,7 +39,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
 };
 
 
-
 @implementation TaskDetailContentManager (Logs)
 
 
@@ -379,7 +378,6 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
         row.logContent = logContent;
         
         [content addObject: row];
-        
     }];
     
     return content.copy;

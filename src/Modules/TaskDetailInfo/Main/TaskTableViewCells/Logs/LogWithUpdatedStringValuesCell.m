@@ -74,6 +74,18 @@
 - (void) handleUIAccordingToActionType: (LogsActionType) actionType
                         withLogContent: (LogsContent*) logContent
 {
+    // handling hidding of elements
+    if ( actionType == EditedOldValueType )
+    {
+        self.arrowSendImageView.hidden   = NO;
+        self.logSecondDetailLabel.hidden = NO;
+    }
+    else
+    {
+        self.arrowSendImageView.hidden   = YES;
+        self.logSecondDetailLabel.hidden = YES;
+    }
+    
     switch ( actionType )
     {
         case AddedNewValueType:
@@ -86,10 +98,6 @@
             
         case EditedOldValueType:
         {
-            // showing second label and arrow
-            self.arrowSendImageView.hidden   = NO;
-            self.logSecondDetailLabel.hidden = NO;
-            
             self.logFirstDetailLabel.textColor  = self.darkColor;
             self.logSecondDetailLabel.textColor = self.darkColor;
             
