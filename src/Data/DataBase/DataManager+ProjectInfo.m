@@ -57,7 +57,7 @@
 - (void) persistNewProjectWithInfo: (ProjectInfoModel*)        data
                          inContext: (NSManagedObjectContext*) context
 {
-    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"projectID == %@ OR title == %@", @(data.projectID), data.title];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat: @"projectID == %@", @(data.projectID)];
     
     ProjectInfo* projectInfo = [ProjectInfo MR_findFirstWithPredicate: predicate
                                                             inContext: context];
