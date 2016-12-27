@@ -195,11 +195,13 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        level.isSelected = @(!level.isSelected.boolValue);
+        ProjectTaskRoomLevel* updatedLevel = [level MR_inContext: localContext];
+        
+        updatedLevel.isSelected = @(!updatedLevel.isSelected.boolValue);
         
         [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
             
-            obj.isSelected = level.isSelected;
+            obj.isSelected = updatedLevel.isSelected;
             
         }];
         

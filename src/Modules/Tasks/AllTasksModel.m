@@ -149,19 +149,23 @@
                          withCompletion: (CompletionWithSuccess) completion
 {
     ProjectInfo* project    = self.projectsInfoArray[indexPath.section];
-    ProjectTaskStage* stage = project.stage[indexPath.row];
     
-    __weak typeof(self) blockSelf = self;
-    
-    [DataManagerShared updateExpandedStateOfStage: stage
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       
-                                       [blockSelf updateAllTasksData];
-                                       
-                                       if ( completion )
-                                           completion(YES);
-                                       
-                                   }];
+    if ( indexPath.row < project.stage.count )
+    {
+        ProjectTaskStage* stage = project.stage[indexPath.row];
+        
+        __weak typeof(self) blockSelf = self;
+        
+        [DataManagerShared updateExpandedStateOfStage: stage
+                                       withCompletion: ^(BOOL isSuccess) {
+                                           
+                                           [blockSelf updateAllTasksData];
+                                           
+                                           if ( completion )
+                                               completion(YES);
+                                           
+                                       }];
+    }
 }
 
 - (NSString*) getCellIDAtIndexPath: (NSIndexPath*) path
