@@ -97,7 +97,7 @@
     {
         case TaskToOnApprovalStatusType:
         {
-            if ( selectedStatus == TaskOnReworkStatusType )
+            if ( selectedStatus == TaskToReworkStatusType )
             {
                 if ( self.showOnRevisionController )
                     self.showOnRevisionController();
