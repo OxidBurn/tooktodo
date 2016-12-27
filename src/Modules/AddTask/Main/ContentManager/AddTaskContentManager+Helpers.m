@@ -52,10 +52,21 @@
         NSString* secondDate = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
         
         labelText = [NSString stringWithFormat: @"%@ - %@, %@", firstDate, secondDate, [Utils generateStringOfDaysCount: duration]];
-    } else
-    {
-        labelText = @"Не выбраны";
     }
+    else
+        if ( startDate )
+        {
+            labelText = [NSDate stringFromDate: startDate withFormat: @"dd.MM.yyyy"];
+        }
+        else
+            if ( finishDate )
+            {
+                labelText = [NSDate stringFromDate: finishDate withFormat: @"dd.MM.yyyy"];
+            }
+            else
+            {
+                labelText = @"Не выбраны";
+            }
     
     return labelText;
 }

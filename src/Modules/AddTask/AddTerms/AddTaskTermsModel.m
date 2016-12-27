@@ -225,6 +225,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
     RowContent* rowOne = [RowContent new];
     
     rowOne.cellId = self.termsCellsInfo[TermsRightDetailCell];
+    
     rowOne.detail = self.terms.startDate ? [self getStringFromDate: self.terms.startDate] : @"Не выбрано";
     rowOne.title  = @"Начало";
     
@@ -307,6 +308,9 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
             {
                 date = [date dateByAddingTimeInterval: 2];
                 
+                if ( [self checkIfDate: date
+                       isLaterThanDate: self.terms.startDate] )
+                {
                 RowContent* newRow = [self createRowForDate: date
                                                   withTitle: @"Конец"];
                 
@@ -318,6 +322,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
                 self.terms.endDate = date;
 
                 [self updateDuration];
+                }
             }
                 
             default:
@@ -375,7 +380,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     NSDateFormatter* formatter = [NSDateFormatter new];
     
-    [formatter setDateFormat: @"MM.dd.yyyy"];
+    [formatter setDateFormat: @"EE, dd.MM.yyyy"];
     
     NSString* dateFromString = date ? [formatter stringFromDate: date] : @"Не выбрано";
     
@@ -403,7 +408,7 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
 {
     RowContent* newRow = [RowContent new];
     
-    newRow.detail = [self getStringFromDate: date];
+    newRow.detail = [self getStringFromDate: date].capitalizedString;
     newRow.title  = title;
     newRow.cellId = self.termsCellsInfo[TermsRightDetailCell];
     
@@ -442,6 +447,12 @@ static NSString* DatePickerTagKey = @"DatePickerTag";
         if ([self.delegate respondsToSelector: @selector(reloadTermsTableView)] )
             [self.delegate reloadTermsTableView];
     }
+}
+
+- (BOOL) checkIfDate: (NSDate*) date1
+     isLaterThanDate: (NSDate*) date2
+{
+    return [date1 compare:date2] == NSOrderedDescending;
 }
 
 @end
