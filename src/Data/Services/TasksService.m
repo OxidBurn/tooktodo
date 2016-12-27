@@ -365,7 +365,7 @@
     NSString* requestURL           = [self buildSendReworkStatusMessageURL];
     NSDictionary* requestParameter = [self buildSendReworkStatusMessageParameter: message];
     
-    RACSignal* sendReworkStatusMessage = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    RACSignal* sendReworkStatusMessage = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
         
         [[[TasksAPIService sharedInstance] sendReworkStatusMessage: requestURL
                                                    withParameters: requestParameter]
@@ -383,7 +383,7 @@
                           }];
              
          }
-         error: ^(NSError *error) {
+         error: ^(NSError* error) {
              
              [subscriber sendError: error];
              
@@ -840,7 +840,7 @@
 
 - (NSDictionary*) getUpdateTaskStatusParameter: (TaskStatusType) status
 {
-    NSDictionary* requestParameter = @{@"status" : [NSString stringWithFormat: @"%lu", status]};
+    NSDictionary* requestParameter = @{@"status" : [NSString stringWithFormat: @"%lu", (NSUInteger)status]};
     
     return requestParameter;
 }
@@ -860,7 +860,8 @@
 
 - (NSDictionary*) buildSendReworkStatusMessageParameter: (NSString*) message
 {
-    NSDictionary* requestParameter = @{@"message" : message};
+    NSDictionary* requestParameter = @{@"message" : message,
+                                       @"files"   : @[]};
     
     return requestParameter;
 }
