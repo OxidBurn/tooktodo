@@ -23,6 +23,7 @@
 #import "ParentCollectionCell.h"
 #import "ProjectsEnumerations.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -257,15 +258,18 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     itemThree.cellId     = self.collectionViewCellsIdArray[CollectionDetailCell];
     itemThree.cellTitle  = @"Помещение";
     
-    NSArray* rooms = self.task.rooms.array;
-    
-    [rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if ( self.task.rooms.count == 0 && self.task.roomLevel )
+    {
+        itemThree.cellDetail = @"Уровень";
+        itemThree.roomNumber = self.task.roomLevel.level.integerValue;
+    }
+    else
+    {
+        ProjectTaskRoom* room = self.task.rooms.firstObject;
         
-        itemThree.cellDetail = obj.title;
-        itemThree.roomNumber = obj.number.integerValue;
-    }];
-    
-    
+        itemThree.cellDetail = room.title;
+        itemThree.roomNumber = room.number.integerValue;
+    }
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     
