@@ -804,21 +804,27 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         
         @weakify(self)
         
-        RACSignal* signal = [TaskCommentsService.sharedInstance
-                             postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
+        RACSignal* signal = [TaskCommentsService.sharedInstance postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
         
         [signal subscribeNext: ^(id response) {
+            
             @strongify(self)
+            
             [self.model fillSelectedTask: self.model.getCurrentTask
                           withCompletion: ^(BOOL isSuccess) {
+                              
                               @strongify(self)
+                              
                               [self.tableView reloadData];
+                              
                               [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
                                                    withDelegate: self];
+                              
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
             }];
-         } error: ^(NSError *error) {
+         }
+                        error: ^(NSError *error) {
          }];
     }
 }
