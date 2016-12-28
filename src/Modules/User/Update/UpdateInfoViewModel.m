@@ -63,13 +63,12 @@
 
 - (NSString*) getPhoneNumberFormatString
 {
-    return @"+*(***)***-**-**";
+    return [self.model getPhoneNumberFormatString];
 }
 
 - (AKNumericFormatter*) getPhoneNumberFormat
 {
-    return [AKNumericFormatter formatterWithMask: [self getPhoneNumberFormatString]
-                            placeholderCharacter: '*'];
+    return [self.model getPhoneNumberFormat];
 }
 
 - (RACCommand*) saveDataCommand
@@ -83,7 +82,6 @@
             @strongify(self)
             
             return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-               
                
                     [self.model updateUserValues: [self getFilledObject]
                                   withCompletion: ^(BOOL isSuccess) {

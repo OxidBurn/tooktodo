@@ -133,8 +133,17 @@
             userInfo.fullName          = [newInfo.name stringByAppendingFormat: @" %@", newInfo.surname];
             userInfo.firstName         = newInfo.name;
             userInfo.lastName          = newInfo.surname;
-            userInfo.phoneNumber       = newInfo.phoneNumber;
-            userInfo.extendPhoneNumber = newInfo.additionalPhoneNumber;
+            
+            if (newInfo.phoneNumber.length == 16 || newInfo.phoneNumber.length == 0)
+                {
+                    userInfo.phoneNumber  = newInfo.phoneNumber;
+                }
+
+            if (newInfo.additionalPhoneNumber.length == 16 || newInfo.additionalPhoneNumber.length == 0)
+                {
+                    userInfo.extendPhoneNumber  = newInfo.additionalPhoneNumber;
+                }
+            
         }
         
     }
