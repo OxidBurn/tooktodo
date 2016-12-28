@@ -364,6 +364,12 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
             }
                 break;
                 
+            case LogChangedSystemType:
+            {
+                row.cellTypeIndex = LogDefaultCellType;
+            }
+                break;
+                
             default:
                 
                 row.cellTypeIndex = LogDefaultCellType;
@@ -423,7 +429,7 @@ typedef NS_ENUM(NSUInteger, LogsWithUpdatedLabelsActionType)
                                          withFormat: @"dd MMMM"];
     
     NSString* time = [NSDate stringFromDate: date
-                                 withFormat: @"hh:mm"];
+                                 withFormat: @"HH:mm"];
     
     return [NSString stringWithFormat: @"%@ в %@", dateInString, time];
 }
