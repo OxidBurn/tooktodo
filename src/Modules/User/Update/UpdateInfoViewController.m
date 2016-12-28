@@ -136,8 +136,6 @@
 
     [label sizeToFit];
     
-    
-    
     self.navigationItem.titleView = label;
     
     return label;
