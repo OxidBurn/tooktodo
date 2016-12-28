@@ -36,6 +36,9 @@
                             selector: @selector(needToUpdateContent)
                                 name: @"NeedToUpdateContent"
                               object: nil];
+    
+    
+    [self needToUpdateContent];
 }
 
 - (void) viewDidLoad
