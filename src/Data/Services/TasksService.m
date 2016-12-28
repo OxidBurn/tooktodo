@@ -711,7 +711,7 @@
     if ( taskInfo.room )
     {
         NSDictionary* roomModelDic     = @{@"id"      : taskInfo.room.roomID,
-                                           @"levelId" : taskInfo.room.roomLevel.roomLevelID};
+                                           @"levelId" : taskInfo.room.roomLevelId};
         newTaskParameter[@"roomModel"] = roomModelDic;
     }
     else

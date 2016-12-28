@@ -140,6 +140,8 @@
 - (void) updateTaskNameWithString: (NSString*) newTaskName
 {
     [self.contentManager updateTaskNameWithString: newTaskName];
+    
+    self.task.taskName = newTaskName;
 }
 
 - (NewTask*) returnNewTask
@@ -390,6 +392,8 @@
 - (void) updateTaskHiddenProperty: (BOOL) isHidden
 {
     self.addTaskTableViewContent = [self.contentManager updateTaskHiddenProperty: isHidden];
+    
+    self.task.isHiddenTask = isHidden;
 }
 
 
@@ -439,7 +443,9 @@
 
 - (void) returnSelectedSystem: (ProjectSystem*) system
 {
-  self.addTaskTableViewContent = [self.contentManager updateSelectedSystem: system];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedSystem: system];
+    
+    self.task.system = system;
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -452,6 +458,8 @@
 {
     self.addTaskTableViewContent = [self.contentManager updateSelectedStage: stage];
     
+    self.task.stage = stage;
+    
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
 }
@@ -462,6 +470,18 @@
 - (void) returnSelectedInfo: (id) info
 {
    self.addTaskTableViewContent = [self.contentManager updateSelectedInfo: info];
+    
+    if ([info isKindOfClass: [ProjectTaskRoom class]])
+    {
+        ProjectTaskRoom* room = (ProjectTaskRoom*)info;
+        self.task.room = room;
+    }
+    
+    else if ([info isKindOfClass: [ProjectTaskRoomLevel class]])
+    {
+        ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*) info;
+        self.task.room.roomLevel = level;
+    }
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
@@ -478,6 +498,9 @@
                                                                withDescription: typeDescription
                                                                      withColor: typeColor];
     
+    self.task.taskType = type;
+    self.task.taskDescription = typeDescription;
+    
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];
 }
@@ -488,6 +511,8 @@
 - (void) updateTerms: (TermsData*) terms
 {
     self.addTaskTableViewContent = [self.contentManager updateTerms: terms];
+    
+    self.task.terms = terms;
 }
 
 
@@ -496,6 +521,8 @@
 - (void) setTaskDescription: (NSString*) taskDescription
 {
     self.addTaskTableViewContent = [self.contentManager updateTaskDescription: taskDescription];
+    
+    self.task.taskDescription = taskDescription;
 }
 
 

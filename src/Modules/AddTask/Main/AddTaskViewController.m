@@ -597,6 +597,9 @@
                 case EditTaskControllerType:
                 {
                    [self.viewModel updateTaskInfoOnServerWithCompletion: ^(BOOL isSuccess) {
+                       
+                       if ( [self.delegate respondsToSelector: @selector( reloadTaskDetailTableView) ] )
+                           [self.delegate reloadTaskDetailTableView];
                     
                        [self dismissViewControllerAnimated: YES
                                                 completion: nil];
