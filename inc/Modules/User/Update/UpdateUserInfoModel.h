@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AKNumericFormatter.h"
 #import "UpdatedUserInfo.h"
 
 @interface UpdateUserInfoModel : NSObject
@@ -22,5 +22,9 @@
 
 - (void) updateUserValues: (UpdatedUserInfo*)        newInfo
            withCompletion: (void(^)(BOOL isSuccess)) completion;
+
+- (NSString*) getPhoneNumberFormatString;
+
+- (AKNumericFormatter*) getPhoneNumberFormat;
 
 @end

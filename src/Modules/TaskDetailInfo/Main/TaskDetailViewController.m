@@ -21,6 +21,8 @@
 #import "OSTableView.h"
 #import "ApproverViewController.h"
 #import "ProjectsEnumerations.h"
+#import "TaskAvailableAction+CoreDataClass.h"
+#import "TaskAvailableActionsList+CoreDataClass.h"
 
 //Extentions
 #import "BaseMainViewController+Popover.h"
@@ -38,6 +40,7 @@
 // properties
 @property (strong, nonatomic) TaskDetailViewModel* viewModel;
 @property (strong, nonatomic) UITapGestureRecognizer *keyboardRecognizer;
+@property (nonatomic, assign) TaskAvailableActions availableActions;
 
 // methods
 - (IBAction) onBackBtn:   (UIBarButtonItem*) sender;
@@ -454,6 +457,28 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIKeyboardWillHideNotification
                                                   object: nil];
+}
+
+- (void) checkAvailableActionsForTask
+{
+    TaskAvailableActionsList* availableActionsList = [[self.viewModel getCurrentTask] availableActions];
+    
+    NSArray* availableActions = availableActionsList.actions.allObjects;
+    
+    [availableActions enumerateObjectsUsingBlock: ^(TaskAvailableAction*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        switch (obj.actionID.integerValue)
+        {
+            case CreateSubtask:
+            {
+                // make add subtask btn enabled
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
 }
 
 @end

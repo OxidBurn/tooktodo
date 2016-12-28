@@ -77,9 +77,18 @@
                                              withCompletion: completion];
     }
     
-  
 }
 
+- (NSString*) getPhoneNumberFormatString
+{
+    return @"+*(***)***-**-**";
+}
+
+- (AKNumericFormatter*) getPhoneNumberFormat
+{
+    return [AKNumericFormatter formatterWithMask: [self getPhoneNumberFormatString]
+                            placeholderCharacter: '*'];
+}
 
 #pragma mark - Internal methods -
 

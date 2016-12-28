@@ -259,9 +259,6 @@
     
     NSArray* testContent        = [NSArray new];
     
-//    if ( [task comments].count == 0 )
-//        testContent = [self createTestComment];
-    
     NSMutableArray* commentsTmp = testContent.mutableCopy;
 
     NSNumber* numberOfComments = @([task comments].count);
@@ -285,7 +282,7 @@
                 
                 newRow.isAuthor = [self checkIfIsAuthorOfComment: comment.authorId.integerValue];
                 
-                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 28;
+                newRow.commentTextViewHeight  = [self countTextViewHeightForString: comment.message] + 30;
     
                 [commentsTmp addObject: newRow];
             }

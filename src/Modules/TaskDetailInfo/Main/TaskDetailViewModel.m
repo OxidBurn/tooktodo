@@ -815,11 +815,11 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
                               
                               @strongify(self)
                               
-                              [self.tableView reloadData];
-                              
-                              [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
-                                                   withDelegate: self];
-                              
+                              [self reloadDataWithCompletion: ^(BOOL isSuccess) {
+                                  
+                                  [self.tableView reloadData];
+                              }];
+                             
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
             }];

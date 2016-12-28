@@ -112,7 +112,9 @@
             @strongify(self)
             
             if ( isSuccess.boolValue )
+            {
                 [self.navigationController popViewControllerAnimated: YES];
+            }
             
         }];
         
@@ -133,8 +135,6 @@
     label.text            = @"ПРОФИЛЬ";
 
     [label sizeToFit];
-    
-    
     
     self.navigationItem.titleView = label;
     

@@ -11,10 +11,13 @@
 // Classes
 #import "ProjectsControllersDelegate.h"
 #import "MainTabBarController.h"
+#import "UpdateInfoViewController.h"
+#import "UserInfoViewController.h"
 
 // Categories
 #import "UIViewController+Helper.h"
 #import "BaseMainViewController+NavigationTitle.h"
+
 
 @interface ProfileViewController ()
 
@@ -57,7 +60,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Actions -
 
 - (IBAction) selectedSegmentItemIndex: (UISegmentedControl*) sender
@@ -67,6 +69,7 @@
         self.editUserInfoBtn.customView.hidden = NO;
         
         [self showInfoScreenWithID: @"UserDetailScreen"];
+    
     }
     else
     {
@@ -76,6 +79,11 @@
     }
 }
 
+- (IBAction) onEdit: (UIBarButtonItem*) sender
+{
+    [self performSegueWithIdentifier: @"ShowUpdateUserInfo"
+                              sender: self];
+}
 
 #pragma mark - Actions -
 

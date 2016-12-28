@@ -251,11 +251,34 @@
 
 - (IBAction) onDoneBtn: (UIBarButtonItem*) sender
 {
-    [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+    switch ([self.viewModel getControllerType])
+    {
+        case AddSubtaskControllerType:
+        case AddNewTaskControllerType:
+        {
+            [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                
+                [self dismissViewControllerAnimated: YES
+                                         completion: nil];
+            }];
+        }
+            break;
         
-        [self dismissViewControllerAnimated: YES
-                                 completion: nil];
-    }];
+        case EditTaskControllerType:
+        {
+            [self.viewModel updateTaskInfoOnServerWithCompletion:^(BOOL isSuccess) {
+                
+                [self dismissViewControllerAnimated: YES
+                                         completion: nil];
+            }];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
@@ -554,15 +577,19 @@
                 case AddSubtaskControllerType:
                 case AddNewTaskControllerType:
                 {
-                    [self showTaskCreatedMessage];
-                    
                     [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
+                        
+                        [self showTaskCreatedMessage];
                         
                         if ( [self.delegate respondsToSelector: @selector( reloadTaskDetailTableView) ] )
                              [self.delegate reloadTaskDetailTableView];
                         
-                        [self dismissViewControllerAnimated: YES
-                                                 completion: nil];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            
+                            [self dismissViewControllerAnimated: YES
+                                                     completion: nil];
+                        });
+                        
                     }];
                 }
                     break;
@@ -609,8 +636,7 @@
                          
                          self.messageView.hidden               = NO;
                          self.tableViewTopConstraint.constant  = 75;
-
-
+                         
                      }
                      completion: ^(BOOL finished) {
                          
