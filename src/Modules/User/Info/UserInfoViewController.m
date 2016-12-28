@@ -61,7 +61,6 @@
     
     [self bindingUI];
     
-    [self updateInfo];
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -71,6 +70,8 @@
     // Update all contact info on appearing screen
     // for case, when user update info in another screen
     [self updateContactInfo];
+    
+    [self updateInfo];
 }
 
 #pragma mark - Memory managment -

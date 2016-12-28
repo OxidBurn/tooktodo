@@ -79,31 +79,43 @@ static bool isFirstAccess = YES;
 {
     [DataManagerShared updateUserInfo: newInfo
                               forUser: user
-                       withCompletion: nil];
+                       withCompletion: completion];
     
     // Update info on server
     NSDictionary* requestParameters = @{@"firstName"             : newInfo.name,
                                         @"lastName"              : newInfo.surname,
-                                        @"phoneNumber"           : newInfo.phoneNumber,
-                                        @"additionalPhoneNumber" : newInfo.additionalPhoneNumber};
+                                        @"phoneNumber"           : (newInfo.phoneNumber.length == 0 || newInfo.phoneNumber.length == 16) ? newInfo.phoneNumber : user.phoneNumber,
+                                        @"additionalPhoneNumber" : (newInfo.additionalPhoneNumber.length == 0 || newInfo.additionalPhoneNumber.length == 16) ? newInfo.additionalPhoneNumber : user.extendPhoneNumber};
     
     [[[UserAPIService sharedInstance] updateUserInfoOnServer: requestParameters] subscribeNext: ^(NSDictionary* info) {
         
         BOOL isSuccess = [[info valueForKey: @"isSuccess"] boolValue];
         
-        if (newInfo.name.length > 0 && newInfo.surname.length > 0)
+        if (newInfo.name.length > 0 && newInfo.surname.length > 0 )
         {
-            if ( isSuccess )
+            if ([self isCorrectNewUserPhone: newInfo])
             {
-                [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
-                
-                // Update info localy
-                [[DataManager sharedInstance] updateUserInfo: newInfo
-                                                     forUser: user
-                                              withCompletion: completion];
+                if ( isSuccess )
+                {
+                    [SVProgressHUD showSuccessWithStatus: @"Данные успешно обновлены"];
+                    
+                    // Update info localy
+                    [[DataManager sharedInstance] updateUserInfo: newInfo
+                                                         forUser: user
+                                                  withCompletion: completion];
+                    
+                    if ( completion )
+                        completion(YES);
+                }
+            }
+            
+            else
+            {
+                NSString* message = @"Введите корректный номер телефона";
+                [Utils showErrorAlertWithMessage: message];
                 
                 if ( completion )
-                    completion(YES);
+                    completion(NO);
             }
         }
         
@@ -233,6 +245,18 @@ static bool isFirstAccess = YES;
                                 completion(isSuccess);
                                 
                             }];
+}
+
+- (BOOL) isCorrectNewUserPhone: (UpdatedUserInfo*) newInfo
+{
+    BOOL isCorect = NO;
+    
+    if ((newInfo.phoneNumber.length == 0 || newInfo.phoneNumber.length == 16) && (newInfo.additionalPhoneNumber.length == 0 || newInfo.additionalPhoneNumber.length == 16))
+    {
+        isCorect = YES;
+    }
+    
+    return isCorect;
 }
 
 

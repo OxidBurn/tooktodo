@@ -322,5 +322,17 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
     //LogCanceledTaskType = 21, // отменил задачу ( возможно приходит 2 типа задачи )
 };
 
+typedef NS_ENUM (NSUInteger, TaskAvailableActions)
+{
+    MoveToStage = 12,
+    CreateOnBase = 20,
+    CreateSubtask = 21,
+    Edit = 22,
+    Delete = 23,
+    AddParticipant = 31,
+    DeleteParticipant = 33,
+    ChangeParticipant = 34
+};
+
 
 #endif /* ProjectsEnumerations_h */
