@@ -756,17 +756,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void)    addCommentCell: (AddCommentCell*) addCommentCell
    newCommentTextDidChange: (UITextView*)     sender
 {
-    CGRect frame = self.addCommentCell.frame;
-    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, CGFLOAT_MAX)].height + 30.5;
-    frame.size.height = MIN(frame.size.height, 131);
-
-    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
-
-    if (self.addCommentCell.addCommentTextView.scrollEnabled)
-    {
-        return;
-    }
-
+    self.addCommentCell.addCommentTextView.scrollEnabled = !(self.addCommentCell.frame.size.height < 100);
+    
     [self updateAddCommentHeight];
 
     [self scrollToCommentCell];
