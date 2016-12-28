@@ -284,7 +284,6 @@
     self.taskTableView.delegate   = self.viewModel;
     
     self.taskTableView.rowHeight = UITableViewAutomaticDimension;
-    self.taskTableView.estimatedRowHeight = 58;
     
     __weak typeof(self) blockSelf = self;
     

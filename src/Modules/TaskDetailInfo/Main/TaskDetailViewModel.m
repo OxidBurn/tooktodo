@@ -756,17 +756,8 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 - (void)    addCommentCell: (AddCommentCell*) addCommentCell
    newCommentTextDidChange: (UITextView*)     sender
 {
-    CGRect frame = self.addCommentCell.frame;
-    frame.size.height = [self.addCommentCell.addCommentTextView sizeThatFits: CGSizeMake(UIScreen.mainScreen.bounds.size.width - 60, CGFLOAT_MAX)].height + 30.5;
-    frame.size.height = MIN(frame.size.height, 131);
-
-    self.addCommentCell.addCommentTextView.scrollEnabled = !(frame.size.height < 152);
-
-    if (self.addCommentCell.addCommentTextView.scrollEnabled)
-    {
-        return;
-    }
-
+    self.addCommentCell.addCommentTextView.scrollEnabled = !(self.addCommentCell.frame.size.height < 100);
+    
     [self updateAddCommentHeight];
 
     [self scrollToCommentCell];
@@ -813,21 +804,27 @@ didSelectRowAtIndexPath: (NSIndexPath*) indexPath
         
         @weakify(self)
         
-        RACSignal* signal = [TaskCommentsService.sharedInstance
-                             postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
+        RACSignal* signal = [TaskCommentsService.sharedInstance postCommentForSelectedTask: addCommentCell.addCommentTextView.text];
         
         [signal subscribeNext: ^(id response) {
+            
             @strongify(self)
+            
             [self.model fillSelectedTask: self.model.getCurrentTask
                           withCompletion: ^(BOOL isSuccess) {
+                              
                               @strongify(self)
-                              [self.tableView reloadData];
-                              [self.headerView fillViewWithInfo: [self.model returnHeaderNumbersInfo]
-                                                   withDelegate: self];
+                              
+                              [self reloadDataWithCompletion: ^(BOOL isSuccess) {
+                                  
+                                  [self.tableView reloadData];
+                              }];
+                             
                               self.addCommentCell.addCommentTextView.text   = @"";
                               self.addCommentCell.addCommentLabel.alpha     = 1;
             }];
-         } error: ^(NSError *error) {
+         }
+                        error: ^(NSError *error) {
          }];
     }
 }

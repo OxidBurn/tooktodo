@@ -14,6 +14,7 @@
 #import "TaskCommentsAPIService.h"
 #import "CommentsModel.h"
 #import "ProjectInfo+CoreDataClass.h"
+#import "TasksService.h"
 
 // Categories
 #import "DataManager+Tasks.h"
@@ -96,8 +97,14 @@
              [self parseCommentsResponse: @[response[0]]
                           withCompletion: ^(BOOL isSuccess) {
 
-                                 [subscriber sendNext: nil];
-                                 [subscriber sendCompleted];
+                              ProjectTask* currentTask = [DataManagerShared getSelectedTask];
+                              
+                                 [[[TasksService sharedInstance] loadSelectedTaskLogs: currentTask] subscribeNext: ^(id x) {
+                                    
+                                     [subscriber sendNext: nil];
+                                     [subscriber sendCompleted];
+                                     
+                                 }];
                               
                           }];
          }

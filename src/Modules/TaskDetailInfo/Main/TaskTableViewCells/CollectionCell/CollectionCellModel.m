@@ -23,6 +23,7 @@
 #import "ParentCollectionCell.h"
 #import "ProjectsEnumerations.h"
 #import "ProjectTaskResponsible+CoreDataClass.h"
+#import "ProjectTaskRoomLevel+CoreDataClass.h"
 
 // Factories
 #import "TermsInfoCollectionCellFactory.h"
@@ -80,6 +81,32 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 
 @implementation CollectionCellModel
 
+
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    if ( self = [super init] )
+    {
+        [DefaultNotifyCenter addObserver: self
+                                selector: @selector(realoadContent)
+                                    name: @"UpdateCellContent"
+                                  object: nil];
+    }
+    
+    return self;
+}
+
+
+#pragma mark - Memory managment -
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"UpdateCellContent"
+                                 object: nil];
+}
+
 #pragma mark - Properties -
 
 - (ProjectTask*) task
@@ -96,7 +123,12 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 {
     if ( _collectionViewCellsIdArray == nil )
     {
-        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId", @"DefaultCollectionCellId" ];
+        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId",
+                                         @"DetailCollectionCellId",
+                                         @"OnPlanCollectionCellId",
+                                         @"SingleUserCollectionCellId",
+                                         @"GroupOfUsersCollectionCellId",
+                                         @"DefaultCollectionCellId" ];
     }
     
     return _collectionViewCellsIdArray;
@@ -118,7 +150,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     {
         NSMutableArray* tmpArr = [NSMutableArray arrayWithCapacity: self.task.approvments.count];
         
-        [self.task.approvments enumerateObjectsUsingBlock:^(TaskApprovments * _Nonnull obj, BOOL * _Nonnull stop) {
+        [self.task.approvments enumerateObjectsUsingBlock: ^(TaskApprovments * _Nonnull obj, BOOL * _Nonnull stop) {
             
             [tmpArr addObject: obj.approverUserId];
             
@@ -230,6 +262,11 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     return self.varToStoreDelegate;
 }
 
+- (void) realoadContent
+{
+    self.taskCollectionViewContent = [self createCollectionViewContent];
+}
+
 #pragma mark - Internal -
 
 - (NSArray*) createCollectionViewContent
@@ -257,15 +294,18 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     itemThree.cellId     = self.collectionViewCellsIdArray[CollectionDetailCell];
     itemThree.cellTitle  = @"Помещение";
     
-    NSArray* rooms = self.task.rooms.array;
-    
-    [rooms enumerateObjectsUsingBlock:^(ProjectTaskRoom*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if ( self.task.rooms.count == 0 && self.task.roomLevel )
+    {
+        itemThree.cellDetail = @"Уровень";
+        itemThree.roomNumber = self.task.roomLevel.level.integerValue;
+    }
+    else
+    {
+        ProjectTaskRoom* room = self.task.rooms.firstObject;
         
-        itemThree.cellDetail = obj.title;
-        itemThree.roomNumber = obj.number.integerValue;
-    }];
-    
-    
+        itemThree.cellDetail = room.title;
+        itemThree.roomNumber = room.number.integerValue;
+    }
     
     TaskCollectionCellsContent* itemFour = [TaskCollectionCellsContent new];
     

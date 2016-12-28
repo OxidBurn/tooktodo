@@ -316,6 +316,9 @@
 {
     [self fillSelectedTask: [[TasksService sharedInstance] getUpdatedSelectedTask]
             withCompletion: completion];
+    
+    [DefaultNotifyCenter postNotificationName: @"UpdateCellContent"
+                                       object: nil];
 }
 
 - (ProjectTask*) getSelectedSubtask
