@@ -386,10 +386,14 @@
 {
     [MagicalRecord saveWithBlock: ^(NSManagedObjectContext * _Nonnull localContext) {
         
-        ProjectInfo* firstProject = [ProjectInfo MR_findFirstInContext: localContext];
-        
-        firstProject.isSelected = @(YES);
-        firstProject.lastVisit  = [NSDate date];
+        if ( [self getSelectedProjectInfo] == nil )
+        {
+            ProjectInfo* firstProject = [ProjectInfo MR_findFirstOrderedByAttribute: @"title"
+                                                                          ascending: YES];
+            
+            firstProject.isSelected = @(YES);
+            firstProject.lastVisit  = [NSDate date];
+        }
         
     }
                       completion: ^(BOOL contextDidSave, NSError * _Nullable error) {

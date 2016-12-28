@@ -37,9 +37,9 @@
 {
     [super loadView];
     
-    self.mainTabBariPhone.delegate     = self;
-    self.mainTabBariPad.delegate       = self;
-    self.mainTabBariPhone.taskDelegate = self;
+    self.mainTabBariPhone.delegate       = self;
+    self.mainTabBariPad.delegate         = self;
+    self.mainTabBariPhone.taskDelegate   = self;
     self.mainTabBariPad.taskDelegateIPad = self;
     
     [DefaultNotifyCenter addObserver: self
@@ -50,6 +50,11 @@
     [DefaultNotifyCenter addObserver: self
                             selector: @selector(showTaskScreen)
                                 name: @"ShowTaskScreen"
+                              object: nil];
+    
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(showAllProjects)
+                                name: @"UserLoggedNotificaiton"
                               object: nil];
 }
 
@@ -79,6 +84,10 @@
     [DefaultNotifyCenter removeObserver: self
                                    name: @"ShowTaskScreen"
                                  object: nil];
+    
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"UserLoggedNotificaiton"
+                                 object: nil];
 }
 
 #pragma mark - Properties -
@@ -89,6 +98,11 @@
 - (BOOL) isFirstSetup
 {
     return ([UserDefaults boolForKey: @"isViewedWelcomeTour"] == NO);
+}
+
+- (BOOL) isFirstLaunch
+{
+    return ( [UserDefaults boolForKey: @"isPrevLogging"] == NO );
 }
 
 - (void) presentLoginController
@@ -185,6 +199,20 @@
 - (void) showTaskScreen
 {
     [self showControllerWithSegueID: @"ShowTasks"];
+}
+
+- (void) showAllProjects
+{
+    if ( [self isFirstLaunch] && [[DataManagerShared getAllProjects] count] > 0 )
+    {
+        NSString* segueId = IS_PHONE ? @"ShowAllProjectsiPhone" : @"ShowAllProjectsiPad";
+        
+        [self showControllerWithSegueID: segueId];
+        
+        [UserDefaults setBool: YES
+                       forKey: @"isPrevLogging"];
+        [UserDefaults synchronize];
+    }
 }
 
 #pragma mark - CustomTabBarDelegate methods -

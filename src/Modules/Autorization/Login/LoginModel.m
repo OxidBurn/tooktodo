@@ -149,18 +149,29 @@
     
     [loadUserDataSignal subscribeCompleted: ^{
         
-        [DataManagerShared markFirstProjectAsSelectedWithCompletion: ^(BOOL isSuccess) {
+        if ( [UserDefaults boolForKey: @"isPrevLogging"] )
+        {
+            [DataManagerShared markFirstProjectAsSelectedWithCompletion: ^(BOOL isSuccess) {
+                
+                ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+                
+                if ( project )
+                    [[ProjectsService sharedInstance] loadProjectData: project];
+                else
+                {
+                    [SVProgressHUD dismiss];
+                }
+                
+            }];
+        }
+        else
+        {
+        
+            [DefaultNotifyCenter postNotificationName: @"UserLoggedNotificaiton"
+                                               object: nil];
             
-            ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
-            
-            if ( project )
-                [[ProjectsService sharedInstance] loadProjectData: project];
-            else
-            {
-                [SVProgressHUD dismiss];
-            }
-            
-        }];
+            [SVProgressHUD dismiss];
+        }
         
     }];
 }

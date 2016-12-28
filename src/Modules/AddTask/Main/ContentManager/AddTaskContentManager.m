@@ -274,7 +274,7 @@
     RowContent* rowFour = [[RowContent alloc] initWithUserInteractionEnabled];
     
     rowFour.title   = @"Система";
-    rowFour.detail  = @"Не выбран";
+    rowFour.detail  = @"Не выбрана";
     rowFour.cellId  = self.addTaskTableViewCellsInfo[RightDetailCell];
     rowFour.segueId = self.addTaskTableViewSeguesInfo[ShowSelectSystemSegueID];
     rowFour.cellIndex = RightDetailCell;
