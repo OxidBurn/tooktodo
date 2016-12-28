@@ -93,6 +93,11 @@
         self.editBtn.hidden   = YES;
         self.cancelBtn.hidden = YES;
     }
+    else
+    {
+        self.editBtn.hidden   = NO;
+        self.cancelBtn.hidden = NO;
+    }
 }
 
 
