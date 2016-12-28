@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) NSNumber* stageActionID;
 
-@property (strong, nonatomic) NSString* title;
+@property (strong, nonatomic) NSString<Optional>* title;
 
 @property (strong, nonatomic) NSNumber* isCommon;
 

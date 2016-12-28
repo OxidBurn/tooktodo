@@ -202,9 +202,9 @@
                                            
                                            RACSignal* loadSelectedTaskInfoSignal = [RACSignal combineLatest: signals];
                                            
-                                           [loadSelectedTaskInfoSignal subscribeError:^(NSError *error) {
+                                           [loadSelectedTaskInfoSignal subscribeError: ^(NSError *error) {
                                                
-                                               [SVProgressHUD show];
+                                               [SVProgressHUD dismiss];
                                                
                                            } completed: ^{
                                                
