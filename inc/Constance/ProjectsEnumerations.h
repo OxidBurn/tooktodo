@@ -320,6 +320,7 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
    // LogSentTaskToWaitingType = 19, // отправил задачу в ожидание ( возможно приходит 2 типа задачи )
     LogAddedCommentType = 20, // добавил комментрарий ( приходит commentId )
     //LogCanceledTaskType = 21, // отменил задачу ( возможно приходит 2 типа задачи )
+    LogChangedSystemType = 22,
 };
 
 typedef NS_ENUM (NSUInteger, TaskAvailableActions)
