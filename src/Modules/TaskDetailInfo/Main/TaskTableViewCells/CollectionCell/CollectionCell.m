@@ -26,13 +26,31 @@
 
 @implementation CollectionCell
 
+
+#pragma mark - Initialization -
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
     
     self.colletionView.dataSource = self.viewModel;
     self.colletionView.delegate   = self.viewModel;
+    
+    [DefaultNotifyCenter addObserver: self
+                            selector: @selector(realoadContent)
+                                name: @"UpdateCellContent"
+                              object: nil];
 }
+
+#pragma mark - Memory managment -
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"UpdateCellContent"
+                                 object: nil];
+}
+
 
 #pragma mark - Properties -
 
@@ -51,6 +69,14 @@
 - (void) fillParentCollectionCellDelegate: (id<ParentCollectionCellDelegate>) delegate;
 {
     [self.viewModel fillParentCollectionCellDelegate: delegate];
+}
+
+
+#pragma mark - Internal methods -
+
+- (void) realoadContent
+{
+    [self.colletionView reloadData];
 }
 
 @end

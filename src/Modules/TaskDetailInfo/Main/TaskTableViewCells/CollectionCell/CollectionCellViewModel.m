@@ -83,7 +83,6 @@ didSelectItemAtIndexPath: (NSIndexPath*)      indexPath
 {
     ParentCollectionCell* cell = (ParentCollectionCell*)[collectionView cellForItemAtIndexPath: indexPath];
     
-    
     if ([cell.delegate respondsToSelector: @selector(performSegueToUsersListWithSegueID:)])
     {
         switch (indexPath.row)

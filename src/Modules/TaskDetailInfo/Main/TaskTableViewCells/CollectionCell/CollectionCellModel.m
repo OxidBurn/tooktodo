@@ -81,6 +81,32 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 
 @implementation CollectionCellModel
 
+
+#pragma mark - Initialization -
+
+- (instancetype) init
+{
+    if ( self = [super init] )
+    {
+        [DefaultNotifyCenter addObserver: self
+                                selector: @selector(realoadContent)
+                                    name: @"UpdateCellContent"
+                                  object: nil];
+    }
+    
+    return self;
+}
+
+
+#pragma mark - Memory managment -
+
+- (void) dealloc
+{
+    [DefaultNotifyCenter removeObserver: self
+                                   name: @"UpdateCellContent"
+                                 object: nil];
+}
+
 #pragma mark - Properties -
 
 - (ProjectTask*) task
@@ -97,7 +123,12 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 {
     if ( _collectionViewCellsIdArray == nil )
     {
-        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId", @"DetailCollectionCellId", @"OnPlanCollectionCellId", @"SingleUserCollectionCellId", @"GroupOfUsersCollectionCellId", @"DefaultCollectionCellId" ];
+        _collectionViewCellsIdArray = @[ @"TermsInfoCollectionCellId",
+                                         @"DetailCollectionCellId",
+                                         @"OnPlanCollectionCellId",
+                                         @"SingleUserCollectionCellId",
+                                         @"GroupOfUsersCollectionCellId",
+                                         @"DefaultCollectionCellId" ];
     }
     
     return _collectionViewCellsIdArray;
@@ -119,7 +150,7 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     {
         NSMutableArray* tmpArr = [NSMutableArray arrayWithCapacity: self.task.approvments.count];
         
-        [self.task.approvments enumerateObjectsUsingBlock:^(TaskApprovments * _Nonnull obj, BOOL * _Nonnull stop) {
+        [self.task.approvments enumerateObjectsUsingBlock: ^(TaskApprovments * _Nonnull obj, BOOL * _Nonnull stop) {
             
             [tmpArr addObject: obj.approverUserId];
             
@@ -229,6 +260,11 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
 - (id<ParentCollectionCellDelegate>) getVarToStoreParentCollectionCellDelegate
 {
     return self.varToStoreDelegate;
+}
+
+- (void) realoadContent
+{
+    self.taskCollectionViewContent = [self createCollectionViewContent];
 }
 
 #pragma mark - Internal -
