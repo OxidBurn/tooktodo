@@ -8,11 +8,14 @@
 
 #import "DataManager.h"
 
+// Classes
+#import "LogRoomInfo.h"
+#import "SelectedRoomsInfo.h"
+
 // Models
 #import "TaskRoomLevelModel.h"
 #import "TaskRoomModel.h"
 #import "TaskMapContourModel.h"
-#import "LogRoomInfo.h"
 
 // Entities
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
@@ -52,5 +55,7 @@
                     withCompletion: (CompletionWithSuccess) completion;
 
 - (LogRoomInfo*) getRoomTitleWithID: (NSNumber*) roomID;
+
+- (NSString*) getRoomTitleForRoom: (SelectedRoomsInfo*) roomsInfo;
 
 @end

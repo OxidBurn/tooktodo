@@ -28,7 +28,7 @@
 
 - (NSArray*) updateSelectedStage: (ProjectTaskStage*) stage;
 
-- (NSArray*) updateSelectedInfo: (id) info;
+- (NSArray*) updateSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms;
 
 - (NSArray*) updateSelectedTaskType: (TaskType)  type
                 withDescription: (NSString*) typeDescription

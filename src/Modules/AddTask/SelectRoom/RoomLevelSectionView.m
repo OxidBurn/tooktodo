@@ -41,7 +41,6 @@
     [self updateExpandedState: level.isExpanded.boolValue];
     
     [self updateSelectedState: level.isSelected.boolValue];
-    
 }
 
 
@@ -93,5 +92,19 @@
                        forState: UIControlStateNormal];
     }
 }
+
+#pragma mark - Refactor -
+
+- (void) fillHeaderViewWithContent: (LevelContent*) levelContent
+{
+    NSString* levelNumber = levelContent.levelNumber ? levelContent.levelNumber.stringValue : @"";
+    
+    self.levelTitleLabel.text = [NSString stringWithFormat: @"Уровень %@", levelNumber];
+    
+    [self updateExpandedState: levelContent.isExpanded];
+    
+    [self updateSelectedState: levelContent.isSelected];
+}
+
 
 @end

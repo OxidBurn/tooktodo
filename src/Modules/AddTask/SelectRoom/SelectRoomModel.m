@@ -14,352 +14,268 @@
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "DataManager+ProjectInfo.h"
 
-
-static NSString* levelKey = @"LevelKey";
-static NSString* roomKey  = @"RoomKey";
-
 @interface SelectRoomModel()
 
 // properties
-@property (nonatomic, strong) NSArray*              levelsArray;
-@property (nonatomic, strong) NSIndexPath*          lastIndexPath;
-@property (nonatomic, strong) ProjectTaskRoomLevel* selectedLevel;
-@property (nonatomic, strong) ProjectTaskRoom*      selectedRoom;
-
-
-// methods
+@property (strong, nonatomic) NSArray* defaultContentArray;
 
 @end
 
 @implementation SelectRoomModel
 
+
+#pragma mark - Properties -
+
+- (NSArray*) defaultContentArray
+{
+    if ( _defaultContentArray == nil )
+    {
+        _defaultContentArray = [self parseAllLevelsToDefaultContent];
+    }
+    
+    return _defaultContentArray;
+}
+
+
 #pragma mark - Public -
 
-- (NSUInteger) sectionsCount
+
+- (LevelContent*) getLevelContentForSection: (NSUInteger) section
 {
-    return self.levelsArray.count;
+    return self.defaultContentArray[section];
 }
 
-- (NSUInteger) countOfRowsInSection: (NSUInteger) section
+- (RoomContent*) getRoomContentForIndexPath: (NSIndexPath*) indexPath
 {
-    NSArray* roomsArray = self.levelsArray[section][roomKey];
+    LevelContent* level = self.defaultContentArray[indexPath.section];
     
-    return roomsArray.count;
+    if ( level.isExpanded )
+    {
+        RoomContent* room = level.rooms[indexPath.row];
+        
+        return room;
+    }
+    
+    return nil;
 }
 
-- (NSIndexPath*) getLastIndexPath
+- (NSUInteger) getNumberOfRowsInSection: (NSUInteger) section
 {
-    return self.lastIndexPath;
+    LevelContent* level = self.defaultContentArray[section];
+    
+    if ( level.isExpanded )
+    {
+        return level.rooms.count;
+    }
+    else
+        return 0;
 }
 
-- (void) updateLastIndexPath: (NSIndexPath*) indexPath
+- (NSUInteger) getNumberOfSections
 {
-    self.lastIndexPath = indexPath;
+    return self.defaultContentArray.count;
 }
 
 - (void) markLevelAsExpandedAtIndexPath: (NSInteger) section
                          withCompletion: (CompletionWithSuccess) completion
 {
+    LevelContent* level = self.defaultContentArray[section];
     
-    ProjectInfo* currProj = [DataManagerShared getSelectedProjectInfo];
-    NSArray* arr          =  currProj.roomLevel.array;
+    level.isExpanded = !level.isExpanded;
     
-    ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*)arr[section];
+    [self updateContentWithLevel: level
+                       inSection: section];
     
-    __weak typeof(self) blockSelf = self;
-    
-    //обновление состояния expanded в БД
-    
-    [DataManagerShared updateExpandedStateOfLevel: level
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       [blockSelf updateData];
-                                       
-                                       if (completion)
-                                       {
-                                           completion (YES);
-                                       }
-                                   }];
-
+    if ( completion )
+        completion(YES);
 }
 
 - (void) handleCheckmarkForSection: (NSUInteger) section
                     withCompletion: (CompletionWithSuccess) completion
 {
-    __weak typeof(self) blockSelf = self;
+    // method for handling selection of whole section
+    // we deselect all level except one that was selected by user
     
-    ProjectTaskRoomLevel* roomLevel = [self getLevelForSection: section];
+    [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ( idx != section )
+        {
+            level.isSelected = NO;
+            
+            [level handleSectionSelection];
+        }
+        else
+        {
+            level.isSelected = !level.isSelected;
+            
+            [level handleSectionSelection];
+        }
+        
+    }];
     
-    if ( self.selectedLevel != roomLevel && self.selectedLevel.isSelected.boolValue )
-    {
-        [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                       withCompletion: nil];
-    }
-    
-    self.selectedLevel = roomLevel;
-    
-    //обновление состояния selected в БД
-    
-    [DataManagerShared updateSelectedStateOfLevel: roomLevel
-                                   withCompletion: ^(BOOL isSuccess) {
-                                       
-                                       [blockSelf updateData];
-                                      
-                                       if (completion)
-                                           completion (YES);
-                                       
-                                   }];
-    
+    if ( completion )
+        completion (YES);
 }
 
 - (void) handleCheckmarkForIndexPath: (NSIndexPath*) path
                       withCompletion: (CompletionWithSuccess) completion
 
 {
-    __weak typeof(self) blockSelf = self;
+    LevelContent* currentLevel = self.defaultContentArray[path.section];
     
-    id selectedItem = [self getInfoForCellAtIndexPath: path];
+    RoomContent* currentRoom = currentLevel.rooms[path.row];
     
-  
-    if ([selectedItem isKindOfClass: [ProjectTaskRoom class]])
+    BOOL currentState = currentRoom.isSelected;
+    
+    if ( currentState == YES && currentLevel.isSelected == NO)
     {
-        if ( self.selectedRoom != selectedItem && self.selectedRoom.isSelected.boolValue )
-        {
-            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
-                                          withCompletion: nil];
+        currentRoom.isSelected = NO;
+    }
+    else
+    {
+        [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* levelContent, NSUInteger idx, BOOL * _Nonnull stop) {
+           
+            levelContent.isSelected = NO;
             
-        }
-        
-        self.selectedRoom = selectedItem;
-        
-        [DataManagerShared updateSelectedStateOfRoom: selectedItem
-                                      withCompletion: ^(BOOL isSuccess) {
-                                          
-                                          [blockSelf updateData];
-                                          
-                                          if (completion)
-                                              completion (YES);
-                                          
-                                      }];
+            [levelContent handleSectionSelection];
+            
+        }];
+        currentRoom.isSelected = YES;
     }
     
-    else if ([selectedItem isKindOfClass:[ProjectTaskRoomLevel class]])
-    {
-        if ( self.selectedLevel != selectedItem && self.selectedLevel.isSelected.boolValue )
-        {
-            [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                          withCompletion: nil];
-            
-        }
-        
-        self.selectedRoom = selectedItem;
-        
-        [DataManagerShared updateSelectedStateOfLevel: selectedItem
-                                       withCompletion:^(BOOL isSuccess) {
-                                           [blockSelf updateData];
-                                           
-                                           if (completion)
-                                               completion (YES);
-                                       }];
-        
-        
-    }
+    [self updateContentWithRoom: currentRoom
+                   forIndexPath: path];
     
-    
-    
-    
+    if ( completion )
+        completion (YES);
 }
-
-- (RACSignal*) updateContent
-{
-    RACSignal* updateInfoSignal = [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [self updateData];
-        
-        [subscriber sendCompleted];
-        
-        return nil;
-    }];
-    
-    return updateInfoSignal;
-}
-
-- (ProjectTaskRoomLevel*) getLevelForSection: (NSUInteger) section
-{
-    return self.levelsArray[section][levelKey];
-}
-
-- (ProjectTaskRoom*) getInfoForCellAtIndexPath: (NSIndexPath*) path
-{
-    NSArray* cellsContentInfo  = self.levelsArray[path.section][roomKey];
-    ProjectTaskRoom* cellInfo  = cellsContentInfo[path.row];
-    
-    return cellInfo;
-}
-
-- (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath
-{
-    ProjectTaskRoomLevel* level = [self getLevelForSection: indexPath.section];
-    ProjectTaskRoom* room       = level.rooms.allObjects[indexPath.row];
-    BOOL isSelected             = room.isSelected.boolValue;
-    
-    return isSelected;
-}
-
-
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
-    if ( self.selectedLevel.isSelected.boolValue )
-    {
-        [DataManagerShared updateSelectedStateOfLevel: self.selectedLevel
-                                       withCompletion:^(BOOL isSuccess) {
-                                           
-                                           if (completion)
-                                               completion(YES);
-                                           
-                                       }];
-    }
-    else
-        if ( self.selectedRoom.isSelected.boolValue )
-        {
-            [DataManagerShared updateSelectedStateOfRoom: self.selectedRoom
-                                          withCompletion: ^(BOOL isSuccess) {
-                                             
-                                              if (completion)
-                                                  completion(YES);
-
-                                              
-                                          }];
-        }
+    [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        level.isSelected = NO;
+        
+        [level handleSectionSelection];
+    }];
     
-
+    if ( completion )
+        completion (YES);
 }
 
-
-
-- (void) fillSelectedRoom: (id) selectedItem
+- (SelectedRoomsInfo*) getSelectedInfo
 {
-    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    __block SelectedRoomsInfo* roomsInfo = [SelectedRoomsInfo new];
     
-    if ([selectedItem isKindOfClass: [ProjectTaskRoom class]])
-    {
-        ProjectTaskRoom* selectedRoom = (ProjectTaskRoom*) selectedItem;
+    [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        self.selectedRoom = selectedRoom;
+        if ( level.isSelected == YES)
+        {
+            roomsInfo.idValue = level.levelId;
+            
+            roomsInfo.roomsType = LevelType;
+            
+            *stop = YES;
+        }
         
-        [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-            [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
+        [level.rooms enumerateObjectsUsingBlock: ^(RoomContent* room, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ( room.isSelected )
+            {
+                roomsInfo.idValue = room.roomId;
                 
-                if ([obj.roomID isEqual: selectedRoom.roomID])
-                {
-                    NSUInteger indexOfSelectedRoom  = [level.rooms.allObjects indexOfObject: selectedRoom];
-                    
-                    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoom
-                                                            inSection: 0];
-                }
-            
-            }];
-            
+                roomsInfo.roomsType = RoomType;
+                
+                *stop = YES;
+            }
         }];
-    }
-    else
-        if ([selectedItem isKindOfClass: [ProjectTaskRoomLevel class]])
+    }];
+
+    return roomsInfo;
+}
+
+- (void) fillSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms
+{
+    [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        switch ( selectedRooms.roomsType)
         {
-            ProjectTaskRoomLevel* selectedLevel = (ProjectTaskRoomLevel*) selectedItem;
-            
-            self.selectedLevel = selectedLevel;
-            
-            [levels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel * _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                if ([level.roomLevelID isEqual: selectedLevel.roomLevelID])
+            case LevelType:
+            {
+                if ( [level.levelId isEqual: selectedRooms.idValue] )
                 {
-                    NSUInteger indexOfSelectedRoomLevel = [levels indexOfObject: selectedLevel];
-                
-                    self.lastIndexPath = [NSIndexPath indexPathForRow: indexOfSelectedRoomLevel
-                                                            inSection: 0];
+                    level.isSelected = YES;
+                    
+                    *stop = YES;
                 }
+            }
+                break;
                 
-            }];
+            case RoomType:
+            {
+                [level.rooms enumerateObjectsUsingBlock: ^(RoomContent* room, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ( [room.roomId isEqual: selectedRooms.idValue] )
+                    {
+                        room.isSelected = YES;
+                        
+                        *stop = YES;
+                    }
+                }];
+            }
+                break;
+                
+            default:
+                break;
         }
+    }];
 }
-
-- (ProjectTaskRoom *) getSelectedRoom
-{
-    return self.selectedRoom;
-}
-
-- (ProjectTaskRoomLevel*) getSelectedLevel
-{
-    return self.selectedLevel;
-}
-
-- (id) getSelectedInfo
-{
-    if (self.selectedLevel.isSelected.boolValue)
-    {
-        self.selectedRoom = nil;
-        return self.selectedLevel;
-        
-    }
-    
-    else if (self.selectedRoom.isSelected.boolValue)
-    {
-        self.selectedLevel = nil;
-        return self.selectedRoom;
-    }
-    
-    else
-        return @"Не выбрано";
-        
-}
-
 
 
 #pragma mark - Internal -
 
-- (void) updateData
+- (NSArray*) parseAllLevelsToDefaultContent
 {
-    __block NSMutableArray* tmpLevelInfo = [NSMutableArray array];
-    __block NSMutableArray* tmpRowsInfo  = [NSMutableArray array];
+    NSArray* allLevels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
     
-    NSArray* levels = [DataManagerShared getAllRoomsLevelOfSelectedProject];
+    __block NSMutableArray* tempContent = [NSMutableArray new];
     
-    [levels enumerateObjectsUsingBlock:^(ProjectTaskRoomLevel* _Nonnull level, NSUInteger idx, BOOL * _Nonnull stop) {
-       
-        NSMutableDictionary* levelsInfoDic = [NSMutableDictionary dictionaryWithDictionary:@{levelKey : level}];
+    [allLevels enumerateObjectsUsingBlock: ^(ProjectTaskRoomLevel* level, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if (level.isExpanded.boolValue)
-        {
-            [level.rooms enumerateObjectsUsingBlock: ^(ProjectTaskRoom * _Nonnull obj, BOOL * _Nonnull stop) {
-               
-                [tmpRowsInfo addObject: obj];
-            
-            }];
-        }
+        LevelContent* lvlContent = [LevelContent new];
         
-     
-        if (tmpRowsInfo.count > 0)
-        {
-            [levelsInfoDic setObject: tmpRowsInfo.copy
-                              forKey: roomKey];
-            
-            [tmpRowsInfo removeAllObjects];
-        }
+        [lvlContent fillLevelContent: level];
         
-        if (levels.count == 1)
-        {
-            level.isExpanded = @(YES);
-        }
-        
-        [tmpLevelInfo addObject: levelsInfoDic];
-        
+        [tempContent addObject: lvlContent];
     }];
     
-    self.levelsArray = tmpLevelInfo.copy;
+    return tempContent.copy;
+}
+
+- (void) updateContentWithLevel: (LevelContent*) levelContent
+                      inSection: (NSUInteger)    section
+{
+    NSMutableArray* tmp = self.defaultContentArray.mutableCopy;
     
-    tmpRowsInfo  = nil;
-    tmpLevelInfo = nil;
+    [tmp replaceObjectAtIndex: section withObject: levelContent];
+    
+    self.defaultContentArray = tmp.copy;
+}
+
+- (void) updateContentWithRoom: (RoomContent*) roomContent
+                  forIndexPath: (NSIndexPath*) indexPath
+{
+    LevelContent* level = self.defaultContentArray[indexPath.section];
+    
+    NSMutableArray* tmpRooms = level.rooms.mutableCopy;
+    
+    [tmpRooms replaceObjectAtIndex: indexPath.row
+                        withObject: roomContent];
+    
+    level.rooms = tmpRooms.copy;
+    
+    [self updateContentWithLevel: level
+                       inSection: indexPath.section];
 }
 
 @end

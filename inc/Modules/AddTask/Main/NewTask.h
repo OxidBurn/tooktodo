@@ -15,6 +15,7 @@
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectsEnumerations.h"
+#import "SelectedRoomsInfo.h"
 
 @interface NewTask : NSObject
 
@@ -40,6 +41,8 @@
 @property (nonatomic, strong) ProjectTaskStage* stage;
 
 @property (nonatomic, strong) ProjectTaskRoomLevel* level;
+
+@property (strong, nonatomic) SelectedRoomsInfo* selectedRooms;
 
 @property (nonatomic, strong) ProjectTaskRoom* room;
 

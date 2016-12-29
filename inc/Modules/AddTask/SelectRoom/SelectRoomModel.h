@@ -15,38 +15,39 @@
 #import "ProjectTaskStage+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 
+
+// refactor classes
+#import "LevelContent.h"
+#import "RoomContent.h"
+#import "SelectedRoomsInfo.h"
+
 @interface SelectRoomModel : NSObject
 
-- (void) markLevelAsExpandedAtIndexPath: (NSInteger) section
+// Methods
+
+    // getters
+- (SelectedRoomsInfo*) getSelectedInfo;
+
+- (LevelContent*) getLevelContentForSection: (NSUInteger) section;
+
+- (RoomContent*) getRoomContentForIndexPath: (NSIndexPath*) indexPath;
+
+- (NSUInteger) getNumberOfRowsInSection: (NSUInteger) section;
+
+- (NSUInteger) getNumberOfSections;
+
+    // updaters
+- (void) markLevelAsExpandedAtIndexPath: (NSInteger)             section
                          withCompletion: (CompletionWithSuccess) completion;
 
-- (RACSignal*) updateContent;
-
-- (ProjectTaskRoomLevel*) getLevelForSection: (NSUInteger) section;
-
-- (ProjectTaskRoom*) getInfoForCellAtIndexPath: (NSIndexPath*) path;
-
-- (NSUInteger) sectionsCount;
-
-- (NSUInteger) countOfRowsInSection: (NSUInteger) section;
-
-- (void) handleCheckmarkForSection: (NSUInteger) section
+- (void) handleCheckmarkForSection: (NSUInteger)            section
                     withCompletion: (CompletionWithSuccess) completion;
 
-- (void) handleCheckmarkForIndexPath: (NSIndexPath*) path
+- (void) handleCheckmarkForIndexPath: (NSIndexPath*)          path
                       withCompletion: (CompletionWithSuccess) completion;
-
-- (BOOL) isSelectedRoomAtIndexPath: (NSIndexPath*) indexPath;
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
 
-- (void) fillSelectedRoom: (id) selectedRoom;
-
-- (ProjectTaskRoom*) getSelectedRoom;
-
-- (ProjectTaskRoomLevel*) getSelectedLevel;
-
-- (id) getSelectedInfo;
-
+- (void) fillSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms;
 
 @end

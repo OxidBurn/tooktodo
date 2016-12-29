@@ -39,7 +39,7 @@
 }
 
 
-#pragma mark - Public method -
+#pragma mark - Public methods -
 
 - (NSAttributedString*) getRoomInfoWithAttributesForLog
 {

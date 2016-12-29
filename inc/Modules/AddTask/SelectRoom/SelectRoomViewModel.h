@@ -7,23 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+
+// Framework
 #import "ReactiveCocoa.h"
+
+// Classes
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
 #import "ProjectTaskRoom+CoreDataClass.h"
+#import "SelectedRoomsInfo.h"
 
 @interface SelectRoomViewModel : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-- (RACSignal*) updateContent;
+// methods
+
+- (void) fillSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms;
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion;
 
-- (void) fillSelectedRoom: (id) selectedRoom;
-
-- (ProjectTaskRoom*) getSelectedRoom;
-
-- (ProjectTaskRoomLevel*) getSelectedLevel;
-
-- (id) getSelectedInfo;
+- (SelectedRoomsInfo*) getSelectedInfo;
 
 - (NSString*) getProjectName;
 

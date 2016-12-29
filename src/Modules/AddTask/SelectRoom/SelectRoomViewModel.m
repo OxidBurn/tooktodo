@@ -50,42 +50,26 @@
     return [DataManagerShared getSelectedProjectName];;
 }
 
-- (RACSignal*) updateContent
-{
-   return [self.model updateContent];
-}
+//- (RACSignal*) updateContent
+//{
+//   return [self.model updateContent];
+//}
 
 - (void) resetAllWithCompletion: (CompletionWithSuccess) completion
 {
-    [self.model resetAllWithCompletion: ^(BOOL isSuccess) {
-        
-        if (completion)
-            completion(YES);
-        
-            }];
-    
+    [self.model resetAllWithCompletion: completion];
 }
 
-
-- (void) fillSelectedRoom: (id) selectedRoom
-{
-    [self.model fillSelectedRoom: selectedRoom];
-}
-
-- (ProjectTaskRoom*) getSelectedRoom
-{
-    return [self.model getSelectedRoom];
-}
-
-- (ProjectTaskRoomLevel*) getSelectedLevel
-{
-    return [self.model getSelectedLevel];
-}
-
-- (id) getSelectedInfo
+- (SelectedRoomsInfo*) getSelectedInfo
 {
     return [self.model getSelectedInfo];
 }
+
+- (void) fillSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms
+{
+    [self.model fillSelectedRoomsInfo: selectedRooms];
+}
+
 
 #pragma mark - Table view datasource methods -
 
@@ -95,24 +79,28 @@
 
     OSCellWithCheckmark* cell = [tableView dequeueReusableCellWithIdentifier: @"checkMarkCellID"];
     
-    ProjectTaskRoom* room = [self.model getInfoForCellAtIndexPath: indexPath];
-    NSString* title       = room.title;
+    RoomContent* room = [self.model getRoomContentForIndexPath: indexPath];
     
-    [cell fillCellWithContent: title
-            withSelectedState: [self.model isSelectedRoomAtIndexPath: indexPath]];
-     
+    if ( room )
+    {
+        [cell fillCellWithContent: room.roomTitle
+                withSelectedState: room.isSelected];
+    }
+    else
+        cell = nil;
+    
     return cell;
 }
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView
 {
-    return [self.model sectionsCount];
+    return [self.model getNumberOfSections];
 }
 
 - (NSInteger) tableView: (UITableView*) tableView
   numberOfRowsInSection: (NSInteger)    section
 {
-    return [self.model countOfRowsInSection: section];
+    return [self.model getNumberOfRowsInSection: section];
 }
 
 - (CGFloat)     tableView: (UITableView*) tableView
@@ -130,9 +118,11 @@
     
     sectionView.tag = section;
     
-    ProjectTaskRoomLevel* level = [self.model getLevelForSection: section];
+//    ProjectTaskRoomLevel* level = [self.model getLevelForSection: section];
     
-    [sectionView fillInfo: level];
+    LevelContent* levelContent = [self.model getLevelContentForSection: section];
+    
+    [sectionView fillHeaderViewWithContent: levelContent];
     
     // Handle changing expand state of the project
     __weak typeof(self) blockSelf = self;

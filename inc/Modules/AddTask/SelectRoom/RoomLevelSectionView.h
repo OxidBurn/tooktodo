@@ -10,6 +10,7 @@
 
 //Classes
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
+#import "LevelContent.h"
 
 
 @interface RoomLevelSectionView : UIView
@@ -21,5 +22,8 @@
 
 // Methods
 - (void) fillInfo: (ProjectTaskRoomLevel*) level;
+
+// refactor
+- (void) fillHeaderViewWithContent: (LevelContent*) levelContent;
 
 @end

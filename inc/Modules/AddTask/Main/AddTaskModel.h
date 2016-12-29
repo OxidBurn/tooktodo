@@ -54,7 +54,7 @@
 
 - (ProjectTaskStage*) returnSelectedStage;
 
-- (id) returnSelectedRoom;
+- (SelectedRoomsInfo*) returnSelectedRooms;
 
 - (TaskType) returnSelectedTaskType;
 

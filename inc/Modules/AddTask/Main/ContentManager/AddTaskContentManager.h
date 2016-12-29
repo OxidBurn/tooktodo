@@ -12,6 +12,7 @@
 #import "DataManager+Tasks.h"
 #import "RowContent.h"
 #import "NewTask.h"
+#import "SelectedRoomsInfo.h"
 
 typedef NS_ENUM(NSUInteger, AddTaskScreenSegueId)
 {

@@ -433,6 +433,9 @@
 		F72F3BCE1DE76930009648A6 /* FilterByAssigneeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BC91DE76930009648A6 /* FilterByAssigneeModel.m */; };
 		F72F3BCF1DE76930009648A6 /* FilterByAssigneeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BCB1DE76930009648A6 /* FilterByAssigneeViewController.m */; };
 		F72F3BD01DE76930009648A6 /* FilterByAssigneeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */; };
+		F7335D711E1542EC008390A3 /* LevelContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7335D701E1542EC008390A3 /* LevelContent.m */; };
+		F7335D741E1542FB008390A3 /* RoomContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F7335D731E1542FB008390A3 /* RoomContent.m */; };
+		F7335D771E15755D008390A3 /* SelectedRoomsInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7335D761E15755D008390A3 /* SelectedRoomsInfo.m */; };
 		F745D31D1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m in Sources */ = {isa = PBXBuildFile; fileRef = F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */; };
 		F7C3CA771DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C3CA761DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.m */; };
 		F7D7BBFA1E0EBD5A007D6905 /* LogWithMarkCellFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D7BBF91E0EBD5A007D6905 /* LogWithMarkCellFactory.m */; };
@@ -1386,6 +1389,12 @@
 		F72F3BCB1DE76930009648A6 /* FilterByAssigneeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByAssigneeViewController.m; sourceTree = "<group>"; };
 		F72F3BCC1DE76930009648A6 /* FilterByAssigneeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterByAssigneeViewModel.h; sourceTree = "<group>"; };
 		F72F3BCD1DE76930009648A6 /* FilterByAssigneeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterByAssigneeViewModel.m; sourceTree = "<group>"; };
+		F7335D6F1E1542EC008390A3 /* LevelContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelContent.h; sourceTree = "<group>"; };
+		F7335D701E1542EC008390A3 /* LevelContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelContent.m; sourceTree = "<group>"; };
+		F7335D721E1542FB008390A3 /* RoomContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomContent.h; sourceTree = "<group>"; };
+		F7335D731E1542FB008390A3 /* RoomContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomContent.m; sourceTree = "<group>"; };
+		F7335D751E15755D008390A3 /* SelectedRoomsInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedRoomsInfo.h; sourceTree = "<group>"; };
+		F7335D761E15755D008390A3 /* SelectedRoomsInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectedRoomsInfo.m; sourceTree = "<group>"; };
 		F745D31B1DDF6AED00A82B7D /* OSAlertDeleteTasksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSAlertDeleteTasksController.h; sourceTree = "<group>"; };
 		F745D31C1DDF6AED00A82B7D /* OSAlertDeleteTasksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSAlertDeleteTasksController.m; sourceTree = "<group>"; };
 		F7C3CA751DDC837D009C6E9A /* AddTaskContentManager+ProjectTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AddTaskContentManager+ProjectTask.h"; path = "../../../../../src/Modules/AddTask/Main/ContentManager/AddTaskContentManager+ProjectTask.h"; sourceTree = "<group>"; };
@@ -2959,6 +2968,12 @@
 				56D06DA01DAFBDBF008E9AC0 /* SelectRoomModel.m */,
 				56D06DA11DAFBDBF008E9AC0 /* SelectRoomViewController.m */,
 				56D06DA21DAFBDBF008E9AC0 /* SelectRoomViewModel.m */,
+				F7335D6F1E1542EC008390A3 /* LevelContent.h */,
+				F7335D701E1542EC008390A3 /* LevelContent.m */,
+				F7335D721E1542FB008390A3 /* RoomContent.h */,
+				F7335D731E1542FB008390A3 /* RoomContent.m */,
+				F7335D751E15755D008390A3 /* SelectedRoomsInfo.h */,
+				F7335D761E15755D008390A3 /* SelectedRoomsInfo.m */,
 			);
 			path = SelectRoom;
 			sourceTree = "<group>";
@@ -4742,6 +4757,7 @@
 				56D06F881DAFBDC0008E9AC0 /* UserNotificationModel.m in Sources */,
 				F7F4C94D1E0BE85400EF5669 /* TaskDetailViewController.m in Sources */,
 				56D06ED41DAFBDC0008E9AC0 /* TaskResponsibleModel.m in Sources */,
+				F7335D741E1542FB008390A3 /* RoomContent.m in Sources */,
 				F7F4C96F1E0BE85400EF5669 /* ChangeStatusViewController.m in Sources */,
 				F7F4C9D01E0C229E00EF5669 /* LogWithRenamedCell.m in Sources */,
 				5663BB3E1DE4C69700F82E5B /* TaskFilterExpiredInfoModel.m in Sources */,
@@ -4821,6 +4837,7 @@
 				56D06F6D1DAFBDC0008E9AC0 /* TasksViewController.m in Sources */,
 				56D06EFE1DAFBDC0008E9AC0 /* SystemsInfoModel.m in Sources */,
 				5663BB381DE4B13C00F82E5B /* TaskFiltersAPIService.m in Sources */,
+				F7335D711E1542EC008390A3 /* LevelContent.m in Sources */,
 				56955F601DE72CE100601D03 /* ProjectFilterInfo+CoreDataProperties.m in Sources */,
 				F7F4C9681E0BE85400EF5669 /* TaskDetailInfoCell.m in Sources */,
 				F7F4C9511E0BE85400EF5669 /* CollectionCell.m in Sources */,
@@ -5012,6 +5029,7 @@
 				56D06FB01DAFBDC0008E9AC0 /* OSSingleUserInfoCellFactory.m in Sources */,
 				5643A2DD1DDC761800038414 /* CommentsModel.m in Sources */,
 				F7F4C9491E0BE85400EF5669 /* LogsContent.m in Sources */,
+				F7335D771E15755D008390A3 /* SelectedRoomsInfo.m in Sources */,
 				56D06F131DAFBDC0008E9AC0 /* SelectRoomModel.m in Sources */,
 				56D06EC91DAFBDC0008E9AC0 /* ProjectSystemsModel.m in Sources */,
 				56D06F2E1DAFBDC0008E9AC0 /* OfflineSyncViewModel.m in Sources */,

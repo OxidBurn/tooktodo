@@ -7,26 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+
+// Classes
 #import "ProjectTaskRoom+CoreDataClass.h"
 #import "ProjectTaskRoomLevel+CoreDataClass.h"
-
 #import "BaseMainViewController.h"
+#import "SelectedRoomsInfo.h"
 
-@protocol SelectRoomViewController;
+@protocol SelectRoomViewControllerDelegate;
 
 @interface SelectRoomViewController : BaseMainViewController
 
 // properties
-@property (nonatomic, weak) id<SelectRoomViewController> delegate;
+@property (nonatomic, weak) id <SelectRoomViewControllerDelegate> delegate;
 
 // methods
-- (void) fillSelectedRoom: (id) room
-             withDelegate: (id <SelectRoomViewController>) delegate;
+- (void) fillSelectedRoom: (SelectedRoomsInfo*) selectedRooms
+             withDelegate: (id)                 delegate;
 
 @end
 
-@protocol SelectRoomViewController <NSObject>
+@protocol SelectRoomViewControllerDelegate <NSObject>
 
-- (void) returnSelectedInfo: (id) info;
+- (void) returnSelectedInfo: (SelectedRoomsInfo*) info;
 
 @end

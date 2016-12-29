@@ -240,4 +240,37 @@
     return roomInfo;
 }
 
+- (NSString*) getRoomTitleForRoom: (SelectedRoomsInfo*) roomsInfo
+{
+    NSString* title = @"";
+    
+    switch ( roomsInfo.roomsType )
+    {
+        case LevelType:
+        {
+            NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roomLevelID == %@", roomsInfo.idValue];
+            
+            ProjectTaskRoomLevel* level = [ProjectTaskRoomLevel MR_findFirstWithPredicate: predicate];
+            
+            title = [NSString stringWithFormat: @"%@", level.level.stringValue];
+        }
+            break;
+            
+        case RoomType:
+        {
+            NSPredicate* predicate = [NSPredicate predicateWithFormat: @"roomID == %@", roomsInfo.idValue];
+            
+            ProjectTaskRoom* room = [ProjectTaskRoom MR_findFirstWithPredicate: predicate];
+            
+            title = [NSString stringWithFormat: @"%@", room.title];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return title;
+}
+
 @end

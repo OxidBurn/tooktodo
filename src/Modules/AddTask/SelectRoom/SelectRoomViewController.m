@@ -21,8 +21,10 @@
 
 @interface SelectRoomViewController ()
 
-// Properties
+// Outlets
 @property (weak, nonatomic) IBOutlet UITableView* roomLevelTableView;
+
+// Properties
 @property (nonatomic, strong) SelectRoomViewModel* viewModel;
 
 // Methods
@@ -43,8 +45,6 @@
     [super loadView];
     
     [self bindUI];
-    
-    [self updateContent];
 }
 
 - (void) viewDidLoad
@@ -72,12 +72,40 @@
 }
 
 
+#pragma mark - Actions -
+
+- (IBAction) onResetBtn: (UIButton*) sender
+{
+    [self.viewModel resetAllWithCompletion: ^(BOOL isSuccess) {
+    
+        [self.roomLevelTableView reloadData];
+        
+    }];
+}
+
+- (IBAction) onSaveBtn: (UIButton*) sender
+{
+    [self saveData];
+}
+
+- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
+{
+    [self saveData];
+}
+
+- (IBAction) onCancelBtn: (UIBarButtonItem*) sender
+{
+    [self.navigationController popViewControllerAnimated: YES];
+}
+
+
+
 #pragma mark - Public -
 
-- (void) fillSelectedRoom: (id) room
-             withDelegate: (id<SelectRoomViewController>) delegate
+- (void) fillSelectedRoom: (SelectedRoomsInfo*) selectedRooms
+             withDelegate: (id)                 delegate
 {
-    [self.viewModel fillSelectedRoom: room];
+    [self.viewModel fillSelectedRoomsInfo: selectedRooms];
     
     self.delegate = delegate;
 }
@@ -95,70 +123,17 @@
                                                withSubTitle: [self.viewModel getProjectName]];
 }
 
-
-- (void) updateContent
-{
-    @weakify(self)
-    
-    [[self.viewModel updateContent]
-     subscribeCompleted: ^{
-         
-         @strongify(self)
-         
-         [self.roomLevelTableView reloadData];
-         
-     }];
-}
-
 - (void) saveData
 {
-    id selectedInfo = [self.viewModel getSelectedInfo];
-    
-    
-        if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
-        {
-            [self.delegate returnSelectedInfo: selectedInfo];
-            
-        }
-    
-    [self.navigationController popViewControllerAnimated: YES];
-}
-
-#pragma mark - Actions -
-
-- (IBAction) onResetBtn: (UIButton*) sender
-{
-    
-    [self.viewModel resetAllWithCompletion: ^(BOOL isSuccess) {
-    
-        [self.roomLevelTableView reloadData];
-        
-    }];
+    SelectedRoomsInfo* selectedInfo = [self.viewModel getSelectedInfo];
     
     
     if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
     {
-        [self.delegate returnSelectedInfo: @"Не выбрано"];
+        [self.delegate returnSelectedInfo: selectedInfo];
+        
     }
     
-   // [self.navigationController popViewControllerAnimated: YES];
-    
-}
-
-- (IBAction) onSaveBtn: (UIButton*) sender
-{
-    [self saveData];
-}
-
-- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
-{
-    [self saveData];
-}
-
-- (IBAction) onCancelBtn: (UIBarButtonItem*) sender
-{
-    id selectedInfo = [self.viewModel getSelectedInfo];
-    selectedInfo = nil;
     [self.navigationController popViewControllerAnimated: YES];
 }
 @end

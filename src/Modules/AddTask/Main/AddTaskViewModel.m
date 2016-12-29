@@ -137,7 +137,7 @@
 
 - (id) returnSelectedRoom
 {
-    return [self.model returnSelectedRoom];
+    return [self.model returnSelectedRooms];
 }
 
 - (TaskType) returnSelectedTaskType

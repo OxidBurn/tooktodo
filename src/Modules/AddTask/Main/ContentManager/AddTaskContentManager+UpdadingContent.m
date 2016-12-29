@@ -17,8 +17,9 @@
 #import "SelectStageViewController.h"
 #import "SelectRoomViewController.h"
 #import "AddTaskTypeViewController.h"
-
 #import "TaskRowContent.h"
+#import "DataManager+Room.h"
+
 
 // Categories
 #import "AddTaskContentManager+Helpers.h"
@@ -200,43 +201,61 @@
     return self.addTaskContentArray;
 }
 
-- (NSArray*) updateSelectedInfo: (id) info
+- (NSArray*) updateSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms
 {
-    ProjectTaskRoomLevel* levelItem = nil;
-    ProjectTaskRoom*      roomItem = nil;
+//    ProjectTaskRoomLevel* levelItem = nil;
+//    ProjectTaskRoom*      roomItem = nil;
     
-    //Check which info comes
-    if ([info isKindOfClass:[ProjectTaskRoom class]])
-    {
-        roomItem       = info;
-        self.task.room = (ProjectTaskRoom*)roomItem;
-    }
-    else
-        if ([info isKindOfClass:[ProjectTaskRoomLevel class]])
-        {
-            levelItem = info;
-            self.task.level = (ProjectTaskRoomLevel*)levelItem;
-        }
+//    //Check which info comes
+//    if ([info isKindOfClass:[ProjectTaskRoom class]])
+//    {
+//        roomItem       = info;
+//        self.task.room = (ProjectTaskRoom*)roomItem;
+//    }
+//    else
+//        if ([info isKindOfClass:[ProjectTaskRoomLevel class]])
+//        {
+//            levelItem = info;
+//            self.task.level = (ProjectTaskRoomLevel*)levelItem;
+//        }
     
     RowContent* row = self.addTaskContentArray[SectionThree][TaskPremisesRow];
     
-    if (roomItem)
+    switch ( selectedRooms.roomsType )
     {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = roomItem.title;
+        case LevelType:
+        {
+            
+        }
+            break;
+            
+        case RoomType:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
     }
     
-    else if (levelItem)
-    {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
-    }
-    
-    else
-    {
-        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-        row.detail = info;
-    }
+//    if (roomItem)
+//    {
+//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//        row.detail = roomItem.title;
+//    }
+//    
+//    else if (levelItem)
+//    {
+//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
+//    }
+//    
+//    else
+//    {
+//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
+//        row.detail = info;
+//    }
 
     [self updateContentWithRow: row
                      inSection: SectionThree

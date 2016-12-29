@@ -37,7 +37,7 @@
                            AddTaskTermsControllerDelegate,
                            SelectSystemViewControllerDelegate,
                            SelectStageViewControllerDelegate,
-                           SelectRoomViewController,
+                           SelectRoomViewControllerDelegate,
                            AddTaskTypeDelegate>
 
 // properties
@@ -189,12 +189,9 @@
     return self.task.stage;
 }
 
-- (id) returnSelectedRoom
+- (SelectedRoomsInfo*) returnSelectedRooms
 {
-    if ( self.task.level )
-        return self.task.level;
-    else
-        return self.task.room;
+    return self.task.selectedRooms;
 }
 
 - (TaskType) returnSelectedTaskType
@@ -467,24 +464,9 @@
 
 #pragma mark - SelectRoomViewControllerDelegate methods -
 
-- (void) returnSelectedInfo: (id) info
+- (void) returnSelectedInfo: (SelectedRoomsInfo*) info
 {
-   self.addTaskTableViewContent = [self.contentManager updateSelectedInfo: info];
-    
-    if ([info isKindOfClass: [ProjectTaskRoom class]])
-    {
-        ProjectTaskRoom* room = (ProjectTaskRoom*)info;
-        self.task.room = room;
-    }
-    
-    else if ([info isKindOfClass: [ProjectTaskRoomLevel class]])
-    {
-        ProjectTaskRoomLevel* level = (ProjectTaskRoomLevel*) info;
-        self.task.room.roomLevel = level;
-    }
-    
-    if ( [self.delegate respondsToSelector: @selector( reloadData )] )
-        [self.delegate reloadData];
+    self.task.selectedRooms = info;
 }
 
 

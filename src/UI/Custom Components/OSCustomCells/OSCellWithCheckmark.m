@@ -22,11 +22,11 @@
 @implementation OSCellWithCheckmark
 
 - (void) fillCellWithContent: (NSString*) title
-           withSelectedState: (BOOL)      isHide
+           withSelectedState: (BOOL)      isSelected
 {
     self.nameLabel.text = title;
     
-    self.checkmarkImg.hidden = isHide ? NO : YES;
+    self.checkmarkImg.hidden = isSelected ? NO : YES;
 }
 
 - (void) changeCheckmarkState: (BOOL) state
