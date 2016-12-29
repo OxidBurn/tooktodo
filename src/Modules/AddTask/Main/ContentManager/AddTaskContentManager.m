@@ -72,6 +72,11 @@
             }
         }
         
+        if (self.controllerType == EditTaskControllerType)
+        {
+            _task = [self parseProjectTaskToNewTask: self.projectTask];
+        }
+        
     }
     
     return _task;

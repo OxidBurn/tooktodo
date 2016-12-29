@@ -499,7 +499,6 @@
                                                                      withColor: typeColor];
     
     self.task.taskType = type;
-    self.task.taskDescription = typeDescription;
     
     if ( [self.delegate respondsToSelector: @selector( reloadData )] )
         [self.delegate reloadData];

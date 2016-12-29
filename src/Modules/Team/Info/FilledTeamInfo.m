@@ -125,6 +125,7 @@
         if (obj.assignee != nil)
         {
             self.role = obj.projectRoleType.title;
+            self.memberID = obj.roleID;
         }
         
     }];
@@ -135,6 +136,7 @@
     self.fullname          = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
     self.avatarSrc         = assignee.avatarSrc ? assignee.avatarSrc : @"";
     self.taskRoleAssinment = assignee.roleAssignment.projectRoleAssignments.taskRoleType;
+
 
 }
 
@@ -149,6 +151,7 @@
         if (obj.invite != nil)
         {
             self.role = obj.projectRoleType.title;
+            self.memberID = obj.roleID;
         }
         
     }];

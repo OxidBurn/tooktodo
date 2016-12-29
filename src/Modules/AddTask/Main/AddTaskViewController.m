@@ -249,38 +249,6 @@
 
 #pragma mark - Actions -
 
-- (IBAction) onDoneBtn: (UIBarButtonItem*) sender
-{
-    switch ([self.viewModel getControllerType])
-    {
-        case AddSubtaskControllerType:
-        case AddNewTaskControllerType:
-        {
-            [self.viewModel storeNewTaskWithCompletion: ^(BOOL isSuccess) {
-                
-                [self dismissViewControllerAnimated: YES
-                                         completion: nil];
-            }];
-        }
-            break;
-        
-        case EditTaskControllerType:
-        {
-            [self.viewModel updateTaskInfoOnServerWithCompletion:^(BOOL isSuccess) {
-                
-                [self dismissViewControllerAnimated: YES
-                                         completion: nil];
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-}
-
 - (IBAction) onAddAndCreateNewBtn: (UIButton*) sender
 {
     [self.viewModel storeNewTaskWithCompletion: nil];

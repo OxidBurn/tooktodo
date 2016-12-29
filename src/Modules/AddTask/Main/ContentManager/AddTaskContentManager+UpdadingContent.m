@@ -83,14 +83,13 @@
 
 - (NSArray*) updateSelectedResponsibleInfo: (NSArray*) selectedUsersArray
 {
-    self.task.responsible = selectedUsersArray;
-    
     RowContent* row = self.addTaskContentArray[SectionOne][TaskResponsibleRow];
     
     if ( selectedUsersArray )
     {
         row.cellId    = [self determineCellIdForGroupOfMembers: selectedUsersArray];
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
+        self.task.responsible = selectedUsersArray;
     }
 
     
@@ -106,14 +105,13 @@
 
 - (NSArray*) updateSelectedClaimingInfo: (NSArray*) selectedClaiming
 {
-    self.task.claiming = selectedClaiming;
-    
     RowContent* row = self.addTaskContentArray[SectionOne][TaskClaimingRow];
     
     if ( selectedClaiming )
     {
         row.cellId    = [self determineCellIdForGroupOfMembers: selectedClaiming];
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
+        self.task.claiming = selectedClaiming;
     }
     
     row.membersArray = selectedClaiming;
@@ -134,7 +132,6 @@
 
 - (NSArray*) updateSelectedObserversInfo: (NSArray*) selectedObservers
 {
-    self.task.observers = selectedObservers;
     
     RowContent* row = self.addTaskContentArray[SectionOne][TaskObserversRow];
     
@@ -145,6 +142,7 @@
     {
         row.cellId    = [self determineCellIdForGroupOfMembers: selectedObservers];
         row.cellIndex = [self determintCellIndexForCellId: row.cellId];
+        self.task.observers = selectedObservers;
     }
     
     [self updateContentWithRow: row
