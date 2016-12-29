@@ -753,30 +753,30 @@
     
     [taskInfo.responsible enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ( obj.memberID )
+        if ( obj.roleID )
         {
             [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @0,
-                                                          @"projectRoleAssignmentId" : obj.memberID}];
+                                                          @"projectRoleAssignmentId" : obj.roleID}];
         }
         
     }];
     
     [taskInfo.claiming enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ( obj.memberID )
+        if ( obj.roleID )
         {
             [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @1,
-                                                          @"projectRoleAssignmentId" : obj.memberID}];
+                                                          @"projectRoleAssignmentId" : obj.roleID}];
         }
         
     }];
     
     [taskInfo.observers enumerateObjectsUsingBlock: ^(FilledTeamInfo* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ( obj.memberID )
+        if ( obj.roleID )
         {
             [taskRoleAssignmentModelsArr safeAddObject: @{@"taskRoleType"            : @2,
-                                                          @"projectRoleAssignmentId" : obj.memberID}];
+                                                          @"projectRoleAssignmentId" : obj.roleID}];
         }
         
     }];

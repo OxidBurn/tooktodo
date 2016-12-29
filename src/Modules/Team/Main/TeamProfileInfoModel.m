@@ -220,7 +220,7 @@ typedef NS_ENUM(NSUInteger, ContactType)
 {
     [[[TeamService sharedInstance] updateSelectedUserPermission: permission
                                                   withProjectID: self.memberInfo.projectID
-                                                     withUserID: self.memberInfo.memberID]
+                                                     withUserID: self.memberInfo.roleID]
      subscribeNext: ^(id x) {
          
         

@@ -285,7 +285,7 @@
 {
     self.task.taskDescription = taskDescription;
     
-    RowContent* newRow = self.addTaskContentArray[0][1];
+    RowContent* newRow = self.addTaskContentArray[SectionOne][TaskDescriptionRow];
     
     newRow.title = taskDescription;
     
