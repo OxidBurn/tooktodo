@@ -127,12 +127,8 @@
 {
     SelectedRoomsInfo* selectedInfo = [self.viewModel getSelectedInfo];
     
-    
     if ([self.delegate respondsToSelector: @selector(returnSelectedInfo:)])
-    {
         [self.delegate returnSelectedInfo: selectedInfo];
-        
-    }
     
     [self.navigationController popViewControllerAnimated: YES];
 }

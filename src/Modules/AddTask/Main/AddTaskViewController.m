@@ -183,9 +183,9 @@
         {
             SelectRoomViewController* controller = [segue destinationViewController];
            
-            id room = [self.viewModel returnSelectedRoom];
+            SelectedRoomsInfo* rooms = [self.viewModel returnSelectedRooms];
             
-            [controller fillSelectedRoom: room
+            [controller fillSelectedRoom: rooms
                             withDelegate: [self.viewModel returnModel]];
         }
             break;

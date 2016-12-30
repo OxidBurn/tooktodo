@@ -467,6 +467,8 @@
 - (void) returnSelectedInfo: (SelectedRoomsInfo*) info
 {
     self.task.selectedRooms = info;
+    
+    [self.contentManager updateSelectedRoomsInfo: info];
 }
 
 

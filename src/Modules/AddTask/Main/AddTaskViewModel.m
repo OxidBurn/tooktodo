@@ -135,7 +135,7 @@
     return [self.model returnSelectedStage];
 }
 
-- (id) returnSelectedRoom
+- (SelectedRoomsInfo*) returnSelectedRooms
 {
     return [self.model returnSelectedRooms];
 }

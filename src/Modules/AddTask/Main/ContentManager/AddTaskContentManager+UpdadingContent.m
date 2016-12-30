@@ -203,59 +203,9 @@
 
 - (NSArray*) updateSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms
 {
-//    ProjectTaskRoomLevel* levelItem = nil;
-//    ProjectTaskRoom*      roomItem = nil;
-    
-//    //Check which info comes
-//    if ([info isKindOfClass:[ProjectTaskRoom class]])
-//    {
-//        roomItem       = info;
-//        self.task.room = (ProjectTaskRoom*)roomItem;
-//    }
-//    else
-//        if ([info isKindOfClass:[ProjectTaskRoomLevel class]])
-//        {
-//            levelItem = info;
-//            self.task.level = (ProjectTaskRoomLevel*)levelItem;
-//        }
-    
     RowContent* row = self.addTaskContentArray[SectionThree][TaskPremisesRow];
     
-    switch ( selectedRooms.roomsType )
-    {
-        case LevelType:
-        {
-            
-        }
-            break;
-            
-        case RoomType:
-        {
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-//    if (roomItem)
-//    {
-//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-//        row.detail = roomItem.title;
-//    }
-//    
-//    else if (levelItem)
-//    {
-//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-//        row.detail = [NSString stringWithFormat: @"Уровень %@", levelItem.level];
-//    }
-//    
-//    else
-//    {
-//        row.cellId = self.addTaskTableViewCellsInfo[RightDetailCell];
-//        row.detail = info;
-//    }
+    row.detail = [DataManagerShared getRoomTitleForRoom: selectedRooms];
 
     [self updateContentWithRow: row
                      inSection: SectionThree

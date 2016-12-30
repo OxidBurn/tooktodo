@@ -252,7 +252,7 @@
             
             ProjectTaskRoomLevel* level = [ProjectTaskRoomLevel MR_findFirstWithPredicate: predicate];
             
-            title = [NSString stringWithFormat: @"%@", level.level.stringValue];
+            title = [NSString stringWithFormat: @"Уровень %@", level.level.stringValue];
         }
             break;
             

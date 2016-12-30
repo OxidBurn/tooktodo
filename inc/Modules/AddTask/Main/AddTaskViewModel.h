@@ -18,6 +18,7 @@
 #import "OSAlertController.h"
 #import "OSAlertDeleteTaskWithSubtasksController.h"
 #import "DataManager+Room.h"
+#import "SelectedRoomsInfo.h"
 
 @protocol AddTaskViewModelDelegate;
 
@@ -64,7 +65,7 @@
 
 - (ProjectTaskStage*) returnSelectedStage;
 
-- (id) returnSelectedRoom;
+- (SelectedRoomsInfo*) returnSelectedRooms;
 
 - (TaskType) returnSelectedTaskType;
 

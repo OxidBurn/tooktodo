@@ -175,7 +175,7 @@
             
             roomsInfo.roomsType = LevelType;
             
-            *stop = YES;
+            return;
         }
         
         [level.rooms enumerateObjectsUsingBlock: ^(RoomContent* room, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -186,7 +186,7 @@
                 
                 roomsInfo.roomsType = RoomType;
                 
-                *stop = YES;
+                return;
             }
         }];
     }];
@@ -196,38 +196,43 @@
 
 - (void) fillSelectedRoomsInfo: (SelectedRoomsInfo*) selectedRooms
 {
-    [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self resetAllWithCompletion: ^(BOOL isSuccess) {
         
-        switch ( selectedRooms.roomsType)
-        {
-            case LevelType:
+        [self.defaultContentArray enumerateObjectsUsingBlock: ^(LevelContent* level, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            switch ( selectedRooms.roomsType)
             {
-                if ( [level.levelId isEqual: selectedRooms.idValue] )
+                case LevelType:
                 {
-                    level.isSelected = YES;
-                    
-                    *stop = YES;
-                }
-            }
-                break;
-                
-            case RoomType:
-            {
-                [level.rooms enumerateObjectsUsingBlock: ^(RoomContent* room, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if ( [room.roomId isEqual: selectedRooms.idValue] )
+                    if ( [level.levelId isEqual: selectedRooms.idValue] )
                     {
-                        room.isSelected = YES;
+                        level.isSelected = YES;
+                        
+                        [level handleSectionSelection];
                         
                         *stop = YES;
                     }
-                }];
+                }
+                    break;
+                    
+                case RoomType:
+                {
+                    [level.rooms enumerateObjectsUsingBlock: ^(RoomContent* room, NSUInteger idx, BOOL * _Nonnull stop) {
+                        
+                        if ( [room.roomId isEqual: selectedRooms.idValue] )
+                        {
+                            room.isSelected = YES;
+                            
+                            *stop = YES;
+                        }
+                    }];
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-                
-            default:
-                break;
-        }
+        }];
     }];
 }
 
