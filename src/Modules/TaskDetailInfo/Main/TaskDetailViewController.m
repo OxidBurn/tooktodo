@@ -343,10 +343,23 @@
 {
     NSUInteger currentUserPermission = [DataManagerShared getSelectedProjectPermission];
     
-    if (currentUserPermission == ParticipantPermission)
+    TaskAvailableActionsList* availableActionsList = [[self.viewModel getCurrentTask] availableActions];
+    
+    NSArray* availableActions = availableActionsList.actions.allObjects;
+    
+    NSMutableArray* availableActionsIDs = [NSMutableArray array];
+
+    [availableActions enumerateObjectsUsingBlock: ^(TaskAvailableAction*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [availableActionsIDs addObject: obj.actionID];
+    
+    }];
+    
+    if (currentUserPermission == ParticipantPermission || [availableActionsIDs containsObject: @(EditTaskAction)] == NO)
     {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
+    
 }
 
 - (BOOL)    splitViewController: (UISplitViewController*) splitViewController
@@ -457,28 +470,6 @@ collapseSecondaryViewController: (UIViewController*)      secondaryViewControlle
     [[NSNotificationCenter defaultCenter] removeObserver: self
                                                     name: UIKeyboardWillHideNotification
                                                   object: nil];
-}
-
-- (void) checkAvailableActionsForTask
-{
-    TaskAvailableActionsList* availableActionsList = [[self.viewModel getCurrentTask] availableActions];
-    
-    NSArray* availableActions = availableActionsList.actions.allObjects;
-    
-    [availableActions enumerateObjectsUsingBlock: ^(TaskAvailableAction*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        switch (obj.actionID.integerValue)
-        {
-            case CreateSubtask:
-            {
-                // make add subtask btn enabled
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }];
 }
 
 @end

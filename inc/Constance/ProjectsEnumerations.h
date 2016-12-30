@@ -325,14 +325,14 @@ typedef NS_ENUM(NSUInteger, TaskLogsType)
 
 typedef NS_ENUM (NSUInteger, TaskAvailableActions)
 {
-    MoveToStage = 12,
-    CreateOnBase = 20,
-    CreateSubtask = 21,
-    Edit = 22,
-    Delete = 23,
-    AddParticipant = 31,
-    DeleteParticipant = 33,
-    ChangeParticipant = 34
+    MoveToStageAction = 12,
+    CreateOnBaseAction = 20,
+    CreateSubtaskAction = 21,
+    EditTaskAction = 22,
+    DeleteAction = 23,
+    AddParticipantAction = 31,
+    DeleteParticipantAction = 33,
+    ChangeParticipantAction = 34
 };
 
 
