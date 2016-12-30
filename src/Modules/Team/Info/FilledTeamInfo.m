@@ -116,19 +116,19 @@
 
 - (void) convertAssigneeToTeamInfo: (ProjectTaskAssignee*) assignee
 {
-//    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
-//    
-//    NSArray* assignments = project.projectRoleAssignments.array;
-//    
-//    [assignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        if (obj.assignee != nil)
-//        {
-//            self.role = obj.projectRoleType.title;
-//            self.roleID = obj.roleID;
-//        }
-//        
-//    }];
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    NSArray* assignments = project.projectRoleAssignments.array;
+    
+    [assignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.assignee != nil && [obj.assignee.assigneeID isEqual: assignee.assigneeID])
+        {
+            self.role = obj.projectRoleType.title;
+            self.roleID = obj.roleID;
+        }
+        
+    }];
     
     self.userId            = assignee.assigneeID ? assignee.assigneeID : @(-1);
     self.firstName         = assignee.firstName ? assignee.firstName : @"";
@@ -136,27 +136,23 @@
     self.fullname          = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
     self.avatarSrc         = assignee.avatarSrc ? assignee.avatarSrc : @"";
     self.taskRoleAssinment = assignee.roleAssignment.projectRoleAssignments.taskRoleType;
-    
-    self.role              = assignee.projectRoleAssignment.projectRoleType.title;
-    self.roleID            = assignee.projectRoleAssignment.roleID;
-
 }
 
 - (void) convertInviteToTeamInfo: (ProjectInviteInfo*) invite
 {
-//    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
-//    
-//    NSArray* assignments = project.projectRoleAssignments.array;
-//    
-//    [assignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        
-//        if (obj.invite != nil)
-//        {
-//            self.role = obj.projectRoleType.title;
-//            self.roleID = obj.roleID;
-//        }
-//        
-//    }];
+    ProjectInfo* project = [DataManagerShared getSelectedProjectInfo];
+    
+    NSArray* assignments = project.projectRoleAssignments.array;
+    
+    [assignments enumerateObjectsUsingBlock: ^(ProjectRoleAssignments*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.invite != nil && [obj.invite.inviteID isEqual: invite.inviteID])
+        {
+            self.role = obj.projectRoleType.title;
+            self.roleID = obj.roleID;
+        }
+        
+    }];
     
     self.userId            = invite.inviteID;
     self.firstName         = invite.firstName ? invite.firstName : @"";
@@ -164,9 +160,6 @@
     self.fullname          = [NSString stringWithFormat: @"%@ %@", self.firstName, self.lastName];
     self.avatarSrc         = @"";
     self.taskRoleAssinment = invite.projectTaskAssignment.projectRoleAssignments.taskRoleType;
-    
-    self.role              = invite.projectRoleAssignment.projectRoleType.title;
-    self.roleID            = invite.projectRoleAssignment.roleID;
 
 }
 @end

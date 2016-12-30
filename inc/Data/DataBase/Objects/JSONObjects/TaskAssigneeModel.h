@@ -27,6 +27,4 @@
 @property (strong, nonatomic) ProjectRoleModel<Optional> * role;
 @property (strong, nonatomic) NSString<Optional>   * userName;
 
-
-
 @end

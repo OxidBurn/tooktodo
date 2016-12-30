@@ -85,11 +85,6 @@ static CGFloat sectionHeaderHeight = 30;
     
     cell.delegate = self;
     
-    if ( memberInfo.assignments.invite )
-    {
-//        memberInfo.
-    }
-    
     [cell fillCellWithInfo: memberInfo
               forIndexPath: indexPath];
     
