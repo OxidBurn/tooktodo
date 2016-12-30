@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "FilledTeamInfo.h"
-#import "ProjectTaskRoleAssignment+CoreDataClass.h"
 
 @interface FilledTeamInfoPack : NSObject
 
 + (FilledTeamInfo*) convertObjectToTeamMember: (id) object;
 
-+ (NSMutableArray*) adductAssignmentsToFilledTeamInfoInArray: (NSArray*) assignments;
++ (NSArray*) convertMembersToFilledTeamInfoFromArray: (NSArray*) array;
 
 @end
