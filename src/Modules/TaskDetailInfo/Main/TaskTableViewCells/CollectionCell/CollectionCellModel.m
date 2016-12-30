@@ -412,69 +412,25 @@ typedef NS_ENUM(NSUInteger, CollectionItemCellId)
     
     [roleAssignments enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignments*  _Nonnull taskRoleAssignments, NSUInteger idx, BOOL * _Nonnull stop) {
         
+        NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
+        
         switch (taskRoleAssignments.taskRoleType.integerValue)
         {
             case ResponsibleRoleType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
-                
-                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (obj.assignee || obj.invite)
-                    {
-                        NSArray* assigneeArr = obj.assignee.array;
-                        NSArray* inviteArr   = obj.invite.array;
-                        
-                        [tmpResponsibleArr addObjectsFromArray: assigneeArr];
-                        [tmpResponsibleArr addObjectsFromArray: inviteArr];
-            
-                        tmpResponsibleArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpResponsibleArr].mutableCopy;
-                    }
-                    
-                }];
+                tmpResponsibleArr = [FilledTeamInfoPack adductAssignmentsToFilledTeamInfoInArray: taskRoleAss];
             }
                 break;
                 
             case ClaimingsRoleType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
-                
-                [taskRoleAss enumerateObjectsUsingBlock:^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (obj.assignee || obj.invite)
-                    {
-                        NSArray* assigneeArr = obj.assignee.array;
-                        NSArray* inviteArr = obj.invite.array;
-                        
-                        [tmpClaimingsArr addObjectsFromArray: assigneeArr];
-                        [tmpClaimingsArr addObjectsFromArray: inviteArr];
-                        
-                        tmpClaimingsArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpClaimingsArr].mutableCopy;
-                    }
-                    
-                }];
+                tmpClaimingsArr = [FilledTeamInfoPack adductAssignmentsToFilledTeamInfoInArray: taskRoleAss];
             }
                 break;
                 
             case ObserverRoleType:
             {
-                NSArray* taskRoleAss = taskRoleAssignments.projectRoleAssignment.array;
-                
-                [taskRoleAss enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    
-                    if (obj.assignee || obj.invite)
-                    {
-                        NSArray* assigneeArr = obj.assignee.array;
-                        NSArray* inviteArr   = obj.invite.array;
-                        
-                        [tmpObserversArr addObjectsFromArray: assigneeArr];
-                        [tmpObserversArr addObjectsFromArray: inviteArr];
-                    
-                        tmpObserversArr = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpObserversArr].mutableCopy;
-                    }
-                    
-                }];
-                
+                tmpObserversArr = [FilledTeamInfoPack adductAssignmentsToFilledTeamInfoInArray: taskRoleAss];
             }
                 
                 break;

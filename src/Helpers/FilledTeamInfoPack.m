@@ -8,6 +8,7 @@
 
 #import "FilledTeamInfoPack.h"
 
+
 @implementation FilledTeamInfoPack
 
 + (FilledTeamInfo*) convertObjectToTeamMember: (id) object
@@ -51,6 +52,28 @@
     }];
     
     return arrWithConvertedUsers;
+}
+
++ (NSMutableArray*) adductAssignmentsToFilledTeamInfoInArray: (NSArray*) assignments
+{
+    __block NSMutableArray* tmpArray = [NSMutableArray array];
+    
+    [assignments enumerateObjectsUsingBlock: ^(ProjectTaskRoleAssignment*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.assignee || obj.invite)
+        {
+            NSArray* assigneeArr = obj.assignee.array;
+            NSArray* inviteArr   = obj.invite.array;
+            
+            [tmpArray addObjectsFromArray: assigneeArr];
+            [tmpArray addObjectsFromArray: inviteArr];
+            
+            tmpArray = [FilledTeamInfoPack convertMembersToFilledTeamInfoFromArray: tmpArray].mutableCopy;
+        }
+        
+    }];
+    
+    return tmpArray;
 }
 
 @end
