@@ -468,7 +468,7 @@
 {
     self.task.selectedRooms = info;
     
-    [self.contentManager updateSelectedRoomsInfo: info];
+    self.addTaskTableViewContent = [self.contentManager updateSelectedRoomsInfo: info];
 }
 
 
